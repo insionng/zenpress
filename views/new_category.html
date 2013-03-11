@@ -1,0 +1,12 @@
+<script src="/static/js/ckeditor/ckeditor.js"></script>
+
+<form action="" method="post">
+	<div>
+		标题:<input type="text" name="title" value="{{.article.Title}}">
+		<em>{{dateformat .article.Created "2006-01-02 15:04:05"}}</em>
+	</div>
+	<div>
+		内容：<textarea class="ckeditor" name="content" colspan="3" rowspan="10">{{.article.Content}}</textarea>
+	</div>
+	<input type="submit">
+</form>
