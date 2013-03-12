@@ -7,11 +7,11 @@ import (
 	"time"
 )
 
-type TopicEditHandler struct {
+type ModifyTopicHandler struct {
 	libs.RootAuthHandler
 }
 
-func (this *TopicEditHandler) Get() {
+func (this *ModifyTopicHandler) Get() {
 	tid, _ := strconv.Atoi(this.Ctx.Params[":tid"])
 	tid_handler := models.GetTopic(tid)
 	this.Data["topic"] = tid_handler
@@ -22,7 +22,7 @@ func (this *TopicEditHandler) Get() {
 	this.Render()
 }
 
-func (this *TopicEditHandler) Post() {
+func (this *ModifyTopicHandler) Post() {
 	inputs := this.Input()
 	tid, _ := strconv.Atoi(this.Ctx.Params[":tid"])
 	nid, _ := strconv.Atoi(inputs.Get("nodeid"))

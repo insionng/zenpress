@@ -40,8 +40,10 @@
                   
             <p>{{.Content}}</p>
             
-                     <div class="comment-reply pull-right">
-               <a class='comment-reply-link' href='?replytocom={{.Id}}#respond' onclick='return addComment.moveForm("comment-{{.Id}}", "{{.Id}}", "respond", "27")'>Reply</a>        </div>
+            <div class="comment-reply pull-right">
+               <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/delete/reply/{{.Id}}">删除 &raquo;</a></span>
+               <a class='comment-reply-link' href='?replytocom={{.Id}}#respond' onclick='return addComment.moveForm("comment-{{.Id}}", "{{.Id}}", "respond", "{{.Uid}}")'>Reply</a>
+            </div>
             <div class="clearfix"></div>
       
             <div class="clear"></div>

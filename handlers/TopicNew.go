@@ -11,7 +11,7 @@ type NewTopicHandler struct {
 }
 
 func (this *NewTopicHandler) Get() {
-	this.TplNames = "new_topic.html"
+	this.TplNames = "topic_new.html"
 	this.Layout = "layout.html"
 	this.Data["nodes"] = models.GetAllNode()
 	this.Render()

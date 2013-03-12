@@ -28,15 +28,21 @@ func main() {
 	torgo.RegisterController("/like/node/:nid([0-9]+)", &handlers.LikeNodeHandler{})
 	torgo.RegisterController("/hate/node/:nid([0-9]+)", &handlers.HateNodeHandler{})
 
-	torgo.RegisterController("/category/new", &handlers.NewCategoryHandler{})
-	torgo.RegisterController("/node/new", &handlers.NewNodeHandler{})
-	torgo.RegisterController("/topic/new", &handlers.NewTopicHandler{})
+	torgo.RegisterController("/new/category", &handlers.NewCategoryHandler{})
+	torgo.RegisterController("/new/node", &handlers.NewNodeHandler{})
+	torgo.RegisterController("/new/topic", &handlers.NewTopicHandler{})
+
+	torgo.RegisterController("/modify/category", &handlers.ModifyCategoryHandler{})
+	torgo.RegisterController("/modify/node", &handlers.ModifyNodeHandler{})
+	torgo.RegisterController("/modify/topic", &handlers.ModifyTopicHandler{})
 
 	torgo.RegisterController("/topic/delete/:tid([0-9]+)", &handlers.TopicDeleteHandler{})
 	torgo.RegisterController("/topic/edit/:tid([0-9]+)", &handlers.TopicEditHandler{})
 
 	torgo.RegisterController("/node/delete/:nid([0-9]+)", &handlers.NodeDeleteHandler{})
 	torgo.RegisterController("/node/edit/:nid([0-9]+)", &handlers.NodeEditHandler{})
+
+	torgo.RegisterController("/delete/reply/:rid([0-9]+)", &handlers.DeleteReplyHandler{})
 
 	torgo.SessionOn = true
 	torgo.Run()

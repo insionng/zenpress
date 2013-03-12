@@ -62,12 +62,12 @@
     <div class="container">
 
       <form action="register" method="post" class="form-signin">
-        <h2 class="form-signin-heading">Please Register in</h2>
-        <input type="text" class="input-block-level" placeholder="Username" name="username">
+        <h2 class="form-signin-heading">请填写注册资料</h2>
+        <input type="text" class="input-block-level" placeholder="请你输入用户名" name="username">
 		{{if .UsernameErr}} {{.UsernameErr}} {{end}}
-		<input type="password" class="input-block-level" placeholder="Password" name="password">
+		<input type="password" class="input-block-level" placeholder="请你输入密码" name="password">
 		{{if .PasswordErr}} {{.PasswordErr}} {{end}}
-        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+        <button class="btn btn-large btn-primary" type="submit">提交注册资料</button>
       </form>
 
     </div> <!-- /container -->

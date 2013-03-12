@@ -184,6 +184,12 @@ func AddCategory(title string, content string) error {
 	return err
 }
 
+func SaveCategory(cat Category) Category {
+	q, _, _, _ := setupDb()
+	q.Save(&cat)
+	return cat
+}
+
 func AddNode(title string, content string, categoryid int) error {
 	q, _, _, _ := setupDb()
 	_, err := q.Save(&Node{Pid: int64(categoryid), Title: title, Content: content, Created: time.Now()})
@@ -205,7 +211,11 @@ func DelNode(nid int) error {
 	for i, v := range GetAllTopicByNode(nid) {
 		if i > 0 {
 			DelTopic(int(v.Id))
-			DelReply(int(v.Id))
+			for ii, vv := range GetReplyByPid(int(v.Id), 0, 0, "id") {
+				if ii > 0 {
+					DelReply(int(vv.Id))
+				}
+			}
 		}
 	}
 
