@@ -12,9 +12,6 @@ type ModifyNodeHandler struct {
 }
 
 func (this *ModifyNodeHandler) Get() {
-	nid, _ := strconv.Atoi(this.Ctx.Params[":nid"])
-	this.Data["icategory"] = models.GetCategory(int(models.GetNode(nid).Pid))
-
 	this.Layout = "layout.html"
 	this.TplNames = "modify_node.html"
 	this.Render()

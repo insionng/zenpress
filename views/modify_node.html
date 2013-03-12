@@ -21,7 +21,6 @@
 		<div class="controls">
               <select id="selectError" name="categoryid">
 		{{if .categorys}}
-				<option value="{{.icategory.Id}}" selected>{{.icategory.Title}} [默认]</option>
             {{range .categorys}}
 				<option value="{{.Id}}">{{.Title}}</option>
             {{end}}

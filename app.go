@@ -34,7 +34,6 @@ func main() {
 
 	torgo.RegisterController("/modify/category", &handlers.ModifyCategoryHandler{})
 	torgo.RegisterController("/modify/node", &handlers.ModifyNodeHandler{})
-	torgo.RegisterController("/modify/topic", &handlers.ModifyTopicHandler{})
 
 	torgo.RegisterController("/topic/delete/:tid([0-9]+)", &handlers.TopicDeleteHandler{})
 	torgo.RegisterController("/topic/edit/:tid([0-9]+)", &handlers.TopicEditHandler{})
