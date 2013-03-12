@@ -1,18 +1,27 @@
 package handlers
 
 import (
+	"../libs"
 	"../models"
 	"../utils"
-	"time"
 )
 
 type LoginHandler struct {
-	utils.BaseHandler
+	libs.BaseHandler
 }
 
 func (this *LoginHandler) Get() {
-	this.TplNames = "login.html"
-	this.Render()
+
+	sess := this.StartSession()
+	sess_username, _ := sess.Get("username").(string)
+	//如果未登录
+	if sess_username == "" {
+		this.TplNames = "login.html"
+		this.Render()
+	} else { //如果已登录
+		this.Ctx.Redirect(302, "/")
+	}
+
 }
 
 func (this *LoginHandler) Post() {
@@ -24,15 +33,13 @@ func (this *LoginHandler) Post() {
 	userInfo := models.GetUserByNickname(username)
 
 	if utils.Validate_password(userInfo.Password, password) {
-		var users models.User
-		users.Last_login_time = time.Now()
-		models.SaveUser(users)
 
 		//登录成功设置session
 		sess := this.StartSession()
 		sess.Set("userid", userInfo.Id)
 		sess.Set("username", userInfo.Nickname)
 		sess.Set("userrole", userInfo.Role)
+		sess.Set("useremail", userInfo.Email)
 
 		this.Ctx.Redirect(302, "/")
 	} else {

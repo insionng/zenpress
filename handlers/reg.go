@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"../libs"
 	"../models"
 	"../utils"
 	"fmt"
@@ -8,7 +9,7 @@ import (
 )
 
 type RegHandler struct {
-	utils.BaseHandler
+	libs.BaseHandler
 }
 
 func (this *RegHandler) Get() {
@@ -49,7 +50,8 @@ func (this *RegHandler) Post() {
 		sess.Set("userid", userInfo.Id)
 		sess.Set("username", userInfo.Nickname)
 		sess.Set("userrole", userInfo.Role)
-		this.Ctx.Redirect(302, "/")
+		sess.Set("useremail", userInfo.Email)
+		this.Ctx.Redirect(302, "/login")
 	} else {
 		this.Data["UsernameErr"] = "User already exists"
 	}

@@ -2,11 +2,12 @@
 
 <form action="" method="post">
 	<div>
-		标题:<input type="text" name="title" value="{{.article.Title}}">
-		<em>{{dateformat .article.Created "2006-01-02 15:04:05"}}</em>
+		<h2>分类名称:</h2>
+		<input type="text" name="title" value="">
 	</div>
 	<div>
-		内容：<textarea class="ckeditor" name="content" colspan="3" rowspan="10">{{.article.Content}}</textarea>
+		<h2>分类简介：</h2>
+		<textarea class="ckeditor" name="content" colspan="3" rowspan="10"></textarea>
 	</div>
 	<input type="submit">
 </form>

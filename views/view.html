@@ -7,9 +7,9 @@
                   
                      <h2>{{.article.Title}}</h2>
                      
-                     <div class="meta"><i class="icon-calendar"></i> {{dateformat .article.Created "2006-01-02 15:04:05"}} - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="Comment on Suspendisse eget lorem dui">5 Comments</a></div>
+                     <div class="meta"><i class="icon-calendar"></i> {{dateformat .article.Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="/user/{{.article.Uid}}/" title="View all posts in Etiam" rel="category tag">Insion</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="Comment on Suspendisse eget lorem dui">{{.article.Reply_count}} Comments</a></div>
                      
-                     <div>{{.article.Content}}</div>
+                     <div>{{markdown .article.Content}}</div>
                      Tags: <a href="http://responsivewebinc.com/nannie/tag/condimen/" rel="tag">condimen</a> <a href="http://responsivewebinc.com/nannie/tag/lobor/" rel="tag">lobor</a>                  </div>
                   <div class="clearfix"></div>
                </div>
@@ -18,39 +18,43 @@
 <!-- You can start editing here. -->
  
 <div class="comments well">
-<h3><span class="comment-heading">Comments - </span>5 Responses</h3>
+<h3><span class="comment-heading">Comments - </span>{{.article.Reply_count}} Responses</h3>
  
 <!-- <div class="navigation">
 <div class="alignleft"><a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/comment-page-1/#comments" >&laquo; Older Comments</a></div>
 <div class="alignright"></div>
 </div> -->
- 
-<ul class="media-list">
-<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-6" >
 
-   
-	<div id="comment-6" class="comment-box">
-		
-			<div class="comment-author"><strong>admin</strong></div>
-			<div class="cmeta">November 18, 2012 at 4:16 am </div>
+{{if .replys}}
+<ul class="media-list">
+   {{range .replys}}
+   <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-{{.Id}}" >
+
+      
+      <div id="comment-{{.Id}}" class="comment-box">
          
-         <div class="clearfix"></div>
-			      
-			<p>Vivamus malesuada lectus in tellus lacinia pulvinar. Aenean gravida rutrum eros non adipiscing. Curabitur at magna ultrices massa sollicitudin ullamcorper. Suspendisse porta egestas vehicula. In sed blandit magna.</p>
-			
-						<div class="comment-reply pull-right">
-				<a class='comment-reply-link' href='/nannie/suspendisse-eget-lorem-dui/?replytocom=6#respond' onclick='return addComment.moveForm("comment-6", "6", "respond", "27")'>Reply</a>			</div>
-         <div class="clearfix"></div>
-	
-			<div class="clear"></div>
-	</div>
-</li>
+            <div class="comment-author"><strong>{{.Uid}}</strong></div>
+            <div class="cmeta">{{dateformat .Created "January 2 , 2006 at 15:04 am"}}</div>
+            
+            <div class="clearfix"></div>
+                  
+            <p>{{.Content}}</p>
+            
+                     <div class="comment-reply pull-right">
+               <a class='comment-reply-link' href='?replytocom={{.Id}}#respond' onclick='return addComment.moveForm("comment-{{.Id}}", "{{.Id}}", "respond", "27")'>Reply</a>        </div>
+            <div class="clearfix"></div>
+      
+            <div class="clear"></div>
+      </div>
+   </li>
+   {{end}}
 </ul>
- 
+{{end}}
+
 </div>
 
 <div class="navigation">
-<div class="pull-left"><a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/comment-page-1/#comments" >&laquo; Older Comments</a></div>
+<div class="pull-left"><a href="/comment-page-1/#comments" >&laquo; Older Comments</a></div>
 <div class="pull-right"></div>
 </div>
 
@@ -63,32 +67,30 @@
 <h3><span>Leave a Reply</span></h3>
  
 <div class="cancel-comment-reply">
-<a rel="nofollow" id="cancel-comment-reply-link" href="/nannie/suspendisse-eget-lorem-dui/#respond" style="display:none;">Cancel Reply</a></div>
+<a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Cancel Reply</a></div>
 
 <div class="clearfix"></div>
  
 
-<form action="http://responsivewebinc.com/nannie/wp-comments-post.php" method="post" id="commentform" class="form-horizontal">
- 
-
+<form action="/view/{{.article.Id}}" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
-            <input type="text" class="input-large" name="author" id="author" value="" required>
+            <input type="text" class="input-large" name="author" id="author" value="{{.Username}}" required>
          </div>
       </div>  
 
       <div class="control-group">
          <label class="control-label" for="email">Email</label>
          <div class="controls">
-            <input type="text" class="input-large" name="email" id="email" value="" required>
+            <input type="text" class="input-large" name="email" id="email" value="{{.Useremail}}" required>
          </div>
       </div>
 
       <div class="control-group">
-         <label class="control-label" for="url">Website</label>
+         <label class="control-label" for="website">Website</label>
          <div class="controls">
-            <input type="text" class="input-large" name="url" id="url" value="" >
+            <input type="text" class="input-large" name="website" id="website" value="" >
          </div>
       </div> 
 	
@@ -98,18 +100,18 @@
       <div class="control-group">
          <label class="control-label" for="comment">Comment</label>
          <div class="controls">
-            <textarea class="input-xlarge" name="comment" id="comment" rows="3"></textarea>
+            <textarea class="input-xlarge" name="comment" id="comment" rows="8" style="width:80%;"></textarea>
          </div>
       </div> 
 
       <div class="form-actions">
-         <input name="submit" type="submit" id="comment-submit" tabindex="5" value="Comment" class="btn" />
-         <button type="reset" class="btn">Reset</button>
+         <input name="submit" type="submit" id="comment-submit" tabindex="5" value="评论" class="btn" />
+         <button type="reset" class="btn">清空</button>
       </div>
  
 <p>
-<input type='hidden' name='comment_post_ID' value='27' id='comment_post_ID' />
-<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+<input type='hidden' name='comment_userid' value='{{.Userid}}' id='comment_userid' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='{{.article.Id}}' />
 </p>
 
 <div class="clear"></div>

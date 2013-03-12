@@ -1,13 +1,14 @@
 package handlers
 
 import (
+	"../libs"
 	"../models"
 	"../utils"
 	"strconv"
 )
 
 type NodeHandler struct {
-	utils.BaseHandler
+	libs.BaseHandler
 }
 
 func (this *NodeHandler) Get() {
@@ -18,15 +19,19 @@ func (this *NodeHandler) Get() {
 	//inputs := this.Input()
 	//id, _ := strconv.Atoi(inputs.Get("id"))
 	nodeid, _ := strconv.Atoi(this.Ctx.Params[":nid"])
+
 	this.Data["topics"] = models.GetAllTopicByNode(nodeid)
+	nid_handler := models.GetNode(nodeid)
+	nid_path := strconv.Itoa(int(nid_handler.Pid)) + "/" + strconv.Itoa(int(nid_handler.Id)) + "/"
+	nid_name := "index.html"
 	this.TplNames = "node.html"
 	this.Layout = "layout.html"
 
 	rs, _, _ := this.RenderString()
 
-	utils.Writefile("./archives"+this.Ctx.Request.RequestURI, this.Ctx.Params[":nid"], ".html", rs)
+	utils.Writefile("./archives/"+nid_path, nid_name, rs)
 
-	this.Redirect("/archives"+this.Ctx.Request.RequestURI+".html", 302)
+	this.Redirect("/archives/"+nid_path+nid_name, 302)
 
 	/*this.Render()*/
 }

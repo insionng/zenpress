@@ -1,26 +1,27 @@
 package handlers
 
 import (
+	"../libs"
 	"../models"
-	"../utils"
 	"strconv"
 )
 
 type NewTopicHandler struct {
-	utils.RootAuthHandler
+	libs.AuthHandler
 }
 
 func (this *NewTopicHandler) Get() {
 	this.TplNames = "new_topic.html"
 	this.Layout = "layout.html"
-
+	this.Data["nodes"] = models.GetAllNode()
 	this.Render()
 }
 
 func (this *NewTopicHandler) Post() {
 	inputs := this.Input()
 	nodeid, _ := strconv.Atoi(inputs.Get("nodeid"))
-	models.AddTopic(inputs.Get("title"), inputs.Get("content"), int64(nodeid))
+	cid := int(models.GetNode(nodeid).Pid)
+	models.AddTopic(inputs.Get("title"), inputs.Get("content"), cid, nodeid)
 
 	this.Ctx.Redirect(302, "/")
 }

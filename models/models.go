@@ -116,6 +116,9 @@ type Reply struct {
 	Hotup      int64
 	Hotdown    int64
 	Views      int64
+	Author     string
+	Email      string
+	Website    string
 }
 
 func setupDb() (*qbs.Qbs, *qbs.Migration, *sql.DB, error) {
@@ -143,9 +146,9 @@ func Ct() {
 	}
 
 	if GetTopic(1).Title == "" {
-		AddCategory("分类标题", "分类简介")
-		AddTopic("话题标题", "话题内容", 1)
-		AddNode("节点标题", "节点简介", 0)
+		AddCategory("Hello Category", "This is Category!")
+		AddNode("Hello Node!", "This is Node!", 1)
+		AddTopic("Hello World!", "This is Toropress!", 1, 1)
 	}
 }
 
@@ -194,9 +197,32 @@ func SaveNode(nd Node) Node {
 	return nd
 }
 
-func AddTopic(title string, content string, nodeid int64) error {
+func DelNode(nid int) error {
 	q, _, _, _ := setupDb()
-	_, err := q.Save(&Topic{Nid: nodeid, Title: title, Content: content, Created: time.Now()})
+	node := GetNode(nid)
+	_, err := q.Delete(&node)
+
+	for i, v := range GetAllTopicByNode(nid) {
+		if i > 0 {
+			DelTopic(int(v.Id))
+			DelReply(int(v.Id))
+		}
+	}
+
+	return err
+}
+
+func DelReply(tid int) error {
+	q, _, _, _ := setupDb()
+	reply := GetReply(tid)
+	_, err := q.Delete(&reply)
+
+	return err
+}
+
+func AddTopic(title string, content string, cid int, nodeid int) error {
+	q, _, _, _ := setupDb()
+	_, err := q.Save(&Topic{Cid: int64(cid), Nid: int64(nodeid), Title: title, Content: content, Created: time.Now()})
 
 	return err
 }
@@ -215,9 +241,9 @@ func DelTopic(id int) error {
 	return err
 }
 
-func AddReply(pid int64, content string) error {
+func AddReply(pid int, uid int, content string, author string, email string, website string) error {
 	q, _, _, _ := setupDb()
-	_, err := q.Save(&Reply{Pid: pid, Content: content, Created: time.Now()})
+	_, err := q.Save(&Reply{Pid: int64(pid), Uid: int64(uid), Content: content, Created: time.Now(), Author: author, Email: email, Website: website})
 
 	return err
 }

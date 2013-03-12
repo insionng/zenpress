@@ -5,11 +5,11 @@
 {{range .topics}}
 <div class="entry" id="post-27">
                   <div class="thumb">
-                     <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/" rel="bookmark"><img width="130" height="130" src="http://responsivewebinc.com/nannie/wp-content/uploads/2012/11/girl-62328_640-130x130.jpg" class="attachment-post-thumbnail wp-post-image" alt="grandaughter-11780_640" title="grandaughter-11780_640" /></a>
+                     <a href="/view/{{.Id}}" rel="bookmark"><img width="130" height="130" src="http://responsivewebinc.com/nannie/wp-content/uploads/2012/11/girl-62328_640-130x130.jpg" class="attachment-post-thumbnail wp-post-image" alt="grandaughter-11780_640" title="grandaughter-11780_640" /></a>
                   </div>
                   <div class="matter">
                   
-                    <h2><a rel="bookmark" href="/{{.Cid}}/{{.Nid}}/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
+                    <h2><a rel="bookmark" href="/view/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
           <div>
             {{if compare $Userrole 100}}
                 <span><i class="fa-icon-user"></i> <a class="btn" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
@@ -18,7 +18,7 @@
             <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/like/topic/{{.Id}}">喜欢 &raquo;</a></span>
             <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/hate/topic/{{.Id}}">恶心 &raquo;</a></span>
           </div>
-                     <div class="meta"><i class="icon-calendar"></i>{{dateformat .Created "2006-01-02 15:04:05"}} - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 Comments</a>
+                     <div class="meta"><i class="icon-calendar"></i>{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 Comments</a>
                      </div>
                       <div>
                       {{$C:= cutstr .Content 0 200}}

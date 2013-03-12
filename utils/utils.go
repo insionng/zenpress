@@ -240,9 +240,9 @@ func Cubstr(str string, start, length int) string {
 	return string(rs[start:end])
 }
 
-func Writefile(path string, filename string, fileext string, content string) error {
-	path = path[0 : len(path)-len(filename)]
-	filename = path + filename + fileext
+func Writefile(path string, filename string, content string) error {
+	//path = path[0 : len(path)-len(filename)]
+	filename = path + filename
 
 	os.MkdirAll(path, 0777)
 	file, err := os.Create(filename)

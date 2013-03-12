@@ -1,13 +1,14 @@
 package handlers
 
 import (
+	"../libs"
 	"../models"
 	"../utils"
 	"strconv"
 )
 
 type LikeTopicHandler struct {
-	utils.BaseHandler
+	libs.BaseHandler
 }
 
 func (this *LikeTopicHandler) Get() {

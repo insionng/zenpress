@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         
-    <meta name="description" content="争雄天下" />
-    <meta name="keywords" content="争雄天下" />
+    <meta name="description" content="影神网" />
+    <meta name="keywords" content="影神网" />
     <meta name="author" content="insion"/>
     
-    <title>INSION CO.</title>
+    <title>影神网</title>
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
   
   <!-- Stylesheets -->
@@ -44,7 +44,7 @@
             <div class="logo">
                <!-- Recommended Logo size 240x100 -->
                <a href="/"><h1>Insion.<span class="color">Co</span></h1></a>
-               <p class="lmeta">Gopress Blog，我的博客.</p>
+               <p class="lmeta">影神网，美女图片博客.</p>
             </div>
          </div>
          <!--div class="span4 offset4">
@@ -70,9 +70,13 @@
                       <ul class="nav">
                         <ul id="menu-menu" class="nav">
                           <li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-30"><a href="/">首页</a></li>
+                        {{if .categorys}}
                           {{range .categorys}}
                             <li class="menu-item"><a href="/category/{{.Id}}">{{.Title}}</a></li>
                           {{end}}
+                        {{else}}
+                          <li class="menu-item"><a href="###">尚无分类</a></li>
+                        {{end}}
                         </ul>
                       </ul>
                   </div>
@@ -92,57 +96,73 @@
          <div class="span4">
             <!-- Sidebar -->
                <div class="sidebar">
-                  <div class="widget"><h3><span>Search</span></h3><div class="form">
-<form method="get" id="searchform" action="http://responsivewebinc.com/nannie/" class="form-search">
-<input type="text" value="" name="s" id="s" class="input-medium"/>
-<input type="submit" id="searchsubmit" value="search" class="btn"/>
-</form>
-</div>
+<div class="widget">
+  <h3><span>搜索</span></h3><div class="form">
+  <form method="get" id="searchform" action="http://responsivewebinc.com/nannie/" class="form-search">
+  <input type="text" value="" name="s" id="s" class="input-medium"/>
+  <input type="submit" id="searchsubmit" value="搜索" class="btn"/>
+  </form>
+  </div>
 </div>
 
+{{if compare .Userrole 100}}
 <div class="widget">
-  <h3><span>Root Links</span></h3>
+  <h3><span>管理，{{.Username}}</span></h3>
   <ul>
-    {{if compare .Userrole 100}}
-     <li><a href="/category/new">add category</a></li>
-     <li><a href="/node/new">add node</a></li>
-     <li><a href="/topic/new">new topic</a></li>
-     <li><a href="/logout">logout</a></li>
-    {{else}}
-     <li><a href="/register">register</a></li>
-     <li><a href="/login">login</a></li>
+     <li><a href="/category/new">新建分类</a></li>
+     <li><a href="/node/new">新建节点</a></li>
+     <li><a href="/topic/new">新建话题</a></li>
+     <li><a href="/logout">退出</a></li>
+  </ul>
+</div>
+<div class="widget">
+  <h3><span>危险操作</span></h3>
+  <ul>
+     <li><a href="/delete/category">删除分类</a></li>
+     <li><a href="/delete/node">删除节点</a></li>
+     <li><a href="/delete/topic">删除话题</a></li>
+     <li><a href="/delete/user">删除用户</a></li>
+  </ul>
+</div>
+{{else}}
+<div class="widget">
+  {{if .Username}}
+  <h3><span>欢迎，{{.Username}}</span></h3>
+  {{else}}
+  <h3><span>注册登录</span></h3>
+  {{end}}
+  <ul>
+  {{if .Username}}
+     <li><a href="/node/new">新建节点</a></li>
+     <li><a href="/topic/new">新建话题</a></li>
+     <li><a href="/logout">退出</a></li>
+  {{else}}
+     <li><a href="/register">注册</a></li>
+     <li><a href="/login">登录</a></li>
+  {{end}}
+  </ul>
+</div>
+{{end}}
+
+<div class="widget">
+  <h3><span>最新10个节点</span></h3>
+  <ul>
+  {{if .nodes_10s}}
+    {{range .nodes_10s}}
+      <li><a href="/node/{{.Id}}" title="{{.Title}}">{{.Title}}</a></li>
     {{end}}
+  {{else}}
+    <li>无该节点数据</li>
+  {{end}}
   </ul>
 </div>
 
 <div class="widget">
-  <h3><span>recent 10 nodes</span></h3>
-  <ul>
-    {{range .nodes_1}}
-      <li><a href="/{{.Pid}}/{{.Id}}" title="{{.Title}}">{{.Title}}</a></li>
-    {{end}}
-  </ul>
-</div>
-
-<div class="widget">
-  <h3><span>最新节点</span></h3>
-  <ul>
-    {{if .allnode}}
-      {{range .allnode}}
-        <li><a href="/{{.Pid}}/{{.Id}}" title="{{.Title}}">{{.Title}}</a></li>
-      {{end}}
-    {{else}}
-      <li>尚无最新节点</li>
-    {{end}}
-  </ul>
-</div>
-
-<div class="widget">
-  <h3><span>recent comments</span></h3>
+  <h3><span>最新10条评论</span></h3>
   <ul id="recentcomments">
-  {{if .replys_5s}}
-      {{range .replys_5s}}
-      <li class="recentcomments">ID:{{.Uid}} on <a href="/topic/{{.Pid}}/#reply-{{.Id}}">{{cutstr .Content 0 50}}</a></li>
+  {{if .replys_10s}}
+      {{range .replys_10s}}
+      <li class="recentcomments">ID:{{.Uid}} on <a href="/topic/{{.Pid}}#reply-{{.Id}}">{{cutstr .Content 0 50}}</a></li>
       {{end}}
   {{else}}
       <li class="recentcomments">尚无评论</li>
@@ -151,11 +171,15 @@
 </div>
 
 <div class="widget">
-  <h3><span>Categories</span></h3>
+  <h3><span>博客分类</span></h3>
   <ul>
+    {{if .categorys}}
       {{range .categorys}}
         <li class="cat-item"><a href="/category/{{.Id}}">{{.Title}}</a></li>
       {{end}}
+    {{else}}
+     <li class="cat-item">尚无分类</li>
+    {{end}}
   </ul>
 </div>
 
@@ -174,7 +198,7 @@
          <div class="span4">
                         <div class="fwidget">
                <h4>About Insion.Co</h4>
-               <p>Suspendisse potenti. Morbi ac felis nec mauris imperdiet fermentum. Aenean sodales augue ac lacus hendrerit sed rhoncus erat hendrerit. Vivamus vel ultricies elit. Aliquam ut feugiat ante. Curabitur  usto aliquam. Maecenas turpis urna, eleifend quis urna. Aliquam fringilla mauris lectus, in  justo. Aliquam ut pharetra erat.</p>
+               <p>影神网  是一个基于toropress搭建的图片博客，欢迎大家收藏！</p>
             </div>
                      </div>
          <div class="span4">
@@ -183,7 +207,7 @@
                <ul>
                 {{if .replys_5s}}
                   {{range .replys_5s}}
-                  <li>ID:{{.Uid}} on <a href="/topic/{{.Pid}}/#reply-{{.Id}}">{{cutstr .Content 0 50}}</a></li>
+                  <li>ID:{{.Uid}} on <a href="/topic/{{.Pid}}#reply-{{.Id}}">{{cutstr .Content 0 50}}</a></li>
                   {{end}}
                 {{else}}
                   <li>尚无评论</li>
@@ -195,8 +219,12 @@
                         <div class="fwidget">
                <h4>Categories</h4>
                <ul>
-                {{range .categorys}}
-                  <li><a href="/category/{{.Id}}">{{.Title}}</a></li>
+                {{if .categorys}}
+                  {{range .categorys}}
+                    <li><a href="/category/{{.Id}}">{{.Title}}</a></li>
+                  {{end}}
+                {{else}}
+                  <li>尚无分类</li>
                 {{end}}
                </ul>
             </div>   

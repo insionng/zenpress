@@ -1,12 +1,12 @@
 package handlers
 
 import (
+	"../libs"
 	"../models"
-	"../utils"
 )
 
 type NewCategoryHandler struct {
-	utils.RootAuthHandler
+	libs.RootAuthHandler
 }
 
 func (this *NewCategoryHandler) Get() {

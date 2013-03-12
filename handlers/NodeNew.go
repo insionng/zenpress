@@ -1,13 +1,13 @@
 package handlers
 
 import (
+	"../libs"
 	"../models"
-	"../utils"
 	"strconv"
 )
 
 type NewNodeHandler struct {
-	utils.RootAuthHandler
+	libs.AuthHandler
 }
 
 func (this *NewNodeHandler) Get() {

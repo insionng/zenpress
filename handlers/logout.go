@@ -1,11 +1,11 @@
 package handlers
 
 import (
-	"../utils"
+	"../libs"
 )
 
 type LogoutHandler struct {
-	utils.BaseHandler
+	libs.BaseHandler
 }
 
 func (this *LogoutHandler) Get() {
