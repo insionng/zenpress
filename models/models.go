@@ -208,7 +208,7 @@ func DelNode(nid int) error {
 	node := GetNode(nid)
 	_, err := q.Delete(&node)
 
-	for i, v := range GetAllTopicByNode(nid) {
+	for i, v := range GetAllTopicByNode(nid, "id") {
 		if i > 0 {
 			DelTopic(int(v.Id))
 			for ii, vv := range GetReplyByPid(int(v.Id), 0, 0, "id") {
@@ -300,9 +300,9 @@ func GetAllTopic() (allt []*Topic) {
 	return allt
 }
 
-func GetAllTopicByNode(nodeid int) (allt []*Topic) {
+func GetAllTopicByNode(nodeid int, path string) (allt []*Topic) {
 	q, _, _, _ := setupDb()
-	q.Where("nid=?", nodeid).FindAll(&allt)
+	q.Where("nid=?", nodeid).OrderByDesc(path).FindAll(&allt)
 	return allt
 }
 

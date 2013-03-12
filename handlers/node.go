@@ -12,15 +12,9 @@ type NodeHandler struct {
 }
 
 func (this *NodeHandler) Get() {
-
-	///:cid(category-[0-9]+)/:nid(node-[0-9]+)+"/"
-	//"/category/:cid([0-9]+)/node/:nid([0-9]+)"
-
-	//inputs := this.Input()
-	//id, _ := strconv.Atoi(inputs.Get("id"))
 	nodeid, _ := strconv.Atoi(this.Ctx.Params[":nid"])
 
-	this.Data["topics"] = models.GetAllTopicByNode(nodeid)
+	this.Data["topics"] = models.GetAllTopicByNode(nodeid, "hotness")
 	nid_handler := models.GetNode(nodeid)
 	nid_path := strconv.Itoa(int(nid_handler.Pid)) + "/" + strconv.Itoa(int(nid_handler.Id)) + "/"
 	nid_name := "index.html"
