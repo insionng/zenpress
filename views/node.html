@@ -15,8 +15,12 @@
                 <span><i class="fa-icon-user"></i> <a class="btn" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
                 <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/topic/delete/{{.Id}}">删除 &raquo;</a></span>
             {{end}}
-            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/like/topic/{{.Id}}">喜欢 &raquo;</a></span>
-            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/hate/topic/{{.Id}}">恶心 &raquo;</a></span>
+            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/topic/{{.Id}}", context: document.body, success: function(){
+         alert("喜欢成功！");
+      }});'>喜欢 &raquo;</a></span>
+            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/topic/{{.Id}}", context: document.body, success: function(){
+         alert("恶心成功！");
+      }});'>恶心 &raquo;</a></span>
           </div>
                      <div class="meta"><i class="icon-calendar"></i>{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 Comments</a>
                      </div>

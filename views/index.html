@@ -10,15 +10,17 @@
     </div>
     <div class="matter">
       <h2><a rel="bookmark" href="/node/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
-
-
           <div>
             {{if compare $Userrole 100}}
                 <span><i class="fa-icon-user"></i> <a class="btn" href="/node/edit/{{.Id}}">编辑 &raquo;</a></span>
                 <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/node/delete/{{.Id}}">删除 &raquo;</a></span>
             {{end}}
-                <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/like/node/{{.Id}}">喜欢 &raquo;</a></span>
-                <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/hate/node/{{.Id}}">恶心 &raquo;</a></span>
+                <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/node/{{.Id}}", context: document.body, success: function(){
+         alert("喜欢成功！");
+      }});'>喜欢 &raquo;</a></span>
+                <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/node/{{.Id}}", context: document.body, success: function(){
+         alert("恶心成功！");
+      }});'href="">恶心 &raquo;</a></span>
           </div>
           
           <div class="meta"><i class="icon-calendar"></i> {{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="/user/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="/node/{{.Id}}" title="8个节点">8个节点</a>

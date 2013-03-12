@@ -24,7 +24,7 @@ func (this *HateTopicHandler) Get() {
 
 		models.SaveTopic(tp)
 
-		this.Ctx.WriteString("hate ok!")
+		this.Ctx.WriteString("success")
 
 	} else {
 		this.Ctx.WriteString("R u spider?")

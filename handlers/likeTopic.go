@@ -24,7 +24,7 @@ func (this *LikeTopicHandler) Get() {
 
 		models.SaveTopic(tp)
 
-		this.Ctx.WriteString("like ok!")
+		this.Ctx.WriteString("success")
 
 	} else {
 		this.Ctx.WriteString("R u spider?")

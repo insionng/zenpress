@@ -24,8 +24,8 @@ func (this *HateNodeHandler) Get() {
 
 		models.SaveNode(nd)
 
-		//this.Ctx.WriteString("hate ok!")
-		this.Ctx.Redirect(302, "/")
+		this.Ctx.WriteString("success")
+		//this.Ctx.Redirect(302, "/")
 
 	} else {
 		this.Ctx.WriteString("R u spider?")

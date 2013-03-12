@@ -24,8 +24,8 @@ func (this *LikeNodeHandler) Get() {
 
 		models.SaveNode(nd)
 
-		//this.Ctx.WriteString("like ok!")
-		this.Ctx.Redirect(302, "/")
+		this.Ctx.WriteString("success")
+		//this.Ctx.Redirect(302, "/")
 
 	} else {
 		this.Ctx.WriteString("R u spider?")
