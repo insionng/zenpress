@@ -11,20 +11,16 @@
     <title>Toropress</title>
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
   
-  <!-- Stylesheets -->
+  
   <link href="/static/themes/nannie/css/bootstrap.css" rel="stylesheet">
   <link rel="stylesheet" href="/static/themes/nannie/css/font-awesome.css">
-  <!--[if IE 7]>
-  <link rel="stylesheet" href="/static/themes/nannie/css/font-awesome-ie7.css">
-  <![endif]-->      
+        
   <link href="/static/themes/nannie/css/style.css" rel="stylesheet">
   <link href="/static/themes/nannie/css/bootstrap-responsive.css" rel="stylesheet">
   
-<!--[if lt IE 9]>
-<script src="/static/themes/nannie/js/html5.js"></script>
-<![endif]-->
+
   
-    <!-- Le fav and touch icons -->
+    
     <link rel="shortcut icon" href="/static/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
@@ -36,26 +32,18 @@
 
 <body>
 
-<!-- Header -->
+
 <header>
    <div class="container">
       <div class="row">
          <div class="span4">
             <div class="logo">
-               <!-- Recommended Logo size 240x100 -->
+               
                <a href="/"><h1>Insion.<span class="color">Co</span></h1></a>
                <p class="lmeta">Toropress，又一个Toropress..</p>
             </div>
          </div>
-         <!--div class="span4 offset4">
-            <div class="social">
-               <a href="#"><i class="icon-facebook facebook"></i></a>
-               <a href="#"><i class="icon-twitter twitter"></i></a>
-               <a href="#"><i class="icon-linkedin linkedin"></i></a>
-               <a href="#"><i class="icon-pinterest pinterest"></i></a>
-               <a href="#"><i class="icon-google-plus google-plus"></i></a>
-            </div>
-         </div-->
+         
       </div>
    </div>
 </header>
@@ -70,13 +58,15 @@
                       <ul class="nav">
                         <ul id="menu-menu" class="nav">
                           <li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-30"><a href="/">首页</a></li>
-                        {{if .categorys}}
-                          {{range .categorys}}
-                            <li class="menu-item"><a href="/category/{{.Id}}">{{.Title}}</a></li>
-                          {{end}}
-                        {{else}}
-                          <li class="menu-item"><a href="###">尚无分类</a></li>
-                        {{end}}
+                        
+                          
+                            <li class="menu-item"><a href="/category/1">收藏</a></li>
+                          
+                            <li class="menu-item"><a href="/category/2"> 笔记</a></li>
+                          
+                            <li class="menu-item"><a href="/category/3">文学</a></li>
+                          
+                        
                         </ul>
                       </ul>
                   </div>
@@ -84,17 +74,32 @@
             </div>
          </div>
 
-<!-- Content -->
+
 
 <div class="content">
    <div class="container">
       <div class="row">
          <div class="span8">
-          {{.LayoutContent}}
+          
+<h3><span>日志章节</span></h3>
+<div class="posts">
+
+
+                       
+
+            
+               <div class="pagination">
+                <span class='page-numbers current'>1</span>
+                <a class='page-numbers' href='http://responsivewebinc.com/nannie/page/2'>2</a>
+                <a class="next page-numbers" href="http://responsivewebinc.com/nannie/page/2">Next</a>
+              </div>  
+               <div class="clearfix"></div>
+               
+</div>
          </div>
 
          <div class="span4">
-            <!-- Sidebar -->
+            
                <div class="sidebar">
 <div class="widget">
   <h3><span>搜索</span></h3><div class="form">
@@ -105,9 +110,9 @@
   </div>
 </div>
 
-{{if compare .Userrole 100}}
+
 <div class="widget">
-  <h3><span>管理，{{.Username}}</span></h3>
+  <h3><span>管理，root</span></h3>
   <ul>
      <li><a href="/new/category">新建分类</a></li>
      <li><a href="/new/node">新建节点</a></li>
@@ -126,62 +131,46 @@
      <li><a href="/delete/user">删除用户</a></li>
   </ul>
 </div>
-{{else}}
-<div class="widget">
-  {{if .Username}}
-  <h3><span>欢迎，{{.Username}}</span></h3>
-  {{else}}
-  <h3><span>注册登录</span></h3>
-  {{end}}
-  <ul>
-  {{if .Username}}
-     <li><a href="/new/node">新建节点</a></li>
-     <li><a href="/new/topic">新建话题</a></li>
-     <li><a href="/logout">退出</a></li>
-  {{else}}
-     <li><a href="/register">注册</a></li>
-     <li><a href="/login">登录</a></li>
-  {{end}}
-  </ul>
-</div>
-{{end}}
+
 
 <div class="widget">
   <h3><span>最新10个节点</span></h3>
   <ul>
-  {{if .nodes_10s}}
-    {{range .nodes_10s}}
-      <li><a href="/node/{{.Id}}" title="{{.Title}}">{{.Title}}</a></li>
-    {{end}}
-  {{else}}
-    <li>无该节点数据</li>
-  {{end}}
+  
+    
+      <li><a href="/node/3" title="站长技巧">站长技巧</a></li>
+    
+      <li><a href="/node/2" title="编程笔记">编程笔记</a></li>
+    
+      <li><a href="/node/1" title="祭奠青春">祭奠青春</a></li>
+    
+  
   </ul>
 </div>
 
 <div class="widget">
   <h3><span>最新10条评论</span></h3>
   <ul id="recentcomments">
-  {{if .replys_10s}}
-      {{range .replys_10s}}
-      <li class="recentcomments">ID:{{.Uid}} on <a href="/topic/{{.Pid}}#reply-{{.Id}}">{{cutstr .Content 0 50}}</a></li>
-      {{end}}
-  {{else}}
-      <li class="recentcomments">尚无评论</li>
-  {{end}}
+  
+      
+      <li class="recentcomments">ID:1 on <a href="/topic/1#reply-2">失去了年华，容颜退却~</a></li>
+      
+  
   </ul>
 </div>
 
 <div class="widget">
   <h3><span>博客分类</span></h3>
   <ul>
-    {{if .categorys}}
-      {{range .categorys}}
-        <li class="cat-item"><a href="/category/{{.Id}}">{{.Title}}</a></li>
-      {{end}}
-    {{else}}
-     <li class="cat-item">尚无分类</li>
-    {{end}}
+    
+      
+        <li class="cat-item"><a href="/category/1">收藏</a></li>
+      
+        <li class="cat-item"><a href="/category/2"> 笔记</a></li>
+      
+        <li class="cat-item"><a href="/category/3">文学</a></li>
+      
+    
   </ul>
 </div>
 
@@ -191,12 +180,12 @@
    </div>
 </div>
 
-<!-- Content ends -->
-<!-- Footer -->
+
+
 <footer>
   <div class="container">
     <div class="row">
-      <!-- Footer widgets -->
+      
          <div class="span4">
                         <div class="fwidget">
                <h4>About Insion.Co</h4>
@@ -207,13 +196,11 @@
                         <div class="fwidget">
                <h4>Recent Comments</h4>
                <ul>
-                {{if .replys_5s}}
-                  {{range .replys_5s}}
-                  <li>ID:{{.Uid}} on <a href="/topic/{{.Pid}}#reply-{{.Id}}">{{cutstr .Content 0 50}}</a></li>
-                  {{end}}
-                {{else}}
-                  <li>尚无评论</li>
-                {{end}}
+                
+                  
+                  <li>ID:1 on <a href="/topic/1#reply-2">失去了年华，容颜退却~</a></li>
+                  
+                
                </ul>
             </div>     
          </div>
@@ -221,13 +208,15 @@
                         <div class="fwidget">
                <h4>Categories</h4>
                <ul>
-                {{if .categorys}}
-                  {{range .categorys}}
-                    <li><a href="/category/{{.Id}}">{{.Title}}</a></li>
-                  {{end}}
-                {{else}}
-                  <li>尚无分类</li>
-                {{end}}
+                
+                  
+                    <li><a href="/category/1">收藏</a></li>
+                  
+                    <li><a href="/category/2"> 笔记</a></li>
+                  
+                    <li><a href="/category/3">文学</a></li>
+                  
+                
                </ul>
             </div>   
                      </div>
@@ -242,7 +231,7 @@
   </div>
 </footer>       
 
-<!-- JS -->
+
 <script src="/static/js/jquery-1.8.2.js"></script>
 <script src="/static/js/bootstrap.js"></script>
 </body>
