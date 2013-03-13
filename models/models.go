@@ -121,26 +121,28 @@ type Reply struct {
 	Website    string
 }
 
-//ConnDb()
-//
-func ConnDb() (*qbs.Qbs, *sql.DB, error) {
+func ConnDb() (*qbs.Qbs, error) {
 	db, err := sql.Open(sqlite3Driver, dbName)
 	q := qbs.New(db, qbs.NewSqlite3())
-	return q, db, err
+	return q, err
 }
 
-func SetMg() (*qbs.Migration, *sql.DB, error) {
+func SetMg() (*qbs.Migration, error) {
 	db, err := sql.Open(sqlite3Driver, dbName)
 	mg := qbs.NewMigration(db, dbName, qbs.NewSqlite3())
-	return mg, db, err
+	return mg, err
 }
 
 func Ct() {
-	_, _, err := ConnDb()
+	q, err := ConnDb()
+	defer q.Db.Close()
 	if err != nil {
 		fmt.Println(err)
 	}
-	mg, _, _ := SetMg()
+
+	mg, _ := SetMg()
+	defer mg.Db.Close()
+
 	mg.CreateTableIfNotExists(new(User))
 	mg.CreateTableIfNotExists(new(Category))
 	mg.CreateTableIfNotExists(new(Node))
@@ -160,58 +162,67 @@ func Ct() {
 }
 
 func AddUser(email string, nickname string, password string, role int) error {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	_, err := q.Save(&User{Email: email, Nickname: nickname, Password: password, Role: int64(role), Created: time.Now()})
 
 	return err
 }
 
 func SaveUser(usr User) User {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Save(&usr)
 	return usr
 }
 
 func GetUser(id int) (user User) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Where("id=?", id).Find(&user)
 	return user
 }
 
 func GetUserByNickname(nickname string) (user User) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Where("nickname=?", nickname).Find(&user)
 	return user
 }
 
 func AddCategory(title string, content string) error {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	_, err := q.Save(&Category{Title: title, Content: content, Created: time.Now()})
 
 	return err
 }
 
 func SaveCategory(cat Category) Category {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Save(&cat)
 	return cat
 }
 
 func AddNode(title string, content string, categoryid int) error {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	_, err := q.Save(&Node{Pid: int64(categoryid), Title: title, Content: content, Created: time.Now()})
 
 	return err
 }
 
 func SaveNode(nd Node) Node {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Save(&nd)
 	return nd
 }
 
 func DelNode(nid int) error {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	node := GetNode(nid)
 	_, err := q.Delete(&node)
 
@@ -230,7 +241,8 @@ func DelNode(nid int) error {
 }
 
 func DelReply(tid int) error {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	reply := GetReply(tid)
 	_, err := q.Delete(&reply)
 
@@ -238,20 +250,23 @@ func DelReply(tid int) error {
 }
 
 func AddTopic(title string, content string, cid int, nodeid int) error {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	_, err := q.Save(&Topic{Cid: int64(cid), Nid: int64(nodeid), Title: title, Content: content, Created: time.Now()})
 
 	return err
 }
 
 func EditTopic(tp Topic) Topic {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Save(&tp)
 	return tp
 }
 
 func DelTopic(id int) error {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	topic := GetTopic(id)
 	_, err := q.Delete(&topic)
 
@@ -259,32 +274,37 @@ func DelTopic(id int) error {
 }
 
 func AddReply(pid int, uid int, content string, author string, email string, website string) error {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	_, err := q.Save(&Reply{Pid: int64(pid), Uid: int64(uid), Content: content, Created: time.Now(), Author: author, Email: email, Website: website})
 
 	return err
 }
 
 func GetAllCategory() (allc []*Category) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.FindAll(&allc)
 	return allc
 }
 
 func GetCategory(id int) (category Category) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Where("id=?", id).Find(&category)
 	return category
 }
 
 func GetAllNode() (alln []*Node) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.FindAll(&alln)
 	return alln
 }
 
 func GetAllNodeByCategoryId(id int, offset int, limit int, path string) (alln []*Node) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	if id == 0 {
 		q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&alln)
 	} else {
@@ -296,49 +316,57 @@ func GetAllNodeByCategoryId(id int, offset int, limit int, path string) (alln []
 }
 
 func GetNode(id int) (node Node) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Where("id=?", id).Find(&node)
 	return node
 }
 
 func GetAllTopic() (allt []*Topic) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.FindAll(&allt)
 	return allt
 }
 
 func GetAllTopicByNode(nodeid int, path string) (allt []*Topic) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Where("nid=?", nodeid).OrderByDesc(path).FindAll(&allt)
 	return allt
 }
 
 func GetTopic(id int) (topic Topic) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Where("id=?", id).Find(&topic)
 	return topic
 }
 
 func SaveTopic(tp Topic) Topic {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Save(&tp)
 	return tp
 }
 
 func GetAllReply() (allr []*Reply) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.FindAll(&allr)
 	return allr
 }
 
 func GetReply(id int) (reply Reply) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	q.Where("id=?", id).Find(&reply)
 	return reply
 }
 
 func GetReplyByPid(pid int, offset int, limit int, path string) (allr []*Reply) {
-	q, _, _ := ConnDb()
+	q, _ := ConnDb()
+	defer q.Db.Close()
 	if pid == 0 {
 		q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allr)
 	} else {

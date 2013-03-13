@@ -94,9 +94,6 @@
                     <h2><a rel="bookmark" href="/view/1" title="当青春散场">当青春散场</a></h2>
           <div>
             
-                <span><i class="fa-icon-user"></i> <a class="btn" href="/topic/edit/1">编辑 &raquo;</a></span>
-                <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/topic/delete/1">删除 &raquo;</a></span>
-            
             <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/topic/1", context: document.body, success: function(){
          alert("喜欢成功！");
       }});'>喜欢 &raquo;</a></span>
@@ -142,23 +139,14 @@
 
 
 <div class="widget">
-  <h3><span>管理，root</span></h3>
+  
+  <h3><span>注册登录</span></h3>
+  
   <ul>
-     <li><a href="/new/category">新建分类</a></li>
-     <li><a href="/new/node">新建节点</a></li>
-     <li><a href="/new/topic">新建话题</a></li>
-     <li><a href="/modify/category">修改分类</a></li>
-     <li><a href="/modify/node">修改节点</a></li>
-     <li><a href="/logout">退出</a></li>
-  </ul>
-</div>
-<div class="widget">
-  <h3><span>危险操作</span></h3>
-  <ul>
-     <li><a href="/delete/category">删除分类</a></li>
-     <li><a href="/delete/node">删除节点</a></li>
-     <li><a href="/delete/topic">删除话题</a></li>
-     <li><a href="/delete/user">删除用户</a></li>
+  
+     <li><a href="/register">注册</a></li>
+     <li><a href="/login">登录</a></li>
+  
   </ul>
 </div>
 
