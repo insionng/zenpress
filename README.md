@@ -7,7 +7,7 @@ toropress
 
 ##线上版本
 
-([Toropress Demo](http://insion.co/)
+[Toropress Demo](http://insion.co/)
 
 ##商业支持，请联系作者
 
