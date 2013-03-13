@@ -1,10 +1,14 @@
 toropress
 ===
-基于torgo(beego山寨版)与qbs开发的Golang blog/CMS系统网站，作小许改动后可以应用为Blog、小说站、图站等多种类型网站，
+基于torgo([Beego](https://github.com/astaxie/beego)山寨版)与[Qbs](https://github.com/coocood/qbs)开发的Golang Blog/CMS系统网站，作小许改动后可以应用为Blog、小说站、图站等多种类型网站，
 
-基于BSD协议开源
+本项目以BSD协议开源
 
 
-##联系我
+##线上版本
+
+    ([Toropress Demo](http://insion.co/)
+
+##商业支持，请联系作者
 
     QQ：547092001
