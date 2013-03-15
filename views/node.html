@@ -25,8 +25,9 @@
                      <div class="meta"><i class="icon-calendar"></i>{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
                      </div>
                       <div>
-                      {{$C:= cutstr .Content 0 200}}
-                      {{markdown $C}}
+                        {{$cs:=html2str .Content}}
+                        {{$cs:=substr $cs 0 150}}
+                        {{markdown $cs}}
                       </div>
                   </div>
                   <div class="clearfix"></div>

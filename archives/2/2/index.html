@@ -60,7 +60,7 @@
                           <li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-30"><a href="/">首页</a></li>
                         
                           
-                            <li class="menu-item"><a href="/category/1">收藏</a></li>
+                            <li class="menu-item"><a href="/category/1">代码</a></li>
                           
                             <li class="menu-item"><a href="/category/2"> 笔记</a></li>
                           
@@ -104,16 +104,16 @@
                      <div class="meta"><i class="icon-calendar"></i>March 12 , 2013 at 19:29 am - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
                      </div>
                       <div>
-                      
-                      <p>package main</p>
-
-<p><p>import (<br />
-&nbsp;&quot;fmt&quot;<br />
-&nbsp;&quot;os&quot;<br />
-&nbsp;&quot;log&quot;<br />
-&nbsp;&quot;net/http&quot;<br />
-&nbsp;&quot;io/ioutil&quot;<br />
-&amp;nb</p>
+                        
+                        
+                        <p>package main
+import (
+&nbsp;&quot;fmt&quot;
+&nbsp;&quot;os&quot;
+&nbsp;&quot;log&quot;
+&nbsp;&quot;net/http&quot;
+&nbsp;&quot;io/ioutil&quot;
+&nbsp;&amp;q</p>
 
                       </div>
                   </div>
@@ -139,15 +139,12 @@
                      <div class="meta"><i class="icon-calendar"></i>March 12 , 2013 at 15:33 am - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
                      </div>
                       <div>
-                      
-                      <p>直接执行go get github.com/mattn/go-sqlite3会有错误，正确的安装顺序应该按下面来：</p>
-
-<p>如果是在&nbsp;Mac OS X上面用&nbsp;Homebrewn的话，请用以下的命令安装:</p>
-
-<p>brew install pkgconfig<br />
-brew install sqlite3</p>
-
-<p><p>go get g</p>
+                        
+                        
+                        <p>直接执行go get github.com/mattn/go-sqlite3会有错误，正确的安装顺序应该按下面来：
+如果是在&nbsp;Mac OS X上面用&nbsp;Homebrewn的话，请用以下的命令安装:
+brew install pkgconfig
+brew install sqlite</p>
 
                       </div>
                   </div>
@@ -173,15 +170,14 @@ brew install sqlite3</p>
                      <div class="meta"><i class="icon-calendar"></i>March 12 , 2013 at 11:12 am - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
                      </div>
                       <div>
-                      
-                      <p>修改本机的host文件翻过去：</p>
-
-<p><p><br />
-173.194.71.141 golang.org<br />
-173.194.71.141 play.golang.org<br />
-173.194.71.141 tour.golang.org<br />
-173.194.71.141 tip.golang.org<br />
-173.194.71.141 ta</p>
+                        
+                        
+                        <p>修改本机的host文件翻过去：
+173.194.71.141 golang.org
+173.194.71.141 play.golang.org
+173.194.71.141 tour.golang.org
+173.194.71.141 tip.golang.org
+173.194.71.141 t</p>
 
                       </div>
                   </div>
@@ -207,14 +203,15 @@ brew install sqlite3</p>
                      <div class="meta"><i class="icon-calendar"></i>March 12 , 2013 at 15:51 am - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
                      </div>
                       <div>
-                      
-                      <p>step 1：</p>
-
-<p>wget https://go.googlecode.com/files/go1.0.3.linux-amd64.tar.gz</p>
-
-<p>step 2：</p>
-
-<p>&lt;pre style=&quot;font-family: Menlo, monospace; font-size: 14px; line-height: 18px; margin: 20p</p>
+                        
+                        
+                        <p>step 1：
+wget https://go.googlecode.com/files/go1.0.3.linux-amd64.tar.gz
+step 2：
+tar -C /usr/local -xzf go1.0.3.linux-amd64.tar.gz
+step 3：
+cd /home
+mkd</p>
 
                       </div>
                   </div>
@@ -240,9 +237,10 @@ brew install sqlite3</p>
                      <div class="meta"><i class="icon-calendar"></i>March 12 , 2013 at 18:55 am - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
                      </div>
                       <div>
-                      
-                      <p>golang http静态文件服务开启方法：<br />
-http.Handle(&quot;/static/&quot;, http.FileServer(http.Dir(&quot;.&quot;)))</p>
+                        
+                        
+                        <p>golang http静态文件服务开启方法：
+http.Handle(&quot;/static/&quot;, http.FileServer(http.Dir(&quot;.&quot;))</p>
 
                       </div>
                   </div>
@@ -268,15 +266,14 @@ http.Handle(&quot;/static/&quot;, http.FileServer(http.Dir(&quot;.&quot;)))</p>
                      <div class="meta"><i class="icon-calendar"></i>March 12 , 2013 at 19:40 am - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
                      </div>
                       <div>
-                      
-                      <p>package main</p>
-
-<p>import (<br />
-&nbsp;&nbsp; &nbsp;&quot;fmt&quot;<br />
-)</p>
-
-<p><p>type Fetcher interface {<br />
-&nbsp; &nbsp; &nbsp; &nbsp; // Fetch 返回 URL 的 body 内容，并且将在这个页面上找到的 URL 放</p>
+                        
+                        
+                        <p>package main
+import (
+&nbsp;&nbsp; &nbsp;&quot;fmt&quot;
+)
+type Fetcher interface {
+&nbsp; &nbsp; &nbsp; &nbsp; // Fetch 返回 URL 的 body 内容，并且将在这个页面上找到的</p>
 
                       </div>
                   </div>
@@ -327,6 +324,8 @@ http.Handle(&quot;/static/&quot;, http.FileServer(http.Dir(&quot;.&quot;)))</p>
   <ul>
   
     
+      <li><a href="/node/4" title="golang">golang</a></li>
+    
       <li><a href="/node/3" title="站长技巧">站长技巧</a></li>
     
       <li><a href="/node/2" title="编程笔记">编程笔记</a></li>
@@ -353,7 +352,7 @@ http.Handle(&quot;/static/&quot;, http.FileServer(http.Dir(&quot;.&quot;)))</p>
   <ul>
     
       
-        <li class="cat-item"><a href="/category/1">收藏</a></li>
+        <li class="cat-item"><a href="/category/1">代码</a></li>
       
         <li class="cat-item"><a href="/category/2"> 笔记</a></li>
       
@@ -399,7 +398,7 @@ http.Handle(&quot;/static/&quot;, http.FileServer(http.Dir(&quot;.&quot;)))</p>
                <ul>
                 
                   
-                    <li><a href="/category/1">收藏</a></li>
+                    <li><a href="/category/1">代码</a></li>
                   
                     <li><a href="/category/2"> 笔记</a></li>
                   

@@ -21,7 +21,7 @@ func (this *NodeHandler) Get() {
 	this.TplNames = "node.html"
 	this.Layout = "layout.html"
 
-	rs, _, _ := this.RenderString()
+	rs, _ := this.RenderString()
 
 	utils.Writefile("./archives/"+nid_path, nid_name, rs)
 

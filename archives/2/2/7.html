@@ -87,74 +87,94 @@
                <div class="entry" id="post-27">
                   <div class="matter">
                   
-                     <h2>linux下安装golang环境攻略</h2>
+                     <h2>一个Go语言实现的web爬虫</h2>
                      
-                     <div class="meta"><i class="icon-calendar"></i> March 12 , 2013 at 15:51 am - <i class="icon-folder-open"></i> <a href="/user/0/" title="View all posts in Etiam" rel="category tag">Insion</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="Comment on Suspendisse eget lorem dui">0 Comments</a></div>
+                     <div class="meta"><i class="icon-calendar"></i> March 12 , 2013 at 19:40 am - <i class="icon-folder-open"></i> <a href="/user/0/" title="View all posts in Etiam" rel="category tag">Insion</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="Comment on Suspendisse eget lorem dui">0 Comments</a></div>
                      
-                     <div><p>step 1：</p>
+                     <div><p>package main</p>
 
-<p>wget https://go.googlecode.com/files/go1.0.3.linux-amd64.tar.gz</p>
+<p>import (<br />
+&nbsp;&nbsp; &nbsp;&quot;fmt&quot;<br />
+)</p>
 
-<p>step 2：</p>
+<p>type Fetcher interface {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // Fetch 返回 URL 的 body 内容，并且将在这个页面上找到的 URL 放到一个 slice 中。<br />
+&nbsp;&nbsp; &nbsp;Fetch(url string) (body string, urls []string, err error)<br />
+}</p>
 
-<pre style="font-family: Menlo, monospace; font-size: 14px; line-height: 18px; margin: 20px; background-color: rgb(233, 233, 233); padding: 10px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; color: rgb(34, 34, 34);">
-tar -C /usr/local -xzf go1.0.3.linux-amd64.tar.gz</pre>
+<p>// Crawl 使用 fetcher 从某个 URL 开始递归的爬取页面，直到达到最大深度。<br />
+func Crawl(url string, depth int, fetcher Fetcher) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // TODO: 并行的抓取 URL。<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // TODO: 不重复抓取页面。<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // 下面并没有实现上面两种情况：<br />
+&nbsp;&nbsp; &nbsp;if depth &lt;= 0 {<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return<br />
+&nbsp;&nbsp; &nbsp;}<br />
+&nbsp;&nbsp; &nbsp;body, urls, err := fetcher.Fetch(url)<br />
+&nbsp;&nbsp; &nbsp;if err != nil {<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;fmt.Println(err)<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return<br />
+&nbsp;&nbsp; &nbsp;}<br />
+&nbsp;&nbsp; &nbsp;fmt.Printf(&quot;found: %s %q\n&quot;, url, body)<br />
+&nbsp;&nbsp; &nbsp;for _, u := range urls {<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Crawl(u, depth-1, fetcher)<br />
+&nbsp;&nbsp; &nbsp;}<br />
+&nbsp;&nbsp; &nbsp;return<br />
+}</p>
 
-<p>step 3：</p>
+<p>func main() {<br />
+&nbsp;&nbsp; &nbsp;Crawl(&quot;http://golang.org/&quot;, 4, fetcher)<br />
+}</p>
 
-<p>cd /home<br />
-mkdir gopath</p>
+<p><br />
+// fakeFetcher 是返回若干结果的 Fetcher。<br />
+type fakeFetcher map[string]*fakeResult</p>
 
-<p>cd ~<br />
-vim .bashrc</p>
+<p>type fakeResult struct {<br />
+&nbsp;&nbsp; &nbsp;body string<br />
+&nbsp;&nbsp; &nbsp;urls &nbsp; &nbsp; []string<br />
+}</p>
 
-<p><span style="font-family: Arial; font-size: 14px; line-height: 26px;">在bash文件的最后添加如下代码来设置目录变量</span>：</p>
+<p>func (f *fakeFetcher) Fetch(url string) (string, []string, error) {<br />
+&nbsp;&nbsp; &nbsp;if res, ok := (*f)[url]; ok {<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return res.body, res.urls, nil<br />
+&nbsp;&nbsp; &nbsp;}<br />
+&nbsp;&nbsp; &nbsp;return &quot;&quot;, nil, fmt.Errorf(&quot;not found: %s&quot;, url)<br />
+}</p>
 
-<p>export GOROOT=/usr/local/go<br />
-export GOARCH=amd64<br />
-export GOOS=linux<br />
-export GOPATH=/home/gopath<br />
-export GOBIN=$GOROOT/bin<br />
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH</p>
-
-<p>保存文件后执行：<br />
-source .bashrc</p>
-
-<p>执行env | grep &#39;^GO&#39;测试是否已经正确设置GO的环境变量</p>
-
-<p>Okay！</p>
-
-<p>step 4：</p>
-
-<p>我们来做个测试，输入以下hello world</p>
-
-<p>cat &gt;hello.go &lt;&lt;EOF<br />
-package main<br />
-import &quot;fmt&quot;<br />
-func main() {<br />
-fmt.Println(&quot;hello, world!&quot;)<br />
-}<br />
-EOF</p>
-
-<p>编译：</p>
-
-<p>go build hello.go</p>
-
-<p>执行：</p>
-
-<p>./hello</p>
-
-<p>输出:hello, world!</p>
-
-<p>&nbsp;</p>
-
-<p>golang的一些附加工具安装：</p>
-
-<pre style="margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 13.333333969116211px; font-family: 'Courier New'; color: rgb(73, 73, 73); line-height: 21.111112594604492px;">
- apt-get install git-core
-</pre>
-
-<p>&nbsp;</p>
+<p>// fetcher 是填充后的 fakeFetcher。<br />
+var fetcher = &amp;fakeFetcher{<br />
+&nbsp;&nbsp; &nbsp;&quot;http://golang.org/&quot;: &amp;fakeResult{<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;The Go Programming Language&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;[]string{<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;http://golang.org/pkg/&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;http://golang.org/cmd/&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;},<br />
+&nbsp;&nbsp; &nbsp;},<br />
+&nbsp;&nbsp; &nbsp;&quot;http://golang.org/pkg/&quot;: &amp;fakeResult{<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;Packages&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;[]string{<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;http://golang.org/&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;http://golang.org/cmd/&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;http://golang.org/pkg/fmt/&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;http://golang.org/pkg/os/&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;},<br />
+&nbsp;&nbsp; &nbsp;},<br />
+&nbsp;&nbsp; &nbsp;&quot;http://golang.org/pkg/fmt/&quot;: &amp;fakeResult{<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;Package fmt&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;[]string{<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;http://golang.org/&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;http://golang.org/pkg/&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;},<br />
+&nbsp;&nbsp; &nbsp;},<br />
+&nbsp;&nbsp; &nbsp;&quot;http://golang.org/pkg/os/&quot;: &amp;fakeResult{<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;Package os&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;[]string{<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;http://golang.org/&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&quot;http://golang.org/pkg/&quot;,<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;},<br />
+&nbsp;&nbsp; &nbsp;},<br />
+}</p>
 </div>
                      Tags: <a href="http://responsivewebinc.com/nannie/tag/condimen/" rel="tag">condimen</a> <a href="http://responsivewebinc.com/nannie/tag/lobor/" rel="tag">lobor</a>                  </div>
                   <div class="clearfix"></div>
@@ -191,7 +211,7 @@ EOF</p>
 <div class="clearfix"></div>
  
 
-<form action="/view/3" method="post" id="commentform" class="form-horizontal">
+<form action="/view/7" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -230,7 +250,7 @@ EOF</p>
  
 <p>
 <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-<input type='hidden' name='comment_parent' id='comment_parent' value='3' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='7' />
 </p>
 
 <div class="clear"></div>

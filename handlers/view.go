@@ -26,7 +26,7 @@ func (this *ViewHandler) Get() {
 	this.TplNames = "view.html"
 	this.Layout = "layout.html"
 
-	rs, _, _ := this.RenderString()
+	rs, _ := this.RenderString()
 
 	utils.Writefile("./archives/"+tid_path, tid_name, rs)
 

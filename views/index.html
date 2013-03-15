@@ -1,5 +1,5 @@
 <!-- Posts area -->
-<h3><span>热门日志</span></h3>
+<h3><span>热门节点</span></h3>
 <div class="posts">
 {{$Userrole := .Userrole}}
 {{range .nodes_hotness}}
@@ -26,8 +26,9 @@
           <div class="meta"><i class="icon-calendar"></i> {{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="/user/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="/node/{{.Id}}" title="8个话题">8个话题</a>
                      </div>
                      <div>
-                      {{$C:= cutstr .Content 0 200}}
-                      {{markdown $C}}                  
+                        {{$cs:=html2str .Content}}
+                        {{$cs:=substr $cs 0 150}}
+                        {{markdown $cs}}      
                      </div>
     </div>
     <div class="clearfix"></div>

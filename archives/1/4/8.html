@@ -87,74 +87,107 @@
                <div class="entry" id="post-27">
                   <div class="matter">
                   
-                     <h2>linux下安装golang环境攻略</h2>
+                     <h2>用golang的正则regexp：去除HTML</h2>
                      
-                     <div class="meta"><i class="icon-calendar"></i> March 12 , 2013 at 15:51 am - <i class="icon-folder-open"></i> <a href="/user/0/" title="View all posts in Etiam" rel="category tag">Insion</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="Comment on Suspendisse eget lorem dui">0 Comments</a></div>
+                     <div class="meta"><i class="icon-calendar"></i> March 13 , 2013 at 21:59 am - <i class="icon-folder-open"></i> <a href="/user/0/" title="View all posts in Etiam" rel="category tag">Insion</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="Comment on Suspendisse eget lorem dui">0 Comments</a></div>
                      
-                     <div><p>step 1：</p>
-
-<p>wget https://go.googlecode.com/files/go1.0.3.linux-amd64.tar.gz</p>
-
-<p>step 2：</p>
-
-<pre style="font-family: Menlo, monospace; font-size: 14px; line-height: 18px; margin: 20px; background-color: rgb(233, 233, 233); padding: 10px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; color: rgb(34, 34, 34);">
-tar -C /usr/local -xzf go1.0.3.linux-amd64.tar.gz</pre>
-
-<p>step 3：</p>
-
-<p>cd /home<br />
-mkdir gopath</p>
-
-<p>cd ~<br />
-vim .bashrc</p>
-
-<p><span style="font-family: Arial; font-size: 14px; line-height: 26px;">在bash文件的最后添加如下代码来设置目录变量</span>：</p>
-
-<p>export GOROOT=/usr/local/go<br />
-export GOARCH=amd64<br />
-export GOOS=linux<br />
-export GOPATH=/home/gopath<br />
-export GOBIN=$GOROOT/bin<br />
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH</p>
-
-<p>保存文件后执行：<br />
-source .bashrc</p>
-
-<p>执行env | grep &#39;^GO&#39;测试是否已经正确设置GO的环境变量</p>
-
-<p>Okay！</p>
-
-<p>step 4：</p>
-
-<p>我们来做个测试，输入以下hello world</p>
-
-<p>cat &gt;hello.go &lt;&lt;EOF<br />
-package main<br />
-import &quot;fmt&quot;<br />
-func main() {<br />
-fmt.Println(&quot;hello, world!&quot;)<br />
-}<br />
-EOF</p>
-
-<p>编译：</p>
-
-<p>go build hello.go</p>
-
-<p>执行：</p>
-
-<p>./hello</p>
-
-<p>输出:hello, world!</p>
+                     <div><p>用golang的正则regexp：去除HTML，CSS，SCRIPT代码，仅保留页面文字：</p>
 
 <p>&nbsp;</p>
 
-<p>golang的一些附加工具安装：</p>
+<div>
+<div>package main</div>
 
-<pre style="margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 13.333333969116211px; font-family: 'Courier New'; color: rgb(73, 73, 73); line-height: 21.111112594604492px;">
- apt-get install git-core
-</pre>
+<div>&nbsp;</div>
 
-<p>&nbsp;</p>
+<div>import (</div>
+
+<div>&nbsp;&nbsp; &nbsp;&quot;fmt&quot;</div>
+
+<div>&nbsp;&nbsp; &nbsp;&quot;io/ioutil&quot;</div>
+
+<div>&nbsp;&nbsp; &nbsp;&quot;net/http&quot;</div>
+
+<div>&nbsp;&nbsp; &nbsp;&quot;regexp&quot;</div>
+
+<div>&nbsp;&nbsp; &nbsp;&quot;strings&quot;</div>
+
+<div>)</div>
+
+<div>&nbsp;</div>
+
+<div>func main() {</div>
+
+<div>&nbsp;&nbsp; &nbsp;resp, err := http.Get(&quot;http://www.baidu.com&quot;)</div>
+
+<div>&nbsp;&nbsp; &nbsp;// resp, err := http.Get(&quot;http://www.163.com&quot;)</div>
+
+<div>&nbsp;&nbsp; &nbsp;if err != nil {</div>
+
+<div>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;fmt.Println(&quot;http get error.&quot;)</div>
+
+<div>&nbsp;&nbsp; &nbsp;}</div>
+
+<div>&nbsp;&nbsp; &nbsp;defer resp.Body.Close()</div>
+
+<div>&nbsp;&nbsp; &nbsp;body, err := ioutil.ReadAll(resp.Body)</div>
+
+<div>&nbsp;&nbsp; &nbsp;if err != nil {</div>
+
+<div>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;fmt.Println(&quot;http read error&quot;)</div>
+
+<div>&nbsp;&nbsp; &nbsp;}</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;&nbsp; &nbsp;src := string(body)</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;&nbsp; &nbsp;//将HTML标签全转换成小写</div>
+
+<div>&nbsp;&nbsp; &nbsp;re, _ := regexp.Compile(&quot;\\&lt;[\\S\\s]+?\\&gt;&quot;)</div>
+
+<div>&nbsp;&nbsp; &nbsp;src = re.ReplaceAllStringFunc(src, strings.ToLower)</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;&nbsp; &nbsp;//去除STYLE</div>
+
+<div>&nbsp;&nbsp; &nbsp;re, _ = regexp.Compile(&quot;\\&lt;style[\\S\\s]+?\\&lt;/style\\&gt;&quot;)</div>
+
+<div>&nbsp;&nbsp; &nbsp;src = re.ReplaceAllString(src, &quot;&quot;)</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;&nbsp; &nbsp;//去除SCRIPT</div>
+
+<div>&nbsp;&nbsp; &nbsp;re, _ = regexp.Compile(&quot;\\&lt;script[\\S\\s]+?\\&lt;/script\\&gt;&quot;)</div>
+
+<div>&nbsp;&nbsp; &nbsp;src = re.ReplaceAllString(src, &quot;&quot;)</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;&nbsp; &nbsp;//去除所有尖括号内的HTML代码，并换成换行符</div>
+
+<div>&nbsp;&nbsp; &nbsp;re, _ = regexp.Compile(&quot;\\&lt;[\\S\\s]+?\\&gt;&quot;)</div>
+
+<div>&nbsp;&nbsp; &nbsp;src = re.ReplaceAllString(src, &quot;\n&quot;)</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;&nbsp; &nbsp;//去除连续的换行符</div>
+
+<div>&nbsp;&nbsp; &nbsp;re, _ = regexp.Compile(&quot;\\s{2,}&quot;)</div>
+
+<div>&nbsp;&nbsp; &nbsp;src = re.ReplaceAllString(src, &quot;\n&quot;)</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;&nbsp; &nbsp;fmt.Println(strings.TrimSpace(src))</div>
+
+<div>}</div>
+</div>
 </div>
                      Tags: <a href="http://responsivewebinc.com/nannie/tag/condimen/" rel="tag">condimen</a> <a href="http://responsivewebinc.com/nannie/tag/lobor/" rel="tag">lobor</a>                  </div>
                   <div class="clearfix"></div>
@@ -191,7 +224,7 @@ EOF</p>
 <div class="clearfix"></div>
  
 
-<form action="/view/3" method="post" id="commentform" class="form-horizontal">
+<form action="/view/8" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -230,7 +263,7 @@ EOF</p>
  
 <p>
 <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-<input type='hidden' name='comment_parent' id='comment_parent' value='3' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='8' />
 </p>
 
 <div class="clear"></div>

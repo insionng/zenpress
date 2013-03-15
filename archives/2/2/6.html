@@ -87,74 +87,123 @@
                <div class="entry" id="post-27">
                   <div class="matter">
                   
-                     <h2>linux下安装golang环境攻略</h2>
+                     <h2>Go写的爬虫</h2>
                      
-                     <div class="meta"><i class="icon-calendar"></i> March 12 , 2013 at 15:51 am - <i class="icon-folder-open"></i> <a href="/user/0/" title="View all posts in Etiam" rel="category tag">Insion</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="Comment on Suspendisse eget lorem dui">0 Comments</a></div>
+                     <div class="meta"><i class="icon-calendar"></i> March 12 , 2013 at 19:29 am - <i class="icon-folder-open"></i> <a href="/user/0/" title="View all posts in Etiam" rel="category tag">Insion</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="Comment on Suspendisse eget lorem dui">0 Comments</a></div>
                      
-                     <div><p>step 1：</p>
+                     <div><p>package main</p>
 
-<p>wget https://go.googlecode.com/files/go1.0.3.linux-amd64.tar.gz</p>
+<p>import (<br />
+&nbsp;&quot;fmt&quot;<br />
+&nbsp;&quot;os&quot;<br />
+&nbsp;&quot;log&quot;<br />
+&nbsp;&quot;net/http&quot;<br />
+&nbsp;&quot;io/ioutil&quot;<br />
+&nbsp;&quot;bytes&quot;<br />
+&nbsp;&quot;encoding/base64&quot;<br />
+&nbsp;&quot;path&quot;<br />
+&nbsp;&quot;strings&quot;<br />
+&nbsp;&quot;regexp&quot;<br />
+)</p>
 
-<p>step 2：</p>
+<p>const (<br />
+&nbsp; &nbsp;BASEURL = &quot;http://blog.csdn.net/xushiweizh&quot;<br />
+&nbsp; &nbsp;PATTERN = &quot;href=\&quot;([^&lt;\&quot;]+)\&quot;&quot;<br />
+&nbsp; &nbsp;INDEX = len(BASEURL)<br />
+&nbsp; &nbsp;ROOT = &quot;C:/docs/GoCode/disk/&quot;<br />
+)</p>
 
-<pre style="font-family: Menlo, monospace; font-size: 14px; line-height: 18px; margin: 20px; background-color: rgb(233, 233, 233); padding: 10px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; color: rgb(34, 34, 34);">
-tar -C /usr/local -xzf go1.0.3.linux-amd64.tar.gz</pre>
+<p>func getContent(url string) string{<br />
+&nbsp; &nbsp; &nbsp;resp,err := http.Get(url)<br />
+&nbsp; &nbsp; &nbsp;if err != nil{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; //handle error<br />
+&nbsp; &nbsp; &nbsp; &nbsp; log.Fatal(err)<br />
+&nbsp; &nbsp; &nbsp;}<br />
+&nbsp; &nbsp; &nbsp;defer resp.Body.Close()<br />
+&nbsp; &nbsp; &nbsp;body,err := ioutil.ReadAll(resp.Body)<br />
+&nbsp; &nbsp; &nbsp;return string(body)<br />
+}</p>
 
-<p>step 3：</p>
+<p>func base64Encoding(s string)string{<br />
+&nbsp; &nbsp; &nbsp;var buf bytes.Buffer<br />
+&nbsp; &nbsp; &nbsp;encoder := base64.NewEncoder(base64.StdEncoding, &amp;buf)<br />
+&nbsp; &nbsp; &nbsp;defer encoder.Close()<br />
+&nbsp; &nbsp; &nbsp;encoder.Write([]byte(s))<br />
+&nbsp; &nbsp; &nbsp;return buf.String()<br />
+}</p>
 
-<p>cd /home<br />
-mkdir gopath</p>
+<p>func saveFile(content,filename string)error{<br />
+&nbsp; &nbsp; &nbsp;base64Name &nbsp;:= base64Encoding(filename)<br />
+&nbsp; &nbsp; &nbsp;if base64Name == &quot;&quot; {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; return nil<br />
+&nbsp; &nbsp; &nbsp;}<br />
+&nbsp; &nbsp; &nbsp;fout,err := os.Create(path.Join(ROOT,base64Name))<br />
+&nbsp; &nbsp; &nbsp;defer fout.Close()<br />
+&nbsp; &nbsp; &nbsp;if err != nil{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; //handler error<br />
+&nbsp; &nbsp; &nbsp; &nbsp; log.Fatal(err)<br />
+&nbsp; &nbsp; &nbsp; &nbsp; return err<br />
+&nbsp; &nbsp; &nbsp;}<br />
+&nbsp; &nbsp; &nbsp;for _,line := range strings.Split(content,&quot;\r\n&quot;){<br />
+&nbsp; &nbsp; &nbsp; &nbsp; fout.WriteString(line + &quot;\r\n&quot;)<br />
+&nbsp; &nbsp; &nbsp;}<br />
+&nbsp; &nbsp; &nbsp;return nil<br />
+}</p>
 
-<p>cd ~<br />
-vim .bashrc</p>
+<p>func save(url string,links map[string]bool){<br />
+&nbsp; &nbsp; content := getContent(url)<br />
+&nbsp; &nbsp; err := saveFile(content,url[INDEX:])<br />
+&nbsp; &nbsp; if err != nil{<br />
+&nbsp; &nbsp; &nbsp; &nbsp;log.Fatal(err)<br />
+&nbsp; &nbsp; }&nbsp;<br />
+&nbsp; &nbsp; links[url]=true<br />
+}</p>
 
-<p><span style="font-family: Arial; font-size: 14px; line-height: 26px;">在bash文件的最后添加如下代码来设置目录变量</span>：</p>
+<p>func traverse(regxp *regexp.Regexp, url string, links map[string]bool){<br />
+&nbsp; &nbsp;LAST := strings.LastIndex(BASEURL,&quot;/&quot;)<br />
+&nbsp; &nbsp; &nbsp;for _, scan := range regxp.FindAllStringSubmatch(getContent(BASEURL),-1){<br />
+&nbsp; &nbsp; &nbsp; &nbsp; var url string<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if strings.Contains(scan[1],&quot;http://&quot;){<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if strings.Contains(scan[1],BASEURL){<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;url = scan[1] &nbsp;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}else{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;continue<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}&nbsp;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }else{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if strings.Contains(scan[1],BASEURL[LAST:]){<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;url = BASEURL[:LAST]+scan[1]<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}else{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;continue<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if v,ok := links[url];ok{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if v == true {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fmt.Println(&quot;Has download&quot;)<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}else{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; save(url,links)&nbsp;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }else{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;save(url,links)<br />
+&nbsp; &nbsp; &nbsp; &nbsp; } &nbsp;<br />
+&nbsp; &nbsp; &nbsp;}<br />
+}</p>
 
-<p>export GOROOT=/usr/local/go<br />
-export GOARCH=amd64<br />
-export GOOS=linux<br />
-export GOPATH=/home/gopath<br />
-export GOBIN=$GOROOT/bin<br />
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH</p>
+<p>func main(){<br />
+&nbsp; &nbsp;links := make(map[string] bool)<br />
+&nbsp; &nbsp;regxp,err := regexp.Compile(PATTERN)<br />
+&nbsp; &nbsp;if err != nil{<br />
+&nbsp; &nbsp; &nbsp; log.Fatal(err)<br />
+&nbsp; &nbsp;}<br />
+&nbsp; &nbsp;traverse(regxp,BASEURL,links)<br />
+&nbsp; &nbsp;for key,val := range links{<br />
+&nbsp; &nbsp; &nbsp; &nbsp;if !val{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; traverse(regxp,key,links)<br />
+&nbsp; &nbsp; &nbsp; &nbsp;}<br />
+&nbsp; &nbsp;}<br />
+}</p>
 
-<p>保存文件后执行：<br />
-source .bashrc</p>
-
-<p>执行env | grep &#39;^GO&#39;测试是否已经正确设置GO的环境变量</p>
-
-<p>Okay！</p>
-
-<p>step 4：</p>
-
-<p>我们来做个测试，输入以下hello world</p>
-
-<p>cat &gt;hello.go &lt;&lt;EOF<br />
-package main<br />
-import &quot;fmt&quot;<br />
-func main() {<br />
-fmt.Println(&quot;hello, world!&quot;)<br />
-}<br />
-EOF</p>
-
-<p>编译：</p>
-
-<p>go build hello.go</p>
-
-<p>执行：</p>
-
-<p>./hello</p>
-
-<p>输出:hello, world!</p>
-
-<p>&nbsp;</p>
-
-<p>golang的一些附加工具安装：</p>
-
-<pre style="margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 13.333333969116211px; font-family: 'Courier New'; color: rgb(73, 73, 73); line-height: 21.111112594604492px;">
- apt-get install git-core
-</pre>
-
-<p>&nbsp;</p>
+<p><br />
+&nbsp; &nbsp;&nbsp;</p>
 </div>
                      Tags: <a href="http://responsivewebinc.com/nannie/tag/condimen/" rel="tag">condimen</a> <a href="http://responsivewebinc.com/nannie/tag/lobor/" rel="tag">lobor</a>                  </div>
                   <div class="clearfix"></div>
@@ -191,7 +240,7 @@ EOF</p>
 <div class="clearfix"></div>
  
 
-<form action="/view/3" method="post" id="commentform" class="form-horizontal">
+<form action="/view/6" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -230,7 +279,7 @@ EOF</p>
  
 <p>
 <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-<input type='hidden' name='comment_parent' id='comment_parent' value='3' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='6' />
 </p>
 
 <div class="clear"></div>
