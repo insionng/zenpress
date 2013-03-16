@@ -226,7 +226,7 @@ func DelNode(nid int) error {
 	node := GetNode(nid)
 	_, err := q.Delete(&node)
 
-	for i, v := range GetAllTopicByNode(nid, "id") {
+	for i, v := range GetAllTopicByNodeid(nid, 0, 0, "id") {
 		if i > 0 {
 			DelTopic(int(v.Id))
 			for ii, vv := range GetReplyByPid(int(v.Id), 0, 0, "id") {
@@ -322,17 +322,35 @@ func GetNode(id int) (node Node) {
 	return node
 }
 
-func GetAllTopic() (allt []*Topic) {
+func SearchAllTopicByTitle(title string, offset int, limit int, path string) (allt []*Topic) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.FindAll(&allt)
+	q.Where("title =?", title).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
 	return allt
 }
 
-func GetAllTopicByNode(nodeid int, path string) (allt []*Topic) {
+func SearchAllTopicByContent(content string, offset int, limit int, path string) (allt []*Topic) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.Where("nid=?", nodeid).OrderByDesc(path).FindAll(&allt)
+	q.Where("content =?", content).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+	return allt
+}
+
+func GetAllTopic(offset int, limit int, path string) (allt []*Topic) {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+	return allt
+}
+
+func GetAllTopicByNodeid(nodeid int, offset int, limit int, path string) (allt []*Topic) {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	if nodeid == 0 {
+		q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+	} else {
+		q.WhereEqual("nid", nodeid).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+	}
 	return allt
 }
 

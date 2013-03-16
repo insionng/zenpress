@@ -6,48 +6,59 @@ import (
 	"fmt"
 	"io"
 	"math"
-	"net/http"
 	"net/smtp"
 	"os"
 	"regexp"
-	"strconv"
 	"strings"
 	"time"
 )
 
-var defaultPagesize = 20
+//分页计算函数
+func Pages(results_count int, page int, pagesize int) (pages int, pageout int, beginnum int, endnum int, offset int) {
+	//取得记录总数，计算总页数用
+	//results_count,总共有results_count条记录
 
-// 检查分页参数。
-// page第一页为1；
-// pagesize默认值为20，范围为 5~200.
-// return page, pagesize 
-// 返回的page是从0开始的值
-func PageCheck(page, pagesize int) (int, int) {
-	if page < 1 {
+	//设定每一页显示的记录数 
+	if pagesize < 0 || pagesize < 1 {
+		pagesize = 10 //如无设置，则默认每页显示10条记录
+	}
+
+	//计算总页数
+	pages = int(math.Ceil(float64(results_count) / float64(pagesize)))
+	//返回pages
+
+	//判断页数设置,否则，设置为第一页
+	if page < 0 || page < 1 {
 		page = 1
 	}
-	page = page - 1
-	if pagesize == 0 {
-		pagesize = defaultPagesize
-	} else if pagesize < 5 {
-		pagesize = 5
-	} else if pagesize > 200 {
-		pagesize = 200
+	if page > pages {
+		page = pages
 	}
-	return page, pagesize
-}
+	//返回page
 
-// 从请求参数中获取分页相关的参数
-func PagerParams(r *http.Request) (page, pagesize int) {
-	pagesize, _ = strconv.Atoi(r.FormValue("pagesize"))
-	page, _ = strconv.Atoi(r.FormValue("page"))
-	if page == 0 {
-		page = 1
+	beginnum = page - 4
+	endnum = page + 5
+
+	if page < 5 {
+		beginnum = 1
+		endnum = 10 //这里是你要提供的可用链接数，本例就是当前页加前后两页共5页，if条件为可用链接数的一半
 	}
-	if pagesize == 0 {
-		pagesize = defaultPagesize
+	if page > pages-5 {
+		beginnum = pages - 9
+		endnum = pages
 	}
-	return
+	if beginnum < 1 {
+		beginnum = 1
+	}
+	if endnum > pages {
+		endnum = pages
+	}
+	//返回beginnum
+	//返回endnum
+
+	//计算记录偏移量
+	offset = (page - 1) * pagesize
+	return pages, page, beginnum, endnum, offset
 }
 
 /** 微博时间格式化显示

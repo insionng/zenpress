@@ -7,26 +7,25 @@ import (
 	"strconv"
 )
 
-type MainHandler struct {
+type SearchHandler struct {
 	libs.BaseHandler
 }
 
-func (self *MainHandler) Get() {
-	models.Ct()
+func (self *SearchHandler) Get() {
 	inputs := self.Input()
 	page, _ := strconv.Atoi(inputs.Get("page"))
-	id, _ := strconv.Atoi(self.Ctx.Params[":cid"])
-	rcs := len(models.GetAllNodeByCategoryId(id, 0, 0, "hotness"))
-
+	keyword := inputs.Get("keyword")
 	limit := 5
+	rcs := len(models.GetAllTopic(0, 0, "id"))
 	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
 	self.Data["pages"] = pages
 	self.Data["page"] = pageout
 	self.Data["beginnum"] = beginnum
 	self.Data["endnum"] = endnum
-	self.Data["nodes_hotness"] = models.GetAllNodeByCategoryId(id, offset, limit, "hotness")
-	self.Layout = "layout.html"
-	self.TplNames = "index.html"
-	self.Render()
 
+	self.Data["search_hotness"] = models.SearchAllTopicByTitle(keyword, offset, limit, "hotness")
+	self.TplNames = "search.html"
+	self.Layout = "layout.html"
+
+	self.Render()
 }

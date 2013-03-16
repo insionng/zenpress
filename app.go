@@ -15,6 +15,7 @@ func main() {
 
 	torgo.RegisterHandler("/", &handlers.MainHandler{})
 	torgo.RegisterHandler("/category/:cid([0-9]+)", &handlers.MainHandler{})
+	torgo.RegisterHandler("/search", &handlers.SearchHandler{})
 
 	torgo.RegisterHandler("/node/:nid([0-9]+)", &handlers.NodeHandler{})
 	torgo.RegisterHandler("/view/:tid([0-9]+)", &handlers.ViewHandler{})

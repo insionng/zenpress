@@ -33,14 +33,13 @@
                   <div class="clearfix"></div>
 </div>
 {{end}}
-                       
+
 <!-- Pagination -->
-            
-               <div class="pagination">
-                <span class='page-numbers current'>1</span>
-                <a class='page-numbers' href='http://responsivewebinc.com/nannie/page/2'>2</a>
-                <a class="next page-numbers" href="http://responsivewebinc.com/nannie/page/2">Next</a>
-              </div>  
-               <div class="clearfix"></div>
-               
+    <div class="pagination">
+        <span class='page-numbers'>共{{.pages}}页</span>
+        <span class='page-numbers current'>{{.page}}</span>
+        <a class='page-numbers' href='/node/{{.nodeid}}?page={{.beginnum}}'>{{.beginnum}}</a>
+        <a class="next page-numbers" href="/node/{{.nodeid}}?page={{.endnum}}">Next</a>
+    </div>
+  <div class="clearfix"></div>   
 </div>

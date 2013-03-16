@@ -12,9 +12,20 @@ type NodeHandler struct {
 }
 
 func (self *NodeHandler) Get() {
+	inputs := self.Input()
+	page, _ := strconv.Atoi(inputs.Get("page"))
 	nodeid, _ := strconv.Atoi(self.Ctx.Params[":nid"])
 
-	self.Data["topics"] = models.GetAllTopicByNode(nodeid, "hotness")
+	limit := 5
+	rcs := len(models.GetAllTopicByNodeid(nodeid, 0, 0, "hotness"))
+	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
+	self.Data["pages"] = pages
+	self.Data["page"] = pageout
+	self.Data["beginnum"] = beginnum
+	self.Data["endnum"] = endnum
+
+	self.Data["nodeid"] = nodeid
+	self.Data["topics"] = models.GetAllTopicByNodeid(nodeid, offset, limit, "hotness")
 	nid_handler := models.GetNode(nodeid)
 	nid_path := strconv.Itoa(int(nid_handler.Pid)) + "/" + strconv.Itoa(int(nid_handler.Id)) + "/"
 	nid_name := "index.html"
