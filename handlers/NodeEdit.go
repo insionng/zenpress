@@ -14,7 +14,7 @@ type NodeEditHandler struct {
 func (self *NodeEditHandler) Get() {
 	nid, _ := strconv.Atoi(self.Ctx.Params[":nid"])
 	self.Data["icategory"] = models.GetCategory(int(models.GetNode(nid).Pid))
-
+	self.Data["inode"] = models.GetNode(nid)
 	self.Layout = "layout.html"
 	self.TplNames = "node_edit.html"
 	self.Render()
