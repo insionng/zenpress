@@ -11,20 +11,20 @@ type TopicEditHandler struct {
 	libs.RootAuthHandler
 }
 
-func (this *TopicEditHandler) Get() {
-	tid, _ := strconv.Atoi(this.Ctx.Params[":tid"])
+func (self *TopicEditHandler) Get() {
+	tid, _ := strconv.Atoi(self.Ctx.Params[":tid"])
 	tid_handler := models.GetTopic(tid)
-	this.Data["topic"] = tid_handler
-	this.Data["inode"] = models.GetNode(int(tid_handler.Nid))
+	self.Data["topic"] = tid_handler
+	self.Data["inode"] = models.GetNode(int(tid_handler.Nid))
 
-	this.Layout = "layout.html"
-	this.TplNames = "topic_edit.html"
-	this.Render()
+	self.Layout = "layout.html"
+	self.TplNames = "topic_edit.html"
+	self.Render()
 }
 
-func (this *TopicEditHandler) Post() {
-	inputs := this.Input()
-	tid, _ := strconv.Atoi(this.Ctx.Params[":tid"])
+func (self *TopicEditHandler) Post() {
+	inputs := self.Input()
+	tid, _ := strconv.Atoi(self.Ctx.Params[":tid"])
 	nid, _ := strconv.Atoi(inputs.Get("nodeid"))
 	cid := models.GetNode(nid).Pid
 
@@ -36,5 +36,5 @@ func (this *TopicEditHandler) Post() {
 	tp.Content = inputs.Get("content")
 	tp.Created = time.Now()
 	models.SaveTopic(tp)
-	this.Ctx.Redirect(302, "/")
+	self.Ctx.Redirect(302, "/")
 }

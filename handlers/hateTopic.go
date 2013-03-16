@@ -11,12 +11,12 @@ type HateTopicHandler struct {
 	libs.BaseHandler
 }
 
-func (this *HateTopicHandler) Get() {
-	//inputs := this.Input()
+func (self *HateTopicHandler) Get() {
+	//inputs := self.Input()
 	//id, _ := strconv.Atoi(inputs.Get("id"))
-	if utils.IsSpider(this.Ctx.Request.UserAgent()) != true {
+	if utils.IsSpider(self.Ctx.Request.UserAgent()) != true {
 
-		id, _ := strconv.Atoi(this.Ctx.Params[":tid"])
+		id, _ := strconv.Atoi(self.Ctx.Params[":tid"])
 
 		tp := models.GetTopic(id)
 		tp.Hotdown = tp.Hotdown + 1
@@ -24,10 +24,10 @@ func (this *HateTopicHandler) Get() {
 
 		models.SaveTopic(tp)
 
-		this.Ctx.WriteString("success")
+		self.Ctx.WriteString("success")
 
 	} else {
-		this.Ctx.WriteString("R u spider?")
+		self.Ctx.WriteString("R u spider?")
 	}
 
 }

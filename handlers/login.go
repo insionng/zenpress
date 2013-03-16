@@ -10,40 +10,38 @@ type LoginHandler struct {
 	libs.BaseHandler
 }
 
-func (this *LoginHandler) Get() {
+func (self *LoginHandler) Get() {
 
-	sess := this.StartSession()
-	sess_username, _ := sess.Get("username").(string)
+	sess_username, _ := self.GetSession("username").(string)
 	//如果未登录
 	if sess_username == "" {
-		this.TplNames = "login.html"
-		this.Render()
+		self.TplNames = "login.html"
+		self.Render()
 	} else { //如果已登录
-		this.Ctx.Redirect(302, "/")
+		self.Ctx.Redirect(302, "/")
 	}
 
 }
 
-func (this *LoginHandler) Post() {
-	this.TplNames = "login.html"
-	this.Ctx.Request.ParseForm()
-	username := this.Ctx.Request.Form.Get("username")
-	password := this.Ctx.Request.Form.Get("password")
+func (self *LoginHandler) Post() {
+	self.TplNames = "login.html"
+	self.Ctx.Request.ParseForm()
+	username := self.Ctx.Request.Form.Get("username")
+	password := self.Ctx.Request.Form.Get("password")
 
 	userInfo := models.GetUserByNickname(username)
 
 	if utils.Validate_password(userInfo.Password, password) {
 
 		//登录成功设置session
-		sess := this.StartSession()
-		sess.Set("userid", userInfo.Id)
-		sess.Set("username", userInfo.Nickname)
-		sess.Set("userrole", userInfo.Role)
-		sess.Set("useremail", userInfo.Email)
+		self.SetSession("userid", userInfo.Id)
+		self.SetSession("username", userInfo.Nickname)
+		self.SetSession("userrole", userInfo.Role)
+		self.SetSession("useremail", userInfo.Email)
 
-		this.Ctx.Redirect(302, "/")
+		self.Ctx.Redirect(302, "/")
 	} else {
 
-		this.Ctx.Redirect(302, "/login")
+		self.Ctx.Redirect(302, "/login")
 	}
 }

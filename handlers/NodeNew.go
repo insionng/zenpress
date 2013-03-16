@@ -10,19 +10,19 @@ type NewNodeHandler struct {
 	libs.AuthHandler
 }
 
-func (this *NewNodeHandler) Get() {
-	this.TplNames = "new_node.html"
-	this.Layout = "layout.html"
+func (self *NewNodeHandler) Get() {
+	self.TplNames = "new_node.html"
+	self.Layout = "layout.html"
 
-	this.Data["categorys"] = models.GetAllCategory()
-	this.Render()
+	self.Data["categorys"] = models.GetAllCategory()
+	self.Render()
 }
 
-func (this *NewNodeHandler) Post() {
-	inputs := this.Input()
+func (self *NewNodeHandler) Post() {
+	inputs := self.Input()
 	cid, _ := strconv.Atoi(inputs.Get("category"))
 
 	models.AddNode(inputs.Get("title"), inputs.Get("content"), cid)
 
-	this.Ctx.Redirect(302, "/")
+	self.Ctx.Redirect(302, "/")
 }

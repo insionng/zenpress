@@ -9,16 +9,16 @@ type NewCategoryHandler struct {
 	libs.RootAuthHandler
 }
 
-func (this *NewCategoryHandler) Get() {
-	this.TplNames = "new_category.html"
-	this.Layout = "layout.html"
+func (self *NewCategoryHandler) Get() {
+	self.TplNames = "new_category.html"
+	self.Layout = "layout.html"
 
-	this.Render()
+	self.Render()
 }
 
-func (this *NewCategoryHandler) Post() {
-	inputs := this.Input()
+func (self *NewCategoryHandler) Post() {
+	inputs := self.Input()
 	models.AddCategory(inputs.Get("title"), inputs.Get("content"))
 
-	this.Ctx.Redirect(302, "/")
+	self.Ctx.Redirect(302, "/")
 }

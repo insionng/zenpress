@@ -11,12 +11,12 @@ type LikeTopicHandler struct {
 	libs.BaseHandler
 }
 
-func (this *LikeTopicHandler) Get() {
-	//inputs := this.Input()
+func (self *LikeTopicHandler) Get() {
+	//inputs := self.Input()
 	//id, _ := strconv.Atoi(inputs.Get("id"))
-	if utils.IsSpider(this.Ctx.Request.UserAgent()) != true {
+	if utils.IsSpider(self.Ctx.Request.UserAgent()) != true {
 
-		id, _ := strconv.Atoi(this.Ctx.Params[":tid"])
+		id, _ := strconv.Atoi(self.Ctx.Params[":tid"])
 
 		tp := models.GetTopic(id)
 		tp.Hotup = tp.Hotup + 1
@@ -24,10 +24,10 @@ func (this *LikeTopicHandler) Get() {
 
 		models.SaveTopic(tp)
 
-		this.Ctx.WriteString("success")
+		self.Ctx.WriteString("success")
 
 	} else {
-		this.Ctx.WriteString("R u spider?")
+		self.Ctx.WriteString("R u spider?")
 	}
 
 }

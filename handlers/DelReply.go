@@ -10,8 +10,8 @@ type DeleteReplyHandler struct {
 	libs.RootAuthHandler
 }
 
-func (this *DeleteReplyHandler) Get() {
-	rid, _ := strconv.Atoi(this.Ctx.Params[":rid"])
+func (self *DeleteReplyHandler) Get() {
+	rid, _ := strconv.Atoi(self.Ctx.Params[":rid"])
 	models.DelReply(rid)
-	this.Ctx.Redirect(302, "/")
+	self.Ctx.Redirect(302, "/")
 }

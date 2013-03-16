@@ -12,27 +12,27 @@ type RegHandler struct {
 	libs.BaseHandler
 }
 
-func (this *RegHandler) Get() {
-	this.TplNames = "reg.html"
-	this.Render()
+func (self *RegHandler) Get() {
+	self.TplNames = "reg.html"
+	self.Render()
 }
 
-func (this *RegHandler) Post() {
-	this.TplNames = "reg.html"
-	this.Ctx.Request.ParseForm()
-	username := this.Ctx.Request.Form.Get("username")
-	password := this.Ctx.Request.Form.Get("password")
+func (self *RegHandler) Post() {
+	self.TplNames = "reg.html"
+	self.Ctx.Request.ParseForm()
+	username := self.Ctx.Request.Form.Get("username")
+	password := self.Ctx.Request.Form.Get("password")
 	usererr := checkUsername(username)
 
 	fmt.Println(usererr)
 	if usererr == false {
-		this.Data["UsernameErr"] = "Username error, Please to again"
+		self.Data["UsernameErr"] = "Username error, Please to again"
 		return
 	}
 
 	passerr := checkPassword(password)
 	if passerr == false {
-		this.Data["PasswordErr"] = "Password error, Please to again"
+		self.Data["PasswordErr"] = "Password error, Please to again"
 		return
 	}
 
@@ -43,19 +43,19 @@ func (this *RegHandler) Post() {
 	userInfo := models.GetUserByNickname(username)
 
 	if userInfo.Nickname == "" {
-		models.AddUser(username+"@insion.co", username, pwd, 0)
+		models.AddUser(username+"@insion.co", username, pwd, 1)
 
 		//登录成功设置session
-		sess := this.StartSession()
-		sess.Set("userid", userInfo.Id)
-		sess.Set("username", userInfo.Nickname)
-		sess.Set("userrole", userInfo.Role)
-		sess.Set("useremail", userInfo.Email)
-		this.Ctx.Redirect(302, "/login")
+		self.SetSession("userid", userInfo.Id)
+		self.SetSession("username", userInfo.Nickname)
+		self.SetSession("userrole", userInfo.Role)
+		self.SetSession("useremail", userInfo.Email)
+
+		self.Ctx.Redirect(302, "/login")
 	} else {
-		this.Data["UsernameErr"] = "User already exists"
+		self.Data["UsernameErr"] = "User already exists"
 	}
-	this.Render()
+	self.Render()
 }
 
 func checkPassword(password string) (b bool) {

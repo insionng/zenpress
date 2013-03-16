@@ -10,8 +10,8 @@ type TopicDeleteHandler struct {
 	libs.RootAuthHandler
 }
 
-func (this *TopicDeleteHandler) Get() {
-	tid, _ := strconv.Atoi(this.Ctx.Params[":tid"])
+func (self *TopicDeleteHandler) Get() {
+	tid, _ := strconv.Atoi(self.Ctx.Params[":tid"])
 	models.DelTopic(tid)
-	this.Ctx.Redirect(302, "/")
+	self.Ctx.Redirect(302, "/")
 }

@@ -8,12 +8,12 @@ type LogoutHandler struct {
 	libs.BaseHandler
 }
 
-func (this *LogoutHandler) Get() {
+func (self *LogoutHandler) Get() {
 	//退出，销毁session
-	sess := this.StartSession()
-	sess.Delete("userid")
-	sess.Delete("username")
-
-	this.Ctx.Redirect(302, "/")
+	self.DelSession("userid")
+	self.DelSession("username")
+	self.DelSession("userrole")
+	self.DelSession("useremail")
+	self.Ctx.Redirect(302, "/")
 
 }

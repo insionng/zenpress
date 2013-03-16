@@ -11,15 +11,15 @@ type ModifyCategoryHandler struct {
 	libs.RootAuthHandler
 }
 
-func (this *ModifyCategoryHandler) Get() {
-	this.TplNames = "modify_category.html"
-	this.Layout = "layout.html"
+func (self *ModifyCategoryHandler) Get() {
+	self.TplNames = "modify_category.html"
+	self.Layout = "layout.html"
 
-	this.Render()
+	self.Render()
 }
 
-func (this *ModifyCategoryHandler) Post() {
-	inputs := this.Input()
+func (self *ModifyCategoryHandler) Post() {
+	inputs := self.Input()
 	cid, _ := strconv.Atoi(inputs.Get("categoryid"))
 
 	var cat models.Category
@@ -28,5 +28,5 @@ func (this *ModifyCategoryHandler) Post() {
 	cat.Content = inputs.Get("content")
 	cat.Created = time.Now()
 	models.SaveCategory(cat)
-	this.Ctx.Redirect(302, "/")
+	self.Ctx.Redirect(302, "/")
 }

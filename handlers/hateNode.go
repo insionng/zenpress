@@ -11,12 +11,12 @@ type HateNodeHandler struct {
 	libs.BaseHandler
 }
 
-func (this *HateNodeHandler) Get() {
-	//inputs := this.Input()
+func (self *HateNodeHandler) Get() {
+	//inputs := self.Input()
 	//id, _ := strconv.Atoi(inputs.Get("id"))
-	if utils.IsSpider(this.Ctx.Request.UserAgent()) != true {
+	if utils.IsSpider(self.Ctx.Request.UserAgent()) != true {
 
-		id, _ := strconv.Atoi(this.Ctx.Params[":nid"])
+		id, _ := strconv.Atoi(self.Ctx.Params[":nid"])
 
 		nd := models.GetNode(id)
 		nd.Hotdown = nd.Hotdown + 1
@@ -24,11 +24,11 @@ func (this *HateNodeHandler) Get() {
 
 		models.SaveNode(nd)
 
-		this.Ctx.WriteString("success")
-		//this.Ctx.Redirect(302, "/")
+		self.Ctx.WriteString("success")
+		//self.Ctx.Redirect(302, "/")
 
 	} else {
-		this.Ctx.WriteString("R u spider?")
+		self.Ctx.WriteString("R u spider?")
 	}
 
 }

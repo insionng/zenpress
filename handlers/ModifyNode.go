@@ -11,14 +11,16 @@ type ModifyNodeHandler struct {
 	libs.RootAuthHandler
 }
 
-func (this *ModifyNodeHandler) Get() {
-	this.Layout = "layout.html"
-	this.TplNames = "modify_node.html"
-	this.Render()
+func (self *ModifyNodeHandler) Get() {
+
+	self.Layout = "layout.html"
+	self.TplNames = "modify_node.html"
+	self.Render()
 }
 
-func (this *ModifyNodeHandler) Post() {
-	inputs := this.Input()
+func (self *ModifyNodeHandler) Post() {
+
+	inputs := self.Input()
 	cid, _ := strconv.Atoi(inputs.Get("categoryid"))
 	nid, _ := strconv.Atoi(inputs.Get("nodeid"))
 
@@ -29,5 +31,5 @@ func (this *ModifyNodeHandler) Post() {
 	nd.Content = inputs.Get("content")
 	nd.Created = time.Now()
 	models.SaveNode(nd)
-	this.Ctx.Redirect(302, "/")
+	self.Ctx.Redirect(302, "/")
 }

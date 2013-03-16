@@ -104,103 +104,15 @@
                      <div class="meta"><i class="icon-calendar"></i>March 13 , 2013 at 21:59 am - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
                      </div>
                       <div>
-                      <p>用golang的正则regexp：去除HTML，CSS，SCRIPT代码，仅保留页面文字：</p>
-
-<p>&nbsp;</p>
-
-<div>
-<div>package main</div>
-
-<div>&nbsp;</div>
-
-<div>import (</div>
-
-<div>&nbsp;&nbsp; &nbsp;&quot;fmt&quot;</div>
-
-<div>&nbsp;&nbsp; &nbsp;&quot;io/ioutil&quot;</div>
-
-<div>&nbsp;&nbsp; &nbsp;&quot;net/http&quot;</div>
-
-<div>&nbsp;&nbsp; &nbsp;&quot;regexp&quot;</div>
-
-<div>&nbsp;&nbsp; &nbsp;&quot;strings&quot;</div>
-
-<div>)</div>
-
-<div>&nbsp;</div>
-
-<div>func main() {</div>
-
-<div>&nbsp;&nbsp; &nbsp;resp, err := http.Get(&quot;http://www.baidu.com&quot;)</div>
-
-<div>&nbsp;&nbsp; &nbsp;// resp, err := http.Get(&quot;http://www.163.com&quot;)</div>
-
-<div>&nbsp;&nbsp; &nbsp;if err != nil {</div>
-
-<div>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;fmt.Println(&quot;http get error.&quot;)</div>
-
-<div>&nbsp;&nbsp; &nbsp;}</div>
-
-<div>&nbsp;&nbsp; &nbsp;defer resp.Body.Close()</div>
-
-<div>&nbsp;&nbsp; &nbsp;body, err := ioutil.ReadAll(resp.Body)</div>
-
-<div>&nbsp;&nbsp; &nbsp;if err != nil {</div>
-
-<div>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;fmt.Println(&quot;http read error&quot;)</div>
-
-<div>&nbsp;&nbsp; &nbsp;}</div>
-
-<div>&nbsp;</div>
-
-<div>&nbsp;&nbsp; &nbsp;src := string(body)</div>
-
-<div>&nbsp;</div>
-
-<div>&nbsp;&nbsp; &nbsp;//将HTML标签全转换成小写</div>
-
-<div>&nbsp;&nbsp; &nbsp;re, _ := regexp.Compile(&quot;\\&lt;[\\S\\s]+?\\&gt;&quot;)</div>
-
-<div>&nbsp;&nbsp; &nbsp;src = re.ReplaceAllStringFunc(src, strings.ToLower)</div>
-
-<div>&nbsp;</div>
-
-<div>&nbsp;&nbsp; &nbsp;//去除STYLE</div>
-
-<div>&nbsp;&nbsp; &nbsp;re, _ = regexp.Compile(&quot;\\&lt;style[\\S\\s]+?\\&lt;/style\\&gt;&quot;)</div>
-
-<div>&nbsp;&nbsp; &nbsp;src = re.ReplaceAllString(src, &quot;&quot;)</div>
-
-<div>&nbsp;</div>
-
-<div>&nbsp;&nbsp; &nbsp;//去除SCRIPT</div>
-
-<div>&nbsp;&nbsp; &nbsp;re, _ = regexp.Compile(&quot;\\&lt;script[\\S\\s]+?\\&lt;/script\\&gt;&quot;)</div>
-
-<div>&nbsp;&nbsp; &nbsp;src = re.ReplaceAllString(src, &quot;&quot;)</div>
-
-<div>&nbsp;</div>
-
-<div>&nbsp;&nbsp; &nbsp;//去除所有尖括号内的HTML代码，并换成换行符</div>
-
-<div>&nbsp;&nbsp; &nbsp;re, _ = regexp.Compile(&quot;\\&lt;[\\S\\s]+?\\&gt;&quot;)</div>
-
-<div>&nbsp;&nbsp; &nbsp;src = re.ReplaceAllString(src, &quot;\n&quot;)</div>
-
-<div>&nbsp;</div>
-
-<div>&nbsp;&nbsp; &nbsp;//去除连续的换行符</div>
-
-<div>&nbsp;&nbsp; &nbsp;re, _ = regexp.Compile(&quot;\\s{2,}&quot;)</div>
-
-<div>&nbsp;&nbsp; &nbsp;src = re.ReplaceAllString(src, &quot;\n&quot;)</div>
-
-<div>&nbsp;</div>
-
-<div>&nbsp;&nbsp; &nbsp;fmt.Println(strings.TrimSpace(src))</div>
-
-<div>}</div>
-</div>
+                        
+                        
+                        <p>用golang的正则regexp：去除HTML，CSS，SCRIPT代码，仅保留页面文字：
+&nbsp;
+package main
+&nbsp;
+import (
+&nbsp;&nbsp; &nbsp;&quot;fmt&quot;
+&nbsp;&nbsp; &nbsp;&quot;io/iouti</p>
 
                       </div>
                   </div>
@@ -235,12 +147,13 @@
 
 <div class="widget">
   
-  <h3><span>注册登录</span></h3>
+  <h3><span>欢迎，insion</span></h3>
   
   <ul>
   
-     <li><a href="/register">注册</a></li>
-     <li><a href="/login">登录</a></li>
+     <li><a href="/new/node">新建节点</a></li>
+     <li><a href="/new/topic">新建话题</a></li>
+     <li><a href="/logout">退出</a></li>
   
   </ul>
 </div>

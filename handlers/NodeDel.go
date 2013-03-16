@@ -10,8 +10,8 @@ type NodeDeleteHandler struct {
 	libs.RootAuthHandler
 }
 
-func (this *NodeDeleteHandler) Get() {
-	nid, _ := strconv.Atoi(this.Ctx.Params[":nid"])
+func (self *NodeDeleteHandler) Get() {
+	nid, _ := strconv.Atoi(self.Ctx.Params[":nid"])
 	models.DelNode(nid)
-	this.Ctx.Redirect(302, "/")
+	self.Ctx.Redirect(302, "/")
 }
