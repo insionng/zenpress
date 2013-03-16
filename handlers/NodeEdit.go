@@ -13,8 +13,10 @@ type NodeEditHandler struct {
 
 func (self *NodeEditHandler) Get() {
 	nid, _ := strconv.Atoi(self.Ctx.Params[":nid"])
-	self.Data["icategory"] = models.GetCategory(int(models.GetNode(nid).Pid))
-	self.Data["inode"] = models.GetNode(nid)
+	nid_handler := models.GetNode(nid)
+	self.Data["inode"] = nid_handler
+	self.Data["icategory"] = models.GetCategory(int(nid_handler.Pid))
+
 	self.Layout = "layout.html"
 	self.TplNames = "node_edit.html"
 	self.Render()
