@@ -164,7 +164,7 @@
   <ul id="recentcomments">
   {{if .replys_10s}}
       {{range .replys_10s}}
-      <li class="recentcomments">ID:{{.Uid}} on <a href="/topic/{{.Pid}}#reply-{{.Id}}">{{.Content}}</a></li>
+      <li class="recentcomments">ID:{{.Uid}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{.Content}}</a></li>
       {{end}}
   {{else}}
       <li class="recentcomments">尚无评论</li>
@@ -209,7 +209,7 @@
                <ul>
                 {{if .replys_5s}}
                   {{range .replys_5s}}
-                  <li>ID:{{.Uid}} on <a href="/topic/{{.Pid}}#reply-{{.Id}}">{{.Content}}</a></li>
+                  <li>ID:{{.Uid}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{.Content}}</a></li>
                   {{end}}
                 {{else}}
                   <li>尚无评论</li>
