@@ -23,7 +23,7 @@ func (self *NodeHandler) Get() {
 	self.Data["page"] = pageout
 	self.Data["beginnum"] = beginnum
 	self.Data["endnum"] = endnum
-
+	self.Data["results_max"] = rcs
 	self.Data["nodeid"] = nodeid
 	self.Data["topics"] = models.GetAllTopicByNodeid(nodeid, offset, limit, "hotness")
 	nid_handler := models.GetNode(nodeid)

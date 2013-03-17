@@ -23,7 +23,7 @@ func (self *SearchHandler) Get() {
 	self.Data["beginnum"] = beginnum
 	self.Data["endnum"] = endnum
 
-	self.Data["search_hotness"] = models.SearchAllTopicByTitle(keyword, offset, limit, "hotness")
+	self.Data["search_hotness"] = models.SearchAllTopicByContent(keyword, offset, limit, "hotness")
 	self.TplNames = "search.html"
 	self.Layout = "layout.html"
 
