@@ -4,11 +4,13 @@ import (
 	"bufio"
 	"crypto/md5"
 	"fmt"
+	"html/template"
 	"io"
 	"math"
 	"net/smtp"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -59,6 +61,38 @@ func Pages(results_count int, page int, pagesize int) (pages int, pageout int, b
 	//计算记录偏移量
 	offset = (page - 1) * pagesize
 	return pages, page, beginnum, endnum, offset
+}
+
+func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int, endnum int) (output template.HTML) {
+	/*
+			"<div class='pagination'>"
+		        "<span class='page-numbers'>共"+strconv.Itoa(pages)+"页</span>"
+		        "<span class='page-numbers current'>"+strconv.Itoa(page)+"</span>"
+		        "<a class='page-numbers' href='?page="+strconv.Itoa(beginnum)+"'>"+strconv.Itoa(beginnum)+"</a>"
+		        "<a class="next page-numbers" href="?page="+strconv.Itoa(endnum)+">Next</a>"
+		    "</div>"
+	*/
+	raw := "<div class='pagination'>"
+	if results_max > 0 {
+		raw = raw + "<span class='page-numbers'>找到相关结果" + strconv.Itoa(results_max) + "个，共" + strconv.Itoa(pages) + "页</span>"
+		count := pages + 1
+		for i := 1; i < count; i++ {
+			if i == page {
+				raw = raw + "<span class='page-numbers current'>" + strconv.Itoa(i) + "</span>"
+			} else {
+				raw = raw + "<a class='page-numbers' href='?keyword=" + keyword + "&page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a>"
+			}
+		}
+		if (page != pages) && (page < pages) {
+			raw = raw + "<a class='next page-numbers' href='?keyword=" + keyword + "&page=" + strconv.Itoa(page+1) + "'>Next</a>"
+		}
+
+	} else {
+		raw = raw + "<h2>没有数据啊，天要塌啦～</h2>"
+		raw = raw + "<span class='page-numbers'>共0页</span>"
+	}
+	output = template.HTML(raw + "</div>")
+	return output
 }
 
 /** 微博时间格式化显示
@@ -269,6 +303,7 @@ func Writefile(path string, filename string, content string) error {
 }
 
 func Htmlquote(text string) string {
+	//HTML编码为实体符号
 	/*
 	   Encodes `text` for raw use in HTML.
 	       >>> htmlquote("<'&\\">")
@@ -287,6 +322,7 @@ func Htmlquote(text string) string {
 }
 
 func Htmlunquote(text string) string {
+	//实体符号解释为HTML
 	/*
 	   Decodes `text` that's HTML quoted.
 	       >>> htmlunquote('&lt;&#39;&amp;&quot;&gt;')

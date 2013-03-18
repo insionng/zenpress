@@ -2,8 +2,8 @@ package libs
 
 import (
 	"../models"
-	"github.com/insionng/torgo"
-	//"../../torgo"
+	//"github.com/insionng/torgo"
+	"./torgo"
 	//"lihuashu.com/insionng/torgo"
 	//"github.com/astaxie/beego"
 )

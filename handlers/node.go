@@ -16,14 +16,10 @@ func (self *NodeHandler) Get() {
 	page, _ := strconv.Atoi(inputs.Get("page"))
 	nodeid, _ := strconv.Atoi(self.Ctx.Params[":nid"])
 
-	limit := 5
+	limit := 25
 	rcs := len(models.GetAllTopicByNodeid(nodeid, 0, 0, "hotness"))
 	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
-	self.Data["pages"] = pages
-	self.Data["page"] = pageout
-	self.Data["beginnum"] = beginnum
-	self.Data["endnum"] = endnum
-	self.Data["results_max"] = rcs
+	self.Data["pagesbar"] = utils.Pagesbar("", rcs, pages, pageout, beginnum, endnum)
 	self.Data["nodeid"] = nodeid
 	self.Data["topics"] = models.GetAllTopicByNodeid(nodeid, offset, limit, "hotness")
 	nid_handler := models.GetNode(nodeid)

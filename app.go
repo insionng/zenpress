@@ -2,8 +2,8 @@ package main
 
 import (
 	"./handlers"
-	"github.com/insionng/torgo"
-	//"../torgo"
+	//"github.com/insionng/torgo"
+	"./libs/torgo"
 	//"lihuashu.com/insionng/torgo"
 	"runtime"
 )

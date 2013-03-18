@@ -36,11 +36,6 @@
 {{end}}
 
 <!-- Pagination -->
-    <div class="pagination">
-        <span class='page-numbers'>共{{.pages}}页</span>
-        <span class='page-numbers current'>{{.page}}</span>
-        <a class='page-numbers' href='?page={{.beginnum}}'>{{.beginnum}}</a>
-        <a class="next page-numbers" href="?page={{.endnum}}">Next</a>
-    </div>
+    {{.pagesbar}}
   <div class="clearfix"></div>   
 </div>
