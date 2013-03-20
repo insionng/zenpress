@@ -149,8 +149,9 @@ func Ct() {
 	mg.CreateTableIfNotExists(new(Topic))
 	mg.CreateTableIfNotExists(new(Reply))
 
-	if GetUserByNickname("root").Nickname == "" {
-		AddUser("root@insion.co", "root", utils.Encrypt_password("rootpass", nil), 100)
+	//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
+	if GetUserByNickname("root").Role != -1000 {
+		AddUser("root@insion.co", "root", utils.Encrypt_password("rootpass", nil), -1000)
 		fmt.Println("Default User:root,Password:rootpass")
 	}
 
@@ -159,6 +160,85 @@ func Ct() {
 		AddNode("Hello Node!", "This is Node!", 1)
 		AddTopic("Hello World!", "This is Toropress!", 1, 1)
 	}
+}
+
+func Counts() (categorys int, nodes int, topics int, menbers int) {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+
+	var categoryz []*Category
+	if e := q.FindAll(&categoryz); e != nil {
+		categorys = 0
+		fmt.Println(e)
+	} else {
+		categorys = len(categoryz)
+	}
+
+	var nodez []*Node
+	if e := q.FindAll(&nodez); e != nil {
+		nodes = 0
+		fmt.Println(e)
+	} else {
+		nodes = len(nodez)
+	}
+
+	var topicz []*Topic
+	if e := q.FindAll(&topicz); e != nil {
+		topics = 0
+		fmt.Println(e)
+	} else {
+		topics = len(topicz)
+	}
+
+	var menberz []*User
+	if e := q.FindAll(&menberz); e != nil {
+		menbers = 0
+		fmt.Println(e)
+	} else {
+		menbers = len(menberz)
+	}
+
+	return categorys, nodes, topics, menbers
+}
+
+func TopicCount() (today int, this_week int, this_month int) {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	var topict, topicw, topicm []*Topic
+	k := time.Now()
+
+	//一天之前
+	d, _ := time.ParseDuration("-24h")
+	t := k.Add(d)
+	e := q.Where("created>?", t).FindAll(&topict)
+	if e != nil {
+		today = 0
+		fmt.Println(e)
+	} else {
+		today = len(topict)
+	}
+
+	//一周之前
+	w := k.Add(d * 7)
+	e = q.Where("created>?", w).FindAll(&topicw)
+	if e != nil {
+		this_week = 0
+		fmt.Println(e)
+	} else {
+		this_week = len(topicw)
+	}
+
+	//一月之前
+	m := k.Add(d * 30)
+	e = q.Where("created>?", m).FindAll(&topicm)
+	if e != nil {
+		this_month = 0
+		fmt.Println(e)
+	} else {
+		this_month = len(topicm)
+	}
+
+	return today, this_week, this_month
 }
 
 func AddUser(email string, nickname string, password string, role int) error {
@@ -220,7 +300,7 @@ func SaveNode(nd Node) Node {
 	return nd
 }
 
-func DelNode(nid int) error {
+func DelNodePlus(nid int) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
 	node := GetNode(nid)
@@ -236,6 +316,33 @@ func DelNode(nid int) error {
 			}
 		}
 	}
+
+	return err
+}
+
+func DelCategory(id int) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	category := GetCategory(id)
+	_, err := q.Delete(&category)
+
+	return err
+}
+
+func DelTopic(id int) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	topic := GetTopic(id)
+	_, err := q.Delete(&topic)
+
+	return err
+}
+
+func DelNode(nid int) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	node := GetNode(nid)
+	_, err := q.Delete(&node)
 
 	return err
 }
@@ -262,15 +369,6 @@ func EditTopic(tp Topic) Topic {
 	defer q.Db.Close()
 	q.Save(&tp)
 	return tp
-}
-
-func DelTopic(id int) error {
-	q, _ := ConnDb()
-	defer q.Db.Close()
-	topic := GetTopic(id)
-	_, err := q.Delete(&topic)
-
-	return err
 }
 
 func AddReply(pid int, uid int, content string, author string, email string, website string) error {

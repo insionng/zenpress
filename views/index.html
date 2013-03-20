@@ -9,9 +9,9 @@
        <a href="/node/{{.Id}}" rel="bookmark"><img width="130" height="130" src="http://responsivewebinc.com/nannie/wp-content/uploads/2012/11/girl-62328_640-130x130.jpg" class="attachment-post-thumbnail wp-post-image" alt="grandaughter-11780_640" title="grandaughter-11780_640" /></a>
     </div>
     <div class="matter">
-      <h2><a rel="bookmark" href="/node/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
+      <h2><a rel="bookmark" href="/node/{{.Id}}" title="{{.Title}}">{{substr .Title 0 40}}</a></h2>
           <div>
-            {{if compare $Userrole 100}}
+            {{if compare $Userrole -1000}}
                 <span><i class="fa-icon-user"></i> <a class="btn" href="/node/edit/{{.Id}}">编辑 &raquo;</a></span>
                 <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/node/delete/{{.Id}}">删除 &raquo;</a></span>
             {{end}}
@@ -28,7 +28,7 @@
                      <div>
                         {{$cs:=html2str .Content}}
                         {{$cs:=substr $cs 0 150}}
-                        {{markdown $cs}}      
+                        {{str2html $cs}}      
                      </div>
     </div>
     <div class="clearfix"></div>

@@ -42,7 +42,7 @@
             <p>{{.Content}}</p>
             
             <div class="comment-reply pull-right">
-               {{if compare $Userrole 100}}
+               {{if compare $Userrole -1000}}
                <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/delete/reply/{{.Id}}">删除 &raquo;</a></span>
                {{end}}
                <a class='comment-reply-link' href='?replytocom={{.Id}}#respond' onclick='return addComment.moveForm("comment-{{.Id}}", "{{.Id}}", "respond", "{{.Uid}}")'>Reply</a>

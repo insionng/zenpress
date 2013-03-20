@@ -123,6 +123,8 @@
             
             <div class="comment-reply pull-right">
                
+               <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/delete/reply/2">删除 &raquo;</a></span>
+               
                <a class='comment-reply-link' href='?replytocom=2#respond' onclick='return addComment.moveForm("comment-2", "2", "respond", "1")'>Reply</a>
             </div>
             <div class="clearfix"></div>
@@ -159,14 +161,14 @@
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
-            <input type="text" class="input-large" name="author" id="author" value="" required>
+            <input type="text" class="input-large" name="author" id="author" value="root" required>
          </div>
       </div>  
 
       <div class="control-group">
          <label class="control-label" for="email">Email</label>
          <div class="controls">
-            <input type="text" class="input-large" name="email" id="email" value="" required>
+            <input type="text" class="input-large" name="email" id="email" value="root@insion.co" required>
          </div>
       </div>
 
@@ -193,7 +195,7 @@
       </div>
  
 <p>
-<input type='hidden' name='comment_userid' value='0' id='comment_userid' />
+<input type='hidden' name='comment_userid' value='4' id='comment_userid' />
 <input type='hidden' name='comment_parent' id='comment_parent' value='1' />
 </p>
 
@@ -229,14 +231,23 @@
 
 
 <div class="widget">
-  
-  <h3><span>注册登录</span></h3>
-  
+  <h3><span>管理，root</span></h3>
   <ul>
-  
-     <li><a href="/register">注册</a></li>
-     <li><a href="/login">登录</a></li>
-  
+     <li><a href="/new/category">新建分类</a></li>
+     <li><a href="/new/node">新建节点</a></li>
+     <li><a href="/new/topic">新建话题</a></li>
+     <li><a href="/modify/category">修改分类</a></li>
+     <li><a href="/modify/node">修改节点</a></li>
+     <li><a href="/logout">退出</a></li>
+  </ul>
+</div>
+<div class="widget">
+  <h3><span>危险操作</span></h3>
+  <ul>
+     <li><a href="/delete/category">删除分类</a></li>
+     <li><a href="/delete/node">删除节点</a></li>
+     <li><a href="/delete/topic">删除话题</a></li>
+     <li><a href="/delete/user">删除用户</a></li>
   </ul>
 </div>
 

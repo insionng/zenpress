@@ -72,6 +72,9 @@ func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int
 		        "<a class="next page-numbers" href="?page="+strconv.Itoa(endnum)+">Next</a>"
 		    "</div>"
 	*/
+	if keyword != "" {
+		keyword = "keyword=" + keyword + "&"
+	}
 	raw := "<div class='pagination'>"
 	if results_max > 0 {
 		raw = raw + "<span class='page-numbers'>找到相关结果" + strconv.Itoa(results_max) + "个，共" + strconv.Itoa(pages) + "页</span>"
@@ -80,11 +83,11 @@ func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int
 			if i == page {
 				raw = raw + "<span class='page-numbers current'>" + strconv.Itoa(i) + "</span>"
 			} else {
-				raw = raw + "<a class='page-numbers' href='?keyword=" + keyword + "&page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a>"
+				raw = raw + "<a class='page-numbers' href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a>"
 			}
 		}
 		if (page != pages) && (page < pages) {
-			raw = raw + "<a class='next page-numbers' href='?keyword=" + keyword + "&page=" + strconv.Itoa(page+1) + "'>Next</a>"
+			raw = raw + "<a class='next page-numbers' href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>Next</a>"
 		}
 
 	} else {
@@ -255,7 +258,7 @@ func GetSensitiveInfoRemovedEmail(email string) string {
 }
 
 //截取字符
-func Cubstr(str string, start, length int) string {
+func Substr(str string, start, length int) string {
 	rs := []rune(str)
 	rl := len(rs)
 	end := 0

@@ -2,9 +2,8 @@ package main
 
 import (
 	"./handlers"
-	//"github.com/insionng/torgo"
-	"./libs/torgo"
-	//"lihuashu.com/insionng/torgo"
+	"./handlers/root"
+	"github.com/insionng/torgo"
 	"runtime"
 )
 
@@ -44,6 +43,13 @@ func main() {
 	torgo.RegisterHandler("/node/edit/:nid([0-9]+)", &handlers.NodeEditHandler{})
 
 	torgo.RegisterHandler("/delete/reply/:rid([0-9]+)", &handlers.DeleteReplyHandler{})
+
+	//root routes
+	torgo.RegisterHandler("/root", &root.RMainHandler{})
+	torgo.RegisterHandler("/root/login", &root.RLoginHandler{})
+	torgo.RegisterHandler("/root/account", &root.RAccountHandler{})
+	torgo.RegisterHandler("/root/change_password", &root.RChangePasswordHandler{})
+	torgo.RegisterHandler("/root/category_list", &root.RCategoryListHandler{})
 
 	torgo.SessionOn = true
 	torgo.Run()
