@@ -19,7 +19,7 @@ func (self *NodeHandler) Get() {
 	limit := 25
 	rcs := len(models.GetAllTopicByNodeid(nodeid, 0, 0, "hotness"))
 	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
-	self.Data["pagesbar"] = utils.Pagesbar("", rcs, pages, pageout, beginnum, endnum)
+	self.Data["pagesbar"] = utils.Pagesbar("", rcs, pages, pageout, beginnum, endnum, 1)
 	self.Data["nodeid"] = nodeid
 	self.Data["topics"] = models.GetAllTopicByNodeid(nodeid, offset, limit, "hotness")
 	nid_handler := models.GetNode(nodeid)

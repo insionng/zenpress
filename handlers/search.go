@@ -18,7 +18,7 @@ func (self *SearchHandler) Get() {
 	limit := 25
 	rcs := len(models.SearchAllTopicByContent(keyword, 0, 0, "id"))
 	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
-	self.Data["pagesbar"] = utils.Pagesbar(keyword, rcs, pages, pageout, beginnum, endnum)
+	self.Data["pagesbar"] = utils.Pagesbar(keyword, rcs, pages, pageout, beginnum, endnum,1)
 	self.Data["search_hotness"] = models.SearchAllTopicByContent(keyword, offset, limit, "hotness")
 	self.TplNames = "search.html"
 	self.Layout = "layout.html"

@@ -63,7 +63,7 @@ func Pages(results_count int, page int, pagesize int) (pages int, pageout int, b
 	return pages, page, beginnum, endnum, offset
 }
 
-func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int, endnum int) (output template.HTML) {
+func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int, endnum int, style int) (output template.HTML) {
 	/*
 			"<div class='pagination'>"
 		        "<span class='page-numbers'>共"+strconv.Itoa(pages)+"页</span>"
@@ -72,29 +72,73 @@ func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int
 		        "<a class="next page-numbers" href="?page="+strconv.Itoa(endnum)+">Next</a>"
 		    "</div>"
 	*/
+	/*
+		<div class="pagination"><ul>
+				<li><a href="#">&laquo;</a></li>
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">&raquo;</a></li>
+		</ul></div>
+	*/
+	var raw string
 	if keyword != "" {
 		keyword = "keyword=" + keyword + "&"
 	}
-	raw := "<div class='pagination'>"
-	if results_max > 0 {
-		raw = raw + "<span class='page-numbers'>找到相关结果" + strconv.Itoa(results_max) + "个，共" + strconv.Itoa(pages) + "页</span>"
-		count := pages + 1
-		for i := 1; i < count; i++ {
-			if i == page {
-				raw = raw + "<span class='page-numbers current'>" + strconv.Itoa(i) + "</span>"
-			} else {
-				raw = raw + "<a class='page-numbers' href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a>"
+	switch {
+	default:
+		raw = "<div class='pagination'>"
+		if results_max > 0 {
+			raw = raw + "<span class='page-numbers'>找到相关结果" + strconv.Itoa(results_max) + "个，共" + strconv.Itoa(pages) + "页</span>"
+			count := pages + 1
+			for i := 1; i < count; i++ {
+				if i == page {
+					raw = raw + "<span class='page-numbers current'>" + strconv.Itoa(i) + "</span>"
+				} else {
+					raw = raw + "<a class='page-numbers' href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a>"
+				}
 			}
+			if (page != pages) && (page < pages) {
+				raw = raw + "<a class='next page-numbers' href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>Next</a>"
+			}
+
+		} else {
+			raw = raw + "<h2>没有数据啊，天要塌啦～</h2>"
+			raw = raw + "<span class='page-numbers'>共0页</span>"
 		}
-		if (page != pages) && (page < pages) {
-			raw = raw + "<a class='next page-numbers' href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>Next</a>"
+		output = template.HTML(raw + "</div>")
+	case style == 2:
+		if results_max > 0 {
+			raw = "<div class='pagination'><ul>"
+			//raw = raw + "<span class='page-numbers'>找到相关结果" + strconv.Itoa(results_max) + "个，共" + strconv.Itoa(pages) + "页</span>"
+			count := pages + 1
+			for i := 1; i < count; i++ {
+				//begin page
+				if (page != beginnum) && (page != i) && (page > i) && (page > beginnum) {
+					//raw = raw + "<a class='next page-numbers' href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>Next</a>"
+					raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(beginnum) + "'>&laquo;</a></li>"
+				}
+				//current page and loop pages
+				if i == page {
+					//raw = raw + "<span class='page-numbers current'>" + strconv.Itoa(i) + "</span>"
+					raw = raw + "<li class='active'><a href='javascript:void();'>" + strconv.Itoa(i) + "</a></li>"
+				} else {
+					//raw = raw + "<a class='page-numbers' href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a>"
+					raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a></li>"
+				}
+				//end page
+				if (page != pages) && (page < pages) {
+					//raw = raw + "<a class='next page-numbers' href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>Next</a>"
+					raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>&raquo;</a></li>"
+				}
+			}
+			raw = raw + "</ul></div>"
 		}
 
-	} else {
-		raw = raw + "<h2>没有数据啊，天要塌啦～</h2>"
-		raw = raw + "<span class='page-numbers'>共0页</span>"
+		output = template.HTML(raw)
 	}
-	output = template.HTML(raw + "</div>")
+
 	return output
 }
 

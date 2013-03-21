@@ -4,6 +4,7 @@ import (
 	"../utils"
 	"database/sql"
 	"fmt"
+	//"github.com/coocood/goset"
 	"github.com/coocood/qbs"
 	_ "github.com/mattn/go-sqlite3"
 	"time"
@@ -249,11 +250,11 @@ func AddUser(email string, nickname string, password string, role int) error {
 	return err
 }
 
-func SaveUser(usr User) User {
+func SaveUser(usr User) (User, error) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.Save(&usr)
-	return usr
+	_, e := q.Save(&usr)
+	return usr, e
 }
 
 func GetUser(id int) (user User) {
