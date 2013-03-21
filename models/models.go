@@ -421,19 +421,13 @@ func GetNode(id int) (node Node) {
 	return node
 }
 
-func SearchAllTopicByTitle(title string, offset int, limit int, path string) (allt []*Topic) {
-	q, _ := ConnDb()
-	defer q.Db.Close()
-	keyword := "%" + title + "%"
-	q.Where("title like ?", keyword).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
-	return allt
-}
-
-func SearchAllTopicByContent(content string, offset int, limit int, path string) (allt []*Topic) {
+func SearchTopic(content string, offset int, limit int, path string) (allt []*Topic) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
 	keyword := "%" + content + "%"
-	q.Where("content like ?", keyword).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+	condition := qbs.NewCondition("title like ?", keyword).Or("content like ?", keyword)
+	q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+	//q.Where("title like ?", keyword).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
 	return allt
 }
 

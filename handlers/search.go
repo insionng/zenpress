@@ -16,10 +16,10 @@ func (self *SearchHandler) Get() {
 	page, _ := strconv.Atoi(inputs.Get("page"))
 	keyword := inputs.Get("keyword")
 	limit := 25
-	rcs := len(models.SearchAllTopicByContent(keyword, 0, 0, "id"))
+	rcs := len(models.SearchTopic(keyword, 0, 0, "id"))
 	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
-	self.Data["pagesbar"] = utils.Pagesbar(keyword, rcs, pages, pageout, beginnum, endnum,1)
-	self.Data["search_hotness"] = models.SearchAllTopicByContent(keyword, offset, limit, "hotness")
+	self.Data["pagesbar"] = utils.Pagesbar(keyword, rcs, pages, pageout, beginnum, endnum, 1)
+	self.Data["search_hotness"] = models.SearchTopic(keyword, offset, limit, "hotness")
 	self.TplNames = "search.html"
 	self.Layout = "layout.html"
 
