@@ -12,11 +12,6 @@ type ViewHandler struct {
 }
 
 func (self *ViewHandler) Get() {
-	//  "/:cid(category-[0-9]+)/:nid(node-[0-9]+)/:tid(topic-[0-9]+)"
-	//"/category/:cid([0-9]+)/node/:nid([0-9]+)/topic/:tid([0-9]+)"
-
-	//cid, _ := strconv.Atoi(self.Ctx.Params[":cid"])
-	//nid, _ := strconv.Atoi(self.Ctx.Params[":pid"])
 	tid, _ := strconv.Atoi(self.Ctx.Params[":tid"])
 	tid_handler := models.GetTopic(tid)
 	self.Data["article"] = tid_handler
@@ -26,13 +21,13 @@ func (self *ViewHandler) Get() {
 	self.TplNames = "view.html"
 	self.Layout = "layout.html"
 
-	rs, _ := self.RenderString()
-
-	utils.Writefile("./archives/"+tid_path, tid_name, rs)
-
-	self.Redirect("/archives/"+tid_path+tid_name, 302)
-
-	/*self.Render()*/
+	if sess_userrole, _ := self.GetSession("userrole").(int64); sess_userrole == -1000 {
+		self.Render()
+	} else {
+		rs, _ := self.RenderString()
+		utils.Writefile("./archives/"+tid_path, tid_name, rs)
+		self.Redirect("/archives/"+tid_path+tid_name, 301)
+	}
 }
 
 func (self *ViewHandler) Post() {

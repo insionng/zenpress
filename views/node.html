@@ -9,7 +9,7 @@
                   </div>
                   <div class="matter">
                   
-                    <h2><a rel="bookmark" href="/view/{{.Id}}" title="{{.Title}}">{{substr .Title 0 40}}</a></h2>
+                    <h2><a rel="bookmark" href="/view/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
           <div>
             {{if compare $Userrole -1000}}
                 <span><i class="fa-icon-user"></i> <a class="btn" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
@@ -22,7 +22,7 @@
          alert("恶心成功！");
       }});'>恶心 &raquo;</a></span>
           </div>
-                     <div class="meta"><i class="icon-calendar"></i>{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
+                     <div class="meta"><i class="icon-calendar"></i>本话题发表于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
                      </div>
                       <div>
                         {{$cs:=html2str .Content}}

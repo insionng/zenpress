@@ -28,11 +28,11 @@ func (self *NodeHandler) Get() {
 	self.TplNames = "node.html"
 	self.Layout = "layout.html"
 
-	rs, _ := self.RenderString()
-
-	utils.Writefile("./archives/"+nid_path, nid_name, rs)
-
-	self.Redirect("/archives/"+nid_path+nid_name, 302)
-
-	/*self.Render()*/
+	if sess_userrole, _ := self.GetSession("userrole").(int64); sess_userrole == -1000 {
+		self.Render()
+	} else {
+		rs, _ := self.RenderString()
+		utils.Writefile("./archives/"+nid_path, nid_name, rs)
+		self.Redirect("/archives/"+nid_path+nid_name, 301)
+	}
 }
