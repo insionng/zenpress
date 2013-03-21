@@ -28,7 +28,7 @@
                      <div>
                         {{$cs:=html2str .Content}}
                         {{$cs:=substr $cs 0 150}}
-                        {{markdown $cs}}      
+                        {{str2html $cs}}
                      </div>
     </div>
     <div class="clearfix"></div>
