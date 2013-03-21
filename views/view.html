@@ -33,8 +33,11 @@
 
       
       <div id="comment-{{.Id}}" class="comment-box">
-         
+         {{if compare .Uid 0}}
+            <div class="comment-author"><strong>游客</strong></div>
+         {{else}}
             <div class="comment-author"><strong>{{.Uid}}</strong></div>
+         {{end}}
             <div class="cmeta">{{dateformat .Created "January 2 , 2006 at 15:04 am"}}</div>
             
             <div class="clearfix"></div>

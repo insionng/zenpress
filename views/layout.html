@@ -155,7 +155,13 @@
   <ul id="recentcomments">
   {{if .replys_10s}}
       {{range .replys_10s}}
-      <li class="recentcomments">ID:{{.Uid}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{.Content}}</a></li>
+      <li class="recentcomments">
+        {{if compare .Uid 0}}
+          游客
+        {{else}}
+          #{{.Uid}}
+        {{end}}
+         on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{.Content}}</a></li>
       {{end}}
   {{else}}
       <li class="recentcomments">尚无评论</li>
