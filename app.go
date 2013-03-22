@@ -4,6 +4,7 @@ import (
 	"./handlers"
 	"./handlers/root"
 	"github.com/insionng/torgo"
+	//"./torgo"
 	"runtime"
 )
 
@@ -12,45 +13,45 @@ func main() {
 	torgo.TorApp.SetStaticPath("/static", "./static")
 	torgo.TorApp.SetStaticPath("/archives", "./archives")
 
-	torgo.RegisterHandler("/", &handlers.MainHandler{})
-	torgo.RegisterHandler("/category/:cid([0-9]+)", &handlers.MainHandler{})
-	torgo.RegisterHandler("/search", &handlers.SearchHandler{})
+	torgo.Route("/", &handlers.MainHandler{})
+	torgo.Route("/category/:cid([0-9]+)", &handlers.MainHandler{})
+	torgo.Route("/search", &handlers.SearchHandler{})
 
-	torgo.RegisterHandler("/node/:nid([0-9]+)", &handlers.NodeHandler{})
-	torgo.RegisterHandler("/view/:tid([0-9]+)", &handlers.ViewHandler{})
+	torgo.Route("/node/:nid([0-9]+)", &handlers.NodeHandler{})
+	torgo.Route("/view/:tid([0-9]+)", &handlers.ViewHandler{})
 
-	torgo.RegisterHandler("/register", &handlers.RegHandler{})
-	torgo.RegisterHandler("/login", &handlers.LoginHandler{})
-	torgo.RegisterHandler("/logout", &handlers.LogoutHandler{})
+	torgo.Route("/register", &handlers.RegHandler{})
+	torgo.Route("/login", &handlers.LoginHandler{})
+	torgo.Route("/logout", &handlers.LogoutHandler{})
 
-	torgo.RegisterHandler("/like/topic/:tid([0-9]+)", &handlers.LikeTopicHandler{})
-	torgo.RegisterHandler("/hate/topic/:tid([0-9]+)", &handlers.HateTopicHandler{})
+	torgo.Route("/like/topic/:tid([0-9]+)", &handlers.LikeTopicHandler{})
+	torgo.Route("/hate/topic/:tid([0-9]+)", &handlers.HateTopicHandler{})
 
-	torgo.RegisterHandler("/like/node/:nid([0-9]+)", &handlers.LikeNodeHandler{})
-	torgo.RegisterHandler("/hate/node/:nid([0-9]+)", &handlers.HateNodeHandler{})
+	torgo.Route("/like/node/:nid([0-9]+)", &handlers.LikeNodeHandler{})
+	torgo.Route("/hate/node/:nid([0-9]+)", &handlers.HateNodeHandler{})
 
-	torgo.RegisterHandler("/new/category", &handlers.NewCategoryHandler{})
-	torgo.RegisterHandler("/new/node", &handlers.NewNodeHandler{})
-	torgo.RegisterHandler("/new/topic", &handlers.NewTopicHandler{})
-	torgo.RegisterHandler("/new/reply/:tid([0-9]+)", &handlers.NewReplyHandler{})
+	torgo.Route("/new/category", &handlers.NewCategoryHandler{})
+	torgo.Route("/new/node", &handlers.NewNodeHandler{})
+	torgo.Route("/new/topic", &handlers.NewTopicHandler{})
+	torgo.Route("/new/reply/:tid([0-9]+)", &handlers.NewReplyHandler{})
 
-	torgo.RegisterHandler("/modify/category", &handlers.ModifyCategoryHandler{})
-	torgo.RegisterHandler("/modify/node", &handlers.ModifyNodeHandler{})
+	torgo.Route("/modify/category", &handlers.ModifyCategoryHandler{})
+	torgo.Route("/modify/node", &handlers.ModifyNodeHandler{})
 
-	torgo.RegisterHandler("/topic/delete/:tid([0-9]+)", &handlers.TopicDeleteHandler{})
-	torgo.RegisterHandler("/topic/edit/:tid([0-9]+)", &handlers.TopicEditHandler{})
+	torgo.Route("/topic/delete/:tid([0-9]+)", &handlers.TopicDeleteHandler{})
+	torgo.Route("/topic/edit/:tid([0-9]+)", &handlers.TopicEditHandler{})
 
-	torgo.RegisterHandler("/node/delete/:nid([0-9]+)", &handlers.NodeDeleteHandler{})
-	torgo.RegisterHandler("/node/edit/:nid([0-9]+)", &handlers.NodeEditHandler{})
+	torgo.Route("/node/delete/:nid([0-9]+)", &handlers.NodeDeleteHandler{})
+	torgo.Route("/node/edit/:nid([0-9]+)", &handlers.NodeEditHandler{})
 
-	torgo.RegisterHandler("/delete/reply/:rid([0-9]+)", &handlers.DeleteReplyHandler{})
+	torgo.Route("/delete/reply/:rid([0-9]+)", &handlers.DeleteReplyHandler{})
 
 	//root routes
-	torgo.RegisterHandler("/root", &root.RMainHandler{})
-	torgo.RegisterHandler("/root/login", &root.RLoginHandler{})
-	torgo.RegisterHandler("/root/account", &root.RAccountHandler{})
-	torgo.RegisterHandler("/root/change_password", &root.RChangePasswordHandler{})
-	torgo.RegisterHandler("/root/category_list", &root.RCategoryListHandler{})
+	torgo.Route("/root", &root.RMainHandler{})
+	torgo.Route("/root/login", &root.RLoginHandler{})
+	torgo.Route("/root/account", &root.RAccountHandler{})
+	torgo.Route("/root/change_password", &root.RChangePasswordHandler{})
+	torgo.Route("/root/category_list", &root.RCategoryListHandler{})
 
 	torgo.SessionOn = true
 	torgo.Run()
