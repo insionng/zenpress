@@ -473,13 +473,16 @@ func GetNode(id int) (node Node) {
 }
 
 func SearchTopic(content string, offset int, limit int, path string) (allt []*Topic) {
-	q, _ := ConnDb()
-	defer q.Db.Close()
-	keyword := "%" + content + "%"
-	condition := qbs.NewCondition("title like ?", keyword).Or("content like ?", keyword)
-	q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
-	//q.Where("title like ?", keyword).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
-	return allt
+	if content != "" {
+		q, _ := ConnDb()
+		defer q.Db.Close()
+		keyword := "%" + content + "%"
+		condition := qbs.NewCondition("title like ?", keyword).Or("content like ?", keyword)
+		q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+		//q.Where("title like ?", keyword).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+		return allt
+	}
+	return nil
 }
 
 func GetAllTopic(offset int, limit int, path string) (allt []*Topic) {
