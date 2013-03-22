@@ -38,6 +38,7 @@ func (self *NodeEditHandler) Post() {
 		nd.Created = time.Now()
 		models.SaveNode(nd)
 		self.Ctx.Redirect(302, "/node/"+self.Ctx.Params[":nid"])
+	} else {
+		self.Ctx.Redirect(302, "/")
 	}
-	self.Ctx.Redirect(302, "/")
 }

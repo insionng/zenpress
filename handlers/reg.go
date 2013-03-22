@@ -5,7 +5,6 @@ import (
 	"../models"
 	"../utils"
 	"fmt"
-	"regexp"
 )
 
 type RegHandler struct {
@@ -22,7 +21,7 @@ func (self *RegHandler) Post() {
 	self.Ctx.Request.ParseForm()
 	username := self.Ctx.Request.Form.Get("username")
 	password := self.Ctx.Request.Form.Get("password")
-	usererr := checkUsername(username)
+	usererr := utils.CheckUsername(username)
 
 	fmt.Println(usererr)
 	if usererr == false {
@@ -30,7 +29,7 @@ func (self *RegHandler) Post() {
 		return
 	}
 
-	passerr := checkPassword(password)
+	passerr := utils.CheckPassword(password)
 	if passerr == false {
 		self.Data["PasswordErr"] = "Password error, Please to again"
 		return
@@ -56,18 +55,4 @@ func (self *RegHandler) Post() {
 		self.Data["UsernameErr"] = "User already exists"
 	}
 	self.Render()
-}
-
-func checkPassword(password string) (b bool) {
-	if ok, _ := regexp.MatchString("^[a-zA-Z0-9]{4,16}$", password); !ok {
-		return false
-	}
-	return true
-}
-
-func checkUsername(username string) (b bool) {
-	if ok, _ := regexp.MatchString("^[a-zA-Z0-9]{4,16}$", username); !ok {
-		return false
-	}
-	return true
 }

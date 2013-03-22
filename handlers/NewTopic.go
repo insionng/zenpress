@@ -27,6 +27,7 @@ func (self *NewTopicHandler) Post() {
 	if tid_title != "" && tid_content != "" {
 		models.AddTopic(inputs.Get("title"), inputs.Get("content"), cid, nid, int(uid))
 		self.Ctx.Redirect(302, "/node/"+inputs.Get("nodeid"))
+	} else {
+		self.Ctx.Redirect(302, "/")
 	}
-	self.Ctx.Redirect(302, "/")
 }

@@ -28,6 +28,7 @@ func (self *NewNodeHandler) Post() {
 	if nid_title != "" && nid_content != "" && cid != 0 {
 		models.AddNode(nid_title, nid_content, cid, int(uid))
 		self.Ctx.Redirect(302, "/category/"+inputs.Get("category"))
+	} else {
+		self.Ctx.Redirect(302, "/")
 	}
-	self.Ctx.Redirect(302, "/")
 }

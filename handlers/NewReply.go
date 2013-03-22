@@ -22,9 +22,8 @@ func (self *NewReplyHandler) Post() {
 	rc := inputs.Get("comment")
 
 	if author != "" && email != "" && tid != 0 && rc != "" {
-
 		models.AddReply(tid, int(sess_userid), rc, author, email, website)
-
+	} else {
+		self.Ctx.Redirect(302, "/view/"+inputs.Get("comment_parent"))
 	}
-	self.Ctx.Redirect(302, "/view/"+inputs.Get("comment_parent"))
 }

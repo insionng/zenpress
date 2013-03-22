@@ -40,6 +40,7 @@ func (self *TopicEditHandler) Post() {
 		tp.Created = time.Now()
 		models.SaveTopic(tp)
 		self.Ctx.Redirect(302, "/view/"+self.Ctx.Params[":tid"])
+	} else {
+		self.Ctx.Redirect(302, "/")
 	}
-	self.Ctx.Redirect(302, "/")
 }

@@ -389,3 +389,17 @@ func Htmlunquote(text string) string {
 	text = strings.Replace(text, "&amp;", "&", -1) // Must be done last!
 	return text
 }
+
+func CheckPassword(password string) (b bool) {
+	if ok, _ := regexp.MatchString("^[a-zA-Z0-9]{4,16}$", password); !ok {
+		return false
+	}
+	return true
+}
+
+func CheckUsername(username string) (b bool) {
+	if ok, _ := regexp.MatchString("^[a-zA-Z0-9]{4,16}$", username); !ok {
+		return false
+	}
+	return true
+}
