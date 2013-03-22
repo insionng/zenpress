@@ -32,6 +32,7 @@ func main() {
 	torgo.RegisterHandler("/new/category", &handlers.NewCategoryHandler{})
 	torgo.RegisterHandler("/new/node", &handlers.NewNodeHandler{})
 	torgo.RegisterHandler("/new/topic", &handlers.NewTopicHandler{})
+	torgo.RegisterHandler("/new/reply/:tid([0-9]+)", &handlers.NewReplyHandler{})
 
 	torgo.RegisterHandler("/modify/category", &handlers.ModifyCategoryHandler{})
 	torgo.RegisterHandler("/modify/node", &handlers.ModifyNodeHandler{})

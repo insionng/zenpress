@@ -23,7 +23,8 @@
       }});'href="">恶心 &raquo;</a></span>
           </div>
           
-          <div class="meta"><i class="icon-calendar"></i>本节点创建于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="/user/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="/node/{{.Id}}" title="8个话题">8个话题</a>
+          <div class="meta"><i class="icon-calendar"></i>本节点创建于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="/user/etiam/" title="View all posts in {{.Author}}" rel="category tag">{{.Author}}</a> - <i class="icon-comment"></i> <a href="/node/{{.Id}}" title="{{.TopicCount}}个话题">
+            {{.TopicCount}}个话题</a>
                      </div>
                      <div>
                         {{$cs:=html2str .Content}}

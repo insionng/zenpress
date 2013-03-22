@@ -43,7 +43,7 @@ func Pages(results_count int, page int, pagesize int) (pages int, pageout int, b
 
 	if page < 5 {
 		beginnum = 1
-		endnum = 10 //这里是你要提供的可用链接数，本例就是当前页加前后两页共5页，if条件为可用链接数的一半
+		endnum = 10 //可用链接数，现在是当前页加前后两页共5页，if条件为可用链接数的一半
 	}
 	if page > pages-5 {
 		beginnum = pages - 9
@@ -128,7 +128,7 @@ func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int
 					raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a></li>"
 				}
 				//end page
-				if (page != pages) && (page < pages) {
+				if (page != endnum) && (page != i) && (page < i) && (page < endnum) {
 					//raw = raw + "<a class='next page-numbers' href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>Next</a>"
 					raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>&raquo;</a></li>"
 				}

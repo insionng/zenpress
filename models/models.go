@@ -21,87 +21,96 @@ const (
 )
 
 type User struct {
+	Id            int64
+	Email         string
+	Password      string
+	Nickname      string
+	Realname      string
+	Avatar        string
+	Avatar_min    string
+	Avatar_max    string
+	Birth         time.Time
+	Province      string
+	City          string
+	Address       string
+	Postcode      string
+	Mobile        string
+	Website       string
+	Sex           string
+	Qq            string
+	Msn           string
+	Weibo         string
+	Ctype         int64
+	Role          int64
+	Created       time.Time
+	Hotness       float64
+	Hotup         int64
+	Hotdown       int64
+	Views         int64
+	LastLoginTime time.Time
+	LastLoginIp   string
+	LoginCount    int64
+}
+
+//category,Pid:root
+type Category struct {
+	Id             int64
+	Pid            int64
+	Uid            int64
+	Ctype          int64
+	Title          string
+	Content        string
+	Attachment     string
+	Created        time.Time
+	Hotness        float64
+	Hotup          int64
+	Hotdown        int64
+	Views          int64
+	Author         string
+	NodeTime       time.Time
+	NodeCount      int64
+	NodeLastUserId int64
+}
+
+//node,Pid:category
+type Node struct {
 	Id              int64
-	Email           string
-	Password        string
-	Nickname        string
-	Realname        string
-	Avatar          string
-	Avatar_min      string
-	Avatar_max      string
-	Birth           time.Time
-	Province        string
-	City            string
-	Address         string
-	Postcode        string
-	Mobile          string
-	Website         string
-	Sex             string
-	Qq              string
-	Msn             string
-	Weibo           string
+	Pid             int64
+	Uid             int64
 	Ctype           int64
-	Role            int64
+	Title           string
+	Content         string
+	Attachment      string
 	Created         time.Time
 	Hotness         float64
 	Hotup           int64
 	Hotdown         int64
 	Views           int64
-	Last_login_time time.Time
-	Last_login_ip   string
-	Login_count     int64
-}
-
-//category,Pid:root
-type Category struct {
-	Id         int64
-	Pid        int64
-	Uid        int64
-	Ctype      int64
-	Title      string
-	Content    string
-	Attachment string
-	Created    time.Time
-	Hotness    float64
-	Hotup      int64
-	Hotdown    int64
-	Views      int64
-}
-
-//node,Pid:category
-type Node struct {
-	Id         int64
-	Pid        int64
-	Uid        int64
-	Ctype      int64
-	Title      string
-	Content    string
-	Attachment string
-	Created    time.Time
-	Hotness    float64
-	Hotup      int64
-	Hotdown    int64
-	Views      int64
+	Author          string
+	TopicTime       time.Time
+	TopicCount      int64
+	TopicLastUserId int64
 }
 
 //topic,Pid:node
 type Topic struct {
-	Id                 int64
-	Cid                int64
-	Nid                int64
-	Uid                int64
-	Ctype              int64
-	Title              string
-	Content            string
-	Attachment         string
-	Created            time.Time
-	Hotness            float64
-	Hotup              int64
-	Hotdown            int64
-	Views              int64
-	Reply_time         time.Time
-	Reply_count        int64
-	Reply_last_user_id int64
+	Id              int64
+	Cid             int64
+	Nid             int64
+	Uid             int64
+	Ctype           int64
+	Title           string
+	Content         string
+	Attachment      string
+	Created         time.Time
+	Hotness         float64
+	Hotup           int64
+	Hotdown         int64
+	Views           int64
+	Author          string
+	ReplyTime       time.Time
+	ReplyCount      int64
+	ReplyLastUserId int64
 }
 
 //reply,Pid:topic
@@ -134,33 +143,35 @@ func SetMg() (*qbs.Migration, error) {
 	return mg, err
 }
 
-func Ct() {
+func Ct() bool {
 	q, err := ConnDb()
 	defer q.Db.Close()
 	if err != nil {
 		fmt.Println(err)
 	}
-
-	mg, _ := SetMg()
-	defer mg.Db.Close()
-
-	mg.CreateTableIfNotExists(new(User))
-	mg.CreateTableIfNotExists(new(Category))
-	mg.CreateTableIfNotExists(new(Node))
-	mg.CreateTableIfNotExists(new(Topic))
-	mg.CreateTableIfNotExists(new(Reply))
-
 	//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
-	if GetUserByNickname("root").Role != -1000 {
+	if GetUserByRole(-1000).Role != -1000 {
 		AddUser("root@insion.co", "root", utils.Encrypt_password("rootpass", nil), -1000)
 		fmt.Println("Default User:root,Password:rootpass")
-	}
 
-	if GetTopic(1).Title == "" {
-		AddCategory("Hello Category", "This is Category!")
-		AddNode("Hello Node!", "This is Node!", 1)
-		AddTopic("Hello World!", "This is Toropress!", 1, 1)
+		mg, _ := SetMg()
+		defer mg.Db.Close()
+
+		mg.CreateTableIfNotExists(new(User))
+		mg.CreateTableIfNotExists(new(Category))
+		mg.CreateTableIfNotExists(new(Node))
+		mg.CreateTableIfNotExists(new(Topic))
+		mg.CreateTableIfNotExists(new(Reply))
+
+		if GetAllTopic(0, 0, "id") == nil {
+			AddCategory("Hello Category", "This is Category!")
+			AddNode("Hello Node!", "This is Node!", 1, 1)
+			AddTopic("Hello World!", "This is Toropress!", 1, 1, 1)
+		}
+		return true
 	}
+	return false
+
 }
 
 func Counts() (categorys int, nodes int, topics int, menbers int) {
@@ -250,17 +261,31 @@ func AddUser(email string, nickname string, password string, role int) error {
 	return err
 }
 
-func SaveUser(usr User) (User, error) {
+func SaveUser(usr User) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
 	_, e := q.Save(&usr)
-	return usr, e
+	return e
 }
 
 func GetUser(id int) (user User) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
 	q.Where("id=?", id).Find(&user)
+	return user
+}
+
+func GetUserByRole(role int) (user User) {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	q.Where("role=?", int64(role)).Find(&user)
+	return user
+}
+
+func GetAllUserByRole(role int) (user []*User) {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	q.Where("role=?", int64(role)).FindAll(&user)
 	return user
 }
 
@@ -279,26 +304,35 @@ func AddCategory(title string, content string) error {
 	return err
 }
 
-func SaveCategory(cat Category) Category {
+func SaveCategory(cat Category) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.Save(&cat)
-	return cat
-}
-
-func AddNode(title string, content string, categoryid int) error {
-	q, _ := ConnDb()
-	defer q.Db.Close()
-	_, err := q.Save(&Node{Pid: int64(categoryid), Title: title, Content: content, Created: time.Now()})
-
+	_, err := q.Save(&cat)
 	return err
 }
 
-func SaveNode(nd Node) Node {
+func AddNode(title string, content string, cid int, uid int) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.Save(&nd)
-	return nd
+	if _, err := q.Save(&Node{Pid: int64(cid), Title: title, Content: content, Created: time.Now()}); err != nil {
+		return err
+	}
+
+	ctr := GetCategory(cid)
+	ctr.NodeTime = time.Now()
+	ctr.NodeCount = int64(len(GetAllNodeByCategoryId(cid, 0, 0, "id")))
+	ctr.NodeLastUserId = int64(uid)
+	if _, err := q.Save(&ctr); err != nil {
+		return err
+	}
+	return nil
+}
+
+func SaveNode(nd Node) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	_, err := q.Save(&nd)
+	return err
 }
 
 func DelNodePlus(nid int) error {
@@ -357,27 +391,44 @@ func DelReply(tid int) error {
 	return err
 }
 
-func AddTopic(title string, content string, cid int, nodeid int) error {
+func AddTopic(title string, content string, cid int, nid int, uid int) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	_, err := q.Save(&Topic{Cid: int64(cid), Nid: int64(nodeid), Title: title, Content: content, Created: time.Now()})
+	if _, err := q.Save(&Topic{Cid: int64(cid), Nid: int64(nid), Title: title, Content: content, Created: time.Now()}); err != nil {
+		return err
+	}
 
-	return err
-}
-
-func EditTopic(tp Topic) Topic {
-	q, _ := ConnDb()
-	defer q.Db.Close()
-	q.Save(&tp)
-	return tp
+	nd := GetNode(nid)
+	nd.TopicTime = time.Now()
+	nd.TopicCount = int64(len(GetAllTopicByNodeid(nid, 0, 0, "id")))
+	nd.TopicLastUserId = int64(uid)
+	if _, err := q.Save(&nd); err != nil {
+		return err
+	}
+	return nil
 }
 
 func AddReply(pid int, uid int, content string, author string, email string, website string) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	_, err := q.Save(&Reply{Pid: int64(pid), Uid: int64(uid), Content: content, Created: time.Now(), Author: author, Email: email, Website: website})
+	if _, err := q.Save(&Reply{Pid: int64(pid), Uid: int64(uid), Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
+		return err
+	}
+	//靠，QBS的update有bug！更新后除了被更新的部分，其他字段的数据均被清空！
+	/*
+		if _, err := q.WhereEqual("id", pid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(pid, 0, 0, "id"))), ReplyLastUserId: int64(uid)}); err != nil {
+			return err
+		}*/
 
-	return err
+	//没办法了，只好用最原始的方式...貌似save偶尔也会出现导致除被更新部分外的数据清空的情况，暂时不确定是否能再现情景，暂时将就...
+	tp := GetTopic(pid)
+	tp.ReplyCount = int64(len(GetReplyByPid(pid, 0, 0, "id")))
+	tp.ReplyTime = time.Now()
+	tp.ReplyLastUserId = int64(uid)
+	if _, err := q.Save(&tp); err != nil {
+		return err
+	}
+	return nil
 }
 
 func GetAllCategory() (allc []*Category) {
@@ -401,15 +452,15 @@ func GetAllNode() (alln []*Node) {
 	return alln
 }
 
-func GetAllNodeByCategoryId(id int, offset int, limit int, path string) (alln []*Node) {
+func GetAllNodeByCategoryId(pid int, offset int, limit int, path string) (alln []*Node) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	if id == 0 {
+	if pid == 0 {
 		q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&alln)
 	} else {
 		//最热节点
-		//q.Where("pid=?", id).Offset(offset).Limit(limit).OrderByDesc("hotness").FindAll(&alln)
-		q.WhereEqual("pid", id).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&alln)
+		//q.Where("pid=?", pid).Offset(offset).Limit(limit).OrderByDesc("hotness").FindAll(&alln)
+		q.WhereEqual("pid", pid).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&alln)
 	}
 	return alln
 }
@@ -456,11 +507,18 @@ func GetTopic(id int) (topic Topic) {
 	return topic
 }
 
-func SaveTopic(tp Topic) Topic {
+func SaveTopic(tp Topic) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.Save(&tp)
-	return tp
+	_, err := q.Save(&tp)
+	return err
+}
+
+func UpdateTopic(tp Topic) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	_, err := q.Update(&tp)
+	return err
 }
 
 func GetAllReply() (allr []*Reply) {

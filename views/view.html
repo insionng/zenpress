@@ -7,7 +7,7 @@
                   
                      <h2>{{.article.Title}}</h2>
                      
-                     <div class="meta"><i class="icon-calendar"></i> {{dateformat .article.Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="/user/{{.article.Uid}}/" title="View all posts in Etiam" rel="category tag">Insion</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="Comment on Suspendisse eget lorem dui">{{.article.Reply_count}} Comments</a></div>
+                     <div class="meta"><i class="icon-calendar"></i> {{dateformat .article.Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="/user/{{.article.Uid}}/" title="View all posts in {{.article.Author}}" rel="category tag">{{.article.Author}}</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="{{.article.ReplyCount}} Comments">{{.article.ReplyCount}} Comments</a></div>
                      
                      <div>{{markdown .article.Content}}</div>
                      Tags: <a href="http://responsivewebinc.com/nannie/tag/condimen/" rel="tag">condimen</a> <a href="http://responsivewebinc.com/nannie/tag/lobor/" rel="tag">lobor</a>                  </div>
@@ -18,7 +18,7 @@
 <!-- You can start editing here. -->
  
 <div class="comments well">
-<h3><span class="comment-heading">Comments - </span>{{.article.Reply_count}} Responses</h3>
+<h3><span class="comment-heading">Comments - </span>{{.article.ReplyCount}} Responses</h3>
  
 <!-- <div class="navigation">
 <div class="alignleft"><a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/comment-page-1/#comments" >&laquo; Older Comments</a></div>
@@ -33,15 +33,9 @@
 
       
       <div id="comment-{{.Id}}" class="comment-box">
-         {{if compare .Uid 0}}
-            <div class="comment-author"><strong>游客</strong></div>
-         {{else}}
-            <div class="comment-author"><strong>{{.Uid}}</strong></div>
-         {{end}}
+            <div class="comment-author"><strong>{{if compare .Uid 0}}游客{{else}}{{.Author}}{{end}}</strong></div>
             <div class="cmeta">{{dateformat .Created "January 2 , 2006 at 15:04 am"}}</div>
-            
-            <div class="clearfix"></div>
-                  
+            <div class="clearfix"></div>  
             <p>{{.Content}}</p>
             
             <div class="comment-reply pull-right">
@@ -80,7 +74,7 @@
 <div class="clearfix"></div>
  
 
-<form action="/view/{{.article.Id}}" method="post" id="commentform" class="form-horizontal">
+<form action="/new/reply/{{.article.Id}}" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">

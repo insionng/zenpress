@@ -22,7 +22,7 @@
          alert("恶心成功！");
       }});'>恶心 &raquo;</a></span>
           </div>
-                     <div class="meta"><i class="icon-calendar"></i>本话题发表于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="#comments" title="Comment on Suspendisse eget lorem dui">5 评论</a>
+                     <div class="meta"><i class="icon-calendar"></i>本话题发表于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="http://responsivewebinc.com/nannie/category/etiam/" title="View all posts in {{.Author}}" rel="category tag">{{.Author}}</a> - <i class="icon-comment"></i> <a href="#comments" title="{{.ReplyCount}} 个评论">{{.ReplyCount}} 个评论</a>
                      </div>
                       <div>
                         {{$cs:=html2str .Content}}

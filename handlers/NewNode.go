@@ -21,8 +21,13 @@ func (self *NewNodeHandler) Get() {
 func (self *NewNodeHandler) Post() {
 	inputs := self.Input()
 	cid, _ := strconv.Atoi(inputs.Get("category"))
+	uid, _ := self.GetSession("userid").(int64)
+	nid_title := inputs.Get("title")
+	nid_content := inputs.Get("content")
 
-	models.AddNode(inputs.Get("title"), inputs.Get("content"), cid)
+	if nid_title != "" && nid_content != "" && cid != 0 {
+		models.AddNode(nid_title, nid_content, cid, int(uid))
+	}
 
 	self.Ctx.Redirect(302, "/")
 }

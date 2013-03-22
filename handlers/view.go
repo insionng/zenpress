@@ -28,25 +28,5 @@ func (self *ViewHandler) Get() {
 		utils.Writefile("./archives/"+tid_path, tid_name, rs)
 		self.Redirect("/archives/"+tid_path+tid_name, 301)
 	}
-}
 
-func (self *ViewHandler) Post() {
-	inputs := self.Input()
-	tid, _ := strconv.Atoi(inputs.Get("comment_parent"))
-	uid, _ := strconv.Atoi(inputs.Get("comment_userid"))
-
-	author := inputs.Get("author")
-	email := inputs.Get("email")
-	website := inputs.Get("website")
-
-	rc := inputs.Get("comment")
-
-	if author != "" && email != "" && tid != 0 && rc != "" {
-		if sess_userid, _ := self.GetSession("userid").(int64); uid != 0 && int(sess_userid) == uid {
-			models.AddReply(tid, uid, rc, author, email, website)
-		} else {
-			models.AddReply(tid, 0, rc, author, email, website)
-		}
-	}
-	self.Ctx.Redirect(302, "/")
 }
