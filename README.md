@@ -9,10 +9,14 @@ toropress
 
 [Toropress Demo](http://insion.co/)
 
-##问题反馈，GOLANG技术交流
+##版本更新请先更新torgo
+
+    go get -u github.com/insionng/torgo
+
+##BUG问题反馈，GOLANG技术交流
 
     QQ群号：231956113
 
-##BUG问题反馈，或商业网站项目问价
+##商业网站项目问价
 
     作者QQ：547092001
