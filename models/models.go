@@ -414,13 +414,13 @@ func AddReply(pid int, uid int, content string, author string, email string, web
 	if _, err := q.Save(&Reply{Pid: int64(pid), Uid: int64(uid), Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
 		return err
 	}
-	//靠，QBS的update有bug！更新后除了被更新的部分，其他字段的数据均被清空！
+	// update需要新定义一个struct，只会更新被更新部分,具体还要测试过才知道怎么用，先留着~
+
 	/*
 		if _, err := q.WhereEqual("id", pid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(pid, 0, 0, "id"))), ReplyLastUserId: int64(uid)}); err != nil {
 			return err
-		}*/
-
-	//没办法了，只好用最原始的方式...貌似save偶尔也会出现导致除被更新部分外的数据清空的情况，暂时不确定是否能再现情景，暂时将就...
+		}
+	*/
 	tp := GetTopic(pid)
 	tp.ReplyCount = int64(len(GetReplyByPid(pid, 0, 0, "id")))
 	tp.ReplyTime = time.Now()
