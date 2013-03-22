@@ -17,8 +17,6 @@ func (self *NodeHandler) Get() {
 	nodeid, _ := strconv.Atoi(self.Ctx.Params[":nid"])
 
 	nid_handler := models.GetNode(nodeid)
-	nid_handler.Views = nid_handler.Views + 1
-	models.SaveNode(nid_handler)
 
 	limit := 25
 	rcs := len(models.GetAllTopicByNodeid(nodeid, 0, 0, "hotness"))
@@ -27,14 +25,14 @@ func (self *NodeHandler) Get() {
 	self.Data["nodeid"] = nodeid
 	self.Data["topics"] = models.GetAllTopicByNodeid(nodeid, offset, limit, "hotness")
 
-	nid_path := strconv.Itoa(int(nid_handler.Pid)) + "/" + strconv.Itoa(int(nid_handler.Id)) + "/"
-	nid_name := "index.html"
 	self.TplNames = "node.html"
 	self.Layout = "layout.html"
 
 	if sess_userrole, _ := self.GetSession("userrole").(int64); sess_userrole == -1000 {
 		self.Render()
 	} else {
+		nid_path := strconv.Itoa(int(nid_handler.Pid)) + "/" + strconv.Itoa(int(nid_handler.Id)) + "/"
+		nid_name := "index.html"
 		rs, _ := self.RenderString()
 		utils.Writefile("./archives/"+nid_path, nid_name, rs)
 		self.Redirect("/archives/"+nid_path+nid_name, 301)
