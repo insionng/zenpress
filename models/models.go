@@ -42,11 +42,11 @@ type User struct {
 	Weibo         string
 	Ctype         int64
 	Role          int64
-	Created       time.Time `qbs:index`
-	Hotness       float64   `qbs:index`
+	Created       time.Time `qbs:"index"`
+	Hotness       float64   `qbs:"index"`
 	Hotup         int64
 	Hotdown       int64
-	Views         int64
+	Views         int64 `qbs:"index"`
 	LastLoginTime time.Time
 	LastLoginIp   string
 	LoginCount    int64
@@ -61,11 +61,11 @@ type Category struct {
 	Title          string
 	Content        string
 	Attachment     string
-	Created        time.Time `qbs:index`
-	Hotness        float64   `qbs:index`
+	Created        time.Time `qbs:"index"`
+	Hotness        float64   `qbs:"index"`
 	Hotup          int64
 	Hotdown        int64
-	Views          int64
+	Views          int64 `qbs:"index"`
 	Author         string
 	NodeTime       time.Time
 	NodeCount      int64
@@ -81,11 +81,11 @@ type Node struct {
 	Title           string
 	Content         string
 	Attachment      string
-	Created         time.Time `qbs:index`
-	Hotness         float64   `qbs:index`
+	Created         time.Time `qbs:"index"`
+	Hotness         float64   `qbs:"index"`
 	Hotup           int64
 	Hotdown         int64
-	Views           int64
+	Views           int64 `qbs:"index"`
 	Author          string
 	TopicTime       time.Time
 	TopicCount      int64
@@ -102,11 +102,11 @@ type Topic struct {
 	Title           string
 	Content         string
 	Attachment      string
-	Created         time.Time `qbs:index`
-	Hotness         float64   `qbs:index`
+	Created         time.Time `qbs:"index"`
+	Hotness         float64   `qbs:"index"`
 	Hotup           int64
 	Hotdown         int64
-	Views           int64
+	Views           int64 `qbs:"index"`
 	Author          string
 	ReplyTime       time.Time
 	ReplyCount      int64
@@ -121,11 +121,11 @@ type Reply struct {
 	Ctype      int64
 	Content    string
 	Attachment string
-	Created    time.Time `qbs:index`
-	Hotness    float64   `qbs:index`
+	Created    time.Time `qbs:"index"`
+	Hotness    float64   `qbs:"index"`
 	Hotup      int64
 	Hotdown    int64
-	Views      int64
+	Views      int64 `qbs:"index"`
 	Author     string
 	Email      string
 	Website    string
@@ -322,13 +322,80 @@ func AddNode(title string, content string, cid int, uid int) error {
 		return err
 	}
 
-	ctr := GetCategory(cid)
-	ctr.NodeTime = time.Now()
-	ctr.NodeCount = int64(len(GetAllNodeByCid(cid, 0, 0, "id")))
-	ctr.NodeLastUserId = int64(uid)
-	if _, err := q.Save(&ctr); err != nil {
+	type Category struct {
+		NodeTime       time.Time
+		NodeCount      int64
+		NodeLastUserId int64
+	}
+
+	if _, err := q.WhereEqual("id", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, "id"))), NodeLastUserId: int64(uid)}); err != nil {
 		return err
 	}
+	/*
+		ctr := GetCategory(cid)
+		ctr.NodeTime = time.Now()
+		ctr.NodeCount = int64(len(GetAllNodeByCid(cid, 0, 0, "id")))
+		ctr.NodeLastUserId = int64(uid)
+		if _, err := q.Save(&ctr); err != nil {
+			return err
+		}
+	*/
+	return nil
+}
+
+func AddTopic(title string, content string, cid int, nid int, uid int) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	if _, err := q.Save(&Topic{Cid: int64(cid), Nid: int64(nid), Title: title, Content: content, Created: time.Now()}); err != nil {
+		return err
+	}
+
+	type Node struct {
+		TopicTime       time.Time
+		TopicCount      int64
+		TopicLastUserId int64
+	}
+
+	if _, err := q.WhereEqual("id", nid).Update(&Node{TopicTime: time.Now(), TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, "id"))), TopicLastUserId: int64(uid)}); err != nil {
+		return err
+	}
+	/*
+		nd := GetNode(nid)
+		nd.TopicTime = time.Now()
+		nd.TopicCount = int64(len(GetAllTopicByNid(nid, 0, 0, "id")))
+		nd.TopicLastUserId = int64(uid)
+		if _, err := q.Save(&nd); err != nil {
+			return err
+		}
+	*/
+	return nil
+}
+
+func AddReply(pid int, uid int, content string, author string, email string, website string) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	if _, err := q.Save(&Reply{Pid: int64(pid), Uid: int64(uid), Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
+		return err
+	}
+
+	type Topic struct {
+		ReplyTime       time.Time
+		ReplyCount      int64
+		ReplyLastUserId int64
+	}
+
+	if _, err := q.WhereEqual("id", pid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(pid, 0, 0, "id"))), ReplyLastUserId: int64(uid)}); err != nil {
+		return err
+	}
+	/*
+		tp := GetTopic(pid)
+		tp.ReplyCount = int64(len(GetReplyByPid(pid, 0, 0, "id")))
+		tp.ReplyTime = time.Now()
+		tp.ReplyLastUserId = int64(uid)
+		if _, err := q.Save(&tp); err != nil {
+			return err
+		}
+	*/
 	return nil
 }
 
@@ -395,46 +462,6 @@ func DelReply(tid int) error {
 	return err
 }
 
-func AddTopic(title string, content string, cid int, nid int, uid int) error {
-	q, _ := ConnDb()
-	defer q.Db.Close()
-	if _, err := q.Save(&Topic{Cid: int64(cid), Nid: int64(nid), Title: title, Content: content, Created: time.Now()}); err != nil {
-		return err
-	}
-
-	nd := GetNode(nid)
-	nd.TopicTime = time.Now()
-	nd.TopicCount = int64(len(GetAllTopicByNid(nid, 0, 0, "id")))
-	nd.TopicLastUserId = int64(uid)
-	if _, err := q.Save(&nd); err != nil {
-		return err
-	}
-	return nil
-}
-
-func AddReply(pid int, uid int, content string, author string, email string, website string) error {
-	q, _ := ConnDb()
-	defer q.Db.Close()
-	if _, err := q.Save(&Reply{Pid: int64(pid), Uid: int64(uid), Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
-		return err
-	}
-	// update需要新定义一个struct，只会更新被更新部分,具体还要测试过才知道怎么用，先留着~
-
-	/*
-		if _, err := q.WhereEqual("id", pid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(pid, 0, 0, "id"))), ReplyLastUserId: int64(uid)}); err != nil {
-			return err
-		}
-	*/
-	tp := GetTopic(pid)
-	tp.ReplyCount = int64(len(GetReplyByPid(pid, 0, 0, "id")))
-	tp.ReplyTime = time.Now()
-	tp.ReplyLastUserId = int64(uid)
-	if _, err := q.Save(&tp); err != nil {
-		return err
-	}
-	return nil
-}
-
 func GetAllCategory() (allc []*Category) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
@@ -457,6 +484,7 @@ func GetAllNode() (alln []*Node) {
 }
 
 func GetAllNodeByCid(pid int, offset int, limit int, path string) (alln []*Node) {
+	//排序首先是热值优先，然后是时间优先。
 	q, _ := ConnDb()
 	defer q.Db.Close()
 	if pid == 0 {
@@ -475,6 +503,7 @@ func GetNode(id int) (node Node) {
 }
 
 func SearchTopic(content string, offset int, limit int, path string) (allt []*Topic) {
+	//排序首先是热值优先，然后是时间优先。
 	if content != "" {
 		q, _ := ConnDb()
 		defer q.Db.Close()
@@ -495,6 +524,7 @@ func GetAllTopic(offset int, limit int, path string) (allt []*Topic) {
 }
 
 func GetAllTopicByNid(nodeid int, offset int, limit int, path string) (allt []*Topic) {
+	//排序首先是热值优先，然后是时间优先。
 	q, _ := ConnDb()
 	defer q.Db.Close()
 	if nodeid == 0 {
@@ -516,6 +546,20 @@ func SaveTopic(tp Topic) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
 	_, err := q.Save(&tp)
+	return err
+}
+
+func UpdateCategory(cg Category) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	_, err := q.Update(&cg)
+	return err
+}
+
+func UpdateNode(nd Node) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	_, err := q.Update(&nd)
 	return err
 }
 

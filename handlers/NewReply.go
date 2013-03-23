@@ -3,6 +3,7 @@ package handlers
 import (
 	"../libs"
 	"../models"
+	"fmt"
 	"strconv"
 )
 
@@ -22,8 +23,11 @@ func (self *NewReplyHandler) Post() {
 	rc := inputs.Get("comment")
 
 	if author != "" && email != "" && tid != 0 && rc != "" {
-		models.AddReply(tid, int(sess_userid), rc, author, email, website)
-	} else {
+		if err := models.AddReply(tid, int(sess_userid), rc, author, email, website); err != nil {
+			fmt.Println(err)
+		}
 		self.Ctx.Redirect(302, "/view/"+inputs.Get("comment_parent"))
+	} else {
+		self.Ctx.Redirect(302, "/")
 	}
 }

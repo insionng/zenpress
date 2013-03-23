@@ -13,13 +13,14 @@ type SearchHandler struct {
 
 func (self *SearchHandler) Get() {
 	inputs := self.Input()
-	page, _ := strconv.Atoi(inputs.Get("page"))
-	keyword := inputs.Get("keyword")
-	limit := 25
-	rcs := len(models.SearchTopic(keyword, 0, 0, "id"))
-	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
-	self.Data["pagesbar"] = utils.Pagesbar(keyword, rcs, pages, pageout, beginnum, endnum, 1)
-	self.Data["search_hotness"] = models.SearchTopic(keyword, offset, limit, "hotness")
+	if keyword := inputs.Get("keyword"); keyword != "" {
+		page, _ := strconv.Atoi(inputs.Get("page"))
+		limit := 25
+		rcs := len(models.SearchTopic(keyword, 0, 0, "id"))
+		pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
+		self.Data["pagesbar"] = utils.Pagesbar(keyword, rcs, pages, pageout, beginnum, endnum, 1)
+		self.Data["search_hotness"] = models.SearchTopic(keyword, offset, limit, "hotness")
+	}
 	self.TplNames = "search.html"
 	self.Layout = "layout.html"
 

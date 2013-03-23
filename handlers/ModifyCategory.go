@@ -31,7 +31,7 @@ func (self *ModifyCategoryHandler) Post() {
 		cat.Content = cat_content
 		cat.Created = time.Now()
 		models.SaveCategory(cat)
-		self.Ctx.Redirect(302, "/category"+inputs.Get("categoryid"))
+		self.Ctx.Redirect(302, "/category/"+inputs.Get("categoryid"))
 	} else {
 		self.Ctx.Redirect(302, "/")
 	}

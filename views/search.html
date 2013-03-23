@@ -23,7 +23,8 @@
       }});'href="">恶心 &raquo;</a></span>
           </div>
           
-          <div class="meta"><i class="icon-calendar"></i> {{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="/user/etiam/" title="View all posts in Etiam" rel="category tag">Etiam</a> - <i class="icon-comment"></i> <a href="/node/{{.Id}}" title="8个话题">8个话题</a>
+          <div class="meta"><i class="icon-calendar"></i> {{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="###" title="作者 {{.Author}}" rel="category tag">
+            {{.Author}}</a> - <i class="icon-comment"></i> <a href="/node/{{.Id}}" title="{{.ReplyCount}}个评论">{{.ReplyCount}}评论</a>
                      </div>
                      <div>
                         {{$cs:=html2str .Content}}
