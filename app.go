@@ -3,13 +3,14 @@ package main
 import (
 	"./handlers"
 	"./handlers/root"
+	"./models"
 	"github.com/insionng/torgo"
-	//"./torgo"
 	"runtime"
 )
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
+	models.CreateDb()
 	torgo.TorApp.SetStaticPath("/static", "./static")
 	torgo.TorApp.SetStaticPath("/archives", "./archives")
 

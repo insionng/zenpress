@@ -42,8 +42,8 @@ type User struct {
 	Weibo         string
 	Ctype         int64
 	Role          int64
-	Created       time.Time
-	Hotness       float64
+	Created       time.Time `qbs:index`
+	Hotness       float64   `qbs:index`
 	Hotup         int64
 	Hotdown       int64
 	Views         int64
@@ -61,8 +61,8 @@ type Category struct {
 	Title          string
 	Content        string
 	Attachment     string
-	Created        time.Time
-	Hotness        float64
+	Created        time.Time `qbs:index`
+	Hotness        float64   `qbs:index`
 	Hotup          int64
 	Hotdown        int64
 	Views          int64
@@ -81,8 +81,8 @@ type Node struct {
 	Title           string
 	Content         string
 	Attachment      string
-	Created         time.Time
-	Hotness         float64
+	Created         time.Time `qbs:index`
+	Hotness         float64   `qbs:index`
 	Hotup           int64
 	Hotdown         int64
 	Views           int64
@@ -102,8 +102,8 @@ type Topic struct {
 	Title           string
 	Content         string
 	Attachment      string
-	Created         time.Time
-	Hotness         float64
+	Created         time.Time `qbs:index`
+	Hotness         float64   `qbs:index`
 	Hotup           int64
 	Hotdown         int64
 	Views           int64
@@ -121,8 +121,8 @@ type Reply struct {
 	Ctype      int64
 	Content    string
 	Attachment string
-	Created    time.Time
-	Hotness    float64
+	Created    time.Time `qbs:index`
+	Hotness    float64   `qbs:index`
 	Hotup      int64
 	Hotdown    int64
 	Views      int64
@@ -143,17 +143,13 @@ func SetMg() (*qbs.Migration, error) {
 	return mg, err
 }
 
-func Ct() bool {
+func CreateDb() bool {
 	q, err := ConnDb()
 	defer q.Db.Close()
 	if err != nil {
 		fmt.Println(err)
-	}
-	//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
-	if GetUserByRole(-1000).Role != -1000 {
-		AddUser("root@insion.co", "root", utils.Encrypt_password("rootpass", nil), -1000)
-		fmt.Println("Default User:root,Password:rootpass")
-
+		return false
+	} else {
 		mg, _ := SetMg()
 		defer mg.Db.Close()
 
@@ -163,13 +159,21 @@ func Ct() bool {
 		mg.CreateTableIfNotExists(new(Topic))
 		mg.CreateTableIfNotExists(new(Reply))
 
-		if GetAllTopic(0, 0, "id") == nil {
-			AddCategory("Hello Category", "This is Category!")
-			AddNode("Hello Node!", "This is Node!", 1, 1)
-			AddTopic("Hello World!", "This is Toropress!", 1, 1, 1)
+		//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
+		if GetUserByRole(-1000).Role != -1000 {
+			AddUser("root@insion.co", "root", utils.Encrypt_password("rootpass", nil), -1000)
+			fmt.Println("Default User:root,Password:rootpass")
+
+			if GetAllTopic(0, 0, "id") == nil {
+				AddCategory("Hello Category", "This is Category!")
+				AddNode("Hello Node!", "This is Node!", 1, 1)
+				AddTopic("Hello World!", "This is Toropress!", 1, 1, 1)
+			}
+			return true
 		}
 		return true
 	}
+
 	return false
 
 }
@@ -285,7 +289,7 @@ func GetUserByRole(role int) (user User) {
 func GetAllUserByRole(role int) (user []*User) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.Where("role=?", int64(role)).FindAll(&user)
+	q.Where("role=?", int64(role)).OrderByDesc("id").FindAll(&user)
 	return user
 }
 
@@ -320,7 +324,7 @@ func AddNode(title string, content string, cid int, uid int) error {
 
 	ctr := GetCategory(cid)
 	ctr.NodeTime = time.Now()
-	ctr.NodeCount = int64(len(GetAllNodeByCategoryId(cid, 0, 0, "id")))
+	ctr.NodeCount = int64(len(GetAllNodeByCid(cid, 0, 0, "id")))
 	ctr.NodeLastUserId = int64(uid)
 	if _, err := q.Save(&ctr); err != nil {
 		return err
@@ -341,7 +345,7 @@ func DelNodePlus(nid int) error {
 	node := GetNode(nid)
 	_, err := q.Delete(&node)
 
-	for i, v := range GetAllTopicByNodeid(nid, 0, 0, "id") {
+	for i, v := range GetAllTopicByNid(nid, 0, 0, "id") {
 		if i > 0 {
 			DelTopic(int(v.Id))
 			for ii, vv := range GetReplyByPid(int(v.Id), 0, 0, "id") {
@@ -400,7 +404,7 @@ func AddTopic(title string, content string, cid int, nid int, uid int) error {
 
 	nd := GetNode(nid)
 	nd.TopicTime = time.Now()
-	nd.TopicCount = int64(len(GetAllTopicByNodeid(nid, 0, 0, "id")))
+	nd.TopicCount = int64(len(GetAllTopicByNid(nid, 0, 0, "id")))
 	nd.TopicLastUserId = int64(uid)
 	if _, err := q.Save(&nd); err != nil {
 		return err
@@ -448,19 +452,17 @@ func GetCategory(id int) (category Category) {
 func GetAllNode() (alln []*Node) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.FindAll(&alln)
+	q.OrderByDesc("id").FindAll(&alln)
 	return alln
 }
 
-func GetAllNodeByCategoryId(pid int, offset int, limit int, path string) (alln []*Node) {
+func GetAllNodeByCid(pid int, offset int, limit int, path string) (alln []*Node) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
 	if pid == 0 {
-		q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&alln)
+		q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&alln)
 	} else {
-		//最热节点
-		//q.Where("pid=?", pid).Offset(offset).Limit(limit).OrderByDesc("hotness").FindAll(&alln)
-		q.WhereEqual("pid", pid).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&alln)
+		q.WhereEqual("pid", pid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&alln)
 	}
 	return alln
 }
@@ -478,8 +480,8 @@ func SearchTopic(content string, offset int, limit int, path string) (allt []*To
 		defer q.Db.Close()
 		keyword := "%" + content + "%"
 		condition := qbs.NewCondition("title like ?", keyword).Or("content like ?", keyword)
-		q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
-		//q.Where("title like ?", keyword).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+		q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
+		//q.Where("title like ?", keyword).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
 		return allt
 	}
 	return nil
@@ -488,17 +490,17 @@ func SearchTopic(content string, offset int, limit int, path string) (allt []*To
 func GetAllTopic(offset int, limit int, path string) (allt []*Topic) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+	q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
 	return allt
 }
 
-func GetAllTopicByNodeid(nodeid int, offset int, limit int, path string) (allt []*Topic) {
+func GetAllTopicByNid(nodeid int, offset int, limit int, path string) (allt []*Topic) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
 	if nodeid == 0 {
-		q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+		q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
 	} else {
-		q.WhereEqual("nid", nodeid).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allt)
+		q.WhereEqual("nid", nodeid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
 	}
 	return allt
 }
@@ -527,7 +529,7 @@ func UpdateTopic(tp Topic) error {
 func GetAllReply() (allr []*Reply) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.FindAll(&allr)
+	q.OrderByDesc("id").FindAll(&allr)
 	return allr
 }
 

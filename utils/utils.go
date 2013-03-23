@@ -127,8 +127,8 @@ func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int
 					//raw = raw + "<a class='page-numbers' href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a>"
 					raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a></li>"
 				}
-				//end page
-				if (page != endnum) && (page != i) && (page < i) && (page < endnum) {
+				//next page
+				if (page != endnum) && (page < endnum) && (i == pages) {
 					//raw = raw + "<a class='next page-numbers' href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>Next</a>"
 					raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>&raquo;</a></li>"
 				}

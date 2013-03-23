@@ -7,7 +7,7 @@
                   
                      <h2>{{.article.Title}}</h2>
                      
-                     <div class="meta"><i class="icon-calendar"></i> {{dateformat .article.Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="/user/{{.article.Uid}}/" title="View all posts in {{.article.Author}}" rel="category tag">{{.article.Author}}</a> - <a href="###" title="{{.Views}}个点击">{{.Views}}点击</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="{{.article.ReplyCount}} 个评论">{{.article.ReplyCount}} 评论</a></div>
+                     <div class="meta"><i class="icon-calendar"></i> {{dateformat .article.Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="/user/{{.article.Uid}}/" title="View all posts in {{.article.Author}}" rel="category tag">{{.article.Author}}</a> - <a href="###" title="{{.article.Views}}个点击">{{.article.Views}}点击</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="{{.article.ReplyCount}} 个评论">{{.article.ReplyCount}} 评论</a></div>
                      
                      <div>{{str2html .article.Content}}</div>
                      Tags: <a href="http://responsivewebinc.com/nannie/tag/condimen/" rel="tag">condimen</a> <a href="http://responsivewebinc.com/nannie/tag/lobor/" rel="tag">lobor</a>                  </div>

@@ -50,7 +50,7 @@ func (self *BaseHandler) Prepare() {
 	self.Data["categorys"] = models.GetAllCategory()
 	self.Data["nodes"] = models.GetAllNode()
 	self.Data["topics_5s"] = models.GetAllTopic(0, 5, "id")
-	self.Data["nodes_10s"] = models.GetAllNodeByCategoryId(0, 0, 10, "id")
+	self.Data["nodes_10s"] = models.GetAllNodeByCid(0, 0, 10, "id")
 	self.Data["replys_5s"] = models.GetReplyByPid(0, 0, 5, "id")
 	self.Data["replys_10s"] = models.GetReplyByPid(0, 0, 10, "id")
 }

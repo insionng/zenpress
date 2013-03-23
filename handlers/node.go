@@ -19,11 +19,11 @@ func (self *NodeHandler) Get() {
 	nid_handler := models.GetNode(nodeid)
 
 	limit := 25
-	rcs := len(models.GetAllTopicByNodeid(nodeid, 0, 0, "hotness"))
+	rcs := len(models.GetAllTopicByNid(nodeid, 0, 0, "hotness"))
 	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
 	self.Data["pagesbar"] = utils.Pagesbar("", rcs, pages, pageout, beginnum, endnum, 1)
 	self.Data["nodeid"] = nodeid
-	self.Data["topics"] = models.GetAllTopicByNodeid(nodeid, offset, limit, "hotness")
+	self.Data["topics"] = models.GetAllTopicByNid(nodeid, offset, limit, "hotness")
 
 	self.TplNames = "node.html"
 	self.Layout = "layout.html"
