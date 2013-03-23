@@ -169,7 +169,6 @@ func CreateDb() bool {
 				AddNode("Hello Node!", "This is Node!", 1, 1)
 				AddTopic("Hello World!", "This is Toropress!", 1, 1, 1)
 			}
-			return true
 		}
 		return true
 	}
