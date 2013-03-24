@@ -82,6 +82,7 @@ type Node struct {
 	Content         string
 	Attachment      string
 	Created         time.Time `qbs:"index"`
+	Updated         time.Time `qbs:"index"`
 	Hotness         float64   `qbs:"index"`
 	Hotup           int64
 	Hotdown         int64
@@ -103,6 +104,7 @@ type Topic struct {
 	Content         string
 	Attachment      string
 	Created         time.Time `qbs:"index"`
+	Updated         time.Time `qbs:"index"`
 	Hotness         float64   `qbs:"index"`
 	Hotup           int64
 	Hotdown         int64
@@ -569,6 +571,60 @@ func UpdateTopic(tid int, tp Topic) error {
 	defer q.Db.Close()
 	_, err := q.WhereEqual("id", int64(tid)).Update(&tp)
 	return err
+}
+
+func EditNode(nid int, cid int, uid int, title string, content string) error {
+	nd := GetNode(nid)
+	nd.Pid = int64(cid)
+	nd.Title = title
+	nd.Content = content
+	nd.Updated = time.Now()
+	if err := UpdateNode(nid, nd); err != nil {
+		return err
+	}
+
+	q, _ := ConnDb()
+	defer q.Db.Close()
+
+	type Category struct {
+		NodeTime       time.Time
+		NodeCount      int64
+		NodeLastUserId int64
+	}
+
+	if _, err := q.WhereEqual("id", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, "id"))), NodeLastUserId: int64(uid)}); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func EditTopic(tid int, nid int, cid int, uid int, title string, content string) error {
+	tpc := GetTopic(tid)
+	tpc.Cid = int64(cid)
+	tpc.Nid = int64(nid)
+	tpc.Title = title
+	tpc.Content = content
+	tpc.Updated = time.Now()
+
+	if err := UpdateTopic(tid, tpc); err != nil {
+		return err
+	}
+
+	q, _ := ConnDb()
+	defer q.Db.Close()
+
+	type Node struct {
+		TopicTime       time.Time
+		TopicCount      int64
+		TopicLastUserId int64
+	}
+
+	if _, err := q.WhereEqual("id", nid).Update(&Node{TopicTime: tpc.Created, TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, "id"))), TopicLastUserId: int64(uid)}); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func GetAllReply() (allr []*Reply) {

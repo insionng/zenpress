@@ -4,7 +4,6 @@ import (
 	"../libs"
 	"../models"
 	"strconv"
-	"time"
 )
 
 type TopicEditHandler struct {
@@ -27,18 +26,12 @@ func (self *TopicEditHandler) Post() {
 	tid, _ := strconv.Atoi(self.Ctx.Params[":tid"])
 	nid, _ := strconv.Atoi(inputs.Get("nodeid"))
 	cid := models.GetNode(nid).Pid
-
+	uid, _ := self.GetSession("userid").(int64)
 	tid_title := inputs.Get("title")
 	tid_content := inputs.Get("content")
+
 	if tid_title != "" && tid_content != "" {
-		var tp models.Topic
-		tp.Id = int64(tid)
-		tp.Cid = cid
-		tp.Nid = int64(nid)
-		tp.Title = tid_title
-		tp.Content = tid_content
-		tp.Created = time.Now()
-		models.SaveTopic(tp)
+		models.EditTopic(tid, nid, int(cid), int(uid), tid_title, tid_content)
 		self.Ctx.Redirect(302, "/view/"+self.Ctx.Params[":tid"])
 	} else {
 		self.Ctx.Redirect(302, "/")
