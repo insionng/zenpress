@@ -370,10 +370,10 @@ func AddTopic(title string, content string, cid int, nid int, uid int) error {
 	return nil
 }
 
-func AddReply(pid int, uid int, content string, author string, email string, website string) error {
+func AddReply(tid int, uid int, content string, author string, email string, website string) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	if _, err := q.Save(&Reply{Pid: int64(pid), Uid: int64(uid), Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
+	if _, err := q.Save(&Reply{Pid: int64(tid), Uid: int64(uid), Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
 		return err
 	}
 
@@ -383,12 +383,12 @@ func AddReply(pid int, uid int, content string, author string, email string, web
 		ReplyLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", pid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(pid, 0, 0, "id"))), ReplyLastUserId: int64(uid)}); err != nil {
+	if _, err := q.WhereEqual("id", tid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(tid, 0, 0, "id"))), ReplyLastUserId: int64(uid)}); err != nil {
 		return err
 	}
 	/*
-		tp := GetTopic(pid)
-		tp.ReplyCount = int64(len(GetReplyByPid(pid, 0, 0, "id")))
+		tp := GetTopic(tid)
+		tp.ReplyCount = int64(len(GetReplyByPid(tid, 0, 0, "id")))
 		tp.ReplyTime = time.Now()
 		tp.ReplyLastUserId = int64(uid)
 		if _, err := q.Save(&tp); err != nil {
@@ -468,51 +468,12 @@ func GetAllCategory() (allc []*Category) {
 	return allc
 }
 
-func GetCategory(id int) (category Category) {
-	q, _ := ConnDb()
-	defer q.Db.Close()
-	q.Where("id=?", id).Find(&category)
-	return category
-}
-
 func GetAllNode() (alln []*Node) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	q.OrderByDesc("id").FindAll(&alln)
+	//q.OrderByDesc("id").FindAll(&alln)
+	q.OrderByDesc("created").FindAll(&alln)
 	return alln
-}
-
-func GetAllNodeByCid(pid int, offset int, limit int, path string) (alln []*Node) {
-	//排序首先是热值优先，然后是时间优先。
-	q, _ := ConnDb()
-	defer q.Db.Close()
-	if pid == 0 {
-		q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&alln)
-	} else {
-		q.WhereEqual("pid", pid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&alln)
-	}
-	return alln
-}
-
-func GetNode(id int) (node Node) {
-	q, _ := ConnDb()
-	defer q.Db.Close()
-	q.Where("id=?", id).Find(&node)
-	return node
-}
-
-func SearchTopic(content string, offset int, limit int, path string) (allt []*Topic) {
-	//排序首先是热值优先，然后是时间优先。
-	if content != "" {
-		q, _ := ConnDb()
-		defer q.Db.Close()
-		keyword := "%" + content + "%"
-		condition := qbs.NewCondition("title like ?", keyword).Or("content like ?", keyword)
-		q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
-		//q.Where("title like ?", keyword).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
-		return allt
-	}
-	return nil
 }
 
 func GetAllTopic(offset int, limit int, path string) (allt []*Topic) {
@@ -522,16 +483,56 @@ func GetAllTopic(offset int, limit int, path string) (allt []*Topic) {
 	return allt
 }
 
+func GetAllNodeByCid(cid int, offset int, limit int, path string) (alln []*Node) {
+	//排序首先是热值优先，然后是时间优先。
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	if cid == 0 {
+		q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+	} else {
+		q.WhereEqual("pid", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+	}
+	return alln
+}
+
 func GetAllTopicByNid(nodeid int, offset int, limit int, path string) (allt []*Topic) {
 	//排序首先是热值优先，然后是时间优先。
 	q, _ := ConnDb()
 	defer q.Db.Close()
 	if nodeid == 0 {
-		q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
+		q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
 	} else {
-		q.WhereEqual("nid", nodeid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
+		q.WhereEqual("nid", nodeid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
 	}
 	return allt
+}
+
+func SearchTopic(content string, offset int, limit int, path string) (allt []*Topic) {
+	//排序首先是热值优先，然后是时间优先。
+	if content != "" {
+		q, _ := ConnDb()
+		defer q.Db.Close()
+		keyword := "%" + content + "%"
+		condition := qbs.NewCondition("title like ?", keyword).Or("content like ?", keyword)
+		q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+		//q.Where("title like ?", keyword).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
+		return allt
+	}
+	return nil
+}
+
+func GetCategory(id int) (category Category) {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	q.Where("id=?", id).Find(&category)
+	return category
+}
+
+func GetNode(id int) (node Node) {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	q.Where("id=?", id).Find(&node)
+	return node
 }
 
 func GetTopic(id int) (topic Topic) {
@@ -548,24 +549,25 @@ func SaveTopic(tp Topic) error {
 	return err
 }
 
-func UpdateCategory(cg Category) error {
+func UpdateCategory(cid int, cg Category) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	_, err := q.Update(&cg)
+	_, err := q.WhereEqual("id", int64(cid)).Update(&cg)
 	return err
 }
 
-func UpdateNode(nd Node) error {
+func UpdateNode(nid int, nd Node) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	_, err := q.Update(&nd)
+	_, err := q.WhereEqual("id", int64(nid)).Update(&nd)
+
 	return err
 }
 
-func UpdateTopic(tp Topic) error {
+func UpdateTopic(tid int, tp Topic) error {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	_, err := q.Update(&tp)
+	_, err := q.WhereEqual("id", int64(tid)).Update(&tp)
 	return err
 }
 
@@ -583,15 +585,15 @@ func GetReply(id int) (reply Reply) {
 	return reply
 }
 
-func GetReplyByPid(pid int, offset int, limit int, path string) (allr []*Reply) {
+func GetReplyByPid(tid int, offset int, limit int, path string) (allr []*Reply) {
 	q, _ := ConnDb()
 	defer q.Db.Close()
-	if pid == 0 {
+	if tid == 0 {
 		q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allr)
 	} else {
 		//最热回复
-		//q.Where("pid=?", pid).Offset(offset).Limit(limit).OrderByDesc("hotness").FindAll(&allr)
-		q.WhereEqual("pid", pid).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allr)
+		//q.Where("pid=?", tid).Offset(offset).Limit(limit).OrderByDesc("hotness").FindAll(&allr)
+		q.WhereEqual("pid", tid).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allr)
 	}
 	return allr
 }

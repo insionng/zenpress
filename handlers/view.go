@@ -15,7 +15,7 @@ func (self *ViewHandler) Get() {
 	tid, _ := strconv.Atoi(self.Ctx.Params[":tid"])
 	tid_handler := models.GetTopic(tid)
 	tid_handler.Views = tid_handler.Views + 1
-	models.UpdateTopic(tid_handler)
+	models.UpdateTopic(tid, tid_handler)
 
 	self.Data["article"] = tid_handler
 	self.Data["replys"] = models.GetReplyByPid(tid, 0, 0, "id")

@@ -33,7 +33,7 @@
 
       
       <div id="comment-{{.Id}}" class="comment-box">
-            <div class="comment-author"><strong>{{if compare .Uid 0}}游客{{else}}{{.Author}}{{end}}</strong></div>
+            <div class="comment-author"><strong>{{if compare .Author ""}}游客{{else}}{{.Author}}{{end}}</strong></div>
             <div class="cmeta">{{dateformat .Created "January 2 , 2006 at 15:04 am"}}</div>
             <div class="clearfix"></div>  
             <p>{{.Content}}</p>

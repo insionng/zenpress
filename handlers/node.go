@@ -18,7 +18,7 @@ func (self *NodeHandler) Get() {
 
 	nid_handler := models.GetNode(nid)
 	nid_handler.Views = nid_handler.Views + 1
-	models.UpdateNode(nid_handler)
+	models.UpdateNode(nid, nid_handler)
 
 	limit := 25
 	rcs := len(models.GetAllTopicByNid(nid, 0, 0, "hotness"))

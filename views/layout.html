@@ -3,11 +3,12 @@
     <head>  
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="toropress" />
-    <meta name="keywords" content="toropress" />
+
+    <meta name="keywords" content="速动中国,SudoChina,开源技术,开源软件,开源网站,开源源码,开源社区,开源站长社区,golang开源,java开源,perl开源,python开源,ruby开源,php开源,开源项目,开源代码" />
+    <meta name="description" content="速动中国 www.sudochina.com 是目前中国最大的开源站长技术社区。我们借助开源的力量，推广使用开源项目建设网站，为站长提供了一个发现、使用、并交流开源站长技术平台。" />
     <meta name="author" content="insion"/>
     
-    <title>SudoChina</title>
+    <title>速动中国 - 借力开源技术，打造心中网站，分享开源技术及站长软件工具，分享运营经验和站长行业交流！</title>
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
   
     <!-- Stylesheets -->
@@ -42,9 +43,8 @@
          <div class="span4">
             <div class="logo">
                <!-- Recommended Logo size 240x100 -->
-               <a href="/"><h1>Sudo<span class="color">China</span></h1></a>
-               <p class="lmeta">Toropress，又一个Toropress..</p>
-            </div>
+               <a href="/"><h1><span class="color">Sudo</span>China</h1></a>
+               <p class="lmeta">速动中国，借力开源，快速行动！</p>
          </div>
          <!--div class="span4 offset4">
             <div class="social">
@@ -155,7 +155,7 @@
   <ul id="recentcomments">
   {{if .replys_10s}}
       {{range .replys_10s}}
-      <li class="recentcomments">{{if compare .Uid 0}}游客{{else}}{{.Author}}{{end}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{.Content}}</a></li>
+      <li class="recentcomments">{{if compare .Author ""}}游客{{else}}{{.Author}}{{end}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{.Content}}</a></li>
       {{end}}
   {{else}}
       <li class="recentcomments">尚无评论</li>
@@ -191,7 +191,7 @@
          <div class="span4">
                         <div class="fwidget">
                <h4>About SudoChina</h4>
-               <p>SudoChina是基于toropress搭建的节点型博客，欢迎大家注册，享受分享知识的乐趣，请收藏！</p>
+               <p>速动中国是借力开源技术打造的站长技术交流平台，在这里我们会分享开源技术及站长软件工具，分享运营经验和站长行业交流！欢迎大家注册，享受分享知识的乐趣，请收藏！</p>
             </div>
                      </div>
          <div class="span4">
@@ -200,7 +200,7 @@
                <ul>
                 {{if .replys_5s}}
                   {{range .replys_5s}}
-                  <li>{{if compare .Uid 0}}游客{{else}}{{.Author}}{{end}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{.Content}}</a></li>
+                  <li>{{if compare .Author ""}}游客{{else}}{{.Author}}{{end}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{.Content}}</a></li>
                   {{end}}
                 {{else}}
                   <li>尚无评论</li>
@@ -224,7 +224,7 @@
                      </div>
       <div class="span12">
          <div class="copy">
-            <p>Copyright &copy; 2013 - <a href="/">SudoChina.com.</a> Powered by <a href="https://github.com/insionng/toropress" target="_blank">ToroPress</a>. <script src="http://s25.cnzz.com/stat.php?id=5052969&web_id=5052969&online=1&show=line" language="JavaScript"></script>
+            <p>Copyright &copy; 2013 - <a href="/">SudoChina.com.</a> Powered by <a href="https://github.com/insionng/toropress" target="_blank">ToroPress</a>. <script src="http://s21.cnzz.com/stat.php?id=4835781&web_id=4835781" language="JavaScript"></script>
             </p>
          </div>
       </div>
