@@ -32,6 +32,7 @@ type User struct {
 	Birth         time.Time
 	Province      string
 	City          string
+	Company       string
 	Address       string
 	Postcode      string
 	Mobile        string
@@ -271,6 +272,13 @@ func SaveUser(usr User) error {
 	defer q.Db.Close()
 	_, e := q.Save(&usr)
 	return e
+}
+
+func UpdateUser(uid int, ur User) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	_, err := q.WhereEqual("id", int64(uid)).Update(&ur)
+	return err
 }
 
 func GetUser(id int) (user User) {

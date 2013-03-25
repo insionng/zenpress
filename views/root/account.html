@@ -20,7 +20,7 @@
 						<div class="span3">
 							<ul class="nav nav-tabs nav-stacked">
 								<li class="active">
-									<a href="/root" >管理面板<span class="label label-warning pull-right">1</span></a>
+									<a href="/root" >管理面板<!--span class="label label-warning pull-right">1</span--></a>
 								</li>
 								<li>
 									<a href="/root/account">账号设置</a>
@@ -34,10 +34,28 @@
 						    </form>
 						</div>
 						<div class="span9">
-							<form action="auth" method="post" accept-charset="utf-8" class="well form-horizontal">
+							<form action="/root/account" method="post" accept-charset="utf-8" class="well form-horizontal">
 								<input type="hidden" name="id" value="1" />
 								<fieldset>
-
+									<!--
+									<div class="alert alert-error">
+										<a class="close" data-dismiss="alert">&times;</a>
+										Alert
+									</div>
+									<div class="alert alert-warning">
+										<a class="close" data-dismiss="alert">&times;</a>
+										Warning
+									</div>
+									<div class="alert alert-success">
+										<a class="close" data-dismiss="alert">&times;</a>
+										Success
+									</div>-->
+									{{if .AccountMsgErr}}
+									<div class="alert alert-info">
+										<a class="close" data-dismiss="alert">&times;</a>
+										{{.AccountMsgErr}}
+									</div>
+									{{end}}
 									<div class="control-group error">
 										<label class="control-label">用户名</label>
 										<div class="controls">
@@ -49,22 +67,22 @@
 									<div class="control-group">
 										<label for="first_name" class="control-label">姓名</label>
 										<div class="controls form-inline">
-											<input type="text" name="first_name" value="" id="first_name" placeholder="First Name"  />
-											<input type="text" name="last_name" value="" id="last_name" placeholder="Last Name"  />
+											<!--input type="text" name="nickname" value="{{.Username}}" id="nickname" placeholder="昵称"  /-->
+											<input type="text" name="realname" value="{{.Realname}}" id="realname" placeholder="真实姓名"  />
 										</div>
 									</div>
 									<div class="control-group">
 										<label for="email" class="control-label">Email</label>
 										<div class="controls">
-											<input type="text" name="email" value="" id="email" placeholder="your@mail.com"  />
+											<input type="text" name="email" value="{{.Useremail}}" id="email" placeholder="your@mail.com"  />
 											<span class="help-inline"><em>required</em></span>
 										</div>
 									</div>
 									<div class="control-group">
 										<label for="phone" class="control-label">手机</label>
 										<div class="controls">
-											<input type="text" name="phone" value="" id="phone" placeholder="000-000-0000"  />
-											<span class="help-inline"><em>required</em></span>
+											<input type="text" name="mobile" value="" id="mobile" placeholder="000-000-0000"  />
+											<span class="help-inline"></span>
 										</div>
 									</div>
 									<div class="control-group">

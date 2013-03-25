@@ -26,6 +26,9 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'about' }
 	];
 
+	config.extraPlugins = 'insertpre';
+	CKEDITOR.config.insertpre_class = 'brush: js;';
+	//CKEDITOR.config.insertpre_style = 'background-color:#F8F8F8;border:1px solid #DDD;padding:10px;';
 	// Remove some buttons, provided by the standard plugins, which we don't
 	// need to have in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';

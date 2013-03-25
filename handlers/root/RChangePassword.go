@@ -12,6 +12,7 @@ type RChangePasswordHandler struct {
 
 func (self *RChangePasswordHandler) Get() {
 	self.Data["MsgErr"], _ = self.GetSession("msgerr").(string)
+	self.DelSession("MsgErr")
 	self.TplNames = "root/change_password.html"
 	self.Render()
 }
@@ -29,7 +30,7 @@ func (self *RChangePasswordHandler) Post() {
 
 		if utils.Validate_password(usr.Password, oldpassword) {
 			usr.Password = utils.Encrypt_password(newpassword, nil)
-			if  e := models.SaveUser(usr); e != nil {
+			if e := models.SaveUser(usr); e != nil {
 				self.Data["MsgErr"] = "更新密码失败！"
 
 			} else {

@@ -229,10 +229,6 @@ func ThisYear() time.Time {
 	return time.Date(year, 1, 1, 0, 0, 0, 0, time.UTC)
 }
 
-func GetEmailRegexp() (*regexp.Regexp, error) {
-	return regexp.Compile(`^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$`)
-}
-
 // 对字符串进行md5哈希,
 // 返回32位小写md5结果
 func MD5(s string) string {
@@ -399,6 +395,13 @@ func CheckPassword(password string) (b bool) {
 
 func CheckUsername(username string) (b bool) {
 	if ok, _ := regexp.MatchString("^[a-zA-Z0-9]{4,16}$", username); !ok {
+		return false
+	}
+	return true
+}
+
+func CheckEmail(email string) (b bool) {
+	if ok, _ := regexp.MatchString(`^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$`, email); !ok {
 		return false
 	}
 	return true

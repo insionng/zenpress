@@ -24,6 +24,13 @@
     <script src="/static/themes/nannie/js/html5.js"></script>
     <![endif]-->
   
+    <!-- SyntaxHighlighter s -->
+    <script type="text/javascript" src="/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCoreDefault.css"/>
+    <link type="text/css" rel="Stylesheet" href="/static/js/ckeditor/plugins/syntaxhighlighter/styles/shThemeEmacs.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="/static/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
@@ -155,7 +162,7 @@
   <ul id="recentcomments">
   {{if .replys_10s}}
       {{range .replys_10s}}
-      <li class="recentcomments">{{if compare .Author ""}}游客{{else}}{{.Author}}{{end}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{.Content}}</a></li>
+      <li class="recentcomments">{{if compare .Author ""}}游客{{else}}{{.Author}}{{end}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{substr .Content 0 50}}</a></li>
       {{end}}
   {{else}}
       <li class="recentcomments">尚无评论</li>
@@ -200,7 +207,7 @@
                <ul>
                 {{if .replys_5s}}
                   {{range .replys_5s}}
-                  <li>{{if compare .Author ""}}游客{{else}}{{.Author}}{{end}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{.Content}}</a></li>
+                  <li>{{if compare .Author ""}}游客{{else}}{{.Author}}{{end}} on <a href="/view/{{.Pid}}#comment-{{.Id}}">{{substr .Content 0 50}}</a></li>
                   {{end}}
                 {{else}}
                   <li>尚无评论</li>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="keywords" content="速动中国,SudoChina,开源技术,开源软件,开源网站,开源源码,开源社区,开源站长社区,golang开源,java开源,perl开源,python开源,ruby开源,php开源,开源项目,开源代码" />
+    <meta name="description" content="速动中国 www.sudochina.com 是目前中国最大的开源站长技术社区。我们借助开源的力量，推广使用开源项目建设网站，为站长提供了一个发现、使用、并交流开源站长技术平台。" />
+    <meta name="author" content="insion"/>
+    
+    <title>速动中国 - 借力开源技术，打造心中网站，分享开源技术及站长软件工具，分享运营经验和站长行业交流！</title>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+  
+    
+    <link href="/static/themes/nannie/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/themes/nannie/css/font-awesome.css">
+          
+    <link href="/static/themes/nannie/css/style.css" rel="stylesheet">
+    <link href="/static/themes/nannie/css/bootstrap-responsive.css" rel="stylesheet">
+
+    
+  
+  
+  <script type="text/javascript" src="/static/js/ckeditor/plugins/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+  <script type="text/javascript" src="/static/js/ckeditor/plugins/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
+  <link type="text/css" rel="stylesheet" href="/static/js/ckeditor/plugins/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+  <link type="text/css" rel="Stylesheet" href="/static/js/ckeditor/plugins/syntaxhighlighter_3.0.83/styles/shThemeMidnight.css"/>
+  <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+    
+    <link rel="shortcut icon" href="/static/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
+
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+   
+</head>
+
+<body>
+
+
+<header>
+   <div class="container">
+      <div class="row">
+         <div class="span4">
+            <div class="logo">
+               
+               <a href="/"><h1><span class="color">Sudo</span>China</h1></a>
+               <p class="lmeta">速动中国，借力开源，快速行动！</p>
+         </div>
+         
+      </div>
+   </div>
+</header>
+
+         <div class="navbar">
+            <div class="navbar-inner">
+               <div class="container">
+                  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                     <span>菜单</span>
+                  </a>
+                  <div class="nav-collapse collapse">
+                      <ul class="nav">
+                        <ul id="menu-menu" class="nav">
+                          <li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-30"><a href="/">首页</a></li>
+                        
+                          
+                            <li class="menu-item"><a href="/category/1">代码</a></li>
+                          
+                            <li class="menu-item"><a href="/category/2"> 笔记</a></li>
+                          
+                            <li class="menu-item"><a href="/category/3">文学</a></li>
+                          
+                        
+                        </ul>
+                      </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+
+<div class="content">
+   <div class="container">
+      <div class="row">
+         <div class="span8">
+          
+<h3 style="display:none"><span>Post</span></h3>
+<div class="posts">
+                                    
+               <div class="entry" id="post-27">
+                  <div class="matter">
+                  
+                     <h2>纯粹的golang实现的生成缩略图代码</h2>
+                     
+                     <div class="meta"><i class="icon-calendar"></i> March 22 , 2013 at 16:21 am - <i class="icon-folder-open"></i> <a href="/user/0/" title="View all posts in " rel="category tag"></a> - <a href="###" title="8个点击">8点击</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a></div>
+                     
+                     <div><pre class="brush: js;">
+// Copyright 2011 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+package resize
+
+import (
+        &quot;image&quot;
+        &quot;image/color&quot;
+)
+
+// Resize returns a scaled copy of the image slice r of m.
+// The returned image has width w and height h.
+func Resize(m image.Image, r image.Rectangle, w, h int) image.Image {
+        if w &lt; 0 || h &lt; 0 {
+                return nil
+        }
+        if w == 0 || h == 0 || r.Dx() &lt;= 0 || r.Dy() &lt;= 0 {
+                return image.NewRGBA64(image.Rect(0, 0, w, h))
+        }
+        switch m := m.(type) {
+        case *image.RGBA:
+                return resizeRGBA(m, r, w, h)
+        case *image.YCbCr:
+                if m, ok := resizeYCbCr(m, r, w, h); ok {
+                        return m
+                }
+        }
+        ww, hh := uint64(w), uint64(h)
+        dx, dy := uint64(r.Dx()), uint64(r.Dy())
+        // The scaling algorithm is to nearest-neighbor magnify the dx * dy source
+        // to a (ww*dx) * (hh*dy) intermediate image and then minify the intermediate
+        // image back down to a ww * hh destination with a simple box filter.
+        // The intermediate image is implied, we do not physically allocate a slice
+        // of length ww*dx*hh*dy.
+        // For example, consider a 4*3 source image. Label its pixels from a-l:
+        //      abcd
+        //      efgh
+        //      ijkl
+        // To resize this to a 3*2 destination image, the intermediate is 12*6.
+        // Whitespace has been added to delineate the destination pixels:
+        //      aaab bbcc cddd
+        //      aaab bbcc cddd
+        //      eeef ffgg ghhh
+        //
+        //      eeef ffgg ghhh
+        //      iiij jjkk klll
+        //      iiij jjkk klll
+        // Thus, the &#39;b&#39; source pixel contributes one third of its value to the
+        // (0, 0) destination pixel and two thirds to (1, 0).
+        // The implementation is a two-step process. First, the source pixels are
+        // iterated over and each source pixel&#39;s contribution to 1 or more
+        // destination pixels are summed. Second, the sums are divided by a scaling
+        // factor to yield the destination pixels.
+        // TODO: By interleaving the two steps, instead of doing all of
+        // step 1 first and all of step 2 second, we could allocate a smaller sum
+        // slice of length 4*w*2 instead of 4*w*h, although the resultant code
+        // would become more complicated.
+        n, sum := dx*dy, make([]uint64, 4*w*h)
+        for y := r.Min.Y; y &lt; r.Max.Y; y++ {
+                for x := r.Min.X; x &lt; r.Max.X; x++ {
+                        // Get the source pixel.
+                        r32, g32, b32, a32 := m.At(x, y).RGBA()
+                        r64 := uint64(r32)
+                        g64 := uint64(g32)
+                        b64 := uint64(b32)
+                        a64 := uint64(a32)
+                        // Spread the source pixel over 1 or more destination rows.
+                        py := uint64(y) * hh
+                        for remy := hh; remy &gt; 0; {
+                                qy := dy - (py % dy)
+                                if qy &gt; remy {
+                                        qy = remy
+                                }
+                                // Spread the source pixel over 1 or more destination columns.
+                                px := uint64(x) * ww
+                                index := 4 * ((py/dy)*ww + (px / dx))
+                                for remx := ww; remx &gt; 0; {
+                                        qx := dx - (px % dx)
+                                        if qx &gt; remx {
+                                                qx = remx
+                                        }
+                                        sum[index+0] += r64 * qx * qy
+                                        sum[index+1] += g64 * qx * qy
+                                        sum[index+2] += b64 * qx * qy
+                                        sum[index+3] += a64 * qx * qy
+                                        index += 4
+                                        px += qx
+                                        remx -= qx
+                                }
+                                py += qy
+                                remy -= qy
+                        }
+                }
+        }
+        return average(sum, w, h, n*0x0101)
+}
+
+// average convert the sums to averages and returns the result.
+func average(sum []uint64, w, h int, n uint64) image.Image {
+        ret := image.NewRGBA(image.Rect(0, 0, w, h))
+        for y := 0; y &lt; h; y++ {
+                for x := 0; x &lt; w; x++ {
+                        index := 4 * (y*w + x)
+                        ret.SetRGBA(x, y, color.RGBA{
+                                uint8(sum[index+0] / n),
+                                uint8(sum[index+1] / n),
+                                uint8(sum[index+2] / n),
+                                uint8(sum[index+3] / n),
+                        })
+                }
+        }
+        return ret
+}
+
+// resizeYCbCr returns a scaled copy of the YCbCr image slice r of m.
+// The returned image has width w and height h.
+func resizeYCbCr(m *image.YCbCr, r image.Rectangle, w, h int) (image.Image, bool) {
+        var verticalRes int
+        switch m.SubsampleRatio {
+        case image.YCbCrSubsampleRatio420:
+                verticalRes = 2
+        case image.YCbCrSubsampleRatio422:
+                verticalRes = 1
+        default:
+                return nil, false
+        }
+        ww, hh := uint64(w), uint64(h)
+        dx, dy := uint64(r.Dx()), uint64(r.Dy())
+        // See comment in Resize.
+        n, sum := dx*dy, make([]uint64, 4*w*h)
+        for y := r.Min.Y; y &lt; r.Max.Y; y++ {
+                Y := m.Y[y*m.YStride:]
+                Cb := m.Cb[y/verticalRes*m.CStride:]
+                Cr := m.Cr[y/verticalRes*m.CStride:]
+                for x := r.Min.X; x &lt; r.Max.X; x++ {
+                        // Get the source pixel.
+                        r8, g8, b8 := color.YCbCrToRGB(Y[x], Cb[x/2], Cr[x/2])
+                        r64 := uint64(r8)
+                        g64 := uint64(g8)
+                        b64 := uint64(b8)
+                        // Spread the source pixel over 1 or more destination rows.
+                        py := uint64(y) * hh
+                        for remy := hh; remy &gt; 0; {
+                                qy := dy - (py % dy)
+                                if qy &gt; remy {
+                                        qy = remy
+                                }
+                                // Spread the source pixel over 1 or more destination columns.
+                                px := uint64(x) * ww
+                                index := 4 * ((py/dy)*ww + (px / dx))
+                                for remx := ww; remx &gt; 0; {
+                                        qx := dx - (px % dx)
+                                        if qx &gt; remx {
+                                                qx = remx
+                                        }
+                                        qxy := qx * qy
+                                        sum[index+0] += r64 * qxy
+                                        sum[index+1] += g64 * qxy
+                                        sum[index+2] += b64 * qxy
+                                        sum[index+3] += 0xFFFF * qxy
+                                        index += 4
+                                        px += qx
+                                        remx -= qx
+                                }
+                                py += qy
+                                remy -= qy
+                        }
+                }
+        }
+        return average(sum, w, h, n), true
+}
+
+// resizeRGBA returns a scaled copy of the RGBA image slice r of m.
+// The returned image has width w and height h.
+func resizeRGBA(m *image.RGBA, r image.Rectangle, w, h int) image.Image {
+        ww, hh := uint64(w), uint64(h)
+        dx, dy := uint64(r.Dx()), uint64(r.Dy())
+        // See comment in Resize.
+        n, sum := dx*dy, make([]uint64, 4*w*h)
+        for y := r.Min.Y; y &lt; r.Max.Y; y++ {
+                pixOffset := m.PixOffset(r.Min.X, y)
+                for x := r.Min.X; x &lt; r.Max.X; x++ {
+                        // Get the source pixel.
+                        r64 := uint64(m.Pix[pixOffset+0])
+                        g64 := uint64(m.Pix[pixOffset+1])
+                        b64 := uint64(m.Pix[pixOffset+2])
+                        a64 := uint64(m.Pix[pixOffset+3])
+                        pixOffset += 4
+                        // Spread the source pixel over 1 or more destination rows.
+                        py := uint64(y) * hh
+                        for remy := hh; remy &gt; 0; {
+                                qy := dy - (py % dy)
+                                if qy &gt; remy {
+                                        qy = remy
+                                }
+                                // Spread the source pixel over 1 or more destination columns.
+                                px := uint64(x) * ww
+                                index := 4 * ((py/dy)*ww + (px / dx))
+                                for remx := ww; remx &gt; 0; {
+                                        qx := dx - (px % dx)
+                                        if qx &gt; remx {
+                                                qx = remx
+                                        }
+                                        qxy := qx * qy
+                                        sum[index+0] += r64 * qxy
+                                        sum[index+1] += g64 * qxy
+                                        sum[index+2] += b64 * qxy
+                                        sum[index+3] += a64 * qxy
+                                        index += 4
+                                        px += qx
+                                        remx -= qx
+                                }
+                                py += qy
+                                remy -= qy
+                        }
+                }
+        }
+        return average(sum, w, h, n)
+}
+
+// Resample returns a resampled copy of the image slice r of m.
+// The returned image has width w and height h.
+func Resample(m image.Image, r image.Rectangle, w, h int) image.Image {
+        if w &lt; 0 || h &lt; 0 {
+                return nil
+        }
+        if w == 0 || h == 0 || r.Dx() &lt;= 0 || r.Dy() &lt;= 0 {
+                return image.NewRGBA64(image.Rect(0, 0, w, h))
+        }
+        curw, curh := r.Dx(), r.Dy()
+        img := image.NewRGBA(image.Rect(0, 0, w, h))
+        for y := 0; y &lt; h; y++ {
+                for x := 0; x &lt; w; x++ {
+                        // Get a source pixel.
+                        subx := x * curw / w
+                        suby := y * curh / h
+                        r32, g32, b32, a32 := m.At(subx, suby).RGBA()
+                        r := uint8(r32 &gt;&gt; 8)
+                        g := uint8(g32 &gt;&gt; 8)
+                        b := uint8(b32 &gt;&gt; 8)
+                        a := uint8(a32 &gt;&gt; 8)
+                        img.SetRGBA(x, y, color.RGBA{r, g, b, a})
+                }
+        }
+        return img
+}</pre>
+
+<p>&nbsp;</p>
+</div>
+                     Tags: <a href="http://responsivewebinc.com/nannie/tag/condimen/" rel="tag">condimen</a> <a href="http://responsivewebinc.com/nannie/tag/lobor/" rel="tag">lobor</a>                  </div>
+                  <div class="clearfix"></div>
+               </div>
+               
+                
+
+ 
+<div class="comments well">
+<h3><span class="comment-heading">Comments - </span>1 Responses</h3>
+ 
+
+
+
+<ul class="media-list">
+   
+   
+   <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-6" >
+
+      
+      <div id="comment-6" class="comment-box">
+            <div class="comment-author"><strong>karo</strong></div>
+            <div class="cmeta">March 23 , 2013 at 12:08 am</div>
+            <div class="clearfix"></div>  
+            <p>那几个参数不太会填啊，不明白究竟是什么、使用例子吗？</p>
+            
+            <div class="comment-reply pull-right">
+               
+               <a class='comment-reply-link' href='?replytocom=6#respond' onclick='return addComment.moveForm("comment-6", "6", "respond", "0")'>Reply</a>
+            </div>
+            <div class="clearfix"></div>
+      
+            <div class="clear"></div>
+      </div>
+   </li>
+   
+</ul>
+
+
+</div>
+
+<div class="navigation">
+<div class="pull-left"><a href="/comment-page-1/#comments" >&laquo; Older Comments</a></div>
+<div class="pull-right"></div>
+</div>
+
+<div class="clearfix"></div>
+
+ 
+ 
+<div id="respond" class="respond well">
+ 
+<h3><span>Leave a Reply</span></h3>
+ 
+<div class="cancel-comment-reply">
+<a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Cancel Reply</a></div>
+
+<div class="clearfix"></div>
+ 
+
+<form action="/new/reply/34" method="post" id="commentform" class="form-horizontal">
+      <div class="control-group">
+         <label class="control-label" for="author">Name</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="author" id="author" value="" required>
+         </div>
+      </div>  
+
+      <div class="control-group">
+         <label class="control-label" for="email">Email</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="email" id="email" value="" required>
+         </div>
+      </div>
+
+      <div class="control-group">
+         <label class="control-label" for="website">Website</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="website" id="website" value="" >
+         </div>
+      </div> 
+	
+ 
+
+ 
+      <div class="control-group">
+         <label class="control-label" for="comment">Comment</label>
+         <div class="controls">
+            <textarea class="input-xlarge" name="comment" id="comment" rows="8" style="width:78%;"></textarea>
+         </div>
+      </div> 
+
+      <div class="form-actions">
+         <input name="submit" type="submit" id="comment-submit" tabindex="5" value="评论" class="btn" />
+         <button type="reset" class="btn">清空</button>
+      </div>
+ 
+<p>
+<input type='hidden' name='comment_userid' value='0' id='comment_userid' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='34' />
+</p>
+
+<div class="clear"></div>
+</form>
+ 
+</div>
+
+            
+   <div class="navigation">
+      <div class="pull-left">&laquo; <a href="http://responsivewebinc.com/nannie/ut-consectetur-ultricies-consequat/" rel="prev">Ut consectetur ultricies consequat</a></div>
+      <div class="pull-right"></div>
+      <div class="clearfix"></div>
+   </div>  
+   <div class="clearfix"></div>
+               
+</div>
+            
+
+         </div>
+
+         <div class="span4">
+            
+               <div class="sidebar">
+<div class="widget">
+  <h3><span>搜索</span></h3><div class="form">
+  <form method="get" id="searchform" action="/search" class="form-search">
+  <input type="text" value="" name="keyword" id="keyword" class="input-medium"/>
+  <input type="submit" id="searchsubmit" value="搜索" class="btn"/>
+  </form>
+  </div>
+</div>
+
+
+<div class="widget">
+  
+  <h3><span>注册登录</span></h3>
+  
+  <ul>
+  
+     <li><a href="/register">注册</a></li>
+     <li><a href="/login">登录</a></li>
+  
+  </ul>
+</div>
+
+
+<div class="widget">
+  <h3><span>最新10个节点</span></h3>
+  <ul>
+  
+    
+      <li><a href="/node/7" title="网站安全">网站安全</a></li>
+    
+      <li><a href="/node/5" title="linux笔记">linux笔记</a></li>
+    
+      <li><a href="/node/4" title="golang">golang</a></li>
+    
+      <li><a href="/node/3" title="站长手记">站长手记</a></li>
+    
+      <li><a href="/node/2" title="编程笔记">编程笔记</a></li>
+    
+      <li><a href="/node/1" title="祭奠青春">祭奠青春</a></li>
+    
+  
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>最新10条评论</span></h3>
+  <ul id="recentcomments">
+  
+      
+      <li class="recentcomments">karo on <a href="/view/34#comment-6">那几个参数不太会填啊，不明白究竟是什么、使用例子吗？</a></li>
+      
+      <li class="recentcomments">insion on <a href="/view/1#comment-5">去逛街吧，别敲博客了。</a></li>
+      
+      <li class="recentcomments">kokoa on <a href="/view/30#comment-4">表示还没看懂啊，那几个箭头不太明白什么意思。</a></li>
+      
+      <li class="recentcomments">root on <a href="/view/1#comment-2">失去了年华，容颜退却~</a></li>
+      
+  
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>博客分类</span></h3>
+  <ul>
+    
+      
+        <li class="cat-item"><a href="/category/1">代码</a></li>
+      
+        <li class="cat-item"><a href="/category/2"> 笔记</a></li>
+      
+        <li class="cat-item"><a href="/category/3">文学</a></li>
+      
+    
+  </ul>
+</div>
+
+             </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+<footer>
+  <div class="container">
+    <div class="row">
+      
+         <div class="span4">
+                        <div class="fwidget">
+               <h4>About SudoChina</h4>
+               <p>速动中国是借力开源技术打造的站长技术交流平台，在这里我们会分享开源技术及站长软件工具，分享运营经验和站长行业交流！欢迎大家注册，享受分享知识的乐趣，请收藏！</p>
+            </div>
+                     </div>
+         <div class="span4">
+                        <div class="fwidget">
+               <h4>Recent Comments</h4>
+               <ul>
+                
+                  
+                  <li>karo on <a href="/view/34#comment-6">那几个参数不太会填啊，不明白究竟是什么、使用例子吗？</a></li>
+                  
+                  <li>insion on <a href="/view/1#comment-5">去逛街吧，别敲博客了。</a></li>
+                  
+                  <li>kokoa on <a href="/view/30#comment-4">表示还没看懂啊，那几个箭头不太明白什么意思。</a></li>
+                  
+                  <li>root on <a href="/view/1#comment-2">失去了年华，容颜退却~</a></li>
+                  
+                
+               </ul>
+            </div>     
+         </div>
+         <div class="span4">
+                        <div class="fwidget">
+               <h4>Categories</h4>
+               <ul>
+                
+                  
+                    <li><a href="/category/1">代码</a></li>
+                  
+                    <li><a href="/category/2"> 笔记</a></li>
+                  
+                    <li><a href="/category/3">文学</a></li>
+                  
+                
+               </ul>
+            </div>   
+                     </div>
+      <div class="span12">
+         <div class="copy">
+            <p>Copyright &copy; 2013 - <a href="/">SudoChina.com.</a> Powered by <a href="https://github.com/insionng/toropress" target="_blank">ToroPress</a>. <script src="http://s21.cnzz.com/stat.php?id=4835781&web_id=4835781" language="JavaScript"></script>
+            </p>
+         </div>
+      </div>
+    </div>
+  <div class="clearfix"></div>
+  </div>
+</footer>       
+
+
+<script src="/static/js/jquery-1.8.2.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+</body>
+</html>
