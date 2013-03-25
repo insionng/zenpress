@@ -145,6 +145,19 @@
 {{end}}
 
 <div class="widget">
+  <h3><span>最新10个话题</span></h3>
+  <ul>
+  {{if .topics_10s}}
+    {{range .topics_10s}}
+      <li><a href="/view/{{.Id}}" title="{{.Title}}">{{.Title}}</a></li>
+    {{end}}
+  {{else}}
+    <li>无该节点数据</li>
+  {{end}}
+  </ul>
+</div>
+
+<div class="widget">
   <h3><span>最新10个节点</span></h3>
   <ul>
   {{if .nodes_10s}}
