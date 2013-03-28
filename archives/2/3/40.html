@@ -86,160 +86,173 @@
    <div class="container">
       <div class="row">
          <div class="span8">
-          <div class="tabbable"> 
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">最新</a></li>
-    <li><a href="#tab2" data-toggle="tab">最热</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-      
-<h3><span>日志章节</span></h3>
+          
+<h3 style="display:none"><span>Post</span></h3>
 <div class="posts">
-
-
-<div class="entry" id="post-27">
-                  <div class="thumb">
-                     <a href="/view/31" rel="bookmark"><img width="130" height="130" src="http://responsivewebinc.com/nannie/wp-content/uploads/2012/11/girl-62328_640-130x130.jpg" class="attachment-post-thumbnail wp-post-image" alt="FastDFS一些常用命令" title="FastDFS一些常用命令" /></a>
-                  </div>
+                                    
+               <div class="entry" id="post-27">
                   <div class="matter">
                   
-                    <h2><a rel="bookmark" href="/view/31" title="FastDFS一些常用命令">FastDFS一些常用命令</a></h2>
-          <div>
-            
-            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/topic/31", context: document.body, success: function(){
-         alert("喜欢成功！");
-      }});'>喜欢 &raquo;</a></span>
-            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/topic/31", context: document.body, success: function(){
-         alert("恶心成功！");
-      }});'>恶心 &raquo;</a></span>
-          </div>
-                     <div class="meta"><i class="icon-calendar"></i>本话题发表于March 21 , 2013 at 05:05 am - <i class="icon-folder-open"></i> <a href="###" title="4个点击">4点击</a> - <i class="icon-comment"></i> <a href="#comments" title="0 个评论">0 评论</a>
-                     </div>
-                      <div>
-                        
-                        
-                        FASTDFS启动命令
-fdfs_trackerd /etc/fdfs/tracker.conf
-fdfs_storaged /etc/fdfs/storage.conf
-测试
-fdfs_test /etc/fdfs/client.conf upload ./test.jpg
-删除文件
-fdfs_d
-                      </div>
-                  </div>
+                     <h2>技术类站点如何添加语法高亮功能？</h2>
+                     
+                     <div class="meta"><i class="icon-calendar"></i> March 25 , 2013 at 04:56 am - <i class="icon-folder-open"></i> <a href="/user/0/" title="View all posts in " rel="category tag"></a> - <a href="###" title="6个点击">6点击</a> - <i class="icon-comment"></i> <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a></div>
+                     
+                     <div><p>做技术类、IT资讯类站点该如何给ckeditor添加语法高亮功能？ckeditor4+SyntaxHighlighter可以实现！</p>
+
+<p>第一步，下载ckeditor和insertpre按钮插件：</p>
+
+<p>CKEditor4下载地址：<a href="http://ckeditor.com/download" target="_blank">http://ckeditor.com/download</a><br />
+insertpre&nbsp;plugin下载地址：<a href="http://ckeditor.com/addon/insertpre" target="_blank">http://ckeditor.com/addon/insertpre</a></p>
+
+<p>第二步，安装insertpre按钮插件</p>
+
+<p><span style="line-height:1.6em">解压insertpre下载文件，将解压后的文件夹放到CKEditor的plugins下。</span></p>
+
+<p>配置config.js，加入下面代码就可以使用insertpre功能和支持SyntaxHighlighter样式了：</p>
+
+<pre class="brush: js;">
+	config.extraPlugins = &#39;insertpre&#39;;
+	CKEDITOR.config.insertpre_class = &#39;brush: js;&#39;;</pre>
+
+<p>&nbsp;</p>
+
+<p><span style="line-height:1.6em">第三步，安装</span>SyntaxHighlighter</p>
+
+<p>&nbsp;</p>
+
+<p>在你的网站页面的&lt;head&gt;&lt;/head&gt;之间加入下面代码</p>
+
+<pre class="brush: js;">
+    &lt;script type=&quot;text/javascript&quot; src=&quot;syntaxhighlighter/scripts/shCore.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;syntaxhighlighter/scripts/shBrushJScript.js&quot;&gt;&lt;/script&gt;
+    &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;syntaxhighlighter/styles/shCoreDefault.css&quot;/&gt;
+    &lt;link type=&quot;text/css&quot; rel=&quot;Stylesheet&quot; href=&quot;syntaxhighlighter/styles/shThemeEmacs.css&quot;/&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;SyntaxHighlighter.all();&lt;/script&gt;</pre>
+
+<p>&nbsp;</p>
+
+<p>SyntaxHighlighter的路径请根据你自己的路径设定</p>
+
+<p>&nbsp;</p>
+
+<p>okay，大功告成，马上发一篇代码源码看看样式效果吧~</p>
+</div>
+                     Tags: <a href="http://responsivewebinc.com/nannie/tag/condimen/" rel="tag">condimen</a> <a href="http://responsivewebinc.com/nannie/tag/lobor/" rel="tag">lobor</a>                  </div>
                   <div class="clearfix"></div>
-</div>
+               </div>
+               
+                
 
-<div class="entry" id="post-27">
-                  <div class="thumb">
-                     <a href="/view/29" rel="bookmark"><img width="130" height="130" src="http://responsivewebinc.com/nannie/wp-content/uploads/2012/11/girl-62328_640-130x130.jpg" class="attachment-post-thumbnail wp-post-image" alt="linux下在电脑范围内搜索文件内容字符串" title="linux下在电脑范围内搜索文件内容字符串" /></a>
-                  </div>
-                  <div class="matter">
-                  
-                    <h2><a rel="bookmark" href="/view/29" title="linux下在电脑范围内搜索文件内容字符串">linux下在电脑范围内搜索文件内容字符串</a></h2>
-          <div>
-            
-            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/topic/29", context: document.body, success: function(){
-         alert("喜欢成功！");
-      }});'>喜欢 &raquo;</a></span>
-            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/topic/29", context: document.body, success: function(){
-         alert("恶心成功！");
-      }});'>恶心 &raquo;</a></span>
-          </div>
-                     <div class="meta"><i class="icon-calendar"></i>本话题发表于March 20 , 2013 at 06:08 am - <i class="icon-folder-open"></i> <a href="###" title="6个点击">6点击</a> - <i class="icon-comment"></i> <a href="#comments" title="0 个评论">0 评论</a>
-                     </div>
-                      <div>
-                        
-                        
-                        grep -n &quot;被查找的字符串&quot; -r .
-                      </div>
-                  </div>
-                  <div class="clearfix"></div>
-</div>
+ 
+<div class="comments well">
+<h3><span class="comment-heading">Comments - </span>1 Responses</h3>
+ 
 
 
 
-    <div class='pagination'><span class='page-numbers'>找到相关结果2个，共1页</span><span class='page-numbers current'>1</span></div>
-  <div class="clearfix"></div>   
-</div>
+<ul class="media-list">
+   
+   
+   <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-10" >
 
-    </div>
-    <div class="tab-pane" id="tab2">
       
-<h3><span>日志章节</span></h3>
-<div class="posts">
-
-
-<div class="entry" id="post-27">
-                  <div class="thumb">
-                     <a href="/view/29" rel="bookmark"><img width="130" height="130" src="http://responsivewebinc.com/nannie/wp-content/uploads/2012/11/girl-62328_640-130x130.jpg" class="attachment-post-thumbnail wp-post-image" alt="linux下在电脑范围内搜索文件内容字符串" title="linux下在电脑范围内搜索文件内容字符串" /></a>
-                  </div>
-                  <div class="matter">
-                  
-                    <h2><a rel="bookmark" href="/view/29" title="linux下在电脑范围内搜索文件内容字符串">linux下在电脑范围内搜索文件内容字符串</a></h2>
-          <div>
+      <div id="comment-10" class="comment-box">
+            <div class="comment-author"><strong>haorons</strong></div>
+            <div class="cmeta">March 25 , 2013 at 05:48 am</div>
+            <div class="clearfix"></div>  
+            <p>有没有sublime颜色风格的匹配效果呢？</p>
             
-            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/topic/29", context: document.body, success: function(){
-         alert("喜欢成功！");
-      }});'>喜欢 &raquo;</a></span>
-            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/topic/29", context: document.body, success: function(){
-         alert("恶心成功！");
-      }});'>恶心 &raquo;</a></span>
-          </div>
-                     <div class="meta"><i class="icon-calendar"></i>本话题发表于March 20 , 2013 at 06:08 am - <i class="icon-folder-open"></i> <a href="###" title="6个点击">6点击</a> - <i class="icon-comment"></i> <a href="#comments" title="0 个评论">0 评论</a>
-                     </div>
-                      <div>
-                        
-                        
-                        grep -n &quot;被查找的字符串&quot; -r .
-                      </div>
-                  </div>
-                  <div class="clearfix"></div>
+            <div class="comment-reply pull-right">
+               
+               <a class='comment-reply-link' href='?replytocom=10#respond' onclick='return addComment.moveForm("comment-10", "10", "respond", "0")'>Reply</a>
+            </div>
+            <div class="clearfix"></div>
+      
+            <div class="clear"></div>
+      </div>
+   </li>
+   
+</ul>
+
+
 </div>
 
-<div class="entry" id="post-27">
-                  <div class="thumb">
-                     <a href="/view/31" rel="bookmark"><img width="130" height="130" src="http://responsivewebinc.com/nannie/wp-content/uploads/2012/11/girl-62328_640-130x130.jpg" class="attachment-post-thumbnail wp-post-image" alt="FastDFS一些常用命令" title="FastDFS一些常用命令" /></a>
-                  </div>
-                  <div class="matter">
-                  
-                    <h2><a rel="bookmark" href="/view/31" title="FastDFS一些常用命令">FastDFS一些常用命令</a></h2>
-          <div>
+<div class="navigation">
+<div class="pull-left"><a href="/comment-page-1/#comments" >&laquo; Older Comments</a></div>
+<div class="pull-right"></div>
+</div>
+
+<div class="clearfix"></div>
+
+ 
+ 
+<div id="respond" class="respond well">
+ 
+<h3><span>Leave a Reply</span></h3>
+ 
+<div class="cancel-comment-reply">
+<a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Cancel Reply</a></div>
+
+<div class="clearfix"></div>
+ 
+
+<form action="/new/reply/40" method="post" id="commentform" class="form-horizontal">
+      <div class="control-group">
+         <label class="control-label" for="author">Name</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="author" id="author" value="" required>
+         </div>
+      </div>  
+
+      <div class="control-group">
+         <label class="control-label" for="email">Email</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="email" id="email" value="" required>
+         </div>
+      </div>
+
+      <div class="control-group">
+         <label class="control-label" for="website">Website</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="website" id="website" value="" >
+         </div>
+      </div> 
+	
+ 
+
+ 
+      <div class="control-group">
+         <label class="control-label" for="comment">Comment</label>
+         <div class="controls">
+            <textarea class="input-xlarge" name="comment" id="comment" rows="8" style="width:78%;"></textarea>
+         </div>
+      </div> 
+
+      <div class="form-actions">
+         <input name="submit" type="submit" id="comment-submit" tabindex="5" value="评论" class="btn" />
+         <button type="reset" class="btn">清空</button>
+      </div>
+ 
+<p>
+<input type='hidden' name='comment_userid' value='0' id='comment_userid' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='40' />
+</p>
+
+<div class="clear"></div>
+</form>
+ 
+</div>
+
             
-            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/topic/31", context: document.body, success: function(){
-         alert("喜欢成功！");
-      }});'>喜欢 &raquo;</a></span>
-            <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/topic/31", context: document.body, success: function(){
-         alert("恶心成功！");
-      }});'>恶心 &raquo;</a></span>
-          </div>
-                     <div class="meta"><i class="icon-calendar"></i>本话题发表于March 21 , 2013 at 05:05 am - <i class="icon-folder-open"></i> <a href="###" title="4个点击">4点击</a> - <i class="icon-comment"></i> <a href="#comments" title="0 个评论">0 评论</a>
-                     </div>
-                      <div>
-                        
-                        
-                        FASTDFS启动命令
-fdfs_trackerd /etc/fdfs/tracker.conf
-fdfs_storaged /etc/fdfs/storage.conf
-测试
-fdfs_test /etc/fdfs/client.conf upload ./test.jpg
-删除文件
-fdfs_d
-                      </div>
-                  </div>
-                  <div class="clearfix"></div>
+   <div class="navigation">  
+      <div class="pull-left">&laquo; <a href="http://responsivewebinc.com/nannie/pellentesque-nec-lacus-quis-erat/" rel="prev">Pellentesque nec lacus quis erat</a></div>
+      <div class="pull-right"><a href="http://responsivewebinc.com/nannie/culputate-sit-amet-bibendum/" rel="next">Culputate sit amet bibendum</a> &raquo;</div>
+      <div class="clearfix"></div>
+   </div>
+   <div class="clearfix"></div>
 </div>
+            
 
-
-
-    <div class='pagination'><span class='page-numbers'>找到相关结果2个，共1页</span><span class='page-numbers current'>1</span></div>
-  <div class="clearfix"></div>   
-</div>
-
-    </div>
-  </div>
-</div>
          </div>
 
          <div class="span4">

@@ -22,9 +22,9 @@ const (
 
 type User struct {
 	Id            int64
-	Email         string
+	Email         string `qbs:"index"`
 	Password      string
-	Nickname      string
+	Nickname      string `qbs:"index"`
 	Realname      string
 	Avatar        string
 	Avatar_min    string
@@ -37,7 +37,7 @@ type User struct {
 	Postcode      string
 	Mobile        string
 	Website       string
-	Sex           string
+	Sex           int64
 	Qq            string
 	Msn           string
 	Weibo         string
@@ -45,9 +45,9 @@ type User struct {
 	Role          int64
 	Created       time.Time `qbs:"index"`
 	Hotness       float64   `qbs:"index"`
-	Hotup         int64
-	Hotdown       int64
-	Views         int64 `qbs:"index"`
+	Hotup         int64     `qbs:"index"`
+	Hotdown       int64     `qbs:"index"`
+	Views         int64     `qbs:"index"`
 	LastLoginTime time.Time
 	LastLoginIp   string
 	LoginCount    int64
@@ -56,17 +56,17 @@ type User struct {
 //category,Pid:root
 type Category struct {
 	Id             int64
-	Pid            int64
-	Uid            int64
+	Pid            int64 `qbs:"index"`
+	Uid            int64 `qbs:"index"`
 	Ctype          int64
 	Title          string
 	Content        string
 	Attachment     string
 	Created        time.Time `qbs:"index"`
 	Hotness        float64   `qbs:"index"`
-	Hotup          int64
-	Hotdown        int64
-	Views          int64 `qbs:"index"`
+	Hotup          int64     `qbs:"index"`
+	Hotdown        int64     `qbs:"index"`
+	Views          int64     `qbs:"index"`
 	Author         string
 	NodeTime       time.Time
 	NodeCount      int64
@@ -76,8 +76,8 @@ type Category struct {
 //node,Pid:category
 type Node struct {
 	Id              int64
-	Pid             int64
-	Uid             int64
+	Pid             int64 `qbs:"index"`
+	Uid             int64 `qbs:"index"`
 	Ctype           int64
 	Title           string
 	Content         string
@@ -85,9 +85,9 @@ type Node struct {
 	Created         time.Time `qbs:"index"`
 	Updated         time.Time `qbs:"index"`
 	Hotness         float64   `qbs:"index"`
-	Hotup           int64
-	Hotdown         int64
-	Views           int64 `qbs:"index"`
+	Hotup           int64     `qbs:"index"`
+	Hotdown         int64     `qbs:"index"`
+	Views           int64     `qbs:"index"`
 	Author          string
 	TopicTime       time.Time
 	TopicCount      int64
@@ -97,9 +97,9 @@ type Node struct {
 //topic,Pid:node
 type Topic struct {
 	Id              int64
-	Cid             int64
-	Nid             int64
-	Uid             int64
+	Cid             int64 `qbs:"index"`
+	Nid             int64 `qbs:"index"`
+	Uid             int64 `qbs:"index"`
 	Ctype           int64
 	Title           string
 	Content         string
@@ -107,9 +107,9 @@ type Topic struct {
 	Created         time.Time `qbs:"index"`
 	Updated         time.Time `qbs:"index"`
 	Hotness         float64   `qbs:"index"`
-	Hotup           int64
-	Hotdown         int64
-	Views           int64 `qbs:"index"`
+	Hotup           int64     `qbs:"index"`
+	Hotdown         int64     `qbs:"index"`
+	Views           int64     `qbs:"index"`
 	Author          string
 	ReplyTime       time.Time
 	ReplyCount      int64
@@ -119,19 +119,35 @@ type Topic struct {
 //reply,Pid:topic
 type Reply struct {
 	Id         int64
-	Uid        int64
-	Pid        int64 //Topic id
+	Uid        int64 `qbs:"index"`
+	Pid        int64 `qbs:"index"` //Topic id
 	Ctype      int64
 	Content    string
 	Attachment string
 	Created    time.Time `qbs:"index"`
 	Hotness    float64   `qbs:"index"`
-	Hotup      int64
-	Hotdown    int64
-	Views      int64 `qbs:"index"`
+	Hotup      int64     `qbs:"index"`
+	Hotdown    int64     `qbs:"index"`
+	Views      int64     `qbs:"index"`
 	Author     string
 	Email      string
 	Website    string
+}
+
+//site infomation
+type Site struct {
+	Id          int64
+	Pid         int64 `qbs:"index"`
+	Uid         int64 `qbs:"index"`
+	Ctype       int64
+	keywords    string `qbs:"index"`
+	description string `qbs:"index"`
+	Attachment  string
+	Created     time.Time `qbs:"index"`
+	Hotness     float64   `qbs:"index"`
+	Hotup       int64     `qbs:"index"`
+	Hotdown     int64     `qbs:"index"`
+	Views       int64     `qbs:"index"`
 }
 
 func ConnDb() (*qbs.Qbs, error) {

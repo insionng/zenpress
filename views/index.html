@@ -1,4 +1,56 @@
-<!-- Posts area -->
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">最新</a></li>
+    <li><a href="#tab2" data-toggle="tab">最热</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <!-- Posts area -->
+<h3><span>最新节点</span></h3>
+<div class="posts">
+{{$Userrole := .Userrole}}
+{{range .nodes_latest}}
+
+  <div class="entry" id="post-27">
+    <div class="thumb">
+       <a href="/node/{{.Id}}" rel="bookmark"><img width="130" height="130" src="http://responsivewebinc.com/nannie/wp-content/uploads/2012/11/girl-62328_640-130x130.jpg" class="attachment-post-thumbnail wp-post-image" alt="{{.Title}}" title="{{.Title}}" /></a>
+    </div>
+    <div class="matter">
+      <h2><a rel="bookmark" href="/node/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
+          <div>
+            {{if compare $Userrole -1000}}
+                <span><i class="fa-icon-user"></i> <a class="btn" href="/node/edit/{{.Id}}">编辑 &raquo;</a></span>
+                <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/node/delete/{{.Id}}">删除 &raquo;</a></span>
+            {{end}}
+                <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/node/{{.Id}}", context: document.body, success: function(){
+         alert("喜欢成功！");
+      }});'>喜欢 &raquo;</a></span>
+                <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/node/{{.Id}}", context: document.body, success: function(){
+         alert("恶心成功！");
+      }});'href="">恶心 &raquo;</a></span>
+          </div>
+          
+          <div class="meta"><i class="icon-calendar"></i>本节点创建于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="###" title="{{.Views}}个点击">{{.Views}}点击</a> - <i class="icon-comment"></i> <a href="/node/{{.Id}}" title="{{.TopicCount}}个话题">
+            {{.TopicCount}}话题</a>
+                     </div>
+                     <div>
+                        {{$cs:=html2str .Content}}
+                        {{$cs:=substr $cs 0 150}}
+                        {{str2html $cs}}
+                     </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+{{end}}
+
+<!-- Pagination -->
+    {{.pagesbar}}
+  <div class="clearfix"></div>   
+</div>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <!-- Posts area -->
 <h3><span>热门节点</span></h3>
 <div class="posts">
 {{$Userrole := .Userrole}}
@@ -39,4 +91,7 @@
 <!-- Pagination -->
     {{.pagesbar}}
   <div class="clearfix"></div>   
+</div>
+    </div>
+  </div>
 </div>

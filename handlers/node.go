@@ -25,21 +25,24 @@ func (self *NodeHandler) Get() {
 	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
 	self.Data["pagesbar"] = utils.Pagesbar("", rcs, pages, pageout, beginnum, endnum, 1)
 	self.Data["nodeid"] = nid
-	self.Data["topics"] = models.GetAllTopicByNid(nid, offset, limit, "hotness")
+	self.Data["topics_hotness"] = models.GetAllTopicByNid(nid, offset, limit, "hotness")
+	self.Data["topics_latest"] = models.GetAllTopicByNid(nid, offset, limit, "id")
 
 	self.TplNames = "node.html"
 	self.Layout = "layout.html"
 
 	if nid != 0 {
-		if sess_userrole, _ := self.GetSession("userrole").(int64); sess_userrole == -1000 {
-			self.Render()
-		} else {
-			nid_path := strconv.Itoa(int(nid_handler.Pid)) + "/" + strconv.Itoa(int(nid_handler.Id)) + "/"
-			nid_name := "index.html"
-			rs, _ := self.RenderString()
-			utils.Writefile("./archives/"+nid_path, nid_name, rs)
-			self.Redirect("/archives/"+nid_path+nid_name, 301)
-		}
+		self.Render()
+		/*
+			if sess_userrole, _ := self.GetSession("userrole").(int64); sess_userrole == -1000 {
+				self.Render()
+			} else {
+				nid_path := strconv.Itoa(int(nid_handler.Pid)) + "/" + strconv.Itoa(int(nid_handler.Id)) + "/"
+				nid_name := "index.html"
+				rs, _ := self.RenderString()
+				utils.Writefile("./archives/"+nid_path, nid_name, rs)
+				self.Redirect("/archives/"+nid_path+nid_name, 301)
+			}*/
 	} else {
 		self.Redirect("/", 302)
 	}

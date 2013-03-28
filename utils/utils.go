@@ -331,17 +331,16 @@ func Substr(str string, start, length int) string {
 func Writefile(path string, filename string, content string) error {
 	//path = path[0 : len(path)-len(filename)]
 	filename = path + filename
-
 	os.MkdirAll(path, 0777)
 	file, err := os.Create(filename)
 	if err != nil {
 		return err
+	} else {
+		writer := bufio.NewWriter(file)
+		writer.WriteString(content)
+		writer.Flush()
 	}
 	defer file.Close()
-
-	writer := bufio.NewWriter(file)
-	writer.WriteString(content)
-	writer.Flush()
 	return nil
 }
 
