@@ -134,20 +134,30 @@ type Reply struct {
 	Website    string
 }
 
-//site infomation
-type Site struct {
-	Id          int64
-	Pid         int64 `qbs:"index"`
-	Uid         int64 `qbs:"index"`
-	Ctype       int64
-	keywords    string `qbs:"index"`
-	description string `qbs:"index"`
-	Attachment  string
-	Created     time.Time `qbs:"index"`
-	Hotness     float64   `qbs:"index"`
-	Hotup       int64     `qbs:"index"`
-	Hotdown     int64     `qbs:"index"`
-	Views       int64     `qbs:"index"`
+// k/v infomation
+type Kvs struct {
+	Id int64
+	K  string
+	V  string
+}
+
+type Contact struct {
+	Id    int64
+	City  string
+	AddCn string
+	AddEn string
+	Tel   string
+	Fax   string
+	Email string
+}
+
+type Upload struct {
+	Uid   int64
+	Ctype int64
+	Size  int64
+	Url   string
+	ext   string
+	Tid   int64
 }
 
 func ConnDb() (*qbs.Qbs, error) {
@@ -177,6 +187,7 @@ func CreateDb() bool {
 		mg.CreateTableIfNotExists(new(Node))
 		mg.CreateTableIfNotExists(new(Topic))
 		mg.CreateTableIfNotExists(new(Reply))
+		mg.CreateTableIfNotExists(new(Kvs))
 
 		//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
 		if GetUserByRole(-1000).Role != -1000 {
@@ -189,6 +200,23 @@ func CreateDb() bool {
 				AddTopic("Hello World!", "This is Toropress!", 1, 1, 1)
 			}
 		}
+
+		if GetKV("author") != "Insion" {
+			SetKV("author", "Insion")
+			SetKV("title", "速动中国")
+			SetKV("title_en", "SudoChina")
+			SetKV("keywords", "速动中国,SudoChina")
+			SetKV("description", "SudoChina，速动中国是借力开源技术打造的站长技术交流平台，在这里我们会分享开源技术及站长软件工具，分享运营经验和站长行业交流！欢迎大家注册，享受分享知识的乐趣，请收藏！")
+
+			SetKV("company", "SudoChina.com")
+			SetKV("copyright", "© Powered by ToroPress")
+			SetKV("site_email", "insion@lihuashu.com")
+
+			SetKV("tweibo", "http://t.qq.com/insion")
+			SetKV("sweibo", "http://weibo.com/cheunghungng")
+
+		}
+
 		return true
 	}
 
@@ -273,6 +301,41 @@ func TopicCount() (today int, this_week int, this_month int) {
 	}
 
 	return today, this_week, this_month
+}
+
+func AddKV(k string, v string) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	_, err := q.Save(&Kvs{K: k, V: v})
+	return err
+}
+
+func SetKV(k string, v string) error {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	var kvs Kvs
+	if q.Where("k=?", k).Find(&kvs); kvs.Id == 0 {
+		_, err := q.Save(&Kvs{K: k, V: v})
+		return err
+	} else {
+		type Kvs struct {
+			K string
+			V string
+		}
+
+		_, err := q.WhereEqual("k", k).Update(&Kvs{K: k, V: v})
+
+		return err
+	}
+	return nil
+}
+
+func GetKV(k string) (v string) {
+	q, _ := ConnDb()
+	defer q.Db.Close()
+	var kvs Kvs
+	q.Where("k=?", k).Find(&kvs)
+	return kvs.V
 }
 
 func AddUser(email string, nickname string, password string, role int) error {
