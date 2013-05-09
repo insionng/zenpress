@@ -4,7 +4,6 @@ import (
 	"../libs"
 	"../models"
 	"../utils"
-	"strconv"
 )
 
 type SearchHandler struct {
@@ -12,14 +11,17 @@ type SearchHandler struct {
 }
 
 func (self *SearchHandler) Get() {
-	inputs := self.Input()
-	if keyword := inputs.Get("keyword"); keyword != "" {
-		page, _ := strconv.Atoi(inputs.Get("page"))
+	if keyword := self.GetString("keyword"); keyword != "" {
+		page, _ := self.GetInt("page")
 		limit := 25
+
 		rcs := len(models.SearchTopic(keyword, 0, 0, "id"))
-		pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
-		self.Data["pagesbar"] = utils.Pagesbar(keyword, rcs, pages, pageout, beginnum, endnum, 1)
+		pages, pageout, beginnum, endnum, offset := utils.Pages(rcs,int(page), limit)
 		self.Data["search_hotness"] = models.SearchTopic(keyword, offset, limit, "hotness")
+
+		keywordz := "keyword=" + keyword + "&"
+		self.Data["pagesbar"] = utils.Pagesbar(keywordz, rcs, pages, pageout, beginnum, endnum, 1)
+
 	}
 	self.TplNames = "search.html"
 	self.Layout = "layout.html"

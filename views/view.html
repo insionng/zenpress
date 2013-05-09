@@ -20,9 +20,7 @@
          </div>
 
          <div>{{str2html .article.Content}}</div>
-         Tags:
-         <a href="http://responsivewebinc.com/nannie/tag/condimen/" rel="tag">condimen</a>
-         <a href="http://responsivewebinc.com/nannie/tag/lobor/" rel="tag">lobor</a>
+
       </div>
       <div class="clearfix"></div>
    </div>
@@ -35,15 +33,7 @@
          {{.article.ReplyCount}} Responses
       </h3>
 
-      <!-- <div class="navigation">
-      <div class="alignleft">
-         <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/comment-page-1/#comments" >&laquo; Older Comments</a>
-      </div>
-      <div class="alignright"></div>
-   </div>
-   -->
-
-{{if .replys}}
+ {{if .replys}}
    <ul class="media-list">
       {{$Userrole := .Userrole}}
    {{range .replys}}
@@ -73,13 +63,6 @@
       {{end}}
    </ul>
    {{end}}
-</div>
-
-<div class="navigation">
-   <div class="pull-left">
-      <a href="/comment-page-1/#comments" >&laquo; Older Comments</a>
-   </div>
-   <div class="pull-right"></div>
 </div>
 
 <div class="clearfix"></div>
@@ -146,14 +129,18 @@
 
 <!-- Navigation -->
 <div class="navigation">
-<div class="pull-left">
-   &laquo;
-   <a href="http://responsivewebinc.com/nannie/pellentesque-nec-lacus-quis-erat/" rel="prev">Pellentesque nec lacus quis erat</a>
-</div>
+{{if .previd}}
+   <div class="pull-left">
+      &laquo;
+      <a href="/view/{{.previd}}" rel="prev">上篇日志</a>
+   </div>
+{{end}}
+{{if .nextid}}
 <div class="pull-right">
-   <a href="http://responsivewebinc.com/nannie/culputate-sit-amet-bibendum/" rel="next">Culputate sit amet bibendum</a>
+   <a href="/view/{{.nextid}}" rel="next">下篇日志</a>
    &raquo;
 </div>
+{{end}}
 <div class="clearfix"></div>
 </div>
 <div class="clearfix"></div>

@@ -186,7 +186,7 @@ func OpenDb(dbtype string) (db *sql.DB, err error) {
 
 	case dbtype == "mysql":
 		//db, err := sql.Open("mysql", "qbs_test@/qbs_test?charset=utf8&loc=Local")
-		db, err = sql.Open(pgDriver, fmt.Sprintf(pgDrvFormat, DbUser, DbName))
+		db, err = sql.Open(mysqlDriver, fmt.Sprintf(mysqlDrvformat, DbUser, DbName))
 
 	case dbtype == "pgsql":
 		db, err = sql.Open(pgDriver, fmt.Sprintf(pgDrvFormat, DbUser, DbName))
@@ -258,10 +258,10 @@ func CreateDb() bool {
 
 			if GetAllTopic(0, 0, "id") == nil {
 				//分類默認數據
-				AddCategory("about", "This is Category！")
+				AddCategory("Category！", "This is Category！")
 
-				AddNode("合作單位", "This is Node!", 1, 1)
-				SetTopic(1, 1, 1, 1, 0, "Topic Title", `<p>This is Topic!</p>`, "root", "")
+				AddNode("Node！", "This is Node!", 1, 1)
+				SetTopic(0, 1, 1, 1, 0, "Topic Title", `<p>This is Topic!</p>`, "root", "")
 
 			}
 		}
@@ -592,7 +592,7 @@ func AddNode(title string, content string, cid int64, uid int64) error {
 		NodeLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, "id"))), NodeLastUserId: uid}); err != nil {
+	if _, err := q.WhereEqual("id", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, 0, "id"))), NodeLastUserId: uid}); err != nil {
 		return err
 	}
 	/*
@@ -778,25 +778,50 @@ func GetAllTopic(offset int, limit int, path string) (allt []*Topic) {
 	return allt
 }
 
-func GetAllNodeByCid(cid int64, offset int, limit int, path string) (alln []*Node) {
+func GetAllNodeByCid(cid int64, offset int, limit int, ctype int64, path string) (alln []*Node) {
 	//排序首先是热值优先，然后是时间优先。
 	q, _ := ConnDb()
 	defer q.Close()
 	switch {
 	case path == "asc":
-
-		if cid == 0 {
-			q.Offset(offset).Limit(limit).FindAll(&alln)
+		if ctype != 0 {
+			condition := qbs.NewCondition("pid=?", cid).And("ctype=?", ctype)
+			q.Condition(condition).Offset(offset).Limit(limit).FindAll(&alln)
 		} else {
-			q.WhereEqual("pid", cid).Offset(offset).Limit(limit).FindAll(&alln)
+			if cid == 0 {
+				q.Offset(offset).Limit(limit).FindAll(&alln)
+			} else {
+				q.WhereEqual("pid", cid).Offset(offset).Limit(limit).FindAll(&alln)
+			}
+
+		}
+	case path == "views" || path == "topic_count":
+		if ctype != 0 {
+			condition := qbs.NewCondition("pid=?", cid).And("ctype=?", ctype)
+			q.Condition(condition).OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&alln)
+
+		} else {
+			if cid == 0 {
+				q.OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&alln)
+			} else {
+				q.WhereEqual("pid", cid).OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&alln)
+			}
+
 		}
 	default:
+		if ctype != 0 {
 
-		if cid == 0 {
-			q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+			condition := qbs.NewCondition("pid=?", cid).And("ctype=?", ctype)
+			q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+
 		} else {
-			q.WhereEqual("pid", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+			if cid == 0 {
+				q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+			} else {
+				q.WhereEqual("pid", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+			}
 		}
+
 	}
 	return alln
 }
@@ -805,13 +830,6 @@ func GetAllTopicByCid(cid int64, offset int, limit int, ctype int64, path string
 	//排序首先是热值优先，然后是时间优先。
 	q, _ := ConnDb()
 	defer q.Close()
-	/*
-		if cid == 0 {
-			//q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
-			return nil
-		} else {
-			q.WhereEqual("cid", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
-		}*/
 
 	switch {
 	case path == "asc":
@@ -823,6 +841,19 @@ func GetAllTopicByCid(cid int64, offset int, limit int, ctype int64, path string
 			q.Where("cid=?", cid).Offset(offset).Limit(limit).FindAll(&allt)
 
 		}
+	case path == "views" || path == "reply_count":
+		if ctype != 0 {
+			condition := qbs.NewCondition("cid=?", cid).And("ctype=?", ctype)
+			q.Condition(condition).OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&allt)
+
+		} else {
+			if cid == 0 {
+				q.OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&allt)
+			} else {
+				q.WhereEqual("cid", cid).OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&allt)
+			}
+
+		}
 	default:
 		if ctype != 0 {
 
@@ -830,8 +861,12 @@ func GetAllTopicByCid(cid int64, offset int, limit int, ctype int64, path string
 			q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
 
 		} else {
-			q.Where("cid=?", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+			if cid == 0 {
+				q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
 
+			} else {
+				q.WhereEqual("cid", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+			}
 		}
 
 	}
@@ -992,7 +1027,7 @@ func EditNode(nid int64, cid int64, uid int64, title string, content string) err
 		NodeLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, "id"))), NodeLastUserId: int64(uid)}); err != nil {
+	if _, err := q.WhereEqual("id", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, 0, "id"))), NodeLastUserId: int64(uid)}); err != nil {
 		return err
 	}
 

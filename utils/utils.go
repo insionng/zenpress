@@ -68,9 +68,6 @@ func Pages(results_count int, page int, pagesize int) (pages int, pageout int, b
 
 func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int, endnum int, style int) (output template.HTML) {
 	var raw string
-	if keyword != "" {
-		keyword = "keyword=" + keyword + "&"
-	}
 	switch {
 	case style == 1:
 		/*

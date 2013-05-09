@@ -38,7 +38,7 @@ type RootHandler struct {
 
 func init() {
 	bc = torgo.NewBeeCache()
-	bc.Every = 604800 //該單位為秒，0為不過期，604800 即一個星期清空一次緩存
+	bc.Every = 259200 //該單位為秒，0為不過期，259200 三天,604800 即一個星期清空一次緩存
 	bc.Start()
 }
 
@@ -64,7 +64,7 @@ func (self *BaseHandler) Prepare() {
 	self.Data["nodes"] = models.GetAllNode()
 	self.Data["topics_5s"] = models.GetAllTopic(0, 5, "id")
 	self.Data["topics_10s"] = models.GetAllTopic(0, 10, "id")
-	self.Data["nodes_10s"] = models.GetAllNodeByCid(0, 0, 10, "id")
+	self.Data["nodes_10s"] = models.GetAllNodeByCid(0, 0, 10, 0, "id")
 	self.Data["replys_5s"] = models.GetReplyByPid(0, 0, 5, "id")
 	self.Data["replys_10s"] = models.GetReplyByPid(0, 0, 10, "id")
 
@@ -166,7 +166,7 @@ func (self *BaseHandler) Render() (err error) {
 			ivalue = utils.Convzh(rs, lang)
 		}
 
-		bc.Put(ikey, ivalue, 604800)
+		bc.Put(ikey, ivalue, 259200)
 
 	}
 
