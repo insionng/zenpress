@@ -4,7 +4,6 @@ import (
 	"../libs"
 	"../models"
 	"../utils"
-	"strconv"
 )
 
 type NodeHandler struct {
@@ -12,21 +11,20 @@ type NodeHandler struct {
 }
 
 func (self *NodeHandler) Get() {
-	inputs := self.Input()
-	page, _ := strconv.Atoi(inputs.Get("page"))
-	nid, _ := strconv.Atoi(self.Ctx.Params[":nid"])
+	page, _ := self.GetInt("page")
+	nid, _ := self.GetInt(":nid")
 
 	nid_handler := models.GetNode(nid)
 	nid_handler.Views = nid_handler.Views + 1
 	models.UpdateNode(nid, nid_handler)
 
 	limit := 25
-	rcs := len(models.GetAllTopicByNid(nid, 0, 0, "hotness"))
-	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
+	rcs := len(models.GetAllTopicByNid(nid, 0, 0, 0, "hotness"))
+	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, int(page), limit)
 	self.Data["pagesbar"] = utils.Pagesbar("", rcs, pages, pageout, beginnum, endnum, 1)
 	self.Data["nodeid"] = nid
-	self.Data["topics_hotness"] = models.GetAllTopicByNid(nid, offset, limit, "hotness")
-	self.Data["topics_latest"] = models.GetAllTopicByNid(nid, offset, limit, "id")
+	self.Data["topics_hotness"] = models.GetAllTopicByNid(nid, offset, limit, 0, "hotness")
+	self.Data["topics_latest"] = models.GetAllTopicByNid(nid, offset, limit, 0, "id")
 
 	self.TplNames = "node.html"
 	self.Layout = "layout.html"

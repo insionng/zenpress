@@ -3,12 +3,15 @@ package utils
 import (
 	"bufio"
 	"crypto/md5"
+	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
 	"html/template"
 	"io"
 	"math"
 	"net/smtp"
 	"os"
+	"os/exec"
 	"regexp"
 	"strconv"
 	"strings"
@@ -20,7 +23,7 @@ func Pages(results_count int, page int, pagesize int) (pages int, pageout int, b
 	//取得记录总数，计算总页数用
 	//results_count,总共有results_count条记录
 
-	//设定每一页显示的记录数 
+	//设定每一页显示的记录数
 	if pagesize < 0 || pagesize < 1 {
 		pagesize = 10 //如无设置，则默认每页显示10条记录
 	}
@@ -59,39 +62,30 @@ func Pages(results_count int, page int, pagesize int) (pages int, pageout int, b
 	//返回endnum
 
 	//计算记录偏移量
-	offset = (page - 1) * pagesize
-	return pages, page, beginnum, endnum, offset
+	offset = int((page - 1) * pagesize)
+	return int(pages), int(page), int(beginnum), int(endnum), offset
 }
 
 func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int, endnum int, style int) (output template.HTML) {
-	/*
-			"<div class='pagination'>"
-		        "<span class='page-numbers'>共"+strconv.Itoa(pages)+"页</span>"
-		        "<span class='page-numbers current'>"+strconv.Itoa(page)+"</span>"
-		        "<a class='page-numbers' href='?page="+strconv.Itoa(beginnum)+"'>"+strconv.Itoa(beginnum)+"</a>"
-		        "<a class="next page-numbers" href="?page="+strconv.Itoa(endnum)+">Next</a>"
-		    "</div>"
-	*/
-	/*
-		<div class="pagination"><ul>
-				<li><a href="#">&laquo;</a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">&raquo;</a></li>
-		</ul></div>
-	*/
 	var raw string
 	if keyword != "" {
 		keyword = "keyword=" + keyword + "&"
 	}
 	switch {
-	default:
+	case style == 1:
+		/*
+				"<div class='pagination'>"
+			        "<span class='page-numbers'>共"+strconv.Itoa(pages)+"页</span>"
+			        "<span class='page-numbers current'>"+strconv.Itoa(page)+"</span>"
+			        "<a class='page-numbers' href='?page="+strconv.Itoa(beginnum)+"'>"+strconv.Itoa(beginnum)+"</a>"
+			        "<a class="next page-numbers" href="?page="+strconv.Itoa(endnum)+">Next</a>"
+			    "</div>"
+		*/
+
 		raw = "<div class='pagination'>"
 		if results_max > 0 {
-			raw = raw + "<span class='page-numbers'>找到相关结果" + strconv.Itoa(results_max) + "个，共" + strconv.Itoa(pages) + "页</span>"
-			count := pages + 1
+			raw = raw + "<span class='page-numbers'>找到相关结果" + strconv.Itoa(int(results_max)) + "个，共" + strconv.Itoa(int(pages)) + "页</span>"
+			count := int(pages + 1)
 			for i := 1; i < count; i++ {
 				if i == page {
 					raw = raw + "<span class='page-numbers current'>" + strconv.Itoa(i) + "</span>"
@@ -104,32 +98,39 @@ func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int
 			}
 
 		} else {
-			raw = raw + "<h2>没有数据啊，天要塌啦～</h2>"
+			raw = raw + "<h2>Shit!No Data!</h2>"
 			raw = raw + "<span class='page-numbers'>共0页</span>"
 		}
 		output = template.HTML(raw + "</div>")
+
 	case style == 2:
+		/*
+			<div class="pagination"><ul>
+					<li><a href="#">&laquo;</a></li>
+					<li class="active"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">&raquo;</a></li>
+			</ul></div>
+		*/
+
 		if results_max > 0 {
-			raw = "<div class='pagination'><ul>"
-			//raw = raw + "<span class='page-numbers'>找到相关结果" + strconv.Itoa(results_max) + "个，共" + strconv.Itoa(pages) + "页</span>"
+			raw = "<div class='pagination pagination-centered'><ul>"
 			count := pages + 1
+			//begin page
+			if (page != beginnum) && (page > beginnum) {
+				raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(page-1) + "'>&laquo;</a></li>"
+			}
 			for i := 1; i < count; i++ {
-				//begin page
-				if (page != beginnum) && (page != i) && (page > i) && (page > beginnum) {
-					//raw = raw + "<a class='next page-numbers' href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>Next</a>"
-					raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(beginnum) + "'>&laquo;</a></li>"
-				}
 				//current page and loop pages
 				if i == page {
-					//raw = raw + "<span class='page-numbers current'>" + strconv.Itoa(i) + "</span>"
 					raw = raw + "<li class='active'><a href='javascript:void();'>" + strconv.Itoa(i) + "</a></li>"
 				} else {
-					//raw = raw + "<a class='page-numbers' href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a>"
 					raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a></li>"
 				}
 				//next page
 				if (page != endnum) && (page < endnum) && (i == pages) {
-					//raw = raw + "<a class='next page-numbers' href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>Next</a>"
 					raw = raw + "<li><a href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>&raquo;</a></li>"
 				}
 			}
@@ -137,6 +138,40 @@ func Pagesbar(keyword string, results_max int, pages int, page int, beginnum int
 		}
 
 		output = template.HTML(raw)
+
+	case style == 3:
+		/*
+			<div class="pagenav">
+				<p>
+					<a href="" class="on">1</a>
+					<a href="">2</a>
+					<a href="">3</a>
+					<a href="">4</a>
+				</p>
+			</div>
+		*/
+		raw = "<div class=\"pagenav\">"
+		if results_max > 0 {
+			raw = raw + "<p>"
+			count := int(pages + 1)
+			for i := 1; i < count; i++ {
+				if i == page { //当前页
+					raw = raw + "<a onclick=\"javascript:void();\" class=\"on\">" + strconv.Itoa(i) + "</a>"
+				} else { //普通页码链接
+					raw = raw + "<a href='?" + keyword + "page=" + strconv.Itoa(i) + "'>" + strconv.Itoa(i) + "</a>"
+				}
+			}
+			if (page != pages) && (page < pages) { //下一页
+				raw = raw + "<a class='next' href='?" + keyword + "page=" + strconv.Itoa(page+1) + "'>下一页</a>"
+			}
+
+		} else {
+			raw = raw + "<h2>No Data!</h2>"
+			raw = raw + "<span class='page-numbers'>共0页</span>"
+		}
+		raw = raw + "</p>"
+		output = template.HTML(raw + "</div>")
+
 	}
 
 	return output
@@ -231,10 +266,18 @@ func ThisYear() time.Time {
 
 // 对字符串进行md5哈希,
 // 返回32位小写md5结果
+/*
 func MD5(s string) string {
 	h := md5.New()
 	io.WriteString(h, s)
 	return fmt.Sprintf("%x", h.Sum(nil))
+}
+*/
+func MD5(s string) string {
+	hash := md5.New()
+	hash.Write([]byte(s))
+	result := hex.EncodeToString(hash.Sum(nil))
+	return result
 }
 
 // 对字符串进行md5哈希,
@@ -243,7 +286,48 @@ func MD5_16(s string) string {
 	return MD5(s)[8:24]
 }
 
-/** 
+// 对字符串进行sha1哈希,
+// 返回42位小写sha1结果
+func SHA1(s string) string {
+
+	hasher := sha1.New()
+	hasher.Write([]byte(s))
+
+	//result := fmt.Sprintf("%x", (hasher.Sum(nil)))
+	result := hex.EncodeToString(hasher.Sum(nil))
+	return result
+}
+
+func Filehash(path string) string {
+	file, err := os.Open(path)
+	defer file.Close()
+	hash := ""
+
+	if err != nil {
+		return ""
+	}
+
+	data := make([]byte, 1024)
+	for {
+		n, err := file.Read(data)
+
+		if n != 0 {
+			//hash = MD5(string(data))
+			hash = SHA1(string(data))
+		} else {
+			break
+		}
+
+		if err != nil && err != io.EOF {
+			//panic(err)
+			return ""
+		}
+	}
+
+	return hash
+}
+
+/**
 * user : example@example.com login smtp server user
 * password: xxxxx login smtp server password
 * host: smtp.example.com:port   smtp.163.com:25
@@ -297,8 +381,34 @@ func GetSensitiveInfoRemovedEmail(email string) string {
 	return result
 }
 
+func Html2str(html string) string {
+	src := string(html)
+
+	//将HTML标签全转换成小写
+	re, _ := regexp.Compile("\\<[\\S\\s]+?\\>")
+	src = re.ReplaceAllStringFunc(src, strings.ToLower)
+
+	//去除STYLE
+	re, _ = regexp.Compile("\\<style[\\S\\s]+?\\</style\\>")
+	src = re.ReplaceAllString(src, "")
+
+	//去除SCRIPT
+	re, _ = regexp.Compile("\\<script[\\S\\s]+?\\</script\\>")
+	src = re.ReplaceAllString(src, "")
+
+	//去除所有尖括号内的HTML代码，并换成换行符
+	re, _ = regexp.Compile("\\<[\\S\\s]+?\\>")
+	src = re.ReplaceAllString(src, "\n")
+
+	//去除连续的换行符
+	re, _ = regexp.Compile("\\s{2,}")
+	src = re.ReplaceAllString(src, "\n")
+
+	return strings.TrimSpace(src)
+}
+
 //截取字符
-func Substr(str string, start, length int) string {
+func Substr(str string, start, length int, symbol string) string {
 	rs := []rune(str)
 	rl := len(rs)
 	end := 0
@@ -325,13 +435,13 @@ func Substr(str string, start, length int) string {
 		end = rl
 	}
 
-	return string(rs[start:end])
+	return string(rs[start:end]) + symbol
 }
 
 func Writefile(path string, filename string, content string) error {
 	//path = path[0 : len(path)-len(filename)]
 	filename = path + filename
-	os.MkdirAll(path, 0777)
+	os.MkdirAll(path, 0644)
 	file, err := os.Create(filename)
 	if err != nil {
 		return err
@@ -404,4 +514,47 @@ func CheckEmail(email string) (b bool) {
 		return false
 	}
 	return true
+}
+
+func Thumbnail(input_file string, output_file string, output_size string, output_align string, background string) error {
+	cmd := exec.Command("convert", "-thumbnail", output_size, "-background", background, "-gravity", output_align, "-extent", output_size, input_file, output_file)
+	err := cmd.Run()
+
+	if err != nil {
+		//fmt.Println("convert failed.")
+		return err
+
+	} else {
+		//fmt.Println("convert okay!")
+		return nil
+	}
+	return nil
+
+}
+
+func Watermark(watermark_file string, input_file string, output_file string, output_align string) error {
+	//composite -gravity southeast -dissolve 30 -geometry +15%+15%  lhslogo.png input_file.jpg output_file.jpg
+	cmd := exec.Command("composite", "-gravity", output_align, "-dissolve", "100", watermark_file, input_file, output_file)
+
+	err := cmd.Run()
+
+	if err != nil {
+		return err
+	} else {
+		return nil
+	}
+	return nil
+
+}
+
+func Rex(text string, iregexp string) (b bool) {
+	if ok, _ := regexp.MatchString(iregexp, text); !ok {
+		return false
+	}
+	return true
+}
+
+func Exist(filename string) bool {
+	_, err := os.Stat(filename)
+	return err == nil || os.IsExist(err)
 }

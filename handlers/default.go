@@ -4,7 +4,6 @@ import (
 	"../libs"
 	"../models"
 	"../utils"
-	"strconv"
 )
 
 type MainHandler struct {
@@ -12,19 +11,23 @@ type MainHandler struct {
 }
 
 func (self *MainHandler) Get() {
-
-	inputs := self.Input()
-	page, _ := strconv.Atoi(inputs.Get("page"))
-	id, _ := strconv.Atoi(self.Ctx.Params[":cid"])
-	rcs := len(models.GetAllNodeByCid(id, 0, 0, "hotness"))
+	page, _ := self.GetInt("page")
+	cid, _ := self.GetInt(":cid")
+	home := "false"
+	if cid == 0 {
+		home = "true"
+	}
+	rcs := len(models.GetAllNodeByCid(cid, 0, 0, "hotness"))
 
 	limit := 25
-	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, page, limit)
+	pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, int(page), limit)
+	self.Data["home"] = home
+	self.Data["curcate"] = cid
 	self.Data["pagesbar"] = utils.Pagesbar("", rcs, pages, pageout, beginnum, endnum, 1)
-	self.Data["nodes_latest"] = models.GetAllNodeByCid(id, offset, limit, "id")
-	self.Data["nodes_hotness"] = models.GetAllNodeByCid(id, offset, limit, "hotness")
+	self.Data["nodes_latest"] = models.GetAllNodeByCid(cid, offset, limit, "id")
+	self.Data["nodes_hotness"] = models.GetAllNodeByCid(cid, offset, limit, "hotness")
 	self.Layout = "layout.html"
 	self.TplNames = "index.html"
-	self.Render()
+	//self.Render()
 
 }

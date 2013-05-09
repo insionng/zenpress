@@ -3,7 +3,6 @@ package handlers
 import (
 	"../libs"
 	"../models"
-	"strconv"
 )
 
 type TopicDeleteHandler struct {
@@ -11,7 +10,7 @@ type TopicDeleteHandler struct {
 }
 
 func (self *TopicDeleteHandler) Get() {
-	tid, _ := strconv.Atoi(self.Ctx.Params[":tid"])
+	tid, _ := self.GetInt(":tid")
 	models.DelTopic(tid)
 	self.Ctx.Redirect(302, "/")
 }

@@ -3,7 +3,6 @@ package handlers
 import (
 	"../libs"
 	"../models"
-	"strconv"
 )
 
 type DeleteReplyHandler struct {
@@ -11,7 +10,7 @@ type DeleteReplyHandler struct {
 }
 
 func (self *DeleteReplyHandler) Get() {
-	rid, _ := strconv.Atoi(self.Ctx.Params[":rid"])
+	rid, _ := self.GetInt(":rid")
 	models.DelReply(rid)
 	self.Ctx.Redirect(302, "/")
 }

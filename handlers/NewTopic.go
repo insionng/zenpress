@@ -3,7 +3,6 @@ package handlers
 import (
 	"../libs"
 	"../models"
-	"strconv"
 )
 
 type NewTopicHandler struct {
@@ -18,15 +17,14 @@ func (self *NewTopicHandler) Get() {
 }
 
 func (self *NewTopicHandler) Post() {
-	inputs := self.Input()
-	nid, _ := strconv.Atoi(inputs.Get("nodeid"))
-	cid := int(models.GetNode(nid).Pid)
+	nid, _ := self.GetInt("nodeid")
+	cid := models.GetNode(nid).Pid
 	uid, _ := self.GetSession("userid").(int64)
-	tid_title := inputs.Get("title")
-	tid_content := inputs.Get("content")
+	tid_title := self.GetString("title")
+	tid_content := self.GetString("content")
 	if tid_title != "" && tid_content != "" {
-		models.AddTopic(inputs.Get("title"), inputs.Get("content"), cid, nid, int(uid))
-		self.Ctx.Redirect(302, "/node/"+inputs.Get("nodeid"))
+		models.AddTopic(self.GetString("title"), self.GetString("content"), cid, nid, uid)
+		self.Ctx.Redirect(302, "/node/"+self.GetString("nodeid"))
 	} else {
 		self.Ctx.Redirect(302, "/")
 	}

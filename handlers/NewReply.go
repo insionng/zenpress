@@ -4,7 +4,7 @@ import (
 	"../libs"
 	"../models"
 	"fmt"
-	"strconv"
+	"net/url"
 )
 
 type NewReplyHandler struct {
@@ -12,22 +12,36 @@ type NewReplyHandler struct {
 }
 
 func (self *NewReplyHandler) Post() {
-	inputs := self.Input()
-	tid, _ := strconv.Atoi(inputs.Get("comment_parent"))
+	tid, _ := self.GetInt("comment_parent")
 	sess_userid, _ := self.GetSession("userid").(int64)
 
-	author := inputs.Get("author")
-	email := inputs.Get("email")
-	website := inputs.Get("website")
+	gmt, _ := self.Ctx.Request.Cookie("gmt")
 
-	rc := inputs.Get("comment")
+	if gmt != nil {
 
-	if author != "" && email != "" && tid != 0 && rc != "" {
-		if err := models.AddReply(tid, int(sess_userid), rc, author, email, website); err != nil {
-			fmt.Println(err)
+		if gmtstr, err := url.QueryUnescape(gmt.Value); err == nil {
+			fmt.Println("Reply on tid:", tid, gmtstr)
+
+			author := self.GetString("author")
+			email := self.GetString("email")
+			website := self.GetString("website")
+
+			rc := self.GetString("comment")
+
+			if author != "" && email != "" && tid != 0 && rc != "" {
+				if err := models.AddReply(tid, sess_userid, rc, author, email, website); err != nil {
+					fmt.Println(err)
+				}
+				self.Ctx.Redirect(302, "/view/"+self.GetString("comment_parent"))
+			} else {
+				self.Ctx.Redirect(302, "/")
+			}
+		} else {
+			self.Ctx.Redirect(302, "/")
 		}
-		self.Ctx.Redirect(302, "/view/"+inputs.Get("comment_parent"))
+
 	} else {
 		self.Ctx.Redirect(302, "/")
 	}
+
 }

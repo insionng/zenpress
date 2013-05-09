@@ -4,7 +4,6 @@ import (
 	"../libs"
 	"../models"
 	"../utils"
-	"strconv"
 )
 
 type HateNodeHandler struct {
@@ -16,7 +15,7 @@ func (self *HateNodeHandler) Get() {
 	//id, _ := strconv.Atoi(inputs.Get("id"))
 	if utils.IsSpider(self.Ctx.Request.UserAgent()) != true {
 
-		id, _ := strconv.Atoi(self.Ctx.Params[":nid"])
+		id, _ := self.GetInt(":nid")
 
 		nd := models.GetNode(id)
 		nd.Hotdown = nd.Hotdown + 1

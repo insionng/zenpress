@@ -3,7 +3,6 @@ package handlers
 import (
 	"../libs"
 	"../models"
-	"strconv"
 )
 
 type NodeDeleteHandler struct {
@@ -11,7 +10,7 @@ type NodeDeleteHandler struct {
 }
 
 func (self *NodeDeleteHandler) Get() {
-	nid, _ := strconv.Atoi(self.Ctx.Params[":nid"])
+	nid, _ := self.GetInt(":nid")
 	models.DelNode(nid)
 	self.Ctx.Redirect(302, "/")
 }

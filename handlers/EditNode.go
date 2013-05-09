@@ -3,7 +3,6 @@ package handlers
 import (
 	"../libs"
 	"../models"
-	"strconv"
 )
 
 type NodeEditHandler struct {
@@ -11,10 +10,10 @@ type NodeEditHandler struct {
 }
 
 func (self *NodeEditHandler) Get() {
-	nid, _ := strconv.Atoi(self.Ctx.Params[":nid"])
+	nid, _ := self.GetInt(":nid")
 	nid_handler := models.GetNode(nid)
 	self.Data["inode"] = nid_handler
-	self.Data["icategory"] = models.GetCategory(int(nid_handler.Pid))
+	self.Data["icategory"] = models.GetCategory(nid_handler.Pid)
 
 	self.Layout = "layout.html"
 	self.TplNames = "node_edit.html"
@@ -22,14 +21,13 @@ func (self *NodeEditHandler) Get() {
 }
 
 func (self *NodeEditHandler) Post() {
-	inputs := self.Input()
-	nid, _ := strconv.Atoi(self.Ctx.Params[":nid"])
-	cid, _ := strconv.Atoi(inputs.Get("categoryid"))
+	nid, _ := self.GetInt(":nid")
+	cid, _ := self.GetInt("categoryid")
 	uid, _ := self.GetSession("userid").(int64)
-	nid_title := inputs.Get("title")
-	nid_content := inputs.Get("content")
+	nid_title := self.GetString("title")
+	nid_content := self.GetString("content")
 	if nid_title != "" && nid_content != "" {
-		models.EditNode(nid, cid, int(uid), nid_title, nid_content)
+		models.EditNode(nid, cid, uid, nid_title, nid_content)
 		self.Ctx.Redirect(302, "/node/"+self.Ctx.Params[":nid"])
 	} else {
 		self.Ctx.Redirect(302, "/")

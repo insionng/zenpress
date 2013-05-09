@@ -28,7 +28,7 @@ func (self *RAccountHandler) Post() {
 	uid, _ := self.GetSession("userid").(int64)
 
 	if utils.CheckEmail(email) {
-		ur := models.GetUser(int(uid))
+		ur := models.GetUser(uid)
 		ur.Email = email
 		ur.Mobile = mobile
 		ur.Company = company

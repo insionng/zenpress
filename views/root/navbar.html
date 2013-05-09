@@ -1,79 +1,36 @@
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-					<a class="brand" href="/root">TOROPRESS</a>
-					<div class="nav-collapse">
-						<ul class="nav">
-							<li class="active">
-								<a href="/root">管理面板</a>
-							</li>
-							<li>
-								<a href="/">访问网站</a>
-							</li>
-						</ul>
-						<!--
-						<ul class="nav">
-							<li class="active">
-								<a href="./dash.html">管理面板</a>
-							</li>
-							<li>
-								<a href="#">Single Menu</a>
-							</li>
-							<li>
-								<a class="caption" data-content="And here's some amazing content. It's very engaging. right?" rel="popover"  href="#" data-original-title="A Title">
-									Menu With Caption
-								</a>
-							</li>
-							<li class="dropdown">
-								<a data-toggle="dropdown" class="dropdown-toggle " href="#">Dropdown Menu<b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li>
-										<a href="#">Menu</a>
-									</li>
-									<li>
-										<a href="#">Another Menu</a>
-									</li>
-									<li>
-										<a href="#">Another Menu Too</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="#">Separated Menu</a>
-									</li>
-									<li>										
-										<a href="#" class="caption" data-content="And here's some amazing content. It's very engaging. right?" rel="popover"  href="#" data-original-title="A Title">Separated Menu With Caption </a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						-->
-						<ul class="nav pull-right">
-							<li>
-								<a href="#"><span class="badge badge-warning">23</span></a>
-							</li>
-							<li class="divider-vertical"></li>
-							<li>
-								<a>May 23, 2012</a>
-							</li>
-							<li class="divider-vertical"></li>
-							<li class="dropdown">
-								<a data-toggle="dropdown" class="dropdown-toggle " href="#">{{.Username}} 你好<b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li>
-										<a href="/root/account"><i class="icon-user"></i>账号设置</a>
-									</li>
-									<li>
-										<a href="/root/change_password"><i class="icon-lock"></i>修改密码</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="/logout"><i class="icon-off"></i>退出</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+      <ul id="main-nav">
+        <!-- Accordion Menu -->
+        <!--<li>
+          <a href="/root" class="nav-top-item no-submenu {{if compare .catpage "default"}}current{{end}}">
+        
+         仪表面板</a-->  <!-- Add the class "no-submenu" to menu items with no sub menu -->
+        <!--/li-->
+        <li> <a href="###" class="nav-top-item {{if compare .catpage "about"}}current{{end}}"><!-- Add the class "current" to current menu item -->
+          分類管理</a>
+          <ul>
+            <!-- Add class "current" to sub menu items also -->
+            <li><a href="/root-about-new-node" {{if compare .asidepage "root_about_new_node"}} class="current" {{end}}>创建分类</a></li>
+            <li><a href="/root-about-node-list" {{if compare .asidepage "root_about_node"}} class="current" {{end}}>分類列表</a></li>
+          </ul>
+        </li>
+        <li> <a href="###" class="nav-top-item {{if compare .catpage "team"}}current{{end}}">節點管理</a>
+          <ul>
+            <li><a href="/root-team" {{if compare .asidepage "root_team"}} class="current" {{end}}>創建節點</a></li>
+            <li><a href="/root-team-list" {{if compare .asidepage "root_team_list"}} class="current" {{end}}>節點列表</a></li>
+          </ul>
+        </li>
+        <li> <a href="###" class="nav-top-item {{if compare .catpage "case"}}current{{end}}">話題管理</a>
+          <ul>
+            <li><a href="/root-case" {{if compare .asidepage "root_case"}} class="current" {{end}}>發表話題</a></li>
+            <li><a href="/root-case-topic-list" {{if compare .asidepage "root-case-topic-list"}} class="current" {{end}}>內容列表</a></li>
+          </ul>
+        </li>
+
+        <li> <a href="###" class="nav-top-item {{if compare .catpage "setting"}}current{{end}}"> 设置 </a>
+          <ul>
+            <li><a href="/root-setting" {{if compare .asidepage "root_setting"}} class="current" {{end}}>常规设置</a></li>
+            <li><a href="/root-setting-password" {{if compare .asidepage "root_setting_password"}} class="current" {{end}}>密码修改</a></li>
+            <li><a href="/root-setting-setroot" {{if compare .asidepage "root_setting_setroot"}} class="current" {{end}}>设置管理员</a></li>
+          </ul>
+        </li>
+      </ul>

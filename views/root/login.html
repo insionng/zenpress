@@ -1,45 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
 {{template "head.html" .}}
+<body id="login">
+<div id="login-wrapper" class="png_bg">
+  <div id="login-top"><h2><a href="/root">{{.title_en}} Rooter</a></h2></div>
+  <!-- End #logn-top -->
+  <div id="login-content">
+    <form action="" method="post">
+      <div class="notification information png_bg">
+        <div>{{.title_en}}管理后台,请注意账号安全！</div>
+      </div>
+  {{if .BrowserMsgErr}}
+      <div class="notification information png_bg">
+        <div>{{.BrowserMsgErr}}</div>
+      </div>
+  {{else}}
+      <p>
+        <label>管理账号</label>
+        <input class="text-input" type="text" name="username" />
+      </p>
+      <div class="clear"></div>
+      <p>
+        <label>管理密码</label>
+        <input class="text-input" type="password" name="password" />
+      </p>
+      <div class="clear"></div>
+      <!--p id="remember-password">
+        <input type="checkbox" />
+        Remember me </p-->
+      <div class="clear"></div>
+      <p>
+        <input class="button" type="submit" value="登录" />
+      </p>
+  {{end}}
 
-	<body>
-		<div id="login">
-			<h3>登录</h3>
-			<form action="" method="post">
-				<fieldset>
-				    <div class="alert alert-danger">
-					    <a class="close" data-dismiss="alert">×</a>
-					    欢迎登录Toropress后台
-				    </div>
-					<div class="control-group">
-						<label class="control-label" for="user_name">账号</label>
-						<div class="controls">
-							<input type="text" class="input-large" id="user_name" name="username">
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="pass_word">密码</label>
-						<div class="controls">
-							<input type="password" name="password" class="input-large" id="pass_word">
-						</div>
-					</div>
-				</fieldset>
-				<a href="forgot_password.html">忘记密码 ?</a>
-				<div class="pull-right">
-					<button type="submit" class="btn btn-warning">
-						登录
-					</button>
-				</div>
-			</form>
-			Toropress Copyright &copy; 2013
-			<div class="pull-right">
-				<a href="register.html">注册</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">帮助</a>
-			</div>
-		</div>
-		<!-- Le javascript ================================================== -->
-		<!--
-		Placed at the end of the document so the pages load faster -->
-		<script src="/static/js/jquery-1.8.2.js"></script>
-		<script src="/static/root/js/bootstrap-alert.js"></script>
-	</body>
+    </form>
+  </div>
+  <!-- End #login-content -->
+</div>
+<!-- End #login-wrapper -->
+</body>
 </html>

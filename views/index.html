@@ -13,9 +13,11 @@
 {{range .nodes_latest}}
 
   <div class="entry" id="post-27">
+    {{if .Attachment}}
     <div class="thumb">
-       <a href="/node/{{.Id}}" rel="bookmark"><img width="130" height="130" src="http://responsivewebinc.com/nannie/wp-content/uploads/2012/11/girl-62328_640-130x130.jpg" class="attachment-post-thumbnail wp-post-image" alt="{{.Title}}" title="{{.Title}}" /></a>
+       <a href="/node/{{.Id}}" rel="bookmark"><img width="130" height="130" src="{{.Attachment}}" class="attachment-post-thumbnail wp-post-image" alt="{{.Title}}" title="{{.Title}}" /></a>
     </div>
+    {{end}}
     <div class="matter">
       <h2><a rel="bookmark" href="/node/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
           <div>

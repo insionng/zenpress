@@ -4,20 +4,22 @@ import (
 	"../utils"
 	"database/sql"
 	"fmt"
-	//"github.com/coocood/goset"
 	"github.com/coocood/qbs"
 	_ "github.com/mattn/go-sqlite3"
 	"time"
+	//_ "github.com/lxn/go-pgsql"
+	"os"
 )
 
 const (
-	dbName         = "./data/sqlite.db"
-	dbUser         = "root"
+	DbName         = "./data/sqlite.db"
+	DbUser         = "root"
 	mysqlDriver    = "mymysql"
 	mysqlDrvformat = "%v/%v/"
 	pgDriver       = "postgres"
 	pgDrvFormat    = "user=%v dbname=%v sslmode=disable"
 	sqlite3Driver  = "sqlite3"
+	dbtypeset      = "sqlite"
 )
 
 type User struct {
@@ -134,53 +136,112 @@ type Reply struct {
 	Website    string
 }
 
+type File struct {
+	Id              int64
+	Cid             int64 `qbs:"index"`
+	Nid             int64 `qbs:"index"`
+	Uid             int64 `qbs:"index"`
+	Pid             int64 `qbs:"index"`
+	Ctype           int64
+	Filename        string
+	Content         string
+	Hash            string
+	Location        string
+	Url             string
+	Size            int64
+	Created         time.Time `qbs:"index"`
+	Updated         time.Time `qbs:"index"`
+	Hotness         float64   `qbs:"index"`
+	Hotup           int64     `qbs:"index"`
+	Hotdown         int64     `qbs:"index"`
+	Views           int64     `qbs:"index"`
+	ReplyTime       time.Time
+	ReplyCount      int64
+	ReplyLastUserId int64
+}
+
+type Stat struct {
+	Ip      string
+	Ua      string
+	Created time.Time
+}
+
 // k/v infomation
 type Kvs struct {
 	Id int64
-	K  string
-	V  string
+	/*
+		Cid int64
+		Nid int64
+		Tid int64
+		Rid int64
+	*/
+	K string
+	V string
 }
 
-type Contact struct {
-	Id    int64
-	City  string
-	AddCn string
-	AddEn string
-	Tel   string
-	Fax   string
-	Email string
+func OpenDb(dbtype string) (db *sql.DB, err error) {
+	switch {
+	case dbtype == "sqlite":
+		db, err = sql.Open(sqlite3Driver, DbName)
+
+	case dbtype == "mysql":
+		//db, err := sql.Open("mysql", "qbs_test@/qbs_test?charset=utf8&loc=Local")
+		db, err = sql.Open(pgDriver, fmt.Sprintf(pgDrvFormat, DbUser, DbName))
+
+	case dbtype == "pgsql":
+		db, err = sql.Open(pgDriver, fmt.Sprintf(pgDrvFormat, DbUser, DbName))
+
+	}
+	return db, err
 }
 
-type Upload struct {
-	Uid   int64
-	Ctype int64
-	Size  int64
-	Url   string
-	ext   string
-	Tid   int64
+func ConnDb() (q *qbs.Qbs, err error) {
+	db := qbs.GetFreeDB()
+	if db == nil {
+		db, err = OpenDb(dbtypeset)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	switch {
+	case dbtypeset == "sqlite":
+		q = qbs.New(db, qbs.NewSqlite3())
+
+	case dbtypeset == "mysql":
+		q = qbs.New(db, qbs.NewMysql())
+
+	case dbtypeset == "pgsql":
+		q = qbs.New(db, qbs.NewPostgres())
+
+	}
+	return q, nil
 }
 
-func ConnDb() (*qbs.Qbs, error) {
-	db, err := sql.Open(sqlite3Driver, dbName)
-	q := qbs.New(db, qbs.NewSqlite3())
-	return q, err
-}
+func SetMg() (mg *qbs.Migration, err error) {
+	db, err := OpenDb(dbtypeset)
 
-func SetMg() (*qbs.Migration, error) {
-	db, err := sql.Open(sqlite3Driver, dbName)
-	mg := qbs.NewMigration(db, dbName, qbs.NewSqlite3())
+	switch {
+	case dbtypeset == "sqlite":
+		mg = qbs.NewMigration(db, DbName, qbs.NewSqlite3())
+	case dbtypeset == "mysql":
+		mg = qbs.NewMigration(db, DbName, qbs.NewMysql())
+	case dbtypeset == "pgsql":
+		mg = qbs.NewMigration(db, DbName, qbs.NewPostgres())
+
+	}
 	return mg, err
 }
 
 func CreateDb() bool {
 	q, err := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	if err != nil {
 		fmt.Println(err)
 		return false
 	} else {
 		mg, _ := SetMg()
-		defer mg.Db.Close()
+		defer mg.Close()
 
 		mg.CreateTableIfNotExists(new(User))
 		mg.CreateTableIfNotExists(new(Category))
@@ -188,33 +249,36 @@ func CreateDb() bool {
 		mg.CreateTableIfNotExists(new(Topic))
 		mg.CreateTableIfNotExists(new(Reply))
 		mg.CreateTableIfNotExists(new(Kvs))
+		mg.CreateTableIfNotExists(new(File))
 
 		//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
 		if GetUserByRole(-1000).Role != -1000 {
-			AddUser("root@insion.co", "root", utils.Encrypt_password("rootpass", nil), -1000)
+			AddUser("root@localhost", "root", "系统默认管理员", utils.Encrypt_password("rootpass", nil), -1000)
 			fmt.Println("Default User:root,Password:rootpass")
 
 			if GetAllTopic(0, 0, "id") == nil {
-				AddCategory("Hello Category", "This is Category!")
-				AddNode("Hello Node!", "This is Node!", 1, 1)
-				AddTopic("Hello World!", "This is Toropress!", 1, 1, 1)
+				//分類默認數據
+				AddCategory("about", "This is Category！")
+
+				AddNode("合作單位", "This is Node!", 1, 1)
+				SetTopic(1, 1, 1, 1, 0, "Topic Title", `<p>This is Topic!</p>`, "root", "")
+
 			}
 		}
 
 		if GetKV("author") != "Insion" {
 			SetKV("author", "Insion")
-			SetKV("title", "速动中国")
-			SetKV("title_en", "SudoChina")
-			SetKV("keywords", "速动中国,SudoChina")
-			SetKV("description", "SudoChina，速动中国是借力开源技术打造的站长技术交流平台，在这里我们会分享开源技术及站长软件工具，分享运营经验和站长行业交流！欢迎大家注册，享受分享知识的乐趣，请收藏！")
+			SetKV("title", "Toropress")
+			SetKV("title_en", "Toropress")
+			SetKV("keywords", "Toropress,")
+			SetKV("description", "Toropress,")
 
-			SetKV("company", "SudoChina.com")
-			SetKV("copyright", "© Powered by ToroPress")
-			SetKV("site_email", "insion@lihuashu.com")
+			SetKV("company", "Toropress")
+			SetKV("copyright", "2013 Copyright Toropress .All Right Reserved")
+			SetKV("site_email", "info@verywave.com")
 
-			SetKV("tweibo", "http://t.qq.com/insion")
-			SetKV("sweibo", "http://weibo.com/cheunghungng")
-
+			SetKV("tweibo", "http://t.qq.com/yours")
+			SetKV("sweibo", "http://weibo.com/yours")
 		}
 
 		return true
@@ -226,7 +290,7 @@ func CreateDb() bool {
 
 func Counts() (categorys int, nodes int, topics int, menbers int) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 
 	var categoryz []*Category
 	if e := q.FindAll(&categoryz); e != nil {
@@ -265,7 +329,7 @@ func Counts() (categorys int, nodes int, topics int, menbers int) {
 
 func TopicCount() (today int, this_week int, this_month int) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	var topict, topicw, topicm []*Topic
 	k := time.Now()
 
@@ -303,16 +367,119 @@ func TopicCount() (today int, this_week int, this_month int) {
 	return today, this_week, this_month
 }
 
+func SetTopic(id int64, cid int64, nid int64, uid int64, ctype int64, title string, content string, author string, attachment string) error {
+	q, _ := ConnDb()
+	defer q.Close()
+	var tp Topic
+	if q.WhereEqual("id", id).Find(&tp); tp.Id == 0 {
+		_, err := q.Save(&Topic{Id: id, Cid: cid, Nid: nid, Uid: uid, Ctype: ctype, Title: title, Content: content, Author: author, Attachment: attachment})
+		return err
+	} else {
+		type Topic struct {
+			Cid        int64
+			Nid        int64
+			Uid        int64
+			Ctype      int64
+			Title      string
+			Content    string
+			Author     string
+			Attachment string
+		}
+
+		_, err := q.WhereEqual("id", id).Update(&Topic{Cid: cid, Nid: nid, Uid: uid, Ctype: ctype, Title: title, Content: content, Author: author, Attachment: attachment})
+		return err
+	}
+	return nil
+}
+
+func AddFile(ctype int64, location string, url string) error {
+	q, _ := ConnDb()
+	defer q.Close()
+	_, err := q.Save(&File{Ctype: ctype, Location: location, Url: url})
+	return err
+}
+
+func DelFile(id int64) error {
+	q, _ := ConnDb()
+	defer q.Close()
+	f := GetFile(id)
+
+	if utils.Exist("." + f.Location) {
+		if err := os.Remove("." + f.Location); err != nil {
+			return err
+			fmt.Println(err)
+		}
+	}
+
+	//不管实际路径中是否存在文件均删除该数据库记录，以免数据库记录陷入死循环无法删掉
+	_, err := q.Delete(&f)
+	fmt.Println(err)
+	return err
+}
+
+func GetFile(id int64) (f File) {
+	q, _ := ConnDb()
+	defer q.Close()
+	q.Where("id=?", id).Find(&f)
+	return f
+}
+
+func GetAllFile() (f []*File) {
+	q, _ := ConnDb()
+	defer q.Close()
+	q.OrderByDesc("id").FindAll(&f)
+	return f
+}
+
+func GetAllFileByCtype(ctype int64) (f []*File) {
+	q, _ := ConnDb()
+	defer q.Close()
+	q.WhereEqual("ctype", ctype).OrderByDesc("id").FindAll(&f)
+	return f
+}
+
+func SaveFile(f File) error {
+	q, _ := ConnDb()
+	defer q.Close()
+	_, e := q.Save(&f)
+	return e
+}
+
+func SetFile(id int64, pid int64, ctype int64, filename string, content string, hash string, location string, url string, size int64) error {
+	q, _ := ConnDb()
+	defer q.Close()
+	var f File
+	if q.WhereEqual("id", id).Find(&f); f.Id == 0 {
+		_, err := q.Save(&File{Id: id, Pid: pid, Ctype: ctype, Filename: filename, Content: content, Hash: hash, Location: location, Url: url, Size: size})
+		return err
+	} else {
+		type File struct {
+			Pid      int64
+			Ctype    int64
+			Filename string
+			Content  string
+			Hash     string
+			Location string
+			Url      string
+			Size     int64
+		}
+		_, err := q.WhereEqual("id", id).Update(&File{Pid: pid, Ctype: ctype, Filename: filename, Content: content, Hash: hash, Location: location, Url: url, Size: size})
+
+		return err
+	}
+	return nil
+}
+
 func AddKV(k string, v string) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	_, err := q.Save(&Kvs{K: k, V: v})
 	return err
 }
 
 func SetKV(k string, v string) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	var kvs Kvs
 	if q.Where("k=?", k).Find(&kvs); kvs.Id == 0 {
 		_, err := q.Save(&Kvs{K: k, V: v})
@@ -332,65 +499,74 @@ func SetKV(k string, v string) error {
 
 func GetKV(k string) (v string) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	var kvs Kvs
 	q.Where("k=?", k).Find(&kvs)
 	return kvs.V
 }
 
-func AddUser(email string, nickname string, password string, role int) error {
+func AddUser(email string, nickname string, realname string, password string, role int64) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
-	_, err := q.Save(&User{Email: email, Nickname: nickname, Password: password, Role: int64(role), Created: time.Now()})
+	defer q.Close()
+	_, err := q.Save(&User{Email: email, Nickname: nickname, Realname: realname, Password: password, Role: role, Created: time.Now()})
 
 	return err
 }
 
 func SaveUser(usr User) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	_, e := q.Save(&usr)
 	return e
 }
 
 func UpdateUser(uid int, ur User) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	_, err := q.WhereEqual("id", int64(uid)).Update(&ur)
 	return err
 }
 
-func GetUser(id int) (user User) {
+func GetUser(id int64) (user User) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.Where("id=?", id).Find(&user)
 	return user
 }
 
+func DelUser(uid int64) error {
+	q, _ := ConnDb()
+	defer q.Close()
+	usr := GetUser(uid)
+	_, err := q.Delete(&usr)
+
+	return err
+}
+
 func GetUserByRole(role int) (user User) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.Where("role=?", int64(role)).Find(&user)
 	return user
 }
 
 func GetAllUserByRole(role int) (user []*User) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.Where("role=?", int64(role)).OrderByDesc("id").FindAll(&user)
 	return user
 }
 
 func GetUserByNickname(nickname string) (user User) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.Where("nickname=?", nickname).Find(&user)
 	return user
 }
 
 func AddCategory(title string, content string) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	_, err := q.Save(&Category{Title: title, Content: content, Created: time.Now()})
 
 	return err
@@ -398,15 +574,15 @@ func AddCategory(title string, content string) error {
 
 func SaveCategory(cat Category) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	_, err := q.Save(&cat)
 	return err
 }
 
-func AddNode(title string, content string, cid int, uid int) error {
+func AddNode(title string, content string, cid int64, uid int64) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
-	if _, err := q.Save(&Node{Pid: int64(cid), Title: title, Content: content, Created: time.Now()}); err != nil {
+	defer q.Close()
+	if _, err := q.Save(&Node{Pid: cid, Uid: uid, Title: title, Content: content, Created: time.Now()}); err != nil {
 		return err
 	}
 
@@ -416,7 +592,7 @@ func AddNode(title string, content string, cid int, uid int) error {
 		NodeLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, "id"))), NodeLastUserId: int64(uid)}); err != nil {
+	if _, err := q.WhereEqual("id", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, "id"))), NodeLastUserId: uid}); err != nil {
 		return err
 	}
 	/*
@@ -431,10 +607,31 @@ func AddNode(title string, content string, cid int, uid int) error {
 	return nil
 }
 
-func AddTopic(title string, content string, cid int, nid int, uid int) error {
+func SetNode(id int64, title string, content string, cid int64, uid int64) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
-	if _, err := q.Save(&Topic{Cid: int64(cid), Nid: int64(nid), Title: title, Content: content, Created: time.Now()}); err != nil {
+	defer q.Close()
+	var nd Node
+	if q.WhereEqual("id", id).Find(&nd); nd.Id == 0 {
+		_, err := q.Save(&Node{Id: id, Pid: cid, Uid: uid, Title: title, Content: content})
+		return err
+	} else {
+		type Node struct {
+			Pid     int64
+			Uid     int64
+			Title   string
+			Content string
+		}
+
+		_, err := q.WhereEqual("id", id).Update(&Node{Pid: cid, Uid: uid, Title: title, Content: content})
+		return err
+	}
+	return nil
+}
+
+func AddTopic(title string, content string, cid int64, nid int64, uid int64) error {
+	q, _ := ConnDb()
+	defer q.Close()
+	if _, err := q.Save(&Topic{Cid: cid, Nid: nid, Title: title, Content: content, Created: time.Now()}); err != nil {
 		return err
 	}
 
@@ -444,7 +641,7 @@ func AddTopic(title string, content string, cid int, nid int, uid int) error {
 		TopicLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", nid).Update(&Node{TopicTime: time.Now(), TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, "id"))), TopicLastUserId: int64(uid)}); err != nil {
+	if _, err := q.WhereEqual("id", nid).Update(&Node{TopicTime: time.Now(), TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, 0, "id"))), TopicLastUserId: uid}); err != nil {
 		return err
 	}
 	/*
@@ -459,10 +656,10 @@ func AddTopic(title string, content string, cid int, nid int, uid int) error {
 	return nil
 }
 
-func AddReply(tid int, uid int, content string, author string, email string, website string) error {
+func AddReply(tid int64, uid int64, content string, author string, email string, website string) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
-	if _, err := q.Save(&Reply{Pid: int64(tid), Uid: int64(uid), Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
+	defer q.Close()
+	if _, err := q.Save(&Reply{Pid: tid, Uid: uid, Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
 		return err
 	}
 
@@ -472,7 +669,7 @@ func AddReply(tid int, uid int, content string, author string, email string, web
 		ReplyLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", tid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(tid, 0, 0, "id"))), ReplyLastUserId: int64(uid)}); err != nil {
+	if _, err := q.WhereEqual("id", tid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(tid, 0, 0, "id"))), ReplyLastUserId: uid}); err != nil {
 		return err
 	}
 	/*
@@ -489,23 +686,23 @@ func AddReply(tid int, uid int, content string, author string, email string, web
 
 func SaveNode(nd Node) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	_, err := q.Save(&nd)
 	return err
 }
 
-func DelNodePlus(nid int) error {
+func DelNodePlus(nid int64) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	node := GetNode(nid)
 	_, err := q.Delete(&node)
 
-	for i, v := range GetAllTopicByNid(nid, 0, 0, "id") {
+	for i, v := range GetAllTopicByNid(nid, 0, 0, 0, "id") {
 		if i > 0 {
-			DelTopic(int(v.Id))
-			for ii, vv := range GetReplyByPid(int(v.Id), 0, 0, "id") {
+			DelTopic(v.Id)
+			for ii, vv := range GetReplyByPid(v.Id, 0, 0, "id") {
 				if ii > 0 {
-					DelReply(int(vv.Id))
+					DelReply(vv.Id)
 				}
 			}
 		}
@@ -514,36 +711,45 @@ func DelNodePlus(nid int) error {
 	return err
 }
 
-func DelCategory(id int) error {
+func DelCategory(id int64) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	category := GetCategory(id)
 	_, err := q.Delete(&category)
 
 	return err
 }
 
-func DelTopic(id int) error {
+func DelTopic(id int64) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	topic := GetTopic(id)
+	if utils.Exist("." + topic.Attachment) {
+		if err := os.Remove("." + topic.Attachment); err != nil {
+			//return err
+			//可以输出错误，但不要反回错误，以免陷入死循环无法删掉
+			fmt.Println("DEL TOPIC", id, err)
+		}
+	}
+
+	//不管实际路径中是否存在文件均删除该数据库记录，以免数据库记录陷入死循环无法删掉
 	_, err := q.Delete(&topic)
 
 	return err
 }
 
-func DelNode(nid int) error {
+func DelNode(nid int64) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	node := GetNode(nid)
 	_, err := q.Delete(&node)
 
 	return err
 }
 
-func DelReply(tid int) error {
+func DelReply(tid int64) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	reply := GetReply(tid)
 	_, err := q.Delete(&reply)
 
@@ -552,14 +758,14 @@ func DelReply(tid int) error {
 
 func GetAllCategory() (allc []*Category) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.FindAll(&allc)
 	return allc
 }
 
 func GetAllNode() (alln []*Node) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	//q.OrderByDesc("id").FindAll(&alln)
 	q.OrderByDesc("created").FindAll(&alln)
 	return alln
@@ -567,31 +773,138 @@ func GetAllNode() (alln []*Node) {
 
 func GetAllTopic(offset int, limit int, path string) (allt []*Topic) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
 	return allt
 }
 
-func GetAllNodeByCid(cid int, offset int, limit int, path string) (alln []*Node) {
+func GetAllNodeByCid(cid int64, offset int, limit int, path string) (alln []*Node) {
 	//排序首先是热值优先，然后是时间优先。
 	q, _ := ConnDb()
-	defer q.Db.Close()
-	if cid == 0 {
-		q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
-	} else {
-		q.WhereEqual("pid", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+	defer q.Close()
+	switch {
+	case path == "asc":
+
+		if cid == 0 {
+			q.Offset(offset).Limit(limit).FindAll(&alln)
+		} else {
+			q.WhereEqual("pid", cid).Offset(offset).Limit(limit).FindAll(&alln)
+		}
+	default:
+
+		if cid == 0 {
+			q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+		} else {
+			q.WhereEqual("pid", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+		}
 	}
 	return alln
 }
 
-func GetAllTopicByNid(nodeid int, offset int, limit int, path string) (allt []*Topic) {
+func GetAllTopicByCid(cid int64, offset int, limit int, ctype int64, path string) (allt []*Topic) {
 	//排序首先是热值优先，然后是时间优先。
 	q, _ := ConnDb()
-	defer q.Db.Close()
-	if nodeid == 0 {
-		q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
-	} else {
-		q.WhereEqual("nid", nodeid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+	defer q.Close()
+	/*
+		if cid == 0 {
+			//q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+			return nil
+		} else {
+			q.WhereEqual("cid", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+		}*/
+
+	switch {
+	case path == "asc":
+		if ctype != 0 {
+			condition := qbs.NewCondition("cid=?", cid).And("ctype=?", ctype)
+			q.Condition(condition).Offset(offset).Limit(limit).FindAll(&allt)
+
+		} else {
+			q.Where("cid=?", cid).Offset(offset).Limit(limit).FindAll(&allt)
+
+		}
+	default:
+		if ctype != 0 {
+
+			condition := qbs.NewCondition("cid=?", cid).And("ctype=?", ctype)
+			q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+
+		} else {
+			q.Where("cid=?", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+
+		}
+
+	}
+	return allt
+}
+
+func GetAllTopicByCidNid(cid int64, nid int64, offset int, limit int, ctype int64, path string) (allt []*Topic) {
+
+	q, _ := ConnDb()
+	defer q.Close()
+
+	switch {
+	case path == "asc":
+		if ctype != 0 {
+			condition := qbs.NewCondition("cid=?", cid).And("nid=?", nid).And("ctype=?", ctype)
+			q.Condition(condition).Offset(offset).Limit(limit).FindAll(&allt)
+
+		} else {
+
+			condition := qbs.NewCondition("cid=?", cid).And("nid=?", nid)
+			q.Condition(condition).Offset(offset).Limit(limit).FindAll(&allt)
+
+		}
+	default:
+		if ctype != 0 {
+			condition := qbs.NewCondition("cid=?", cid).And("nid=?", nid).And("ctype=?", ctype)
+			q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+
+		} else {
+
+			condition := qbs.NewCondition("cid=?", cid).And("nid=?", nid)
+			q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+
+		}
+
+	}
+	return allt
+}
+
+func GetAllTopicByNid(nodeid int64, offset int, limit int, ctype int64, path string) (allt []*Topic) {
+	//排序首先是热值优先，然后是时间优先。
+	q, _ := ConnDb()
+	defer q.Close()
+
+	switch {
+	case path == "asc":
+		if nodeid == 0 {
+			//q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+			return nil
+		} else {
+			if ctype != 0 {
+				condition := qbs.NewCondition("nid=?", nodeid).And("ctype=?", ctype)
+				q.Condition(condition).Offset(offset).Limit(limit).FindAll(&allt)
+
+			} else {
+				q.Where("nid=?", nodeid).Offset(offset).Limit(limit).FindAll(&allt)
+
+			}
+		}
+	default:
+		if nodeid == 0 {
+			//q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+			return nil
+		} else {
+			if ctype != 0 {
+				condition := qbs.NewCondition("nid=?", nodeid).And("ctype=?", ctype)
+				q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+
+			} else {
+				q.Where("nid=?", nodeid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+
+			}
+		}
 	}
 	return allt
 }
@@ -600,7 +913,7 @@ func SearchTopic(content string, offset int, limit int, path string) (allt []*To
 	//排序首先是热值优先，然后是时间优先。
 	if content != "" {
 		q, _ := ConnDb()
-		defer q.Db.Close()
+		defer q.Close()
 		keyword := "%" + content + "%"
 		condition := qbs.NewCondition("title like ?", keyword).Or("content like ?", keyword)
 		q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
@@ -610,59 +923,59 @@ func SearchTopic(content string, offset int, limit int, path string) (allt []*To
 	return nil
 }
 
-func GetCategory(id int) (category Category) {
+func GetCategory(id int64) (category Category) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.Where("id=?", id).Find(&category)
 	return category
 }
 
-func GetNode(id int) (node Node) {
+func GetNode(id int64) (node Node) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.Where("id=?", id).Find(&node)
 	return node
 }
 
-func GetTopic(id int) (topic Topic) {
+func GetTopic(id int64) (topic Topic) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.Where("id=?", id).Find(&topic)
 	return topic
 }
 
 func SaveTopic(tp Topic) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	_, err := q.Save(&tp)
 	return err
 }
 
-func UpdateCategory(cid int, cg Category) error {
+func UpdateCategory(cid int64, cg Category) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	_, err := q.WhereEqual("id", int64(cid)).Update(&cg)
 	return err
 }
 
-func UpdateNode(nid int, nd Node) error {
+func UpdateNode(nid int64, nd Node) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	_, err := q.WhereEqual("id", int64(nid)).Update(&nd)
 
 	return err
 }
 
-func UpdateTopic(tid int, tp Topic) error {
+func UpdateTopic(tid int64, tp Topic) error {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	_, err := q.WhereEqual("id", int64(tid)).Update(&tp)
 	return err
 }
 
-func EditNode(nid int, cid int, uid int, title string, content string) error {
+func EditNode(nid int64, cid int64, uid int64, title string, content string) error {
 	nd := GetNode(nid)
-	nd.Pid = int64(cid)
+	nd.Pid = cid
 	nd.Title = title
 	nd.Content = content
 	nd.Updated = time.Now()
@@ -671,7 +984,7 @@ func EditNode(nid int, cid int, uid int, title string, content string) error {
 	}
 
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 
 	type Category struct {
 		NodeTime       time.Time
@@ -686,7 +999,7 @@ func EditNode(nid int, cid int, uid int, title string, content string) error {
 	return nil
 }
 
-func EditTopic(tid int, nid int, cid int, uid int, title string, content string) error {
+func EditTopic(tid int64, nid int64, cid int64, uid int64, title string, content string) error {
 	tpc := GetTopic(tid)
 	tpc.Cid = int64(cid)
 	tpc.Nid = int64(nid)
@@ -699,7 +1012,7 @@ func EditTopic(tid int, nid int, cid int, uid int, title string, content string)
 	}
 
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 
 	type Node struct {
 		TopicTime       time.Time
@@ -707,7 +1020,7 @@ func EditTopic(tid int, nid int, cid int, uid int, title string, content string)
 		TopicLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", nid).Update(&Node{TopicTime: tpc.Created, TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, "id"))), TopicLastUserId: int64(uid)}); err != nil {
+	if _, err := q.WhereEqual("id", nid).Update(&Node{TopicTime: tpc.Created, TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, 0, "id"))), TopicLastUserId: int64(uid)}); err != nil {
 		return err
 	}
 
@@ -716,21 +1029,21 @@ func EditTopic(tid int, nid int, cid int, uid int, title string, content string)
 
 func GetAllReply() (allr []*Reply) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.OrderByDesc("id").FindAll(&allr)
 	return allr
 }
 
-func GetReply(id int) (reply Reply) {
+func GetReply(id int64) (reply Reply) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	q.Where("id=?", id).Find(&reply)
 	return reply
 }
 
-func GetReplyByPid(tid int, offset int, limit int, path string) (allr []*Reply) {
+func GetReplyByPid(tid int64, offset int, limit int, path string) (allr []*Reply) {
 	q, _ := ConnDb()
-	defer q.Db.Close()
+	defer q.Close()
 	if tid == 0 {
 		q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allr)
 	} else {

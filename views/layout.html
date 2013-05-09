@@ -29,8 +29,9 @@
     <script type="text/javascript" src="/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushJScript.js"></script>
     <link type="text/css" rel="stylesheet" href="/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCoreDefault.css"/>
     <link type="text/css" rel="Stylesheet" href="/static/js/ckeditor/plugins/syntaxhighlighter/styles/shThemeEmacs.css"/>
+    
     <script type="text/javascript">SyntaxHighlighter.all();</script>
-
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="/static/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
@@ -52,7 +53,7 @@
                <!-- Recommended Logo size 240x100 -->
                <a href="/"><h1><span class="color">Sudo</span>China</h1></a>
                <p class="lmeta">速动中国，借力开源，快速行动！</p>
-         </div>
+            </div>
          <!--div class="span4 offset4">
             <div class="social">
                <a href="#"><i class="icon-facebook facebook"></i></a>
@@ -64,6 +65,7 @@
          </div-->
       </div>
    </div>
+  </div>
 </header>
 
          <div class="navbar">
@@ -75,14 +77,26 @@
                   <div class="nav-collapse collapse">
                       <ul class="nav">
                         <ul id="menu-menu" class="nav">
-                          <li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-30"><a href="/">首页</a></li>
+                        {{$ipage:=.curcate}}
                         {{if .categorys}}
+                          
+                          <li class="menu-item"><a href="/"{{if compare .home "true"}} class="current"{{end}}>首页</a></li>
+
                           {{range .categorys}}
-                            <li class="menu-item"><a href="/category/{{.Id}}">{{.Title}}</a></li>
+                                  <li class="menu-item"><a href="/category/{{.Id}}"{{if compare $ipage .Id}} class="current"{{end}}>
+                                    {{.Title}}</a>
+                                  </li>
                           {{end}}
                         {{else}}
                           <li class="menu-item"><a href="###">尚无分类</a></li>
                         {{end}}
+                          <li class="menu-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">語言 <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                            <li class="menu-item"><a href="?lang=normal">默認語言</a></li>
+                            <li class="menu-item"><a href="?lang=cn">簡體中文</a></li>
+                            <li class="menu-item"><a href="?lang=hk">繁體中文</a></li>
+                          </ul>
+                          </li>
                         </ul>
                       </ul>
                   </div>

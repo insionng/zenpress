@@ -4,7 +4,6 @@ import (
 	"../libs"
 	"../models"
 	"../utils"
-	"strconv"
 )
 
 type HateTopicHandler struct {
@@ -16,7 +15,7 @@ func (self *HateTopicHandler) Get() {
 	//id, _ := strconv.Atoi(inputs.Get("id"))
 	if utils.IsSpider(self.Ctx.Request.UserAgent()) != true {
 
-		id, _ := strconv.Atoi(self.Ctx.Params[":tid"])
+		id, _ := self.GetInt(":tid")
 
 		tp := models.GetTopic(id)
 		tp.Hotdown = tp.Hotdown + 1

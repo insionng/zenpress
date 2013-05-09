@@ -270,6 +270,11 @@ background:#eee !important;
 color:#555 !important;
 }
 
+.navbar .nav > li > a.current {
+background:#eee !important;
+color:#555 !important;
+}
+
 .navbar .nav .active > a,
 .navbar .nav .active > a:hover,
 .navbar .nav .active > a:focus {

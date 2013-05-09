@@ -24,22 +24,30 @@ func (self *LoginHandler) Get() {
 }
 
 func (self *LoginHandler) Post() {
-	self.TplNames = "login.html"
-	self.Ctx.Request.ParseForm()
-	username := self.Ctx.Request.Form.Get("username")
-	password := self.Ctx.Request.Form.Get("password")
+	username := self.GetString("username")
+	password := self.GetString("password")
 
-	userInfo := models.GetUserByNickname(username)
+	if username != "" && password != "" {
 
-	if utils.Validate_password(userInfo.Password, password) {
+		if userInfo := models.GetUserByNickname(username); userInfo.Password != "" {
 
-		//登录成功设置session
-		self.SetSession("userid", userInfo.Id)
-		self.SetSession("username", userInfo.Nickname)
-		self.SetSession("userrole", userInfo.Role)
-		self.SetSession("useremail", userInfo.Email)
+			if utils.Validate_password(userInfo.Password, password) {
 
-		self.Ctx.Redirect(302, "/")
+				//登录成功设置session
+				self.SetSession("userid", userInfo.Id)
+				self.SetSession("username", userInfo.Nickname)
+				self.SetSession("userrole", userInfo.Role)
+				self.SetSession("useremail", userInfo.Email)
+
+				self.Ctx.Redirect(302, "/")
+			} else {
+
+				self.Ctx.Redirect(302, "/login")
+			}
+		} else {
+
+			self.Ctx.Redirect(302, "/login")
+		}
 	} else {
 
 		self.Ctx.Redirect(302, "/login")
