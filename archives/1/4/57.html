@@ -117,47 +117,142 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>下妹子图golang版本</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            March 28 , 2013 at 16:26 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="79个点击">79点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
-
-<p>&nbsp;</p>
-
-<pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
+         <div><pre class="brush: js;">
+package main
+ 
+import (
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+    &quot;net/http&quot;
+    &quot;os&quot;
+    &quot;regexp&quot;
+)
+ 
+const baseurl = &quot;http://jandan.net/%s/page-%d&quot;
+const column = &quot;ooxx&quot;
+const start = 100
+const end = 120
+ 
+/*
+ *  根据图片url保存到本地
+ */
+func urlretrieve(downurl string, file string) error {
+ 
+    resp, err := http.Get(downurl)
+    if err != nil {
+        fmt.Println(&quot;err:&quot;, err)
+        return err
+    }
+ 
+    body, _ := ioutil.ReadAll(resp.Body)
+ 
+    fout, err := os.Create(file)
+    if err != nil {
+        fmt.Println(&quot;err:&quot;, err)
+        return err
+    }
+ 
+    defer func() {
+        resp.Body.Close()
+        fout.Close()
+    }()
+ 
+    fout.Write(body)
+    return nil
+}
+ 
+/*
+ *  返回每一页的图片url列表
+ */
+func getImageOnepage(downurl string) []string {
+ 
+    var img_re []string
+ 
+    //读取页面消息主体
+    resp, err := http.Get(downurl)
+    if err != nil {
+        fmt.Println(err)
+        return img_re
+    }
+ 
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return img_re
+    }
+ 
+    defer resp.Body.Close()
+ 
+    //去掉HTML消息体的空白字符,替换为空格。
+    re_n := regexp.MustCompile(`\s`)
+    bodystr := re_n.ReplaceAllString(string(body), &quot; &quot;)
+ 
+    //查找&lt;ol class=&quot;commentlist&quot;&gt;&lt;&quot;/ol&quot;&gt;间内容
+    re1 := regexp.MustCompile(`&lt;ol class=&quot;commentlist&quot;.*&lt;/ol&gt;`)
+    li_comment_m := re1.Find([]byte(bodystr))
+ 
+    //查找&lt;p&gt;&lt;img src=&quot;xxx&quot; /&gt;&lt;/p&gt;间内容
+    re2 := regexp.MustCompile(`&lt;p&gt;&lt;img src=&quot;(.+?)&quot;`)
+    img_urls := re2.FindAllSubmatch(li_comment_m, -1)
+ 
+    for _, img_url := range img_urls {
+        img_re = append(img_re, string(img_url[1]))
+    }
+ 
+    return img_re
+}
+ 
+/*
+ *  返回所有的图片url列表
+ */
+func getImage() []string {
+ 
+    var img_urls []string
+ 
+    for i := start; i &lt; end; i++ {
+        url := fmt.Sprintf(baseurl, column, i)
+        img_urls2 := getImageOnepage(url)
+        for _, v := range img_urls2 {
+            img_urls = append(img_urls, v)
+        }
+ 
+    }
+ 
+    for _, img_url := range img_urls {
+        fmt.Println(img_url)
+    }
+    return img_urls
+}
+ 
+/*
+ *  保存列表中的图片
+ */
+func saveImage(img_urls []string) {
+    for _, img_url := range img_urls {
+ 
+        //解析图片的名称
+        re3 := regexp.MustCompile(`.+?/`)
+        img_name := re3.ReplaceAllString(img_url, &quot;&quot;)
+ 
+        urlretrieve(img_url, img_name)
+    }
+ 
+}
+ 
+func main() {
+    saveImage(getImage())
 }</pre>
 
 <p>&nbsp;</p>
@@ -172,9 +267,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/54" rel="prev">上篇:在同一个channel中发送与接收</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/58" rel="next">下篇:使用 text/template 中的扩展函数</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,34 +283,10 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +303,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/57" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +337,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='57' />
    </p>
 
    <div class="clear"></div>

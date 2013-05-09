@@ -117,50 +117,100 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>golang之 控制语句</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            April 8 , 2013 at 06:07 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="57个点击">57点击</a>
             -
             <i class="icon-comment"></i>
             <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><h2>1 if判断语句</h2>
+
+<p>语句格式如下：<br />
+if 初始化语句;条件 {<br />
+执行语句<br />
+}</p>
+
+<p>例如</p>
 
 <p>&nbsp;</p>
 
 <pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
+if x, y := 1, 1; x == y {
+    fmt.Println(&quot;true&quot;)
+} else {
+    fmt.Println(&quot;false&quot;)
 }</pre>
 
 <p>&nbsp;</p>
+
+<p>说明&nbsp;<br />
+1）if语句的条件没有括号()，&quot;{&quot;必须紧接条件在同一行。<br />
+2）if，switch语句中可包含一个初始化语句(也可以没有)，通常用于设置局部变量值</p>
+
+<h2>2 for循环语句</h2>
+
+<p>1）for循环<br />
+for 初始化语句，判断条件，步长 {<br />
+执行语句<br />
+}<br />
+<br />
+2)类似while的for循环<br />
+for 判断条件 {<br />
+执行语句<br />
+}<br />
+<br />
+3）死循环<br />
+for{<br />
+执行语句<br />
+}<br />
+说明 ：go没有while和do...while语句</p>
+
+<h2>3 range循环</h2>
+
+<p>range是用来循环遍历string,数组，slice,map,channel的元素的迭代器。<br />
+1）对于string，数组，slice，range返回元素位置和元素值。<br />
+2）对于map，range返回元素的key值和value值。</p>
+
+<h2>4 switch分支语句</h2>
+
+<p>switch表达式值不需要是常量或整数<br />
+switch没有表达式自动匹配表达式为true<br />
+switch 表达式{<br />
+case 值: 执行语句&nbsp;<br />
+fallthrough<br />
+default: 执行语句<br />
+}<br />
+1)其他语言满足一个case条件，下面的case也会继续执行，除非使用break。<br />
+2）golang当满足一个case条件，下面的case不会继续执行，除非使用fallthrough。</p>
+
+<h2>5 break和continue</h2>
+
+<p>1)跳出循环<br />
+break跳出本层循环的所有次循环<br />
+continue跳出本层循环的本次循环<br />
+这个和其他语言基本上是一样的<br />
+<br />
+2）跳出多重循环<br />
+break后面可以接标签，表示跳出多重循环<br />
+Here： for 条件{<br />
+for条件{<br />
+break Here<br />
+}<br />
+}<br />
+当没有加标签跳出的是里面的循环，加了Here标签后可以直接跳出最外层的循环。</p>
+
+<h2>6 goto跳转语句</h2>
+
+<p>跳转到当前函数内的标签，类似java的break<br />
+Here:<br />
+执行语句<br />
+go Here</p>
 </div>
 
       </div>
@@ -172,9 +222,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/78" rel="prev">上篇:golang统计代码行数代码</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/80" rel="next">下篇:HTML表单多文件上传</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -187,30 +242,6 @@ if *d {
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +258,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/79" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +292,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='79' />
    </p>
 
    <div class="clear"></div>

@@ -117,47 +117,72 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>Go语言图片处理和生成缩略图代码</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            March 22 , 2013 at 11:23 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="42个点击">42点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><pre class="brush: js;">
+package main
 
-<p>&nbsp;</p>
+import (
+    &quot;fmt&quot;
+    &quot;os&quot;
+    &quot;image&quot;
+    &quot;image/color&quot;
+    &quot;image/draw&quot;
+    &quot;image/jpeg&quot;
+)
 
-<pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
+func main() {
+    f1, err := os.Open(&quot;1.jpg&quot;)
+    if err != nil {
+        panic(err)
+    }
+    defer f1.Close()
+
+    f2, err := os.Open(&quot;2.jpg&quot;)
+    if err != nil {
+        panic(err)
+    }
+    defer f2.Close()
+
+    f3, err := os.Create(&quot;3.jpg&quot;)
+    if err != nil {
+        panic(err)
+    }
+    defer f3.Close()
+
+    m1, err := jpeg.Decode(f1)
+    if err != nil {
+        panic(err)
+    }
+    bounds := m1.Bounds()
+
+    m2, err := jpeg.Decode(f2)
+    if err != nil {
+        panic(err)
+    }
+
+    m := image.NewRGBA(bounds)
+    white := color.RGBA{255, 255, 255, 255}
+    draw.Draw(m, bounds, &amp;image.Uniform{white}, image.ZP, draw.Src)
+    draw.Draw(m, bounds, m1, image.ZP, draw.Src)
+    draw.Draw(m, image.Rect(100, 200, 300, 600), m2, image.Pt(250, 60), draw.Src)
+
+    err = jpeg.Encode(f3, m, &amp;jpeg.Options{90})
+    if err != nil {
+        panic(err)
+    }
+
+    fmt.Printf(&quot;ok\n&quot;)
 }</pre>
 
 <p>&nbsp;</p>
@@ -172,9 +197,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/32" rel="prev">上篇:用 go 语言转换汉字到拼音</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/34" rel="next">下篇:纯粹的golang实现的生成缩略图代码</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,34 +213,10 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +233,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/33" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +267,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='33' />
    </p>
 
    <div class="clear"></div>

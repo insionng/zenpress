@@ -1,5 +1,5 @@
 <!-- Posts area -->
-<h3 style="display:none">
+<h3 style="display:none;">
    <span>Post</span>
 </h3>
 <div class="posts">
@@ -25,8 +25,24 @@
       <div class="clearfix"></div>
    </div>
 
-   <!-- You can start editing here. -->
+<!-- Navigation -->
+<div class="navigation">
+{{if .previd}}
+   <div class="pull-left">
+      &laquo;
+      <a href="/view/{{.previd}}" rel="prev">上篇:{{.prev}}</a>
+   </div>
+{{end}}
+{{if .nextid}}
+   <div class="pull-right">
+      <a href="/view/{{.nextid}}" rel="next">下篇:{{.next}}</a>
+      &raquo;
+   </div>
+{{end}}
+<div class="clearfix"></div>
+</div>
 
+<div class="clearfix"></div>
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
@@ -127,22 +143,7 @@
 
 </div>
 
-<!-- Navigation -->
-<div class="navigation">
-{{if .previd}}
-   <div class="pull-left">
-      &laquo;
-      <a href="/view/{{.previd}}" rel="prev">上篇日志</a>
-   </div>
-{{end}}
-{{if .nextid}}
-<div class="pull-right">
-   <a href="/view/{{.nextid}}" rel="next">下篇日志</a>
-   &raquo;
-</div>
-{{end}}
-<div class="clearfix"></div>
-</div>
+
 <div class="clearfix"></div>
 </div>
 

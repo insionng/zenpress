@@ -117,48 +117,260 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>golang mysql留言板系统</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            April 6 , 2013 at 05:55 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="41个点击">41点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><p><a href="http://www.dotcoo.com/golang-mysql-liuyanban" target="_blank">原文</a></p>
+
+<p>main.go</p>
+
+<pre class="brush: js;">
+// Golang简易留言板系统
+// Author: dotcoo zhao
+ 
+// mysql
+// CREATE TABLE liuyan (
+//     id int primary key auto_increment not null,
+//     name varchar(20) not null,
+//     url varchar(100) not null,
+//     content varchar(1000) not null,
+//     time int
+// ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
+ 
+// sqlite3
+// CREATE TABLE liuyan (
+//     id integer primary key autoincrement,
+//     name text,
+//     url text,
+//     content text,
+//     time integer
+// );
+package main
+ 
+import (
+    &quot;database/sql&quot;
+    &quot;io&quot;
+    &quot;net/http&quot;
+    &quot;strings&quot;
+    &quot;text/template&quot;
+    &quot;time&quot;
+    // &quot;github.com/ziutek/mymysql/godrv&quot;
+    _ &quot;github.com/mattn/go-sqlite3&quot;
+)
+ 
+// 留言结构
+type Liuyan struct {
+    Id      int
+    Name    string
+    Url     string
+    Content string
+    Time    int
+}
+ 
+// // 显示留言时间
+// func (l Liuyan) ShowTime() string {
+//     t := time.Unix(int64(l.Time), 0)
+//     return t.Format(&quot;2006-01-02 15:04:05&quot;)
+// }
+ 
+func ShowTime(timeUnix int) string {
+    t := time.Unix(int64(timeUnix), 0)
+    return t.Format(&quot;2006-01-02 15:04:05&quot;)
+}
+ 
+// 全局变量
+var db *sql.DB
+var view *template.Template
+ 
+func main() {
+    // godrv.Register(&quot;SET NAMES utf8&quot;)
+ 
+    // 连接数据库
+    var err error
+    // db, err := sql.Open(&quot;mymysql&quot;, &quot;tcp:127.0.0.1:3306*go/root/123456&quot;)
+    db, err = sql.Open(&quot;sqlite3&quot;, &quot;./liuyan.db&quot;)
+    if err != nil {
+        panic(err)
+    }
+    defer db.Close()
+ 
+    // 准备模板
+    err = LoadTemplate()
+    if err != nil {
+        panic(err)
+    }
+ 
+    // 注册处理函数
+    http.HandleFunc(&quot;/load&quot;, loadHandler)
+    http.HandleFunc(&quot;/&quot;, listHandler)
+    http.HandleFunc(&quot;/liuyan&quot;, liuyanHandler)
+ 
+    // 启动服务器
+    err = http.ListenAndServe(&quot;:12345&quot;, nil)
+    if err != nil {
+        panic(err)
+    }
+}
+ 
+// 加载模板
+func LoadTemplate() error {
+    // 准备模板函数
+    funcs := make(template.FuncMap)
+    funcs[&quot;showtime&quot;] = ShowTime
+ 
+    // 准备模板
+    v := template.New(&quot;view&quot;)
+    v.Funcs(funcs)
+ 
+    _, err := v.ParseGlob(&quot;view/*.htm&quot;)
+    if err != nil {
+        return err
+    }
+ 
+    view = v
+    return nil
+}
+ 
+// 动态加载模板 /load
+func loadHandler(w http.ResponseWriter, req *http.Request) {
+    err := LoadTemplate()
+    if err != nil {
+        http.Error(w, err.Error(), 500)
+        return
+    }
+    io.WriteString(w, `模板加载完成`)
+}
+ 
+// 显示留言页面 /
+func listHandler(w http.ResponseWriter, req *http.Request) {
+    // 查询数据
+    rows, err := db.Query(&quot;select * from liuyan&quot;)
+    if err != nil {
+        http.Error(w, err.Error(), 500)
+        return
+    }
+    defer rows.Close()
+ 
+    // 获取数据
+    lys := []Liuyan{}
+    for rows.Next() {
+        ly := Liuyan{}
+        err := rows.Scan(&amp;ly.Id, &amp;ly.Name, &amp;ly.Url, &amp;ly.Content, &amp;ly.Time)
+        if nil != err {
+            http.Error(w, err.Error(), 500)
+            return
+        }
+        lys = append(lys, ly)
+    }
+ 
+    // 显示数据
+    err = view.ExecuteTemplate(w, &quot;index.htm&quot;, lys)
+    if err != nil {
+        http.Error(w, err.Error(), 500)
+        return
+    }
+}
+ 
+// 留言页面 /liuyan
+func liuyanHandler(w http.ResponseWriter, req *http.Request) {
+    if &quot;POST&quot; == req.Method {
+        // 获取参数
+        name := strings.TrimSpace(req.FormValue(&quot;name&quot;))
+        url := strings.TrimSpace(req.FormValue(&quot;url&quot;))
+        content := strings.TrimSpace(req.FormValue(&quot;content&quot;))
+ 
+        // 检查参数
+        if name == &quot;&quot; || content == &quot;&quot; {
+            io.WriteString(w, &quot;参数错误!\n&quot;)
+            return
+        }
+ 
+        // sql语句
+        sql, err := db.Prepare(&quot;insert into liuyan(name, url, content, time) values(?, ?, ?, ?)&quot;)
+        if err != nil {
+            http.Error(w, err.Error(), 500)
+            return
+        }
+        defer sql.Close()
+ 
+        // sql参数,并执行
+        _, err = sql.Exec(name, url, content, time.Now().Unix())
+        if err != nil {
+            http.Error(w, err.Error(), 500)
+            return
+        }
+ 
+        // 跳转
+        w.Header().Add(&quot;Location&quot;, &quot;/&quot;)
+        w.WriteHeader(302)
+ 
+        // 提示信息
+        io.WriteString(w, &quot;提交成功!\n&quot;)
+ 
+        return
+    }
+ 
+    // 显示表单
+    err := view.ExecuteTemplate(w, &quot;liuyan.htm&quot;, nil)
+    if err != nil {
+        http.Error(w, err.Error(), 500)
+        return
+    }
+}</pre>
 
 <p>&nbsp;</p>
 
+<p>view/index.htm</p>
+
 <pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
-}</pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;&lt;a href=&quot;/liuyan&quot;&gt;给我留言&lt;/a&gt;&lt;/p&gt;
+    &lt;table border=&quot;1&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;编号&lt;/th&gt;&lt;th&gt;姓名&lt;/th&gt;&lt;th&gt;网址&lt;/th&gt;&lt;th&gt;内容&lt;/th&gt;&lt;th&gt;时间&lt;/th&gt;
+        &lt;/tr&gt;
+{{range .}}
+        &lt;tr&gt;
+            &lt;td&gt;{{.Id}}&lt;/td&gt;&lt;td&gt;{{.Name|html}}&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;{{.Url}}&quot; target=&quot;_blank&quot;&gt;{{.Url|html}}&lt;/a&gt;&lt;/td&gt;&lt;td&gt;{{.Content|html}}&lt;/td&gt;&lt;td&gt;{{.Time|showtime}}&lt;/td&gt;
+        &lt;/tr&gt;
+{{end}}
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<p>&nbsp;</p>
+
+<p>view/liuyan.htm</p>
+
+<pre class="brush: js;">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form method=&quot;post&quot;&gt;
+        姓名:&lt;input type=&quot;text&quot; name=&quot;name&quot; /&gt;&lt;br&gt;
+        网址:&lt;input type=&quot;text&quot; name=&quot;url&quot; /&gt;&lt;br&gt;
+        内容:&lt;input type=&quot;text&quot; name=&quot;content&quot; /&gt;&lt;br&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;提交&quot; /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 <p>&nbsp;</p>
 </div>
@@ -172,9 +384,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/74" rel="prev">上篇:golang strconv.ParseInt 的例子</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/76" rel="next">下篇:golang socket 例子</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,34 +400,10 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +420,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/75" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +454,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='75' />
    </p>
 
    <div class="clear"></div>

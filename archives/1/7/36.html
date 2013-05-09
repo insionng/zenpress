@@ -117,50 +117,64 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>封杀尝试SSH密码扫描的来源IP</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            March 22 , 2013 at 20:37 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="45个点击">45点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><p>各位的网站的缺省SSH端口是对外开放的，会经常有hacker们的各种扫描器到处乱扫。很多站长应该都会感觉这不是很安心。下面抄了一段来自<a href="http://hugozhu.myalert.info/2013/03/08/block_failed_ssh_attempts_with_iptable.html" target="_blank">这里</a>的脚本，可以实现自动封杀这些乱扫描的家伙，下面的内容基本上是照搬过来。</p>
 
-<p>&nbsp;</p>
+<p><br />
+系统的ssh登录日志文件在：/var/log/auth.log，登录失败时会记录以下格式的日志：</p>
+
+<p>Mar 7 10:31:51 raspberrypi sshd[24510]: Failed password for root from 221.8.19.129 port 4066 ssh2<br />
+Mar 7 10:31:55 raspberrypi sshd[24514]: Failed password for root from 221.8.19.129 port 4079 ssh2<br />
+Mar 7 10:31:56 raspberrypi sshd[24518]: Failed password for sshd from 221.8.19.129 port 4080 ssh2<br />
+Mar 7 10:32:26 raspberrypi sshd[24522]: Failed password for sshd from 221.8.19.129 port 4149 ssh2</p>
+
+<p><br />
+自动封杀扫描ssh端口的ip之Shell脚本：</p>
+
+<p>guard.sh</p>
 
 <pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
-}</pre>
+#!/bin/bash
 
-<p>&nbsp;</p>
+last_ip=&quot;&quot;
+tail -f /var/log/auth | while read LINE; do
+{
+	if [[ &quot;${LINE}&quot; =~ &quot;Failed&quot; ]]; then
+	ip=&quot;$(echo ${LINE} | awk &#39;{print $(NF-3)}&#39;)&quot;
+	if [[ &quot;$last_ip&quot; == &quot;$ip&quot; ]]; then
+	echo &quot;block $ip&quot;
+	#curl -s --data-ascii &quot;uuid=&lt;my iphone&#39;s uuid&gt;&quot; --data &quot;body=${LINE}&quot; http://raspberrypi/pushme
+	iptables -A INPUT -s &quot;$ip&quot; -j DROP
+	fi
+	last_ip=$ip
+	echo $LINE
+	fi
+}
+done</pre>
+
+<p>用root用户执行以下命令，也可以放到启动脚本里：/etc/rc.local</p>
+
+<p>nohup /root/bin/guard.sh &gt; /var/logs/guard.log 2&gt;&amp;1 &amp;</p>
+
+<p><br />
+如果连续两次输错密码，那ip就会被封。</p>
+
+<p>登录Pi用iptables -L可以看到被封杀的IP列表；</p>
+
+<p>如果需要解封这些IP，可以用命令iptables -F，</p>
+
+<p>也可以用crontjob每天定时运行一次iptables -F来清除。</p>
 </div>
 
       </div>
@@ -172,9 +186,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/35" rel="prev">上篇:go图片处理的各种实现</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/39" rel="next">下篇:golang 流媒体库</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,34 +202,10 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +222,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/36" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +256,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='36' />
    </p>
 
    <div class="clear"></div>

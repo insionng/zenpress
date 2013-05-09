@@ -117,48 +117,121 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>在Golang中获取系统的磁盘空间内存占用</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            April 5 , 2013 at 12:22 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="39个点击">39点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><p><a href="http://wendal.net/2012/1224.html" target="_blank">原文出处</a></p>
 
 <p>&nbsp;</p>
 
+<h2>获取磁盘占用情况(Linux/Mac下有效)</h2>
+
 <pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
+package main
+
+import (
+	&quot;syscall&quot;
+)
+
+type DiskStatus struct {
+	All  uint64 `json:&quot;all&quot;`
+	Used uint64 `json:&quot;used&quot;`
+	Free uint64 `json:&quot;free&quot;`
+}
+
+// disk usage of path/disk
+func DiskUsage(path string) (disk DiskStatus) {
+	fs := syscall.Statfs_t{}
+	err := syscall.Statfs(path, &amp;fs)
 	if err != nil {
-		log.Fatalln(err)
+		return
 	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
+	disk.All = fs.Blocks * uint64(fs.Bsize)
+	disk.Free = fs.Bfree * uint64(fs.Bsize)
+	disk.Used = disk.All - disk.Free
+	return
 }</pre>
+
+<p>&nbsp;</p>
+
+<h2>获取内存占用</h2>
+
+<pre class="brush: js;">
+
+package main
+
+import (
+	&quot;runtime&quot;
+	&quot;syscall&quot;
+)
+
+type MemStatus struct {
+	All  uint32 `json:&quot;all&quot;`
+	Used uint32 `json:&quot;used&quot;`
+	Free uint32 `json:&quot;free&quot;`
+	Self uint64 `json:&quot;self&quot;`
+}
+
+func MemStat() MemStatus {
+	//自身占用
+	memStat := new(runtime.MemStats)
+	runtime.ReadMemStats(memStat)
+	mem := MemStatus{}
+	mem.Self = memStat.Alloc
+
+	//系统占用,仅linux/mac下有效
+	//system memory usage
+	sysInfo := new(syscall.Sysinfo_t)
+	err := syscall.Sysinfo(sysInfo)
+	if err == nil {
+		mem.All = sysInfo.Totalram * uint32(syscall.Getpagesize())
+		mem.Free = sysInfo.Freeram * uint32(syscall.Getpagesize())
+		mem.Used = mem.All - mem.Free
+	}
+	return mem
+}
+</pre>
+
+<h2>windows下获取磁盘空间的方法</h2>
+
+<p>通过调用win32 api</p>
+
+<pre class="brush: js;">
+func main() {
+    kernel32, err := syscall.LoadLibrary(&quot;Kernel32.dll&quot;)
+    if err != nil {
+        log.Panic(err)
+    }
+    defer syscall.FreeLibrary(kernel32)
+    GetDiskFreeSpaceEx, err := syscall.GetProcAddress(syscall.Handle(kernel32), &quot;GetDiskFreeSpaceExW&quot;)
+
+    if err != nil {
+        log.Panic(err)
+    }
+
+    lpFreeBytesAvailable := int64(0)
+    lpTotalNumberOfBytes := int64(0)
+    lpTotalNumberOfFreeBytes := int64(0)
+    r, a, b := syscall.Syscall6(uintptr(GetDiskFreeSpaceEx), 4,
+        uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(&quot;C:&quot;))),
+        uintptr(unsafe.Pointer(&amp;lpFreeBytesAvailable)),
+        uintptr(unsafe.Pointer(&amp;lpTotalNumberOfBytes)),
+        uintptr(unsafe.Pointer(&amp;lpTotalNumberOfFreeBytes)), 0, 0)
+
+    log.Printf(&quot;Available  %dmb&quot;, lpFreeBytesAvailable/1024/1024.0)
+    log.Printf(&quot;Total      %dmb&quot;, lpTotalNumberOfBytes/1024/1024.0)
+    log.Printf(&quot;Free       %dmb&quot;, lpTotalNumberOfFreeBytes/1024/1024.0)
+}
+</pre>
 
 <p>&nbsp;</p>
 </div>
@@ -172,9 +245,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/65" rel="prev">上篇:Golang下进行字符集转换 gb2312转UTF8</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/67" rel="next">下篇:python 分析 nginx 日志 ip 并存入sqlite 数据库</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,34 +261,10 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +281,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/66" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +315,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='66' />
    </p>
 
    <div class="clear"></div>

@@ -117,47 +117,239 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>golang websocket 简易聊天室</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            April 12 , 2013 at 11:14 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="74个点击">74点击</a>
             -
             <i class="icon-comment"></i>
             <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><p><a href="http://www.dotcoo.com/golang-websocket-chatroom" target="_blank">原文</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>websocket包 :&nbsp;<a href="http://go.pkgdoc.org/code.google.com/p/go.net/websocket">code.google.com/p/go.net/websocket</a></p>
+
+<p>文档 :&nbsp;<a href="http://go.pkgdoc.org/code.google.com/p/go.net/websocket" target="_blank">http://go.pkgdoc.org/code.google.com/p/go.net/websocket</a></p>
+
+<p>首先安装websocket包</p>
+
+<pre>
+go get code.google.com/p/go.net/websocket</pre>
+
+<p>聊天室代码golang websocket 聊天室服务端</p>
+
+<pre class="brush: js;">
+package main
+    
+import (
+    &quot;fmt&quot;
+    &quot;io&quot;
+    &quot;bufio&quot;
+    &quot;net/http&quot;
+    &quot;code.google.com/p/go.net/websocket&quot;
+    &quot;container/list&quot;
+)
+    
+var connid int
+var conns *list.List
+    
+func ChatroomServer(ws *websocket.Conn) {
+    defer ws.Close()
+    
+    connid++
+    id := connid
+    
+    fmt.Printf(&quot;connection id: %d\n&quot;, id)
+    
+    item := conns.PushBack(ws)
+    defer conns.Remove(item)
+    
+    name := fmt.Sprintf(&quot;user%d&quot;, id)
+    
+    SendMessage(nil, fmt.Sprintf(&quot;welcome %s join\n&quot;, name))
+    
+    r := bufio.NewReader(ws)
+    
+    for {
+        data, err := r.ReadBytes(&#39;\n&#39;)
+        if err != nil {
+            fmt.Printf(&quot;disconnected id: %d\n&quot;, id)
+            SendMessage(item, fmt.Sprintf(&quot;%s offline\n&quot;, name))
+            break
+        }
+    
+        fmt.Printf(&quot;%s: %s&quot;, name, data)
+    
+        SendMessage(item, fmt.Sprintf(&quot;%s\t&gt; %s&quot;, name, data))
+    }
+}
+    
+func SendMessage(self *list.Element, data string) {
+    // for _, item := range conns {
+    for item := conns.Front(); item != nil; item = item.Next() {
+        ws, ok := item.Value.(*websocket.Conn)
+        if !ok {
+            panic(&quot;item not *websocket.Conn&quot;)
+        }
+    
+        if item == self {
+            continue
+        }
+    
+        io.WriteString(ws, data)
+    }
+}
+    
+// 网页客户端
+func Client(w http.ResponseWriter, r *http.Request) {
+    html := `&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;golang websocket chatroom&lt;/title&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        var ws = new WebSocket(&quot;ws://127.0.0.1:6611/chatroom&quot;);
+        ws.onopen = function(e){
+            console.log(&quot;onopen&quot;);
+            console.dir(e);
+        };
+        ws.onmessage = function(e){
+            console.log(&quot;onmessage&quot;);
+            console.dir(e);
+            $(&#39;#log&#39;).append(&#39;&lt;p&gt;&#39;+e.data+&#39;&lt;p&gt;&#39;);
+            $(&#39;#log&#39;).get(0).scrollTop = $(&#39;#log&#39;).get(0).scrollHeight;
+        };
+        ws.onclose = function(e){
+            console.log(&quot;onclose&quot;);
+            console.dir(e);
+        };
+        ws.onerror = function(e){
+            console.log(&quot;onerror&quot;);
+            console.dir(e);
+        };
+        $(function(){
+            $(&#39;#msgform&#39;).submit(function(){
+                ws.send($(&#39;#msg&#39;).val()+&quot;\n&quot;);
+                $(&#39;#log&#39;).append(&#39;&lt;p style=&quot;color:red;&quot;&gt;My &gt; &#39;+$(&#39;#msg&#39;).val()+&#39;&lt;p&gt;&#39;);
+                $(&#39;#log&#39;).get(0).scrollTop = $(&#39;#log&#39;).get(0).scrollHeight;
+                $(&#39;#msg&#39;).val(&#39;&#39;);
+                return false;
+            });
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;log&quot; style=&quot;height: 300px;overflow-y: scroll;border: 1px solid #CCC;&quot;&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;form id=&quot;msgform&quot;&gt;
+            &lt;input type=&quot;text&quot; id=&quot;msg&quot; size=&quot;60&quot; /&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;`
+    io.WriteString(w, html)
+}
+    
+func main() {
+    fmt.Printf(`Welcome chatroom server!
+author: dotcoo zhao
+url: http://www.dotcoo.com/golang-websocket-chatroom
+    
+`)
+    
+    connid = 0
+    conns = list.New()
+    
+    http.Handle(&quot;/chatroom&quot;, websocket.Handler(ChatroomServer));
+    http.HandleFunc(&quot;/&quot;, Client);
+    err := http.ListenAndServe(&quot;:6611&quot;, nil);
+    if err != nil {
+        panic(&quot;ListenAndServe: &quot; + err.Error())
+    }
+}</pre>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>golang websocket 客户端</p>
 
 <p>&nbsp;</p>
 
 <pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
+package main
+        
+import (
+    &quot;fmt&quot;
+    &quot;bufio&quot;
+    &quot;io&quot;
+    &quot;os&quot;
+    &quot;code.google.com/p/go.net/websocket&quot;
+)
+        
+func Command(ws *websocket.Conn) {
+    r := bufio.NewReader(os.Stdin)
+    w := bufio.NewWriter(ws)
+        
+    for {
+        data, err := r.ReadBytes(&#39;\n&#39;)
+        if err != nil {
+            panic(err)
+        }
+        
+        _, err = w.Write(data)
+        if err != nil {
+            panic(err)
+        }
+        w.Flush()
+        
+        fmt.Printf(&quot;My\t&gt; &quot;)
+    }
+}
+        
+func main() {
+    fmt.Printf(`Welcome chatroom!
+author: dotcoo zhao
+url: http://www.dotcoo.com/golang-websocket-chatroom
+        
+`)
+            
+    origin := &quot;http://127.0.0.1:6611/&quot;      
+    url := &quot;ws://127.0.0.1:6611/chatroom&quot;
+        
+    ws, err := websocket.Dial(url, &quot;&quot;, origin)
+    if err != nil {
+        panic(err)
+    }
+    defer ws.Close()
+        
+    r := bufio.NewReader(ws)
+    //w := bufio.NewWriter(os.Stdout)
+        
+    go Command(ws)
+        
+    for {
+        data, err := r.ReadBytes(&#39;\n&#39;)
+        if err == io.EOF {
+            fmt.Printf(&quot;disconnected\n&quot;)
+            os.Exit(0)
+        }
+        if err != nil {
+            panic(err)
+        }
+        
+        fmt.Printf(&quot;\r%sMy\t&gt; &quot;, data)
+    }
 }</pre>
 
 <p>&nbsp;</p>
@@ -172,9 +364,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/81" rel="prev">上篇:Golang 拼写检查算法</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/83" rel="next">下篇:[]uint转int64的方法</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -187,30 +384,6 @@ if *d {
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +400,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/82" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +434,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='82' />
    </p>
 
    <div class="clear"></div>

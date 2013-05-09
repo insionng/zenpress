@@ -117,50 +117,71 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>go中调用C程序</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            March 19 , 2013 at 14:03 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="33个点击">33点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><p>go中是可以调用C程序的，有两种方法：</p>
 
-<p>&nbsp;</p>
+<p>1 go程序使用import &quot;C&quot;<br />
+2 使用文件.goc(以前也叫做cgo)<br />
+第一种方法</p>
 
 <pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
-}</pre>
+package main
 
-<p>&nbsp;</p>
+/*
+
+#include
+
+&lt;stdlib.h&gt;
+
+*/
+
+import &quot;C&quot;
+
+import &quot;fmt&quot;
+
+func main(){
+
+fmt.Println(int(C.random()))
+
+}
+
+func Seed(i int) {
+
+C.srandom(C.uint(i))
+
+}
+
+&lt;/stdlib.h&gt;</pre>
+
+<p><br />
+&nbsp;</p>
+
+<p>使用起来非常简单，import &quot;C&quot;之后就有一个全局变量大写C就包含了C库中的函数， include的c库作为注释放在import &quot;C&quot;上面</p>
+
+<p>更多可以参考：</p>
+
+<p>http://golang.org/doc/articles/c_go_cgo.html</p>
+
+<p>http://golang.org/cmd/cgo/</p>
+
+<p>第二种方法</p>
+
+<p>直接创建goc文件，goc文件是C和go混合编写的文件</p>
+
+<p>参照$goroot/src/pkg/runtime/syscall_windows.goc</p>
+
+<p>这种方式不允许include C的标准库，只能引用自定义的头文件。这种方式很少使用，基本只需要知道一下就好了。</p>
 </div>
 
       </div>
@@ -172,9 +193,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/27" rel="prev">上篇:golang输出当前时间的时间戳，然后将时间戳格式为年月日时分秒的形式</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/30" rel="next">下篇:golang Channel并发示例</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,34 +209,10 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +229,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/28" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +263,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='28' />
    </p>
 
    <div class="clear"></div>

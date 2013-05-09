@@ -117,47 +117,79 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>golang Channel并发示例</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            March 20 , 2013 at 18:11 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="56个点击">56点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><pre class="brush: js;">
+package main
 
-<p>&nbsp;</p>
 
-<pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
+
+import (
+
+&quot;fmt&quot;
+
+&quot;time&quot;
+
+)
+
+
+
+var over = make(chan bool)
+
+var sem = make(chan int, 4) //控制并发任务数
+
+
+
+func Worker(i int) {
+
+sem &lt;- 1
+
+fmt.Println(time.Now().Format(&quot;04:05&quot;), i)
+
+time.Sleep(1 * time.Second)
+
+
+
+&lt;-sem
+
+
+
+if i == 9 {
+
+over &lt;- true
+
+}
+
+}
+
+
+
+func main() {
+
+
+
+for i := 0; i &lt; 10; i++ {
+
+go Worker(i)
+
+}
+
+
+
+&lt;-over
+
+
+
 }</pre>
 
 <p>&nbsp;</p>
@@ -172,9 +204,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/28" rel="prev">上篇:go中调用C程序</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/32" rel="next">下篇:用 go 语言转换汉字到拼音</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,25 +220,25 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
    <ul class="media-list">
       
    
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
+      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-4" >
 
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
+         <div id="comment-4" class="comment-box">
+            <div class="comment-author"> <strong>kokoa</strong>
             </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
+            <div class="cmeta">March 21 , 2013 at 06:34 am</div>
             <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
+            <p>表示还没看懂啊，那几个箭头不太明白什么意思。</p>
 
             <div class="comment-reply pull-right">
                
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
+               <a class='comment-reply-link' href='?replytocom=4#respond' onclick='return addComment.moveForm("comment-4", "4", "respond", "0")'>Reply</a>
             </div>
             <div class="clearfix"></div>
 
@@ -227,7 +264,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/30" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +298,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='30' />
    </p>
 
    <div class="clear"></div>

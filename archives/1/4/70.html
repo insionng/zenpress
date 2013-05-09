@@ -117,50 +117,74 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>golang守护进程</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            April 6 , 2013 at 04:25 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="45个点击">45点击</a>
             -
             <i class="icon-comment"></i>
             <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
-
-<p>&nbsp;</p>
+         <div><p>golang版：</p>
 
 <pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
+package main
+    
+import (
+        &quot;log&quot;
+        &quot;os&quot;
+        &quot;os/exec&quot;
+        &quot;time&quot;
+)
+    
+func main() {
+        lf, err := os.OpenFile(&quot;angel.txt&quot;, os.O_CREATE | os.O_RDWR | os.O_APPEND, 0600)
+        if err != nil {
+                os.Exit(1)
+        }
+        defer lf.Close()
+    
+        // 日志
+        l := log.New(lf, &quot;&quot;, os.O_APPEND)
+    
+        for {
+                cmd := exec.Command(&quot;/usr/local/bin/node&quot;, &quot;/*****.js&quot;)
+                err := cmd.Start()
+                if err != nil {
+                        l.Printf(&quot;%s 启动命令失败&quot;, time.Now().Format(&quot;2006-01-02 15:04:05&quot;), err)
+    
+                        time.Sleep(time.Second * 5)
+                        continue
+                }
+                l.Printf(&quot;%s 进程启动&quot;, time.Now().Format(&quot;2006-01-02 15:04:05&quot;), err)
+                err = cmd.Wait()
+                l.Printf(&quot;%s 进程退出&quot;, time.Now().Format(&quot;2006-01-02 15:04:05&quot;), err)
+    
+                time.Sleep(time.Second * 1)
+        }
 }</pre>
 
 <p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>shell版：</p>
+
+<pre class="brush: js;">
+#! /bin/bash
+while true; do
+    ./you_command
+done</pre>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="http://www.dotcoo.com/golang-angel" target="_blank">原文</a></p>
 </div>
 
       </div>
@@ -172,9 +196,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/69" rel="prev">上篇:golang获取上传文件的大小</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/71" rel="next">下篇:golang 读写文件</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -187,30 +216,6 @@ if *d {
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +232,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/70" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +266,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='70' />
    </p>
 
    <div class="clear"></div>

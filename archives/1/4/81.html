@@ -117,47 +117,151 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>Golang 拼写检查算法</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            April 9 , 2013 at 12:33 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="60个点击">60点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
-
-<p>&nbsp;</p>
+         <div><p><a href="http://www.cnblogs.com/solo/archive/2012/10/30/2746667.html" target="_blank">原文</a></p>
 
 <pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
+package main
+
+import (
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+    &quot;regexp&quot;
+)
+var (
+    NWORDS map[string]int
+)
+const (
+    alphabet = &quot;abcdefghijklmnopqrstuvwxyz&quot;
+)
+func words(text string) []string {
+    regex, _ := regexp.Compile(&quot;[a-z]+&quot;)
+    return regex.FindAllString(text, -1)
+}
+func train(features []string) map[string]int {
+    result := make(map[string]int)
+    for i := range features {
+        _, isexist := result[features[i]]
+        if !isexist {
+            result[features[i]] = 1
+        } else {
+            result[features[i]] += 1
+        }
+    }
+    return result
+}
+func edit1(word string) []string {
+    type tuple struct{ a, b string }
+    var splits []tuple
+    for i := 0; i &lt; len(word)+1; i++ {
+        splits = append(splits, tuple{word[:i], word[i:]})
+    }
+    var deletes []string
+    for _, t := range splits {
+        if len(t.b) &gt; 0 {
+            deletes = append(deletes, t.a+t.b[1:])
+        }
+    }
+    var transposes []string
+    for _, t := range splits {
+        if len(t.b) &gt; 1 {
+            transposes = append(transposes, t.a+string(t.b[1])+string(t.b[0])+t.b[2:])
+        }
+    }
+    var replaces []string
+    for _, c := range alphabet {
+        for _, t := range splits {
+            if len(t.b) &gt; 0 {
+                replaces = append(replaces, t.a+string(c)+t.b[1:])
+            }
+        }
+    }
+    var inserts []string
+    for _, c := range alphabet {
+        for _, t := range splits {
+            inserts = append(inserts, t.a+string(c)+t.b)
+        }
+    }
+    //concat this slice 
+    deletes = append(deletes, transposes...)
+    deletes = append(deletes, replaces...)
+    deletes = append(deletes, inserts...)
+    return set(deletes)
+}
+func known_edits2(word string) []string {
+    var arr []string
+    for _, e1 := range edit1(word) {
+        for _, e2 := range edit1(e1) {
+            if _, ok := NWORDS[e2]; ok {
+                arr = append(arr, e2)
+            }
+        }
+    }
+    return set(arr)
+}
+func known(words []string) []string {
+    var knows []string
+    for _, value := range words {
+        if _, ok := NWORDS[value]; ok {
+            knows = append(knows, value)
+        }
+    }
+    return knows
+}
+func appendIfMissing(slice []string, i string) []string {
+    for _, ele := range slice {
+        if ele == i {
+            return slice
+        }
+    }
+    return append(slice, i)
+}
+func set(arr []string) []string {
+    var result []string
+    for _, ele := range arr {
+        result = appendIfMissing(result, ele)
+    }
+    return result
+}
+func correct(word string) string {
+    candidates := known([]string{word})
+    if len(candidates) &lt;= 0 {
+        candidates = known(edit1(word))
+        if len(candidates) &lt;= 0 {
+            candidates = known(known_edits2(word))
+        }
+    }
+    return max(candidates, NWORDS)
+}
+func max(arr []string, dict map[string]int) string {
+    flag := 0
+    index := 0
+    for ix, value := range arr {
+        if v, ok := dict[value]; ok {
+            if v &gt; flag {
+                flag = v
+                index = ix
+            }
+        }
+    }
+    return arr[index]
+}
+func main() {
+    buf, _ := ioutil.ReadFile(&quot;big.txt&quot;)
+    NWORDS = train(words(string(buf)))
+    word := &quot;beford&quot;
+    fmt.Println(&quot;input:&quot;, word, &quot;correct word:&quot;, correct(word))
 }</pre>
 
 <p>&nbsp;</p>
@@ -172,9 +276,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/80" rel="prev">上篇:HTML表单多文件上传</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/82" rel="next">下篇:golang websocket 简易聊天室</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,34 +292,10 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +312,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/81" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +346,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='81' />
    </p>
 
    <div class="clear"></div>

@@ -117,48 +117,182 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>golang统计代码行数代码</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            April 7 , 2013 at 16:46 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="43个点击">43点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><p>本文通过递归遍历src目录, 统计代码行数. 涉及到的知识点有:</p>
+
+<p>目录遍历.<br />
+读取文件.<br />
+使用channel进行goroutine间的通信.<br />
+使用sync包进行传统的共享内存方式的同步.<br />
+错误处理.<br />
+defer语句的使用.<br />
+在程序中有详细的注释:</p>
 
 <p>&nbsp;</p>
 
 <pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
-}</pre>
+// a simple go program for computing total line of souce files stored in one dir  
+package main  
+
+import (  
+    &quot;fmt&quot;  
+    &quot;bufio&quot;  
+    &quot;os&quot;  
+    &quot;sync&quot;  
+    &quot;strings&quot;  
+)  
+
+var (  
+    linesum int  
+    mutex   *sync.Mutex = new(sync.Mutex)  
+)  
+
+var (  
+    // the dir where souce file stored  
+    rootPath string = &quot;/home/xing/Dropbox/source/go/src&quot;  
+    // exclude these sub dirs  
+    nodirs [5]string = [...]string{&quot;/bitbucket.org&quot;, &quot;/github.com&quot;, &quot;/goplayer&quot;, &quot;/uniqush&quot;, &quot;/code.google.com&quot;}  
+    // the suffix name you care  
+    suffixname string = &quot;.go&quot;  
+)  
+
+func main() {  
+    argsLen := len(os.Args)  
+    if argsLen == 2 {  
+        rootPath = os.Args[1]  
+    } else if argsLen == 3 {  
+        rootPath = os.Args[1]  
+        suffixname = os.Args[2]  
+    }  
+    // sync chan using for waiting  
+    done := make(chan bool)  
+    go codeLineSum(rootPath, done)  
+    &lt;-done  
+
+    fmt.Println(&quot;total line:&quot;, linesum)  
+}  
+
+// compute souce file line number  
+func codeLineSum(root string, done chan bool) {  
+    var goes int              // children goroutines number  
+    godone := make(chan bool) // sync chan using for waiting all his children goroutines finished  
+    isDstDir := checkDir(root)  
+    defer func() {  
+        if pan := recover(); pan != nil {  
+            fmt.Printf(&quot;root: %s, panic:%#v\n&quot;, root, pan)  
+        }  
+
+        // waiting for his children done  
+        for i := 0; i &lt; goes; i++ {  
+            &lt;-godone  
+        }  
+
+        // this goroutine done, notify his parent  
+        done &lt;- true  
+    }()  
+    if !isDstDir {  
+        return  
+    }  
+
+    rootfi, err := os.Lstat(root)  
+    checkerr(err)  
+
+    rootdir, err := os.Open(root)  
+    checkerr(err)  
+    defer rootdir.Close()  
+
+    if rootfi.IsDir() {  
+        fis, err := rootdir.Readdir(0)  
+        checkerr(err)  
+        for _, fi := range fis {  
+            if strings.HasPrefix(fi.Name(), &quot;.&quot;) {  
+                continue  
+            }  
+            goes++  
+            if fi.IsDir() {  
+                go codeLineSum(root+&quot;/&quot;+fi.Name(), godone)  
+            } else {  
+                go readfile(root+&quot;/&quot;+fi.Name(), godone)  
+            }  
+        }  
+    } else {  
+        goes = 1 // if rootfi is a file, current goroutine has only one child  
+        go readfile(root, godone)  
+    }  
+}  
+
+func readfile(filename string, done chan bool) {  
+    var line int  
+    isDstFile := strings.HasSuffix(filename, suffixname)  
+    defer func() {  
+        if pan := recover(); pan != nil {  
+            fmt.Printf(&quot;filename: %s, panic:%#v\n&quot;, filename, pan)  
+        }  
+        if isDstFile {  
+            addLineNum(line)  
+            fmt.Printf(&quot;file %s complete, line = %d\n&quot;, filename, line)  
+        }  
+        // this goroutine done, notify his parent  
+        done &lt;- true  
+    }()  
+    if !isDstFile {  
+        return  
+    }  
+
+    file, err := os.Open(filename)  
+    checkerr(err)  
+    defer file.Close()  
+
+    reader := bufio.NewReader(file)  
+    for {  
+        _, isPrefix, err := reader.ReadLine()  
+        if err != nil {  
+            break  
+        }  
+        if !isPrefix {  
+            line++  
+        }  
+    }  
+}  
+
+// check whether this dir is the dest dir  
+func checkDir(dirpath string) bool {  
+    // 判断该文件夹是否在被排除的范围之内  
+    for _, dir := range nodirs {  
+        if rootPath+dir == dirpath {  
+            return false  
+        }  
+    }  
+    return true  
+}  
+
+func addLineNum(num int) {  
+    // 获取锁  
+    mutex.Lock()  
+    // defer语句在函数返回时调用, 确保锁被释放  
+    defer mutex.Unlock()  
+    linesum += num  
+}  
+
+// if error happened, throw a panic, and the panic will be recover in defer function  
+func checkerr(err error) {  
+    if err != nil {  
+        // 在发生错误时调用panic, 程序将立即停止正常执行, 开始沿调用栈往上抛, 直到遇到recover  
+        // 对于java程序员, 可以将panic类比为exception, 而recover则是try...catch  
+        panic(err.Error())  
+    }  
+} </pre>
 
 <p>&nbsp;</p>
 </div>
@@ -172,9 +306,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/77" rel="prev">上篇:golang判断文件是否存在</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/79" rel="next">下篇:golang之 控制语句</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,34 +322,10 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +342,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/78" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +376,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='78' />
    </p>
 
    <div class="clear"></div>

@@ -117,48 +117,50 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>python 分析 nginx 日志 ip 并存入sqlite 数据库</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            April 5 , 2013 at 16:16 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="40个点击">40点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><pre class="brush: js;">
+import sqlite3
+import os
+import string
+import fileinput
+path_log_nginx = r&quot;E:/xxx-logs/20100904&quot;
+conn = sqlite3.connect(&#39;log.db&#39;)
+c = conn.cursor()
+#c.execute(&#39;&#39;&#39;drop table log&#39;&#39;&#39;)
+c.execute(&#39;&#39;&#39;create table log(ip text)&#39;&#39;&#39;)
+for file in os.listdir(path_log_nginx):
+    if not file.endswith(&quot;.log&quot;):
+        print &quot;WARN:%s is not a log file&quot; %(file)
+        continue
+    print &quot;INFO:process file %s&quot; %(file)
+    for line in fileinput.input(os.path.join(path_log_nginx, file)):
+        if line.startswith(&quot;192.168.&quot;):
+            continue;
+        c.execute(&quot;insert into log (ip) values (&#39;%s&#39;)&quot; %(line[0:line.find(&quot; - - [&quot;)]))
+    conn.commit()
+#c.execute(&quot;select ip, count(*) c from log group by ip having c &gt; 1000 order by c desc&quot;)
+# We can also close the cursor if we are done with it
+c.close()
+#
+print &quot;done...&quot;
+</pre>
 
 <p>&nbsp;</p>
 
-<pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = cmd.Start()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
-}</pre>
+<p>搞定之后执行命令：<br />
+sqlite3.exe log.db<br />
+&gt; select ip, count(*) c from log group by ip having c &gt; 1000 order by c desc;</p>
 
 <p>&nbsp;</p>
 </div>
@@ -172,9 +174,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/66" rel="prev">上篇:在Golang中获取系统的磁盘空间内存占用</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/68" rel="next">下篇:css控制英文大小写</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,34 +190,10 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +210,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/67" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +244,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='67' />
    </p>
 
    <div class="clear"></div>

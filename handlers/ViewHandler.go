@@ -39,9 +39,11 @@ func (self *ViewHandler) Get() {
 					for i, v := range tps {
 						if prev == i {
 							self.Data["previd"] = v.Id
+							self.Data["prev"] = v.Title
 						}
 						if next == i {
 							self.Data["nextid"] = v.Id
+							self.Data["next"] = v.Title
 						}
 					}
 				}

@@ -117,47 +117,111 @@
    <div class="entry" id="post-27">
       <div class="matter">
 
-         <h2>Go实现Daemon模式</h2>
+         <h2>golang分割文件</h2>
 
          <div class="meta"> <i class="icon-calendar"></i>
-            May 6 , 2013 at 21:03 am - <i class="icon-folder-open"></i>
+            April 19 , 2013 at 20:36 am - <i class="icon-folder-open"></i>
             <a href="/user/0/" title="View all posts in " rel="category tag"></a>
             -
-            <a href="###" title="38个点击">38点击</a>
+            <a href="###" title="58个点击">58点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="1 个评论">1 评论</a>
+            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="0 个评论">0 评论</a>
          </div>
 
-         <div><p><a href="http://blog.t41.cn/index.php/archives/699" target="_blank">原文</a></p>
+         <div><p><a href="http://www.oschina.net/question/250675_78065" target="_blank">原文</a></p>
 
 <p>&nbsp;</p>
 
 <pre class="brush: js;">
-d := flag.Bool(&quot;d&quot;, false, &quot;Whether or not to launch in the background(like a daemon)&quot;)
-if *d {
-	cmd := exec.Command(os.Args[0],
-		&quot;-close-fds&quot;,
-		&quot;-addr&quot;, *addr,
-		&quot;-call&quot;, *call,
-	)
-	serr, err := cmd.StderrPipe()
+package main
+
+import (
+	//	&quot;bufio&quot;
+	&quot;flag&quot;
+	&quot;fmt&quot;
+	&quot;io&quot;
+	&quot;os&quot;
+)
+
+import &quot;strconv&quot;
+
+var infile *string = flag.String(&quot;f&quot;, &quot;Null&quot;, &quot;please input a file name or dir.&quot;)
+var size *string = flag.String(&quot;s&quot;, &quot;0&quot;, &quot;please input a dst file size.&quot;)
+
+//func dataCopy(file *os.File, file *os.File)
+
+func SplitFile(file *os.File, size int) {
+	finfo, err := file.Stat()
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Println(&quot;get file info failed:&quot;, file, size)
 	}
-	err = cmd.Start()
+
+	fmt.Println(finfo, size)
+
+	//每次最多拷贝1m
+	bufsize := 1024 * 1024
+	if size &lt; bufsize {
+		bufsize = size
+	}
+
+	buf := make([]byte, bufsize)
+
+	num := (int(finfo.Size()) + size - 1) / size
+	fmt.Println(num, len(buf))
+
+	for i := 0; i &lt; num; i++ {
+		copylen := 0
+		newfilename := finfo.Name() + strconv.Itoa(i)
+		newfile, err1 := os.Create(newfilename)
+		if err1 != nil {
+			fmt.Println(&quot;failed to create file&quot;, newfilename)
+		} else {
+			fmt.Println(&quot;create file:&quot;, newfilename)
+		}
+
+		for copylen &lt; size {
+			n, err2 := file.Read(buf)
+			if err2 != nil &amp;&amp; err2 != io.EOF {
+				fmt.Println(err2, &quot;failed to read from:&quot;, file)
+				break
+			}
+
+			if n &lt;= 0 {
+				break
+			}
+
+			//fmt.Println(n, len(buf))
+
+			//写文件
+			w_buf := buf[:n]
+			newfile.Write(w_buf)
+			copylen += n
+		}
+	}
+
+	return
+}
+
+func main() {
+	flag.Parse()
+
+	if *infile == &quot;Null&quot; {
+		fmt.Println(&quot;no file to input&quot;)
+		return
+	}
+
+	file, err := os.Open(*infile)
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Println(&quot;failed to open:&quot;, *infile)
 	}
-	s, err := ioutil.ReadAll(serr)
-	s = bytes.TrimSpace(s)
-	if bytes.HasPrefix(s, []byte(&quot;addr: &quot;)) {
-		fmt.Println(string(s))
-		cmd.Process.Release()
-	} else {
-		log.Printf(&quot;unexpected response from MarGo: `%s` error: `%v`\n&quot;, s, err)
-		cmd.Process.Kill()
-	}
+
+	defer file.Close()
+
+	size, _ := strconv.Atoi(*size)
+
+	SplitFile(file, size*1024)
+
 }</pre>
 
 <p>&nbsp;</p>
@@ -172,9 +236,14 @@ if *d {
 
    <div class="pull-left">
       &laquo;
-      <a href="/view/90" rel="prev">上篇:Go 语言中实现优雅的停止程序</a>
+      <a href="/view/86" rel="prev">上篇:golang字符串操作处理包strings</a>
    </div>
 
+
+   <div class="pull-right">
+      <a href="/view/88" rel="next">下篇:获取文件相关信息</a>
+      &raquo;
+   </div>
 
 <div class="clearfix"></div>
 </div>
@@ -183,34 +252,10 @@ if *d {
    <div class="comments well">
       <h3>
          <span class="comment-heading">Comments -</span>
-         1 Responses
+         0 Responses
       </h3>
 
  
-   <ul class="media-list">
-      
-   
-      <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-1499" >
-
-         <div id="comment-1499" class="comment-box">
-            <div class="comment-author"> <strong>花樣男</strong>
-            </div>
-            <div class="cmeta">May 9 , 2013 at 08:00 am</div>
-            <div class="clearfix"></div>
-            <p>唔錯唔錯！</p>
-
-            <div class="comment-reply pull-right">
-               
-               <a class='comment-reply-link' href='?replytocom=1499#respond' onclick='return addComment.moveForm("comment-1499", "1499", "respond", "0")'>Reply</a>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="clear"></div>
-         </div>
-      </li>
-      
-   </ul>
-   
 </div>
 
 <div class="clearfix"></div>
@@ -227,7 +272,7 @@ if *d {
 
    <div class="clearfix"></div>
 
-   <form action="/new/reply/91" method="post" id="commentform" class="form-horizontal">
+   <form action="/new/reply/87" method="post" id="commentform" class="form-horizontal">
       <div class="control-group">
          <label class="control-label" for="author">Name</label>
          <div class="controls">
@@ -261,7 +306,7 @@ if *d {
 
    <p>
       <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
-      <input type='hidden' name='comment_parent' id='comment_parent' value='91' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='87' />
    </p>
 
    <div class="clear"></div>
