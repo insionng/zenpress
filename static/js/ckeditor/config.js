@@ -4,38 +4,12 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here.
-	// For the complete reference:
-	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+	// Define changes to default configuration here. For example:
+	// config.language = 'fr';
+	// config.uiColor = '#AADC6E';
 
-	// The toolbar groups arrangement, optimized for two toolbar rows.
-	config.toolbarGroups = [
-		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-		{ name: 'links' },
-		{ name: 'insert' },
-		{ name: 'forms' },
-		{ name: 'tools' },
-		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
-		{ name: 'others' },
-		'/',
-		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
-		{ name: 'styles' },
-		{ name: 'colors' },
-		{ name: 'about' }
-	];
+	config.extraPlugins = 'insertcode';
+	config.language = 'zh-cn';
+	config.font_names='宋体/宋体;黑体/黑体;仿宋/仿宋_GB2312;楷体/楷体_GB2312;隶书/隶书;幼圆/幼圆;微软雅黑/微软雅黑;'+ config.font_names;
 
-	config.extraPlugins = 'insertpre';
-	CKEDITOR.config.insertpre_class = 'brush:go;';
-	//CKEDITOR.config.insertpre_style = 'background-color:#F8F8F8;border:1px solid #DDD;padding:10px;';
-	// Remove some buttons, provided by the standard plugins, which we don't
-	// need to have in the Standard(s) toolbar.
-	config.removeButtons = 'Underline,Subscript,Superscript';
-
-	// Se the most common block elements.
-	config.format_tags = 'p;h1;h2;h3;pre';
-
-	// Make dialogs simpler.
-	config.removeDialogTabs = 'image:advanced;link:advanced';
 };

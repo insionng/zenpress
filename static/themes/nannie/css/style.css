@@ -445,6 +445,9 @@ background: #115e8b;
 }
 
 /* Footer */
+#cke_content{
+   margin-bottom:2em;
+}
 
 footer{
 margin-top:25px;
