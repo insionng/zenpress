@@ -369,6 +369,9 @@ color:#888;
 font-size:12px;
 line-height:23px;
 margin:2px;
+border-bottom: 1px solid #fafafa;
+margin-top:1em;
+margin-bottom: 2em;
 }
 
 .entry .meta a, .entry .meta a:visited{

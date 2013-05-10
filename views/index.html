@@ -27,18 +27,7 @@
                         <div class="matter">
                         
                           <h2><a rel="bookmark" href="/view/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
-                <div>
-                  {{if compare $Userrole -1000}}
-                      <span><i class="fa-icon-user"></i> <a class="btn" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/topic/delete/{{.Id}}">删除 &raquo;</a></span>
-                  {{end}}
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/topic/{{.Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/topic/{{.Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'>恶心 &raquo;</a></span>
-                </div>
+
                            <div class="meta"><i class="icon-calendar"></i>本话题发表于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="###" title="{{.Views}}个点击">{{.Views}}点击</a> - <i class="icon-comment"></i> <a href="#comments" title="{{.ReplyCount}} 个评论">{{.ReplyCount}} 评论</a>
                            </div>
                             <div>
@@ -47,6 +36,18 @@
                               {{str2html $cs}}
                             </div>
                         </div>
+                <div>
+                  {{if compare $Userrole -1000}}
+                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/topic/delete/{{.Id}}">删除 &raquo;</a></span>
+                  {{end}}
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/{{.Id}}", context: document.body, success: function(){
+               alert("喜欢成功！");
+            }});'>喜欢 &raquo;</a></span>
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/{{.Id}}", context: document.body, success: function(){
+               alert("恶心成功！");
+            }});'>恶心 &raquo;</a></span>
+                </div>
                         <div class="clearfix"></div>
       </div>
       {{end}}
@@ -70,18 +71,7 @@
                         <div class="matter">
                         
                           <h2><a rel="bookmark" href="/view/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
-                <div>
-                  {{if compare $Userrole -1000}}
-                      <span><i class="fa-icon-user"></i> <a class="btn" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/topic/delete/{{.Id}}">删除 &raquo;</a></span>
-                  {{end}}
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/topic/{{.Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/topic/{{.Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'>恶心 &raquo;</a></span>
-                </div>
+
                            <div class="meta"><i class="icon-calendar"></i>本话题发表于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="###" title="{{.Views}}个点击">{{.Views}}点击</a> - <i class="icon-comment"></i> <a href="#comments" title="{{.ReplyCount}} 个评论">{{.ReplyCount}} 评论</a>
                            </div>
                             <div>
@@ -90,6 +80,18 @@
                               {{str2html $cs}}
                             </div>
                         </div>
+                <div>
+                  {{if compare $Userrole -1000}}
+                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/topic/delete/{{.Id}}">删除 &raquo;</a></span>
+                  {{end}}
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/{{.Id}}", context: document.body, success: function(){
+               alert("喜欢成功！");
+            }});'>喜欢 &raquo;</a></span>
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/{{.Id}}", context: document.body, success: function(){
+               alert("恶心成功！");
+            }});'>恶心 &raquo;</a></span>
+                </div>
                         <div class="clearfix"></div>
       </div>
       {{end}}
@@ -113,18 +115,7 @@
                         <div class="matter">
                         
                           <h2><a rel="bookmark" href="/view/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
-                <div>
-                  {{if compare $Userrole -1000}}
-                      <span><i class="fa-icon-user"></i> <a class="btn" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/topic/delete/{{.Id}}">删除 &raquo;</a></span>
-                  {{end}}
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/topic/{{.Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/topic/{{.Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'>恶心 &raquo;</a></span>
-                </div>
+
                            <div class="meta"><i class="icon-calendar"></i>本话题发表于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="###" title="{{.Views}}个点击">{{.Views}}点击</a> - <i class="icon-comment"></i> <a href="#comments" title="{{.ReplyCount}} 个评论">{{.ReplyCount}} 评论</a>
                            </div>
                             <div>
@@ -133,6 +124,18 @@
                               {{str2html $cs}}
                             </div>
                         </div>
+                <div>
+                  {{if compare $Userrole -1000}}
+                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/topic/delete/{{.Id}}">删除 &raquo;</a></span>
+                  {{end}}
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/{{.Id}}", context: document.body, success: function(){
+               alert("喜欢成功！");
+            }});'>喜欢 &raquo;</a></span>
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/{{.Id}}", context: document.body, success: function(){
+               alert("恶心成功！");
+            }});'>恶心 &raquo;</a></span>
+                </div>
                         <div class="clearfix"></div>
       </div>
       {{end}}
@@ -156,18 +159,7 @@
                         <div class="matter">
                         
                           <h2><a rel="bookmark" href="/view/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
-                <div>
-                  {{if compare $Userrole -1000}}
-                      <span><i class="fa-icon-user"></i> <a class="btn" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/topic/delete/{{.Id}}">删除 &raquo;</a></span>
-                  {{end}}
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/topic/{{.Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/topic/{{.Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'>恶心 &raquo;</a></span>
-                </div>
+
                            <div class="meta"><i class="icon-calendar"></i>本话题发表于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="###" title="{{.Views}}个点击">{{.Views}}点击</a> - <i class="icon-comment"></i> <a href="#comments" title="{{.ReplyCount}} 个评论">{{.ReplyCount}} 评论</a>
                            </div>
                             <div>
@@ -176,6 +168,18 @@
                               {{str2html $cs}}
                             </div>
                         </div>
+                <div>
+                  {{if compare $Userrole -1000}}
+                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/topic/edit/{{.Id}}">编辑 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/topic/delete/{{.Id}}">删除 &raquo;</a></span>
+                  {{end}}
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/{{.Id}}", context: document.body, success: function(){
+               alert("喜欢成功！");
+            }});'>喜欢 &raquo;</a></span>
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/{{.Id}}", context: document.body, success: function(){
+               alert("恶心成功！");
+            }});'>恶心 &raquo;</a></span>
+                </div>
                         <div class="clearfix"></div>
       </div>
       {{end}}
@@ -199,19 +203,7 @@
           {{end}}
           <div class="matter">
             <h2><a rel="bookmark" href="/node/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
-                <div>
-                  {{if compare $Userrole -1000}}
-                      <span><i class="fa-icon-user"></i> <a class="btn" href="/node/edit/{{.Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/node/delete/{{.Id}}">删除 &raquo;</a></span>
-                  {{end}}
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/node/{{.Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/node/{{.Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'href="">恶心 &raquo;</a></span>
-                </div>
-                
+
                 <div class="meta"><i class="icon-calendar"></i>本节点创建于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="###" title="{{.Views}}个点击">{{.Views}}点击</a> - <i class="icon-comment"></i> <a href="/node/{{.Id}}" title="{{.TopicCount}}个话题">
                   {{.TopicCount}}话题</a>
                            </div>
@@ -220,6 +212,18 @@
                               {{$cs:=substr $cs 0 150}}
                               {{str2html $cs}}
                            </div>
+                <div>
+                  {{if compare $Userrole -1000}}
+                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/node/edit/{{.Id}}">编辑 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/node/delete/{{.Id}}">删除 &raquo;</a></span>
+                  {{end}}
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/node/{{.Id}}", context: document.body, success: function(){
+               alert("喜欢成功！");
+            }});'>喜欢 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/node/{{.Id}}", context: document.body, success: function(){
+               alert("恶心成功！");
+            }});'href="">恶心 &raquo;</a></span>
+                </div>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -244,19 +248,7 @@
         {{end}}
           <div class="matter">
             <h2><a rel="bookmark" href="/node/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
-                <div>
-                  {{if compare $Userrole -1000}}
-                      <span><i class="fa-icon-user"></i> <a class="btn" href="/node/edit/{{.Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/node/delete/{{.Id}}">删除 &raquo;</a></span>
-                  {{end}}
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/node/{{.Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/node/{{.Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'href="">恶心 &raquo;</a></span>
-                </div>
-                
+
                 <div class="meta"><i class="icon-calendar"></i>本节点创建于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="###" title="{{.Views}}个点击">{{.Views}}点击</a> - <i class="icon-comment"></i> <a href="/node/{{.Id}}" title="{{.TopicCount}}个话题">
                   {{.TopicCount}}话题</a>
                            </div>
@@ -265,6 +257,18 @@
                               {{$cs:=substr $cs 0 150}}
                               {{str2html $cs}}
                            </div>
+                <div>
+                  {{if compare $Userrole -1000}}
+                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/node/edit/{{.Id}}">编辑 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/node/delete/{{.Id}}">删除 &raquo;</a></span>
+                  {{end}}
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/node/{{.Id}}", context: document.body, success: function(){
+               alert("喜欢成功！");
+            }});'>喜欢 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/node/{{.Id}}", context: document.body, success: function(){
+               alert("恶心成功！");
+            }});'href="">恶心 &raquo;</a></span>
+                </div>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -289,18 +293,6 @@
           {{end}}
           <div class="matter">
             <h2><a rel="bookmark" href="/node/{{.Id}}" title="{{.Title}}">{{.Title}}</a></h2>
-                <div>
-                  {{if compare $Userrole -1000}}
-                      <span><i class="fa-icon-user"></i> <a class="btn" href="/node/edit/{{.Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href="/node/delete/{{.Id}}">删除 &raquo;</a></span>
-                  {{end}}
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/like/node/{{.Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn" href='javascript:$.ajax({ url: "/hate/node/{{.Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'href="">恶心 &raquo;</a></span>
-                </div>
                 
                 <div class="meta"><i class="icon-calendar"></i>本节点创建于{{dateformat .Created "January 2 , 2006 at 15:04 am"}} - <i class="icon-folder-open"></i> <a href="###" title="{{.Views}}个点击">{{.Views}}点击</a> - <i class="icon-comment"></i> <a href="/node/{{.Id}}" title="{{.TopicCount}}个话题">
                   {{.TopicCount}}话题</a>
@@ -310,6 +302,18 @@
                               {{$cs:=substr $cs 0 150}}
                               {{str2html $cs}}
                            </div>
+                <div>
+                  {{if compare $Userrole -1000}}
+                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/node/edit/{{.Id}}">编辑 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/node/delete/{{.Id}}">删除 &raquo;</a></span>
+                  {{end}}
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/node/{{.Id}}", context: document.body, success: function(){
+               alert("喜欢成功！");
+            }});'>喜欢 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/node/{{.Id}}", context: document.body, success: function(){
+               alert("恶心成功！");
+            }});'href="">恶心 &raquo;</a></span>
+                </div>
           </div>
           <div class="clearfix"></div>
         </div>

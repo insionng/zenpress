@@ -4,7 +4,7 @@
 </h3>
 <div class="posts">
 
-   <div class="entry" id="post-27">
+   <div class="entry" id="post-{{.article.Id}}">
       <div class="matter">
 
          <h2>{{.article.Title}}</h2>
@@ -16,7 +16,7 @@
             <a href="###" title="{{.article.Views}}个点击">{{.article.Views}}点击</a>
             -
             <i class="icon-comment"></i>
-            <a href="http://responsivewebinc.com/nannie/suspendisse-eget-lorem-dui/#comments" title="{{.article.ReplyCount}} 个评论">{{.article.ReplyCount}} 评论</a>
+            <a href="/view/{{.article.Id}}#respond" title="{{.article.ReplyCount}} 个评论">{{.article.ReplyCount}} 评论</a>
          </div>
 
          <div>{{str2html .article.Content}}</div>
