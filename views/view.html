@@ -18,8 +18,19 @@
             <i class="icon-comment"></i>
             <a href="/view/{{.article.Id}}#respond" title="{{.article.ReplyCount}} 个评论">{{.article.ReplyCount}} 评论</a>
          </div>
-
          <div>{{str2html .article.Content}}</div>
+                <div>
+                  {{if compare .Userrole -1000}}
+                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/topic/edit/{{.article.Id}}">编辑 &raquo;</a></span>
+                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/topic/delete/{{.article.Id}}">删除 &raquo;</a></span>
+                  {{end}}
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/{{.article.Id}}", context: document.body, success: function(){
+               alert("喜欢成功！");
+            }});'>喜欢 &raquo;</a></span>
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/{{.article.Id}}", context: document.body, success: function(){
+               alert("恶心成功！");
+            }});'>恶心 &raquo;</a></span>
+                </div>
 
       </div>
       <div class="clearfix"></div>
@@ -66,10 +77,10 @@
                {{if compare $Userrole -1000}}
                <span>
                   <i class="fa-icon-heart-empty"></i>
-                  <a class="btn" href="/delete/reply/{{.Id}}">删除 &raquo;</a>
+                  <a class="btn btn-mini" href="/delete/reply/{{.Id}}">删除 &raquo;</a>
                </span>
                {{end}}
-               <a class='comment-reply-link' href='?replytocom={{.Id}}#respond' onclick='return addComment.moveForm("comment-{{.Id}}", "{{.Id}}", "respond", "{{.Uid}}")'>Reply</a>
+               <a class="btn btn-mini" href='#respond' onclick='return addComment.moveForm("comment-{{.Id}}", "{{.Id}}", "respond", "{{.Uid}}")'>Reply</a>
             </div>
             <div class="clearfix"></div>
 
