@@ -51,8 +51,7 @@ func main() {
 	torgo.Router("/root", &root.RMainHandler{})
 	torgo.Router("/root-login", &root.RLoginHandler{})
 	torgo.Router("/root/account", &root.RAccountHandler{})
-	torgo.Router("/root/change_password", &root.RChangePasswordHandler{})
-	torgo.Router("/root/category_list", &root.RCategoryListHandler{})
+
 
 	torgo.SessionOn = true
 	torgo.Run()

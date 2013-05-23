@@ -2,12 +2,11 @@ package models
 
 import (
 	"../utils"
-	"database/sql"
 	"fmt"
 	"github.com/coocood/qbs"
 	_ "github.com/mattn/go-sqlite3"
 	"time"
-	//_ "github.com/lxn/go-pgsql"
+	//_ "github.com/lib/pq"
 	"os"
 )
 
@@ -179,57 +178,30 @@ type Kvs struct {
 	V string
 }
 
-func OpenDb(dbtype string) (db *sql.DB, err error) {
+func RegisterDb() {
+
 	switch {
-	case dbtype == "sqlite":
-		db, err = sql.Open(sqlite3Driver, DbName)
+	case dbtypeset == "sqlite":
+		qbs.Register("sqlite3", "./data/sqlite.db", "", qbs.NewSqlite3())
 
-	case dbtype == "mysql":
-		//db, err := sql.Open("mysql", "qbs_test@/qbs_test?charset=utf8&loc=Local")
-		db, err = sql.Open(mysqlDriver, fmt.Sprintf(mysqlDrvformat, DbUser, DbName))
+	case dbtypeset == "mysql":
+		qbs.Register("mysql", "qbs_test@/qbs_test?charset=utf8&parseTime=true&loc=Local", "dbname", qbs.NewMysql())
 
-	case dbtype == "pgsql":
-		db, err = sql.Open(pgDriver, fmt.Sprintf(pgDrvFormat, DbUser, DbName))
-
+	case dbtypeset == "pgsql":
+		qbs.Register("postgres", "qbs_test@/qbs_test?charset=utf8&parseTime=true&loc=Local", "dbname", qbs.NewPostgres())
 	}
-	return db, err
+
 }
 
 func ConnDb() (q *qbs.Qbs, err error) {
-	db := qbs.GetFreeDB()
-	if db == nil {
-		db, err = OpenDb(dbtypeset)
-		if err != nil {
-			return nil, err
-		}
-	}
-
-	switch {
-	case dbtypeset == "sqlite":
-		q = qbs.New(db, qbs.NewSqlite3())
-
-	case dbtypeset == "mysql":
-		q = qbs.New(db, qbs.NewMysql())
-
-	case dbtypeset == "pgsql":
-		q = qbs.New(db, qbs.NewPostgres())
-
-	}
-	return q, nil
+	RegisterDb()
+	q, err = qbs.GetQbs()
+	return q, err
 }
 
 func SetMg() (mg *qbs.Migration, err error) {
-	db, err := OpenDb(dbtypeset)
-
-	switch {
-	case dbtypeset == "sqlite":
-		mg = qbs.NewMigration(db, DbName, qbs.NewSqlite3())
-	case dbtypeset == "mysql":
-		mg = qbs.NewMigration(db, DbName, qbs.NewMysql())
-	case dbtypeset == "pgsql":
-		mg = qbs.NewMigration(db, DbName, qbs.NewPostgres())
-
-	}
+	RegisterDb()
+	mg, err = qbs.GetMigration()
 	return mg, err
 }
 
