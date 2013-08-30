@@ -7,9 +7,10 @@ toropress
 [SudoChina](http://www.sudochina.com/)
 
 ## 企业型演示网站
+
 [访问艾美](<http://www.ibeautys.com/>)
 
-[访问艾美](<http://www.interla.net/>)
+[访问因特拉](<http://www.interla.net/>)
 
 
 ##版本更新请先更新torgo
@@ -19,7 +20,9 @@ toropress
 ##安装
 	先安装sqlite3:
 	SQLITE3驱动编译环境:TDM版MINGW64(http://tdm-gcc.tdragon.net/)
+	
 	go get -u github.com/mattn/go-sqlite3
+
     下载toropress源码后解压并cd切换目录到 toropress目录下，然后执行go build app.go，编译好后，运行./app即可。
     默认用户:root,默认密码:rootpass
 
