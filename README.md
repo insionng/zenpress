@@ -4,7 +4,13 @@ toropress
 
 ##线上版本
 
-[Toropress Demo](http://www.sudochina.com/)
+[SudoChina](http://www.sudochina.com/)
+
+## 企业型演示网站
+[访问艾美](<http://www.ibeautys.com/>)
+
+[访问艾美](<http://www.interla.net/>)
+
 
 ##版本更新请先更新torgo
 
@@ -25,9 +31,10 @@ veryhour fork by toropress
 A very special time website
 
 这是未来社区网站的新模式探索项目~
+基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/lunny/xorm)开发的Golang社区系统网站，从toropess源码衍生而来!
 
 
-# 通过捐款支持本项目
+# 通过捐款支持Toropress项目
 如果你喜欢这个项目的话， 可以通过捐款的方式， 支持作者继续更新本项目或者做出其他更多好玩好用的开源应用： 比如为本项目修补漏洞、添加更多有趣的功能， 或者发行有更多更棒特性的下一版等等。
 
 捐款地址： [https://me.alipay.com/insion](https://me.alipay.com/insion)
@@ -42,5 +49,5 @@ A very special time website
 ## 授权许可
 除特别声明外，本项目代码遵循[BSD 3-Clause License](<https://github.com/insionng/veryhour/blob/master/LICENSE.txt>)（3项条款的BSD许可协议）。
 
-## 演示网站
+## 社区型演示网站
 [访问Veryhour](<http://www.veryhour.com/>)
