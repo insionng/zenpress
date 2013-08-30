@@ -74,16 +74,16 @@ func (self *RUploaderHandler) Post() {
 					output_align := "center"
 					background := "black"
 					utils.Thumbnail(input_file, output_file, output_size, output_align, background)
-					hash := utils.Filehash(output_file)
+					hash, _ := utils.Filehash(output_file)
 					fileInfo, err := os.Stat(output_file)
 					var fsize int64 = 0
 					if err == nil {
 						fsize = fileInfo.Size() / 1024
 					}
 
-					self.Data["MsgErr"] = "<img src=\"" + path + "\" alt=\"" + hash + "\" />"
+					self.Data["MsgErr"] = "<img src=\"" + path + "\" alt=\"" + string(hash) + "\" />"
 
-					models.SetFile(0, pid, 0, handler.Filename, "", hash, path, "", fsize)
+					models.SetFile(0, pid, 0, handler.Filename, "", string(hash), path, "", fsize)
 				}
 
 			} else {

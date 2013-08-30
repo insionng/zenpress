@@ -2,13 +2,22 @@ package utils
 
 import (
 	"bufio"
+	"bytes"
 	"crypto/md5"
+	crand "crypto/rand"
+	"crypto/rsa"
 	"crypto/sha1"
+	"crypto/x509"
 	"encoding/hex"
+	"encoding/pem"
+	"errors"
 	"fmt"
 	"html/template"
 	"io"
 	"math"
+	"math/rand"
+	"mime/multipart"
+	"net/http"
 	"net/smtp"
 	"os"
 	"os/exec"
@@ -261,6 +270,35 @@ func ThisYear() time.Time {
 	return time.Date(year, 1, 1, 0, 0, 0, 0, time.UTC)
 }
 
+//生成规定范围内的整数
+//设置起始数字范围，0开始,n截止
+func RangeRand(n int) int {
+
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	return r.Intn(n)
+
+}
+
+//标准正态分布随机整数，n为随机个数,从0开始
+func Nrand(n int64) float64 {
+	//sample = NormFloat64() * desiredStdDev + desiredMean
+	// 默认位置参数(期望desiredMean)为0,尺度参数(标准差desiredStdDev)为1.
+
+	var i, sample int64 = 0, 0
+	desiredMean := 0.0
+	desiredStdDev := 100.0
+
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+
+	for i < n {
+		rn := int64(r.NormFloat64()*desiredStdDev + desiredMean)
+		sample = rn % n
+		i += 1
+	}
+
+	return math.Abs(float64(sample))
+}
+
 // 对字符串进行md5哈希,
 // 返回32位小写md5结果
 /*
@@ -295,7 +333,110 @@ func SHA1(s string) string {
 	return result
 }
 
-func Filehash(path string) string {
+// RSA加密
+func RsaEncrypt(origData []byte, publicKey []byte) ([]byte, error) {
+	block, _ := pem.Decode(publicKey)
+	if block == nil {
+		return nil, errors.New("public key error")
+	}
+	pubInterface, err := x509.ParsePKIXPublicKey(block.Bytes)
+	if err != nil {
+		return nil, err
+	}
+	pub := pubInterface.(*rsa.PublicKey)
+	return rsa.EncryptPKCS1v15(crand.Reader, pub, origData)
+}
+
+// RSA解密
+func RsaDecrypt(ciphertext []byte, privateKey []byte) ([]byte, error) {
+	block, _ := pem.Decode(privateKey)
+	if block == nil {
+		return nil, errors.New("private key error!")
+	}
+	priv, err := x509.ParsePKCS1PrivateKey(block.Bytes)
+	if err != nil {
+		return nil, err
+	}
+	return rsa.DecryptPKCS1v15(crand.Reader, priv, ciphertext)
+}
+
+func FixedpathByNumber(n int, layer int) string {
+
+	hash := md5.New()
+	o := ""
+	for i := 1; i < layer+1; i++ {
+
+		s := strconv.Itoa(int((n * i) + i))
+		hash.Write([]byte(s))
+		result := hex.EncodeToString(hash.Sum(nil))
+		r := result[0:2]
+		o += r + "/"
+	}
+
+	return o
+}
+
+func FixedpathByString(s string, layer int) string {
+
+	hash := md5.New()
+	output := ""
+	for i := 1; i < layer+1; i++ {
+
+		s += s + strconv.Itoa(i+i*i)
+		hash.Write([]byte(s))
+		result := hex.EncodeToString(hash.Sum(nil))
+		r := result[0:2]
+		output += r + "/"
+	}
+
+	return output
+}
+
+func Filehash(path string) (string, error) {
+
+	if file, err := os.Open(path); err != nil {
+		return "", err
+	} else {
+
+		h := sha1.New()
+
+		if _, erro := io.Copy(h, file); erro != nil {
+			return "", erro
+		} else {
+
+			//return fmt.Srintf("%x", h.Sum(nil))
+			result := hex.EncodeToString(h.Sum(nil))
+			//result := fmt.Sprintf("%d", h.Sum(nil))
+			//result, _ := fmt.Printf("%d", h.Sum(nil))
+			return result, nil
+		}
+	}
+
+}
+
+func Filehash_number(path string) (int, error) {
+
+	if file, err := os.Open(path); err != nil {
+		return 0, err
+	} else {
+
+		h := sha1.New()
+
+		if _, erro := io.Copy(h, file); erro != nil {
+			return 0, erro
+		} else {
+
+			//dst, _ := strconv.Atoi(fmt.Sprintf("%d", h.Sum(nil)))
+			//return fmt.Srintf("%x", h.Sum(nil))
+			//result := fmt.Sprintf("%d", h.Sum(nil))
+			result, _ := fmt.Printf("%d", h.Sum(nil))
+			return result, nil
+		}
+	}
+
+}
+
+func Filehash_block(path string, block int64) string {
 	file, err := os.Open(path)
 	defer file.Close()
 	hash := ""
@@ -304,7 +445,7 @@ func Filehash(path string) string {
 		return ""
 	}
 
-	data := make([]byte, 1024)
+	data := make([]byte, block)
 	for {
 		n, err := file.Read(data)
 
@@ -435,7 +576,124 @@ func Substr(str string, start, length int, symbol string) string {
 	return string(rs[start:end]) + symbol
 }
 
-func Writefile(path string, filename string, content string) error {
+func GetFile(file_url string, file_path string, useragent string, referer string) error {
+	f, err := os.OpenFile(file_path, os.O_RDWR|os.O_CREATE, 0666)
+	if err != nil {
+		return err
+	}
+	stat, err := f.Stat() //获取文件状态
+	if err != nil {
+		return err
+	}
+
+	ss, _ := strconv.Atoi(fmt.Sprintf("%v", stat.Size))
+	f.Seek(int64(ss), 0) //把文件指针指到文件末
+
+	req, err := http.NewRequest("GET", file_url, nil)
+	if err != nil {
+		return err
+	}
+
+	if useragent == "default" {
+		useragent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31"
+	}
+
+	if referer != "" {
+		req.Header.Set("Referer", referer)
+	}
+
+	req.Header.Set("User-Agent", useragent)
+	req.Header.Set("Range", "bytes="+fmt.Sprintf("%s", stat.Size)+"-")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+	defer resp.Body.Close()
+
+	if written, err := io.Copy(f, resp.Body); err != nil {
+		return err
+	} else {
+
+		if fs, e := os.Stat(file_path); e != nil {
+			if ferr := os.Remove(file_path); ferr != nil {
+				fmt.Println("Remove file error:", ferr)
+			}
+			return err
+		} else {
+
+			if rh, e := strconv.Atoi(resp.Header.Get("Content-Length")); e != nil || fs.Size() != int64(rh) {
+
+				if fs.Size() != int64(rh) {
+
+					er := errors.New(file_url + " save failed")
+					fmt.Println(er)
+
+					if ferr := os.Remove(file_path); ferr != nil {
+						fmt.Println("Remove file error:", ferr)
+					}
+					return er
+
+				}
+				return e
+			} else {
+
+				fmt.Println(file_url + " download success!")
+				fmt.Println("written: ", written)
+			}
+		}
+	}
+	return err
+}
+
+func PostFile(filepath string, actionurl string, fieldname string) (*http.Response, error) {
+	body_buf := bytes.NewBufferString("")
+	body_writer := multipart.NewWriter(body_buf)
+
+	// use the body_writer to write the Part headers to the buffer
+	_, err := body_writer.CreateFormFile(fieldname, filepath)
+	if err != nil {
+		fmt.Println("error writing to buffer")
+		return nil, err
+	}
+
+	// the file data will be the second part of the body
+	fh, err := os.Open(filepath)
+	if err != nil {
+		fmt.Println("error opening file")
+		return nil, err
+	}
+	defer fh.Close()
+	// need to know the boundary to properly close the part myself.
+	boundary := body_writer.Boundary()
+	close_string := fmt.Sprintf("\r\n--%s--\r\n", boundary)
+	close_buf := bytes.NewBufferString(close_string)
+	// use multi-reader to defer the reading of the file data until writing to the socket buffer.
+	request_reader := io.MultiReader(body_buf, fh, close_buf)
+	fi, err := fh.Stat()
+	if err != nil {
+		fmt.Printf("Error Stating file: %s", filepath)
+		return nil, err
+	}
+
+	if req, err := http.NewRequest("POST", actionurl, request_reader); err != nil {
+		return nil, err
+	} else {
+
+		// Set headers for multipart, and Content Length
+		req.Header.Add("Content-Type", "multipart/form-data; boundary="+boundary)
+		req.ContentLength = fi.Size() + int64(body_buf.Len()) + int64(close_buf.Len())
+
+		return http.DefaultClient.Do(req)
+	}
+
+}
+
+func WriteFile(path string, filename string, content string) error {
 	//path = path[0 : len(path)-len(filename)]
 	filename = path + filename
 	os.MkdirAll(path, 0644)
@@ -449,6 +707,29 @@ func Writefile(path string, filename string, content string) error {
 	}
 	defer file.Close()
 	return nil
+}
+
+func MoveFile(frompath string, topath string) error {
+
+	if fromfile, err := os.Open(frompath); err != nil {
+		return err
+	} else {
+
+		if tofile, err := os.OpenFile(topath, os.O_WRONLY|os.O_CREATE, 0644); err != nil {
+			return err
+		} else {
+			io.Copy(tofile, fromfile)
+			os.Remove(frompath)
+			/*
+				io.Copy 在一般情况下拷贝不会出错，多个携程访问的时候可能会出现“read ./data/*.png: Access is denied.”的错误，
+				造成这个错误的原因很可能是由于多个协程争抢打开文件导致，然而对实际情况是没有任何坏影响的。
+				如果我们根据这个错误作出判断的话就会错上加错，所以在这里不做任何判断，完全由上帝决定好了。
+			*/
+			return nil
+
+		}
+	}
+
 }
 
 func Htmlquote(text string) string {
@@ -525,7 +806,6 @@ func Thumbnail(input_file string, output_file string, output_size string, output
 		//fmt.Println("convert okay!")
 		return nil
 	}
-	return nil
 
 }
 
@@ -540,7 +820,6 @@ func Watermark(watermark_file string, input_file string, output_file string, out
 	} else {
 		return nil
 	}
-	return nil
 
 }
 

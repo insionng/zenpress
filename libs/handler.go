@@ -3,8 +3,8 @@ package libs
 import (
 	"../models"
 	"../utils"
-	"github.com/insionng/torgo"
-	//"github.com/astaxie/beego"
+	//"github.com/insionng/torgo"
+	"github.com/astaxie/beego"
 	//"../torgo"
 	"runtime"
 	"time"
@@ -16,12 +16,11 @@ var (
 	sess_role     int64
 	sess_email    string
 
-	bc *torgo.BeeCache
+	bc *beego.BeeCache
 )
 
 type BaseHandler struct {
-	torgo.Handler
-	//beego.Controller
+	beego.Controller
 }
 
 type AuthHandler struct {
@@ -37,7 +36,7 @@ type RootHandler struct {
 }
 
 func init() {
-	bc = torgo.NewBeeCache()
+	bc = beego.NewBeeCache()
 	bc.Every = 259200 //該單位為秒，0為不過期，259200 三天,604800 即一個星期清空一次緩存
 	bc.Start()
 }
@@ -122,6 +121,7 @@ func (self *RootHandler) Prepare() {
 	}
 }
 
+/*
 func (self *BaseHandler) Render() (err error) {
 
 	var ivalue []byte
@@ -173,6 +173,7 @@ func (self *BaseHandler) Render() (err error) {
 	return self.RenderCore(ivalue, e)
 
 }
+*/
 
 func (self *RootHandler) Render() (err error) {
 	return self.BaseHandler.Render()

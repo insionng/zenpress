@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
-	"../utils"
 	"fmt"
+	"github.com/insionng/veryhour/libs"
+	"github.com/insionng/veryhour/models"
+	"github.com/insionng/veryhour/utils"
 )
 
 type RegHandler struct {

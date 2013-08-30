@@ -4,10 +4,11 @@ import (
 	"../utils"
 	"fmt"
 	"github.com/coocood/qbs"
-	_ "github.com/mattn/go-sqlite3"
-	"time"
-	//_ "github.com/lib/pq"
+	//_ "github.com/mattn/go-sqlite3"
+	//_ "github.com/lib/pq" //当某时间字段表现为0001-01-01 07:36:42+07:36:42形式的时候 会读不出数据
+	_ "github.com/bylevel/pq"
 	"os"
+	"time"
 )
 
 const (
@@ -18,7 +19,7 @@ const (
 	pgDriver       = "postgres"
 	pgDrvFormat    = "user=%v dbname=%v sslmode=disable"
 	sqlite3Driver  = "sqlite3"
-	dbtypeset      = "sqlite"
+	dbtypeset      = "pgsql"
 )
 
 type User struct {
@@ -159,12 +160,6 @@ type File struct {
 	ReplyLastUserId int64
 }
 
-type Stat struct {
-	Ip      string
-	Ua      string
-	Created time.Time
-}
-
 // k/v infomation
 type Kvs struct {
 	Id int64
@@ -188,7 +183,7 @@ func RegisterDb() {
 		qbs.Register("mysql", "qbs_test@/qbs_test?charset=utf8&parseTime=true&loc=Local", "dbname", qbs.NewMysql())
 
 	case dbtypeset == "pgsql":
-		qbs.Register("postgres", "qbs_test@/qbs_test?charset=utf8&parseTime=true&loc=Local", "dbname", qbs.NewPostgres())
+		qbs.Register("postgres", "user=postgres password=jn!@#$%^&* dbname=pgsql sslmode=disable", "pgsql", qbs.NewPostgres())
 	}
 
 }
