@@ -1,13 +1,13 @@
 package root
 
 import (
-	"../../libs"
-	"../../models"
-	"../../utils"
 	"io"
 	"os"
 	"strings"
 	"time"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 type RAdvantagesHandler struct {

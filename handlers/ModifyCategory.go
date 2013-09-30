@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
 	"strconv"
 	"time"
+	"toropress/libs"
+	"toropress/models"
 )
 
 type ModifyCategoryHandler struct {

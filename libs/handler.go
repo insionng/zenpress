@@ -1,13 +1,11 @@
 package libs
 
 import (
-	"../models"
-	"../utils"
-	//"github.com/insionng/torgo"
 	"github.com/astaxie/beego"
-	//"../torgo"
 	"runtime"
 	"time"
+	"toropress/models"
+	"toropress/utils"
 )
 
 var (
@@ -15,8 +13,6 @@ var (
 	sess_uid      int64
 	sess_role     int64
 	sess_email    string
-
-	bc *beego.BeeCache
 )
 
 type BaseHandler struct {
@@ -33,12 +29,6 @@ type RootAuthHandler struct {
 
 type RootHandler struct {
 	BaseHandler
-}
-
-func init() {
-	bc = beego.NewBeeCache()
-	bc.Every = 259200 //該單位為秒，0為不過期，259200 三天,604800 即一個星期清空一次緩存
-	bc.Start()
 }
 
 //用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册

@@ -1,13 +1,13 @@
 package root
 
 import (
-	"../../libs"
-	"../../models"
-	"../../utils"
 	"io"
 	"os"
 	"strings"
 	"time"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 type RContactHandler struct {
@@ -18,7 +18,7 @@ func (self *RContactHandler) Get() {
 	var cid int64 = 5
 	self.Data["catpage"] = "contact"
 	self.Data["topics"] = models.GetAllTopicByCid(cid, 0, 0, 0, "id")
-	self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0,0, "id")
+	self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0, "id")
 	self.Data["MsgErr"], _ = self.GetSession("MsgErr").(string)
 	self.DelSession("MsgErr")
 

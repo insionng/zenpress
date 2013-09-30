@@ -1,4 +1,4 @@
-{{template "head.html" .}}
+{{template "root/head.html" .}}
 <body>
 <div id="body-wrapper">
   <!-- Wrapper for the radial gradient background -->
@@ -15,7 +15,7 @@
         <div><a href="/" title="View the Site" target="_blank">浏览网站</a> | <a href="/root-logout" title="Sign Out">退出</a></div>
       </div>
 
-      {{template "navbar.html" .}}
+      {{template "root/navbar.html" .}}
       <!-- End #main-nav -->
     </div>
   </div>
@@ -82,7 +82,7 @@
               <span class="help-inline">（选择本内容归属的上级分类，必选）</span>
               <span><a href="/root-about-new-node">新建分类</a></span>
             </p>
-            {{template "ckeditor.html" .}}
+            {{template "root/ckeditor.html" .}}
             <p>
               <div class="line"></div>
               <label>内容封面：</label>
@@ -111,11 +111,10 @@
 
 
     <!-- End Notifications -->
-    {{template "footer.html" .}}
+    {{template "root/footer.html" .}}
     <!-- End #footer -->
   </div>
   <!-- End #main-content -->
 </div>
 </body>
-<!-- Download From www.exet.tk-->
 </html>

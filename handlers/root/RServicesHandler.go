@@ -1,13 +1,13 @@
 package root
 
 import (
-	"../../libs"
-	"../../models"
-	"../../utils"
 	"io"
 	"os"
 	"strings"
 	"time"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 type RServicesHandler struct {
@@ -17,7 +17,7 @@ type RServicesHandler struct {
 func (self *RServicesHandler) Get() {
 	var cid int64 = 3
 	self.Data["catpage"] = "services"
-	self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0,"id")
+	self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0, "id")
 	self.Data["MsgErr"], _ = self.GetSession("MsgErr").(string)
 	self.DelSession("MsgErr")
 

@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
 	"fmt"
 	"net/url"
+	"toropress/libs"
+	"toropress/models"
 )
 
 type NewReplyHandler struct {

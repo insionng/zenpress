@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
-	"../utils"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 type MainHandler struct {

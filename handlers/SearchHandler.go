@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
-	"../utils"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 type SearchHandler struct {
@@ -16,7 +16,7 @@ func (self *SearchHandler) Get() {
 		limit := 25
 
 		rcs := len(models.SearchTopic(keyword, 0, 0, "id"))
-		pages, pageout, beginnum, endnum, offset := utils.Pages(rcs,int(page), limit)
+		pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, int(page), limit)
 		self.Data["search_hotness"] = models.SearchTopic(keyword, offset, limit, "hotness")
 
 		keywordz := "keyword=" + keyword + "&"

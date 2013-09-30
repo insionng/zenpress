@@ -1,13 +1,13 @@
 package root
 
 import (
-	"../../libs"
-	"../../models"
-	"../../utils"
 	"io"
 	"os"
 	"strings"
 	"time"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 const (
@@ -167,7 +167,7 @@ func (self *RApi) Get() {
 			self.Data["asidepage"] = "root-services-topic-edit"
 			self.Data["topic"] = tid_handler
 			self.Data["inode"] = models.GetNode(tid_handler.Nid)
-			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0,0, "id")
+			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0, "id")
 			self.TplNames = "root/published.html"
 			self.Render()
 		}
@@ -185,7 +185,7 @@ func (self *RApi) Get() {
 			self.Data["topic"] = tid_handler
 			self.Data["inode"] = models.GetNode(tid_handler.Nid)
 			self.Data["catpage"] = "contact"
-			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0,0, "id")
+			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0, "id")
 			self.TplNames = "root/contact.html"
 			self.Render()
 		}
@@ -204,7 +204,7 @@ func (self *RApi) Get() {
 			self.Data["asidepage"] = "root-crafts-topic-edit"
 			self.Data["topic"] = tid_handler
 			self.Data["inode"] = models.GetNode(tid_handler.Nid)
-			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0,0, "id")
+			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0, "id")
 			self.TplNames = "root/published.html"
 			self.Render()
 		}
@@ -335,7 +335,7 @@ func (self *RApi) Get() {
 			self.Data["asidepage"] = "root-information-topic-edit"
 			self.Data["topic"] = tid_handler
 			self.Data["inode"] = models.GetNode(tid_handler.Nid)
-			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0,"id")
+			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0, "id")
 			self.TplNames = "root/published.html"
 			self.Render()
 		}

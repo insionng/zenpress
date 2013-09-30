@@ -1,12 +1,12 @@
 package root
 
 import (
-	"../../libs"
-	"../../models"
-	"../../utils"
 	"fmt"
 	"io"
 	"os"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 	//"strconv"
 	"strings"
 	"time"

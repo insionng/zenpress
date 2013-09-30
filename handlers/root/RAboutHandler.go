@@ -1,13 +1,13 @@
 package root
 
 import (
-	"../../libs"
-	"../../models"
-	"../../utils"
 	"io"
 	"os"
 	"strings"
 	"time"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 type RAboutHandler struct {
@@ -19,7 +19,7 @@ func (self *RAboutHandler) Get() {
 	tid, _ := self.GetInt(":tid")
 	self.Data["topic"] = models.GetTopic(tid)
 	self.Data["topics"] = models.GetAllTopicByCid(1, 0, 0, 1, "id")
-	self.Data["nodes"] = models.GetAllNodeByCid(1, 0, 0,0, "id")
+	self.Data["nodes"] = models.GetAllNodeByCid(1, 0, 0, 0, "id")
 	self.Data["MsgErr"], _ = self.GetSession("MsgErr").(string)
 	self.DelSession("MsgErr")
 

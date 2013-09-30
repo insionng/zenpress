@@ -1,7 +1,7 @@
 package root
 
 import (
-	"../../libs"
+	"toropress/libs"
 )
 
 type RLogoutHandler struct {

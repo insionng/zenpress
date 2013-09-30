@@ -1,4 +1,4 @@
-{{template "head.html" .}}
+{{template "root/head.html" .}}
 <body>
 <div id="body-wrapper">
   <!-- Wrapper for the radial gradient background -->
@@ -15,7 +15,7 @@
         <div><a href="/" title="View the Site" target="_blank">浏览网站</a> | <a href="/root-logout" title="Sign Out">退出</a></div>
       </div>
 
-      {{template "navbar.html" .}}
+      {{template "root/navbar.html" .}}
       <!-- End #main-nav -->
       <div id="messages" style="display: none">
         <!-- Messages are shown when a link with these attributes are clicked: href="#messages" rel="modal"  -->
@@ -384,7 +384,7 @@
       <div> Error notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
     </div>
     <!-- End Notifications -->
-    {{template "footer.html" .}}
+    {{template "root/footer.html" .}}
     <!-- End #footer -->
   </div>
   <!-- End #main-content -->

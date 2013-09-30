@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"../libs"
+	"toropress/libs"
 )
 
 type LogoutHandler struct {

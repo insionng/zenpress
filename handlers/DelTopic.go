@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
+	"toropress/libs"
+	"toropress/models"
 )
 
 type TopicDeleteHandler struct {

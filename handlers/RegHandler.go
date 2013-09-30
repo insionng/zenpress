@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"fmt"
-	"github.com/insionng/veryhour/libs"
-	"github.com/insionng/veryhour/models"
-	"github.com/insionng/veryhour/utils"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 type RegHandler struct {

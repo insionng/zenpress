@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
+	"toropress/libs"
+	"toropress/models"
 )
 
 type NodeEditHandler struct {
@@ -28,8 +28,8 @@ func (self *NodeEditHandler) Post() {
 	nid_content := self.GetString("content")
 	if nid_title != "" && nid_content != "" {
 		models.EditNode(nid, cid, uid, nid_title, nid_content)
-		self.Ctx.Redirect(302, "/node/"+self.Ctx.Params[":nid"])
+		self.Redirect("/node/"+self.GetString(":nid"), 302)
 	} else {
-		self.Ctx.Redirect(302, "/")
+		self.Redirect("/", 302)
 	}
 }

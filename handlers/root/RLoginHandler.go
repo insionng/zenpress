@@ -1,9 +1,9 @@
 package root
 
 import (
-	"../../libs"
-	"../../models"
-	"../../utils"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 type RLoginHandler struct {

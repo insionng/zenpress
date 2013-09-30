@@ -1,14 +1,14 @@
 package root
 
 import (
-	"../../libs"
-	"../../models"
-	"../../utils"
 	"fmt"
 	"io"
 	"os"
 	"strings"
 	"time"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 type RSetvideoHandler struct {

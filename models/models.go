@@ -1,14 +1,20 @@
 package models
 
 import (
-	"../utils"
+	"errors"
 	"fmt"
 	"github.com/coocood/qbs"
-	//_ "github.com/mattn/go-sqlite3"
+	"github.com/lunny/xorm"
+	_ "github.com/mattn/go-sqlite3"
+	"toropress/utils"
 	//_ "github.com/lib/pq" //当某时间字段表现为0001-01-01 07:36:42+07:36:42形式的时候 会读不出数据
-	_ "github.com/bylevel/pq"
+	//_ "github.com/bylevel/pq"
 	"os"
 	"time"
+)
+
+var (
+	Engine *xorm.Engine
 )
 
 const (
@@ -19,14 +25,14 @@ const (
 	pgDriver       = "postgres"
 	pgDrvFormat    = "user=%v dbname=%v sslmode=disable"
 	sqlite3Driver  = "sqlite3"
-	dbtypeset      = "pgsql"
+	dbtype         = "sqlite"
 )
 
 type User struct {
 	Id            int64
-	Email         string `qbs:"index"`
+	Email         string `qbs:"index" xorm:"index"`
 	Password      string
-	Nickname      string `qbs:"index"`
+	Nickname      string `qbs:"index" xorm:"index"`
 	Realname      string
 	Avatar        string
 	Avatar_min    string
@@ -45,11 +51,11 @@ type User struct {
 	Weibo         string
 	Ctype         int64
 	Role          int64
-	Created       time.Time `qbs:"index"`
-	Hotness       float64   `qbs:"index"`
-	Hotup         int64     `qbs:"index"`
-	Hotdown       int64     `qbs:"index"`
-	Views         int64     `qbs:"index"`
+	Created       time.Time `qbs:"index" xorm:"index"`
+	Hotness       float64   `qbs:"index" xorm:"index"`
+	Hotup         int64     `qbs:"index" xorm:"index"`
+	Hotdown       int64     `qbs:"index" xorm:"index"`
+	Views         int64     `qbs:"index" xorm:"index"`
 	LastLoginTime time.Time
 	LastLoginIp   string
 	LoginCount    int64
@@ -58,17 +64,17 @@ type User struct {
 //category,Pid:root
 type Category struct {
 	Id             int64
-	Pid            int64 `qbs:"index"`
-	Uid            int64 `qbs:"index"`
+	Pid            int64 `qbs:"index" xorm:"index"`
+	Uid            int64 `qbs:"index" xorm:"index"`
 	Ctype          int64
 	Title          string
 	Content        string
 	Attachment     string
-	Created        time.Time `qbs:"index"`
-	Hotness        float64   `qbs:"index"`
-	Hotup          int64     `qbs:"index"`
-	Hotdown        int64     `qbs:"index"`
-	Views          int64     `qbs:"index"`
+	Created        time.Time `qbs:"index" xorm:"index"`
+	Hotness        float64   `qbs:"index" xorm:"index"`
+	Hotup          int64     `qbs:"index" xorm:"index"`
+	Hotdown        int64     `qbs:"index" xorm:"index"`
+	Views          int64     `qbs:"index" xorm:"index"`
 	Author         string
 	NodeTime       time.Time
 	NodeCount      int64
@@ -78,18 +84,18 @@ type Category struct {
 //node,Pid:category
 type Node struct {
 	Id              int64
-	Pid             int64 `qbs:"index"`
-	Uid             int64 `qbs:"index"`
+	Pid             int64 `qbs:"index" xorm:"index"`
+	Uid             int64 `qbs:"index" xorm:"index"`
 	Ctype           int64
 	Title           string
 	Content         string
 	Attachment      string
-	Created         time.Time `qbs:"index"`
-	Updated         time.Time `qbs:"index"`
-	Hotness         float64   `qbs:"index"`
-	Hotup           int64     `qbs:"index"`
-	Hotdown         int64     `qbs:"index"`
-	Views           int64     `qbs:"index"`
+	Created         time.Time `qbs:"index" xorm:"index"`
+	Updated         time.Time `qbs:"index" xorm:"index"`
+	Hotness         float64   `qbs:"index" xorm:"index"`
+	Hotup           int64     `qbs:"index" xorm:"index"`
+	Hotdown         int64     `qbs:"index" xorm:"index"`
+	Views           int64     `qbs:"index" xorm:"index"`
 	Author          string
 	TopicTime       time.Time
 	TopicCount      int64
@@ -99,19 +105,19 @@ type Node struct {
 //topic,Pid:node
 type Topic struct {
 	Id              int64
-	Cid             int64 `qbs:"index"`
-	Nid             int64 `qbs:"index"`
-	Uid             int64 `qbs:"index"`
+	Cid             int64 `qbs:"index" xorm:"index"`
+	Nid             int64 `qbs:"index" xorm:"index"`
+	Uid             int64 `qbs:"index" xorm:"index"`
 	Ctype           int64
 	Title           string
 	Content         string
 	Attachment      string
-	Created         time.Time `qbs:"index"`
-	Updated         time.Time `qbs:"index"`
-	Hotness         float64   `qbs:"index"`
-	Hotup           int64     `qbs:"index"`
-	Hotdown         int64     `qbs:"index"`
-	Views           int64     `qbs:"index"`
+	Created         time.Time `qbs:"index" xorm:"index"`
+	Updated         time.Time `qbs:"index" xorm:"index"`
+	Hotness         float64   `qbs:"index" xorm:"index"`
+	Hotup           int64     `qbs:"index" xorm:"index"`
+	Hotdown         int64     `qbs:"index" xorm:"index"`
+	Views           int64     `qbs:"index" xorm:"index"`
 	Author          string
 	ReplyTime       time.Time
 	ReplyCount      int64
@@ -121,16 +127,16 @@ type Topic struct {
 //reply,Pid:topic
 type Reply struct {
 	Id         int64
-	Uid        int64 `qbs:"index"`
-	Pid        int64 `qbs:"index"` //Topic id
+	Uid        int64 `qbs:"index" xorm:"index"`
+	Pid        int64 `qbs:"index" xorm:"index"` //Topic id
 	Ctype      int64
 	Content    string
 	Attachment string
-	Created    time.Time `qbs:"index"`
-	Hotness    float64   `qbs:"index"`
-	Hotup      int64     `qbs:"index"`
-	Hotdown    int64     `qbs:"index"`
-	Views      int64     `qbs:"index"`
+	Created    time.Time `qbs:"index" xorm:"index"`
+	Hotness    float64   `qbs:"index" xorm:"index"`
+	Hotup      int64     `qbs:"index" xorm:"index"`
+	Hotdown    int64     `qbs:"index" xorm:"index"`
+	Views      int64     `qbs:"index" xorm:"index"`
 	Author     string
 	Email      string
 	Website    string
@@ -138,10 +144,10 @@ type Reply struct {
 
 type File struct {
 	Id              int64
-	Cid             int64 `qbs:"index"`
-	Nid             int64 `qbs:"index"`
-	Uid             int64 `qbs:"index"`
-	Pid             int64 `qbs:"index"`
+	Cid             int64 `qbs:"index" xorm:"index"`
+	Nid             int64 `qbs:"index" xorm:"index"`
+	Uid             int64 `qbs:"index" xorm:"index"`
+	Pid             int64 `qbs:"index" xorm:"index"`
 	Ctype           int64
 	Filename        string
 	Content         string
@@ -149,12 +155,12 @@ type File struct {
 	Location        string
 	Url             string
 	Size            int64
-	Created         time.Time `qbs:"index"`
-	Updated         time.Time `qbs:"index"`
-	Hotness         float64   `qbs:"index"`
-	Hotup           int64     `qbs:"index"`
-	Hotdown         int64     `qbs:"index"`
-	Views           int64     `qbs:"index"`
+	Created         time.Time `qbs:"index" xorm:"index"`
+	Updated         time.Time `qbs:"index" xorm:"index"`
+	Hotness         float64   `qbs:"index" xorm:"index"`
+	Hotup           int64     `qbs:"index" xorm:"index"`
+	Hotdown         int64     `qbs:"index" xorm:"index"`
+	Views           int64     `qbs:"index" xorm:"index"`
 	ReplyTime       time.Time
 	ReplyCount      int64
 	ReplyLastUserId int64
@@ -173,16 +179,47 @@ type Kvs struct {
 	V string
 }
 
+func init() {
+	SetEngine()
+}
+
+func XConDb() (*xorm.Engine, error) {
+	switch {
+	case dbtype == "sqlite":
+		return xorm.NewEngine("sqlite3", DbName)
+
+	case dbtype == "mysql":
+		return xorm.NewEngine("mysql", "user=mysql password=jn!@#9^&* dbname=mysql")
+
+	case dbtype == "pgsql":
+		return xorm.NewEngine("postgres", "user=postgres password=jn!@#$%^&* dbname=pgsql sslmode=disable")
+	}
+	return nil, errors.New("尚未设定数据库连接")
+}
+
+func SetEngine() (*xorm.Engine, error) {
+
+	var err error
+	Engine, err = XConDb()
+	//Engine.Mapper = xorm.SameMapper{}
+	//Engine.SetMaxConns(5)
+	//Engine.ShowSQL = true
+	cacher := xorm.NewLRUCacher(xorm.NewMemoryStore(), 1000)
+	Engine.SetDefaultCacher(cacher)
+
+	return Engine, err
+}
+
 func RegisterDb() {
 
 	switch {
-	case dbtypeset == "sqlite":
+	case dbtype == "sqlite":
 		qbs.Register("sqlite3", "./data/sqlite.db", "", qbs.NewSqlite3())
 
-	case dbtypeset == "mysql":
+	case dbtype == "mysql":
 		qbs.Register("mysql", "qbs_test@/qbs_test?charset=utf8&parseTime=true&loc=Local", "dbname", qbs.NewMysql())
 
-	case dbtypeset == "pgsql":
+	case dbtype == "pgsql":
 		qbs.Register("postgres", "user=postgres password=jn!@#$%^&* dbname=pgsql sslmode=disable", "pgsql", qbs.NewPostgres())
 	}
 

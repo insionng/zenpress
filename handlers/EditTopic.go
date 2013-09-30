@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
+	"toropress/libs"
+	"toropress/models"
 )
 
 type TopicEditHandler struct {
@@ -30,8 +30,8 @@ func (self *TopicEditHandler) Post() {
 
 	if tid_title != "" && tid_content != "" {
 		models.EditTopic(tid, nid, cid, uid, tid_title, tid_content)
-		self.Ctx.Redirect(302, "/view/"+self.Ctx.Params[":tid"])
+		self.Redirect("/view/"+self.GetString(":tid"), 302)
 	} else {
-		self.Ctx.Redirect(302, "/")
+		self.Redirect("/", 302)
 	}
 }

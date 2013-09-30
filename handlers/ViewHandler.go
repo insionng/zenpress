@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
-	"../utils"
 	"strconv"
+	"toropress/libs"
+	"toropress/models"
+	"toropress/utils"
 )
 
 type ViewHandler struct {

@@ -1,6 +1,12 @@
 toropress
 =========
-基于[Torgo](https://github.com/insionng/torgo)([Beego](https://github.com/astaxie/beego)山寨版)与[Qbs](https://github.com/coocood/qbs)开发的Golang CMS系统网站，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站，
+toropress是sudochina.com的开发代号,
+是一个简单和强大的Golang CMS系统网站，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站..
+
+第一个版本基于[Torgo](https://github.com/insionng/torgo)([Beego](https://github.com/astaxie/beego)山寨版)与[Qbs](https://github.com/coocood/qbs)开发.
+
+第二版于2013年10月1日更新,由于beego最新版本几乎已经把[Torgo](https://github.com/insionng/torgo)的所有修改优化吸收完全了,从而决定了toropress源码再次回归[Beego](https://github.com/astaxie/beego),并采用了[Xorm](https://github.com/lunny/xorm),未来会逐步将[Qbs](https://github.com/coocood/qbs)的代码迁移到[Xorm](https://github.com/lunny/xorm).
+
 
 ##线上版本
 
@@ -13,7 +19,13 @@ toropress
 [访问因特拉](<http://www.interla.net/>)
 
 
-##版本更新请先更新torgo
+##第二版安装请先更新安装beego、xorm和
+
+    go get -u github.com/astaxie/beego
+    go get -u github.com/lunny/xorm
+    go get -u github.com/coocood/qbs
+
+##第一版安装请先更新torgo
 
     go get -u github.com/insionng/torgo
 
