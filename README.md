@@ -19,7 +19,7 @@ toropress是sudochina.com的开发代号,
 [访问因特拉](<http://www.interla.net/>)
 
 
-##第二版安装请先更新安装beego、xorm和
+##第二版安装请先更新安装beego、xorm和qbs
 
     go get -u github.com/astaxie/beego
     go get -u github.com/lunny/xorm
@@ -30,8 +30,10 @@ toropress是sudochina.com的开发代号,
     go get -u github.com/insionng/torgo
 
 ##安装
-	先安装sqlite3:
-	SQLITE3驱动编译环境:TDM版MINGW64(http://tdm-gcc.tdragon.net/)
+	先安装sqlite3驱动，譬如64位的win7：
+	SQLITE3驱动编译环境是TDM版MINGW64(http://tdm-gcc.tdragon.net/)，
+    安装好后请把TDM版MINGW64的bin目录路径加入到你的win7环境变量path里面。
+
 	
 	go get -u github.com/mattn/go-sqlite3
 
