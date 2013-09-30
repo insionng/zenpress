@@ -214,7 +214,7 @@ func RegisterDb() {
 
 	switch {
 	case dbtype == "sqlite":
-		qbs.Register("sqlite3", "./data/sqlite.db", "", qbs.NewSqlite3())
+		qbs.Register("sqlite3", DbName, "", qbs.NewSqlite3())
 
 	case dbtype == "mysql":
 		qbs.Register("mysql", "qbs_test@/qbs_test?charset=utf8&parseTime=true&loc=Local", "dbname", qbs.NewMysql())
@@ -531,11 +531,10 @@ func UpdateUser(uid int, ur User) error {
 	return err
 }
 
-func GetUser(id int64) (user User) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.Where("id=?", id).Find(&user)
-	return user
+func GetUser(id int64) *User {
+	usr := new(User)
+	Engine.Where("id=?", id).Get(usr)
+	return usr
 }
 
 func DelUser(uid int64) error {
@@ -547,18 +546,16 @@ func DelUser(uid int64) error {
 	return err
 }
 
-func GetUserByRole(role int) (user User) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.Where("role=?", int64(role)).Find(&user)
-	return user
+func GetUserByRole(role int) *User {
+	usr := new(User)
+	Engine.Where("role=?", int64(role)).Get(usr)
+	return usr
 }
 
-func GetAllUserByRole(role int) (user []*User) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.Where("role=?", int64(role)).OrderByDesc("id").FindAll(&user)
-	return user
+func GetAllUserByRole(role int) *[]User {
+	users := new([]User)
+	Engine.Where("role=?", int64(role)).Desc("id").Find(users)
+	return users
 }
 
 func GetUserByNickname(nickname string) (user User) {
@@ -760,26 +757,22 @@ func DelReply(tid int64) error {
 	return err
 }
 
-func GetAllCategory() (allc []*Category) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.FindAll(&allc)
-	return allc
+func GetAllCategory() *[]Category {
+	cats := new([]Category)
+	Engine.Find(cats)
+	return cats
 }
 
-func GetAllNode() (alln []*Node) {
-	q, _ := ConnDb()
-	defer q.Close()
-	//q.OrderByDesc("id").FindAll(&alln)
-	q.OrderByDesc("created").FindAll(&alln)
-	return alln
+func GetAllNode() *[]Node {
+	nds := new([]Node)
+	Engine.Desc("created").Find(nds)
+	return nds
 }
 
-func GetAllTopic(offset int, limit int, path string) (allt []*Topic) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
-	return allt
+func GetAllTopic(offset int, limit int, path string) *[]Topic {
+	tps := new([]Topic)
+	Engine.Limit(limit, offset).Desc(path, "created").Find(tps)
+	return tps
 }
 
 func GetAllNodeByCid(cid int64, offset int, limit int, ctype int64, path string) (alln []*Node) {
@@ -948,16 +941,14 @@ func GetAllTopicByNid(nodeid int64, offset int, limit int, ctype int64, path str
 	return allt
 }
 
-func SearchTopic(content string, offset int, limit int, path string) (allt []*Topic) {
-	//排序首先是热值优先，然后是时间优先。
+func SearchTopic(content string, offset int, limit int, path string) *[]Topic {
+	tps := new([]Topic)
 	if content != "" {
-		q, _ := ConnDb()
-		defer q.Close()
 		keyword := "%" + content + "%"
-		condition := qbs.NewCondition("title like ?", keyword).Or("content like ?", keyword)
-		q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
-		//q.Where("title like ?", keyword).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("created").FindAll(&allt)
-		return allt
+
+		Engine.Where("title like ? or content like ?", keyword, keyword).Limit(limit, offset).Desc(path, "views", "reply_count", "created").Find(tps)
+
+		return tps
 	}
 	return nil
 }
@@ -976,11 +967,10 @@ func GetNode(id int64) (node Node) {
 	return node
 }
 
-func GetTopic(id int64) (topic Topic) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.Where("id=?", id).Find(&topic)
-	return topic
+func GetTopic(id int64) *Topic {
+	tp := new(Topic)
+	Engine.Where("id=?", id).Get(tp)
+	return tp
 }
 
 func SaveTopic(tp Topic) error {
@@ -1005,10 +995,10 @@ func UpdateNode(nid int64, nd Node) error {
 	return err
 }
 
-func UpdateTopic(tid int64, tp Topic) error {
+func UpdateTopic(tid int64, tp *Topic) error {
 	q, _ := ConnDb()
 	defer q.Close()
-	_, err := q.WhereEqual("id", int64(tid)).Update(&tp)
+	_, err := q.WhereEqual("id", int64(tid)).Update(tp)
 	return err
 }
 

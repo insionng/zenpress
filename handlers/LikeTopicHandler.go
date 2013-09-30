@@ -17,7 +17,7 @@ func (self *LikeTopicHandler) Get() {
 
 		id, _ := self.GetInt(":tid")
 
-		tp := models.GetTopic(id)
+		tp := *models.GetTopic(id)
 		tp.Hotup = tp.Hotup + 1
 		tp.Hotness = utils.Hotness(tp.Hotup, tp.Hotdown, tp.Created)
 

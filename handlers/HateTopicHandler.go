@@ -17,7 +17,7 @@ func (self *HateTopicHandler) Get() {
 
 		id, _ := self.GetInt(":tid")
 
-		tp := models.GetTopic(id)
+		tp := *models.GetTopic(id)
 		tp.Hotdown = tp.Hotdown + 1
 		tp.Hotness = utils.Hotness(tp.Hotup, tp.Hotdown, tp.Created)
 

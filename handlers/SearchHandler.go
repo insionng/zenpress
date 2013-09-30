@@ -15,7 +15,7 @@ func (self *SearchHandler) Get() {
 		page, _ := self.GetInt("page")
 		limit := 25
 
-		rcs := len(models.SearchTopic(keyword, 0, 0, "id"))
+		rcs := len(*models.SearchTopic(keyword, 0, 0, "id"))
 		pages, pageout, beginnum, endnum, offset := utils.Pages(rcs, int(page), limit)
 		self.Data["search_hotness"] = models.SearchTopic(keyword, offset, limit, "hotness")
 
