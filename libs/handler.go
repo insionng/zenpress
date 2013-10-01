@@ -4,8 +4,8 @@ import (
 	"github.com/astaxie/beego"
 	"runtime"
 	"time"
+	"toropress/helper"
 	"toropress/models"
-	"toropress/utils"
 )
 
 var (
@@ -51,6 +51,7 @@ func (self *BaseHandler) Prepare() {
 	}
 	self.Data["categorys"] = models.GetAllCategory()
 	self.Data["nodes"] = models.GetAllNode()
+	self.Data["nodes_hotness_topbar"] = models.GetAllNodeByCid(0, 0, 16, 0, "hotness")
 	self.Data["topics_5s"] = models.GetAllTopic(0, 5, "id")
 	self.Data["topics_10s"] = models.GetAllTopic(0, 10, "id")
 	self.Data["nodes_10s"] = models.GetAllNodeByCid(0, 0, 10, 0, "id")
@@ -95,7 +96,7 @@ func (self *RootAuthHandler) Prepare() {
 func (self *RootHandler) Prepare() {
 	self.BaseHandler.Prepare()
 
-	if !utils.IsSpider(self.Ctx.Request.UserAgent()) {
+	if !helper.IsSpider(self.Ctx.Request.UserAgent()) {
 		if sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
 		} else {

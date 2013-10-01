@@ -23,11 +23,9 @@ func main() {
 	beego.Router("/login", &handlers.LoginHandler{})
 	beego.Router("/logout", &handlers.LogoutHandler{})
 
-	beego.Router("/like/topic/:tid:int", &handlers.LikeTopicHandler{})
-	beego.Router("/hate/topic/:tid:int", &handlers.HateTopicHandler{})
-
-	beego.Router("/like/node/:nid:int", &handlers.LikeNodeHandler{})
-	beego.Router("/hate/node/:nid:int", &handlers.HateNodeHandler{})
+	//hotness
+	beego.Router("/like/:name:string/:id:int", &handlers.LikeHandler{})
+	beego.Router("/hate/:name:string/:id:int", &handlers.HateHandler{})
 
 	beego.Router("/new/category", &handlers.NewCategoryHandler{})
 	beego.Router("/new/node", &handlers.NewNodeHandler{})

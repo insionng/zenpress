@@ -6,7 +6,7 @@ import (
 	"github.com/coocood/qbs"
 	"github.com/lunny/xorm"
 	_ "github.com/mattn/go-sqlite3"
-	"toropress/utils"
+	"toropress/helper"
 	//_ "github.com/lib/pq" //当某时间字段表现为0001-01-01 07:36:42+07:36:42形式的时候 会读不出数据
 	//_ "github.com/bylevel/pq"
 	"os"
@@ -86,42 +86,50 @@ type Node struct {
 	Id              int64
 	Pid             int64 `qbs:"index" xorm:"index"`
 	Uid             int64 `qbs:"index" xorm:"index"`
+	Order           int64
 	Ctype           int64
 	Title           string
-	Content         string
-	Attachment      string
+	Content         string    `xorm:"text"`
+	Attachment      string    `xorm:"text"`
 	Created         time.Time `qbs:"index" xorm:"index"`
 	Updated         time.Time `qbs:"index" xorm:"index"`
 	Hotness         float64   `qbs:"index" xorm:"index"`
 	Hotup           int64     `qbs:"index" xorm:"index"`
 	Hotdown         int64     `qbs:"index" xorm:"index"`
+	Hotscore        int64     `qbs:"index" xorm:"index"`
 	Views           int64     `qbs:"index" xorm:"index"`
-	Author          string
+	Author          string    //节点的创建者
 	TopicTime       time.Time
 	TopicCount      int64
 	TopicLastUserId int64
 }
 
-//topic,Pid:node
+//由于cid nid uid都可以是topic的上级所以默认不设置pid字段,这里默认Pid是nid
 type Topic struct {
-	Id              int64
-	Cid             int64 `qbs:"index" xorm:"index"`
-	Nid             int64 `qbs:"index" xorm:"index"`
-	Uid             int64 `qbs:"index" xorm:"index"`
-	Ctype           int64
-	Title           string
-	Content         string
-	Attachment      string
-	Created         time.Time `qbs:"index" xorm:"index"`
-	Updated         time.Time `qbs:"index" xorm:"index"`
-	Hotness         float64   `qbs:"index" xorm:"index"`
-	Hotup           int64     `qbs:"index" xorm:"index"`
-	Hotdown         int64     `qbs:"index" xorm:"index"`
-	Views           int64     `qbs:"index" xorm:"index"`
-	Author          string
-	ReplyTime       time.Time
-	ReplyCount      int64
-	ReplyLastUserId int64
+	Id                int64
+	Cid               int64 `qbs:"index" xorm:"index"`
+	Nid               int64 `qbs:"index" xorm:"index"`
+	Uid               int64 `qbs:"index" xorm:"index"`
+	Order             int64
+	Ctype             int64
+	Title             string
+	Content           string    `xorm:"text"`
+	Attachment        string    `xorm:"text"`
+	Created           time.Time `qbs:"index" xorm:"index"`
+	Updated           time.Time `qbs:"index" xorm:"index"`
+	Hotness           float64   `qbs:"index" xorm:"index"`
+	Hotup             int64     `qbs:"index" xorm:"index"`
+	Hotdown           int64     `qbs:"index" xorm:"index"`
+	Hotscore          int64     `qbs:"index" xorm:"index"`
+	Views             int64     `qbs:"index" xorm:"index"`
+	Author            string
+	Category          string
+	Node              string
+	ReplyTime         time.Time
+	ReplyCount        int64
+	ReplyLastUserId   int64
+	ReplyLastUsername string
+	ReplyLastNickname string
 }
 
 //reply,Pid:topic
@@ -257,7 +265,7 @@ func CreateDb() bool {
 
 		//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
 		if GetUserByRole(-1000).Role != -1000 {
-			AddUser("root@localhost", "root", "系统默认管理员", utils.Encrypt_password("rootpass", nil), -1000)
+			AddUser("root@localhost", "root", "系统默认管理员", helper.Encrypt_password("rootpass", nil), -1000)
 			fmt.Println("Default User:root,Password:rootpass")
 
 			if GetAllTopic(0, 0, "id") == nil {
@@ -371,6 +379,24 @@ func TopicCount() (today int, this_week int, this_month int) {
 	return today, this_week, this_month
 }
 
+func PutTopic(tid int64, tp *Topic) (int64, error) {
+	//覆盖式更新话题
+	tp.Updated = time.Now()
+	row, err := Engine.Update(tp, &Topic{Id: tid}) //该方法目前返回的row为执行SQL所影响的行数
+
+	return row, err
+
+}
+
+func PutNode(nid int64, nd *Node) (int64, error) {
+	//覆盖式更新节点
+	nd.Updated = time.Now()
+	row, err := Engine.Update(nd, &Node{Id: nid})
+
+	return row, err
+
+}
+
 func SetTopic(id int64, cid int64, nid int64, uid int64, ctype int64, title string, content string, author string, attachment string) error {
 	q, _ := ConnDb()
 	defer q.Close()
@@ -408,7 +434,7 @@ func DelFile(id int64) error {
 	defer q.Close()
 	f := GetFile(id)
 
-	if utils.Exist("." + f.Location) {
+	if helper.Exist("." + f.Location) {
 		if err := os.Remove("." + f.Location); err != nil {
 			return err
 			fmt.Println(err)
@@ -685,10 +711,9 @@ func AddReply(tid int64, uid int64, content string, author string, email string,
 	return nil
 }
 
-func SaveNode(nd Node) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.Save(&nd)
+func SaveNode(nd *Node) error {
+
+	_, err := Engine.Insert(nd)
 	return err
 }
 
@@ -725,7 +750,7 @@ func DelTopic(id int64) error {
 	q, _ := ConnDb()
 	defer q.Close()
 	topic := GetTopic(id)
-	if utils.Exist("." + topic.Attachment) {
+	if helper.Exist("." + topic.Attachment) {
 		if err := os.Remove("." + topic.Attachment); err != nil {
 			//return err
 			//可以输出错误，但不要反回错误，以免陷入死循环无法删掉
@@ -960,11 +985,10 @@ func GetCategory(id int64) (category Category) {
 	return category
 }
 
-func GetNode(id int64) (node Node) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.Where("id=?", id).Find(&node)
-	return node
+func GetNode(id int64) *Node {
+	nd := new(Node)
+	Engine.Where("id=?", id).Get(nd)
+	return nd
 }
 
 func GetTopic(id int64) *Topic {
@@ -987,18 +1011,13 @@ func UpdateCategory(cid int64, cg Category) error {
 	return err
 }
 
-func UpdateNode(nid int64, nd Node) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.WhereEqual("id", int64(nid)).Update(&nd)
-
+func UpdateNode(nid int64, nd *Node) error {
+	_, err := Engine.Where("id=?", int64(nid)).Update(nd)
 	return err
 }
 
 func UpdateTopic(tid int64, tp *Topic) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.WhereEqual("id", int64(tid)).Update(tp)
+	_, err := Engine.Where("id=?", int64(tid)).Update(tp)
 	return err
 }
 

@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 	"time"
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 const (
@@ -23,7 +23,7 @@ type RApi struct {
 func (self *RApi) Get() {
 
 	switch {
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-about-gallery-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-about-gallery-edit/([0-9]+)$"):
 		//# Gallery编辑GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.WriteString(outtimesz)
@@ -36,7 +36,7 @@ func (self *RApi) Get() {
 			self.Render()
 		}
 
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-about-gallery-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-about-gallery-del/([0-9]+)$"):
 		//# Gallery删除GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -54,7 +54,7 @@ func (self *RApi) Get() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Ctx.Redirect(302, "/root-gallery")
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-about-node-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-about-node-del/([0-9]+)$"):
 		//#ABOUT 节点删除 GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -72,7 +72,7 @@ func (self *RApi) Get() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Redirect("/root-about-node-list", 302)
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-contact-node-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-contact-node-del/([0-9]+)$"):
 		//#contact 节点删除 GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -88,7 +88,7 @@ func (self *RApi) Get() {
 
 			}
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-about-topic-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-about-topic-del/([0-9]+)$"):
 		//#ABOUT 内容删除GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -104,7 +104,7 @@ func (self *RApi) Get() {
 
 			}
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-topic-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-topic-del/([0-9]+)$"):
 		// crafts 内容删除GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Redirect("/root-login", 302)
@@ -120,7 +120,7 @@ func (self *RApi) Get() {
 
 			}
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-services-topic-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-topic-del/([0-9]+)$"):
 		// services 内容删除GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Redirect("/root-login", 302)
@@ -136,7 +136,7 @@ func (self *RApi) Get() {
 
 			}
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-about-topic-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-about-topic-edit/([0-9]+)$"):
 		//ABOUT 内容编辑GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Redirect("/root-login", 302)
@@ -152,7 +152,7 @@ func (self *RApi) Get() {
 			self.TplNames = "root/about.html"
 			self.Render()
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-services-topic-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-topic-edit/([0-9]+)$"):
 		// services 内容编辑 GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Redirect("/root-login", 302)
@@ -171,7 +171,7 @@ func (self *RApi) Get() {
 			self.TplNames = "root/published.html"
 			self.Render()
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-contact-topic-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-contact-topic-edit/([0-9]+)$"):
 		//CONTACT 内容编辑GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Redirect("/root-login", 302)
@@ -189,7 +189,7 @@ func (self *RApi) Get() {
 			self.TplNames = "root/contact.html"
 			self.Render()
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-topic-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-topic-edit/([0-9]+)$"):
 		//crafts 内容编辑GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Redirect("/root-login", 302)
@@ -208,7 +208,7 @@ func (self *RApi) Get() {
 			self.TplNames = "root/published.html"
 			self.Render()
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-information-topic-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-information-topic-del/([0-9]+)$"):
 		//information 内容删除GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -224,7 +224,7 @@ func (self *RApi) Get() {
 
 			}
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-contact-topic-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-contact-topic-del/([0-9]+)$"):
 		//contact 内容删除GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -240,7 +240,7 @@ func (self *RApi) Get() {
 
 			}
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-about-node-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-about-node-edit/([0-9]+)$"):
 		// about 节点编辑GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -257,7 +257,7 @@ func (self *RApi) Get() {
 			self.Render()
 		}
 
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-contact-node-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-contact-node-edit/([0-9]+)$"):
 		//contact 节点编辑GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -274,7 +274,7 @@ func (self *RApi) Get() {
 			self.Render()
 		}
 
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-services-node-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-node-edit/([0-9]+)$"):
 		//services 节点编辑GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -290,7 +290,7 @@ func (self *RApi) Get() {
 			self.TplNames = "root/published_node.html"
 			self.Render()
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-information-node-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-information-node-edit/([0-9]+)$"):
 		//information 节点编辑GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -305,7 +305,7 @@ func (self *RApi) Get() {
 			self.TplNames = "root/published_node.html"
 			self.Render()
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-node-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-node-edit/([0-9]+)$"):
 		//crafts节点编辑GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -320,7 +320,7 @@ func (self *RApi) Get() {
 			self.TplNames = "root/published_node.html"
 			self.Render()
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-information-topic-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-information-topic-edit/([0-9]+)$"):
 		//information 内容编辑GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -339,7 +339,7 @@ func (self *RApi) Get() {
 			self.TplNames = "root/published.html"
 			self.Render()
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-services-node-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-node-del/([0-9]+)$"):
 		//services 节点删除 GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -355,7 +355,7 @@ func (self *RApi) Get() {
 
 			}
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-information-node-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-information-node-del/([0-9]+)$"):
 		//#INFORMATION 节点删除 GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -371,7 +371,7 @@ func (self *RApi) Get() {
 
 			}
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-node-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-node-del/([0-9]+)$"):
 		//#crafts 删除节点 GET状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -393,7 +393,7 @@ func (self *RApi) Get() {
 
 func (self *RApi) Post() {
 	switch {
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-about-gallery-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-about-gallery-edit/([0-9]+)$"):
 		//# Gallery 圖片编辑 POST状态 ,主要是爲了設置url
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.WriteString(outtimesz)
@@ -413,7 +413,7 @@ func (self *RApi) Post() {
 			self.TplNames = "root/gallery_editurl.html"
 			self.Render()
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-about-topic-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-about-topic-edit/([0-9]+)$"):
 		//ABOUT内容编辑 POST状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -439,7 +439,7 @@ func (self *RApi) Post() {
 					self.Data["MsgErr"] = "你编辑的内容不存在！"
 				}
 				ext := "." + strings.Split(handler.Filename, ".")[1]
-				filename := utils.MD5(time.Now().String()) + ext
+				filename := helper.MD5(time.Now().String()) + ext
 
 				path := "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -456,11 +456,11 @@ func (self *RApi) Post() {
 					output_file := "." + path
 					output_size := "232x135"
 					output_align := "center"
-					utils.Thumbnail(input_file, output_file, output_size, output_align, "white")
+					helper.Thumbnail(input_file, output_file, output_size, output_align, "white")
 
 					//若文件存在则删除，不存在就当忽略处理
 					if file_location != "" {
-						if utils.Exist("." + file_location) {
+						if helper.Exist("." + file_location) {
 							if err := os.Remove("." + file_location); err != nil {
 								self.Data["MsgErr"] = "删除旧文件错误！"
 							}
@@ -496,7 +496,7 @@ func (self *RApi) Post() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Redirect(self.Ctx.Request.RequestURI, 302)
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-about-node-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-about-node-edit/([0-9]+)$"):
 		/// about 节点编辑 POST状态
 
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
@@ -527,7 +527,7 @@ func (self *RApi) Post() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Redirect(self.Ctx.Request.RequestURI, 302)
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-services-node-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-node-edit/([0-9]+)$"):
 		/// services 节点编辑 POST状态
 
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
@@ -558,7 +558,7 @@ func (self *RApi) Post() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Redirect(self.Ctx.Request.RequestURI, 302)
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-services-topic-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-topic-edit/([0-9]+)$"):
 		// services 内容编辑 POST状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -584,7 +584,7 @@ func (self *RApi) Post() {
 					self.Data["MsgErr"] = "你编辑的内容不存在！"
 				}
 				ext := "." + strings.Split(handler.Filename, ".")[1]
-				filename := utils.MD5(time.Now().String()) + ext
+				filename := helper.MD5(time.Now().String()) + ext
 
 				path := "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -601,11 +601,11 @@ func (self *RApi) Post() {
 					output_file := "." + path
 					output_size := "211x134"
 					output_align := "center"
-					utils.Thumbnail(input_file, output_file, output_size, output_align, "white")
+					helper.Thumbnail(input_file, output_file, output_size, output_align, "white")
 
 					//若文件存在则删除，不存在就当忽略处理
 					if file_location != "" {
-						if utils.Exist("." + file_location) {
+						if helper.Exist("." + file_location) {
 							if err := os.Remove("." + file_location); err != nil {
 								self.Data["MsgErr"] = "删除旧文件错误！"
 							}
@@ -641,7 +641,7 @@ func (self *RApi) Post() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Redirect(self.Ctx.Request.RequestURI, 302)
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-node-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-node-edit/([0-9]+)$"):
 		/// crafts 节点编辑 POST状态
 
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
@@ -672,7 +672,7 @@ func (self *RApi) Post() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Redirect(self.Ctx.Request.RequestURI, 302)
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-topic-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-topic-edit/([0-9]+)$"):
 		// crafts 内容编辑 POST状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -698,7 +698,7 @@ func (self *RApi) Post() {
 					self.Data["MsgErr"] = "你编辑的内容不存在！"
 				}
 				ext := "." + strings.Split(handler.Filename, ".")[1]
-				filename := utils.MD5(time.Now().String()) + ext
+				filename := helper.MD5(time.Now().String()) + ext
 
 				path := "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -715,11 +715,11 @@ func (self *RApi) Post() {
 					output_file := "." + path
 					output_size := "534"
 					output_align := "center"
-					utils.Thumbnail(input_file, output_file, output_size, output_align, "black")
+					helper.Thumbnail(input_file, output_file, output_size, output_align, "black")
 
 					//若文件存在则删除，不存在就当忽略处理
 					if file_location != "" {
-						if utils.Exist("." + file_location) {
+						if helper.Exist("." + file_location) {
 							if err := os.Remove("." + file_location); err != nil {
 								self.Data["MsgErr"] = "删除旧文件错误！"
 							}
@@ -755,7 +755,7 @@ func (self *RApi) Post() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Redirect(self.Ctx.Request.RequestURI, 302)
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-information-topic-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-information-topic-edit/([0-9]+)$"):
 		// information 内容编辑 POST状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")
@@ -781,7 +781,7 @@ func (self *RApi) Post() {
 					self.Data["MsgErr"] = "你编辑的内容不存在！"
 				}
 				ext := "." + strings.Split(handler.Filename, ".")[1]
-				filename := utils.MD5(time.Now().String()) + ext
+				filename := helper.MD5(time.Now().String()) + ext
 
 				path := "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -798,11 +798,11 @@ func (self *RApi) Post() {
 					output_file := "." + path
 					output_size := "534"
 					output_align := "center"
-					utils.Thumbnail(input_file, output_file, output_size, output_align, "black")
+					helper.Thumbnail(input_file, output_file, output_size, output_align, "black")
 
 					//若文件存在则删除，不存在就当忽略处理
 					if file_location != "" {
-						if utils.Exist("." + file_location) {
+						if helper.Exist("." + file_location) {
 							if err := os.Remove("." + file_location); err != nil {
 								self.Data["MsgErr"] = "删除旧文件错误！"
 							}
@@ -838,7 +838,7 @@ func (self *RApi) Post() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Redirect(self.Ctx.Request.RequestURI, 302)
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-information-node-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-information-node-edit/([0-9]+)$"):
 		// information 节点编辑 POST状态
 
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
@@ -869,7 +869,7 @@ func (self *RApi) Post() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Redirect(self.Ctx.Request.RequestURI, 302)
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-contact-node-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-contact-node-edit/([0-9]+)$"):
 		//contact 节点编辑 POST状态
 
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
@@ -900,7 +900,7 @@ func (self *RApi) Post() {
 			self.SetSession("MsgErr", self.Data["MsgErr"])
 			self.Redirect(self.Ctx.Request.RequestURI, 302)
 		}
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-contact-topic-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-contact-topic-edit/([0-9]+)$"):
 		//CONTACT内容编辑 POST状态
 		if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 			self.Ctx.Redirect(302, "/root-login")

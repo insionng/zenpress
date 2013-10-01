@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 	"time"
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 type RSetvideoHandler struct {
@@ -86,7 +86,7 @@ func (self *RSetvideoHandler) Post() {
 			} else {
 
 				ext := "." + strings.Split(handler.Filename, ".")[1]
-				filename := utils.MD5(time.Now().String()) + ext
+				filename := helper.MD5(time.Now().String()) + ext
 
 				path = "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -126,11 +126,11 @@ func (self *RSetvideoHandler) Post() {
 			output_size := "196x117"
 			output_align := "center"
 			watermark_file := "./static/themes/ibeatuys/img/vicon.png"
-			if e := utils.Thumbnail(input_file, output_file, output_size, output_align, "white"); e != nil {
+			if e := helper.Thumbnail(input_file, output_file, output_size, output_align, "white"); e != nil {
 				fmt.Println("Thumbnail", e)
 			}
 
-			if e := utils.Watermark(watermark_file, input_file, output_file, output_align); e != nil {
+			if e := helper.Watermark(watermark_file, input_file, output_file, output_align); e != nil {
 				fmt.Println("Watermark", e)
 			}
 			if e := models.SetTopic(2, cid, nodeid, uid, 30, ftitle, content, "root", path); e != nil {

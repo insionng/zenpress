@@ -1,9 +1,9 @@
 package root
 
 import (
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 type RLoginHandler struct {
@@ -13,9 +13,9 @@ type RLoginHandler struct {
 func (self *RLoginHandler) Get() {
 	browser := ""
 	switch {
-	case utils.Rex(self.Ctx.Request.UserAgent(), "MSIE 5.0"):
+	case helper.Rex(self.Ctx.Request.UserAgent(), "MSIE 5.0"):
 		browser = "MSIE 5.0"
-	case utils.Rex(self.Ctx.Request.UserAgent(), "MSIE 5.5"):
+	case helper.Rex(self.Ctx.Request.UserAgent(), "MSIE 5.5"):
 		browser = "MSIE 5.5"
 	}
 
@@ -45,7 +45,7 @@ func (self *RLoginHandler) Post() {
 
 		if userInfo := models.GetUserByNickname(username); userInfo.Nickname != "" {
 
-			if utils.Validate_password(userInfo.Password, password) && userInfo.Role == -1000 {
+			if helper.Validate_password(userInfo.Password, password) && userInfo.Role == -1000 {
 
 				//登录成功设置session
 				self.SetSession("userid", userInfo.Id)

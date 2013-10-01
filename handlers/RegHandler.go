@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"fmt"
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 type RegHandler struct {
@@ -21,7 +21,7 @@ func (self *RegHandler) Post() {
 	self.Ctx.Request.ParseForm()
 	username := self.Ctx.Request.Form.Get("username")
 	password := self.Ctx.Request.Form.Get("password")
-	usererr := utils.CheckUsername(username)
+	usererr := helper.CheckUsername(username)
 
 	fmt.Println(usererr)
 	if usererr == false {
@@ -29,13 +29,13 @@ func (self *RegHandler) Post() {
 		return
 	}
 
-	passerr := utils.CheckPassword(password)
+	passerr := helper.CheckPassword(password)
 	if passerr == false {
 		self.Data["PasswordErr"] = "Password error, Please to again"
 		return
 	}
 
-	pwd := utils.Encrypt_password(password, nil)
+	pwd := helper.Encrypt_password(password, nil)
 
 	//now := torgo.Date(time.Now(), "Y-m-d H:i:s")
 

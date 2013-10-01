@@ -47,13 +47,25 @@
 
 <!-- Header -->
 <header>
+<div class="navbar">
+  <div class="navbar-inner">
+    <ul class="nav">
+    {{if .nodes_hotness_topbar}}
+      <!--li class="active"><a href="#">首页</a></li-->
+      {{range .nodes_hotness_topbar}}
+      <li><a href="/node/{{.Id}}">{{.Title}}</a></li>
+      {{end}}
+    {{end}}
+    </ul>
+  </div>
+</div>
    <div class="container">
       <div class="row">
          <div class="span4">
             <div class="logo">
                <!-- Recommended Logo size 240x100 -->
                <a href="/"><h1><span class="color">Sudo</span>China</h1></a>
-               <p class="lmeta">速动中国，借力开源，快速行动！</p>
+               <p class="lmeta">借力开源，快速行动！</p>
             </div>
          <!--div class="span4 offset4">
             <div class="social">

@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"strconv"
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 type ViewHandler struct {
@@ -56,7 +56,7 @@ func (self *ViewHandler) Get() {
 			tid_path := strconv.Itoa(int(tid_handler.Cid)) + "/" + strconv.Itoa(int(tid_handler.Nid)) + "/"
 			tid_name := strconv.Itoa(int(tid_handler.Id)) + ".html"
 			rs, _ := self.RenderString()
-			utils.WriteFile("./archives/"+tid_path, tid_name, rs)
+			helper.WriteFile("./archives/"+tid_path, tid_name, rs)
 			self.Redirect("/archives/"+tid_path+tid_name, 301)
 		}
 	} else {

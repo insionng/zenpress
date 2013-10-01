@@ -27,7 +27,7 @@ func (self *ModifyNodeHandler) Post() {
 	nd_title := inputs.Get("title")
 	nd_content := inputs.Get("content")
 	if cid != 0 && nid != 0 && nd_title != "" && nd_content != "" {
-		var nd models.Node
+		nd := new(models.Node)
 		nd.Id = int64(nid)
 		nd.Pid = int64(cid)
 		nd.Title = nd_title

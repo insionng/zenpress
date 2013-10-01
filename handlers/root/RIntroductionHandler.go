@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 	"time"
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 type RIntroductionHandler struct {
@@ -86,7 +86,7 @@ func (self *RIntroductionHandler) Post() {
 			} else {
 
 				ext := "." + strings.Split(handler.Filename, ".")[1]
-				filename := utils.MD5(time.Now().String()) + ext
+				filename := helper.MD5(time.Now().String()) + ext
 
 				path = "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -125,7 +125,7 @@ func (self *RIntroductionHandler) Post() {
 			output_file := "." + path
 			output_size := "233x139"
 			output_align := "center"
-			if e := utils.Thumbnail(input_file, output_file, output_size, output_align, "white"); e != nil {
+			if e := helper.Thumbnail(input_file, output_file, output_size, output_align, "white"); e != nil {
 				fmt.Println("Thumbnail", e)
 			}
 

@@ -1,9 +1,9 @@
 package root
 
 import (
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 type RSettingHandler struct {
@@ -15,7 +15,7 @@ func (self *RSettingHandler) Get() {
 	self.Data["MsgErr"], _ = self.GetSession("MsgErr").(string)
 	self.DelSession("MsgErr")
 	switch {
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-setting-setroot-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-setting-setroot-del/([0-9]+)$"):
 		rootid, _ := self.GetInt(":rid")
 		if e := models.DelUser(rootid); e != nil {
 			self.Data["MsgErr"] = "删除管理员失败！"
@@ -25,7 +25,7 @@ func (self *RSettingHandler) Get() {
 
 		self.TplNames = "root/setting_setroot.html"
 
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-setting-setroot-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-setting-setroot-edit/([0-9]+)$"):
 		self.Data["asidepage"] = "root_setting_setroot_edit"
 		rootid, _ := self.GetInt(":rid")
 		self.Data["root"] = models.GetUser(rootid)
@@ -61,9 +61,9 @@ func (self *RSettingHandler) Post() {
 			sess_username, _ := self.GetSession("username").(string)
 			usr := models.GetUserByNickname(sess_username)
 
-			if utils.Validate_password(usr.Password, curpassword) {
+			if helper.Validate_password(usr.Password, curpassword) {
 
-				if e := models.AddUser("", newroot, realname, utils.Encrypt_password(newpassword, nil), -1000); e != nil {
+				if e := models.AddUser("", newroot, realname, helper.Encrypt_password(newpassword, nil), -1000); e != nil {
 					self.Data["MsgErr"] = "添加新管理员“" + newroot + "”失败！"
 
 				} else {
@@ -105,8 +105,8 @@ func (self *RSettingHandler) Post() {
 			sess_username, _ := self.GetSession("username").(string)
 			usr := models.GetUserByNickname(sess_username)
 
-			if utils.Validate_password(usr.Password, oldpassword) {
-				usr.Password = utils.Encrypt_password(newpassword, nil)
+			if helper.Validate_password(usr.Password, oldpassword) {
+				usr.Password = helper.Encrypt_password(newpassword, nil)
 				if e := models.SaveUser(usr); e != nil {
 					self.Data["MsgErr"] = "更新密码失败！"
 

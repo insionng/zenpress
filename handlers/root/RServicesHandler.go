@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 	"time"
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 type RServicesHandler struct {
@@ -23,7 +23,7 @@ func (self *RServicesHandler) Get() {
 
 	self.Data["topics"] = models.GetAllTopicByCid(cid, 0, 0, 0, "id")
 	switch {
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-services-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-del/([0-9]+)$"):
 		self.Data["asidepage"] = "root_services_list"
 		self.TplNames = "root/services_list.html"
 
@@ -76,7 +76,7 @@ func (self *RServicesHandler) Post() {
 
 	if msg == "" {
 		switch {
-		case utils.Rex(self.Ctx.Request.RequestURI, "^/root-services-edit/([0-9]+)$"):
+		case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-edit/([0-9]+)$"):
 			//编辑POST状态
 			tid, _ := self.GetInt(":tid")
 			file, handler, e := self.GetFile("image")
@@ -103,7 +103,7 @@ func (self *RServicesHandler) Post() {
 					}
 
 					ext := "." + strings.Split(handler.Filename, ".")[1]
-					filename := utils.MD5(time.Now().String()) + ext
+					filename := helper.MD5(time.Now().String()) + ext
 
 					path := "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -119,11 +119,11 @@ func (self *RServicesHandler) Post() {
 						output_file := "." + path
 						output_size := "211x134"
 						output_align := "center"
-						utils.Thumbnail(input_file, output_file, output_size, output_align, "white")
+						helper.Thumbnail(input_file, output_file, output_size, output_align, "white")
 
 						//若文件存在则删除，不存在就当忽略处理
 						if self.Data["file_location"] != nil {
-							if utils.Exist("." + self.Data["file_location"].(string)) {
+							if helper.Exist("." + self.Data["file_location"].(string)) {
 								if err := os.Remove("." + self.Data["file_location"].(string)); err != nil {
 									self.Data["MsgErr"] = "删除旧形象图片错误！"
 								}
@@ -158,7 +158,7 @@ func (self *RServicesHandler) Post() {
 				}
 
 				ext := "." + strings.Split(handler.Filename, ".")[1]
-				filename := utils.MD5(time.Now().String()) + ext
+				filename := helper.MD5(time.Now().String()) + ext
 
 				path := "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -174,7 +174,7 @@ func (self *RServicesHandler) Post() {
 					output_file := "." + path
 					output_size := "211x134"
 					output_align := "center"
-					utils.Thumbnail(input_file, output_file, output_size, output_align, "white")
+					helper.Thumbnail(input_file, output_file, output_size, output_align, "white")
 					if e := models.SetTopic(0, cid, nodeid, uid, 1, title, content, sess_username, path); e != nil {
 						self.Data["MsgErr"] = "添加內容“" + title + "”失败，无法写入数据库！"
 					} else {

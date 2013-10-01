@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 	"time"
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 type RAdvantagesHandler struct {
@@ -22,7 +22,7 @@ func (self *RAdvantagesHandler) Get() {
 
 	switch {
 
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-advantages-del/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-advantages-del/([0-9]+)$"):
 		//删除GET状态 删除內容
 		tid, _ := self.GetInt(":tid")
 
@@ -36,7 +36,7 @@ func (self *RAdvantagesHandler) Get() {
 		self.SetSession("MsgErr", self.Data["MsgErr"])
 		self.Redirect("/root-advantages-list", 302)
 
-	case utils.Rex(self.Ctx.Request.RequestURI, "^/root-advantages-edit/([0-9]+)$"):
+	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-advantages-edit/([0-9]+)$"):
 		//编辑GET状态
 		self.Data["asidepage"] = "root_advantages_edit"
 		tid, _ := self.GetInt(":tid")
@@ -83,7 +83,7 @@ func (self *RAdvantagesHandler) Post() {
 	self.Data["MsgErr"] = msg
 	if msg == "" {
 		switch {
-		case utils.Rex(self.Ctx.Request.RequestURI, "^/root-advantages-edit/([0-9]+)$"):
+		case helper.Rex(self.Ctx.Request.RequestURI, "^/root-advantages-edit/([0-9]+)$"):
 			//编辑POST状态
 			if handler == nil {
 
@@ -106,7 +106,7 @@ func (self *RAdvantagesHandler) Post() {
 					}
 
 					ext := "." + strings.Split(handler.Filename, ".")[1]
-					filename := utils.MD5(time.Now().String()) + ext
+					filename := helper.MD5(time.Now().String()) + ext
 
 					path := "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -122,11 +122,11 @@ func (self *RAdvantagesHandler) Post() {
 						output_file := "." + path
 						output_size := "248x171"
 						output_align := "center"
-						utils.Thumbnail(input_file, output_file, output_size, output_align, "white")
+						helper.Thumbnail(input_file, output_file, output_size, output_align, "white")
 
 						//若文件存在则删除，不存在就当忽略处理
 						if self.Data["file_location"] != nil {
-							if utils.Exist("." + self.Data["file_location"].(string)) {
+							if helper.Exist("." + self.Data["file_location"].(string)) {
 								if err := os.Remove("." + self.Data["file_location"].(string)); err != nil {
 									self.Data["MsgErr"] = "删除旧形象图片错误！"
 								}
@@ -161,7 +161,7 @@ func (self *RAdvantagesHandler) Post() {
 				}
 
 				ext := "." + strings.Split(handler.Filename, ".")[1]
-				filename := utils.MD5(time.Now().String()) + ext
+				filename := helper.MD5(time.Now().String()) + ext
 
 				path := "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -177,7 +177,7 @@ func (self *RAdvantagesHandler) Post() {
 					output_file := "." + path
 					output_size := "248x171"
 					output_align := "center"
-					utils.Thumbnail(input_file, output_file, output_size, output_align, "white")
+					helper.Thumbnail(input_file, output_file, output_size, output_align, "white")
 					if e := models.SetTopic(0, cid, nodeid, uid, 0, title, content, uname, path); e != nil {
 						self.Data["MsgErr"] = "添加“" + title + "”失败，无法写入数据库！"
 					} else {

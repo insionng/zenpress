@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 	//"strconv"
 	"strings"
 	"time"
@@ -48,7 +48,7 @@ func (self *RGalleryHandler) Post() {
 		}
 
 		ext := "." + strings.Split(handler.Filename, ".")[1]
-		filename := utils.MD5(time.Now().String()) + ext
+		filename := helper.MD5(time.Now().String()) + ext
 
 		path := "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -67,7 +67,7 @@ func (self *RGalleryHandler) Post() {
 			output_file := "." + path
 			output_size := "950x360"
 			output_align := "center"
-			utils.Thumbnail(input_file, output_file, output_size, output_align, "white")
+			helper.Thumbnail(input_file, output_file, output_size, output_align, "white")
 			self.Data["MsgErr"] = "上传图片 " + handler.Filename + " 成功！"
 
 		}
@@ -81,7 +81,7 @@ func (self *RGalleryHandler) Post() {
 		}
 
 		ext := "." + strings.Split(handler2.Filename, ".")[1]
-		filename := utils.MD5(time.Now().String()) + ext
+		filename := helper.MD5(time.Now().String()) + ext
 
 		path := "/archives/upload/" + time.Now().Format("2006/01/02/")
 
@@ -100,7 +100,7 @@ func (self *RGalleryHandler) Post() {
 			output_file := "." + path
 			output_size := "320x100"
 			output_align := "center"
-			utils.Thumbnail(input_file, output_file, output_size, output_align, "white")
+			helper.Thumbnail(input_file, output_file, output_size, output_align, "white")
 			self.Data["MsgErr2"] = "上传图片 " + handler2.Filename + " 成功！"
 
 		}

@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 	"time"
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 const (
@@ -54,7 +54,7 @@ func (self *RUploaderHandler) Post() {
 
 			if handler != nil {
 				ext := "." + strings.Split(handler.Filename, ".")[1]
-				filename := utils.MD5(time.Now().String()) + ext
+				filename := helper.MD5(time.Now().String()) + ext
 
 				path := targetFolder + time.Now().Format("2006/01/02/")
 
@@ -73,8 +73,8 @@ func (self *RUploaderHandler) Post() {
 					output_size := "534"
 					output_align := "center"
 					background := "black"
-					utils.Thumbnail(input_file, output_file, output_size, output_align, background)
-					hash, _ := utils.Filehash(output_file)
+					helper.Thumbnail(input_file, output_file, output_size, output_align, background)
+					hash, _ := helper.Filehash(output_file)
 					fileInfo, err := os.Stat(output_file)
 					var fsize int64 = 0
 					if err == nil {

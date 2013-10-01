@@ -1,9 +1,9 @@
 package handlers
 
 import (
+	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
-	"toropress/utils"
 )
 
 type LoginHandler struct {
@@ -31,7 +31,7 @@ func (self *LoginHandler) Post() {
 
 		if userInfo := models.GetUserByNickname(username); userInfo.Password != "" {
 
-			if utils.Validate_password(userInfo.Password, password) {
+			if helper.Validate_password(userInfo.Password, password) {
 
 				//登录成功设置session
 				self.SetSession("userid", userInfo.Id)
