@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/astaxie/beego"
 	"toropress/handlers"
 	"toropress/handlers/root"
@@ -8,7 +9,12 @@ import (
 )
 
 func main() {
-	models.CreateDb()
+	fmt.Println("Starting...")
+	if !models.CreateDb() {
+		fmt.Println("Database struct sync failed")
+		return
+	}
+	fmt.Println("Database struct sync successfully")
 	beego.SetStaticPath("/static", "static/")
 	beego.SetStaticPath("/archives", "archives/")
 

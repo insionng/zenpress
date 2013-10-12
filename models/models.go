@@ -3,7 +3,7 @@ package models
 import (
 	"errors"
 	"fmt"
-	"github.com/coocood/qbs"
+	//"github.com/coocood/qbs"
 	"github.com/lunny/xorm"
 	_ "github.com/mattn/go-sqlite3"
 	"toropress/helper"
@@ -188,7 +188,10 @@ type Kvs struct {
 }
 
 func init() {
-	SetEngine()
+	_, err := SetEngine()
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func XConDb() (*xorm.Engine, error) {
@@ -218,7 +221,7 @@ func SetEngine() (*xorm.Engine, error) {
 	return Engine, err
 }
 
-func RegisterDb() {
+/*func RegisterDb() {
 
 	switch {
 	case dbtype == "sqlite":
@@ -243,69 +246,51 @@ func SetMg() (mg *qbs.Migration, err error) {
 	RegisterDb()
 	mg, err = qbs.GetMigration()
 	return mg, err
-}
+}*/
 
 func CreateDb() bool {
-	q, err := ConnDb()
-	defer q.Close()
+	err := Engine.Sync(new(User), new(Category), new(Node), new(Topic),
+		new(Reply), new(Kvs), new(File))
 	if err != nil {
-		fmt.Println(err)
 		return false
-	} else {
-		mg, _ := SetMg()
-		defer mg.Close()
-
-		mg.CreateTableIfNotExists(new(User))
-		mg.CreateTableIfNotExists(new(Category))
-		mg.CreateTableIfNotExists(new(Node))
-		mg.CreateTableIfNotExists(new(Topic))
-		mg.CreateTableIfNotExists(new(Reply))
-		mg.CreateTableIfNotExists(new(Kvs))
-		mg.CreateTableIfNotExists(new(File))
-
-		//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
-		if GetUserByRole(-1000).Role != -1000 {
-			AddUser("root@localhost", "root", "系统默认管理员", helper.Encrypt_password("rootpass", nil), -1000)
-			fmt.Println("Default User:root,Password:rootpass")
-
-			if GetAllTopic(0, 0, "id") == nil {
-				//分類默認數據
-				AddCategory("Category！", "This is Category！")
-
-				AddNode("Node！", "This is Node!", 1, 1)
-				SetTopic(0, 1, 1, 1, 0, "Topic Title", `<p>This is Topic!</p>`, "root", "")
-
-			}
-		}
-
-		if GetKV("author") != "Insion" {
-			SetKV("author", "Insion")
-			SetKV("title", "Toropress")
-			SetKV("title_en", "Toropress")
-			SetKV("keywords", "Toropress,")
-			SetKV("description", "Toropress,")
-
-			SetKV("company", "Toropress")
-			SetKV("copyright", "2013 Copyright Toropress .All Right Reserved")
-			SetKV("site_email", "info@verywave.com")
-
-			SetKV("tweibo", "http://t.qq.com/yours")
-			SetKV("sweibo", "http://weibo.com/yours")
-		}
-
-		return true
 	}
 
-	return false
+	//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
+	if GetUserByRole(-1000).Role != -1000 {
+		AddUser("root@localhost", "root", "系统默认管理员", helper.Encrypt_password("rootpass", nil), -1000)
+		fmt.Println("Default User:root,Password:rootpass")
 
+		if GetAllTopic(0, 0, "id") == nil {
+			//分類默認數據
+			AddCategory("Category！", "This is Category！")
+
+			AddNode("Node！", "This is Node!", 1, 1)
+			SetTopic(0, 1, 1, 1, 0, "Topic Title", `<p>This is Topic!</p>`, "root", "")
+
+		}
+	}
+
+	if GetKV("author") != "Insion" {
+		SetKV("author", "Insion")
+		SetKV("title", "Toropress")
+		SetKV("title_en", "Toropress")
+		SetKV("keywords", "Toropress,")
+		SetKV("description", "Toropress,")
+
+		SetKV("company", "Toropress")
+		SetKV("copyright", "2013 Copyright Toropress .All Right Reserved")
+		SetKV("site_email", "info@verywave.com")
+
+		SetKV("tweibo", "http://t.qq.com/yours")
+		SetKV("sweibo", "http://weibo.com/yours")
+	}
+
+	return true
 }
 
 func Counts() (categorys int, nodes int, topics int, menbers int) {
-	q, _ := ConnDb()
-	defer q.Close()
-
 	var categoryz []*Category
-	if e := q.FindAll(&categoryz); e != nil {
+	if e := Engine.Find(&categoryz); e != nil {
 		categorys = 0
 		fmt.Println(e)
 	} else {
@@ -313,7 +298,7 @@ func Counts() (categorys int, nodes int, topics int, menbers int) {
 	}
 
 	var nodez []*Node
-	if e := q.FindAll(&nodez); e != nil {
+	if e := Engine.Find(&nodez); e != nil {
 		nodes = 0
 		fmt.Println(e)
 	} else {
@@ -321,7 +306,7 @@ func Counts() (categorys int, nodes int, topics int, menbers int) {
 	}
 
 	var topicz []*Topic
-	if e := q.FindAll(&topicz); e != nil {
+	if e := Engine.Find(&topicz); e != nil {
 		topics = 0
 		fmt.Println(e)
 	} else {
@@ -329,7 +314,7 @@ func Counts() (categorys int, nodes int, topics int, menbers int) {
 	}
 
 	var menberz []*User
-	if e := q.FindAll(&menberz); e != nil {
+	if e := Engine.Find(&menberz); e != nil {
 		menbers = 0
 		fmt.Println(e)
 	} else {
@@ -340,15 +325,13 @@ func Counts() (categorys int, nodes int, topics int, menbers int) {
 }
 
 func TopicCount() (today int, this_week int, this_month int) {
-	q, _ := ConnDb()
-	defer q.Close()
 	var topict, topicw, topicm []*Topic
 	k := time.Now()
 
 	//一天之前
 	d, _ := time.ParseDuration("-24h")
 	t := k.Add(d)
-	e := q.Where("created>?", t).FindAll(&topict)
+	e := Engine.Where("created>?", t).Find(&topict)
 	if e != nil {
 		today = 0
 		fmt.Println(e)
@@ -358,7 +341,7 @@ func TopicCount() (today int, this_week int, this_month int) {
 
 	//一周之前
 	w := k.Add(d * 7)
-	e = q.Where("created>?", w).FindAll(&topicw)
+	e = Engine.Where("created>?", w).Find(&topicw)
 	if e != nil {
 		this_week = 0
 		fmt.Println(e)
@@ -368,7 +351,7 @@ func TopicCount() (today int, this_week int, this_month int) {
 
 	//一月之前
 	m := k.Add(d * 30)
-	e = q.Where("created>?", m).FindAll(&topicm)
+	e = Engine.Where("created>?", m).Find(&topicm)
 	if e != nil {
 		this_month = 0
 		fmt.Println(e)
@@ -398,11 +381,9 @@ func PutNode(nid int64, nd *Node) (int64, error) {
 }
 
 func SetTopic(id int64, cid int64, nid int64, uid int64, ctype int64, title string, content string, author string, attachment string) error {
-	q, _ := ConnDb()
-	defer q.Close()
 	var tp Topic
-	if q.WhereEqual("id", id).Find(&tp); tp.Id == 0 {
-		_, err := q.Save(&Topic{Id: id, Cid: cid, Nid: nid, Uid: uid, Ctype: ctype, Title: title, Content: content, Author: author, Attachment: attachment})
+	if has, err := Engine.Id(id).Get(&tp); !has {
+		_, err = Engine.Insert(&Topic{Id: id, Cid: cid, Nid: nid, Uid: uid, Ctype: ctype, Title: title, Content: content, Author: author, Attachment: attachment})
 		return err
 	} else {
 		type Topic struct {
@@ -416,22 +397,18 @@ func SetTopic(id int64, cid int64, nid int64, uid int64, ctype int64, title stri
 			Attachment string
 		}
 
-		_, err := q.WhereEqual("id", id).Update(&Topic{Cid: cid, Nid: nid, Uid: uid, Ctype: ctype, Title: title, Content: content, Author: author, Attachment: attachment})
+		_, err := Engine.Id(id).Update(&Topic{Cid: cid, Nid: nid, Uid: uid, Ctype: ctype, Title: title, Content: content, Author: author, Attachment: attachment})
 		return err
 	}
 	return nil
 }
 
 func AddFile(ctype int64, location string, url string) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.Save(&File{Ctype: ctype, Location: location, Url: url})
+	_, err := Engine.Insert(&File{Ctype: ctype, Location: location, Url: url})
 	return err
 }
 
 func DelFile(id int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
 	f := GetFile(id)
 
 	if helper.Exist("." + f.Location) {
@@ -442,45 +419,38 @@ func DelFile(id int64) error {
 	}
 
 	//不管实际路径中是否存在文件均删除该数据库记录，以免数据库记录陷入死循环无法删掉
-	_, err := q.Delete(&f)
+	_, err := Engine.Id(id).Delete(new(File))
 	fmt.Println(err)
 	return err
 }
 
-func GetFile(id int64) (f File) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.Where("id=?", id).Find(&f)
+func GetFile(id int64) *File {
+	f := new(File)
+	Engine.Id(id).Get(f)
 	return f
 }
 
-func GetAllFile() (f []*File) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.OrderByDesc("id").FindAll(&f)
+func GetAllFile() []*File {
+	f := make([]*File, 0)
+	Engine.Desc("id").Find(&f)
 	return f
 }
 
-func GetAllFileByCtype(ctype int64) (f []*File) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.WhereEqual("ctype", ctype).OrderByDesc("id").FindAll(&f)
+func GetAllFileByCtype(ctype int64) []*File {
+	f := make([]*File, 0)
+	Engine.Where("ctype=?", ctype).Desc("id").Find(&f)
 	return f
 }
 
 func SaveFile(f File) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, e := q.Save(&f)
+	_, e := Engine.Insert(&f)
 	return e
 }
 
 func SetFile(id int64, pid int64, ctype int64, filename string, content string, hash string, location string, url string, size int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
 	var f File
-	if q.WhereEqual("id", id).Find(&f); f.Id == 0 {
-		_, err := q.Save(&File{Id: id, Pid: pid, Ctype: ctype, Filename: filename, Content: content, Hash: hash, Location: location, Url: url, Size: size})
+	if has, err := Engine.Id(id).Get(&f); !has {
+		_, err = Engine.Insert(&File{Id: id, Pid: pid, Ctype: ctype, Filename: filename, Content: content, Hash: hash, Location: location, Url: url, Size: size})
 		return err
 	} else {
 		type File struct {
@@ -493,7 +463,7 @@ func SetFile(id int64, pid int64, ctype int64, filename string, content string, 
 			Url      string
 			Size     int64
 		}
-		_, err := q.WhereEqual("id", id).Update(&File{Pid: pid, Ctype: ctype, Filename: filename, Content: content, Hash: hash, Location: location, Url: url, Size: size})
+		_, err := Engine.Id(id).Update(&File{Pid: pid, Ctype: ctype, Filename: filename, Content: content, Hash: hash, Location: location, Url: url, Size: size})
 
 		return err
 	}
@@ -501,18 +471,14 @@ func SetFile(id int64, pid int64, ctype int64, filename string, content string, 
 }
 
 func AddKV(k string, v string) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.Save(&Kvs{K: k, V: v})
+	_, err := Engine.Insert(&Kvs{K: k, V: v})
 	return err
 }
 
 func SetKV(k string, v string) error {
-	q, _ := ConnDb()
-	defer q.Close()
 	var kvs Kvs
-	if q.Where("k=?", k).Find(&kvs); kvs.Id == 0 {
-		_, err := q.Save(&Kvs{K: k, V: v})
+	if has, err := Engine.Where("k=?", k).Get(&kvs); !has {
+		_, err = Engine.Insert(&Kvs{K: k, V: v})
 		return err
 	} else {
 		type Kvs struct {
@@ -520,7 +486,7 @@ func SetKV(k string, v string) error {
 			V string
 		}
 
-		_, err := q.WhereEqual("k", k).Update(&Kvs{K: k, V: v})
+		_, err := Engine.Where("k=?", k).Update(&Kvs{K: k, V: v})
 
 		return err
 	}
@@ -528,88 +494,70 @@ func SetKV(k string, v string) error {
 }
 
 func GetKV(k string) (v string) {
-	q, _ := ConnDb()
-	defer q.Close()
 	var kvs Kvs
-	q.Where("k=?", k).Find(&kvs)
+	Engine.Where("k=?", k).Get(&kvs)
 	return kvs.V
 }
 
 func AddUser(email string, nickname string, realname string, password string, role int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.Save(&User{Email: email, Nickname: nickname, Realname: realname, Password: password, Role: role, Created: time.Now()})
+	_, err := Engine.Insert(&User{Email: email, Nickname: nickname, Realname: realname, Password: password, Role: role, Created: time.Now()})
 
 	return err
 }
 
 func SaveUser(usr User) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, e := q.Save(&usr)
+	_, e := Engine.Insert(&usr)
 	return e
 }
 
 func UpdateUser(uid int, ur User) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.WhereEqual("id", int64(uid)).Update(&ur)
+	_, err := Engine.Id(int64(uid)).Update(&ur)
 	return err
 }
 
 func GetUser(id int64) *User {
 	usr := new(User)
-	Engine.Where("id=?", id).Get(usr)
+	Engine.Id(id).Get(usr)
 	return usr
 }
 
 func DelUser(uid int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
 	usr := GetUser(uid)
-	_, err := q.Delete(&usr)
+	_, err := Engine.Delete(&usr)
 
 	return err
 }
 
 func GetUserByRole(role int) *User {
 	usr := new(User)
-	Engine.Where("role=?", int64(role)).Get(usr)
+	Engine.Where("role=?", role).Get(usr)
 	return usr
 }
 
 func GetAllUserByRole(role int) *[]User {
 	users := new([]User)
-	Engine.Where("role=?", int64(role)).Desc("id").Find(users)
+	Engine.Where("role=?", role).Desc("id").Find(users)
 	return users
 }
 
 func GetUserByNickname(nickname string) (user User) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.Where("nickname=?", nickname).Find(&user)
+	Engine.Where("nickname=?", nickname).Get(&user)
 	return user
 }
 
 func AddCategory(title string, content string) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.Save(&Category{Title: title, Content: content, Created: time.Now()})
+	_, err := Engine.Insert(&Category{Title: title, Content: content, Created: time.Now()})
 
 	return err
 }
 
 func SaveCategory(cat Category) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.Save(&cat)
+	_, err := Engine.Insert(&cat)
 	return err
 }
 
 func AddNode(title string, content string, cid int64, uid int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	if _, err := q.Save(&Node{Pid: cid, Uid: uid, Title: title, Content: content, Created: time.Now()}); err != nil {
+	if _, err := Engine.Insert(&Node{Pid: cid, Uid: uid, Title: title, Content: content, Created: time.Now()}); err != nil {
 		return err
 	}
 
@@ -619,7 +567,7 @@ func AddNode(title string, content string, cid int64, uid int64) error {
 		NodeLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, 0, "id"))), NodeLastUserId: uid}); err != nil {
+	if _, err := Engine.Where("id=?", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, 0, "id"))), NodeLastUserId: uid}); err != nil {
 		return err
 	}
 	/*
@@ -635,11 +583,9 @@ func AddNode(title string, content string, cid int64, uid int64) error {
 }
 
 func SetNode(id int64, title string, content string, cid int64, uid int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
 	var nd Node
-	if q.WhereEqual("id", id).Find(&nd); nd.Id == 0 {
-		_, err := q.Save(&Node{Id: id, Pid: cid, Uid: uid, Title: title, Content: content})
+	if has, err := Engine.Id(id).Get(&nd); !has {
+		_, err = Engine.Insert(&Node{Id: id, Pid: cid, Uid: uid, Title: title, Content: content})
 		return err
 	} else {
 		type Node struct {
@@ -649,16 +595,14 @@ func SetNode(id int64, title string, content string, cid int64, uid int64) error
 			Content string
 		}
 
-		_, err := q.WhereEqual("id", id).Update(&Node{Pid: cid, Uid: uid, Title: title, Content: content})
+		_, err := Engine.Id(id).Update(&Node{Pid: cid, Uid: uid, Title: title, Content: content})
 		return err
 	}
 	return nil
 }
 
 func AddTopic(title string, content string, cid int64, nid int64, uid int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	if _, err := q.Save(&Topic{Cid: cid, Nid: nid, Title: title, Content: content, Created: time.Now()}); err != nil {
+	if _, err := Engine.Insert(&Topic{Cid: cid, Nid: nid, Title: title, Content: content, Created: time.Now()}); err != nil {
 		return err
 	}
 
@@ -668,7 +612,7 @@ func AddTopic(title string, content string, cid int64, nid int64, uid int64) err
 		TopicLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", nid).Update(&Node{TopicTime: time.Now(), TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, 0, "id"))), TopicLastUserId: uid}); err != nil {
+	if _, err := Engine.Id(nid).Update(&Node{TopicTime: time.Now(), TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, 0, "id"))), TopicLastUserId: uid}); err != nil {
 		return err
 	}
 	/*
@@ -684,9 +628,7 @@ func AddTopic(title string, content string, cid int64, nid int64, uid int64) err
 }
 
 func AddReply(tid int64, uid int64, content string, author string, email string, website string) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	if _, err := q.Save(&Reply{Pid: tid, Uid: uid, Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
+	if _, err := Engine.Insert(&Reply{Pid: tid, Uid: uid, Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
 		return err
 	}
 
@@ -696,7 +638,7 @@ func AddReply(tid int64, uid int64, content string, author string, email string,
 		ReplyLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", tid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(tid, 0, 0, "id"))), ReplyLastUserId: uid}); err != nil {
+	if _, err := Engine.Id(tid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(tid, 0, 0, "id"))), ReplyLastUserId: uid}); err != nil {
 		return err
 	}
 	/*
@@ -718,10 +660,8 @@ func SaveNode(nd *Node) error {
 }
 
 func DelNodePlus(nid int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
 	node := GetNode(nid)
-	_, err := q.Delete(&node)
+	_, err := Engine.Delete(&node)
 
 	for i, v := range GetAllTopicByNid(nid, 0, 0, 0, "id") {
 		if i > 0 {
@@ -738,17 +678,12 @@ func DelNodePlus(nid int64) error {
 }
 
 func DelCategory(id int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	category := GetCategory(id)
-	_, err := q.Delete(&category)
+	_, err := Engine.Id(id).Delete(&Category{})
 
 	return err
 }
 
 func DelTopic(id int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
 	topic := GetTopic(id)
 	if helper.Exist("." + topic.Attachment) {
 		if err := os.Remove("." + topic.Attachment); err != nil {
@@ -759,88 +694,74 @@ func DelTopic(id int64) error {
 	}
 
 	//不管实际路径中是否存在文件均删除该数据库记录，以免数据库记录陷入死循环无法删掉
-	_, err := q.Delete(&topic)
+	_, err := Engine.Id(id).Delete(new(Topic))
 
 	return err
 }
 
 func DelNode(nid int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	node := GetNode(nid)
-	_, err := q.Delete(&node)
+	_, err := Engine.Id(nid).Delete(new(Node))
 
 	return err
 }
 
 func DelReply(tid int64) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	reply := GetReply(tid)
-	_, err := q.Delete(&reply)
+	_, err := Engine.Id(tid).Delete(new(Reply))
 
 	return err
 }
 
-func GetAllCategory() *[]Category {
-	cats := new([]Category)
-	Engine.Find(cats)
+func GetAllCategory() []Category {
+	cats := make([]Category, 0)
+	Engine.Find(&cats)
 	return cats
 }
 
-func GetAllNode() *[]Node {
-	nds := new([]Node)
-	Engine.Desc("created").Find(nds)
+func GetAllNode() []Node {
+	nds := make([]Node, 0)
+	Engine.Desc("created").Find(&nds)
 	return nds
 }
 
-func GetAllTopic(offset int, limit int, path string) *[]Topic {
-	tps := new([]Topic)
-	Engine.Limit(limit, offset).Desc(path, "created").Find(tps)
+func GetAllTopic(offset int, limit int, path string) []Topic {
+	tps := make([]Topic, 0)
+	Engine.Limit(limit, offset).Desc(path, "created").Find(&tps)
 	return tps
 }
 
-func GetAllNodeByCid(cid int64, offset int, limit int, ctype int64, path string) (alln []*Node) {
+func GetAllNodeByCid(cid int64, offset int, limit int, ctype int64, path string) []*Node {
 	//排序首先是热值优先，然后是时间优先。
-	q, _ := ConnDb()
-	defer q.Close()
+	alln := make([]*Node, 0)
 	switch {
 	case path == "asc":
 		if ctype != 0 {
-			condition := qbs.NewCondition("pid=?", cid).And("ctype=?", ctype)
-			q.Condition(condition).Offset(offset).Limit(limit).FindAll(&alln)
+			Engine.Where("pid=? and ctype=?", cid, ctype).Limit(limit, offset).Find(&alln)
 		} else {
 			if cid == 0 {
-				q.Offset(offset).Limit(limit).FindAll(&alln)
+				Engine.Limit(limit, offset).Find(&alln)
 			} else {
-				q.WhereEqual("pid", cid).Offset(offset).Limit(limit).FindAll(&alln)
+				Engine.Where("pid=?", cid).Limit(limit, offset).Find(&alln)
 			}
-
 		}
 	case path == "views" || path == "topic_count":
 		if ctype != 0 {
-			condition := qbs.NewCondition("pid=?", cid).And("ctype=?", ctype)
-			q.Condition(condition).OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&alln)
-
+			Engine.Where("pid=? and ctype=?", cid, ctype).Desc(path).Limit(limit, offset).Find(&alln)
 		} else {
 			if cid == 0 {
-				q.OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&alln)
+				Engine.Desc(path).Limit(limit, offset).Find(&alln)
 			} else {
-				q.WhereEqual("pid", cid).OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&alln)
+				Engine.Where("pid=?", cid).Desc(path).Limit(limit, offset).Find(&alln)
 			}
-
 		}
 	default:
 		if ctype != 0 {
-
-			condition := qbs.NewCondition("pid=?", cid).And("ctype=?", ctype)
-			q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+			Engine.Where("pid=? and ctype=?", cid, ctype).Limit(limit, offset).Desc(path, "views, topic_count, created").Find(&alln)
 
 		} else {
 			if cid == 0 {
-				q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+				Engine.Limit(limit, offset).Desc(path, "views,topic_count,created").Find(&alln)
 			} else {
-				q.WhereEqual("pid", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("topic_count").OrderByDesc("created").FindAll(&alln)
+				Engine.Where("pid=?", cid).Limit(limit, offset).Desc(path, "views,topic_count,created").Find(&alln)
 			}
 		}
 
@@ -848,91 +769,63 @@ func GetAllNodeByCid(cid int64, offset int, limit int, ctype int64, path string)
 	return alln
 }
 
-func GetAllTopicByCid(cid int64, offset int, limit int, ctype int64, path string) (allt []*Topic) {
+func GetAllTopicByCid(cid int64, offset int, limit int, ctype int64, path string) []*Topic {
 	//排序首先是热值优先，然后是时间优先。
-	q, _ := ConnDb()
-	defer q.Close()
-
+	allt := make([]*Topic, 0)
 	switch {
 	case path == "asc":
 		if ctype != 0 {
-			condition := qbs.NewCondition("cid=?", cid).And("ctype=?", ctype)
-			q.Condition(condition).Offset(offset).Limit(limit).FindAll(&allt)
-
+			Engine.Where("cid=? and ctype=?", cid, ctype).Limit(limit, offset).Find(&allt)
 		} else {
-			q.Where("cid=?", cid).Offset(offset).Limit(limit).FindAll(&allt)
-
+			Engine.Where("cid=?", cid).Limit(limit, offset).Find(&allt)
 		}
 	case path == "views" || path == "reply_count":
 		if ctype != 0 {
-			condition := qbs.NewCondition("cid=?", cid).And("ctype=?", ctype)
-			q.Condition(condition).OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&allt)
+			Engine.Where("cid=? and ctype=?", cid, ctype).Desc(path).Limit(limit, offset).Find(&allt)
 
 		} else {
 			if cid == 0 {
-				q.OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&allt)
+				Engine.Desc(path).Limit(limit, offset).Find(&allt)
 			} else {
-				q.WhereEqual("cid", cid).OrderByDesc(path).Offset(offset).Limit(limit).FindAll(&allt)
+				Engine.Where("cid=?", cid).Desc(path).Limit(limit, offset).Find(&allt)
 			}
-
 		}
 	default:
 		if ctype != 0 {
-
-			condition := qbs.NewCondition("cid=?", cid).And("ctype=?", ctype)
-			q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
-
+			Engine.Where("cid=? and ctype=?", cid, ctype).Limit(limit, offset).Desc(path, "views, reply_count, created").Find(&allt)
 		} else {
 			if cid == 0 {
-				q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
-
+				Engine.Limit(limit, offset).Desc(path, "views, reply_count, created").Find(&allt)
 			} else {
-				q.WhereEqual("cid", cid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+				Engine.Where("cid=?", cid).Limit(limit, offset).Desc(path, "views, reply_count, created").Find(&allt)
 			}
 		}
-
 	}
 	return allt
 }
 
-func GetAllTopicByCidNid(cid int64, nid int64, offset int, limit int, ctype int64, path string) (allt []*Topic) {
-
-	q, _ := ConnDb()
-	defer q.Close()
-
+func GetAllTopicByCidNid(cid int64, nid int64, offset int, limit int, ctype int64, path string) []*Topic {
+	allt := make([]*Topic, 0)
 	switch {
 	case path == "asc":
 		if ctype != 0 {
-			condition := qbs.NewCondition("cid=?", cid).And("nid=?", nid).And("ctype=?", ctype)
-			q.Condition(condition).Offset(offset).Limit(limit).FindAll(&allt)
-
+			Engine.Where("cid=? and nid=? and ctype=?", cid, nid, ctype).Limit(limit, offset).Find(&allt)
 		} else {
-
-			condition := qbs.NewCondition("cid=?", cid).And("nid=?", nid)
-			q.Condition(condition).Offset(offset).Limit(limit).FindAll(&allt)
-
+			Engine.Where("cid=? and nid=?", cid, nid).Limit(limit, offset).Find(&allt)
 		}
 	default:
 		if ctype != 0 {
-			condition := qbs.NewCondition("cid=?", cid).And("nid=?", nid).And("ctype=?", ctype)
-			q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
-
+			Engine.Where("cid=? and nid=? and ctype=?", cid, nid, ctype).Limit(limit, offset).Desc(path, "views,reply_count,created").Find(&allt)
 		} else {
-
-			condition := qbs.NewCondition("cid=?", cid).And("nid=?", nid)
-			q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
-
+			Engine.Where("cid=? and nid=?", cid, nid).Limit(limit, offset).Desc("views,reply_count,created").Find(&allt)
 		}
-
 	}
 	return allt
 }
 
-func GetAllTopicByNid(nodeid int64, offset int, limit int, ctype int64, path string) (allt []*Topic) {
+func GetAllTopicByNid(nodeid int64, offset int, limit int, ctype int64, path string) []*Topic {
 	//排序首先是热值优先，然后是时间优先。
-	q, _ := ConnDb()
-	defer q.Close()
-
+	allt := make([]*Topic, 0)
 	switch {
 	case path == "asc":
 		if nodeid == 0 {
@@ -940,12 +833,9 @@ func GetAllTopicByNid(nodeid int64, offset int, limit int, ctype int64, path str
 			return nil
 		} else {
 			if ctype != 0 {
-				condition := qbs.NewCondition("nid=?", nodeid).And("ctype=?", ctype)
-				q.Condition(condition).Offset(offset).Limit(limit).FindAll(&allt)
-
+				Engine.Where("nid=? and ctype=?", nodeid, ctype).Limit(limit, offset).Find(&allt)
 			} else {
-				q.Where("nid=?", nodeid).Offset(offset).Limit(limit).FindAll(&allt)
-
+				Engine.Where("nid=?", nodeid).Limit(limit, offset).Find(&allt)
 			}
 		}
 	default:
@@ -954,12 +844,9 @@ func GetAllTopicByNid(nodeid int64, offset int, limit int, ctype int64, path str
 			return nil
 		} else {
 			if ctype != 0 {
-				condition := qbs.NewCondition("nid=?", nodeid).And("ctype=?", ctype)
-				q.Condition(condition).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
-
+				Engine.Where("nid=? and ctype=?", nodeid, ctype).Limit(limit, offset).Desc(path, "views,reply_count,created").Find(&allt)
 			} else {
-				q.Where("nid=?", nodeid).Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
-
+				Engine.Where("nid=?", nodeid).Limit(limit, offset).Desc(path, "views,reply_count,created").Find(&allt)
 			}
 		}
 	}
@@ -979,9 +866,7 @@ func SearchTopic(content string, offset int, limit int, path string) *[]Topic {
 }
 
 func GetCategory(id int64) (category Category) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.Where("id=?", id).Find(&category)
+	Engine.Where("id=?", id).Get(&category)
 	return category
 }
 
@@ -998,16 +883,12 @@ func GetTopic(id int64) *Topic {
 }
 
 func SaveTopic(tp Topic) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.Save(&tp)
+	_, err := Engine.Insert(&tp)
 	return err
 }
 
 func UpdateCategory(cid int64, cg Category) error {
-	q, _ := ConnDb()
-	defer q.Close()
-	_, err := q.WhereEqual("id", int64(cid)).Update(&cg)
+	_, err := Engine.Id(cid).Update(&cg)
 	return err
 }
 
@@ -1031,16 +912,13 @@ func EditNode(nid int64, cid int64, uid int64, title string, content string) err
 		return err
 	}
 
-	q, _ := ConnDb()
-	defer q.Close()
-
 	type Category struct {
 		NodeTime       time.Time
 		NodeCount      int64
 		NodeLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, 0, "id"))), NodeLastUserId: int64(uid)}); err != nil {
+	if _, err := Engine.Id(cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, 0, "id"))), NodeLastUserId: int64(uid)}); err != nil {
 		return err
 	}
 
@@ -1059,16 +937,13 @@ func EditTopic(tid int64, nid int64, cid int64, uid int64, title string, content
 		return err
 	}
 
-	q, _ := ConnDb()
-	defer q.Close()
-
 	type Node struct {
 		TopicTime       time.Time
 		TopicCount      int64
 		TopicLastUserId int64
 	}
 
-	if _, err := q.WhereEqual("id", nid).Update(&Node{TopicTime: tpc.Created, TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, 0, "id"))), TopicLastUserId: int64(uid)}); err != nil {
+	if _, err := Engine.Where("id=?", nid).Update(&Node{TopicTime: tpc.Created, TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, 0, "id"))), TopicLastUserId: int64(uid)}); err != nil {
 		return err
 	}
 
@@ -1076,28 +951,24 @@ func EditTopic(tid int64, nid int64, cid int64, uid int64, title string, content
 }
 
 func GetAllReply() (allr []*Reply) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.OrderByDesc("id").FindAll(&allr)
+	allr = make([]*Reply, 0)
+	Engine.Desc("id").Find(&allr)
 	return allr
 }
 
 func GetReply(id int64) (reply Reply) {
-	q, _ := ConnDb()
-	defer q.Close()
-	q.Where("id=?", id).Find(&reply)
+	Engine.Where("id=?", id).Get(&reply)
 	return reply
 }
 
-func GetReplyByPid(tid int64, offset int, limit int, path string) (allr []*Reply) {
-	q, _ := ConnDb()
-	defer q.Close()
+func GetReplyByPid(tid int64, offset int, limit int, path string) []*Reply {
+	allr := make([]*Reply, 0)
 	if tid == 0 {
-		q.Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allr)
+		Engine.Limit(limit, offset).Desc(path).Find(&allr)
 	} else {
 		//最热回复
 		//q.Where("pid=?", tid).Offset(offset).Limit(limit).OrderByDesc("hotness").FindAll(&allr)
-		q.WhereEqual("pid", tid).Offset(offset).Limit(limit).OrderByDesc(path).FindAll(&allr)
+		Engine.Where("pid=?", tid).Limit(limit, offset).Desc(path).Find(&allr)
 	}
 	return allr
 }
