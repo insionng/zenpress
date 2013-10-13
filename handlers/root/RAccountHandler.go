@@ -35,7 +35,7 @@ func (self *RAccountHandler) Post() {
 		ur.Address = address
 		ur.Realname = realname
 
-		if e := models.UpdateUser(int(uid), ur); e != nil {
+		if e := models.UpdateUser(uid, ur); e != nil {
 			self.Data["MsgErr"] = "更新资料失败！"
 		} else {
 			self.Data["MsgErr"] = "更新资料成功！"

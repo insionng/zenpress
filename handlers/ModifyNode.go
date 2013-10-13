@@ -33,7 +33,7 @@ func (self *ModifyNodeHandler) Post() {
 		nd.Title = nd_title
 		nd.Content = nd_content
 		nd.Created = time.Now()
-		models.SaveNode(nd)
+		models.UpdateNode(nd.Id, nd)
 		self.Ctx.Redirect(302, "/node/"+inputs.Get("nodeid"))
 	} else {
 		self.Ctx.Redirect(302, "/")

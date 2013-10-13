@@ -1,11 +1,11 @@
-toropress
+Toropress
 =========
-toropress是sudochina.com的开发代号,
+Toropress是SudoChina.com的开发代号,
 是一个简单和强大的Golang CMS系统网站，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站..
 
 第一个版本基于[Torgo](https://github.com/insionng/torgo)([Beego](https://github.com/astaxie/beego)山寨版)与[Qbs](https://github.com/coocood/qbs)开发.
 
-第二版于2013年10月1日更新,由于beego最新版本几乎已经把[Torgo](https://github.com/insionng/torgo)的所有修改优化吸收完全了,从而决定了toropress源码再次回归[Beego](https://github.com/astaxie/beego),并采用了[Xorm](https://github.com/lunny/xorm),未来会逐步将[Qbs](https://github.com/coocood/qbs)的代码迁移到[Xorm](https://github.com/lunny/xorm).
+第二版于2013年10月1日更新,由于beego最新版本几乎已经把[Torgo](https://github.com/insionng/torgo)的所有修改优化吸收完全了,从而决定了Toropress源码再次回归[Beego](https://github.com/astaxie/beego),并采用了[Xorm](https://github.com/lunny/xorm),目前已经将[Qbs](https://github.com/coocood/qbs)代码完全迁移到[Xorm](https://github.com/lunny/xorm),这将获得更好的使用体验,感谢那些捐助本项目的用户,如需定制请联系我.
 
 
 ##线上版本
@@ -19,11 +19,15 @@ toropress是sudochina.com的开发代号,
 [访问因特拉](<http://www.interla.net/>)
 
 
-##第二版安装请先更新安装beego、xorm和qbs
+## 感谢捐助或定制本项目的用户 排名按时间顺序
+[右建华](5000,定制版)
+[李新友](5000,定制版)
+[孙](300,捐助者要求不公开全名)
+
+##第二版安装请先更新安装beego和xorm
 
     go get -u github.com/astaxie/beego
     go get -u github.com/lunny/xorm
-    go get -u github.com/coocood/qbs
 
 ##第一版安装请先更新torgo
 
@@ -64,7 +68,8 @@ A very special time website
 
 
 ## 授权许可
-除特别声明外，本项目代码遵循[BSD 3-Clause License](<https://github.com/insionng/veryhour/blob/master/LICENSE.txt>)（3项条款的BSD许可协议）。
+除特别声明外，本项目代码遵循[BSD 3-Clause License](<http://opensource.org/licenses/BSD-3-Clause/>)（3项条款的BSD许可协议）。
 
 ## 社区型演示网站
-[访问Veryhour](<http://www.veryhour.com/>)
+[访问 非常时刻 (Veryhour)](<http://www.veryhour.com/>)
+
