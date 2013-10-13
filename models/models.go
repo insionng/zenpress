@@ -442,10 +442,11 @@ func GetAllFileByCtype(ctype int64) []*File {
 	return f
 }
 
+/*
 func SaveFile(f File) error {
 	_, e := Engine.Insert(&f)
 	return e
-}
+}*/
 
 func SetFile(id int64, pid int64, ctype int64, filename string, content string, hash string, location string, url string, size int64) error {
 	var f File
@@ -505,13 +506,14 @@ func AddUser(email string, nickname string, realname string, password string, ro
 	return err
 }
 
+/*
 func SaveUser(usr User) error {
 	_, e := Engine.Insert(&usr)
 	return e
-}
+}*/
 
-func UpdateUser(uid int, ur User) error {
-	_, err := Engine.Id(int64(uid)).Update(&ur)
+func UpdateUser(uid int64, ur User) error {
+	_, err := Engine.Id(uid).Update(&ur)
 	return err
 }
 
@@ -551,10 +553,11 @@ func AddCategory(title string, content string) error {
 	return err
 }
 
+/*
 func SaveCategory(cat Category) error {
 	_, err := Engine.Insert(&cat)
 	return err
-}
+}*/
 
 func AddNode(title string, content string, cid int64, uid int64) error {
 	if _, err := Engine.Insert(&Node{Pid: cid, Uid: uid, Title: title, Content: content, Created: time.Now()}); err != nil {
@@ -653,11 +656,12 @@ func AddReply(tid int64, uid int64, content string, author string, email string,
 	return nil
 }
 
+/*
 func SaveNode(nd *Node) error {
 
 	_, err := Engine.Insert(nd)
 	return err
-}
+}*/
 
 func DelNodePlus(nid int64) error {
 	node := GetNode(nid)
@@ -882,10 +886,11 @@ func GetTopic(id int64) *Topic {
 	return tp
 }
 
+/*
 func SaveTopic(tp Topic) error {
 	_, err := Engine.Insert(&tp)
 	return err
-}
+}*/
 
 func UpdateCategory(cid int64, cg Category) error {
 	_, err := Engine.Id(cid).Update(&cg)
