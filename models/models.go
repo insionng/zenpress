@@ -215,13 +215,11 @@ func SetEngine() (*xorm.Engine, error) {
 }
 
 func CreateDb() {
-	err := Engine.Sync(new(User), new(Category), new(Node), new(Topic),
-		new(Reply), new(Kvs), new(File))
-	if err != nil {
+
+	if err := Engine.Sync(new(User), new(Category), new(Node), new(Topic), new(Reply), new(Kvs), new(File)); err != nil {
 		fmt.Println("Database struct sync failed")
 		fmt.Println("Engine.Sync ERRORS:", err)
 	} else {
-
 		fmt.Println("Database struct sync successfully")
 	}
 
