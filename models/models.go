@@ -214,11 +214,15 @@ func SetEngine() (*xorm.Engine, error) {
 	return Engine, err
 }
 
-func CreateDb() bool {
+func CreateDb() {
 	err := Engine.Sync(new(User), new(Category), new(Node), new(Topic),
 		new(Reply), new(Kvs), new(File))
 	if err != nil {
-		return false
+		fmt.Println("Database struct sync failed")
+		fmt.Println("Engine.Sync ERRORS:", err)
+	} else {
+
+		fmt.Println("Database struct sync successfully")
 	}
 
 	//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
@@ -251,7 +255,6 @@ func CreateDb() bool {
 		SetKV("sweibo", "http://weibo.com/yours")
 	}
 
-	return true
 }
 
 func Counts() (categorys int, nodes int, topics int, menbers int) {

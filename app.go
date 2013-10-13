@@ -10,12 +10,8 @@ import (
 
 func main() {
 	fmt.Println("Starting...")
-	if !models.CreateDb() {
-		fmt.Println("Database struct sync failed")
-		return
-	} else {
-		fmt.Println("Database struct sync successfully")
-	}
+	models.CreateDb()
+
 	beego.SetStaticPath("/static", "static/")
 	beego.SetStaticPath("/archives", "archives/")
 
