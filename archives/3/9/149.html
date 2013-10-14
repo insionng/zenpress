@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="keywords" content="golang实现的js解释器:otto,,速动中国,SudoChina,开源技术,开源软件,开源网站,开源源码,开源社区,开源站长社区,golang开源,java开源,perl开源,python开源,ruby开源,php开源,开源项目,开源代码" />
+    <meta name="description" content="golang实现的js解释器:otto,速动中国 www.sudochina.com 是一个采用GOLANG语言开发的技术分享网站。我们借助开源的力量，推广使用开源项目建设网站，为站长提供了一个发现、使用、并交流开源站长技术平台。" />
+    <meta name="author" content="insion"/>
+    
+    <title>golang实现的js解释器:otto - 速动中国 - 借力开源技术，打造心中网站，分享开源技术及站长软件工具，分享运营经验和站长行业交流！</title>
+
+    <link rel="canonical" href="http://www.sudochina.com/" />
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+  
+    
+    <link href="/static/themes/nannie/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/themes/nannie/css/font-awesome.css">
+          
+    <link href="/static/themes/nannie/css/style.css" rel="stylesheet">
+    <link href="/static/themes/nannie/css/bootstrap-responsive.css" rel="stylesheet">
+
+    
+  
+    
+    <link rel="shortcut icon" href="/static/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
+
+    <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+   
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+
+    <link rel="stylesheet" href="/static/js/highlight/styles/pojoaque.css">
+    <script type="text/javascript" src="/static/js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script src="/static/js/ckeditor/ckeditor.js"></script>
+</head>
+
+<body>
+
+
+<header>
+<div class="navbar">
+  <div class="navbar-inner">
+    <ul class="nav">
+    
+      
+      
+      <li><a href="/node/13">html</a></li>
+      
+      <li><a href="/node/12">css</a></li>
+      
+      <li><a href="/node/11">python</a></li>
+      
+      <li><a href="/node/9">Golang第三方库</a></li>
+      
+      <li><a href="/node/8">nginx配置</a></li>
+      
+      <li><a href="/node/1">Golang网站源码</a></li>
+      
+      <li><a href="/node/5">linux笔记</a></li>
+      
+      <li><a href="/node/3">站长手记</a></li>
+      
+      <li><a href="/node/4">golang</a></li>
+      
+      <li><a href="/node/2">编程笔记</a></li>
+      
+      <li><a href="/node/10">gtk系列下载</a></li>
+      
+      <li><a href="/node/16">js</a></li>
+      
+      <li><a href="/node/17">postgresql</a></li>
+      
+      <li><a href="/node/7">网站安全</a></li>
+      
+      <li><a href="/node/14">nginx</a></li>
+      
+      <li><a href="/node/15">php</a></li>
+      
+    
+    </ul>
+  </div>
+</div>
+   <div class="container">
+      <div class="row">
+         <div class="span4">
+            <div class="logo">
+               
+               <a href="/"><h1><span class="color">Sudo</span>China</h1></a>
+               <p class="lmeta">借力开源，快速行动！</p>
+            </div>
+         
+      </div>
+   </div>
+  </div>
+</header>
+
+         <div class="navbar">
+            <div class="navbar-inner">
+               <div class="container">
+                  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                     <span>菜单</span>
+                  </a>
+                  <div class="nav-collapse collapse">
+                      <ul class="nav">
+                        <ul id="menu-menu" class="nav">
+                        
+                        
+                          
+                          <li class="menu-item"><a href="/">首页</a></li>
+
+                          
+                                  <li class="menu-item"><a href="/category/1">
+                                    代码</a>
+                                  </li>
+                          
+                                  <li class="menu-item"><a href="/category/2">
+                                     笔记</a>
+                                  </li>
+                          
+                                  <li class="menu-item"><a href="/category/3">
+                                    下载</a>
+                                  </li>
+                          
+                                  <li class="menu-item"><a href="/category/4">
+                                    配置</a>
+                                  </li>
+                          
+                                  <li class="menu-item"><a href="/category/5">
+                                    软件</a>
+                                  </li>
+                          
+                        
+                          
+                        </ul>
+                      </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+
+<div class="content">
+   <div class="container">
+      <div class="row">
+         <div class="span8">
+          
+<h3 style="display:none;">
+   <span>Post</span>
+</h3>
+<div class="posts">
+
+   <div class="entry" id="post-149">
+      <div class="matter">
+
+         <h2>golang实现的js解释器:otto</h2>
+
+         <div class="meta"> <i class="icon-calendar"></i>
+            October 13 , 2013 at 15:06 am - <i class="icon-folder-open"></i>
+            <a href="/user/0/" title="View all posts in " rel="category tag"></a>
+            -
+            <a href="###" title="3个点击">3点击</a>
+            -
+            <i class="icon-comment"></i>
+            <a href="/view/149#respond" title="0 个评论">0 评论</a>
+         </div>
+         <div><h1 style="margin-left:0px; margin-right:0px">otto</h1>
+
+<h2>&nbsp;</h2>
+
+<p>目前该项目还在发展中,&nbsp;这是一个js的纯golang实现,这是我今早才发现的,不过在下对js实在是不在行,各位精通js的朋友可以尝试下.</p>
+
+<p>利用这个库在服务端实现js模板渲染引擎神马的,这样就可以间接规避了go静态特性的限制,模板引擎就可以试下在js里面能不能做动态处理了.</p>
+
+<div>&nbsp;</div>
+
+<p>&nbsp;</p>
+
+<pre>
+<code>import &quot;github.com/robertkrimen/otto&quot;
+</code></pre>
+
+<p>Package otto is a JavaScript parser and interpreter written natively in Go.</p>
+
+<pre>
+<code>// Create a new runtime
+Otto := otto.New()
+
+Otto.Run(`
+    abc = 2 + 2
+    console.log(&quot;The value of abc is &quot; + abc)
+    // The value of abc is 4
+`)
+
+value, err := Otto.Get(&quot;abc&quot;)
+{
+    // value is an int64 with a value of 4
+    value, _ := value.ToInteger()
+}
+
+Otto.Set(&quot;def&quot;, 11)
+Otto.Run(`
+    console.log(&quot;The value of def is &quot; + def)
+    // The value of def is 11
+`)
+
+Otto.Set(&quot;xyzzy&quot;, &quot;Nothing happens.&quot;)
+Otto.Run(`
+    console.log(xyzzy.length) // 16
+`)
+
+value, _ = Otto.Run(&quot;xyzzy.length&quot;)
+{
+    // value is an int64 with a value of 16
+    value, _ := value.ToInteger()
+}
+
+value, err = Otto.Run(&quot;abcdefghijlmnopqrstuvwxyz.length&quot;)
+if err != nil {
+    // err = ReferenceError: abcdefghijlmnopqrstuvwxyz is not defined
+    // If there is an error, then value.IsUndefined() is true
+    ...
+}
+</code></pre>
+
+<p>Embedding a Go function in JavaScript:</p>
+
+<pre>
+<code>Otto.Set(&quot;sayHello&quot;, func(call otto.FunctionCall) otto.Value {
+    fmt.Printf(&quot;Hello, %s.\n&quot;, call.Argument(0).String())
+    return otto.UndefinedValue()
+})
+
+Otto.Set(&quot;twoPlus&quot;, func(call otto.FunctionCall) otto.Value {
+    right, _ := call.Argument(0).ToInteger()
+    result, _ := Otto.ToValue(2 + right)
+    return result
+})
+
+result, _ = Otto.Run(`
+    // First, say a greeting
+    sayHello(&quot;Xyzzy&quot;) // Hello, Xyzzy.
+    sayHello() // Hello, undefined
+
+    result = twoPlus(2.0) // 4
+`)
+</code></pre>
+
+<p>You can run (Go) JavaScript from the commandline with:&nbsp;<a href="http://github.com/robertkrimen/otto/tree/master/otto" style="color: rgb(65, 131, 196); text-decoration: none; ">http://github.com/robertkrimen/otto/tree/master/otto</a></p>
+
+<pre>
+<code>$ go get -v github.com/robertkrimen/otto/otto
+</code></pre>
+
+<p>Run JavaScript by entering some source on stdin or by giving otto a filename:</p>
+
+<pre>
+<code>$ otto example.js
+</code></pre>
+
+<p>Optionally include the JavaScript utility-belt library, underscore, with this import:</p>
+
+<pre>
+<code>import (
+    &quot;github.com/robertkrimen/otto&quot;
+    _ &quot;github.com/robertkrimen/otto/underscore&quot;
+)
+
+// Now every otto runtime will come loaded with underscore
+</code></pre>
+
+<p>For more information:&nbsp;<a href="http://github.com/robertkrimen/otto/tree/master/underscore" style="color: rgb(65, 131, 196); text-decoration: none; ">http://github.com/robertkrimen/otto/tree/master/underscore</a></p>
+
+<h3>Caveat Emptor</h3>
+
+<pre>
+<code>* For now, otto is a hybrid ECMA3/ECMA5 interpreter. Parts of the specification are still works in progress.
+* For example, &quot;use strict&quot; will parse, but does nothing.
+* Error reporting needs to be improved.
+* Does not support the (?!) or (?=) regular expression syntax (because Go does not)
+* JavaScript considers a vertical tab (\000B &lt;VT&gt;) to be part of the whitespace class (\s), while RE2 does not.
+* Really, error reporting could use some improvement.
+</code></pre>
+
+<h3>Regular Expression Syntax</h3>
+
+<p>Go translates JavaScript-style regular expressions into something that is &quot;regexp&quot; package compatible.</p>
+
+<p>Unfortunately, JavaScript has positive lookahead, negative lookahead, and backreferencing, all of which are not supported by Go&#39;s RE2-like engine:&nbsp;<a href="https://code.google.com/p/re2/wiki/Syntax" style="color: rgb(65, 131, 196); text-decoration: none; ">https://code.google.com/p/re2/wiki/Syntax</a></p>
+
+<p>A brief discussion of these limitations: &quot;Regexp (?!re)&quot;&nbsp;<a href="https://groups.google.com/forum/?fromgroups=#!topic/golang-nuts/7qgSDWPIh_E" style="color: rgb(65, 131, 196); text-decoration: none; ">https://groups.google.com/forum/?fromgroups=#!topic/golang-nuts/7qgSDWPIh_E</a></p>
+
+<p>More information about RE2:&nbsp;<a href="https://code.google.com/p/re2/" style="color: rgb(65, 131, 196); text-decoration: none; ">https://code.google.com/p/re2/</a></p>
+
+<p>JavaScript considers a vertical tab (\000B ) to be part of the whitespace class (\s), while RE2 does not.</p>
+
+<h2>Usage</h2>
+
+<h4>type FunctionCall</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>type</strong> FunctionCall <strong>struct</strong> {
+    This         Value
+    ArgumentList []Value
+    Otto         <strong>*</strong>Otto
+}
+</pre>
+</div>
+
+<p>FunctionCall is an enscapulation of a JavaScript function call.</p>
+
+<h4>func (FunctionCall) Argument</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self FunctionCall) Argument(index <strong>int</strong>) Value
+</pre>
+</div>
+
+<p>Argument will return the value of the argument at the given index.</p>
+
+<p>If no such argument exists, undefined is returned.</p>
+
+<h4>type Object</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>type</strong> Object <strong>struct</strong> {
+}
+</pre>
+</div>
+
+<p>Object is the representation of a JavaScript object.</p>
+
+<h4>func (Object) Call</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Object) Call(name <strong>string</strong>, argumentList <strong>...</strong><strong>interface</strong>{}) (Value, <strong>error</strong>)
+</pre>
+</div>
+
+<p>Call the method specified by the given name, using self as the this value. It is essentially equivalent to:</p>
+
+<pre>
+<code>var method, _ := self.Get(name)
+method.Call(self, argumentList...)
+</code></pre>
+
+<p>An undefined value and an error will result if:</p>
+
+<pre>
+<code>1. There is an error during conversion of the argument list
+2. The property is not actually a function
+3. An (uncaught) exception is thrown
+</code></pre>
+
+<h4>func (Object) Class</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Object) Class() <strong>string</strong>
+</pre>
+</div>
+
+<p>Class will return the class string of the object.</p>
+
+<p>The return value will (generally) be one of:</p>
+
+<pre>
+<code>Object
+Function
+Array
+String
+Number
+Boolean
+Date
+RegExp
+</code></pre>
+
+<h4>func (Object) Get</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Object) Get(name <strong>string</strong>) (Value, <strong>error</strong>)
+</pre>
+</div>
+
+<p>Get the value of the property with the given name.</p>
+
+<h4>func (Object) Set</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Object) Set(name <strong>string</strong>, value <strong>interface</strong>{}) <strong>error</strong>
+</pre>
+</div>
+
+<p>Set the property of the given name to the given value.</p>
+
+<p>An error will result if the setting the property triggers an exception (i.e. read-only), or there is an error during conversion of the given value.</p>
+
+<h4>func (Object) Value</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Object) Value() Value
+</pre>
+</div>
+
+<p>Value will return self as a value.</p>
+
+<h4>type Otto</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>type</strong> Otto <strong>struct</strong> {
+}
+</pre>
+</div>
+
+<p>Otto is the representation of the JavaScript runtime. Each instance of Otto has a self-contained namespace.</p>
+
+<h4>func New</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> New() <strong>*</strong>Otto
+</pre>
+</div>
+
+<p>New will allocate a new JavaScript runtime</p>
+
+<h4>func Run</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> Run(source <strong>string</strong>) (<strong>*</strong>Otto, Value, <strong>error</strong>)
+</pre>
+</div>
+
+<p>Run will allocate a new JavaScript runtime, run the given source on the allocated runtime, and return the runtime, resulting value, and error (if any).</p>
+
+<h4>func (Otto) Call</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Otto) Call(source <strong>string</strong>, this <strong>interface</strong>{}, argumentList <strong>...</strong><strong>interface</strong>{}) (Value, <strong>error</strong>)
+</pre>
+</div>
+
+<p>Call the given JavaScript with a given this and arguments.</p>
+
+<p>WARNING: 2013-05-19: This function is rough, and is in beta.</p>
+
+<p>If this is nil, then some special handling takes place to determine the proper this value, falling back to a &quot;standard&quot; invocation if necessary (where this is undefined).</p>
+
+<p>If source begins with &quot;new &quot; (A lowercase new followed by a space), then Call will invoke the function constructor rather than performing a function call. In this case, the this argument has no effect.</p>
+
+<pre>
+<code>// value is a String object
+value, _ := Otto.Call(&quot;Object&quot;, nil, &quot;Hello, World.&quot;)
+
+// Likewise...
+value, _ := Otto.Call(&quot;new Object&quot;, nil, &quot;Hello, World.&quot;)
+
+// This will perform a concat on the given array and return the result
+// value is [ 1, 2, 3, undefined, 4, 5, 6, 7, &quot;abc&quot; ]
+value, _ := Otto.Call(`[ 1, 2, 3, undefined, 4 ].concat`, nil, 5, 6, 7, &quot;abc&quot;)
+</code></pre>
+
+<h4>func (*Otto) Copy</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self <strong>*</strong>Otto) Copy() <strong>*</strong>Otto
+</pre>
+</div>
+
+<p>Copy will create a copy/clone of the runtime.</p>
+
+<p>Copy is useful for saving some processing time when creating many similar runtimes.</p>
+
+<p>This implementation is alpha-ish, and works by introspecting every part of the runtime and reallocating and then relinking everything back together. Please report if you notice any inadvertent sharing of data between copies.</p>
+
+<h4>func (Otto) Get</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Otto) Get(name <strong>string</strong>) (Value, <strong>error</strong>)
+</pre>
+</div>
+
+<p>Get the value of the top-level binding of the given name.</p>
+
+<p>If there is an error (like the binding does not exist), then the value will be undefined.</p>
+
+<h4>func (Otto) Object</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Otto) Object(source <strong>string</strong>) (<strong>*</strong>Object, <strong>error</strong>)
+</pre>
+</div>
+
+<p>Object will run the given source and return the result as an object.</p>
+
+<p>For example, accessing an existing object:</p>
+
+<pre>
+<code>object, _ := Otto.Object(`Number`)
+</code></pre>
+
+<p>Or, creating a new object:</p>
+
+<pre>
+<code>object, _ := Otto.Object(`({ xyzzy: &quot;Nothing happens.&quot; })`)
+</code></pre>
+
+<p>Or, creating and assigning an object:</p>
+
+<pre>
+<code>object, _ := Otto.Object(`xyzzy = {}`)
+object.Set(&quot;volume&quot;, 11)
+</code></pre>
+
+<p>If there is an error (like the source does not result in an object), then nil and an error is returned.</p>
+
+<h4>func (Otto) Run</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Otto) Run(source <strong>string</strong>) (Value, <strong>error</strong>)
+</pre>
+</div>
+
+<p>Run will run the given source (parsing it first), returning the resulting value and error (if any)</p>
+
+<p>If the runtime is unable to parse source, then this function will return undefined and the parse error (nothing will be evaluated in this case).</p>
+
+<h4>func (Otto) Set</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Otto) Set(name <strong>string</strong>, value <strong>interface</strong>{}) <strong>error</strong>
+</pre>
+</div>
+
+<p>Set the top-level binding of the given name to the given value.</p>
+
+<p>Set will automatically apply ToValue to the given value in order to convert it to a JavaScript value (type Value).</p>
+
+<p>If there is an error (like the binding is read-only, or the ToValue conversion fails), then an error is returned.</p>
+
+<p>If the top-level binding does not exist, it will be created.</p>
+
+<h4>func (Otto) ToValue</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Otto) ToValue(value <strong>interface</strong>{}) (Value, <strong>error</strong>)
+</pre>
+</div>
+
+<p>ToValue will convert an interface{} value to a value digestible by otto/JavaScript.</p>
+
+<h4>type Value</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>type</strong> Value <strong>struct</strong> {
+}
+</pre>
+</div>
+
+<p>Value is the representation of a JavaScript value.</p>
+
+<h4>func FalseValue</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> FalseValue() Value
+</pre>
+</div>
+
+<p>FalseValue will return a value represting false.</p>
+
+<p>It is equivalent to:</p>
+
+<pre>
+<code>ToValue(false)
+</code></pre>
+
+<h4>func NaNValue</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> NaNValue() Value
+</pre>
+</div>
+
+<p>NaNValue will return a value representing NaN.</p>
+
+<p>It is equivalent to:</p>
+
+<pre>
+<code>ToValue(math.NaN())
+</code></pre>
+
+<h4>func NullValue</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> NullValue() Value
+</pre>
+</div>
+
+<p>NullValue will return a Value representing null.</p>
+
+<h4>func ToValue</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> ToValue(value <strong>interface</strong>{}) (Value, <strong>error</strong>)
+</pre>
+</div>
+
+<p>ToValue will convert an interface{} value to a value digestible by otto/JavaScript This function will not work for advanced types (struct, map, slice/array, etc.) and you probably should not use it.</p>
+
+<p>ToValue may be deprecated and removed in the near future.</p>
+
+<p>Try Otto.ToValue for a reaplcement.</p>
+
+<h4>func TrueValue</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> TrueValue() Value
+</pre>
+</div>
+
+<p>TrueValue will return a value represting true.</p>
+
+<p>It is equivalent to:</p>
+
+<pre>
+<code>ToValue(true)
+</code></pre>
+
+<h4>func UndefinedValue</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> UndefinedValue() Value
+</pre>
+</div>
+
+<p>UndefinedValue will return a Value representing undefined.</p>
+
+<h4>func (Value) Call</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) Call(this Value, argumentList <strong>...</strong><strong>interface</strong>{}) (Value, <strong>error</strong>)
+</pre>
+</div>
+
+<p>Call the value as a function with the given this value and argument list and return the result of invocation. It is essentially equivalent to:</p>
+
+<pre>
+<code>value.apply(thisValue, argumentList)
+</code></pre>
+
+<p>An undefined value and an error will result if:</p>
+
+<pre>
+<code>1. There is an error during conversion of the argument list
+2. The value is not actually a function
+3. An (uncaught) exception is thrown
+</code></pre>
+
+<h4>func (Value) Class</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) Class() <strong>string</strong>
+</pre>
+</div>
+
+<p>Class will return the class string of the value or the empty string if value is not an object.</p>
+
+<p>The return value will (generally) be one of:</p>
+
+<pre>
+<code>Object
+Function
+Array
+String
+Number
+Boolean
+Date
+RegExp
+</code></pre>
+
+<h4>func (Value) Export</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (self Value) Export() (<strong>interface</strong>{}, <strong>error</strong>)
+</pre>
+</div>
+
+<p>Export will attempt to convert the value to a Go representation and return it via an interface{} kind.</p>
+
+<p>WARNING: The interface function will be changing soon to:</p>
+
+<pre>
+<code>Export() interface{}
+</code></pre>
+
+<p>If a reasonable conversion is not possible, then the original result is returned.</p>
+
+<pre>
+<code>undefined   -&gt; otto.Value (UndefinedValue())
+null        -&gt; interface{}(nil)
+boolean     -&gt; bool
+number      -&gt; A number type (int, float32, uint64, ...)
+string      -&gt; string
+Array       -&gt; []interface{}
+Object      -&gt; map[string]interface{}
+</code></pre>
+
+<h4>func (Value) IsBoolean</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) IsBoolean() <strong>bool</strong>
+</pre>
+</div>
+
+<p>IsBoolean will return true if value is a boolean (primitive).</p>
+
+<h4>func (Value) IsDefined</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) IsDefined() <strong>bool</strong>
+</pre>
+</div>
+
+<p>IsDefined will return false if the value is undefined, and true otherwise.</p>
+
+<h4>func (Value) IsFunction</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) IsFunction() <strong>bool</strong>
+</pre>
+</div>
+
+<p>IsFunction will return true if value is a function.</p>
+
+<h4>func (Value) IsNaN</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) IsNaN() <strong>bool</strong>
+</pre>
+</div>
+
+<p>IsNaN will return true if value is NaN (or would convert to NaN).</p>
+
+<h4>func (Value) IsNull</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) IsNull() <strong>bool</strong>
+</pre>
+</div>
+
+<p>IsNull will return true if the value is null, and false otherwise.</p>
+
+<h4>func (Value) IsNumber</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) IsNumber() <strong>bool</strong>
+</pre>
+</div>
+
+<p>IsNumber will return true if value is a number (primitive).</p>
+
+<h4>func (Value) IsObject</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) IsObject() <strong>bool</strong>
+</pre>
+</div>
+
+<p>IsObject will return true if value is an object.</p>
+
+<h4>func (Value) IsPrimitive</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) IsPrimitive() <strong>bool</strong>
+</pre>
+</div>
+
+<p>IsPrimitive will return true if value is a primitive (any kind of primitive).</p>
+
+<h4>func (Value) IsString</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) IsString() <strong>bool</strong>
+</pre>
+</div>
+
+<p>IsString will return true if value is a string (primitive).</p>
+
+<h4>func (Value) IsUndefined</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) IsUndefined() <strong>bool</strong>
+</pre>
+</div>
+
+<p>IsUndefined will return true if the value is undefined, and false otherwise.</p>
+
+<h4>func (Value) Object</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) Object() <strong>*</strong>Object
+</pre>
+</div>
+
+<p>Object will return the object of the value, or nil if value is not an object.</p>
+
+<p>This method will not do any implicit conversion. For example, calling this method on a string primitive value will not return a String object.</p>
+
+<h4>func (Value) String</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) String() <strong>string</strong>
+</pre>
+</div>
+
+<p>String will return the value as a string.</p>
+
+<p>This method will make return the empty string if there is an error.</p>
+
+<h4>func (Value) ToBoolean</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) ToBoolean() (<strong>bool</strong>, <strong>error</strong>)
+</pre>
+</div>
+
+<p>ToBoolean will convert the value to a boolean (bool).</p>
+
+<pre>
+<code>ToValue(0).ToBoolean() =&gt; false
+ToValue(&quot;&quot;).ToBoolean() =&gt; false
+ToValue(true).ToBoolean() =&gt; true
+ToValue(1).ToBoolean() =&gt; true
+ToValue(&quot;Nothing happens&quot;).ToBoolean() =&gt; true
+</code></pre>
+
+<p>If there is an error during the conversion process (like an uncaught exception), then the result will be false and an error.</p>
+
+<h4>func (Value) ToFloat</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) ToFloat() (<strong>float64</strong>, <strong>error</strong>)
+</pre>
+</div>
+
+<p>ToFloat will convert the value to a number (float64).</p>
+
+<pre>
+<code>ToValue(0).ToFloat() =&gt; 0.
+ToValue(1.1).ToFloat() =&gt; 1.1
+ToValue(&quot;11&quot;).ToFloat() =&gt; 11.
+</code></pre>
+
+<p>If there is an error during the conversion process (like an uncaught exception), then the result will be 0 and an error.</p>
+
+<h4>func (Value) ToInteger</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) ToInteger() (<strong>int64</strong>, <strong>error</strong>)
+</pre>
+</div>
+
+<p>ToInteger will convert the value to a number (int64).</p>
+
+<pre>
+<code>ToValue(0).ToInteger() =&gt; 0
+ToValue(1.1).ToInteger() =&gt; 1
+ToValue(&quot;11&quot;).ToInteger() =&gt; 11
+</code></pre>
+
+<p>If there is an error during the conversion process (like an uncaught exception), then the result will be 0 and an error.</p>
+
+<h4>func (Value) ToString</h4>
+
+<div class="highlight highlight-go" style="font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 15px; line-height: 25px; ">
+<pre>
+<strong>func</strong> (value Value) ToString() (<strong>string</strong>, <strong>error</strong>)
+</pre>
+</div>
+
+<p>ToString will convert the value to a string (string).</p>
+
+<pre>
+<code>ToValue(0).ToString() =&gt; &quot;0&quot;
+ToValue(false).ToString() =&gt; &quot;false&quot;
+ToValue(1.1).ToString() =&gt; &quot;1.1&quot;
+ToValue(&quot;11&quot;).ToString() =&gt; &quot;11&quot;
+ToValue(&#39;Nothing happens.&#39;).ToString() =&gt; &quot;Nothing happens.&quot;
+</code></pre>
+
+<p>If there is an error during the conversion process (like an uncaught exception), then the result will be the empty string (&quot;&quot;) and an error.</p>
+
+<h2>&nbsp;</h2>
+
+<p style="margin-left:0px; margin-right:0px"><strong>godocdown</strong>&nbsp;<a href="http://github.com/robertkrimen/godocdown" style="color: rgb(65, 131, 196); text-decoration: none; ">http://github.com/robertkrimen/godocdown</a></p>
+</div>
+                <div>
+                  
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/149", context: document.body, success: function(){
+               alert("喜欢成功！");
+            }});'>喜欢 &raquo;</a></span>
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/149", context: document.body, success: function(){
+               alert("恶心成功！");
+            }});'>恶心 &raquo;</a></span>
+                </div>
+
+      </div>
+      <div class="clearfix"></div>
+   </div>
+
+
+<div class="navigation">
+
+   <div class="pull-left">
+      &laquo;
+      <a href="/view/146" rel="prev">上篇:nginx upstream的几种配置方式</a>
+   </div>
+
+
+<div class="clearfix"></div>
+</div>
+
+<div class="clearfix"></div>
+   <div class="comments well">
+      <h3>
+         <span class="comment-heading">Comments -</span>
+         0 Responses
+      </h3>
+
+ 
+</div>
+
+<div class="clearfix"></div>
+
+<div id="respond" class="respond well">
+
+   <h3>
+      <span>Leave a Reply</span>
+   </h3>
+
+   <div class="cancel-comment-reply">
+      <a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Cancel Reply</a>
+   </div>
+
+   <div class="clearfix"></div>
+
+   <form action="/new/reply/149" method="post" id="commentform" class="form-horizontal">
+      <div class="control-group">
+         <label class="control-label" for="author">Name</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="author" id="author" value="" required></div>
+      </div>
+
+      <div class="control-group">
+         <label class="control-label" for="email">Email</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="email" id="email" value="" required></div>
+      </div>
+
+      <div class="control-group">
+         <label class="control-label" for="website">Website</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="website" id="website" value="" ></div>
+      </div>
+
+      
+   <div class="control-group">
+      <label class="control-label" for="comment">Comment</label>
+      <div class="controls">
+         <textarea class="input-xlarge" name="comment" id="comment" rows="8" style="width:78%;"></textarea>
+      </div>
+   </div>
+
+   <div class="form-actions">
+      <input name="submit" type="submit" id="comment-submit" tabindex="5" value="评论" class="btn" />
+      <button type="reset" class="btn">清空</button>
+   </div>
+
+   <p>
+      <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='149' />
+   </p>
+
+   <div class="clear"></div>
+</form>
+
+</div>
+
+
+<div class="clearfix"></div>
+</div>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+
+         function setCookie(name, value) {
+            var Days = 60; 
+            var exp = new Date(); 
+            exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000); 
+            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + exp.toGMTString();
+         };
+
+         function getCookie(name) {
+             
+            var strCookie = document.cookie;
+            
+            var arrCookie = strCookie.split("; ");
+            for ( var i = 0; i < arrCookie.length; i++) {
+               var arr = arrCookie[i].split("=");
+               if (arr[0] == "username") {
+                  return arr[1];
+               }
+            }
+            return "";
+         };
+
+         function delCookie(name) {
+            var exp = new Date(); 
+            exp.setTime(exp.getTime() - 1); 
+            var cval = getCookie(name);
+            if (cval != null)
+               document.cookie = name + "=" + cval + "; path=/; expires="+ exp.toGMTString();
+         };
+
+         var now = new Date();
+         now.setTime(now.getTime() + 1 * 24 * 60 * 60 * 1000);
+         setCookie("gmt",now.toGMTString());
+
+      });
+
+</script>
+         </div>
+
+         <div class="span4">
+            
+               <div class="sidebar">
+<div class="widget">
+  <h3><span>搜索</span></h3><div class="form">
+  <form method="get" id="searchform" action="/search" class="form-search">
+  <input type="text" value="" name="keyword" id="keyword" class="input-medium"/>
+  <input type="submit" id="searchsubmit" value="搜索" class="btn"/>
+  </form>
+  </div>
+</div>
+
+
+<div class="widget">
+  
+  <h3><span>注册登录</span></h3>
+  
+  <ul>
+  
+     <li><a href="/register">注册</a></li>
+     <li><a href="/login">登录</a></li>
+  
+  </ul>
+</div>
+
+
+<div class="widget">
+  <h3><span>最新话题</span></h3>
+  <ul>
+  
+    
+      <li><a href="/view/149" title="golang实现的js解释器:otto">golang实现的js解释器:otto</a></li>
+    
+      <li><a href="/view/148" title="pgsql的 导入和导出">pgsql的 导入和导出</a></li>
+    
+      <li><a href="/view/147" title="postgreSql常用命令">postgreSql常用命令</a></li>
+    
+      <li><a href="/view/146" title="nginx upstream的几种配置方式">nginx upstream的几种配置方式</a></li>
+    
+      <li><a href="/view/145" title="用goquery获取图片示例">用goquery获取图片示例</a></li>
+    
+      <li><a href="/view/144" title="linux安装postgreSQL 9.3.1   珍惜数据,请抛弃MYSQL!">linux安装postgreSQL 9.3.1   珍惜数据,请抛弃MYSQL!</a></li>
+    
+      <li><a href="/view/143" title="Linux命令统计代码行数">Linux命令统计代码行数</a></li>
+    
+      <li><a href="/view/142" title="nginx反向代理配置&#43;@跳转到www&#43;我的SEO手札">nginx反向代理配置&#43;@跳转到www&#43;我的SEO手札</a></li>
+    
+      <li><a href="/view/141" title="Think2Go戈登营首期review:Go语言在CDN下载系统中的应用">Think2Go戈登营首期review:Go语言在CDN下载系统中的应用</a></li>
+    
+      <li><a href="/view/140" title="Go 语言 Session 实现">Go 语言 Session 实现</a></li>
+    
+  
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>最新节点</span></h3>
+  <ul>
+  
+    
+      <li><a href="/node/17" title="postgresql">postgresql</a></li>
+    
+      <li><a href="/node/16" title="js">js</a></li>
+    
+      <li><a href="/node/15" title="php">php</a></li>
+    
+      <li><a href="/node/14" title="nginx">nginx</a></li>
+    
+      <li><a href="/node/13" title="html">html</a></li>
+    
+      <li><a href="/node/12" title="css">css</a></li>
+    
+      <li><a href="/node/11" title="python">python</a></li>
+    
+      <li><a href="/node/10" title="gtk系列下载">gtk系列下载</a></li>
+    
+      <li><a href="/node/9" title="Golang第三方库">Golang第三方库</a></li>
+    
+      <li><a href="/node/8" title="nginx配置">nginx配置</a></li>
+    
+  
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>最新评论</span></h3>
+  <ul id="recentcomments">
+  
+      
+      <li class="recentcomments">小c on <a href="/view/135#comment-1514">自己回复自己的测试</a></li>
+      
+      <li class="recentcomments">小c on <a href="/view/135#comment-1513">回复测试的哈，管理员请无视，删除页无妨</a></li>
+      
+      <li class="recentcomments">root on <a href="/view/140#comment-1512">楼上的zzz同学,你想干嘛?嗯哼?!</a></li>
+      
+      <li class="recentcomments">zzz on <a href="/view/140#comment-1511">&lt;script&gt;alert(&#34;ok&#34;)&lt;/script&gt;</a></li>
+      
+      <li class="recentcomments">Unknown on <a href="/view/139#comment-1510">尼玛。。这也太长 。了。。</a></li>
+      
+      <li class="recentcomments">lunny on <a href="/view/12#comment-1509">嗯，不错。mark</a></li>
+      
+      <li class="recentcomments">lunny on <a href="/view/132#comment-1508">我一直用的screen</a></li>
+      
+      <li class="recentcomments">lunny on <a href="/view/135#comment-1507">呵呵。没想到你居然发了这片文章。</a></li>
+      
+      <li class="recentcomments">root on <a href="/view/12#comment-1506">@visli，谢谢提醒哦~</a></li>
+      
+      <li class="recentcomments">visli on <a href="/view/12#comment-1505">代码没贴完啊</a></li>
+      
+  
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>博客分类</span></h3>
+  <ul>
+    
+      
+        <li class="cat-item"><a href="/category/1">代码</a></li>
+      
+        <li class="cat-item"><a href="/category/2"> 笔记</a></li>
+      
+        <li class="cat-item"><a href="/category/3">下载</a></li>
+      
+        <li class="cat-item"><a href="/category/4">配置</a></li>
+      
+        <li class="cat-item"><a href="/category/5">软件</a></li>
+      
+    
+  </ul>
+</div>
+
+             </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+<footer>
+  <div class="container">
+    <div class="row">
+      
+         <div class="span4">
+                        <div class="fwidget">
+               <h4>About SudoChina</h4>
+               <p>速动中国是借力开源技术打造的站长技术交流平台，在这里我们会分享开源技术及站长软件工具，分享运营经验和站长行业交流！欢迎大家注册，享受分享知识的乐趣，请收藏！</p>
+            </div>
+                     </div>
+         <div class="span4">
+                        <div class="fwidget">
+               <h4>Recent Comments</h4>
+               <ul>
+                
+                  
+                  <li>小c on <a href="/view/135#comment-1514">自己回复自己的测试</a></li>
+                  
+                  <li>小c on <a href="/view/135#comment-1513">回复测试的哈，管理员请无视，删除页无妨</a></li>
+                  
+                  <li>root on <a href="/view/140#comment-1512">楼上的zzz同学,你想干嘛?嗯哼?!</a></li>
+                  
+                  <li>zzz on <a href="/view/140#comment-1511">&lt;script&gt;alert(&#34;ok&#34;)&lt;/script&gt;</a></li>
+                  
+                  <li>Unknown on <a href="/view/139#comment-1510">尼玛。。这也太长 。了。。</a></li>
+                  
+                
+               </ul>
+            </div>     
+         </div>
+         <div class="span4">
+            <div class="fwidget">
+               <h4>Categories</h4>
+               <ul>
+                
+                  
+                    <li><a href="/category/1">代码</a></li>
+                  
+                    <li><a href="/category/2"> 笔记</a></li>
+                  
+                    <li><a href="/category/3">下载</a></li>
+                  
+                    <li><a href="/category/4">配置</a></li>
+                  
+                    <li><a href="/category/5">软件</a></li>
+                  
+                
+               </ul>
+            </div>   
+         </div>
+      <div class="span12">
+         <div class="copy">
+            <p>Copyright &copy; 2013 - <a href="/">SudoChina.com.</a> Powered by <a href="https://github.com/insionng/toropress" target="_blank">ToroPress</a>. <script src="http://s21.cnzz.com/stat.php?id=4835781&web_id=4835781" language="JavaScript"></script>
+            </p>
+         </div>
+      </div>
+    </div>
+  <div class="clearfix"></div>
+  </div>
+</footer>       
+
+
+<script src="/static/js/bootstrap.js"></script>
+</body>
+</html>
