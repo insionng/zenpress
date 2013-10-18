@@ -257,7 +257,7 @@ func CreateDb() {
 }
 
 func Counts() (categorys int, nodes int, topics int, menbers int) {
-	var categoryz []*Category
+	/*var categoryz []*Category
 	if e := Engine.Find(&categoryz); e != nil {
 		categorys = 0
 		fmt.Println(e)
@@ -287,44 +287,67 @@ func Counts() (categorys int, nodes int, topics int, menbers int) {
 		fmt.Println(e)
 	} else {
 		menbers = len(menberz)
+	}*/
+	var err error
+	var cnt int64
+	if cnt, err = Engine.Count(new(Category)); err != nil {
+		fmt.Println(err)
 	}
+	categorys = int(cnt)
+
+	if cnt, err = Engine.Count(new(Node)); err != nil {
+		fmt.Println(err)
+	}
+	nodes = int(cnt)
+
+	if cnt, err = Engine.Count(new(Topic)); err != nil {
+		fmt.Println(err)
+	}
+	topics = int(cnt)
+
+	if cnt, err = Engine.Count(new(User)); err != nil {
+		fmt.Println(err)
+	}
+	menbers = int(cnt)
 
 	return categorys, nodes, topics, menbers
 }
 
 func TopicCount() (today int, this_week int, this_month int) {
-	var topict, topicw, topicm []*Topic
+	//var topict, topicw, topicm []*Topic
 	k := time.Now()
 
 	//一天之前
 	d, _ := time.ParseDuration("-24h")
 	t := k.Add(d)
-	e := Engine.Where("created>?", t).Find(&topict)
-	if e != nil {
+	var cnt int64
+	var err error
+	cnt, err = Engine.Where("created>?", t).Count(new(Topic))
+	if err != nil {
 		today = 0
-		fmt.Println(e)
+		fmt.Println(err)
 	} else {
-		today = len(topict)
+		today = int(cnt)
 	}
 
 	//一周之前
 	w := k.Add(d * 7)
-	e = Engine.Where("created>?", w).Find(&topicw)
-	if e != nil {
+	cnt, err = Engine.Where("created>?", w).Count(new(Topic))
+	if err != nil {
 		this_week = 0
-		fmt.Println(e)
+		fmt.Println(err)
 	} else {
-		this_week = len(topicw)
+		this_week = int(cnt)
 	}
 
 	//一月之前
 	m := k.Add(d * 30)
-	e = Engine.Where("created>?", m).Find(&topicm)
-	if e != nil {
+	cnt, err = Engine.Where("created>?", m).Count(new(Topic))
+	if err != nil {
 		this_month = 0
-		fmt.Println(e)
+		fmt.Println(err)
 	} else {
-		this_month = len(topicm)
+		this_month = int(cnt)
 	}
 
 	return today, this_week, this_month
@@ -370,14 +393,16 @@ func DelFile(id int64) error {
 
 	if helper.Exist("." + f.Location) {
 		if err := os.Remove("." + f.Location); err != nil {
-			return err
 			fmt.Println(err)
+			return err
 		}
 	}
 
 	//不管实际路径中是否存在文件均删除该数据库记录，以免数据库记录陷入死循环无法删掉
 	_, err := Engine.Id(id).Delete(new(File))
-	fmt.Println(err)
+	if err != nil {
+		fmt.Println(err)
+	}
 	return err
 }
 
@@ -485,8 +510,8 @@ func GetUser(id int64) *User {
 }
 
 func DelUser(uid int64) error {
-	usr := GetUser(uid)
-	_, err := Engine.Delete(&usr)
+	//usr := GetUser(uid)
+	_, err := Engine.Id(uid).Delete(new(User))
 
 	return err
 }
@@ -504,8 +529,8 @@ func GetAllUserByRole(role int) *[]User {
 }
 
 func GetUserByNickname(nickname string) *User {
-	user := new(User)
-	Engine.Where("nickname=?", nickname).Get(user)
+	user := &User{Nickname: nickname}
+	Engine.Get(user)
 	return user
 }
 
@@ -516,11 +541,17 @@ func AddCategory(title string, content string) error {
 }
 
 func AddNode(title string, content string, cid int64, uid int64) error {
-	if _, err := Engine.Insert(&Node{Pid: cid, Uid: uid, Title: title, Content: content, Created: time.Now()}); err != nil {
+	var err error
+	if _, err = Engine.Insert(&Node{Pid: cid, Uid: uid, Title: title, Content: content, Created: time.Now()}); err != nil {
 		return err
 	}
 
-	if _, err := Engine.Where("id=?", cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, 0, "id"))), NodeLastUserId: uid}); err != nil {
+	var nodeCnt int
+	if nodeCnt, err = GetNodeCountByCid(cid, 0, 0, 0, "id"); err != nil {
+		return err
+	}
+
+	if _, err := Engine.Id(cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(nodeCnt), NodeLastUserId: uid}); err != nil {
 		return err
 	}
 	return nil
@@ -542,7 +573,11 @@ func AddTopic(title string, content string, cid int64, nid int64, uid int64) err
 	if _, err := Engine.Insert(&Topic{Cid: cid, Nid: nid, Title: title, Content: content, Created: time.Now()}); err != nil {
 		return err
 	}
-	if _, err := Engine.Id(nid).Update(&Node{TopicTime: time.Now(), TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, 0, "id"))), TopicLastUserId: uid}); err != nil {
+	cnt, err := GetTopicCountsByNid(nid, 0, 0, 0, "id")
+	if err != nil {
+		return err
+	}
+	if _, err := Engine.Id(nid).Update(&Node{TopicTime: time.Now(), TopicCount: cnt, TopicLastUserId: uid}); err != nil {
 		return err
 	}
 	return nil
@@ -553,7 +588,12 @@ func AddReply(tid int64, uid int64, content string, author string, email string,
 		return err
 	}
 
-	if _, err := Engine.Id(tid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: int64(len(GetReplyByPid(tid, 0, 0, "id"))), ReplyLastUserId: uid}); err != nil {
+	cnt, err := GetReplyCountsByPid(tid, 0, 0, "id")
+	if err != nil {
+		return err
+	}
+
+	if _, err := Engine.Id(tid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: cnt, ReplyLastUserId: uid}); err != nil {
 		return err
 	}
 	return nil
@@ -627,6 +667,50 @@ func GetAllTopic(offset int, limit int, path string) []Topic {
 	tps := make([]Topic, 0)
 	Engine.Limit(limit, offset).Desc(path, "created").Find(&tps)
 	return tps
+}
+
+func GetNodeCountByCid(cid int64, offset int, limit int, ctype int64, path string) (int, error) {
+	//排序首先是热值优先，然后是时间优先。
+	node := new(Node)
+	var cnt int64
+	var err error
+	switch {
+	case path == "asc":
+		if ctype != 0 {
+			cnt, err = Engine.Where("pid=? and ctype=?", cid, ctype).Limit(limit, offset).Count(node)
+		} else {
+			if cid == 0 {
+				cnt, err = Engine.Limit(limit, offset).Count(node)
+			} else {
+				cnt, err = Engine.Where("pid=?", cid).Limit(limit, offset).Count(node)
+			}
+		}
+	case path == "views" || path == "topic_count":
+		if ctype != 0 {
+			cnt, err = Engine.Where("pid=? and ctype=?", cid, ctype).Desc(path).Limit(limit, offset).Count(node)
+		} else {
+			if cid == 0 {
+				cnt, err = Engine.Desc(path).Limit(limit, offset).Count(node)
+			} else {
+				cnt, err = Engine.Where("pid=?", cid).Desc(path).Limit(limit, offset).Count(node)
+			}
+		}
+	default:
+		if ctype != 0 {
+			cnt, err = Engine.Where("pid=? and ctype=?", cid, ctype).Limit(limit, offset).Desc(path, "views, topic_count, created").Count(node)
+
+		} else {
+			if cid == 0 {
+				cnt, err = Engine.Limit(limit, offset).Desc(path, "views,topic_count,created").Count(node)
+			} else {
+				cnt, err = Engine.Where("pid=?", cid).Limit(limit, offset).Desc(path, "views,topic_count,created").Count(node)
+			}
+		}
+	}
+	if err != nil {
+		fmt.Println(err)
+	}
+	return int(cnt), nil
 }
 
 func GetAllNodeByCid(cid int64, offset int, limit int, ctype int64, path string) []*Node {
@@ -723,6 +807,36 @@ func GetAllTopicByCidNid(cid int64, nid int64, offset int, limit int, ctype int6
 	return allt
 }
 
+func GetTopicCountsByNid(nodeid int64, offset int, limit int, ctype int64, path string) (int64, error) {
+	//排序首先是热值优先，然后是时间优先。
+	var cnt int64
+	var err error
+	switch {
+	case path == "asc":
+		if nodeid == 0 {
+			//q.Offset(offset).Limit(limit).OrderByDesc(path).OrderByDesc("views").OrderByDesc("reply_count").OrderByDesc("created").FindAll(&allt)
+			return 0, nil
+		} else {
+			if ctype != 0 {
+				cnt, err = Engine.Where("nid=? and ctype=?", nodeid, ctype).Limit(limit, offset).Count(new(Topic))
+			} else {
+				cnt, err = Engine.Where("nid=?", nodeid).Limit(limit, offset).Count(new(Topic))
+			}
+		}
+	default:
+		if nodeid == 0 {
+			return 0, nil
+		} else {
+			if ctype != 0 {
+				cnt, err = Engine.Where("nid=? and ctype=?", nodeid, ctype).Limit(limit, offset).Desc(path, "views,reply_count,created").Count(new(Topic))
+			} else {
+				cnt, err = Engine.Where("nid=?", nodeid).Limit(limit, offset).Desc(path, "views,reply_count,created").Count(new(Topic))
+			}
+		}
+	}
+	return cnt, err
+}
+
 func GetAllTopicByNid(nodeid int64, offset int, limit int, ctype int64, path string) []*Topic {
 	//排序首先是热值优先，然后是时间优先。
 	allt := make([]*Topic, 0)
@@ -765,19 +879,19 @@ func SearchTopic(content string, offset int, limit int, path string) *[]Topic {
 }
 
 func GetCategory(id int64) (category Category) {
-	Engine.Where("id=?", id).Get(&category)
+	Engine.Id(id).Get(&category)
 	return category
 }
 
 func GetNode(id int64) *Node {
 	nd := new(Node)
-	Engine.Where("id=?", id).Get(nd)
+	Engine.Id(id).Get(nd)
 	return nd
 }
 
 func GetTopic(id int64) *Topic {
 	tp := new(Topic)
-	Engine.Where("id=?", id).Get(tp)
+	Engine.Id(id).Get(tp)
 	return tp
 }
 
@@ -787,12 +901,12 @@ func UpdateCategory(cid int64, cg Category) error {
 }
 
 func UpdateNode(nid int64, nd *Node) error {
-	_, err := Engine.Where("id=?", int64(nid)).Update(nd)
+	_, err := Engine.Id(nid).Update(nd)
 	return err
 }
 
 func UpdateTopic(tid int64, tp *Topic) error {
-	_, err := Engine.Where("id=?", int64(tid)).Update(tp)
+	_, err := Engine.Id(tid).Update(tp)
 	return err
 }
 
@@ -806,7 +920,12 @@ func EditNode(nid int64, cid int64, uid int64, title string, content string) err
 		return err
 	}
 
-	if _, err := Engine.Id(cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(len(GetAllNodeByCid(cid, 0, 0, 0, "id"))), NodeLastUserId: int64(uid)}); err != nil {
+	cnt, err := GetNodeCountByCid(cid, 0, 0, 0, "id")
+	if err != nil {
+		return err
+	}
+
+	if _, err := Engine.Id(cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(cnt), NodeLastUserId: int64(uid)}); err != nil {
 		return err
 	}
 
@@ -825,7 +944,12 @@ func EditTopic(tid int64, nid int64, cid int64, uid int64, title string, content
 		return err
 	}
 
-	if _, err := Engine.Where("id=?", nid).Update(&Node{TopicTime: tpc.Created, TopicCount: int64(len(GetAllTopicByNid(nid, 0, 0, 0, "id"))), TopicLastUserId: int64(uid)}); err != nil {
+	cnt, err := GetTopicCountsByNid(nid, 0, 0, 0, "id")
+	if err != nil {
+		return err
+	}
+
+	if _, err := Engine.Id(nid).Update(&Node{TopicTime: tpc.Created, TopicCount: cnt, TopicLastUserId: int64(uid)}); err != nil {
 		return err
 	}
 
@@ -839,8 +963,21 @@ func GetAllReply() (allr []*Reply) {
 }
 
 func GetReply(id int64) (reply Reply) {
-	Engine.Where("id=?", id).Get(&reply)
+	Engine.Id(id).Get(&reply)
 	return reply
+}
+
+func GetReplyCountsByPid(tid int64, offset int, limit int, path string) (int64, error) {
+	var cnt int64
+	var err error
+	if tid == 0 {
+		cnt, err = Engine.Limit(limit, offset).Desc(path).Count(new(Reply))
+	} else {
+		//最热回复
+		//q.Where("pid=?", tid).Offset(offset).Limit(limit).OrderByDesc("hotness").FindAll(&allr)
+		cnt, err = Engine.Where("pid=?", tid).Limit(limit, offset).Desc(path).Count(new(Reply))
+	}
+	return cnt, err
 }
 
 func GetReplyByPid(tid int64, offset int, limit int, path string) []*Reply {

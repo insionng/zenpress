@@ -8,15 +8,32 @@ Toropress是SudoChina.com的开发代号,
 第二版于2013年10月1日更新,由于beego最新版本几乎已经把[Torgo](https://github.com/insionng/torgo)的所有修改优化吸收完全了,从而决定了Toropress源码再次回归[Beego](https://github.com/astaxie/beego),并采用了[Xorm](https://github.com/lunny/xorm),目前已经将[Qbs](https://github.com/coocood/qbs)代码完全迁移到[Xorm](https://github.com/lunny/xorm),这将获得更好的使用体验,感谢那些捐助本项目的用户,如需定制请联系我.
 
 
-##线上版本
+##线上开源技术分享平台版本
 
 [SudoChina](http://www.sudochina.com/)
+
 
 ## 企业型演示网站
 
 [访问艾美](<http://www.ibeautys.com/>)
 
 [访问因特拉](<http://www.interla.net/>)
+
+
+## 实验性社区型演示网站
+
+[访问 非常时刻 (Veryhour)](<http://www.veryhour.com/>)
+
+
+## 图片分享社区演示网站
+
+[访问 梨花树社区](<http://www.lihuashu.com/>)
+
+
+# 通过捐款支持Toropress项目
+如果你喜欢这个项目的话， 可以通过捐款的方式， 支持作者继续更新本项目或者做出其他更多好玩好用的开源应用： 比如为本项目修补漏洞、添加更多有趣的功能， 或者发行有更多更棒特性的下一版等等。
+
+捐款地址： [https://me.alipay.com/insion](https://me.alipay.com/insion)
 
 
 ## 感谢捐助或定制本项目的用户 排名按时间顺序
@@ -46,20 +63,6 @@ Toropress是SudoChina.com的开发代号,
 
 
 
-veryhour fork by toropress
-==========================
-
-A very special time website
-
-这是未来社区网站的新模式探索项目~
-基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/lunny/xorm)开发的Golang社区系统网站，从toropess源码衍生而来!
-
-
-# 通过捐款支持Toropress项目
-如果你喜欢这个项目的话， 可以通过捐款的方式， 支持作者继续更新本项目或者做出其他更多好玩好用的开源应用： 比如为本项目修补漏洞、添加更多有趣的功能， 或者发行有更多更棒特性的下一版等等。
-
-捐款地址： [https://me.alipay.com/insion](https://me.alipay.com/insion)
-
 
 ## 交流
 欢迎大家加入QQ专用交流群:231956113/作者QQ：547092001
@@ -70,6 +73,21 @@ A very special time website
 ## 授权许可
 除特别声明外，本项目代码遵循[BSD 3-Clause License](<http://opensource.org/licenses/BSD-3-Clause/>)（3项条款的BSD许可协议）。
 
-## 社区型演示网站
-[访问 非常时刻 (Veryhour)](<http://www.veryhour.com/>)
+
+veryhour fork by toropress
+==========================
+
+A very special time website
+
+这是未来社区网站的新模式探索项目~
+基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/lunny/xorm)开发的GOLANG微博社区系统网站，从toropess源码衍生而来!
+
+
+mzr fork by toropress
+==========================
+
+梨花树系统开发代号mzr
+
+这是一个分享图片为主的社区系统~
+基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/lunny/xorm)开发的GOLANG图片社区系统网站，从toropess源码衍生而来!
 
