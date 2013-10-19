@@ -1,9 +1,9 @@
 package root
 
 import (
-	"../../libs"
-	"../../models"
-	"../../utils"
+	"toropress/helper"
+	"toropress/libs"
+	"toropress/models"
 )
 
 type RAccountHandler struct {
@@ -27,15 +27,15 @@ func (self *RAccountHandler) Post() {
 	address := inputs.Get("address")
 	uid, _ := self.GetSession("userid").(int64)
 
-	if utils.CheckEmail(email) {
-		ur := models.GetUser(uid)
+	if helper.CheckEmail(email) {
+		ur := *models.GetUser(uid)
 		ur.Email = email
 		ur.Mobile = mobile
 		ur.Company = company
 		ur.Address = address
 		ur.Realname = realname
 
-		if e := models.UpdateUser(int(uid), ur); e != nil {
+		if e := models.UpdateUser(uid, ur); e != nil {
 			self.Data["MsgErr"] = "更新资料失败！"
 		} else {
 			self.Data["MsgErr"] = "更新资料成功！"

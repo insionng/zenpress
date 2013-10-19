@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="keywords" content="GTK &#43; 3.6.1 Windows 32位,,速动中国,SudoChina,开源技术,开源软件,开源网站,开源源码,开源社区,开源站长社区,golang开源,java开源,perl开源,python开源,ruby开源,php开源,开源项目,开源代码" />
+    <meta name="description" content="GTK &#43; 3.6.1 Windows 32位,速动中国 www.sudochina.com 是一个采用GOLANG语言开发的技术分享网站。我们借助开源的力量，推广使用开源项目建设网站，为站长提供了一个发现、使用、并交流开源站长技术平台。" />
+    <meta name="author" content="insion"/>
+    
+    <title>GTK &#43; 3.6.1 Windows 32位 - 速动中国 - 借力开源技术，打造心中网站，分享开源技术及站长软件工具，分享运营经验和站长行业交流！</title>
+
+    <link rel="canonical" href="http://www.sudochina.com/" />
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+  
+    
+    <link href="/static/themes/nannie/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/themes/nannie/css/font-awesome.css">
+          
+    <link href="/static/themes/nannie/css/style.css" rel="stylesheet">
+    <link href="/static/themes/nannie/css/bootstrap-responsive.css" rel="stylesheet">
+
+    
+  
+    
+    <link rel="shortcut icon" href="/static/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
+
+    <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+   
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+
+    <link rel="stylesheet" href="/static/js/highlight/styles/pojoaque.css">
+    <script type="text/javascript" src="/static/js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script src="/static/js/ckeditor/ckeditor.js"></script>
+</head>
+
+<body>
+
+
+<header>
+<div class="navbar">
+  <div class="navbar-inner">
+    <ul class="nav">
+    
+      
+      
+      <li><a href="/node/13">html</a></li>
+      
+      <li><a href="/node/12">css</a></li>
+      
+      <li><a href="/node/11">python</a></li>
+      
+      <li><a href="/node/9">Golang第三方库</a></li>
+      
+      <li><a href="/node/8">nginx配置</a></li>
+      
+      <li><a href="/node/1">Golang网站源码</a></li>
+      
+      <li><a href="/node/5">linux笔记</a></li>
+      
+      <li><a href="/node/3">站长手记</a></li>
+      
+      <li><a href="/node/4">golang</a></li>
+      
+      <li><a href="/node/2">编程笔记</a></li>
+      
+      <li><a href="/node/10">gtk系列下载</a></li>
+      
+      <li><a href="/node/16">xww</a></li>
+      
+      <li><a href="/node/7">网站安全</a></li>
+      
+      <li><a href="/node/14">nginx</a></li>
+      
+      <li><a href="/node/15">php</a></li>
+      
+    
+    </ul>
+  </div>
+</div>
+   <div class="container">
+      <div class="row">
+         <div class="span4">
+            <div class="logo">
+               
+               <a href="/"><h1><span class="color">Sudo</span>China</h1></a>
+               <p class="lmeta">借力开源，快速行动！</p>
+            </div>
+         
+      </div>
+   </div>
+  </div>
+</header>
+
+         <div class="navbar">
+            <div class="navbar-inner">
+               <div class="container">
+                  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                     <span>菜单</span>
+                  </a>
+                  <div class="nav-collapse collapse">
+                      <ul class="nav">
+                        <ul id="menu-menu" class="nav">
+                        
+                        
+                          
+                          <li class="menu-item"><a href="/">首页</a></li>
+
+                          
+                                  <li class="menu-item"><a href="/category/1">
+                                    代码</a>
+                                  </li>
+                          
+                                  <li class="menu-item"><a href="/category/2">
+                                     笔记</a>
+                                  </li>
+                          
+                                  <li class="menu-item"><a href="/category/3">
+                                    下载</a>
+                                  </li>
+                          
+                                  <li class="menu-item"><a href="/category/4">
+                                    配置</a>
+                                  </li>
+                          
+                        
+                          
+                        </ul>
+                      </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+
+<div class="content">
+   <div class="container">
+      <div class="row">
+         <div class="span8">
+          
+<h3 style="display:none;">
+   <span>Post</span>
+</h3>
+<div class="posts">
+
+   <div class="entry" id="post-63">
+      <div class="matter">
+
+         <h2>GTK &#43; 3.6.1 Windows 32位</h2>
+
+         <div class="meta"> <i class="icon-calendar"></i>
+            April 4 , 2013 at 16:43 am - <i class="icon-folder-open"></i>
+            <a href="/user/0/" title="View all posts in " rel="category tag"></a>
+            -
+            <a href="###" title="183个点击">183点击</a>
+            -
+            <i class="icon-comment"></i>
+            <a href="/view/63#respond" title="0 个评论">0 评论</a>
+         </div>
+         <div><p>GTK+（GIMP Toolkit)是一套源码以LGPL许可协议分发、跨平台的图形工具包。最初是为GIMP写的，已成为一个功能强大、设计灵活的一个通用图形库，是GNU/Linux下开发图形界面的应用程序的主流开发工具之一。并且，GTK+也有Windows版本和Mac OS X版。</p>
+
+<p><br />
+GTK+ 是一种图形用户界面（GUI）工具包。也就是说，它是一个库（或者，实际上是若干个密切相关的库的集合），它支持创建基于 GUI 的应用程序。可以把 GTK+ 想像成一个工具包，从这个工具包中可以找到用来创建 GUI 的许多已经准备好的构造块。<br />
+最初，GTK+ 是作为另一个著名的开放源码项目 &mdash;&mdash; GNU Image Manipulation Program (GIMP) &mdash;&mdash; 的副产品而创建的。在开发早期的 GIMP 版本时，Peter Mattis 和 Spencer Kimball 创建了 GTK（它代表 GIMP Toolkit），作为 Motif 工具包的替代，后者在那个时候不是免费的。（当这个工具包获得了面向对象特性和可扩展性之后，才在名称后面加上了一个加号。）<br />
+这差不多已经 10 年过去了。今天，在 GTK+ 的最新稳定版本 &mdash;&mdash; 2.8 版上（3.0测试中），仍然在进行许多活动，同时，GIMP 无疑仍然是使用 GTK+ 的最著名的程序之一，不过它已经不是惟一的使用 GTK+ 的程序了。已经为 GTK+ 编写了成百上千的应用程序，而且至少有两个主要的桌面环境（Xfce 和 GNOME）用 GTK+ 为用户提供完整的工作环境。<br />
+GTK+虽然是用C语言写的，但是您可以使用你熟悉的语言来使用GTK+，因为GTK+已经被绑定到几乎所有流行的语言上，如：C++,PHP, Guile,Perl, Python, TOM, Ada95, Objective C, Free Pascal, and Eiffel。</p>
+
+<p>&nbsp;</p>
+
+<p><a href="http://www.tarnyko.net/repo/GTK+-Runtime-3.6.1_(TARNYKO).exe" target="_blank">GTK + 3.6.1 Windows 32位运行时安装包</a></p>
+
+<p>&nbsp;</p>
+
+<p><a href="http://www.tarnyko.net/repo/GTK+-Bundle-3.6.1_(TARNYKO).exe" target="_blank">GTK + 3.6.1 Windows 32位MINGW开发版安装包</a></p>
+</div>
+                <div>
+                  
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/63", context: document.body, success: function(){
+               alert("喜欢成功！");
+            }});'>喜欢 &raquo;</a></span>
+                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/63", context: document.body, success: function(){
+               alert("恶心成功！");
+            }});'>恶心 &raquo;</a></span>
+                </div>
+
+      </div>
+      <div class="clearfix"></div>
+   </div>
+
+
+<div class="navigation">
+
+   <div class="pull-left">
+      &laquo;
+      <a href="/view/62" rel="prev">上篇:Glade 3.14.1 的Windows 32位版本</a>
+   </div>
+
+
+   <div class="pull-right">
+      <a href="/view/102" rel="next">下篇:Nginx网站加速模块 ngx_pagespeed</a>
+      &raquo;
+   </div>
+
+<div class="clearfix"></div>
+</div>
+
+<div class="clearfix"></div>
+   <div class="comments well">
+      <h3>
+         <span class="comment-heading">Comments -</span>
+         0 Responses
+      </h3>
+
+ 
+</div>
+
+<div class="clearfix"></div>
+
+<div id="respond" class="respond well">
+
+   <h3>
+      <span>Leave a Reply</span>
+   </h3>
+
+   <div class="cancel-comment-reply">
+      <a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Cancel Reply</a>
+   </div>
+
+   <div class="clearfix"></div>
+
+   <form action="/new/reply/63" method="post" id="commentform" class="form-horizontal">
+      <div class="control-group">
+         <label class="control-label" for="author">Name</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="author" id="author" value="" required></div>
+      </div>
+
+      <div class="control-group">
+         <label class="control-label" for="email">Email</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="email" id="email" value="" required></div>
+      </div>
+
+      <div class="control-group">
+         <label class="control-label" for="website">Website</label>
+         <div class="controls">
+            <input type="text" class="input-large" name="website" id="website" value="" ></div>
+      </div>
+
+      
+   <div class="control-group">
+      <label class="control-label" for="comment">Comment</label>
+      <div class="controls">
+         <textarea class="input-xlarge" name="comment" id="comment" rows="8" style="width:78%;"></textarea>
+      </div>
+   </div>
+
+   <div class="form-actions">
+      <input name="submit" type="submit" id="comment-submit" tabindex="5" value="评论" class="btn" />
+      <button type="reset" class="btn">清空</button>
+   </div>
+
+   <p>
+      <input type='hidden' name='comment_userid' value='0' id='comment_userid' />
+      <input type='hidden' name='comment_parent' id='comment_parent' value='63' />
+   </p>
+
+   <div class="clear"></div>
+</form>
+
+</div>
+
+
+<div class="clearfix"></div>
+</div>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+
+         function setCookie(name, value) {
+            var Days = 60; 
+            var exp = new Date(); 
+            exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000); 
+            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + exp.toGMTString();
+         };
+
+         function getCookie(name) {
+             
+            var strCookie = document.cookie;
+            
+            var arrCookie = strCookie.split("; ");
+            for ( var i = 0; i < arrCookie.length; i++) {
+               var arr = arrCookie[i].split("=");
+               if (arr[0] == "username") {
+                  return arr[1];
+               }
+            }
+            return "";
+         };
+
+         function delCookie(name) {
+            var exp = new Date(); 
+            exp.setTime(exp.getTime() - 1); 
+            var cval = getCookie(name);
+            if (cval != null)
+               document.cookie = name + "=" + cval + "; path=/; expires="+ exp.toGMTString();
+         };
+
+         var now = new Date();
+         now.setTime(now.getTime() + 1 * 24 * 60 * 60 * 1000);
+         setCookie("gmt",now.toGMTString());
+
+      });
+
+</script>
+         </div>
+
+         <div class="span4">
+            
+               <div class="sidebar">
+<div class="widget">
+  <h3><span>搜索</span></h3><div class="form">
+  <form method="get" id="searchform" action="/search" class="form-search">
+  <input type="text" value="" name="keyword" id="keyword" class="input-medium"/>
+  <input type="submit" id="searchsubmit" value="搜索" class="btn"/>
+  </form>
+  </div>
+</div>
+
+
+<div class="widget">
+  
+  <h3><span>注册登录</span></h3>
+  
+  <ul>
+  
+     <li><a href="/register">注册</a></li>
+     <li><a href="/login">登录</a></li>
+  
+  </ul>
+</div>
+
+
+<div class="widget">
+  <h3><span>最新话题</span></h3>
+  <ul>
+  
+    
+      <li><a href="/view/142" title="nginx反向代理配置&#43;@跳转到www&#43;我的SEO手札">nginx反向代理配置&#43;@跳转到www&#43;我的SEO手札</a></li>
+    
+      <li><a href="/view/141" title="Think2Go戈登营首期review:Go语言在CDN下载系统中的应用">Think2Go戈登营首期review:Go语言在CDN下载系统中的应用</a></li>
+    
+      <li><a href="/view/140" title="Go 语言 Session 实现">Go 语言 Session 实现</a></li>
+    
+      <li><a href="/view/139" title="一句话linux命令的golang版:通过被占用端口号杀死进程">一句话linux命令的golang版:通过被占用端口号杀死进程</a></li>
+    
+      <li><a href="/view/138" title="linux服务器时间同步设定命令">linux服务器时间同步设定命令</a></li>
+    
+      <li><a href="/view/137" title="python绑定golang，golang内嵌python：gopy">python绑定golang，golang内嵌python：gopy</a></li>
+    
+      <li><a href="/view/136" title="golang开发https服务">golang开发https服务</a></li>
+    
+      <li><a href="/view/135" title="Golang ORM库：xorm">Golang ORM库：xorm</a></li>
+    
+      <li><a href="/view/134" title="交叉编译Golang程序工具：goxc">交叉编译Golang程序工具：goxc</a></li>
+    
+      <li><a href="/view/133" title="交叉编译Golang程序">交叉编译Golang程序</a></li>
+    
+  
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>最新节点</span></h3>
+  <ul>
+  
+    
+      <li><a href="/node/16" title="xww">xww</a></li>
+    
+      <li><a href="/node/15" title="php">php</a></li>
+    
+      <li><a href="/node/14" title="nginx">nginx</a></li>
+    
+      <li><a href="/node/13" title="html">html</a></li>
+    
+      <li><a href="/node/12" title="css">css</a></li>
+    
+      <li><a href="/node/11" title="python">python</a></li>
+    
+      <li><a href="/node/10" title="gtk系列下载">gtk系列下载</a></li>
+    
+      <li><a href="/node/9" title="Golang第三方库">Golang第三方库</a></li>
+    
+      <li><a href="/node/8" title="nginx配置">nginx配置</a></li>
+    
+      <li><a href="/node/7" title="网站安全">网站安全</a></li>
+    
+  
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>最新评论</span></h3>
+  <ul id="recentcomments">
+  
+      
+      <li class="recentcomments">root on <a href="/view/140#comment-1512">楼上的zzz同学,你想干嘛?嗯哼?!</a></li>
+      
+      <li class="recentcomments">zzz on <a href="/view/140#comment-1511">&lt;script&gt;alert(&#34;ok&#34;)&lt;/script&gt;</a></li>
+      
+      <li class="recentcomments">Unknown on <a href="/view/139#comment-1510">尼玛。。这也太长 。了。。</a></li>
+      
+      <li class="recentcomments">lunny on <a href="/view/12#comment-1509">嗯，不错。mark</a></li>
+      
+      <li class="recentcomments">lunny on <a href="/view/132#comment-1508">我一直用的screen</a></li>
+      
+      <li class="recentcomments">lunny on <a href="/view/135#comment-1507">呵呵。没想到你居然发了这片文章。</a></li>
+      
+      <li class="recentcomments">root on <a href="/view/12#comment-1506">@visli，谢谢提醒哦~</a></li>
+      
+      <li class="recentcomments">visli on <a href="/view/12#comment-1505">代码没贴完啊</a></li>
+      
+      <li class="recentcomments">root on <a href="/view/40#comment-1504">超炫的代码高亮highlight.js分享：http://softwaremaniacs.org/m</a></li>
+      
+      <li class="recentcomments">root on <a href="/view/38#comment-1503">為神馬這麼多SPAM發垃圾到這個話題呢？從現在開始反SPAM，刪光光了~</a></li>
+      
+  
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>博客分类</span></h3>
+  <ul>
+    
+      
+        <li class="cat-item"><a href="/category/1">代码</a></li>
+      
+        <li class="cat-item"><a href="/category/2"> 笔记</a></li>
+      
+        <li class="cat-item"><a href="/category/3">下载</a></li>
+      
+        <li class="cat-item"><a href="/category/4">配置</a></li>
+      
+    
+  </ul>
+</div>
+
+             </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+<footer>
+  <div class="container">
+    <div class="row">
+      
+         <div class="span4">
+                        <div class="fwidget">
+               <h4>About SudoChina</h4>
+               <p>速动中国是借力开源技术打造的站长技术交流平台，在这里我们会分享开源技术及站长软件工具，分享运营经验和站长行业交流！欢迎大家注册，享受分享知识的乐趣，请收藏！</p>
+            </div>
+                     </div>
+         <div class="span4">
+                        <div class="fwidget">
+               <h4>Recent Comments</h4>
+               <ul>
+                
+                  
+                  <li>root on <a href="/view/140#comment-1512">楼上的zzz同学,你想干嘛?嗯哼?!</a></li>
+                  
+                  <li>zzz on <a href="/view/140#comment-1511">&lt;script&gt;alert(&#34;ok&#34;)&lt;/script&gt;</a></li>
+                  
+                  <li>Unknown on <a href="/view/139#comment-1510">尼玛。。这也太长 。了。。</a></li>
+                  
+                  <li>lunny on <a href="/view/12#comment-1509">嗯，不错。mark</a></li>
+                  
+                  <li>lunny on <a href="/view/132#comment-1508">我一直用的screen</a></li>
+                  
+                
+               </ul>
+            </div>     
+         </div>
+         <div class="span4">
+            <div class="fwidget">
+               <h4>Categories</h4>
+               <ul>
+                
+                  
+                    <li><a href="/category/1">代码</a></li>
+                  
+                    <li><a href="/category/2"> 笔记</a></li>
+                  
+                    <li><a href="/category/3">下载</a></li>
+                  
+                    <li><a href="/category/4">配置</a></li>
+                  
+                
+               </ul>
+            </div>   
+         </div>
+      <div class="span12">
+         <div class="copy">
+            <p>Copyright &copy; 2013 - <a href="/">SudoChina.com.</a> Powered by <a href="https://github.com/insionng/toropress" target="_blank">ToroPress</a>. <script src="http://s21.cnzz.com/stat.php?id=4835781&web_id=4835781" language="JavaScript"></script>
+            </p>
+         </div>
+      </div>
+    </div>
+  <div class="clearfix"></div>
+  </div>
+</footer>       
+
+
+<script src="/static/js/bootstrap.js"></script>
+</body>
+</html>
