@@ -6,6 +6,14 @@ Toropress
 *[building](http://this.com)
 
 
+	func helloWorld()
+	{
+		fmt.Println("Hello World!")
+	}
+
+
+这是一个函数`helloWorld()`
+
 Toropress是SudoChina.com的开发代号,
 是一个简单和强大的Golang CMS系统网站，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站..
 
