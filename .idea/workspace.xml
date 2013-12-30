@@ -2,12 +2,680 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a9591a3-93bd-4af9-bbe5-38c5d54c4211" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main.go" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/DelNode.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/DelReply.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/DelTopic.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/EditNode.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/EditTopic.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/HateHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/LikeHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/LoginHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/LogoutHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/MainHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/ModifyCategory.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/ModifyNode.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/NewCategory.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/NewNode.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/NewReply.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/NewTopic.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/NodeHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/RegHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/SearchHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/ViewHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RAboutHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RAccountHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RAdvantagesHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RApi.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RContactHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RGalleryHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RIntroductionHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RLoginHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RLogoutHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RMainHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RServicesHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RSettingHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RSetvideoHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handlers/root/RUploaderHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/models/models.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/app.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/archives/1/4/101.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/archives/1/4/99.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/archives/3/1/1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/archives/3/10/63.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/archives/4/8/142.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/build.cmd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/build.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/conf/app.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/conf/nginx.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/conf/supervisord.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/data/sqlite.db" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/DelNode.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/DelReply.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/DelTopic.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/EditNode.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/EditTopic.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/HateHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/LikeHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/LoginHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/LogoutHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/MainHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/ModifyCategory.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/ModifyNode.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/NewCategory.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/NewNode.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/NewReply.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/NewTopic.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/NodeHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/RegHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/SearchHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/ViewHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RAboutHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RAccountHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RAdvantagesHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RApi.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RContactHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RGalleryHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RIntroductionHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RLoginHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RLogoutHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RMainHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RServicesHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RSettingHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RSetvideoHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/handlers/root/RUploaderHandler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/helper/IsSpider.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/helper/convzh.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/helper/hotness.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/helper/password.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/helper/resize.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/helper/utils.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/libs/handler.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/models/models.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/css/bootstrap-responsive.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/css/bootstrap-responsive.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/css/layerslider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/css/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/ico/apple-touch-icon-114-precomposed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/ico/apple-touch-icon-144-precomposed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/ico/apple-touch-icon-57-precomposed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/ico/apple-touch-icon-72-precomposed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/ico/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/ico/favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/img/glyphicons-halflings-white.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/img/glyphicons-halflings.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/img/glyphicons_halflings.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/carousel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/CHANGES.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/LICENSE.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/build-config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/ckeditor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/contents.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/af.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/ar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/bg.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/bn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/bs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/ca.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/cs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/cy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/da.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/de.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/el.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/en-au.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/en-ca.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/en-gb.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/en.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/eo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/es.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/et.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/eu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/fa.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/fi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/fo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/fr-ca.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/fr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/gl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/gu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/he.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/hi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/hr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/hu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/is.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/it.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/ja.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/ka.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/km.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/ko.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/ku.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/lt.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/lv.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/mk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/mn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/ms.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/nb.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/nl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/no.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/pl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/pt-br.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/pt.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/ro.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/ru.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/sk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/sl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/sq.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/sr-latn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/sr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/sv.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/th.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/tr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/ug.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/uk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/vi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/zh-cn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/lang/zh.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/a11yhelp.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/_translationstatus.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/ar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/bg.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/ca.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/cs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/cy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/da.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/de.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/el.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/en.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/eo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/es.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/et.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/fa.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/fi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/fr-ca.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/fr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/gu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/he.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/hi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/hr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/hu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/it.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/ja.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/km.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/ku.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/lt.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/lv.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/mk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/mn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/nb.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/nl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/no.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/pl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/pt-br.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/pt.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/ro.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/ru.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/sk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/sl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/sq.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/sv.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/th.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/tr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/ug.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/uk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/vi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/a11yhelp/dialogs/lang/zh-cn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/about/dialogs/about.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/about/dialogs/logo_ckeditor.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/clipboard/dialogs/paste.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/colordialog/dialogs/colordialog.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/dialog/dialogDefinition.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/div/dialogs/div.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/fakeobjects/images/spacer.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/find/dialogs/find.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/flash/dialogs/flash.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/flash/images/placeholder.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/forms/dialogs/button.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/forms/dialogs/checkbox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/forms/dialogs/form.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/forms/dialogs/hiddenfield.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/forms/dialogs/radio.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/forms/dialogs/select.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/forms/dialogs/textarea.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/forms/dialogs/textfield.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/forms/images/hiddenfield.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/iframe/dialogs/iframe.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/iframe/images/placeholder.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/image/dialogs/image.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/image/images/noimage.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/insertcode/dialogs/insertcode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/insertcode/icons/code-color.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/insertcode/icons/code.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/insertcode/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/link/dialogs/anchor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/link/dialogs/link.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/link/images/anchor.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/liststyle/dialogs/liststyle.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/magicline/images/icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/pagebreak/images/pagebreak.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/pastefromword/filter/default.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/preview/preview.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/scayt/LICENSE.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/scayt/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/scayt/dialogs/options.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/scayt/dialogs/toolbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_address.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_blockquote.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_div.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_h1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_h2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_h3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_h4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_h5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_h6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_p.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/showblocks/images/block_pre.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/dialogs/smiley.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/angel_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/angry_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/broken_heart.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/confused_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/cry_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/devil_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/embaressed_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/embarrassed_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/envelope.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/heart.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/kiss.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/lightbulb.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/omg_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/regular_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/sad_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/shades_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/teeth_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/thumbs_down.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/thumbs_up.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/tongue_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/tounge_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/whatchutalkingabout_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/smiley/images/wink_smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/_translationstatus.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/ca.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/cs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/cy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/de.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/el.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/en.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/eo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/es.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/et.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/fa.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/fi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/fr-ca.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/fr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/he.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/hr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/it.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/ku.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/lv.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/nb.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/nl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/no.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/pl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/pt-br.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/sk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/sq.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/sv.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/th.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/tr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/ug.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/lang/zh-cn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/specialchar/dialogs/specialchar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/LGPL-LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/MIT-LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/_theme_template.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/config.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shCore.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shCoreDefault.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shCoreDjango.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shCoreEclipse.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shCoreEmacs.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shCoreFadeToGrey.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shCoreMDUltra.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shCoreMidnight.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shCoreRDark.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shThemeDefault.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shThemeDjango.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shThemeEclipse.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shThemeEmacs.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shThemeFadeToGrey.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shThemeMDUltra.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shThemeMidnight.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/compass/shThemeRDark.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shAutoloader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushAS3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushAppleScript.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushBash.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushCSharp.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushColdFusion.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushCpp.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushCss.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushDelphi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushDiff.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushErlang.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushGo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushGroovy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushJScript.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushJava.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushJavaFX.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushPerl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushPhp.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushPlain.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushPowerShell.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushPython.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushRuby.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushSass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushScala.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushSql.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushVb.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shBrushXml.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shCore.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/scripts/shLegacy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/src/shAutoloader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/src/shCore.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/src/shLegacy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCore.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCoreDefault.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCoreDjango.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCoreEclipse.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCoreEmacs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCoreFadeToGrey.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCoreMDUltra.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCoreMidnight.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shCoreRDark.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shThemeDefault.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shThemeDjango.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shThemeEclipse.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shThemeEmacs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shThemeFadeToGrey.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shThemeMDUltra.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shThemeMidnight.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/styles/shThemeRDark.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/.rvmrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/brushes/sass.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/brushes_tests.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/001_basic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/002_brushes.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/003_script_tag.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/004_url_parsing.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/005_no_gutter.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/006_pad_line_numbers.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/007_collapse.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/007_collapse_interaction.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/008_first_line.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/009_class_name.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/010_highlight.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/011_smart_tabs.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/012_server_side.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/013_html_script.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/cases/014_legacy.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/commonjs_tests.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/js/jquery-1.4.2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/js/qunit.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/js/qunit.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/syntaxhighlighter_tests.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/theme_tests.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/webrick.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/syntaxhighlighter/tests/webrick.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/table/dialogs/table.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/tabletools/dialogs/tableCell.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/templates/dialogs/templates.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/templates/dialogs/templates.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/templates/templates/default.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/templates/templates/images/template1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/templates/templates/images/template2.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/templates/templates/images/template3.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/wsc/LICENSE.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/wsc/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/wsc/dialogs/ciframe.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/wsc/dialogs/tmpFrameset.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/wsc/dialogs/wsc.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/plugins/wsc/dialogs/wsc.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/ajax.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/api.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/appendto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/assets/inlineall/logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/assets/outputxhtml/outputxhtml.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/assets/posteddata.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/assets/sample.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/assets/sample.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/assets/uilanguages/languages.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/datafiltering.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/divreplace.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/inlineall.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/inlinebycode.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/dialog/assets/my_dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/dialog/dialog.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/enterkey/enterkey.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/htmlwriter/assets/outputforflash/outputforflash.fla" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/htmlwriter/assets/outputforflash/outputforflash.swf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/htmlwriter/assets/outputforflash/swfobject.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/htmlwriter/outputforflash.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/htmlwriter/outputhtml.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/magicline/magicline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/toolbar/toolbar.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/plugins/wysiwygarea/fullpage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/readonly.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/replacebyclass.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/replacebycode.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/sample.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/sample.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/sample_posteddata.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/tabindex.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/uicolor.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/uilanguages.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/samples/xhtmlstyle.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/dialog_ie.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/dialog_ie7.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/dialog_ie8.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/dialog_iequirks.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/dialog_opera.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/editor.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/editor_gecko.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/editor_ie.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/editor_ie7.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/editor_ie8.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/editor_iequirks.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/images/arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/images/close.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/images/mini.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/skins/moono/readme.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/ckeditor/styles.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/custom.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/excanvas.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/fancybox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/flexslider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/README.ru.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/classref.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/highlight.pack.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/arta.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/ascetic.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/brown_paper.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/brown_papersq.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/dark.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/default.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/far.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/github.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/googlecode.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/idea.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/ir_black.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/magula.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/monokai.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/pojoaque.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/pojoaque.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/rainbow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/school_book.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/school_book.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/solarized_dark.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/solarized_light.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/sunburst.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/tomorrow-night-blue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/tomorrow-night-bright.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/tomorrow-night-eighties.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/tomorrow-night.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/tomorrow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/vs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/xcode.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/highlight/styles/zenburn.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/html5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/isotope.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/jquery-1.8.2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/jquery-1.8.3.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/jquery-easing-1.3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/jquery.cslider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/jquery.flot.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/jquery.flot.pie.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/jquery.flot.resize.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/jquery.flot.stack.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/jquery.imagesloaded.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/jquery.placeholder.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/layerslider.kreaturamedia.jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/modernizr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/retina.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/slider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/js/twitter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/robots.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/css/bootstrap-responsive.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/css/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/datatable/media/js/jquery.dataTables.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/img/glyphicons-halflings-white.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/img/glyphicons-halflings.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-alert.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-button.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-carousel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-collapse.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-dropdown.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-modal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-popover.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-scrollspy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-tab.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-tooltip.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-transition.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/bootstrap-typeahead.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/datatable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/root/js/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/nannie/css/bootstrap-responsive.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/nannie/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/nannie/css/font-awesome-ie7.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/nannie/css/font-awesome.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/nannie/css/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/nannie/js/html5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/css/invalid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/css/reset.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/css/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/b.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bg-body.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bg-button-green.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bg-content-box.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bg-form-field.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bg-login-top.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bg-login.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bg-menu-item-current.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bg-menu-item-green.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bg-radial-gradient.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bg-sidebar.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/bl.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/br.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/closelabel.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/bullet_black.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/clock_48.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/comment_48.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/cross.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/cross_circle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/cross_grey_small.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/exclamation.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/hammer_screwdriver.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/image_add_48.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/information.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/jquery.wysiwyg.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/paper_content_pencil_48.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/pencil.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/pencil_48.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/icons/tick_circle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/loading.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/menu-current-arrow.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/shortcut-button-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/tl.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/img/tr.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/js/facebox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/js/highcharts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/js/jquery-1.8.3.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/js/jquery.date.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/js/jquery.datePicker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/js/jquery.wysiwyg.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/static/themes/root/js/simpla.jquery.configuration.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/toropress-qbs-version-1st.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/layout.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/login.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/modify_category.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/modify_node.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/new_category.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/new_node.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/node.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/node_edit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/reg.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/ckeditor.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/footer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/head.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/login.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/navbar.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/published.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/published_node.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/published_topic_list.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/setting.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/setting_password.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/setting_setroot.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/root/uploadify/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/search.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/topic_edit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/topic_new.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/toropress-qbs-version-1st/views/view.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app" afterPath="$PROJECT_DIR$/app" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/config.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/config.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/wendal/errors.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/wendal/errors.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/mattn/go-sqlite3.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/mattn/go-sqlite3.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/beego/goyaml2.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/beego/goyaml2.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/logs.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/logs.a" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/sqlite.db" afterPath="$PROJECT_DIR$/data/sqlite.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/toropress/handlers/RegHandler.go" afterPath="$PROJECT_DIR$/src/toropress/handlers/RegHandler.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/app.conf" afterPath="$PROJECT_DIR$/conf/app.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/root/head.html" afterPath="$PROJECT_DIR$/views/root/head.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.html" afterPath="$PROJECT_DIR$/views/layout.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/toolbox.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/toolbox.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/beego/x2j.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/beego/x2j.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/lunny/xorm.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/lunny/xorm.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sh" afterPath="$PROJECT_DIR$/build.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/context.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/context.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/middleware.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/middleware.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/go-sql-driver/mysql.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/go-sql-driver/mysql.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/beego/redigo/redis.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/beego/redigo/redis.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/reg.html" afterPath="$PROJECT_DIR$/views/reg.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/session.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/session.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/utils.a" afterPath="$PROJECT_DIR$/pkg/linux_386/github.com/astaxie/beego/utils.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="toropress.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,70 +742,56 @@
       <file leaf-file-name="app.go" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="43" selection-start="596" selection-end="596" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="930">
+            <state line="24" column="40" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="930">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegHandler.go" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LoginHandler.go" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/toropress/handlers/LoginHandler.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="0" selection-start="850" selection-end="850" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1005">
+              <folding>
+                <marker date="1388413505119" expanded="true" signature="400:1251" placeholder="{ ... }" />
+                <marker date="1388413505119" expanded="true" signature="520:1203" placeholder="{ ... }" />
+                <marker date="1388413505119" expanded="true" signature="600:1152" placeholder="{ ... }" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainHandler.go" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/toropress/handlers/MainHandler.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="117" selection-start="592" selection-end="597" vertical-scroll-proportion="0.0" vertical-offset="62" max-vertical-offset="885">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="30" selection-start="824" selection-end="824" vertical-scroll-proportion="76.25" vertical-offset="2025" max-vertical-offset="4305">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegHandler.go" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/toropress/handlers/RegHandler.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="24" selection-start="525" selection-end="525" vertical-scroll-proportion="0.57272726" vertical-offset="120" max-vertical-offset="1020">
+            <state line="41" column="40" selection-start="832" selection-end="832" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1110">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="handler.go" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/handler.go">
+      <file leaf-file-name="models.go" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/toropress/models/models.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="24" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2655">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.conf" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conf/app.conf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="13" selection-start="32" selection-end="34" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="180">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nginx.conf" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conf/nginx.conf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="13" selection-start="2379" selection-end="2379" vertical-scroll-proportion="0.0" vertical-offset="1665" max-vertical-offset="2850">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="supervisord.conf" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conf/supervisord.conf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1380">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="65" selection-start="4599" selection-end="4599" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="4380">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModifyCategory.go" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/toropress/handlers/ModifyCategory.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="25" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="660">
+            <state line="542" column="0" selection-start="12658" selection-end="12746" vertical-scroll-proportion="0.397711" vertical-offset="7852" max-vertical-offset="15300">
               <folding />
             </state>
           </provider>
@@ -157,15 +811,19 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/views/layout.html" />
+        <option value="$PROJECT_DIR$/src/toropress/views/reg.html" />
+        <option value="$PROJECT_DIR$/views/reg.html" />
+        <option value="$PROJECT_DIR$/src/toropress/handlers/LoginHandler.go" />
         <option value="$PROJECT_DIR$/src/toropress/handlers/RegHandler.go" />
+        <option value="$PROJECT_DIR$/src/toropress/models/models.go" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="11" />
-    <option name="y" value="50" />
-    <option name="width" value="1336" />
-    <option name="height" value="645" />
+    <option name="x" value="-14" />
+    <option name="y" value="76" />
+    <option name="width" value="1278" />
+    <option name="height" value="931" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -227,7 +885,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Project Files" />
+      </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -238,20 +898,27 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="Errors" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <option name="name" value="Go application" />
+      <option name="saveOutputToFile" value="false" />
+      <option name="showConsoleOnStdErr" value="false" />
+      <option name="showConsoleOnStdOut" value="false" />
+      <option name="scriptName" />
+      <option name="scriptArguments" />
+      <option name="workDir" value="$PROJECT_DIR$" />
+      <module name="" />
       <method />
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -282,19 +949,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -320,6 +974,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -391,7 +1058,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="11" y="50" width="1336" height="645" extended-state="0" />
+    <frame x="-14" y="76" width="1278" height="931" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -399,6 +1066,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15874855" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928944" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -409,13 +1077,12 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24550898" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16744915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -437,6 +1104,55 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app.go">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="930">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="43" selection-start="596" selection-end="596" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toropress/handlers/RegHandler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="5" selection-start="575" selection-end="575" vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="960" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="24" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2655" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/app.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="13" selection-start="32" selection-end="34" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="180" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/nginx.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="13" selection-start="2379" selection-end="2379" vertical-scroll-proportion="0.0" vertical-offset="1665" max-vertical-offset="2850" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/supervisord.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1380" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="65" selection-start="4599" selection-end="4599" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4380" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toropress/handlers/ModifyCategory.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="25" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="660" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.go">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="43" selection-start="596" selection-end="596" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="930">
           <folding />
         </state>
@@ -444,51 +1160,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/toropress/handlers/RegHandler.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="1005">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="1005" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libs/handler.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="24" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2655">
-          <folding />
-        </state>
+        <state line="11" column="24" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2655" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/conf/app.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="13" selection-start="32" selection-end="34" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="180">
-          <folding />
-        </state>
+        <state line="1" column="13" selection-start="32" selection-end="34" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="180" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/conf/nginx.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="13" selection-start="2379" selection-end="2379" vertical-scroll-proportion="0.0" vertical-offset="1665" max-vertical-offset="2850">
-          <folding />
-        </state>
+        <state line="105" column="13" selection-start="2379" selection-end="2379" vertical-scroll-proportion="0.0" vertical-offset="1665" max-vertical-offset="2850" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/conf/supervisord.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1380">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1380" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="65" selection-start="4599" selection-end="4599" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="4380">
-          <folding />
-        </state>
+        <state line="103" column="65" selection-start="4599" selection-end="4599" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="4380" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/toropress/handlers/ModifyCategory.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="25" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="660">
-          <folding />
-        </state>
+        <state line="20" column="25" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="660" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.go">
@@ -503,27 +1205,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="587" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/handler.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="24" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2655">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/conf/app.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="13" selection-start="32" selection-end="34" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="180">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/conf/nginx.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="13" selection-start="2379" selection-end="2379" vertical-scroll-proportion="0.0" vertical-offset="1665" max-vertical-offset="2850">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/archives/1/4/99.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.73636365" vertical-offset="405" max-vertical-offset="9585" />
@@ -534,37 +1215,127 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7260" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/libs/handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="24" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2655" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/app.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="13" selection-start="32" selection-end="34" vertical-scroll-proportion="0.028571429" vertical-offset="0" max-vertical-offset="525" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/nginx.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="13" selection-start="2379" selection-end="2379" vertical-scroll-proportion="-0.17142858" vertical-offset="1665" max-vertical-offset="2850" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/conf/supervisord.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1380">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.0546875" vertical-offset="540" max-vertical-offset="1380" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="65" selection-start="4599" selection-end="4599" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="4380">
+        <state line="103" column="65" selection-start="4599" selection-end="4599" vertical-scroll-proportion="-23.125" vertical-offset="990" max-vertical-offset="4380" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toropress/handlers/ModifyCategory.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="25" selection-start="304" selection-end="304" vertical-scroll-proportion="0.34545454" vertical-offset="110" max-vertical-offset="660" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toropress/handlers/RegHandler_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="411">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toropress/helper/utils.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="782" column="5" selection-start="18327" selection-end="18327" vertical-scroll-proportion="0.3316583" vertical-offset="11598" max-vertical-offset="12630">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toropress/handlers/MainHandler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="117" selection-start="592" selection-end="597" vertical-scroll-proportion="0.0" vertical-offset="62" max-vertical-offset="885">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="30" selection-start="824" selection-end="824" vertical-scroll-proportion="76.25" vertical-offset="2025" max-vertical-offset="4305">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/github.com/astaxie/beego/controller.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="5" selection-start="557" selection-end="557" vertical-scroll-proportion="-2.9613733" vertical-offset="2565" max-vertical-offset="7650">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toropress/libs/handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="18" selection-start="249" selection-end="249" vertical-scroll-proportion="0.35479257" vertical-offset="22" max-vertical-offset="2655">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="43" selection-start="596" selection-end="596" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+        <state line="24" column="40" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="930">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/toropress/handlers/ModifyCategory.go">
+    <entry file="file://$PROJECT_DIR$/views/reg.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="25" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+        <state line="72" column="28" selection-start="2652" selection-end="2652" vertical-scroll-proportion="0.42222223" vertical-offset="795" max-vertical-offset="1470">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/github.com/lunny/xorm/session.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1371" column="24" selection-start="37231" selection-end="37231" vertical-scroll-proportion="0.26895565" vertical-offset="20377" max-vertical-offset="42015">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/github.com/lunny/xorm/engine.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="913" column="22" selection-start="24568" selection-end="24568" vertical-scroll-proportion="0.33333334" vertical-offset="13462" max-vertical-offset="15105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toropress/handlers/LoginHandler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="0" selection-start="850" selection-end="850" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1005">
+          <folding>
+            <marker date="1388413505119" expanded="true" signature="400:1251" placeholder="{ ... }" />
+            <marker date="1388413505119" expanded="true" signature="520:1203" placeholder="{ ... }" />
+            <marker date="1388413505119" expanded="true" signature="600:1152" placeholder="{ ... }" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/toropress/handlers/RegHandler.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="24" selection-start="525" selection-end="525" vertical-scroll-proportion="0.57272726" vertical-offset="120" max-vertical-offset="1020">
+        <state line="41" column="40" selection-start="832" selection-end="832" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1110">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toropress/models/models.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="542" column="0" selection-start="12658" selection-end="12746" vertical-scroll-proportion="0.397711" vertical-offset="7852" max-vertical-offset="15300">
           <folding />
         </state>
       </provider>
