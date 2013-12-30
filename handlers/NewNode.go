@@ -1,9 +1,8 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
-	"strconv"
+	"toropress/libs"
+	"toropress/models"
 )
 
 type NewNodeHandler struct {
@@ -19,15 +18,14 @@ func (self *NewNodeHandler) Get() {
 }
 
 func (self *NewNodeHandler) Post() {
-	inputs := self.Input()
-	cid, _ := strconv.Atoi(inputs.Get("category"))
+	cid, _ := self.GetInt("category")
 	uid, _ := self.GetSession("userid").(int64)
-	nid_title := inputs.Get("title")
-	nid_content := inputs.Get("content")
+	nid_title := self.GetString("title")
+	nid_content := self.GetString("content")
 
 	if nid_title != "" && nid_content != "" && cid != 0 {
-		models.AddNode(nid_title, nid_content, cid, int(uid))
-		self.Ctx.Redirect(302, "/category/"+inputs.Get("category"))
+		models.AddNode(nid_title, nid_content, cid, uid)
+		self.Ctx.Redirect(302, "/category/"+self.GetString("category"))
 	} else {
 		self.Ctx.Redirect(302, "/")
 	}

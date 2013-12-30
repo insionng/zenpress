@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"../libs"
-	"../models"
 	"strconv"
 	"time"
+	"toropress/libs"
+	"toropress/models"
 )
 
 type ModifyNodeHandler struct {
@@ -27,13 +27,13 @@ func (self *ModifyNodeHandler) Post() {
 	nd_title := inputs.Get("title")
 	nd_content := inputs.Get("content")
 	if cid != 0 && nid != 0 && nd_title != "" && nd_content != "" {
-		var nd models.Node
+		nd := new(models.Node)
 		nd.Id = int64(nid)
 		nd.Pid = int64(cid)
 		nd.Title = nd_title
 		nd.Content = nd_content
 		nd.Created = time.Now()
-		models.SaveNode(nd)
+		models.UpdateNode(nd.Id, nd)
 		self.Ctx.Redirect(302, "/node/"+inputs.Get("nodeid"))
 	} else {
 		self.Ctx.Redirect(302, "/")
