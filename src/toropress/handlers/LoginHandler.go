@@ -1,7 +1,7 @@
 package handlers
 
 import (
-
+	"fmt"
 	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
@@ -44,6 +44,14 @@ func (self *LoginHandler) Post() {
 				self.SetSession("username", userInfo.Nickname)
 				self.SetSession("userrole", userInfo.Role)
 				self.SetSession("useremail", userInfo.Email)
+
+				fmt.Println("============userid===============")
+				fmt.Println(self.GetSession("userid"))
+				fmt.Println("============username===============")
+				fmt.Println(self.GetSession("username"))
+
+
+
 
 				self.Ctx.Redirect(302, "/")
 			} else {

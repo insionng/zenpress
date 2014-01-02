@@ -1,10 +1,12 @@
 package handlers
 
 import (
+	"fmt"
 	"strconv"
 	"toropress/helper"
 	"toropress/libs"
 	"toropress/models"
+	"runtime"
 )
 
 type ViewHandler struct {
@@ -14,6 +16,13 @@ type ViewHandler struct {
 func (self *ViewHandler) Get() {
 	tid, _ := self.GetInt(":tid")
 	tid_handler := models.GetTopic(tid)
+
+	_,filename,fileline,_ :=runtime.Caller(2)
+	fmt.Println(filename)
+	fmt.Println(fileline)
+
+	fmt.Println("Author")
+	fmt.Println(tid_handler.Uid)
 
 	self.TplNames = "view.html"
 	self.Layout = "layout.html"

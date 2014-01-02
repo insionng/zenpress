@@ -251,7 +251,7 @@ func CreateDb() {
 		SetKV("site_email", "info@verywave.com")
 
 		SetKV("tweibo", "http://t.qq.com/yours")
-		SetKV("sweibo", "http://weibo.com/yours")
+		SetKV("sweibo", "http://weibo.com/deepinos")
 	}
 
 }
@@ -590,8 +590,9 @@ func SetNode(id int64, title string, content string, cid int64, uid int64) error
 	return nil
 }
 
-func AddTopic(title string, content string, cid int64, nid int64, uid int64) error {
-	if _, err := Engine.Insert(&Topic{Cid: cid, Nid: nid, Title: title, Content: content, Created: time.Now()}); err != nil {
+func AddTopic(title string, content string, cid int64, nid int64, uid int64, author string) error {
+
+	if _, err := Engine.Insert(&Topic{Cid: cid, Nid: nid, Uid: uid, Author: author,Title: title, Content: content, Created: time.Now()}); err != nil {
 		return err
 	}
 	cnt, err := GetTopicCountsByNid(nid, 0, 0, 0, "id")
