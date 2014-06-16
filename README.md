@@ -49,8 +49,8 @@ Toropress是一个简单和强大的Golang CMS系统网站，作小许改动后�
 
     go get -u github.com/insionng/torgo
 
-##安装
-	先安装sqlite3驱动，譬如64位的win7：
+##Sqlite3安装(默认,当选择其他数据库时可忽略此项)
+	如果你默认使用Sqlite3安装,请确保已经安装sqlite3驱动，譬如64位的win7：
 	SQLITE3驱动编译环境是TDM版MINGW64(http://tdm-gcc.tdragon.net/)，
     安装好后请把TDM版MINGW64的bin目录路径加入到你的win7环境变量path里面。
 
