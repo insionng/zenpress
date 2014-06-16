@@ -1,2 +1,2 @@
-go build -ldflags "-s" app.go
+go build -ldflags "-s -w" app.go
 pause
