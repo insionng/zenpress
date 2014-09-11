@@ -7,10 +7,12 @@ Toropress是一个简单和强大的Golang CMS系统网站，作小许改动后�
 第二版于2013年10月1日更新,由于beego最新版本几乎已经把[Torgo](https://github.com/insionng/torgo)的所有修改优化吸收完全了,从而决定了Toropress源码再次回归[Beego](https://github.com/astaxie/beego),并采用了[Xorm](https://github.com/lunny/xorm),目前已经将[Qbs](https://github.com/coocood/qbs)代码完全迁移到[Xorm](https://github.com/lunny/xorm),这将获得更好的使用体验,感谢那些捐助本项目的用户,如需定制请联系我.
 
 
-##轻量级论坛版本
+##轻量级社区版本
 
 [YouGam社区](http://www.yougam.com/)
+
 (类似V2EX,购买系统请联系作者QQ547092001)
+
 
 
 ##线上开源技术分享平台版本
