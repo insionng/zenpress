@@ -138,7 +138,7 @@ Sdc fork by toropress
 
 
 ## 交流
-欢迎大家加入QQ专用交流群:231956113/作者QQ：547092001
+欢迎大家加入QQ专用交流群:231956113(已满)/245386165(新群)/作者QQ：547092001
 
 技术分享：[http://www.sudochina.com](http://www.sudochina.com)
 
