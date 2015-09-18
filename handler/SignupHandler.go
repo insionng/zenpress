@@ -9,5 +9,5 @@ import (
 )
 
 func SignupHandler(self *vodka.Context) error {
-	return self.Render(http.StatusOK, "index.html", nil)
+	return self.Render(http.StatusOK, "signup.html", nil)
 }

@@ -11,6 +11,7 @@ import (
 	"github.com/insionng/zenpress/handler"
 	"github.com/vodka-contrib/jwt"
 	"github.com/vodka-contrib/pongor"
+	"github.com/vodka-contrib/vodkapprof"
 	"net/http"
 )
 
@@ -98,5 +99,8 @@ func main() {
 		beego.Router("/root/account", &root.RAccountHandler{})
 
 	*/
+
+	// e.g. /debug/pprof, /debug/pprof/heap, etc.
+	vodkapprof.Wrapper(v)
 	v.Run(9000)
 }

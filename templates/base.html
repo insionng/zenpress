@@ -4,13 +4,14 @@
 {% endblock htmlBegin %}
 {%block head%}
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="keywords" content="{{keywords}}" />
     <meta name="description" content="{{description}}" />
     <meta name="author" content="insion"/>
-    <title>{%if article.Title%}{{article.Title}} - {%endif%}Zenpress - 借力开源技术，打造心中网站，分享开源技术及站长软件工具，分享运营经验和站长行业交流！</title>
+    {% block title %}
+      <title>{%if article.Title%}{{article.Title}} - {%endif%}Zenpress - 借力开源，技术次元！</title>
+    {% endblock title %}
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="/static/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
