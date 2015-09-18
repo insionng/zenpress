@@ -1,29 +1,22 @@
 package models
 
 import (
+	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-xorm/tidb"
+	_ "github.com/lib/pq"
+	_ "github.com/pingcap/tidb"
+
+	"github.com/go-xorm/xorm"
+
 	"errors"
 	"fmt"
-	"github.com/lunny/xorm"
-	_ "github.com/mattn/go-sqlite3"
-	"toropress/helper"
-	//_ "github.com/lib/pq"
+	"github.com/insionng/zenpress/helper"
 	"os"
 	"time"
 )
 
 var (
 	Engine *xorm.Engine
-)
-
-const (
-	DbName         = "./data/sqlite.db"
-	DbUser         = "root"
-	mysqlDriver    = "mymysql"
-	mysqlDrvformat = "%v/%v/"
-	pgDriver       = "postgres"
-	pgDrvFormat    = "user=%v dbname=%v sslmode=disable"
-	sqlite3Driver  = "sqlite3"
-	dbtype         = "sqlite"
 )
 
 type User struct {
@@ -180,45 +173,80 @@ type Kvs struct {
 }
 
 func init() {
-	_, err := SetEngine()
+	var err error
+	Engine, err = SetEngine()
 	if err != nil {
-		fmt.Println(err)
+		panic(fmt.Sprintf("Zenpress SetEngine errors:%v", err))
 	}
+
+	if err = creatTables(Engine); err != nil {
+		panic(fmt.Sprintf("Zenpress creatTables errors:%v", err))
+	}
+
+	initData()
+
 }
 
-func XConDb() (*xorm.Engine, error) {
+func ConDb() (*xorm.Engine, error) {
 	switch {
-	case dbtype == "sqlite":
-		return xorm.NewEngine("sqlite3", DbName)
 
-	case dbtype == "mysql":
-		return xorm.NewEngine("mysql", "user=mysql password=jn!@#9^&* dbname=mysql")
+	case helper.DataType == "memory":
+		return xorm.NewEngine("tidb", "memory://tidb/tidb")
 
-	case dbtype == "pgsql":
-		return xorm.NewEngine("postgres", "user=postgres password=jn!@#$%^&* dbname=pgsql sslmode=disable")
+	case helper.DataType == "goleveldb":
+		return xorm.NewEngine("tidb", "goleveldb://./tidb/goleveldb")
+
+	case helper.DataType == "boltdb":
+		return xorm.NewEngine("tidb", "boltdb://./tidb/boltdb")
+
+	case helper.DataType == "mysql":
+		return xorm.NewEngine("mysql", helper.DBConnect)
+		//return xorm.NewEngine("mysql", "root:YouPass@/db?charset=utf8")
+
+	case helper.DataType == "postgres":
+		return xorm.NewEngine("postgres", helper.DBConnect)
+		//return xorm.NewEngine("postgres", "user=postgres password=jn!@#$%^&* dbname=pgsql sslmode=disable")
+
+		// "user=postgres password=jn!@#$%^&* dbname=yougam sslmode=disable maxcons=10 persist=true"
+		//return xorm.NewEngine("postgres", "host=110.76.39.205 user=postgres password=jn!@#$%^&* dbname=yougam sslmode=disable")
+		//return xorm.NewEngine("postgres", "host=127.0.0.1 port=6432 user=postgres password=jn!@#$%^&* dbname=yougam sslmode=disable")
 	}
 	return nil, errors.New("尚未设定数据库连接")
 }
 
 func SetEngine() (*xorm.Engine, error) {
 
-	var err error
-	Engine, err = XConDb()
-	//Engine.Mapper = xorm.SameMapper{}
-	//Engine.SetMaxConns(5)
-	//Engine.ShowSQL = true
+	if engine, err := ConDb(); err != nil {
 
-	cacher := xorm.NewLRUCacher(xorm.NewMemoryStore(), 1000)
-	Engine.SetDefaultCacher(cacher)
+		return nil, err
+	} else {
 
-	return Engine, err
+		engine.ShowInfo = false
+		engine.ShowSQL = true   //true则会在控制台打印出生成的SQL语句；
+		engine.ShowDebug = true //true则会在控制台打印调试信息；
+		engine.ShowWarn = true  //true则会在控制台打印警告信息；
+		engine.Logger.SetLevel(core.LOG_OFF)
+
+		cacher := xorm.NewLRUCacher(xorm.NewMemoryStore(), 10000)
+		engine.SetDefaultCacher(cacher)
+		//engine.TZLocation = time.Local
+
+		if f, err := os.Create("./logs/xorm.log"); err != nil {
+			panic(err)
+		} else {
+			engine.Logger = xorm.NewSimpleLogger(f)
+		}
+
+		return engine, err
+	}
 }
 
-func CreateDb() {
+func creatTables(Engine *xorm.Engine) error {
 
-	if err := Engine.Sync(new(User), new(Category), new(Node), new(Topic), new(Reply), new(Kvs), new(File)); err != nil {
+	if err := Engine.Sync2(new(User), new(Category), new(Node), new(Topic), new(Reply), new(Kvs), new(File)); err != nil {
 		fmt.Println("Database struct sync failed")
 		fmt.Println("Engine.Sync ERRORS:", err)
+		return err
 	} else {
 		fmt.Println("Database struct sync successfully")
 	}
@@ -240,19 +268,32 @@ func CreateDb() {
 
 	if GetKV("author") != "Insion" {
 		SetKV("author", "Insion")
-		SetKV("title", "Toropress")
-		SetKV("title_en", "Toropress")
-		SetKV("keywords", "Toropress,")
-		SetKV("description", "Toropress,")
+		SetKV("title", "Zenpress")
+		SetKV("title_en", "Zenpress")
+		SetKV("keywords", "Zenpress,")
+		SetKV("description", "Zenpress,")
 
-		SetKV("company", "Toropress")
-		SetKV("copyright", "2013 Copyright Toropress .All Right Reserved")
+		SetKV("company", "Zenpress")
+		SetKV("copyright", "2013 - 2015 Copyright Zenpress .All Right Reserved")
 		SetKV("site_email", "root@sudochina.com")
 
 		SetKV("tweibo", "http://t.qq.com/yours")
 		SetKV("sweibo", "http://weibo.com/yours")
 	}
 
+}
+
+func initData() {
+	//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
+	if usr, err := GetUserByRole(-1000); usr == nil && err == nil {
+		if row, err := AddUser("root@you.com", "root", "root", "root", helper.Encrypt_hash("rootpass", nil), 0, "", "", "", 1, -1000); err == nil && row > 0 {
+			fmt.Println("Default Email:root@you.com ,Username:root ,Password:rootpass")
+		} else {
+			fmt.Print("create root got errors:", err)
+		}
+
+	}
+	fmt.Println("The Zenpress system has started!")
 }
 
 func Counts() (categorys int, nodes int, topics int, menbers int) {

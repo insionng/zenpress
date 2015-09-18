@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+{% block htmlBegin %}
+<html lang="zh-CN">
+{% endblock htmlBegin %}
+{%block head%}
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="{{keywords}}" />
+    <meta name="description" content="{{description}}" />
+    <meta name="author" content="insion"/>
+    <title>{%if article.Title%}{{article.Title}} - {%endif%}Zenpress - 借力开源技术，打造心中网站，分享开源技术及站长软件工具，分享运营经验和站长行业交流！</title>
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/static/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
+  {% block css %}
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+  
+    <!-- Stylesheets -->
+    <link href="/static/themes/nannie/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/themes/nannie/css/font-awesome.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="/static/themes/nannie/css/font-awesome-ie7.css">
+    <![endif]-->      
+    <link href="/static/themes/nannie/css/style.css" rel="stylesheet">
+    <link href="/static/themes/nannie/css/bootstrap-responsive.css" rel="stylesheet">
+    <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+  {% endblock css %}
+  {% block js %}
+    <!--[if lt IE 9]>
+    <script src="/static/themes/nannie/js/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+
+    <link rel="stylesheet" href="/static/js/highlight/styles/pojoaque.css">
+    <script type="text/javascript" src="/static/js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script src="/static/js/ckeditor/ckeditor.js"></script>
+  {% endblock js %}
+</head>
+{% endblock head%}
+<body>
+
+<!-- Header -->
+<header>
+<div class="navbar">
+  <div class="navbar-inner">
+    <ul class="nav">
+    {%if nodes_hotness_topbar%}
+      <!--li class="active"><a href="#">首页</a></li-->
+      {% for node in nodes_hotness_topbar %}
+        <li><a href="/node/{{Id}}">{{Title}}</a></li>
+      {% endfor %}
+    {%endif%}
+    </ul>
+  </div>
+</div>
+   <div class="container">
+      <div class="row">
+         <div class="span4">
+            <div class="logo">
+               <!-- Recommended Logo size 240x100 -->
+               <a href="/"><h1><span class="color">Zen</span>press</h1></a>
+               <p class="lmeta">借力开源，快速行动！</p>
+            </div>
+         <!--div class="span4 offset4">
+            <div class="social">
+               <a href="#"><i class="icon-facebook facebook"></i></a>
+               <a href="#"><i class="icon-twitter twitter"></i></a>
+               <a href="#"><i class="icon-linkedin linkedin"></i></a>
+               <a href="#"><i class="icon-pinterest pinterest"></i></a>
+               <a href="#"><i class="icon-google-plus google-plus"></i></a>
+            </div>
+         </div-->
+      </div>
+   </div>
+  </div>
+</header>
+
+         <div class="navbar">
+            <div class="navbar-inner">
+               <div class="container">
+                  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                     <span>菜单</span>
+                  </a>
+                  <div class="nav-collapse collapse">
+                      <ul class="nav">
+                        <ul id="menu-menu" class="nav">
+                        {# ipage:=curcate #}
+                        {%if categorys%}
+                          <li class="menu-item"><a href="/"{%if home=="true"%} class="current"{%endif%}>首页</a></li>
+                          {% for cat in categorys %}
+                                  <li class="menu-item"><a href="/category/{{Id}}"{%if ipage==Id%} class="current"{%endif%}>
+                                    {{Title}}</a>
+                                  </li>
+                          {% endfor %}
+                        {%else%}
+                          <li class="menu-item"><a href="###">尚无分类</a></li>
+                        {%endif%}
+                          <!--li class="menu-item dropdown">
+                              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">語言 <b class="caret"></b></a>
+                              <ul class="dropdown-menu">
+                                <li class="menu-item"><a href="?lang=normal">默認語言</a></li>
+                                <li class="menu-item"><a href="?lang=cn">簡體中文</a></li>
+                                <li class="menu-item"><a href="?lang=hk">繁體中文</a></li>
+                              </ul>
+                          </li-->
+                        </ul>
+                      </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+<!-- Content -->
+
+<div class="content">
+   <div class="container">
+      <div class="row">
+         <div class="span8">
+          {% block mainland %}{% endblock mainland %}
+         </div>
+
+         <div class="span4">
+            <!-- Sidebar -->
+               <div class="sidebar">
+<div class="widget">
+  <h3><span>搜索</span></h3><div class="form">
+  <form method="get" id="searchform" action="/search" class="form-search">
+  <input type="text" value="" name="keyword" id="keyword" class="input-medium"/>
+  <input type="submit" id="searchsubmit" value="搜索" class="btn"/>
+  </form>
+  </div>
+</div>
+
+{%if Userrole==-1000%}
+<div class="widget">
+  <h3><span>管理，{{Username}}</span></h3>
+  <ul>
+     <li><a href="/new/category">新建分类</a></li>
+     <li><a href="/new/node">新建节点</a></li>
+     <li><a href="/new/topic">新建话题</a></li>
+     <li><a href="/modify/category">修改分类</a></li>
+     <li><a href="/modify/node">修改节点</a></li>
+     <li><a href="/root-login">管理后台</a></li>
+     <li><a href="/logout">退出</a></li>
+  </ul>
+</div>
+{%else%}
+<div class="widget">
+  {%if Username%}
+  <h3><span>欢迎，{{Username}}</span></h3>
+  {%else%}
+  <h3><span>注册登录</span></h3>
+  {%endif%}
+  <ul>
+  {%if Username%}
+     <li><a href="/new/node">新建节点</a></li>
+     <li><a href="/new/topic">新建话题</a></li>
+     <li><a href="/logout">退出</a></li>
+  {%else%}
+     <li><a href="/register">注册</a></li>
+     <li><a href="/login">登录</a></li>
+  {%endif%}
+  </ul>
+</div>
+{%endif%}
+
+<div class="widget">
+  <h3><span>最新话题</span></h3>
+  <ul>
+  {%if topics_10s%}
+    {% for topic in topics_10s %}
+      <li>  作者头像img{{Author}} <a href="/view/{{Id}}" title="{{Title}}">{{Title}}</a></li>
+    {% endfor %}
+  {%else%}
+    <li>无该节点数据</li>
+  {%endif%}
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>最新节点</span></h3>
+  <ul>
+  {%if nodes_10s%}
+    {% for node in nodes_10s %}
+      <li><a href="/node/{{Id}}" title="{{Title}}">{{Title}}</a></li>
+    {% endfor %}
+  {%else%}
+    <li>无该节点数据</li>
+  {%endif%}
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>最新评论</span></h3>
+  <ul id="recentcomments">
+  {%if replys_10s%}
+    {% for reply in replys_10s %}
+      <li class="recentcomments">{%if Author==""%}游客{%else%}{{Author}}{%endif%} on <a href="/view/{{Pid}}#comment-{{Id}}">{#substr Content 0 50#}</a></li>
+    {% endfor %}
+  {%else%}
+      <li class="recentcomments">尚无评论</li>
+  {%endif%}
+  </ul>
+</div>
+
+<div class="widget">
+  <h3><span>博客分类</span></h3>
+  <ul>
+    {%if categorys%}
+      {% for cat in categorys %}
+        <li class="cat-item"><a href="/category/{{Id}}">{{Title}}</a></li>
+      {% endfor %}
+    {%else%}
+     <li class="cat-item">尚无分类</li>
+    {%endif%}
+  </ul>
+</div>
+
+             </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- Content ends -->
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <!-- Footer widgets -->
+         <div class="span4">
+                        <div class="fwidget">
+               <h4>About This Site</h4>
+               <p>基于ToroPress开发的社区</p>
+            </div>
+                     </div>
+         <div class="span4">
+                        <div class="fwidget">
+               <h4>Recent Comments</h4>
+               <ul>
+                {%if replys_5s%}
+                  {% for reply in replys_5s %}
+                    <li>{%if Author==""%}游客{%else%}{{Author}}{%endif%} on <a href="/view/{{Pid}}#comment-{{Id}}">{#substr .Content 0 50#}</a></li>
+                  {% endfor %}
+                {%else%}
+                  <li>尚无评论</li>
+                {%endif%}
+               </ul>
+            </div>     
+         </div>
+         <div class="span4">
+            <div class="fwidget">
+               <h4>Categories</h4>
+               <ul>
+                {%if categorys%}
+                  {% for cat in categorys %}
+                    <li><a href="/category/{{Id}}">{{Title}}</a></li>
+                  {% endfor %}
+                {%else%}
+                  <li>尚无分类</li>
+                {%endif%}
+               </ul>
+            </div>   
+         </div>
+      <div class="span12">
+         <div class="copy">
+            <p>Copyright &copy; 2013 ~ 2015 <a href="/">Zenpress.</a> Powered by <a href="https://github.com/insionng/zenpress" target="_blank">ToroPress</a>.
+            </p>
+         </div>
+      </div>
+    </div>
+  <div class="clearfix"></div>
+  </div>
+</footer>       
+
+<!-- JS -->
+<script src="/static/js/bootstrap.js"></script>
+</body>
+</html>

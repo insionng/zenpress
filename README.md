@@ -78,7 +78,7 @@ Zenpress是一个简单和强大的Golang CMS系统网站，作小许改动后�
 ===
 由于开发项目并不在作者名下,而是直接处于gopath的src路径下面,所以你不能直接使用go get来安装本项目!
 
-请直接下载zip源码并解压到你的gopath/src/Zenpress下面
+请直接下载zip源码并解压到你的gopath/src/zenpress下面
 
 
 或者:
@@ -87,9 +87,9 @@ Linux/Unix/Osx
 ~~~
 cd gopath
 
-git clone https://github.com/insionng/Zenpress.git
+git clone https://github.com/insionng/zenpress.git
 
-cd Zenpress
+cd zenpress
 chmod +x build.sh
 ./build.sh
 ./app
@@ -118,7 +118,7 @@ veryhour fork by Zenpress
 A very special time website
 
 这是未来社区网站的新模式探索项目~
-基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/lunny/xorm)开发的GOLANG微博社区系统网站，从toropess源码衍生而来!
+基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/go-xorm/xorm)开发的GOLANG微博社区系统网站，从toropess源码衍生而来!
 
 
 mzr fork by Zenpress
@@ -126,7 +126,7 @@ mzr fork by Zenpress
 
 梨花树系统开发代号[mzr](https://github.com/insionng/mzr)
 
-基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/lunny/xorm)开发的一个分享图片为主的社区网站系统，从toropess源码衍生而来!
+基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/go-xorm/xorm)开发的一个分享图片为主的社区网站系统，从toropess源码衍生而来!
 
 
 
@@ -135,7 +135,7 @@ Sdc fork by Zenpress
 
 问答系统开发代号[sdc](https://github.com/insionng/sdc)
 
-基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/lunny/xorm)开发的这是一个问答社区网站系统，从toropess源码衍生而来!
+基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/go-xorm/xorm)开发的这是一个问答社区网站系统，从toropess源码衍生而来!
 
 
 ## 交流
