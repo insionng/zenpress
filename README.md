@@ -1,11 +1,12 @@
-Toropress
+Zenpress
 ===
-Toropress是一个简单和强大的Golang CMS系统网站，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站..
+Zenpress是一个简单和强大的Golang CMS系统网站，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站..
 
 第一个版本基于[Torgo](https://github.com/insionng/torgo)([Beego](https://github.com/astaxie/beego)山寨版)与[Qbs](https://github.com/coocood/qbs)开发.
 
-第二版于2013年10月1日更新,由于beego最新版本几乎已经把[Torgo](https://github.com/insionng/torgo)的所有修改优化吸收完全了,从而决定了Toropress源码再次回归[Beego](https://github.com/astaxie/beego),并采用了[Xorm](https://github.com/lunny/xorm),目前已经将[Qbs](https://github.com/coocood/qbs)代码完全迁移到[Xorm](https://github.com/lunny/xorm),这将获得更好的使用体验,感谢那些捐助本项目的用户,如需定制请联系我.
+第二版于2013年10月1日更新,由于beego最新版本几乎已经把[Torgo](https://github.com/insionng/torgo)的所有修改优化吸收完全了,从而决定了Zenpress源码再次回归[Beego](https://github.com/astaxie/beego),并采用了[Xorm](https://github.com/lunny/xorm),目前已经将[Qbs](https://github.com/coocood/qbs)代码完全迁移到[Xorm](https://github.com/lunny/xorm),这将获得更好的使用体验,感谢那些捐助本项目的用户,如需定制请联系我.
 
+第三版（目前最新版）基于Vodka框架和Xorm、TiDB分布式数据库于2015年9月19日更新。
 
 ##轻量级社区版本
 
@@ -37,7 +38,7 @@ Toropress是一个简单和强大的Golang CMS系统网站，作小许改动后�
 梨花树社区 this site has been down.
 
 
-# 通过捐款支持Toropress项目
+# 通过捐款支持Zenpress项目
 如果你喜欢这个项目的话， 可以通过捐款的方式， 支持作者继续更新本项目或者做出其他更多好玩好用的开源应用： 比如为本项目修补漏洞、添加更多有趣的功能， 或者发行有更多更棒特性的下一版等等。
 
 支付宝捐款地址： 赞助我写更多更好的开源项目 insion@live.com
@@ -69,7 +70,7 @@ Toropress是一个简单和强大的Golang CMS系统网站，作小许改动后�
 	
 	go get -u github.com/mattn/go-sqlite3
 
-    下载toropress源码后解压并cd切换目录到 toropress目录下，然后执行go build app.go，编译好后，运行./app即可。
+    下载Zenpress源码后解压并cd切换目录到 Zenpress目录下，然后执行go build app.go，编译好后，运行./app即可。
     默认用户:root,默认密码:rootpass
 
 
@@ -77,7 +78,7 @@ Toropress是一个简单和强大的Golang CMS系统网站，作小许改动后�
 ===
 由于开发项目并不在作者名下,而是直接处于gopath的src路径下面,所以你不能直接使用go get来安装本项目!
 
-请直接下载zip源码并解压到你的gopath/src/toropress下面
+请直接下载zip源码并解压到你的gopath/src/Zenpress下面
 
 
 或者:
@@ -86,9 +87,9 @@ Linux/Unix/Osx
 ~~~
 cd gopath
 
-git clone https://github.com/insionng/toropress.git
+git clone https://github.com/insionng/Zenpress.git
 
-cd toropress
+cd Zenpress
 chmod +x build.sh
 ./build.sh
 ./app
@@ -111,7 +112,7 @@ Windows
 除特别声明外，本项目代码遵循[BSD 3-Clause License](<http://opensource.org/licenses/BSD-3-Clause/>)（3项条款的BSD许可协议）。
 
 
-veryhour fork by toropress
+veryhour fork by Zenpress
 ==========================
 
 A very special time website
@@ -120,7 +121,7 @@ A very special time website
 基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/lunny/xorm)开发的GOLANG微博社区系统网站，从toropess源码衍生而来!
 
 
-mzr fork by toropress
+mzr fork by Zenpress
 ==========================
 
 梨花树系统开发代号[mzr](https://github.com/insionng/mzr)
@@ -129,7 +130,7 @@ mzr fork by toropress
 
 
 
-Sdc fork by toropress
+Sdc fork by Zenpress
 ==========================
 
 问答系统开发代号[sdc](https://github.com/insionng/sdc)
