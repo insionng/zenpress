@@ -50,6 +50,8 @@ func main() {
 
 	g := v.Group("")
 	g.Get("/", handler.MainHandler)
+	g.Get("/signup/", handler.SignupHandler)
+	g.Get("/signin/", handler.SigninHandler)
 
 	// Restricted group
 	r := v.Group("")
@@ -60,7 +62,7 @@ func main() {
 			return jwt.JWTContextKey, nil
 		},
 	}))
-	r.Any("/jwt/", hello)
+	r.Any("/signout/", handler.SignoutHandler)
 
 	/*
 
@@ -69,10 +71,6 @@ func main() {
 
 		beego.Router("/node/:nid:int", &handlers.NodeHandler{})
 		beego.Router("/view/:tid:int", &handlers.ViewHandler{})
-
-		beego.Router("/register", &handlers.RegHandler{})
-		beego.Router("/login", &handlers.LoginHandler{})
-		beego.Router("/logout", &handlers.LogoutHandler{})
 
 		//hotness
 		beego.Router("/like/:name:string/:id:int", &handlers.LikeHandler{})
