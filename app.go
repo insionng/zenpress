@@ -50,8 +50,8 @@ func main() {
 	v.Use(m.Gzip())
 
 	v.Static("/static/", "static")
-	v.SetRenderer(pongor.Renderor())
 	v.Favicon("static/ico/favicon.ico")
+	v.SetRenderer(pongor.Renderor())
 
 	g := v.Group("")
 	g.Get("/", handler.MainHandler)
@@ -73,7 +73,23 @@ func main() {
 			return jwt.JWTContextKey, nil
 		},
 	}))
-	r.Any("/hello/", hello)
+
+	r.Get("/new/category/", handler.NewCategoryGetHandler)
+	r.Post("/new/category/", handler.NewCategoryPostHandler)
+
+	r.Get("/new/node/", handler.NewNodeGetHandler)
+	r.Post("/new/node/", handler.NewNodePostHandler)
+
+	r.Get("/new/topic/", handler.NewTopicGetHandler)
+	r.Post("/new/topic/", handler.NewTopicPostHandler)
+
+	r.Post("/new/reply/:tid/", handler.NewReplyPostHandler)
+
+	r.Get("/modify/category/", handler.ModifyCatGetHandler)
+	r.Post("/modify/category/", handler.ModifyCatPostHandler)
+
+	r.Get("/modify/node/", handler.ModifyNodeGetHandler)
+	r.Post("/modify/node/", handler.ModifyNodePostHandler)
 
 	/*
 
@@ -82,13 +98,6 @@ func main() {
 		beego.Router("/like/:name:string/:id:int", &handlers.LikeHandler{})
 		beego.Router("/hate/:name:string/:id:int", &handlers.HateHandler{})
 
-		beego.Router("/new/category", &handlers.NewCategoryHandler{})
-		beego.Router("/new/node", &handlers.NewNodeHandler{})
-		beego.Router("/new/topic", &handlers.NewTopicHandler{})
-		beego.Router("/new/reply/:tid:int", &handlers.NewReplyHandler{})
-
-		beego.Router("/modify/category", &handlers.ModifyCategoryHandler{})
-		beego.Router("/modify/node", &handlers.ModifyNodeHandler{})
 
 		beego.Router("/topic/delete/:tid:int", &handlers.TopicDeleteHandler{})
 		beego.Router("/topic/edit/:tid:int", &handlers.TopicEditHandler{})
