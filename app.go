@@ -1,18 +1,18 @@
 package main
 
 import (
-
+	"github.com/insionng/vodka"
 	//"github.com/insionng/zenpress/handlers"
-	//"github.com/insionng/zenpress/handlers/root"
 	//"github.com/insionng/zenpress/models"
 
-	"github.com/insionng/vodka"
-	m "github.com/insionng/vodka/middleware"
 	"github.com/insionng/zenpress/handler"
+	"net/http"
+
+	m "github.com/insionng/vodka/middleware"
 	"github.com/vodka-contrib/jwt"
 	"github.com/vodka-contrib/pongor"
+	"github.com/vodka-contrib/sessions"
 	"github.com/vodka-contrib/vodkapprof"
-	"net/http"
 )
 
 // Handler
@@ -42,6 +42,10 @@ func TokenHandler(self *vodka.Context) error {
 func main() {
 
 	v := vodka.New()
+
+	store := sessions.NewCookieStore()
+	v.Use(sessions.Sessions("vodka", store))
+
 	v.Use(m.Logger())
 	v.Use(m.Recover())
 	v.Use(m.Gzip())
@@ -53,11 +57,12 @@ func main() {
 	g.Get("/", handler.MainHandler)
 	g.Get("/signup/", handler.SignupHandler)
 	g.Get("/signin/", handler.SigninHandler)
+	g.Get("/category/:cid:int", handler.MainHandler)
 
 	// Restricted group
 	r := v.Group("")
 	jwt.JWTContextKey = key
-	jwt.Bearer = "zenpress"
+	jwt.Bearer = "Zenpress"
 	r.Use(jwt.JWTAuther(jwt.Options{
 		KeyFunc: func(ctx *vodka.Context) (string, error) {
 			return jwt.JWTContextKey, nil
@@ -67,7 +72,7 @@ func main() {
 
 	/*
 
-		beego.Router("/category/:cid:int", &handlers.MainHandler{})
+
 		beego.Router("/search", &handlers.SearchHandler{})
 
 		beego.Router("/node/:nid:int", &handlers.NodeHandler{})
@@ -92,11 +97,6 @@ func main() {
 		beego.Router("/node/edit/:nid:int", &handlers.NodeEditHandler{})
 
 		beego.Router("/delete/reply/:rid:int", &handlers.DeleteReplyHandler{})
-
-		//root routes
-		beego.Router("/root", &root.RMainHandler{})
-		beego.Router("/root-login", &root.RLoginHandler{})
-		beego.Router("/root/account", &root.RAccountHandler{})
 
 	*/
 

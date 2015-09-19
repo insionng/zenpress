@@ -3,7 +3,7 @@
       <title>用户注册 - Zenpress - 借力开源，技术次元！</title>
 {% endblock title %}
 {% block mainland %}
-      <form action="register" method="post" class="form-signin">
+      <form action="/signup/" method="post" class="form-signin">
         <h2 class="form-signin-heading">请填写注册资料</h2>
         <input type="text" class="input-block-level" placeholder="请你输入用户名" name="username">
 		{%if UsernameErr%} {{UsernameErr}} {%endif%}
