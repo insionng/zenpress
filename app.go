@@ -57,6 +57,7 @@ func main() {
 	g.Get("/", handler.MainHandler)
 	g.Get("/signup/", handler.SignupHandler)
 	g.Get("/signin/", handler.SigninHandler)
+	g.Get("/signout/", handler.SignoutHandler)
 	g.Get("/category/:cid:int", handler.MainHandler)
 
 	// Restricted group
@@ -68,7 +69,7 @@ func main() {
 			return jwt.JWTContextKey, nil
 		},
 	}))
-	r.Any("/signout/", handler.SignoutHandler)
+	r.Any("/hello/", hello)
 
 	/*
 
