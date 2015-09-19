@@ -1,0 +1,19 @@
+[xorm] [warn]  2015/09/19 12:45:28.029128 Table node column content db type is BLOB, struct type is TEXT
+[xorm] [warn]  2015/09/19 12:45:28.030129 Table node column attachment db type is BLOB, struct type is TEXT
+[xorm] [warn]  2015/09/19 12:45:28.030129 Table topic column content db type is BLOB, struct type is TEXT
+[xorm] [warn]  2015/09/19 12:45:28.030129 Table topic column attachment db type is BLOB, struct type is TEXT
+[xorm] [debug] 2015/09/19 12:45:28.030129 [cacheGet] find sql: SELECT `id` FROM `user` WHERE role=? LIMIT 1 [-1000]
+[xorm] [debug] 2015/09/19 12:45:28.032130 [cacheGet] cache ids: SELECT `id` FROM `user` WHERE role=? LIMIT 1 [[1]]
+[xorm] [debug] 2015/09/19 12:45:28.032130 [cacheGet] get bean: user [1]
+[xorm] [info]  2015/09/19 12:45:28.032130 [sql] SELECT `id`, `email`, `password`, `nickname`, `realname`, `avatar`, `avatar_min`, `avatar_max`, `birth`, `province`, `city`, `company`, `address`, `postcode`, `mobile`, `website`, `sex`, `qq`, `msn`, `weibo`, `ctype`, `role`, `created`, `hotness`, `hotup`, `hotdown`, `views`, `last_login_time`, `last_login_ip`, `login_count` FROM `user` WHERE `id` = ? LIMIT 1 [args] [1]
+[xorm] [debug] 2015/09/19 12:45:28.034132 time(4) key[Created]: 2015-09-19 12:44:23 +0800 CST | sdata: [2015-09-19 12:44:23]
+[xorm] [debug] 2015/09/19 12:45:28.034132 [cacheGet] cache bean: user [1] &{1 root@sudochina.com 776bf9304d44834b1db938e4c5871e905cb6dc0a9f232101 root 系统默认管理员    0001-01-01 00:00:00 +0000 UTC        0    0 -1000 2015-09-19 12:44:23 +0800 CST 0 0 0 0 0001-01-01 00:00:00 +0000 UTC  0}
+[xorm] [debug] 2015/09/19 12:45:28.034132 [cacheGet] find sql: SELECT `id` FROM `kvs` WHERE k=? LIMIT 1 [author]
+[xorm] [debug] 2015/09/19 12:45:28.035132 [cacheGet] cache ids: SELECT `id` FROM `kvs` WHERE k=? LIMIT 1 [[1]]
+[xorm] [debug] 2015/09/19 12:45:28.035132 [cacheGet] get bean: kvs [1]
+[xorm] [info]  2015/09/19 12:45:28.035132 [sql] SELECT `id`, `k`, `v` FROM `kvs` WHERE `id` = ? LIMIT 1 [args] [1]
+[xorm] [debug] 2015/09/19 12:45:28.035132 [cacheGet] cache bean: kvs [1] &{1 author Insion}
+[xorm] [debug] 2015/09/19 12:45:28.035132 [cacheGet] find sql: SELECT `id` FROM `user` WHERE role=? LIMIT 1 [-1000]
+[xorm] [debug] 2015/09/19 12:45:28.035132 [cacheGet] cache hit sql: SELECT `id` FROM `user` WHERE role=? LIMIT 1
+[xorm] [debug] 2015/09/19 12:45:28.036133 [cacheGet] get bean: user [1]
+[xorm] [debug] 2015/09/19 12:45:28.036133 [cacheGet] cache hit bean: user [1] &{1 root@sudochina.com 776bf9304d44834b1db938e4c5871e905cb6dc0a9f232101 root 系统默认管理员    0001-01-01 00:00:00 +0000 UTC        0    0 -1000 2015-09-19 12:44:23 +0800 CST 0 0 0 0 0001-01-01 00:00:00 +0000 UTC  0}

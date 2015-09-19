@@ -3,23 +3,19 @@
       <title>用户登录 - Zenpress - 借力开源，技术次元！</title>
 {% endblock title %}
 {% block mainland %}
-      <form action="/signin/" method="post" class="form-signin">
+  <form action="/signin/" method="post" class="form-signin">
         <h2 class="form-signin-heading">请登录</h2>
         <input type="text" class="input-block-level" placeholder="账号" name="username">
-        {%if UsernameNull%}
-		<label>
-        {{UsernameNull}}
-        </label>
+    {%if UsernameNull%}
+		  <label>{{UsernameNull}}</label>
 		{%endif%}
 		<input type="password" class="input-block-level" placeholder="密码" name="password">
-        {%if PasswordNull%}
-		<label>
-        {{PasswordNull}}
-        </label>
+    {%if PasswordNull%}
+		  <label>{{PasswordNull}}</label>
 		{%endif%}
 		<label class="checkbox">
           <input type="checkbox" value="remember-me"> 记住我
-        </label>
+    </label>
         <button class="btn btn-large btn-primary" type="submit">登录</button>
-      </form>
+  </form>
 {% endblock mainland %}

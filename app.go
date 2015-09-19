@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/insionng/vodka"
 	//"github.com/insionng/zenpress/handlers"
-	//"github.com/insionng/zenpress/models"
 
 	"github.com/insionng/zenpress/handler"
 	"net/http"
@@ -52,12 +51,15 @@ func main() {
 
 	v.Static("/static/", "static")
 	v.SetRenderer(pongor.Renderor())
+	v.Favicon("static/ico/favicon.ico")
 
 	g := v.Group("")
 	g.Get("/", handler.MainHandler)
 	g.Get("/signup/", handler.SignupHandler)
 	g.Get("/signin/", handler.SigninHandler)
 	g.Get("/signout/", handler.SignoutHandler)
+
+	g.Any("/search/", handler.SearchHandler)
 	g.Get("/category/:cid:int", handler.MainHandler)
 
 	// Restricted group
@@ -74,7 +76,6 @@ func main() {
 	/*
 
 
-		beego.Router("/search", &handlers.SearchHandler{})
 
 		beego.Router("/node/:nid:int", &handlers.NodeHandler{})
 		beego.Router("/view/:tid:int", &handlers.ViewHandler{})

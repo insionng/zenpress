@@ -6,17 +6,19 @@ import (
 	"crypto/sha1"
 	"crypto/sha256"
 	"encoding/hex"
-	//"fmt"
 	"time"
 )
 
-func Encrypt_password(password string, salt []byte) string {
+func EncryptHash(password string, salt []byte) string {
 	if salt == nil {
 		m := md5.New()
 		m.Write([]byte(time.Now().String()))
 		s := hex.EncodeToString(m.Sum(nil))
 		salt = []byte(s[2:10])
+	} else if len(salt) != 8 {
+		panic("Encrypt_hash: salt != 8")
 	}
+
 	mac := hmac.New(sha256.New, salt)
 	mac.Write([]byte(password))
 	//s := fmt.Sprintf("%x", (mac.Sum(salt)))
@@ -33,9 +35,9 @@ func Encrypt_password(password string, salt []byte) string {
 	return p
 }
 
-func Validate_password(hashed string, input_password string) bool {
+func ValidateHash(hashed string, input_password string) bool {
 	salt := hashed[0:8]
-	if hashed == Encrypt_password(input_password, []byte(salt)) {
+	if hashed == EncryptHash(input_password, []byte(salt)) {
 		return true
 	} else {
 		return false
@@ -45,9 +47,9 @@ func Validate_password(hashed string, input_password string) bool {
 
 /*
 func main() {
-	hashed := Encrypt_password("password", nil)
+	hashed := EncryptHash("password", nil)
 	fmt.Println(hashed)
 	fmt.Println("----------------------------------------------")
-	fmt.Println(Validate_password(hashed, "password"))
+	fmt.Println(ValidateHash(hashed, "password"))
 }
 */

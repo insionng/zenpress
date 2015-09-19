@@ -6,6 +6,7 @@ import (
 	_ "github.com/lib/pq"
 	_ "github.com/pingcap/tidb"
 
+	"github.com/go-xorm/core"
 	"github.com/go-xorm/xorm"
 
 	"errors"
@@ -16,7 +17,8 @@ import (
 )
 
 var (
-	Engine *xorm.Engine
+	Engine   *xorm.Engine
+	DataType string
 )
 
 type User struct {
@@ -174,6 +176,7 @@ type Kvs struct {
 
 func init() {
 	var err error
+	DataType = "goleveldb"
 	Engine, err = SetEngine()
 	if err != nil {
 		panic(fmt.Sprintf("Zenpress SetEngine errors:%v", err))
@@ -190,21 +193,21 @@ func init() {
 func ConDb() (*xorm.Engine, error) {
 	switch {
 
-	case helper.DataType == "memory":
+	case DataType == "memory":
 		return xorm.NewEngine("tidb", "memory://tidb/tidb")
 
-	case helper.DataType == "goleveldb":
-		return xorm.NewEngine("tidb", "goleveldb://./tidb/goleveldb")
+	case DataType == "goleveldb":
+		return xorm.NewEngine("tidb", "goleveldb://./data/goleveldb")
 
-	case helper.DataType == "boltdb":
-		return xorm.NewEngine("tidb", "boltdb://./tidb/boltdb")
+	case DataType == "boltdb":
+		return xorm.NewEngine("tidb", "boltdb://./data/boltdb")
 
-	case helper.DataType == "mysql":
-		return xorm.NewEngine("mysql", helper.DBConnect)
+	case DataType == "mysql":
+		return xorm.NewEngine("mysql", "root:YouPass@/db?charset=utf8")
 		//return xorm.NewEngine("mysql", "root:YouPass@/db?charset=utf8")
 
-	case helper.DataType == "postgres":
-		return xorm.NewEngine("postgres", helper.DBConnect)
+	case DataType == "postgres":
+		return xorm.NewEngine("postgres", "user=postgres password=jn!@#$%^&* dbname=pgsql sslmode=disable")
 		//return xorm.NewEngine("postgres", "user=postgres password=jn!@#$%^&* dbname=pgsql sslmode=disable")
 
 		// "user=postgres password=jn!@#$%^&* dbname=yougam sslmode=disable maxcons=10 persist=true"
@@ -232,7 +235,7 @@ func SetEngine() (*xorm.Engine, error) {
 		//engine.TZLocation = time.Local
 
 		if f, err := os.Create("./logs/xorm.log"); err != nil {
-			panic(err)
+			panic(fmt.Sprintf("Create Xorm Logs Error :%v", err))
 		} else {
 			engine.Logger = xorm.NewSimpleLogger(f)
 		}
@@ -253,7 +256,7 @@ func creatTables(Engine *xorm.Engine) error {
 
 	//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
 	if GetUserByRole(-1000).Role != -1000 {
-		AddUser("root@sudochina.com", "root", "系统默认管理员", helper.Encrypt_password("rootpass", nil), -1000)
+		AddUser("root@sudochina.com", "root", "系统默认管理员", helper.EncryptHash("rootpass", nil), -1000)
 		fmt.Println("Default User:root,Password:rootpass")
 
 		if GetAllTopic(0, 0, "id") == nil {
@@ -280,16 +283,16 @@ func creatTables(Engine *xorm.Engine) error {
 		SetKV("tweibo", "http://t.qq.com/yours")
 		SetKV("sweibo", "http://weibo.com/yours")
 	}
-
+	return nil
 }
 
 func initData() {
 	//用户等级划分：正数是普通用户，负数是管理员各种等级划分，为0则尚未注册
-	if usr, err := GetUserByRole(-1000); usr == nil && err == nil {
-		if row, err := AddUser("root@you.com", "root", "root", "root", helper.Encrypt_hash("rootpass", nil), 0, "", "", "", 1, -1000); err == nil && row > 0 {
+	if usr := GetUserByRole(-1000); usr == nil {
+		if e := AddUser("root@example.com", "root", "root", helper.EncryptHash("rootpass", nil), -1000); e == nil {
 			fmt.Println("Default Email:root@you.com ,Username:root ,Password:rootpass")
 		} else {
-			fmt.Print("create root got errors:", err)
+			fmt.Printf("create root got error:%v!", e)
 		}
 
 	}
