@@ -2,8 +2,6 @@ package main
 
 import (
 	"github.com/insionng/vodka"
-	//"github.com/insionng/zenpress/handlers"
-
 	"github.com/insionng/zenpress/handler"
 	"net/http"
 
@@ -13,14 +11,6 @@ import (
 	"github.com/vodka-contrib/sessions"
 	"github.com/vodka-contrib/vodkapprof"
 )
-
-// Handler
-func hello(self *vodka.Context) error {
-	data := map[string]interface{}{}
-	data["title"] = "你好，世界"
-	self.Render(http.StatusOK, "index.html", data)
-	return nil
-}
 
 var (
 	key = "AppSkey"
@@ -55,8 +45,13 @@ func main() {
 
 	g := v.Group("")
 	g.Get("/", handler.MainHandler)
-	g.Get("/signup/", handler.SignupHandler)
-	g.Get("/signin/", handler.SigninHandler)
+
+	g.Get("/signup/", handler.SignupGetHandler)
+	g.Post("/signup/", handler.SignupPostHandler)
+
+	g.Get("/signin/", handler.SigninGetHandler)
+	g.Post("/signin/", handler.SigninPostHandler)
+
 	g.Get("/signout/", handler.SignoutHandler)
 
 	g.Any("/search/", handler.SearchHandler)
@@ -91,23 +86,21 @@ func main() {
 	r.Get("/modify/node/", handler.ModifyNodeGetHandler)
 	r.Post("/modify/node/", handler.ModifyNodePostHandler)
 
-	/*
+	r.Any("/topic/delete/:tid/", handler.TopicDeleteHandler)
 
+	r.Get("/topic/edit/:tid/", handler.TopicEditGetHandler)
+	r.Post("/topic/edit/:tid/", handler.TopicEditPostHandler)
 
-		//hotness
-		beego.Router("/like/:name:string/:id:int", &handlers.LikeHandler{})
-		beego.Router("/hate/:name:string/:id:int", &handlers.HateHandler{})
+	r.Any("/node/delete/:nid/", handler.NodeDeleteHandler)
 
+	r.Get("/node/edit/:nid/", handler.NodeEditGetHandler)
+	r.Post("/node/edit/:nid/", handler.NodeEditPostHandler)
 
-		beego.Router("/topic/delete/:tid:int", &handlers.TopicDeleteHandler{})
-		beego.Router("/topic/edit/:tid:int", &handlers.TopicEditHandler{})
+	r.Any("/delete/reply/:rid/", handler.DeleteReplyHandler)
 
-		beego.Router("/node/delete/:nid:int", &handlers.NodeDeleteHandler{})
-		beego.Router("/node/edit/:nid:int", &handlers.NodeEditHandler{})
-
-		beego.Router("/delete/reply/:rid:int", &handlers.DeleteReplyHandler{})
-
-	*/
+	//hotness
+	r.Any("/like/:name/:id/", handler.LikeHandler)
+	r.Any("/hate/:name/:id/", handler.HateHandler)
 
 	// e.g. /debug/pprof, /debug/pprof/heap, etc.
 	vodkapprof.Wrapper(v)

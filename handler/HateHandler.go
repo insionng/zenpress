@@ -1,22 +1,18 @@
-package handlers
+package handler
 
 import (
-	"strconv"
+	"github.com/insionng/vodka"
+	"github.com/insionng/zenpress/helper"
+	"github.com/insionng/zenpress/models"
+	"net/http"
 	"time"
-	"toropress/helper"
-	"toropress/libs"
-	"toropress/models"
 )
 
-type HateHandler struct {
-	libs.BaseHandler
-}
+func HateHandler(self *vodka.Context) error {
 
-func (self *HateHandler) Get() {
-
-	if helper.IsSpider(self.Ctx.Request.UserAgent()) != true {
-		name := self.GetString(":name")
-		id, _ := self.GetInt(":id")
+	if helper.IsSpider(self.Request().UserAgent()) != true {
+		name := self.FormEscape(":name")
+		id, _ := self.ParamInt64(":id")
 
 		if name == "topic" {
 
@@ -26,8 +22,7 @@ func (self *HateHandler) Get() {
 			tp.Hotness = helper.Hotness(tp.Hotup, tp.Hotdown, time.Now())
 
 			models.PutTopic(id, tp)
-			//&spades; 没用 ({{.article.Hotdown}})
-			self.Ctx.WriteString(strconv.Itoa(int(tp.Hotdown)))
+			return self.String(http.StatusOK, "%v", tp.Hotdown)
 
 		} else if name == "node" {
 
@@ -38,13 +33,9 @@ func (self *HateHandler) Get() {
 
 			models.PutNode(id, nd)
 
-			self.Ctx.WriteString("node hated")
-		} else {
-			self.Abort("401")
+			return self.Status(200)
 		}
 
-	} else {
-		self.Abort("401")
 	}
-
+	return self.Status(401)
 }

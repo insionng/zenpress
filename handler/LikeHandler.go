@@ -1,22 +1,18 @@
-package handlers
+package handler
 
 import (
-	"strconv"
+	"github.com/insionng/vodka"
+	"github.com/insionng/zenpress/helper"
+	"github.com/insionng/zenpress/models"
+	"net/http"
 	"time"
-	"toropress/helper"
-	"toropress/libs"
-	"toropress/models"
 )
 
-type LikeHandler struct {
-	libs.BaseHandler
-}
+func LikeHandler(self *vodka.Context) error {
 
-func (self *LikeHandler) Get() {
-
-	if helper.IsSpider(self.Ctx.Request.UserAgent()) != true {
-		name := self.GetString(":name")
-		id, _ := self.GetInt(":id")
+	if helper.IsSpider(self.Request().UserAgent()) != true {
+		name := self.FormEscape(":name")
+		id, _ := self.ParamInt64(":id")
 
 		if name == "topic" {
 
@@ -26,8 +22,7 @@ func (self *LikeHandler) Get() {
 			tp.Hotness = helper.Hotness(tp.Hotup, tp.Hotdown, time.Now())
 
 			models.PutTopic(id, tp)
-			//&hearts; 有用 ({{.article.Hotup}})
-			self.Ctx.WriteString(strconv.Itoa(int(tp.Hotup)))
+			return self.String(http.StatusOK, "%v", tp.Hotup)
 		} else if name == "node" {
 
 			nd := models.GetNode(id)
@@ -37,13 +32,9 @@ func (self *LikeHandler) Get() {
 
 			models.PutNode(id, nd)
 
-			self.Ctx.WriteString("node liked")
-		} else {
-			self.Abort("401")
+			return self.Status(200)
 		}
 
-	} else {
-		self.Abort("401")
 	}
-
+	return self.Status(401)
 }
