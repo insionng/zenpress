@@ -1,8 +1,7 @@
 =============== Sep 19, 2015 (CST) ===============
-12:45:27.884415 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-12:45:27.895421 db@open opening
-12:45:27.895421 journal@recovery F·1
-12:45:27.896423 journal@recovery recovering @1
-12:45:27.992103 memdb@flush created L0@2 N·284 S·181KiB "z11..\x00\x00d,v235":"zmT..oID,v194"
-12:45:27.999106 db@janitor F·3 G·0
-12:45:27.999106 db@open done T·103.685ms
+16:24:24.500966 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:24:24.521195 db@open opening
+16:24:24.521195 journal@recovery F·1
+16:24:24.522195 journal@recovery recovering @9
+16:24:24.533202 db@janitor F·3 G·0
+16:24:24.533202 db@open done T·12.0075ms

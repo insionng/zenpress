@@ -60,7 +60,9 @@ func main() {
 	g.Get("/signout/", handler.SignoutHandler)
 
 	g.Any("/search/", handler.SearchHandler)
-	g.Get("/category/:cid:int", handler.MainHandler)
+	g.Get("/node/:nid/", handler.NodeHandler)
+	g.Get("/view/:tid/", handler.ViewHandler)
+	g.Get("/category/:cid/", handler.MainHandler)
 
 	// Restricted group
 	r := v.Group("")
@@ -75,10 +77,6 @@ func main() {
 
 	/*
 
-
-
-		beego.Router("/node/:nid:int", &handlers.NodeHandler{})
-		beego.Router("/view/:tid:int", &handlers.ViewHandler{})
 
 		//hotness
 		beego.Router("/like/:name:string/:id:int", &handlers.LikeHandler{})
