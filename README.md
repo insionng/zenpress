@@ -105,7 +105,7 @@ Windows
 ## 交流
 欢迎大家加入QQ专用交流群:231956113/作者QQ：547092001
 
-技术分享：[http://www.sudochina.com](http://www.sudochina.com)
+技术分享：[http://www.yougam.com](http://www.yougam.com)
 
 
 ## 授权许可
@@ -118,15 +118,15 @@ veryhour fork by Zenpress
 A very special time website
 
 这是未来社区网站的新模式探索项目~
-基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/go-xorm/xorm)开发的GOLANG微博社区系统网站，从toropess源码衍生而来!
+基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/go-xorm/xorm)开发的GOLANG微博社区系统网站，从zenpess源码衍生而来!
 
 
 mzr fork by Zenpress
 ==========================
 
-梨花树系统开发代号[mzr](https://github.com/insionng/mzr)
+妹纸辱系统开发代号[mzr](https://github.com/insionng/mzr)
 
-基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/go-xorm/xorm)开发的一个分享图片为主的社区网站系统，从toropess源码衍生而来!
+基于[Beego](https://github.com/astaxie/beego)与[xorm](https://github.com/go-xorm/xorm)开发的一个分享图片为主的社区网站系统，从zenpess源码衍生而来!
 
 
 
@@ -141,7 +141,7 @@ Sdc fork by Zenpress
 ## 交流
 欢迎大家加入QQ专用交流群:231956113(已满)/245386165(新群)/作者QQ：547092001
 
-技术分享：[http://www.sudochina.com](http://www.sudochina.com)
+技术分享：[http://www.yougam.com](http://www.yougam.com)
 
 
 ## 授权许可
