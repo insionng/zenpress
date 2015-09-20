@@ -2,15 +2,15 @@ Zenpress
 ===
 Zenpress是一个灵感来源于wordpress的cms项目，最终目标是实现一个简单和强大的Golang CMS系统网站，以内置lisp动态解析实现插件支持，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站..
 
----
+--
 
 第一个版本基于[Torgo](https://github.com/insionng/torgo)([Beego](https://github.com/astaxie/beego)山寨版)与[Qbs](https://github.com/coocood/qbs)开发.
 
----
+--
 
 第二版于2013年10月1日更新,由于beego最新版本几乎已经把[Torgo](https://github.com/insionng/torgo)的所有修改优化吸收完全了,从而决定了Zenpress源码再次回归[Beego](https://github.com/astaxie/beego),并采用了[Xorm](https://github.com/lunny/xorm),目前已经将[Qbs](https://github.com/coocood/qbs)代码完全迁移到[Xorm](https://github.com/lunny/xorm),这将获得更好的使用体验,感谢那些捐助本项目的用户,如需定制请联系我.
 
----
+--
 
 第三版（目前最新版）基于[Vodka](https://github.com/insionng/vodka)框架和[Xorm](https://github.com/go-xorm/xorm)、[TiDB](https://github.com/pingcap/tidb)分布式数据库于2015年9月19日更新。
 
