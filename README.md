@@ -1,6 +1,6 @@
 Zenpress
 ===
-Zenpress是一个灵感来源于wordpress的cms项目，最终目标是实现一个简单和强大的Golang CMS系统网站，以内置lisp/lua等语言的纯GO实现来动态解析脚本，从而实现插件支持，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站..
+Zenpress是一个灵感来源于wordpress的cms项目，最终目标是实现一个简单和强大的Golang CMS系统网站，以内置lisp/lua/javascript等语言的纯GO VM实现来动态解析脚本，从而实现插件支持，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站..
 
 --
 
