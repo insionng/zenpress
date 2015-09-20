@@ -1,7 +1,7 @@
 =============== Sep 20, 2015 (CST) ===============
-14:35:55.936926 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-14:35:55.942929 db@open opening
-14:35:55.943929 journal@recovery F·1
-14:35:55.943929 journal@recovery recovering @23
-14:35:55.990116 db@janitor F·3 G·0
-14:35:55.990116 db@open done T·47.1867ms
+14:39:27.995672 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:39:27.996673 db@open opening
+14:39:27.997673 journal@recovery F·1
+14:39:28.032696 journal@recovery recovering @25
+14:39:28.111749 db@janitor F·3 G·0
+14:39:28.111749 db@open done T·114.0754ms

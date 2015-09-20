@@ -5,10 +5,42 @@ import (
 	"github.com/insionng/zenpress/helper"
 	"github.com/insionng/zenpress/models"
 	"net/http"
+	"runtime"
+	"time"
 )
 
 func MainHandler(self *vodka.Context) error {
 	data := make(map[string]interface{})
+	///
+	data["nodes"] = models.GetAllNode()
+	data["nodes_hotness_topbar"] = models.GetAllNodeByCid(0, 0, 16, 0, "hotness")
+	data["topics_5s"] = models.GetAllTopic(0, 5, "id")
+	data["topics_10s"] = models.GetAllTopic(0, 10, "id")
+	data["nodes_10s"] = models.GetAllNodeByCid(0, 0, 10, 0, "id")
+	data["replys_5s"] = models.GetReplyByPid(0, 0, 5, "id")
+	data["replys_10s"] = models.GetReplyByPid(0, 0, 10, "id")
+
+	data["author"] = models.GetKV("author")
+	data["title"] = models.GetKV("title")
+	data["title_en"] = models.GetKV("title_en")
+	data["keywords"] = models.GetKV("keywords")
+	data["description"] = models.GetKV("description")
+
+	data["company"] = models.GetKV("company")
+	data["copyright"] = models.GetKV("copyright")
+	data["site_email"] = models.GetKV("site_email")
+
+	data["tweibo"] = models.GetKV("tweibo")
+	data["sweibo"] = models.GetKV("sweibo")
+	data["timenow"] = time.Now()
+	data["statistics"] = models.GetKV("statistics")
+	data["remoteproto"] = self.Request().Proto
+	data["remotehost"] = self.Request().Host
+	data["remoteos"] = runtime.GOOS
+	data["remotearch"] = runtime.GOARCH
+	data["remotecpus"] = runtime.NumCPU()
+	data["golangver"] = runtime.Version()
+	///
 	page, _ := self.ParamInt64("page")
 	curtab, _ := self.ParamInt64("tab")
 	cid, _ := self.ParamInt64(":cid")
