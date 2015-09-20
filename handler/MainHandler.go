@@ -1,23 +1,17 @@
 package handler
 
 import (
-	//"github.com/insionng/toropress/helper"
-	"net/http"
-	//"github.com/insionng/toropress/libs"
-	//"github.com/insionng/toropress/models"
 	"github.com/insionng/vodka"
+	"github.com/insionng/zenpress/helper"
+	"github.com/insionng/zenpress/models"
+	"net/http"
 )
 
 func MainHandler(self *vodka.Context) error {
-	return self.Render(http.StatusOK, "index.html", nil)
-}
-
-/*
-func MainGetHandler(self *vodka.Context) {
-	data := make(map[string]interface{}, 0)
+	data := make(map[string]interface{})
 	page, _ := self.ParamInt64("page")
-	curtab, _ := self.ParamInt("tab")
-	cid, _ := self.ParamInt(":cid")
+	curtab, _ := self.ParamInt64("tab")
+	cid, _ := self.ParamInt64(":cid")
 	limit := 25
 	home := "false"
 	if cid == 0 {
@@ -50,7 +44,6 @@ func MainGetHandler(self *vodka.Context) {
 	data["nodes_pagesbar_tab5"] = helper.Pagesbar("tab=5&", nodes_rcs, nodes_pages, nodes_pageout, nodes_beginnum, nodes_endnum, 1)
 	data["nodes_pagesbar_tab6"] = helper.Pagesbar("tab=6&", nodes_rcs, nodes_pages, nodes_pageout, nodes_beginnum, nodes_endnum, 1)
 
-	self.Render(http.StatusOK, "index.html", data)
+	return self.Render(http.StatusOK, "index.html", nil)
 
 }
-*/

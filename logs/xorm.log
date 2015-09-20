@@ -1,19 +1,39 @@
-[xorm] [warn]  2015/09/19 20:00:51.614358 Table node column content db type is BLOB, struct type is TEXT
-[xorm] [warn]  2015/09/19 20:00:51.614358 Table node column attachment db type is BLOB, struct type is TEXT
-[xorm] [warn]  2015/09/19 20:00:51.614358 Table topic column content db type is BLOB, struct type is TEXT
-[xorm] [warn]  2015/09/19 20:00:51.614358 Table topic column attachment db type is BLOB, struct type is TEXT
-[xorm] [debug] 2015/09/19 20:00:51.615358 [cacheGet] find sql: SELECT `id` FROM `user` WHERE role=? LIMIT 1 [-1000]
-[xorm] [debug] 2015/09/19 20:00:51.628367 [cacheGet] cache ids: SELECT `id` FROM `user` WHERE role=? LIMIT 1 [[1]]
-[xorm] [debug] 2015/09/19 20:00:51.628367 [cacheGet] get bean: user [1]
-[xorm] [info]  2015/09/19 20:00:51.628367 [sql] SELECT `id`, `email`, `password`, `nickname`, `realname`, `avatar`, `avatar_min`, `avatar_max`, `birth`, `province`, `city`, `company`, `address`, `postcode`, `mobile`, `website`, `sex`, `qq`, `msn`, `weibo`, `ctype`, `role`, `created`, `hotness`, `hotup`, `hotdown`, `views`, `last_login_time`, `last_login_ip`, `login_count` FROM `user` WHERE `id` = ? LIMIT 1 [args] [1]
-[xorm] [debug] 2015/09/19 20:00:51.631369 time(4) key[Created]: 2015-09-19 12:44:23 +0800 CST | sdata: [2015-09-19 12:44:23]
-[xorm] [debug] 2015/09/19 20:00:51.631369 [cacheGet] cache bean: user [1] &{1 root@sudochina.com 776bf9304d44834b1db938e4c5871e905cb6dc0a9f232101 root 系统默认管理员    0001-01-01 00:00:00 +0000 UTC        0    0 -1000 2015-09-19 12:44:23 +0800 CST 0 0 0 0 0001-01-01 00:00:00 +0000 UTC  0}
-[xorm] [debug] 2015/09/19 20:00:51.631369 [cacheGet] find sql: SELECT `id` FROM `kvs` WHERE k=? LIMIT 1 [author]
-[xorm] [debug] 2015/09/19 20:00:51.631369 [cacheGet] cache ids: SELECT `id` FROM `kvs` WHERE k=? LIMIT 1 [[1]]
-[xorm] [debug] 2015/09/19 20:00:51.631369 [cacheGet] get bean: kvs [1]
-[xorm] [info]  2015/09/19 20:00:51.631369 [sql] SELECT `id`, `k`, `v` FROM `kvs` WHERE `id` = ? LIMIT 1 [args] [1]
-[xorm] [debug] 2015/09/19 20:00:51.632370 [cacheGet] cache bean: kvs [1] &{1 author Insion}
-[xorm] [debug] 2015/09/19 20:00:51.632370 [cacheGet] find sql: SELECT `id` FROM `user` WHERE role=? LIMIT 1 [-1000]
-[xorm] [debug] 2015/09/19 20:00:51.632370 [cacheGet] cache hit sql: SELECT `id` FROM `user` WHERE role=? LIMIT 1
-[xorm] [debug] 2015/09/19 20:00:51.632370 [cacheGet] get bean: user [1]
-[xorm] [debug] 2015/09/19 20:00:51.632370 [cacheGet] cache hit bean: user [1] &{1 root@sudochina.com 776bf9304d44834b1db938e4c5871e905cb6dc0a9f232101 root 系统默认管理员    0001-01-01 00:00:00 +0000 UTC        0    0 -1000 2015-09-19 12:44:23 +0800 CST 0 0 0 0 0001-01-01 00:00:00 +0000 UTC  0}
+[xorm] [warn]  2015/09/20 14:39:28.419954 Table node column content db type is BLOB, struct type is TEXT
+[xorm] [warn]  2015/09/20 14:39:28.419954 Table node column attachment db type is BLOB, struct type is TEXT
+[xorm] [warn]  2015/09/20 14:39:28.419954 Table topic column content db type is BLOB, struct type is TEXT
+[xorm] [warn]  2015/09/20 14:39:28.419954 Table topic column attachment db type is BLOB, struct type is TEXT
+[xorm] [debug] 2015/09/20 14:39:28.420954 [cacheGet] find sql: SELECT `id` FROM `user` WHERE role=? LIMIT 1 [-1000]
+[xorm] [debug] 2015/09/20 14:39:28.422956 [cacheGet] cache ids: SELECT `id` FROM `user` WHERE role=? LIMIT 1 [[1]]
+[xorm] [debug] 2015/09/20 14:39:28.422956 [cacheGet] get bean: user [1]
+[xorm] [info]  2015/09/20 14:39:28.422956 [sql] SELECT `id`, `email`, `password`, `nickname`, `realname`, `avatar`, `avatar_min`, `avatar_max`, `birth`, `province`, `city`, `company`, `address`, `postcode`, `mobile`, `website`, `sex`, `qq`, `msn`, `weibo`, `ctype`, `role`, `created`, `hotness`, `hotup`, `hotdown`, `views`, `last_login_time`, `last_login_ip`, `login_count` FROM `user` WHERE `id` = ? LIMIT 1 [args] [1]
+[xorm] [debug] 2015/09/20 14:39:28.427959 time(4) key[Created]: 2015-09-19 12:44:23 +0800 CST | sdata: [2015-09-19 12:44:23]
+[xorm] [debug] 2015/09/20 14:39:28.428960 [cacheGet] cache bean: user [1] &{1 root@sudochina.com 776bf9304d44834b1db938e4c5871e905cb6dc0a9f232101 root 系统默认管理员    0001-01-01 00:00:00 +0000 UTC        0    0 -1000 2015-09-19 12:44:23 +0800 CST 0 0 0 0 0001-01-01 00:00:00 +0000 UTC  0}
+[xorm] [debug] 2015/09/20 14:39:28.428960 [cacheGet] find sql: SELECT `id` FROM `kvs` WHERE k=? LIMIT 1 [author]
+[xorm] [debug] 2015/09/20 14:39:28.428960 [cacheGet] cache ids: SELECT `id` FROM `kvs` WHERE k=? LIMIT 1 [[1]]
+[xorm] [debug] 2015/09/20 14:39:28.428960 [cacheGet] get bean: kvs [1]
+[xorm] [info]  2015/09/20 14:39:28.429961 [sql] SELECT `id`, `k`, `v` FROM `kvs` WHERE `id` = ? LIMIT 1 [args] [1]
+[xorm] [debug] 2015/09/20 14:39:28.429961 [cacheGet] cache bean: kvs [1] &{1 author Insion}
+[xorm] [debug] 2015/09/20 14:39:28.429961 [cacheGet] find sql: SELECT `id` FROM `user` WHERE role=? LIMIT 1 [-1000]
+[xorm] [debug] 2015/09/20 14:39:28.430961 [cacheGet] cache hit sql: SELECT `id` FROM `user` WHERE role=? LIMIT 1
+[xorm] [debug] 2015/09/20 14:39:28.430961 [cacheGet] get bean: user [1]
+[xorm] [debug] 2015/09/20 14:39:28.430961 [cacheGet] cache hit bean: user [1] &{1 root@sudochina.com 776bf9304d44834b1db938e4c5871e905cb6dc0a9f232101 root 系统默认管理员    0001-01-01 00:00:00 +0000 UTC        0    0 -1000 2015-09-19 12:44:23 +0800 CST 0 0 0 0 0001-01-01 00:00:00 +0000 UTC  0}
+[xorm] [debug] 2015/09/20 14:40:55.306077 [cacheFind] cache sql: [] topic SELECT `id` FROM `topic` ORDER BY `hotness` DESC, `views` DESC, `reply_count` DESC, `created` DESC []
+[xorm] [debug] 2015/09/20 14:40:55.307078 [cacheFind] cache sql: [] topic SELECT `id` FROM `topic` ORDER BY `id` DESC, `views` DESC, `reply_count` DESC, `created` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:40:55.308078 [cacheFind] cache sql: [] topic SELECT `id` FROM `topic` ORDER BY `hotness` DESC, `views` DESC, `reply_count` DESC, `created` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:40:55.308078 [cacheFind] cache sql: [] topic SELECT `id` FROM `topic` ORDER BY `views` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:40:55.309079 [cacheFind] cache sql: [] topic SELECT `id` FROM `topic` ORDER BY `reply_count` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:40:55.310079 [cacheFind] cache sql: [] node SELECT `id` FROM `node` ORDER BY `hotness` DESC, `views` DESC, `topic_count` DESC, `created` DESC []
+[xorm] [debug] 2015/09/20 14:40:55.311081 [cacheFind] cache sql: [] node SELECT `id` FROM `node` ORDER BY `id` DESC, `views` DESC, `topic_count` DESC, `created` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:40:55.311081 [cacheFind] cache sql: [] node SELECT `id` FROM `node` ORDER BY `hotness` DESC, `views` DESC, `topic_count` DESC, `created` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:41:19.661987 [cacheGet] find sql: SELECT `id` FROM `user` WHERE `nickname` = ? LIMIT 1 [root@you.com]
+[xorm] [info]  2015/09/20 14:41:19.662986 [sql] SELECT `id`, `email`, `password`, `nickname`, `realname`, `avatar`, `avatar_min`, `avatar_max`, `birth`, `province`, `city`, `company`, `address`, `postcode`, `mobile`, `website`, `sex`, `qq`, `msn`, `weibo`, `ctype`, `role`, `created`, `hotness`, `hotup`, `hotdown`, `views`, `last_login_time`, `last_login_ip`, `login_count` FROM `user` WHERE `nickname` = ? LIMIT 1 [args] [root@you.com]
+[xorm] [debug] 2015/09/20 14:41:39.045525 [cacheGet] find sql: SELECT `id` FROM `user` WHERE `nickname` = ? LIMIT 1 [root@example.com]
+[xorm] [info]  2015/09/20 14:41:39.047527 [sql] SELECT `id`, `email`, `password`, `nickname`, `realname`, `avatar`, `avatar_min`, `avatar_max`, `birth`, `province`, `city`, `company`, `address`, `postcode`, `mobile`, `website`, `sex`, `qq`, `msn`, `weibo`, `ctype`, `role`, `created`, `hotness`, `hotup`, `hotdown`, `views`, `last_login_time`, `last_login_ip`, `login_count` FROM `user` WHERE `nickname` = ? LIMIT 1 [args] [root@example.com]
+[xorm] [debug] 2015/09/20 14:41:45.771173 [cacheFind] cache hit sql: SELECT `id` FROM `topic` ORDER BY `hotness` DESC, `views` DESC, `reply_count` DESC, `created` DESC []
+[xorm] [debug] 2015/09/20 14:41:45.771173 [cacheFind] cache hit sql: SELECT `id` FROM `topic` ORDER BY `id` DESC, `views` DESC, `reply_count` DESC, `created` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:41:45.771173 [cacheFind] cache hit sql: SELECT `id` FROM `topic` ORDER BY `hotness` DESC, `views` DESC, `reply_count` DESC, `created` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:41:45.771173 [cacheFind] cache hit sql: SELECT `id` FROM `topic` ORDER BY `views` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:41:45.772173 [cacheFind] cache hit sql: SELECT `id` FROM `topic` ORDER BY `reply_count` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:41:45.772173 [cacheFind] cache hit sql: SELECT `id` FROM `node` ORDER BY `hotness` DESC, `views` DESC, `topic_count` DESC, `created` DESC []
+[xorm] [debug] 2015/09/20 14:41:45.772173 [cacheFind] cache hit sql: SELECT `id` FROM `node` ORDER BY `id` DESC, `views` DESC, `topic_count` DESC, `created` DESC LIMIT 25 []
+[xorm] [debug] 2015/09/20 14:41:45.772173 [cacheFind] cache hit sql: SELECT `id` FROM `node` ORDER BY `hotness` DESC, `views` DESC, `topic_count` DESC, `created` DESC LIMIT 25 []
