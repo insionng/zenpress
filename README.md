@@ -27,14 +27,14 @@ Zenpress是一个灵感来源于wordpress的cms项目，最终目标是实现一
 
 ##线上开源技术分享平台版本
 
-[SudoChina社区](http://www.sudochina.com/)
+SudoChina社区 this site has been down.
 
 
 ## 企业型演示网站
 
-[访问艾美](<http://www.ibeautys.com/>)
+[访问艾美](<http://www.ibeautys.com/>) 
 
-[访问因特拉](<http://www.interla.net/>)
+访问因特拉 this site has been down.
 
 
 ## 实验性社区型演示网站
