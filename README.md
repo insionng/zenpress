@@ -17,7 +17,7 @@ Zenpress是一个灵感来源于wordpress的cms项目，最终目标是实现一
 
 ##轻量级社区版本
 
-[YouGam社区](http://www.yougam.com/)
+[YouGam社区](http://www.yougam.com/) 支持PostgreSQL、MySQL、Sqlite3、Go/Leveldb、Boltdb、Tidb等等数据库
 
 (采用reddit排序算法而类似V2EX的轻社区,购买系统请联系作者QQ547092001)
 
