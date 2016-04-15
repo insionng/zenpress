@@ -21,6 +21,8 @@ Zenpress是一个灵感来源于wordpress的cms项目，最终目标是实现一
 
 (类似V2EX,购买系统请联系作者QQ547092001)
 
+问题反馈：https://github.com/insionng/yougam/issues
+
 
 
 ##线上开源技术分享平台版本
