@@ -25,7 +25,7 @@ func ModifyNodePostHandler(self *vodka.Context) error {
 		nd.Pid = int64(cid)
 		nd.Title = nd_title
 		nd.Content = nd_content
-		nd.Created = time.Now()
+		nd.Created = time.Now().Unix()
 		models.UpdateNode(nd.Id, nd)
 		return self.Redirect(302, fmt.Sprintf("/node/%v/", nid))
 	} else {
