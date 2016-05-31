@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"github.com/insionng/zenpress/helper"
 	"os"
+	"path"
 	"time"
 )
 
@@ -30,7 +31,7 @@ type User struct {
 	Avatar        string
 	Avatar_min    string
 	Avatar_max    string
-	Birth         time.Time
+	Birth         int64
 	Province      string
 	City          string
 	Company       string
@@ -44,12 +45,12 @@ type User struct {
 	Weibo         string
 	Ctype         int64
 	Role          int64
-	Created       time.Time `xorm:"index"`
-	Hotness       float64   `xorm:"index"`
-	Hotup         int64     `xorm:"index"`
-	Hotdown       int64     `xorm:"index"`
-	Views         int64     `xorm:"index"`
-	LastLoginTime time.Time
+	Created       int64   `xorm:"index"`
+	Hotness       float64 `xorm:"index"`
+	Hotup         int64   `xorm:"index"`
+	Hotdown       int64   `xorm:"index"`
+	Views         int64   `xorm:"index"`
+	LastLoginTime int64
 	LastLoginIp   string
 	LoginCount    int64
 }
@@ -63,13 +64,13 @@ type Category struct {
 	Title          string
 	Content        string
 	Attachment     string
-	Created        time.Time `xorm:"index"`
-	Hotness        float64   `xorm:"index"`
-	Hotup          int64     `xorm:"index"`
-	Hotdown        int64     `xorm:"index"`
-	Views          int64     `xorm:"index"`
+	Created        int64   `xorm:"index"`
+	Hotness        float64 `xorm:"index"`
+	Hotup          int64   `xorm:"index"`
+	Hotdown        int64   `xorm:"index"`
+	Views          int64   `xorm:"index"`
 	Author         string
-	NodeTime       time.Time
+	NodeTime       int64
 	NodeCount      int64
 	NodeLastUserId int64
 }
@@ -82,17 +83,17 @@ type Node struct {
 	Order           int64
 	Ctype           int64
 	Title           string
-	Content         string    `xorm:"text"`
-	Attachment      string    `xorm:"text"`
-	Created         time.Time `xorm:"index"`
-	Updated         time.Time `xorm:"index"`
-	Hotness         float64   `xorm:"index"`
-	Hotup           int64     `xorm:"index"`
-	Hotdown         int64     `xorm:"index"`
-	Hotscore        int64     `xorm:"index"`
-	Views           int64     `xorm:"index"`
-	Author          string    //节点的创建者
-	TopicTime       time.Time
+	Content         string  `xorm:"text"`
+	Attachment      string  `xorm:"text"`
+	Created         int64   `xorm:"index"`
+	Updated         int64   `xorm:"index"`
+	Hotness         float64 `xorm:"index"`
+	Hotup           int64   `xorm:"index"`
+	Hotdown         int64   `xorm:"index"`
+	Hotscore        int64   `xorm:"index"`
+	Views           int64   `xorm:"index"`
+	Author          string  //节点的创建者
+	TopicTime       int64
 	TopicCount      int64
 	TopicLastUserId int64
 }
@@ -106,19 +107,19 @@ type Topic struct {
 	Order             int64
 	Ctype             int64
 	Title             string
-	Content           string    `xorm:"text"`
-	Attachment        string    `xorm:"text"`
-	Created           time.Time `xorm:"index"`
-	Updated           time.Time `xorm:"index"`
-	Hotness           float64   `xorm:"index"`
-	Hotup             int64     `xorm:"index"`
-	Hotdown           int64     `xorm:"index"`
-	Hotscore          int64     `xorm:"index"`
-	Views             int64     `xorm:"index"`
+	Content           string  `xorm:"text"`
+	Attachment        string  `xorm:"text"`
+	Created           int64   `xorm:"index"`
+	Updated           int64   `xorm:"index"`
+	Hotness           float64 `xorm:"index"`
+	Hotup             int64   `xorm:"index"`
+	Hotdown           int64   `xorm:"index"`
+	Hotscore          int64   `xorm:"index"`
+	Views             int64   `xorm:"index"`
 	Author            string
 	Category          string
 	Node              string
-	ReplyTime         time.Time
+	ReplyTime         int64
 	ReplyCount        int64
 	ReplyLastUserId   int64
 	ReplyLastUsername string
@@ -133,11 +134,11 @@ type Reply struct {
 	Ctype      int64
 	Content    string
 	Attachment string
-	Created    time.Time `xorm:"index"`
-	Hotness    float64   `xorm:"index"`
-	Hotup      int64     `xorm:"index"`
-	Hotdown    int64     `xorm:"index"`
-	Views      int64     `xorm:"index"`
+	Created    int64   `xorm:"index"`
+	Hotness    float64 `xorm:"index"`
+	Hotup      int64   `xorm:"index"`
+	Hotdown    int64   `xorm:"index"`
+	Views      int64   `xorm:"index"`
 	Author     string
 	Email      string
 	Website    string
@@ -156,13 +157,13 @@ type File struct {
 	Location        string
 	Url             string
 	Size            int64
-	Created         time.Time `xorm:"index"`
-	Updated         time.Time `xorm:"index"`
-	Hotness         float64   `xorm:"index"`
-	Hotup           int64     `xorm:"index"`
-	Hotdown         int64     `xorm:"index"`
-	Views           int64     `xorm:"index"`
-	ReplyTime       time.Time
+	Created         int64   `xorm:"index"`
+	Updated         int64   `xorm:"index"`
+	Hotness         float64 `xorm:"index"`
+	Hotup           int64   `xorm:"index"`
+	Hotdown         int64   `xorm:"index"`
+	Views           int64   `xorm:"index"`
+	ReplyTime       int64
 	ReplyCount      int64
 	ReplyLastUserId int64
 }
@@ -176,7 +177,7 @@ type Kvs struct {
 
 func init() {
 	var err error
-	DataType = "goleveldb"
+	DataType = "memory"
 	Engine, err = SetEngine()
 	if err != nil {
 		panic(fmt.Sprintf("Zenpress SetEngine errors:%v", err))
@@ -218,29 +219,29 @@ func ConDb() (*xorm.Engine, error) {
 }
 
 func SetEngine() (*xorm.Engine, error) {
-
-	if engine, err := ConDb(); err != nil {
-
-		return nil, err
+	var _error error
+	if Engine, _error = ConDb(); _error != nil {
+		return nil, fmt.Errorf("Fail to connect to database: %s", _error.Error())
 	} else {
+		Engine.SetMapper(core.GonicMapper{})
+		cacher := xorm.NewLRUCacher(xorm.NewMemoryStore(), 10240)
+		Engine.SetDefaultCacher(cacher)
 
-		engine.ShowInfo = false
-		engine.ShowSQL = true   //true则会在控制台打印出生成的SQL语句；
-		engine.ShowDebug = true //true则会在控制台打印调试信息；
-		engine.ShowWarn = true  //true则会在控制台打印警告信息；
-		engine.Logger.SetLevel(core.LOG_OFF)
-
-		cacher := xorm.NewLRUCacher(xorm.NewMemoryStore(), 10000)
-		engine.SetDefaultCacher(cacher)
-		//engine.TZLocation = time.Local
-
-		if f, err := os.Create("./logs/xorm.log"); err != nil {
-			panic(fmt.Sprintf("Create Xorm Logs Error :%v", err))
-		} else {
-			engine.Logger = xorm.NewSimpleLogger(f)
+		logPath := path.Join("./logs", "xorm.log")
+		os.MkdirAll(path.Dir(logPath), os.ModePerm)
+		f, err := os.Create(logPath)
+		if err != nil {
+			return Engine, fmt.Errorf("Fail to create xorm.log: %s", err.Error())
 		}
 
-		return engine, err
+		Engine.SetLogger(xorm.NewSimpleLogger(f))
+		Engine.ShowSQL(false)
+
+		if location, err := time.LoadLocation("Asia/Shanghai"); err == nil {
+			Engine.TZLocation = location
+		}
+
+		return Engine, err
 	}
 }
 
@@ -398,7 +399,7 @@ func TopicCount() (today int, this_week int, this_month int) {
 
 func PutTopic(tid int64, tp *Topic) (int64, error) {
 	//覆盖式更新话题
-	tp.Updated = time.Now()
+	tp.Updated = time.Now().Unix()
 	row, err := Engine.Update(tp, &Topic{Id: tid}) //该方法目前返回的row为执行SQL所影响的行数
 
 	return row, err
@@ -407,7 +408,7 @@ func PutTopic(tid int64, tp *Topic) (int64, error) {
 
 func PutNode(nid int64, nd *Node) (int64, error) {
 	//覆盖式更新节点
-	nd.Updated = time.Now()
+	nd.Updated = time.Now().Unix()
 	row, err := Engine.Update(nd, &Node{Id: nid})
 
 	return row, err
@@ -536,7 +537,7 @@ func GetKV(k string) (v string) {
 }
 
 func AddUser(email string, nickname string, realname string, password string, role int64) error {
-	_, err := Engine.Insert(&User{Email: email, Nickname: nickname, Realname: realname, Password: password, Role: role, Created: time.Now()})
+	_, err := Engine.Insert(&User{Email: email, Nickname: nickname, Realname: realname, Password: password, Role: role, Created: time.Now().Unix()})
 
 	return err
 }
@@ -599,14 +600,14 @@ func CheckUserByNickname(nickname string) *User {
 }
 
 func AddCategory(title string, content string) error {
-	_, err := Engine.Insert(&Category{Title: title, Content: content, Created: time.Now()})
+	_, err := Engine.Insert(&Category{Title: title, Content: content, Created: time.Now().Unix()})
 
 	return err
 }
 
 func AddNode(title string, content string, cid int64, uid int64) error {
 	var err error
-	if _, err = Engine.Insert(&Node{Pid: cid, Uid: uid, Title: title, Content: content, Created: time.Now()}); err != nil {
+	if _, err = Engine.Insert(&Node{Pid: cid, Uid: uid, Title: title, Content: content, Created: time.Now().Unix()}); err != nil {
 		return err
 	}
 
@@ -615,7 +616,7 @@ func AddNode(title string, content string, cid int64, uid int64) error {
 		return err
 	}
 
-	if _, err := Engine.Id(cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(nodeCnt), NodeLastUserId: uid}); err != nil {
+	if _, err := Engine.Id(cid).Update(&Category{NodeTime: time.Now().Unix(), NodeCount: int64(nodeCnt), NodeLastUserId: uid}); err != nil {
 		return err
 	}
 	return nil
@@ -635,21 +636,21 @@ func SetNode(id int64, title string, content string, cid int64, uid int64) error
 
 func AddTopic(title string, content string, cid int64, nid int64, uid int64, author string) error {
 
-	if _, err := Engine.Insert(&Topic{Cid: cid, Nid: nid, Uid: uid, Author: author, Title: title, Content: content, Created: time.Now()}); err != nil {
+	if _, err := Engine.Insert(&Topic{Cid: cid, Nid: nid, Uid: uid, Author: author, Title: title, Content: content, Created: time.Now().Unix()}); err != nil {
 		return err
 	}
 	cnt, err := GetTopicCountsByNid(nid, 0, 0, 0, "id")
 	if err != nil {
 		return err
 	}
-	if _, err := Engine.Id(nid).Update(&Node{TopicTime: time.Now(), TopicCount: cnt, TopicLastUserId: uid}); err != nil {
+	if _, err := Engine.Id(nid).Update(&Node{TopicTime: time.Now().Unix(), TopicCount: cnt, TopicLastUserId: uid}); err != nil {
 		return err
 	}
 	return nil
 }
 
 func AddReply(tid int64, uid int64, content string, author string, email string, website string) error {
-	if _, err := Engine.Insert(&Reply{Pid: tid, Uid: uid, Content: content, Created: time.Now(), Author: author, Email: email, Website: website}); err != nil {
+	if _, err := Engine.Insert(&Reply{Pid: tid, Uid: uid, Content: content, Created: time.Now().Unix(), Author: author, Email: email, Website: website}); err != nil {
 		return err
 	}
 
@@ -658,7 +659,7 @@ func AddReply(tid int64, uid int64, content string, author string, email string,
 		return err
 	}
 
-	if _, err := Engine.Id(tid).Update(&Topic{ReplyTime: time.Now(), ReplyCount: cnt, ReplyLastUserId: uid}); err != nil {
+	if _, err := Engine.Id(tid).Update(&Topic{ReplyTime: time.Now().Unix(), ReplyCount: cnt, ReplyLastUserId: uid}); err != nil {
 		return err
 	}
 	return nil
@@ -980,7 +981,7 @@ func EditNode(nid int64, cid int64, uid int64, title string, content string) err
 	nd.Pid = cid
 	nd.Title = title
 	nd.Content = content
-	nd.Updated = time.Now()
+	nd.Updated = time.Now().Unix()
 	if err := UpdateNode(nid, nd); err != nil {
 		return err
 	}
@@ -990,7 +991,7 @@ func EditNode(nid int64, cid int64, uid int64, title string, content string) err
 		return err
 	}
 
-	if _, err := Engine.Id(cid).Update(&Category{NodeTime: time.Now(), NodeCount: int64(cnt), NodeLastUserId: int64(uid)}); err != nil {
+	if _, err := Engine.Id(cid).Update(&Category{NodeTime: time.Now().Unix(), NodeCount: int64(cnt), NodeLastUserId: int64(uid)}); err != nil {
 		return err
 	}
 
@@ -1003,7 +1004,7 @@ func EditTopic(tid int64, nid int64, cid int64, uid int64, title string, content
 	tpc.Nid = int64(nid)
 	tpc.Title = title
 	tpc.Content = content
-	tpc.Updated = time.Now()
+	tpc.Updated = time.Now().Unix()
 
 	if err := UpdateTopic(tid, tpc); err != nil {
 		return err
