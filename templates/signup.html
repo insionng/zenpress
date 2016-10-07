@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+{% block title %}
+      <title>用户注册 - Zenpress - 借力开源，技术次元！</title>
+{% endblock title %}
+{% block mainland %}
+      <form action="/signup/" method="post" class="form-signin">
+        <h2 class="form-signin-heading">请填写注册资料</h2>
+        <input type="text" class="input-block-level" placeholder="请你输入用户名" name="username">
+		{%if UsernameErr%} {{UsernameErr}} {%endif%}
+		<input type="password" class="input-block-level" placeholder="请你输入密码" name="password">
+		{%if PasswordErr%} {{PasswordErr}} {%endif%}
+        <button class="btn btn-large btn-primary" type="submit">提交注册资料</button>
+      </form>
+{% endblock mainland %}
