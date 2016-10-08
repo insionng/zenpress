@@ -7,13 +7,13 @@ import (
 	"path"
 	"time"
 
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/insionng/zenpress/libraries/go-sql-driver/mysql"
 	"github.com/go-xorm/core"
 	_ "github.com/go-xorm/tidb"
 	"github.com/go-xorm/xorm"
 	"github.com/insionng/zenpress/helper"
-	_ "github.com/lib/pq"
-	_ "github.com/pingcap/tidb"
+	_ "github.com/insionng/zenpress/libraries/lib/pq"
+	_ "github.com/insionng/zenpress/libraries/pingcap/tidb"
 )
 
 var (

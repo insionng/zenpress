@@ -13,10 +13,6 @@ import (
 	"github.com/vodka-contrib/vodkapprof"
 )
 
-var (
-	key = "AppSkey"
-)
-
 /*
 func TokenHandler(self *vodka.Context) error {
 
@@ -30,23 +26,36 @@ func TokenHandler(self *vodka.Context) error {
 	return self.String(http.StatusOK, "%s", token)
 }
 */
-func main() {
+// init 初始化Sesssion
+func init() {
 	opt := session.Options{"file", `{"cookieName":"vodkaSid","gclifetime":3600,"ProviderConfig":"./data/session"}`}
-	if err := session.InitSession(opt); err != nil {
+	if err := session.Setup(opt); err != nil {
 		log.Fatalln("session errors:", err)
 	}
+}
+
+func main() {
 
 	v := vodka.New()
 
 	v.Use(m.Logger())
 	v.Use(m.Recover())
 	v.Use(m.Gzip())
+	v.Use(m.Secure())
+	v.Use(m.BodyLimit("2M"))
 	v.Use(session.Sessioner())
+	v.Pre(m.AddTrailingSlash())
+	v.Use(m.CSRFWithConfig(m.CSRFConfig{
+		TokenLookup: "header:X-XSRF-TOKEN",
+	}))
+	v.Use(m.CORSWithConfig(m.CORSConfig{
+		AllowOrigins: []string{"https://github.com", "http://yougam.com"},
+		AllowHeaders: []string{vodka.HeaderOrigin, vodka.HeaderContentType, vodka.HeaderAcceptEncoding},
+	}))
+	v.SetRenderer(pongor.Renderor())
 
 	v.File("/favicon.ico", "static/ico/favicon.ico")
-
 	v.Static("/static/", "static")
-	v.SetRenderer(pongor.Renderor())
 
 	g := v.Group("")
 	g.Get("/", handler.MainHandler)
@@ -66,6 +75,10 @@ func main() {
 
 	// Restricted group
 	r := v.Group("")
+	r.Use(m.JWTWithConfig(m.JWTConfig{
+		SigningKey:  []byte("ZeNpReSe"),
+		TokenLookup: "query:token",
+	}))
 	r.Get("/new/category/", handler.NewCategoryGetHandler)
 	r.Post("/new/category/", handler.NewCategoryPostHandler)
 
