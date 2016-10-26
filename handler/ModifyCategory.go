@@ -11,7 +11,7 @@ import (
 )
 
 func ModifyCatGetHandler(self vodka.Context) error {
-	return self.Render(http.StatusOK, "modify_category.html", nil)
+	return self.Render(http.StatusOK, "modify_category.html")
 }
 
 func ModifyCatPostHandler(self vodka.Context) error {

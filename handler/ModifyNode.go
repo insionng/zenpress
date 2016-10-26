@@ -11,7 +11,7 @@ import (
 )
 
 func ModifyNodeGetHandler(self vodka.Context) error {
-	return self.Render(http.StatusOK, "modify_node.html", nil)
+	return self.Render(http.StatusOK, "modify_node.html")
 }
 
 func ModifyNodePostHandler(self vodka.Context) error {

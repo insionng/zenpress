@@ -16,8 +16,8 @@ func NodeEditGetHandler(self vodka.Context) error {
 	nid_handler := models.GetNode(nid)
 	data["inode"] = nid_handler
 	data["icategory"] = models.GetCategory(nid_handler.Pid)
-
-	return self.Render(http.StatusOK, "node_edit.html", data)
+	self.SetStore(data)
+	return self.Render(http.StatusOK, "node_edit.html")
 }
 
 func NodeEditPostHandler(self vodka.Context) error {

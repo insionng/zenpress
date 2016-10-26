@@ -8,7 +8,7 @@ import (
 )
 
 func NewCategoryGetHandler(self vodka.Context) error {
-	return self.Render(http.StatusOK, "new_category.html", nil)
+	return self.Render(http.StatusOK, "new_category.html")
 }
 
 func NewCategoryPostHandler(self vodka.Context) error {

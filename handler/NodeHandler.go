@@ -27,7 +27,8 @@ func NodeHandler(self vodka.Context) error {
 	data["topics_latest"] = models.GetAllTopicByNid(nid, offset, limit, 0, "id")
 
 	if nid != 0 {
-		return self.Render(http.StatusOK, "node.html", data)
+		self.SetStore(data)
+		return self.Render(http.StatusOK, "node.html")
 	} else {
 		return self.Redirect(302, "/")
 	}

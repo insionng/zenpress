@@ -13,7 +13,8 @@ import (
 func NewNodeGetHandler(self vodka.Context) error {
 	data := make(map[string]interface{})
 	data["categorys"] = models.GetAllCategory()
-	return self.Render(http.StatusOK, "new_node.html", data)
+	self.SetStore(data)
+	return self.Render(http.StatusOK, "new_node.html")
 }
 
 func NewNodePostHandler(self vodka.Context) error {

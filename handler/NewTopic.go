@@ -11,9 +11,8 @@ import (
 )
 
 func NewTopicGetHandler(self vodka.Context) error {
-	data := make(map[string]interface{})
-	data["nodes"] = models.GetAllNode()
-	return self.Render(http.StatusOK, "topic_new.html", data)
+	self.Set("nodes", models.GetAllNode())
+	return self.Render(http.StatusOK, "topic_new.html")
 }
 
 func NewTopicPostHandler(self vodka.Context) error {

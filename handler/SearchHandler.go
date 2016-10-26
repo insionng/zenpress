@@ -24,5 +24,6 @@ func SearchHandler(self vodka.Context) error {
 
 	}
 
-	return self.Render(http.StatusOK, "search.html", data)
+	self.SetStore(data)
+	return self.Render(http.StatusOK, "search.html")
 }

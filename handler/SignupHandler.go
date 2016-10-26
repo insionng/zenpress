@@ -11,7 +11,7 @@ import (
 )
 
 func SignupGetHandler(self vodka.Context) error {
-	return self.Render(http.StatusOK, "signup.html", nil)
+	return self.Render(http.StatusOK, "signup.html")
 }
 
 func SignupPostHandler(self vodka.Context) error {
@@ -63,5 +63,6 @@ func SignupPostHandler(self vodka.Context) error {
 		data["UsernameErr"] = e.Error()
 		return e
 	}
-	return self.Render(http.StatusOK, "signup.html", data)
+	self.SetStore(data)
+	return self.Render(http.StatusOK, "signup.html")
 }

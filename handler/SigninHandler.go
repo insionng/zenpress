@@ -17,7 +17,7 @@ func SigninGetHandler(self vodka.Context) error {
 	if val != nil {
 		return self.Redirect(302, "/")
 	} else {
-		return self.Render(http.StatusOK, "signin.html", nil)
+		return self.Render(http.StatusOK, "signin.html")
 	}
 
 }

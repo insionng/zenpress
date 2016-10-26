@@ -79,6 +79,7 @@ func MainHandler(self vodka.Context) error {
 	data["nodes_pagesbar_tab5"] = helper.Pagesbar("tab=5&", nodes_rcs, nodes_pages, nodes_pageout, nodes_beginnum, nodes_endnum, 1)
 	data["nodes_pagesbar_tab6"] = helper.Pagesbar("tab=6&", nodes_rcs, nodes_pages, nodes_pageout, nodes_beginnum, nodes_endnum, 1)
 
-	return self.Render(http.StatusOK, "index.html", nil)
+	self.SetStore(data)
+	return self.Render(http.StatusOK, "index.html")
 
 }

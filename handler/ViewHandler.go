@@ -46,7 +46,8 @@ func ViewHandler(self vodka.Context) error {
 			}
 		}
 
-		return self.Render(http.StatusOK, "view.html", data)
+		self.SetStore(data)
+		return self.Render(http.StatusOK, "view.html")
 	}
 
 	return self.Redirect(302, "/")

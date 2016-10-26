@@ -11,13 +11,13 @@ import (
 )
 
 func TopicEditGetHandler(self vodka.Context) error {
-	data := make(map[string]interface{})
+
 	tid := com.StrTo(self.Param("tid")).MustInt64()
 	tid_handler := models.GetTopic(tid)
-	data["topic"] = tid_handler
-	data["inode"] = models.GetNode(tid_handler.Nid)
+	self.Set("topic", tid_handler)
+	self.Set("inode", models.GetNode(tid_handler.Nid))
 
-	return self.Render(http.StatusOK, "topic_edit.html", data)
+	return self.Render(http.StatusOK, "topic_edit.html")
 }
 
 func TopicEditPostHandler(self vodka.Context) error {
