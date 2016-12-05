@@ -76,7 +76,7 @@ SudoChina社区 this site has been down.
 
 
 ## 交流
-欢迎大家加入QQ专用交流群:231956113/作者QQ：547092001
+欢迎大家加入QQ专用交流群:245386165/作者QQ：547092001
 
 技术分享：[http://www.yougam.com](http://www.yougam.com)
 

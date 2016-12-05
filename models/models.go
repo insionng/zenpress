@@ -8,13 +8,12 @@ import (
 	"time"
 
 	"github.com/go-xorm/core"
-	_ "github.com/go-xorm/tidb"
 	"github.com/go-xorm/xorm"
-	_ "github.com/pingcap/tidb"
+	//_ "github.com/pingcap/tidb"
 
 	"github.com/insionng/zenpress/helper"
-	//_ "github.com/insionng/zenpress/libraries/go-sql-driver/mysql"
-	//_ "github.com/insionng/zenpress/libraries/lib/pq"
+	_ "github.com/insionng/zenpress/libraries/go-sql-driver/mysql"
+	_ "github.com/insionng/zenpress/libraries/lib/pq"
 )
 
 var (
@@ -179,7 +178,7 @@ type Kvs struct {
 func init() {
 
 	var err error
-	DataType = "goleveldb"
+	DataType = "mysql"
 	Engine, err = SetEngine()
 	if err != nil {
 		panic(fmt.Sprintf("Zenpress SetEngine errors:%v", err))
