@@ -23,26 +23,26 @@ func (self *RSettingHandler) Get() {
 			self.Data["MsgErr"] = "删除管理员成功！"
 		}
 
-		self.TplNames = "root/setting_setroot.html"
+		self.TplNames = "root/setting_setroot"
 
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-setting-setroot-edit/([0-9]+)$"):
 		self.Data["asidepage"] = "root_setting_setroot_edit"
 		rootid, _ := self.GetInt(":rid")
 		self.Data["root"] = models.GetUser(rootid)
-		self.TplNames = "root/setting_setroot.html"
+		self.TplNames = "root/setting_setroot"
 
 	case self.Ctx.Request.RequestURI == "/root-setting-setroot":
 		self.Data["asidepage"] = "root_setting_setroot"
 		self.Data["roots"] = models.GetAllUserByRole(-1000)
-		self.TplNames = "root/setting_setroot.html"
+		self.TplNames = "root/setting_setroot"
 
 	case self.Ctx.Request.RequestURI == "/root-setting-password":
 		self.Data["asidepage"] = "root_setting_password"
-		self.TplNames = "root/setting_password.html"
+		self.TplNames = "root/setting_password"
 
 	case self.Ctx.Request.RequestURI == "/root-setting":
 		self.Data["asidepage"] = "root_setting"
-		self.TplNames = "root/setting.html"
+		self.TplNames = "root/setting"
 	}
 
 	self.Render()

@@ -25,17 +25,17 @@ func (self *RContactHandler) Get() {
 	switch {
 	case self.Ctx.Request.RequestURI == "/root-contact":
 		self.Data["asidepage"] = "root_contact"
-		self.TplNames = "root/contact.html"
+		self.TplNames = "root/contact"
 	case self.Ctx.Request.RequestURI == "/root-contact-node-list":
 		self.Data["asidepage"] = "root_contact_node"
-		self.TplNames = "root/contact_node.html"
+		self.TplNames = "root/contact_node"
 	case self.Ctx.Request.RequestURI == "/root-contact-new-node":
 		self.Data["asidepage"] = "root_contact_new_node"
-		self.TplNames = "root/contact_new_node.html"
+		self.TplNames = "root/contact_new_node"
 
 	case self.Ctx.Request.RequestURI == "/root-contact-topic-list":
 		self.Data["asidepage"] = "root_contact_topic_list"
-		self.TplNames = "root/contact_topic_list.html"
+		self.TplNames = "root/contact_topic_list"
 	}
 
 	self.Render()

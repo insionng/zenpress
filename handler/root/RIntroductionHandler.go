@@ -33,7 +33,7 @@ func (self *RIntroductionHandler) Get() {
 
 	//簡介設置
 	self.Data["asidepage"] = "root-about-introduction"
-	self.TplNames = "root/about_introduction.html"
+	self.TplNames = "root/about_introduction"
 
 	self.Render()
 }

@@ -2,39 +2,35 @@ package handler
 
 import (
 	"fmt"
-	"net/http"
-
-	"github.com/Unknwon/com"
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
+	"github.com/insionng/macross/jwt"
 	"github.com/insionng/zenpress/models"
-	"github.com/vodka-contrib/session"
 )
 
-func NewNodeGetHandler(self vodka.Context) error {
+func NewNodeGetHandler(self *macross.Context) error {
 	data := make(map[string]interface{})
 	data["categorys"] = models.GetAllCategory()
 	self.SetStore(data)
-	return self.Render(http.StatusOK, "new_node.html")
+	return self.Render("new_node")
 }
 
-func NewNodePostHandler(self vodka.Context) error {
+func NewNodePostHandler(self *macross.Context) error {
 
-	sess := session.GetStore(self)
-	var user models.User
-	val := sess.Get("user")
-	if val != nil {
-		user = val.(models.User)
+	claims := jwt.GetMapClaims(self)
+	var uid int64
+	if jwtUserId, okay := claims["UserId"].(float64); okay {
+		uid = int64(jwtUserId)
 	}
-	uid := user.Id
-	cid := com.StrTo(self.Param("category")).MustInt64()
 
-	nid_title := self.FormValue("title")
-	nid_content := self.FormValue("content")
+	cid := self.Param("category").MustInt64()
+
+	nid_title := self.Args("title").String()
+	nid_content := self.Args("content").String()
 
 	if nid_title != "" && nid_content != "" && cid != 0 {
 		models.AddNode(nid_title, nid_content, cid, uid)
-		return self.Redirect(302, fmt.Sprintf("/category/", cid))
+		return self.Redirect(fmt.Sprintf("/category/", cid), 302)
 	} else {
-		return self.Redirect(302, "/")
+		return self.Redirect("/", 302)
 	}
 }

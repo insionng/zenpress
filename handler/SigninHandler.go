@@ -1,45 +1,57 @@
 package handler
 
 import (
-	"net/http"
-
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
+	"github.com/insionng/macross/jwt"
 	"github.com/insionng/zenpress/helper"
 	"github.com/insionng/zenpress/models"
-	"github.com/vodka-contrib/session"
+	"time"
 )
 
-func SigninGetHandler(self vodka.Context) error {
+func SigninGetHandler(self *macross.Context) error {
 
-	sess := session.GetStore(self)
+	claims := jwt.GetMapClaims(self)
+	var uid int64
+	if jwtUserId, okay := claims["UserId"].(float64); okay {
+		uid = int64(jwtUserId)
+	}
 
-	val := sess.Get("user")
-	if val != nil {
-		return self.Redirect(302, "/")
+	if uid > 0 {
+		return self.Redirect("/", 302)
 	} else {
-		return self.Render(http.StatusOK, "signin.html")
+		return self.Render("signin")
 	}
 
 }
 
-func SigninPostHandler(self vodka.Context) error {
-	username := self.FormValue("username")
-	password := self.FormValue("password")
+func SigninPostHandler(self *macross.Context) error {
+	username := self.Args("username").String()
+	password := self.Args("password").String()
 
 	if username != "" && password != "" {
 
-		if userInfo := models.GetUserByNickname(username); userInfo.Password != "" {
+		if usr := models.GetUserByNickname(username); usr.Password != "" {
 
-			if helper.ValidateHash(userInfo.Password, password) {
-				sess := session.GetStore(self)
+			if helper.ValidateHash(usr.Password, password) {
+				claims := jwt.NewMapClaims()
+				claims["IsRoot"] = (usr.Role == -1000)
+				claims["UserId"] = usr.Id
+				claims["Username"] = usr.Nickname
+				claims["exp"] = time.Now().Add(jwt.DefaultJWTConfig.Expires).Unix()
 
-				err := sess.Set("user", userInfo)
-				if err == nil {
-					return self.Redirect(302, "/")
+				var secret string
+				if signingKey, okay := jwt.DefaultJWTConfig.SigningKey.(string); okay {
+					secret = signingKey
 				}
+				tokenString, _ := jwt.NewTokenString(secret, "HS256", claims)
+
+				self.Response.Header.Set(macross.HeaderAccessControlExposeHeaders, "Authorization")
+				self.Response.Header.Set("Authorization", jwt.Bearer+" "+tokenString)
+
+				return self.Redirect("/", 302)
 
 			}
 		}
 	}
-	return self.Redirect(302, "/signin/")
+	return self.Redirect("/signin/", 302)
 }

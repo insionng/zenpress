@@ -1,22 +1,20 @@
 package handler
 
 import (
-	"net/http"
-
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
 	"github.com/insionng/zenpress/models"
 )
 
-func NewCategoryGetHandler(self vodka.Context) error {
-	return self.Render(http.StatusOK, "new_category.html")
+func NewCategoryGetHandler(self *macross.Context) error {
+	return self.Render("new_category")
 }
 
-func NewCategoryPostHandler(self vodka.Context) error {
+func NewCategoryPostHandler(self *macross.Context) error {
 
-	t := self.FormValue("title")
+	t := self.Args("title").String()
 	c := self.FormValue("content")
 	if t != "" && c != "" {
 		models.AddCategory(t, c)
 	}
-	return self.Redirect(302, "/")
+	return self.Redirect("/", 302)
 }

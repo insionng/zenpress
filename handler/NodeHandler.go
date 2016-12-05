@@ -1,18 +1,15 @@
 package handler
 
 import (
-	"net/http"
-
-	"github.com/Unknwon/com"
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
 	"github.com/insionng/zenpress/helper"
 	"github.com/insionng/zenpress/models"
 )
 
-func NodeHandler(self vodka.Context) error {
+func NodeHandler(self *macross.Context) error {
 	data := make(map[string]interface{})
-	page := com.StrTo(self.Param("page")).MustInt64()
-	nid := com.StrTo(self.Param("nid")).MustInt64()
+	page := self.Param("page").MustInt64()
+	nid := self.Param("nid").MustInt64()
 
 	nid_handler := models.GetNode(nid)
 	nid_handler.Views = nid_handler.Views + 1
@@ -28,9 +25,9 @@ func NodeHandler(self vodka.Context) error {
 
 	if nid != 0 {
 		self.SetStore(data)
-		return self.Render(http.StatusOK, "node.html")
+		return self.Render("node")
 	} else {
-		return self.Redirect(302, "/")
+		return self.Redirect("/", macross.StatusFound)
 	}
 
 }

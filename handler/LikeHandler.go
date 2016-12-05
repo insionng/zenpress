@@ -2,20 +2,18 @@ package handler
 
 import (
 	"fmt"
-	"net/http"
 	"time"
 
-	"github.com/Unknwon/com"
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
 	"github.com/insionng/zenpress/helper"
 	"github.com/insionng/zenpress/models"
 )
 
-func LikeHandler(self vodka.Context) error {
+func LikeHandler(self *macross.Context) error {
 
-	if helper.IsSpider(self.Request().UserAgent()) != true {
-		name := self.FormValue("name")
-		id := com.StrTo(self.Param("id")).MustInt64()
+	if helper.IsSpider(string(self.Request.Header.UserAgent())) != true {
+		name := self.Args("name").String()
+		id := self.Param("id").MustInt64()
 
 		if name == "topic" {
 
@@ -25,7 +23,7 @@ func LikeHandler(self vodka.Context) error {
 			tp.Hotness = helper.Hotness(tp.Hotup, tp.Hotdown, time.Now())
 
 			models.PutTopic(id, tp)
-			return self.String(http.StatusOK, fmt.Sprintf("%v", tp.Hotup))
+			return self.String(fmt.Sprintf("%v", tp.Hotup))
 		} else if name == "node" {
 
 			nd := models.GetNode(id)
@@ -35,9 +33,9 @@ func LikeHandler(self vodka.Context) error {
 
 			models.PutNode(id, nd)
 
-			return self.String(http.StatusOK, "StatusOK")
+			return self.String("StatusOK")
 		}
 
 	}
-	return self.String(http.StatusUnauthorized, "StatusUnauthorized")
+	return self.String("StatusUnauthorized", macross.StatusUnauthorized)
 }

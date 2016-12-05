@@ -2,38 +2,37 @@ package handler
 
 import (
 	"fmt"
-	"net/http"
-
-	"github.com/Unknwon/com"
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
+	"github.com/insionng/macross/jwt"
 	"github.com/insionng/zenpress/models"
-	"github.com/vodka-contrib/session"
 )
 
-func NewTopicGetHandler(self vodka.Context) error {
+func NewTopicGetHandler(self *macross.Context) error {
 	self.Set("nodes", models.GetAllNode())
-	return self.Render(http.StatusOK, "topic_new.html")
+	return self.Render("topic_new")
 }
 
-func NewTopicPostHandler(self vodka.Context) error {
-	nid := com.StrTo(self.Param("nodeid")).MustInt64()
+func NewTopicPostHandler(self *macross.Context) error {
+	nid := self.Param("nodeid").MustInt64()
 	cid := models.GetNode(nid).Pid
-	sess := session.GetStore(self)
-	var user models.User
-	val := sess.Get("user")
-	if val != nil {
-		user = val.(models.User)
-	}
-	uid := user.Id
-	author := user.Nickname
 
-	tid_title := self.FormValue("title")
-	tid_content := self.FormValue("content")
+	claims := jwt.GetMapClaims(self)
+	var uid int64
+	if jwtUserId, okay := claims["UserId"].(float64); okay {
+		uid = int64(jwtUserId)
+	}
+	var author string
+	if jwtUsername, okay := claims["Username"].(string); okay {
+		author = jwtUsername
+	}
+
+	tid_title := self.Args("title").String()
+	tid_content := self.Args("content").String()
 
 	if tid_title != "" && tid_content != "" {
 		models.AddTopic(tid_title, tid_content, cid, nid, uid, author)
-		return self.Redirect(302, fmt.Sprintf("/node/", nid))
+		return self.Redirect(fmt.Sprintf("/node/", nid), macross.StatusFound)
 	} else {
-		return self.Redirect(302, "/")
+		return self.Redirect("/", macross.StatusFound)
 	}
 }

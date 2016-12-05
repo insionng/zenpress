@@ -1,17 +1,14 @@
 package handler
 
 import (
-	"net/http"
-
-	"github.com/Unknwon/com"
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
 	"github.com/insionng/zenpress/models"
 )
 
-func ViewHandler(self vodka.Context) error {
+func ViewHandler(self *macross.Context) error {
 
 	data := make(map[string]interface{})
-	tid := com.StrTo(self.Param("tid")).MustInt64()
+	tid := self.Param("tid").MustInt64()
 	tid_handler := models.GetTopic(tid)
 
 	if tid_handler.Id > 0 {
@@ -47,9 +44,9 @@ func ViewHandler(self vodka.Context) error {
 		}
 
 		self.SetStore(data)
-		return self.Render(http.StatusOK, "view.html")
+		return self.Render("view")
 	}
 
-	return self.Redirect(302, "/")
+	return self.Redirect("/", 302)
 
 }

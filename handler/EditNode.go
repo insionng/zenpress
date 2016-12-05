@@ -2,42 +2,37 @@ package handler
 
 import (
 	"fmt"
-	"net/http"
-
-	"github.com/Unknwon/com"
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
+	"github.com/insionng/macross/jwt"
 	"github.com/insionng/zenpress/models"
-	"github.com/vodka-contrib/session"
 )
 
-func NodeEditGetHandler(self vodka.Context) error {
+func NodeEditGetHandler(self *macross.Context) error {
 	data := make(map[string]interface{})
-	nid := com.StrTo(self.Param("nid")).MustInt64()
+	nid := self.Param("nid").MustInt64()
 	nid_handler := models.GetNode(nid)
 	data["inode"] = nid_handler
 	data["icategory"] = models.GetCategory(nid_handler.Pid)
 	self.SetStore(data)
-	return self.Render(http.StatusOK, "node_edit.html")
+	return self.Render("node_edit")
 }
 
-func NodeEditPostHandler(self vodka.Context) error {
-	nid := com.StrTo(self.Param("nid")).MustInt64()
-	cid := com.StrTo(self.Param("categoryid")).MustInt64()
+func NodeEditPostHandler(self *macross.Context) error {
+	nid := self.Param("nid").MustInt64()
+	cid := self.Param("categoryid").MustInt64()
 
-	sess := session.GetStore(self)
-	var user models.User
-	val := sess.Get("user")
-	if val != nil {
-		user = val.(models.User)
+	claims := jwt.GetMapClaims(self)
+	var uid int64
+	if jwtUserId, okay := claims["UserId"].(float64); okay {
+		uid = int64(jwtUserId)
 	}
-	uid := user.Id
 
-	nid_title := self.FormValue("title")
-	nid_content := self.FormValue("content")
+	nid_title := self.Args("title").String()
+	nid_content := self.Args("content").String()
 	if nid_title != "" && nid_content != "" {
 		models.EditNode(nid, cid, uid, nid_title, nid_content)
-		return self.Redirect(302, fmt.Sprintf("/node/%v/", nid))
+		return self.Redirect(fmt.Sprintf("/node/%v/", nid), 302)
 	} else {
-		return self.Redirect(302, "/")
+		return self.Redirect("/", 302)
 	}
 }

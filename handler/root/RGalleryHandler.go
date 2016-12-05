@@ -18,7 +18,7 @@ type RGalleryHandler struct {
 
 func (self *RGalleryHandler) Get() {
 
-	self.TplNames = "root/gallery.html"
+	self.TplNames = "root/gallery"
 
 	self.Data["MsgErr"], _ = self.GetSession("MsgErr").(string)
 	self.DelSession("MsgErr")

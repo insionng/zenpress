@@ -3,23 +3,21 @@ package handler
 import (
 	"errors"
 	"fmt"
-	"net/http"
-
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
 	"github.com/insionng/zenpress/helper"
 	"github.com/insionng/zenpress/models"
 )
 
-func SignupGetHandler(self vodka.Context) error {
-	return self.Render(http.StatusOK, "signup.html")
+func SignupGetHandler(self *macross.Context) error {
+	return self.Render("signup")
 }
 
-func SignupPostHandler(self vodka.Context) error {
+func SignupPostHandler(self *macross.Context) error {
 
 	data := make(map[string]interface{})
 
-	username := self.FormValue("username")
-	password := self.FormValue("password")
+	username := self.Args("username").String()
+	password := self.Args("password").String()
 	usererr := helper.CheckUsername(username)
 
 	if usererr == false {
@@ -47,7 +45,7 @@ func SignupPostHandler(self vodka.Context) error {
 	if userInfo.Nickname == "" {
 
 		//注册用户
-		regErr := models.AddUser(username+"@insion.co", username, "", pwd, 1)
+		regErr := models.AddUser(username+"@your.com", username, "", pwd, 1)
 		fmt.Println("reg:s")
 		fmt.Println(regErr)
 		fmt.Println("reg:e ")
@@ -56,7 +54,7 @@ func SignupPostHandler(self vodka.Context) error {
 		//	self.SetSession("username", userInfo.Nickname)
 		//	self.SetSession("userrole", userInfo.Role)
 		//	self.SetSession("useremail", userInfo.Email)
-		return self.Redirect(302, "/signin/")
+		return self.Redirect("/signin/", macross.StatusFound)
 
 	} else {
 		e := errors.New("User already exists")
@@ -64,5 +62,5 @@ func SignupPostHandler(self vodka.Context) error {
 		return e
 	}
 	self.SetStore(data)
-	return self.Render(http.StatusOK, "signup.html")
+	return self.Render("signup")
 }

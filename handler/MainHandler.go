@@ -1,17 +1,15 @@
 package handler
 
 import (
-	"net/http"
 	"runtime"
 	"time"
 
-	"github.com/Unknwon/com"
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
 	"github.com/insionng/zenpress/helper"
 	"github.com/insionng/zenpress/models"
 )
 
-func MainHandler(self vodka.Context) error {
+func MainHandler(self *macross.Context) error {
 	data := make(map[string]interface{})
 	///
 	data["nodes"] = models.GetAllNode()
@@ -36,16 +34,15 @@ func MainHandler(self vodka.Context) error {
 	data["sweibo"] = models.GetKV("sweibo")
 	data["timenow"] = time.Now()
 	data["statistics"] = models.GetKV("statistics")
-	data["remoteproto"] = self.Request().Scheme()
-	data["remotehost"] = self.Request().Host
+	data["remotehost"] = self.Request.Host()
 	data["remoteos"] = runtime.GOOS
 	data["remotearch"] = runtime.GOARCH
 	data["remotecpus"] = runtime.NumCPU()
 	data["golangver"] = runtime.Version()
-	///
-	page := com.StrTo(self.Param("page")).MustInt64()
-	curtab := com.StrTo(self.Param("tab")).MustInt64()
-	cid := com.StrTo(self.Param("cid")).MustInt64()
+
+	page := self.Param("page").MustInt64()
+	curtab := self.Param("tab").MustInt64()
+	cid := self.Param("cid").MustInt64()
 
 	limit := 25
 	home := "false"
@@ -80,6 +77,6 @@ func MainHandler(self vodka.Context) error {
 	data["nodes_pagesbar_tab6"] = helper.Pagesbar("tab=6&", nodes_rcs, nodes_pages, nodes_pageout, nodes_beginnum, nodes_endnum, 1)
 
 	self.SetStore(data)
-	return self.Render(http.StatusOK, "index.html")
+	return self.Render("index")
 
 }

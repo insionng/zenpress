@@ -2,22 +2,20 @@ package handler
 
 import (
 	"fmt"
-	"net/http"
 	"time"
 
-	"github.com/Unknwon/com"
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
 	"github.com/insionng/zenpress/models"
 )
 
-func ModifyNodeGetHandler(self vodka.Context) error {
-	return self.Render(http.StatusOK, "modify_node.html")
+func ModifyNodeGetHandler(self *macross.Context) error {
+	return self.Render("modify_node")
 }
 
-func ModifyNodePostHandler(self vodka.Context) error {
+func ModifyNodePostHandler(self *macross.Context) error {
 
-	cid := com.StrTo(self.Param("categoryid")).MustInt64()
-	nid := com.StrTo(self.Param("nodeid")).MustInt64()
+	cid := self.Param("categoryid").MustInt64()
+	nid := self.Param("nodeid").MustInt64()
 
 	nd_title := self.FormValue("title")
 	nd_content := self.FormValue("content")
@@ -29,8 +27,8 @@ func ModifyNodePostHandler(self vodka.Context) error {
 		nd.Content = nd_content
 		nd.Created = time.Now().Unix()
 		models.UpdateNode(nd.Id, nd)
-		return self.Redirect(302, fmt.Sprintf("/node/%v/", nid))
+		return self.Redirect(fmt.Sprintf("/node/%v/", nid), macross.StatusFound)
 	} else {
-		return self.Redirect(302, "/")
+		return self.Redirect("/", macross.StatusFound)
 	}
 }

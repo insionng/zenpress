@@ -32,7 +32,7 @@ func (self *RMainHandler) Get() {
 		self.Data["cs_menbers"] = cs_menbers
 	*/
 	self.Data["catpage"] = "default"
-	self.TplNames = "root/index.html"
+	self.TplNames = "root/index"
 	self.Render()
 
 }

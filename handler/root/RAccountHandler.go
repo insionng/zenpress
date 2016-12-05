@@ -13,7 +13,7 @@ type RAccountHandler struct {
 func (self *RAccountHandler) Get() {
 	self.Data["MsgErr"], _ = self.GetSession("MsgErr").(string)
 	self.DelSession("MsgErr")
-	self.TplNames = "root/account.html"
+	self.TplNames = "root/account"
 	self.Render()
 }
 

@@ -1,13 +1,11 @@
 package handler
 
 import (
-	"github.com/insionng/vodka"
-	"github.com/vodka-contrib/session"
+	"github.com/insionng/macross"
 )
 
-func SignoutHandler(self vodka.Context) error {
-	sess := session.GetStore(self)
-	sess.Delete("user")
-	//return self.JSON( 200, "okay")
-	return self.Redirect(302, "/")
+// SignoutHandler 用户离开时候执行相关记录动作
+// 客户端需要执行删除TOKEN操作
+func SignoutHandler(self *macross.Context) error {
+	return self.Redirect("/", 302)
 }

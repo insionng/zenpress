@@ -33,7 +33,7 @@ func (self *RSetvideoHandler) Get() {
 
 	//簡介設置
 	self.Data["asidepage"] = "root-about-setvideo"
-	self.TplNames = "root/about_setvideo.html"
+	self.TplNames = "root/about_setvideo"
 
 	self.Render()
 }

@@ -22,7 +22,7 @@ func (self *RUploaderHandler) Get() {
 	if sess_role, _ := self.GetSession("userrole").(int64); sess_role != -1000 {
 		self.Ctx.WriteString(outtimes + "请你重新登录，现已超时操作！")
 	} else {
-		self.TplNames = "root/uploadify/index.html"
+		self.TplNames = "root/uploadify/index"
 		self.Render()
 	}
 

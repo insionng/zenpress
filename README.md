@@ -1,6 +1,9 @@
+<img src="static/zp.png" height="200"/>
+
+
 Zenpress
 ===
-Zenpress是一个灵感来源于wordpress的cms项目，最终目标是实现一个简单和强大的Golang CMS系统网站，以内置lisp/lua/javascript等语言的纯GO VM实现来动态解析脚本，从而实现插件支持，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站..
+Zenpress是一个灵感来源于wordpress的cms项目，最终目标是实现一个简单和强大的Golang CMS系统网站，以内置lisp/lua/javascript/qlang等语言的纯GO VM实现来动态解析脚本，从而实现插件支持，作小许改动后可以应用为Blog、企业站、小说站、图站等多种类型网站..
 
 --
 
@@ -12,7 +15,10 @@ Zenpress是一个灵感来源于wordpress的cms项目，最终目标是实现一
 
 --
 
-第三版（目前最新版）基于[Vodka](https://github.com/insionng/vodka)框架和[Xorm](https://github.com/go-xorm/xorm)、[TiDB](https://github.com/pingcap/tidb)数据库于2016年10月7日更新。
+第三版基于[Vodka](https://github.com/insionng/vodka)框架和[Xorm](https://github.com/go-xorm/xorm)、[TiDB](https://github.com/pingcap/tidb)数据库于2016年10月7日更新。
+--
+
+第四版（目前最新版）基于[Macross](https://github.com/insionng/macross)框架和[Xorm](https://github.com/go-xorm/xorm)、[TiDB](https://github.com/pingcap/tidb)数据库，于2016年12月5日开始重写。
 
 
 ##轻量级社区版本

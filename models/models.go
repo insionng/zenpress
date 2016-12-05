@@ -7,13 +7,14 @@ import (
 	"path"
 	"time"
 
-	_ "github.com/insionng/zenpress/libraries/go-sql-driver/mysql"
-	"github.com/go-xorm/core"
 	_ "github.com/go-xorm/tidb"
+	_ "github.com/pingcap/tidb"
+
+	"github.com/go-xorm/core"
 	"github.com/go-xorm/xorm"
 	"github.com/insionng/zenpress/helper"
+	_ "github.com/insionng/zenpress/libraries/go-sql-driver/mysql"
 	_ "github.com/insionng/zenpress/libraries/lib/pq"
-	_ "github.com/insionng/zenpress/libraries/pingcap/tidb"
 )
 
 var (
@@ -27,9 +28,10 @@ type User struct {
 	Password      string
 	Nickname      string `xorm:"index"`
 	Realname      string
-	Avatar        string
-	Avatar_min    string
-	Avatar_max    string
+	Avatar        string `xorm:"index"` //200x200
+	AvatarLarge   string `xorm:"index"` //100x100
+	AvatarMedium  string `xorm:"index"` //48x48
+	AvatarSmall   string `xorm:"index"` //32x32
 	Birth         int64
 	Province      string
 	City          string
@@ -175,8 +177,9 @@ type Kvs struct {
 }
 
 func init() {
+
 	var err error
-	DataType = "goleveldb"
+	DataType = "mysql"
 	Engine, err = SetEngine()
 	if err != nil {
 		panic(fmt.Sprintf("Zenpress SetEngine errors:%v", err))
@@ -203,7 +206,8 @@ func ConDb() (*xorm.Engine, error) {
 		return xorm.NewEngine("tidb", "boltdb://./data/boltdb")
 
 	case DataType == "mysql":
-		return xorm.NewEngine("mysql", "root:YouPass@/db?charset=utf8")
+		//return xorm.NewEngine("mysql", "root:YouPass@/db?charset=utf8")
+		return xorm.NewEngine("mysql", "root:@/db?charset=utf8")
 		//return xorm.NewEngine("mysql", "root:YouPass@/db?charset=utf8")
 
 	case DataType == "postgres":
@@ -234,7 +238,7 @@ func SetEngine() (*xorm.Engine, error) {
 		}
 
 		Engine.SetLogger(xorm.NewSimpleLogger(f))
-		Engine.ShowSQL(false)
+		//Engine.ShowSQL(false)
 
 		if location, err := time.LoadLocation("Asia/Shanghai"); err == nil {
 			Engine.TZLocation = location
@@ -300,37 +304,7 @@ func initData() {
 }
 
 func Counts() (categorys int, nodes int, topics int, menbers int) {
-	/*var categoryz []*Category
-	if e := Engine.Find(&categoryz); e != nil {
-		categorys = 0
-		fmt.Println(e)
-	} else {
-		categorys = len(categoryz)
-	}
 
-	var nodez []*Node
-	if e := Engine.Find(&nodez); e != nil {
-		nodes = 0
-		fmt.Println(e)
-	} else {
-		nodes = len(nodez)
-	}
-
-	var topicz []*Topic
-	if e := Engine.Find(&topicz); e != nil {
-		topics = 0
-		fmt.Println(e)
-	} else {
-		topics = len(topicz)
-	}
-
-	var menberz []*User
-	if e := Engine.Find(&menberz); e != nil {
-		menbers = 0
-		fmt.Println(e)
-	} else {
-		menbers = len(menberz)
-	}*/
 	var err error
 	var cnt int64
 	if cnt, err = Engine.Count(new(Category)); err != nil {

@@ -27,25 +27,25 @@ func (self *RAboutHandler) Get() {
 	case self.Ctx.Request.RequestURI == "/root-about":
 		//发布内容
 		self.Data["asidepage"] = "root_about"
-		self.TplNames = "root/about.html"
+		self.TplNames = "root/about"
 
 		self.Render()
 	case self.Ctx.Request.RequestURI == "/root-about-topic-list":
 		//内容列表
 		self.Data["asidepage"] = "root-about-topic-list"
-		self.TplNames = "root/about_topic_list.html"
+		self.TplNames = "root/about_topic_list"
 
 		self.Render()
 	case self.Ctx.Request.RequestURI == "/root-about-new-node":
 		//创建分类
 		self.Data["asidepage"] = "root_about_new_node"
-		self.TplNames = "root/about_new_node.html"
+		self.TplNames = "root/about_new_node"
 
 		self.Render()
 	case self.Ctx.Request.RequestURI == "/root-about-node-list":
 		//分类列表
 		self.Data["asidepage"] = "root_about_node"
-		self.TplNames = "root/about_node.html"
+		self.TplNames = "root/about_node"
 
 		self.Render()
 	}

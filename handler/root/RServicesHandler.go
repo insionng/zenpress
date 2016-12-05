@@ -25,27 +25,27 @@ func (self *RServicesHandler) Get() {
 	switch {
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-del/([0-9]+)$"):
 		self.Data["asidepage"] = "root_services_list"
-		self.TplNames = "root/services_list.html"
+		self.TplNames = "root/services_list"
 
 	case self.Ctx.Request.RequestURI == "/root-services-new-node":
 		//新建內容分类
 		self.Data["asidepage"] = "root_services_new_node"
-		self.TplNames = "root/services_new_node.html"
+		self.TplNames = "root/services_new_node"
 
 	case self.Ctx.Request.RequestURI == "/root-services-node-list":
 		//內容分类列表
 		self.Data["asidepage"] = "root_services_node"
-		self.TplNames = "root/services_node.html"
+		self.TplNames = "root/services_node"
 
 	case self.Ctx.Request.RequestURI == "/root-services-topic-list":
 		//內容列表
 		self.Data["asidepage"] = "root-services-topic-list"
-		self.TplNames = "root/services_topic_list.html"
+		self.TplNames = "root/services_topic_list"
 
 	case self.Ctx.Request.RequestURI == "/root-services":
 		//设置內容
 		self.Data["asidepage"] = "root_services"
-		self.TplNames = "root/services.html"
+		self.TplNames = "root/services"
 
 	}
 

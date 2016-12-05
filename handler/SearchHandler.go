@@ -1,18 +1,15 @@
 package handler
 
 import (
-	"net/http"
-
-	"github.com/Unknwon/com"
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
 	"github.com/insionng/zenpress/helper"
 	"github.com/insionng/zenpress/models"
 )
 
-func SearchHandler(self vodka.Context) error {
+func SearchHandler(self *macross.Context) error {
 	data := make(map[string]interface{})
 	if keyword := self.FormValue("keyword"); keyword != "" {
-		page := com.StrTo(self.Param("page")).MustInt()
+		page := self.Param("page").MustInt()
 		limit := 25
 
 		rcs := len(*models.SearchTopic(keyword, 0, 0, "id"))
@@ -25,5 +22,5 @@ func SearchHandler(self vodka.Context) error {
 	}
 
 	self.SetStore(data)
-	return self.Render(http.StatusOK, "search.html")
+	return self.Render("search")
 }

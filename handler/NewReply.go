@@ -2,52 +2,34 @@ package handler
 
 import (
 	"fmt"
-	"net/url"
-
-	"github.com/Unknwon/com"
-	"github.com/insionng/vodka"
+	"github.com/insionng/macross"
+	"github.com/insionng/macross/jwt"
 	"github.com/insionng/zenpress/models"
-	"github.com/vodka-contrib/session"
 )
 
-func NewReplyPostHandler(self vodka.Context) error {
-	tid := com.StrTo(self.FormValue("comment_parent")).MustInt64()
+func NewReplyPostHandler(self *macross.Context) error {
+	tid := self.Args("comment_parent").MustInt64()
 
-	sess := session.GetStore(self)
-	var user models.User
-	val := sess.Get("user")
-	if val != nil {
-		user = val.(models.User)
+	claims := jwt.GetMapClaims(self)
+	var uid int64
+	if jwtUserId, okay := claims["UserId"].(float64); okay {
+		uid = int64(jwtUserId)
+	}
+	var author string
+	if jwtUsername, okay := claims["Username"].(string); okay {
+		author = jwtUsername
 	}
 
-	sess_userid := user.Id
+	email := self.Args("email").String()
+	website := self.Args("website").String()
+	rc := self.Args("comment").String()
 
-	gmt, _ := self.Request().Cookie("gmt")
-
-	if gmt != nil {
-		gv := gmt.Value()
-
-		if _, err := url.QueryUnescape(gv); err == nil {
-
-			author := self.FormValue("author")
-			email := self.FormValue("email")
-			website := self.FormValue("website")
-			rc := self.FormValue("comment")
-
-			if author != "" && email != "" && tid != 0 && rc != "" {
-				if err := models.AddReply(tid, sess_userid, rc, author, email, website); err != nil {
-					return err
-				}
-				return self.Redirect(302, fmt.Sprintf("/view/", tid))
-			} else {
-				return self.Redirect(302, "/")
-			}
-		} else {
-			return self.Redirect(302, "/")
+	if author != "" && email != "" && tid != 0 && rc != "" {
+		if err := models.AddReply(tid, uid, rc, author, email, website); err != nil {
+			return err
 		}
-
-	} else {
-		return self.Redirect(302, "/")
+		return self.Redirect(fmt.Sprintf("/view/", tid), macross.StatusFound)
 	}
+	return self.Redirect("/", macross.StatusFound)
 
 }

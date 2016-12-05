@@ -41,20 +41,20 @@ func (self *RAdvantagesHandler) Get() {
 		self.Data["asidepage"] = "root_advantages_edit"
 		tid, _ := self.GetInt(":tid")
 		self.Data["topic"] = models.GetTopic(tid)
-		self.TplNames = "root/advantages.html"
+		self.TplNames = "root/advantages"
 		self.Render()
 
 	case self.Ctx.Request.RequestURI == "/root-advantages-list":
 		//優勢列表
 		self.Data["asidepage"] = "root-advantages-list"
 		self.Data["topics"] = models.GetAllTopicByCid(cid, 0, 0, 0, "asc")
-		self.TplNames = "root/advantages_list.html"
+		self.TplNames = "root/advantages_list"
 		self.Render()
 
 	default:
 		//设置優勢
 		self.Data["asidepage"] = "root_advantages"
-		self.TplNames = "root/advantages.html"
+		self.TplNames = "root/advantages"
 		self.Render()
 	}
 }

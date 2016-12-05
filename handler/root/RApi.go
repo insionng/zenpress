@@ -32,7 +32,7 @@ func (self *RApi) Get() {
 			editmid, _ := self.GetInt(":editmid")
 			img := models.GetFile(editmid)
 			self.Data["img"] = img
-			self.TplNames = "root/gallery_editurl.html"
+			self.TplNames = "root/gallery_editurl"
 			self.Render()
 		}
 
@@ -149,7 +149,7 @@ func (self *RApi) Get() {
 			self.Data["asidepage"] = "root_about_topic_edit"
 			self.Data["topic"] = tid_handler
 
-			self.TplNames = "root/about.html"
+			self.TplNames = "root/about"
 			self.Render()
 		}
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-topic-edit/([0-9]+)$"):
@@ -168,7 +168,7 @@ func (self *RApi) Get() {
 			self.Data["topic"] = tid_handler
 			self.Data["inode"] = models.GetNode(tid_handler.Nid)
 			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0, "id")
-			self.TplNames = "root/published.html"
+			self.TplNames = "root/published"
 			self.Render()
 		}
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-contact-topic-edit/([0-9]+)$"):
@@ -186,7 +186,7 @@ func (self *RApi) Get() {
 			self.Data["inode"] = models.GetNode(tid_handler.Nid)
 			self.Data["catpage"] = "contact"
 			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0, "id")
-			self.TplNames = "root/contact.html"
+			self.TplNames = "root/contact"
 			self.Render()
 		}
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-topic-edit/([0-9]+)$"):
@@ -205,7 +205,7 @@ func (self *RApi) Get() {
 			self.Data["topic"] = tid_handler
 			self.Data["inode"] = models.GetNode(tid_handler.Nid)
 			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0, "id")
-			self.TplNames = "root/published.html"
+			self.TplNames = "root/published"
 			self.Render()
 		}
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-information-topic-del/([0-9]+)$"):
@@ -253,7 +253,7 @@ func (self *RApi) Get() {
 			self.Data["catpage"] = "about"
 			self.Data["asidepage"] = "root_about_node_edit"
 			self.Data["node"] = models.GetNode(nid)
-			self.TplNames = "root/published_node.html"
+			self.TplNames = "root/published_node"
 			self.Render()
 		}
 
@@ -270,7 +270,7 @@ func (self *RApi) Get() {
 			self.Data["catpage"] = "contact"
 			self.Data["asidepage"] = "root_contact_node_edit"
 			self.Data["node"] = models.GetNode(nid)
-			self.TplNames = "root/published_node.html"
+			self.TplNames = "root/published_node"
 			self.Render()
 		}
 
@@ -287,7 +287,7 @@ func (self *RApi) Get() {
 			self.Data["catpage"] = "services"
 			self.Data["asidepage"] = "root_services_node_edit"
 			self.Data["node"] = models.GetNode(nid)
-			self.TplNames = "root/published_node.html"
+			self.TplNames = "root/published_node"
 			self.Render()
 		}
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-information-node-edit/([0-9]+)$"):
@@ -302,7 +302,7 @@ func (self *RApi) Get() {
 			self.Data["catpage"] = "information"
 			self.Data["asidepage"] = "root-information-node-edit"
 			self.Data["node"] = models.GetNode(nid)
-			self.TplNames = "root/published_node.html"
+			self.TplNames = "root/published_node"
 			self.Render()
 		}
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-crafts-node-edit/([0-9]+)$"):
@@ -317,7 +317,7 @@ func (self *RApi) Get() {
 			self.Data["catpage"] = "crafts"
 			self.Data["asidepage"] = "root-crafts-node-edit"
 			self.Data["node"] = models.GetNode(nid)
-			self.TplNames = "root/published_node.html"
+			self.TplNames = "root/published_node"
 			self.Render()
 		}
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-information-topic-edit/([0-9]+)$"):
@@ -336,7 +336,7 @@ func (self *RApi) Get() {
 			self.Data["topic"] = tid_handler
 			self.Data["inode"] = models.GetNode(tid_handler.Nid)
 			self.Data["nodes"] = models.GetAllNodeByCid(cid, 0, 0, 0, "id")
-			self.TplNames = "root/published.html"
+			self.TplNames = "root/published"
 			self.Render()
 		}
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-services-node-del/([0-9]+)$"):
@@ -410,7 +410,7 @@ func (self *RApi) Post() {
 				self.Data["MsgErr"] = "设置图片链接成功！"
 			}
 
-			self.TplNames = "root/gallery_editurl.html"
+			self.TplNames = "root/gallery_editurl"
 			self.Render()
 		}
 	case helper.Rex(self.Ctx.Request.RequestURI, "^/root-about-topic-edit/([0-9]+)$"):
