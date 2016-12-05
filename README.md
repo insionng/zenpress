@@ -16,6 +16,7 @@ Zenpress是一个灵感来源于wordpress的cms项目，最终目标是实现一
 --
 
 第三版基于[Vodka](https://github.com/insionng/vodka)框架和[Xorm](https://github.com/go-xorm/xorm)、[TiDB](https://github.com/pingcap/tidb)数据库于2016年10月7日更新。
+
 --
 
 第四版（目前最新版）基于[Macross](https://github.com/insionng/macross)框架和[Xorm](https://github.com/go-xorm/xorm)、[TiDB](https://github.com/pingcap/tidb)数据库，于2016年12月5日开始重写。
