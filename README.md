@@ -1,4 +1,4 @@
-<img src="static/zp.png" height="200"/>
+<img src="static/zp.png" height="200"></img>
 
 
 Zenpress
