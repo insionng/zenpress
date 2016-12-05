@@ -7,14 +7,14 @@ import (
 	"path"
 	"time"
 
+	"github.com/go-xorm/core"
 	_ "github.com/go-xorm/tidb"
+	"github.com/go-xorm/xorm"
 	_ "github.com/pingcap/tidb"
 
-	"github.com/go-xorm/core"
-	"github.com/go-xorm/xorm"
 	"github.com/insionng/zenpress/helper"
-	_ "github.com/insionng/zenpress/libraries/go-sql-driver/mysql"
-	_ "github.com/insionng/zenpress/libraries/lib/pq"
+	//_ "github.com/insionng/zenpress/libraries/go-sql-driver/mysql"
+	//_ "github.com/insionng/zenpress/libraries/lib/pq"
 )
 
 var (
@@ -179,7 +179,7 @@ type Kvs struct {
 func init() {
 
 	var err error
-	DataType = "mysql"
+	DataType = "goleveldb"
 	Engine, err = SetEngine()
 	if err != nil {
 		panic(fmt.Sprintf("Zenpress SetEngine errors:%v", err))
@@ -200,10 +200,10 @@ func ConDb() (*xorm.Engine, error) {
 		return xorm.NewEngine("tidb", "memory://tidb/tidb")
 
 	case DataType == "goleveldb":
-		return xorm.NewEngine("tidb", "goleveldb://./data/goleveldb")
+		return xorm.NewEngine("tidb", "goleveldb://../data/goleveldb")
 
 	case DataType == "boltdb":
-		return xorm.NewEngine("tidb", "boltdb://./data/boltdb")
+		return xorm.NewEngine("tidb", "boltdb://../data/boltdb")
 
 	case DataType == "mysql":
 		//return xorm.NewEngine("mysql", "root:YouPass@/db?charset=utf8")
@@ -230,7 +230,7 @@ func SetEngine() (*xorm.Engine, error) {
 		cacher := xorm.NewLRUCacher(xorm.NewMemoryStore(), 10240)
 		Engine.SetDefaultCacher(cacher)
 
-		logPath := path.Join("./logs", "xorm.log")
+		logPath := path.Join("../logs", "xorm.log")
 		os.MkdirAll(path.Dir(logPath), os.ModePerm)
 		f, err := os.Create(logPath)
 		if err != nil {

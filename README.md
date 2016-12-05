@@ -61,32 +61,12 @@ SudoChina社区 this site has been down.
 
 
 ## 感谢捐助或定制本项目的用户 排名按时间顺序
-    右建华 5000,定制版
-    李新友 5000,定制版
+    右建华 5k,定制版
+    李新友 5k,定制版
     孙 300,捐助者要求不公开全名
-    高栋 5000,定制版
-    吕雷 2000,购买源码
+    高栋 5k,定制版
+    吕雷 2k,购买源码
 
-
-##第二版安装请先更新安装beego和xorm
-
-    go get -u github.com/astaxie/beego
-    go get -u github.com/lunny/xorm
-
-##第一版安装请先更新torgo
-
-    go get -u github.com/insionng/torgo
-
-##Sqlite3安装(默认,当选择其他数据库时可忽略此项)
-	如果你默认使用Sqlite3安装,请确保已经安装sqlite3驱动，譬如64位的win7：
-	SQLITE3驱动编译环境是TDM版MINGW64(http://tdm-gcc.tdragon.net/)，
-    安装好后请把TDM版MINGW64的bin目录路径加入到你的win7环境变量path里面。
-
-
-	go get -u github.com/mattn/go-sqlite3
-
-    下载Zenpress源码后解压并cd切换目录到 Zenpress目录下，然后执行go build app.go，编译好后，运行./app即可。
-    默认用户:root,默认密码:rootpass
 
 
 安装
@@ -94,26 +74,6 @@ SudoChina社区 this site has been down.
     go get -u github.com/insionng/zenpress
 
 
-或者:
-
-Linux/Unix/Osx
-~~~
-cd gopath
-
-git clone https://github.com/insionng/zenpress.git
-
-cd zenpress
-chmod +x build.sh
-./build.sh
-./app
-~~~
-
-Windows
-~~~
-
-双击运行build.cmd进行编译,当然,前提是你的go编译环境健在...
-
-~~~
 
 ## 交流
 欢迎大家加入QQ专用交流群:231956113/作者QQ：547092001

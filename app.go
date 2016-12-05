@@ -47,9 +47,9 @@ func main() {
 	v.Get("/signout/", handler.SignoutHandler)
 
 	v.Any("/search/", handler.SearchHandler)
-	v.Get("/node/:nid/", handler.NodeHandler)
-	v.Get("/view/:tid/", handler.ViewHandler)
-	v.Get("/category/:cid/", handler.MainHandler)
+	v.Get("/node/<nid>/", handler.NodeHandler)
+	v.Get("/view/<tid>/", handler.ViewHandler)
+	v.Get("/category/<cid>/", handler.MainHandler)
 
 	r := v.Group("/apis/v1", jwt.JWTWithConfig(jwt.JWTConfig{
 		SigningKey: []byte("ZeNpReSe"),
@@ -64,7 +64,7 @@ func main() {
 	v.Get("/new/topic/", handler.NewTopicGetHandler)
 	r.Post("/new/topic/", handler.NewTopicPostHandler)
 
-	r.Post("/new/reply/:tid/", handler.NewReplyPostHandler)
+	r.Post("/new/reply/<tid>/", handler.NewReplyPostHandler)
 
 	v.Get("/modify/category/", handler.ModifyCatGetHandler)
 	r.Post("/modify/category/", handler.ModifyCatPostHandler)
@@ -72,21 +72,21 @@ func main() {
 	v.Get("/modify/node/", handler.ModifyNodeGetHandler)
 	r.Post("/modify/node/", handler.ModifyNodePostHandler)
 
-	r.Any("/topic/delete/:tid/", handler.TopicDeleteHandler)
+	r.Any("/topic/delete/<tid>/", handler.TopicDeleteHandler)
 
-	v.Get("/topic/edit/:tid/", handler.TopicEditGetHandler)
-	r.Post("/topic/edit/:tid/", handler.TopicEditPostHandler)
+	v.Get("/topic/edit/<tid>/", handler.TopicEditGetHandler)
+	r.Post("/topic/edit/<tid>/", handler.TopicEditPostHandler)
 
-	r.Any("/node/delete/:nid/", handler.NodeDeleteHandler)
+	r.Any("/node/delete/<nid>/", handler.NodeDeleteHandler)
 
-	v.Get("/node/edit/:nid/", handler.NodeEditGetHandler)
-	r.Post("/node/edit/:nid/", handler.NodeEditPostHandler)
+	v.Get("/node/edit/<nid>/", handler.NodeEditGetHandler)
+	r.Post("/node/edit/<nid>/", handler.NodeEditPostHandler)
 
-	r.Any("/delete/reply/:rid/", handler.DeleteReplyHandler)
+	r.Any("/delete/reply/<rid>/", handler.DeleteReplyHandler)
 
 	//hotness
-	r.Any("/like/:name/:id/", handler.LikeHandler)
-	r.Any("/hate/:name/:id/", handler.HateHandler)
+	r.Any("/like/<name>/<id>/", handler.LikeHandler)
+	r.Any("/hate/<name>/<id>/", handler.HateHandler)
 
 	v.Run(":9000")
 }

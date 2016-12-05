@@ -8,7 +8,7 @@ import (
 
 func SearchHandler(self *macross.Context) error {
 	data := make(map[string]interface{})
-	if keyword := self.FormValue("keyword"); keyword != "" {
+	if keyword := self.Args("keyword").String(); len(keyword) != 0 {
 		page := self.Param("page").MustInt()
 		limit := 25
 
