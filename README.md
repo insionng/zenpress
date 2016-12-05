@@ -1,5 +1,4 @@
-<img src="static/zp.png" height="200"></img>
-
+![Zenpress](https://github.com/insionng/zenpress/raw/master/static/ico/zp.png)
 
 Zenpress
 ===
