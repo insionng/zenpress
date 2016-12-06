@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func SigninGetHandler(self *macross.Context) error {
+func GetSigninHandler(self *macross.Context) error {
 
 	claims := jwt.GetMapClaims(self)
 	var uid int64
@@ -24,7 +24,7 @@ func SigninGetHandler(self *macross.Context) error {
 
 }
 
-func SigninPostHandler(self *macross.Context) error {
+func PostSigninHandler(self *macross.Context) error {
 	username := self.Args("username").String()
 	password := self.Args("password").String()
 

@@ -5,7 +5,7 @@ import (
 	"github.com/insionng/zenpress/models"
 )
 
-func ViewHandler(self *macross.Context) error {
+func GetViewHandler(self *macross.Context) error {
 
 	data := make(map[string]interface{})
 	tid := self.Param("tid").MustInt64()

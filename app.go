@@ -38,25 +38,26 @@ func main() {
 
 	v.Get("/", handler.MainHandler)
 
-	v.Get("/signup/", handler.SignupGetHandler)
-	v.Post("/signup/", handler.SignupPostHandler)
+	v.Get("/signup/", handler.GetSignupHandler)
+	v.Post("/signup/", handler.PostSignupHandler)
 
-	v.Get("/signin/", handler.SigninGetHandler)
-	v.Post("/signin/", handler.SigninPostHandler)
+	v.Get("/signin/", handler.GetSigninHandler)
+	v.Post("/signin/", handler.PostSigninHandler)
 
-	v.Get("/signout/", handler.SignoutHandler)
+	v.Get("/signout/", handler.GetSignoutHandler)
 
 	v.Any("/search/", handler.SearchHandler)
-	v.Get("/node/<nid>/", handler.NodeHandler)
-	v.Get("/view/<tid>/", handler.ViewHandler)
+	v.Get("/node/<nid>/", handler.GetNodeHandler)
+	v.Get("/view/<tid>/", handler.GetViewHandler)
 	v.Get("/category/<cid>/", handler.MainHandler)
 
 	r := v.Group("/apis/v1", jwt.JWTWithConfig(jwt.JWTConfig{
 		SigningKey: []byte("ZeNpReSe"),
 		Expires:    time.Minute * 60,
 	}))
-	v.Get("/new/category/", handler.NewCategoryGetHandler)
-	r.Post("/new/category/", handler.NewCategoryPostHandler)
+
+	v.Get("/new/category/", handler.GetNewCategoryHandler)
+	r.Post("/new/category/", handler.PostNewCategoryHandler)
 
 	v.Get("/new/node/", handler.NewNodeGetHandler)
 	r.Post("/new/node/", handler.NewNodePostHandler)

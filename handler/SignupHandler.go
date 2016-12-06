@@ -8,11 +8,11 @@ import (
 	"github.com/insionng/zenpress/models"
 )
 
-func SignupGetHandler(self *macross.Context) error {
+func GetSignupHandler(self *macross.Context) error {
 	return self.Render("signup")
 }
 
-func SignupPostHandler(self *macross.Context) error {
+func PostSignupHandler(self *macross.Context) error {
 
 	data := make(map[string]interface{})
 

@@ -5,11 +5,11 @@ import (
 	"github.com/insionng/zenpress/models"
 )
 
-func NewCategoryGetHandler(self *macross.Context) error {
+func GetNewCategoryHandler(self *macross.Context) error {
 	return self.Render("new_category")
 }
 
-func NewCategoryPostHandler(self *macross.Context) error {
+func PostNewCategoryHandler(self *macross.Context) error {
 
 	t := self.Args("title").String()
 	c := self.FormValue("content")

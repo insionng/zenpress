@@ -6,7 +6,7 @@ import (
 	"github.com/insionng/zenpress/models"
 )
 
-func NodeHandler(self *macross.Context) error {
+func GetNodeHandler(self *macross.Context) error {
 	data := make(map[string]interface{})
 	page := self.Param("page").MustInt64()
 	nid := self.Param("nid").MustInt64()
