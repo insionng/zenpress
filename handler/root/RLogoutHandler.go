@@ -1,7 +1,7 @@
 package root
 
 import (
-	"toropress/libs"
+	"github.com/insionng/zenpress/libs"
 )
 
 type RLogoutHandler struct {

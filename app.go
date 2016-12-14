@@ -14,6 +14,8 @@ import (
 	"github.com/insionng/macross/slash"
 	"github.com/insionng/macross/static"
 	"github.com/insionng/zenpress/handler"
+	"github.com/macross-contrib/session"
+	//_ "github.com/macross-contrib/session/redis"
 	"time"
 )
 
@@ -31,6 +33,9 @@ func main() {
 		TokenLookup: "header:X-XSRF-TOKEN",
 	}))
 	v.Use(cors.CORS())
+	v.Use(session.Sessioner(session.Options{"file", `{"cookieName":"MacrossSessionId","gcLifetime":3600,"ProviderConfig":"./data/session"}`}))
+	//v.Use(session.Sessioner(session.Options{"redis", `{"cookieName":"MacrossSessionId","gcLifetime":3600,"ProviderConfig":"127.0.0.1:6379"}`}))
+
 	v.Use(static.Static("static"))
 	v.SetRenderer(pongor.Renderor())
 

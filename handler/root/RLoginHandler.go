@@ -1,9 +1,9 @@
 package root
 
 import (
-	"toropress/helper"
-	"toropress/libs"
-	"toropress/models"
+	"github.com/insionng/zenpress/helper"
+	"github.com/insionng/zenpress/libs"
+	"github.com/insionng/zenpress/models"
 )
 
 type RLoginHandler struct {

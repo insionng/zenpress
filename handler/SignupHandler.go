@@ -2,10 +2,11 @@ package handler
 
 import (
 	"errors"
-	"fmt"
 	"github.com/insionng/macross"
 	"github.com/insionng/zenpress/helper"
 	"github.com/insionng/zenpress/models"
+	"github.com/macross-contrib/session"
+	"log"
 )
 
 func GetSignupHandler(self *macross.Context) error {
@@ -35,8 +36,6 @@ func PostSignupHandler(self *macross.Context) error {
 
 	pwd := helper.EncryptHash(password, nil)
 
-	//now := torgo.Date(time.Now(), "Y-m-d H:i:s")
-
 	userInfo := models.CheckUserByNickname(username)
 
 	//fmt.Println(userInfo.Nickname)
@@ -45,15 +44,18 @@ func PostSignupHandler(self *macross.Context) error {
 	if userInfo.Nickname == "" {
 
 		//注册用户
-		regErr := models.AddUser(username+"@your.com", username, "", pwd, 1)
-		fmt.Println("reg:s")
-		fmt.Println(regErr)
-		fmt.Println("reg:e ")
-		//注册成功设置session
-		//	self.SetSession("userid", userInfo.Id)
-		//	self.SetSession("username", userInfo.Nickname)
-		//	self.SetSession("userrole", userInfo.Role)
-		//	self.SetSession("useremail", userInfo.Email)
+		err := models.AddUser(username+"@your.com", username, "", pwd, 1)
+		if err != nil {
+			errors.New("AddUser Errors")
+		}
+
+		//注册成功设置Session
+		sess := session.GetStore(self)
+		err = sess.Set("username", userInfo.Nickname)
+		if err != nil {
+			log.Printf("sess.set %v \n", err)
+		}
+
 		return self.Redirect("/signin/", macross.StatusFound)
 
 	} else {
