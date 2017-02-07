@@ -6,59 +6,59 @@ import (
 	"github.com/insionng/macross/jwt"
 	"github.com/insionng/macross/logger"
 	"github.com/insionng/macross/pongor"
-	"github.com/insionng/macross/static"
 	"github.com/insionng/macross/recover"
+	"github.com/insionng/macross/static"
 	"github.com/insionng/zenpress/handler"
 	"github.com/insionng/zenpress/modules/auth"
-    "time"
+	"time"
 )
 
 func main() {
-    m := macross.New()
-    m.Use(logger.Logger())
-    m.Use(recover.Recover())
-    m.Use(cors.CORS())
-    m.Use(static.Static("public"))
+	m := macross.New()
+	m.Use(logger.Logger())
+	m.Use(recover.Recover())
+	m.Use(cors.CORS())
+	m.Use(static.Static("static"))
 	m.SetRenderer(pongor.Renderor(pongor.PongorOption{
-		Reload:    true,
+		Reload: true,
 	}))
 
-    m.Get("/", func(self *macross.Context) error {
-        return self.Render("index")
-    })
+	m.Get("/", func(self *macross.Context) error {
+		return self.Render("index")
+	})
 
-    var secret = "secret"
-    var exprires = time.Minute * 60
-    // Before you return to the user token, first through a password authenticating the user
-    m.Post("/signin/", func(self *macross.Context) error {
+	var secret = "secret"
+	var exprires = time.Minute * 60
+	// Before you return to the user token, first through a password authenticating the user
+	m.Post("/signin/", func(self *macross.Context) error {
 
-        username := self.Args("username").String()
-        password := self.Args("password").String()
-        if (username == "insion") && (password == "PaSsworD") {
-            claims := jwt.NewMapClaims()
-            claims["UserId"] = 1
-            claims["exp"] = time.Now().Add(exprires).Unix()
+		username := self.Args("username").String()
+		password := self.Args("password").String()
+		if (username == "insion") && (password == "PaSsworD") {
+			claims := jwt.NewMapClaims()
+			claims["UserId"] = 1
+			claims["exp"] = time.Now().Add(exprires).Unix()
 
-            tk, _ := jwt.NewTokenString(secret, "HS256", claims)
+			tk, _ := jwt.NewTokenString(secret, "HS256", claims)
 
-            var data = map[string]interface{}{}
-            data["token"] = tk
+			var data = map[string]interface{}{}
+			data["token"] = tk
 
-            return self.JSON(data)
-        }
+			return self.JSON(data)
+		}
 
-        herr := new(macross.HTTPError)
-        herr.Message = "ErrUnauthorized"
-        herr.Status = macross.StatusUnauthorized
-        return self.JSON(herr, macross.StatusUnauthorized)
+		herr := new(macross.HTTPError)
+		herr.Message = "ErrUnauthorized"
+		herr.Status = macross.StatusUnauthorized
+		return self.JSON(herr, macross.StatusUnauthorized)
 
-    })
+	})
 
-    m.Get("/apis/", func(self *macross.Context) error {
-        var m = map[string]interface{}{}
-        m["version"] = "1.0.0"
-        return self.JSON(m)
-    })
+	m.Get("/apis/", func(self *macross.Context) error {
+		var m = map[string]interface{}{}
+		m["version"] = "1.0.0"
+		return self.JSON(m)
+	})
 
 	jwt.DefaultJWTConfig.SigningKey = secret
 	jwt.DefaultJWTConfig.Expires = time.Minute * 60
@@ -5274,5 +5274,5 @@ func main() {
 	j.Put("/update/users/user-status/", handler.PutUpdateUsersByUserStatusHandler)
 	j.Put("/update/users/user-url/", handler.PutUpdateUsersByUserUrlHandler)
 
-    m.Listen(7891)
+	m.Listen(7891)
 }
