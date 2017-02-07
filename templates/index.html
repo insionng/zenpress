@@ -1,283 +1,92 @@
-{%extends "base.html"%}
-{% block mainland %}
-<div class="tabbable">
-  <!-- Only required for left/right tabs -->
-  <ul class="nav nav-tabs">
-    <li{%if curtab==0%} class="active"{%endif%}{%if curtab==1%} class="active"{%endif%}><a href="#tab1" data-toggle="tab">最新话题</a></li>
-    <li{%if curtab==2%} class="active"{%endif%}><a href="#tab2" data-toggle="tab">最热话题</a></li>
-    <li{%if curtab==3%} class="active"{%endif%}><a href="#tab3" data-toggle="tab">话题点击榜</a></li>
-    <li{%if curtab==4%} class="active"{%endif%}><a href="#tab4" data-toggle="tab">话题评论榜</a></li>
-
-    <li{%if curtab==5%} class="active"{%endif%}><a href="#tab5" data-toggle="tab">最新节点</a></li>
-    <li{%if curtab==6%} class="active"{%endif%}><a href="#tab6" data-toggle="tab">最热节点</a></li>
-  </ul>
-
-  <div class="tab-content">
-    {# Userrole = Userrole#}
-    <div class="tab-pane{%if curtab==0%} active{%endif%}{%if curtab==1%} active{%endif%}" id="tab1">
-      <!-- Posts area -->
-      <h3><span>日志章节</span></h3>
-      <div class="posts">
-      {% for topic in topics_latest %}
-      <div class="entry" id="post-{{Id}}">
-            {%if Attachment%}
-                        <div class="thumb">
-                           <a href="/view/{{Id}}" rel="bookmark"><img width="130" height="130" src="{{Attachment}}" class="attachment-post-thumbnail wp-post-image" alt="{{Title}}" title="{{Title}}" /></a>
-                        </div>
-            {%endif%}
-                        <div class="matter">
-                        
-                          <h2><a rel="bookmark" href="/view/{{Id}}" title="{{Title}}">{{Title}}</a></h2>
-
-                           <div class="meta"><i class="icon-calendar"></i>本话题 {{Author}} 发表于{#dateformat Created "January 2 , 2006 at 15:04 am"#} - <i class="icon-folder-open"></i> <a href="/view/{{Id}}" title="{{Views}}个点击">{{Views}}点击</a> - <i class="icon-comment"></i> <a href="/view/{{Id}}#respond" title="{{ReplyCount}} 个评论">{{ReplyCount}} 评论</a>
-                           </div>
-                            <div>
-                              {#cs:=html2str Content#}
-                              {#cs:=substr cs 0 150#}
-                              {#str2html cs#}
-                            </div>
-                        </div>
-                <div>
-                  {%if Userrole==-1000%}
-                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/topic/edit/{{Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/topic/delete/{{Id}}">删除 &raquo;</a></span>
-                  {%endif%}
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/{{Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/{{Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'>恶心 &raquo;</a></span>
-                </div>
-                        <div class="clearfix"></div>
-      </div>
-      {% endfor %}
-
-      <!-- Pagination -->
-          {{topics_pagesbar_tab1}}
-        <div class="clearfix"></div>   
-      </div>
-    </div>
-    <div class="tab-pane{%if curtab==2%} active{%endif%}" id="tab2">
-      <!-- Posts area -->
-      <h3><span>日志章节</span></h3>
-      <div class="posts">
-      {% for topic in topics_hotness %}
-      <div class="entry" id="post-{{Id}}">
-        {%if Attachment%}
-                        <div class="thumb">
-                           <a href="/view/{{Id}}" rel="bookmark"><img width="130" height="130" src="{{Attachment}}" class="attachment-post-thumbnail wp-post-image" alt="{{Title}}" title="{{Title}}" /></a>
-                        </div>
-        {%endif%}
-                        <div class="matter">
-                        
-                          <h2><a rel="bookmark" href="/view/{{Id}}" title="{{Title}}">{{Title}}</a></h2>
-
-                           <div class="meta"><i class="icon-calendar"></i>本话题 {{Author}} 发表于{#dateformat Created "January 2 , 2006 at 15:04 am"#} - <i class="icon-folder-open"></i> <a href="/view/{{Id}}" title="{{Views}}个点击">{{Views}}点击</a> - <i class="icon-comment"></i> <a href="/view/{{Id}}#respond" title="{{ReplyCount}} 个评论">{{ReplyCount}} 评论</a>
-                           </div>
-                            <div>
-                              {#cs:=html2str Content#}
-                              {#cs:=substr cs 0 150#}
-                              {#str2html cs#}
-                            </div>
-                        </div>
-                <div>
-                  {%if Userrole==-1000%}
-                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/topic/edit/{{Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/topic/delete/{{Id}}">删除 &raquo;</a></span>
-                  {%endif%}
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/{{Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/{{Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'>恶心 &raquo;</a></span>
-                </div>
-                        <div class="clearfix"></div>
-      </div>
-      {% endfor %}
-
-      <!-- Pagination -->
-          {{topics_pagesbar_tab2}}
-        <div class="clearfix"></div>   
-      </div>
-    </div>
-    <div class="tab-pane{%if curtab==3%} active{%endif%}" id="tab3">
-      <!-- Posts area -->
-      <h3><span>日志章节</span></h3>
-      <div class="posts">
-      {% for topic in topics_views %}
-      <div class="entry" id="post-{{Id}}">
-            {%if Attachment%}
-                        <div class="thumb">
-                           <a href="/view/{{Id}}" rel="bookmark"><img width="130" height="130" src="{{Attachment}}" class="attachment-post-thumbnail wp-post-image" alt="{{Title}}" title="{{Title}}" /></a>
-                        </div>
-            {%endif%}
-                        <div class="matter">
-                        
-                          <h2><a rel="bookmark" href="/view/{{Id}}" title="{{Title}}">{{Title}}</a></h2>
-
-                           <div class="meta"><i class="icon-calendar"></i>本话题 {{Author}} 发表于{#dateformat Created "January 2 , 2006 at 15:04 am"#} - <i class="icon-folder-open"></i> <a href="/view/{{Id}}" title="{{Views}}个点击">{{Views}}点击</a> - <i class="icon-comment"></i> <a href="/view/{{Id}}#respond" title="{{ReplyCount}} 个评论">{{ReplyCount}} 评论</a>
-                           </div>
-                            <div>
-                              {#cs:=html2str Content#}
-                              {#cs:=substr cs 0 150#}
-                              {#str2html cs#}
-                            </div>
-                        </div>
-                <div>
-                  {%if Userrole==-1000%}
-                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/topic/edit/{{Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/topic/delete/{{Id}}">删除 &raquo;</a></span>
-                  {%endif%}
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/{{Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/{{Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'>恶心 &raquo;</a></span>
-                </div>
-                        <div class="clearfix"></div>
-      </div>
-      {% endfor %}
-
-      <!-- Pagination -->
-          {{topics_pagesbar_tab3}}
-        <div class="clearfix"></div>   
-      </div>
-    </div>
-    <div class="tab-pane{%if curtab==4%} active{%endif%}" id="tab4">
-      <!-- Posts area -->
-      <h3><span>日志章节</span></h3>
-      <div class="posts">
-      {% for topic in topics_reply_count %}
-      <div class="entry" id="post-{{Id}}">
-            {%if Attachment%}
-                        <div class="thumb">
-                           <a href="/view/{{Id}}" rel="bookmark"><img width="130" height="130" src="{{Attachment}}" class="attachment-post-thumbnail wp-post-image" alt="{{Title}}" title="{{Title}}" /></a>
-                        </div>
-            {%endif%}
-                        <div class="matter">
-                        
-                          <h2><a rel="bookmark" href="/view/{{Id}}" title="{{Title}}">{{Title}}</a></h2>
-
-                           <div class="meta"><i class="icon-calendar"></i>本话题 {{Author}} 发表于{#dateformat Created "January 2 , 2006 at 15:04 am"#} - <i class="icon-folder-open"></i> <a href="/view/{{Id}}" title="{{Views}}个点击">{{Views}}点击</a> - <i class="icon-comment"></i> <a href="/view/{{Id}}#respond" title="{{ReplyCount}} 个评论">{{ReplyCount}} 评论</a>
-                           </div>
-                            <div>
-                              {#cs:=html2str Content#}
-                              {#cs:=substr cs 0 150#}
-                              {#str2html cs#}
-                            </div>
-                        </div>
-                <div>
-                  {%if Userrole==-1000%}
-                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/topic/edit/{{Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/topic/delete/{{Id}}">删除 &raquo;</a></span>
-                  {%endif%}
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/topic/{{Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                  <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/topic/{{Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'>恶心 &raquo;</a></span>
-                </div>
-                        <div class="clearfix"></div>
-      </div>
-      {% endfor %}
-
-      <!-- Pagination -->
-          {{topics_pagesbar_tab4}}
-        <div class="clearfix"></div>   
-      </div>
-    </div>
-    <div class="tab-pane{%if curtab==5%} active{%endif%}" id="tab5">
-      <!-- Posts area -->
-      <h3><span>最新节点</span></h3>
-      <div class="posts">
-      {% for node in nodes_latest %}
-        <div class="entry" id="post-{{Id}}">
-          {%if Attachment%}
-          <div class="thumb">
-             <a href="/node/{{Id}}" rel="bookmark"><img width="130" height="130" src="{{Attachment}}" class="attachment-post-thumbnail wp-post-image" alt="{{Title}}" title="{{Title}}" /></a>
-          </div>
-          {%endif%}
-          <div class="matter">
-            <h2><a rel="bookmark" href="/node/{{Id}}" title="{{Title}}">{{Title}}</a></h2>
-
-                <div class="meta"><i class="icon-calendar"></i>本节点创建于{#dateformat Created "January 2 , 2006 at 15:04 am"#} - <i class="icon-folder-open"></i> <a href="/node/{{Id}}" title="{{Views}}个点击">{{Views}}点击</a> - <i class="icon-comment"></i> <a href="/node/{{Id}}" title="{{TopicCount}}个话题">
-                  {{TopicCount}}话题</a>
-                           </div>
-                           <div>
-                              {#cs:=html2str Content#}
-                              {#cs:=substr cs 0 150#}
-                              {#str2html cs#}
-                           </div>
-                <div>
-                  {%if Userrole==-1000%}
-                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/node/edit/{{Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/node/delete/{{Id}}">删除 &raquo;</a></span>
-                  {%endif%}
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/node/{{Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>喜欢 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/node/{{Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'>恶心 &raquo;</a></span>
-                </div>
-          </div>
-          <div class="clearfix"></div>
+<!DOCTYPE html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <title></title>
+    <link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type='text/css'>
+        table thead tr th {
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div style='padding:20px;' id='app'>
+        <div class='panel panel-primary'>
+            <div class='panel-heading'>用户管理</div>
+            <table class='table table-bordered table-striped text-center'>
+                <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>年龄</th>
+                        <th>毕业学校</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template v-for='row in rows '>
+                        <tr><td>{{row.Name}}</td><td>{{row.Age}}</td><td>{{row.School}}</td><td>{{row.Remark}}</td>
+                        <td><a href='#' @click='Edit(row)'>编辑</a>&nbsp;&nbsp;<a href='#' @click='Delete(row.Id)'>删除</a></td>
+                        </tr>
+                    </template>
+                    <tr>
+                        <td><input type='text' class='form-control' v-model='rowtemplate.Name' /></td>
+                        <td><input type='text' class='form-control' v-model='rowtemplate.Age' /></td>
+                        <td><select class='form-control' v-model='rowtemplate.School'>
+   　　　　　　　　　　　　　　　　 <option>中山小学</option>
+    　　　　　　　　　　　　　　　　<option>复兴中学</option>
+    　　　　　　　　　　　　　　　　<option>光明小学</option>
+　　　　　　　　　　　　　　　　</select></td>
+                        <td><input type='text' class='form-control' v-model='rowtemplate.Remark' /></td>
+                        <td><button type='button' class='btn btn-primary' v-on:click='Save'>保存</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-      {% endfor %}
-
-      <!-- Pagination -->
-          {{nodes_pagesbar_tab5}}
-        <div class="clearfix"></div>   
-      </div>
     </div>
-    <div class="tab-pane{%if curtab==6%} active{%endif%}" id="tab6">
-      <!-- Posts area -->
-      <h3><span>热门节点</span></h3>
-      <div class="posts">
-      {% for node in nodes_hotness %}
-        <div class="entry" id="post-{{Id}}">
-        {%if Attachment%}
-          <div class="thumb">
-             <a href="/node/{{Id}}" rel="bookmark"><img width="130" height="130" src="{{Attachment}}" class="attachment-post-thumbnail wp-post-image" alt="{{Title}}" title="{{Title}}" /></a>
-          </div>
-        {%endif%}
-          <div class="matter">
-            <h2><a rel="bookmark" href="/node/{{Id}}" title="{{Title}}">{{Title}}</a></h2>
-
-                <div class="meta"><i class="icon-calendar"></i>本节点创建于{#dateformat Created "January 2 , 2006 at 15:04 am"#} - <i class="icon-folder-open"></i> <a href="/node/{{Id}}" title="{{Views}}个点击">{{Views}}点击</a> - <i class="icon-comment"></i> <a href="/node/{{Id}}" title="{{TopicCount}}个话题">
-                  {{TopicCount}}话题</a>
-                           </div>
-                           <div>
-                              {#cs:=html2str Content#}
-                              {#cs:=substr cs 0 150#}
-                              {#str2html cs#}
-                           </div>
-                <div>
-                  {%if Userrole==-1000%}
-                      <span><i class="fa-icon-user"></i> <a class="btn btn-mini" href="/node/edit/{{Id}}">编辑 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" href="/node/delete/{{Id}}">删除 &raquo;</a></span>
-                  {%endif%}
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/like/node/{{Id}}", context: document.body, success: function(){
-               alert("喜欢成功！");
-            }});'>赞 &raquo;</a></span>
-                      <span><i class="fa-icon-heart-empty"></i> <a class="btn btn-mini" onclick='javascript:$.ajax({ url: "/hate/node/{{Id}}", context: document.body, success: function(){
-               alert("恶心成功！");
-            }});'>贬 &raquo;</a></span>
-                </div>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-      {% endfor %}
-
-      <!-- Pagination -->
-          {{nodes_pagesbar_tab6}}
-        <div class="clearfix"></div>   
-      </div>
-    </div>
-  </div>
-</div>
-{% endblock mainland %}
+    <script src='/jquery-3.1.1.min.js'></script>
+    <script src="/vue-2.1.10/dist/vue.min.js"></script>
+    <script type='text/javascript'>
+        //Model
+        var data = {
+            rows: [
+            { Id: 1, Name: '小明', Age: 18, School: '光明小学', Remark: '三好学生' },
+            { Id: 2, Name: '小刚', Age: 20, School: '复兴中学', Remark: '优秀班干部' },
+            { Id: 3, Name: '吉姆格林', Age: 19, School: '光明小学', Remark: '吉姆做了汽车公司经理' },
+            { Id: 4, Name: '李雷', Age: 25, School: '复兴中学', Remark: '不老实的家伙' },
+            { Id: 5, Name: '韩梅梅', Age: 22, School: '光明小学', Remark: '在一起' },
+            ],
+            rowtemplate: { Id: 0, Name: '', Age: '', School: '', Remark: '' }
+        };
+    //ViewModel
+    var vue = new Vue({
+        el: '#app',
+        data: data,
+        methods: {
+            Save: function (event) {
+                if (this.rowtemplate.Id == 0) {
+                    //设置当前新增行的Id
+                    this.rowtemplate.Id = this.rows.length + 1;
+                    this.rows.push(this.rowtemplate);
+                }
+                
+                //还原模板
+                this.rowtemplate = { Id: 0, Name: '', Age: '', School: '', Remark: '' }
+            },
+            Delete: function (id) {
+                //实际项目中参数操作肯定会涉及到id去后台删除，这里只是展示，先这么处理。
+                for (var i=0;i<this.rows.length;i++){
+                    if (this.rows[i].Id == id) {
+                        this.rows.splice(i, 1);
+                        break;
+                    }
+                }
+            },
+            Edit: function (row) {
+                this.rowtemplate = row;
+            }
+        }
+    });
+    </script>
+</body>
+</html>
