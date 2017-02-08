@@ -24,68 +24,68 @@ func GetSignupsesCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetSignupsCountBySignupId Get Signups via SignupId
-func GetSignupsCountBySignupId(iSignupId int64) int64 {
+// GetSignupsCountViaSignupId Get Signups via SignupId
+func GetSignupsCountViaSignupId(iSignupId int64) int64 {
 	n, _ := Engine.Where("signup_id = ?", iSignupId).Count(&Signups{SignupId: iSignupId})
 	return n
 }
 
-// GetSignupsCountByDomain Get Signups via Domain
-func GetSignupsCountByDomain(iDomain string) int64 {
+// GetSignupsCountViaDomain Get Signups via Domain
+func GetSignupsCountViaDomain(iDomain string) int64 {
 	n, _ := Engine.Where("domain = ?", iDomain).Count(&Signups{Domain: iDomain})
 	return n
 }
 
-// GetSignupsCountByPath Get Signups via Path
-func GetSignupsCountByPath(iPath string) int64 {
+// GetSignupsCountViaPath Get Signups via Path
+func GetSignupsCountViaPath(iPath string) int64 {
 	n, _ := Engine.Where("path = ?", iPath).Count(&Signups{Path: iPath})
 	return n
 }
 
-// GetSignupsCountByTitle Get Signups via Title
-func GetSignupsCountByTitle(iTitle string) int64 {
+// GetSignupsCountViaTitle Get Signups via Title
+func GetSignupsCountViaTitle(iTitle string) int64 {
 	n, _ := Engine.Where("title = ?", iTitle).Count(&Signups{Title: iTitle})
 	return n
 }
 
-// GetSignupsCountByUserLogin Get Signups via UserLogin
-func GetSignupsCountByUserLogin(iUserLogin string) int64 {
+// GetSignupsCountViaUserLogin Get Signups via UserLogin
+func GetSignupsCountViaUserLogin(iUserLogin string) int64 {
 	n, _ := Engine.Where("user_login = ?", iUserLogin).Count(&Signups{UserLogin: iUserLogin})
 	return n
 }
 
-// GetSignupsCountByUserEmail Get Signups via UserEmail
-func GetSignupsCountByUserEmail(iUserEmail string) int64 {
+// GetSignupsCountViaUserEmail Get Signups via UserEmail
+func GetSignupsCountViaUserEmail(iUserEmail string) int64 {
 	n, _ := Engine.Where("user_email = ?", iUserEmail).Count(&Signups{UserEmail: iUserEmail})
 	return n
 }
 
-// GetSignupsCountByRegistered Get Signups via Registered
-func GetSignupsCountByRegistered(iRegistered time.Time) int64 {
+// GetSignupsCountViaRegistered Get Signups via Registered
+func GetSignupsCountViaRegistered(iRegistered time.Time) int64 {
 	n, _ := Engine.Where("registered = ?", iRegistered).Count(&Signups{Registered: iRegistered})
 	return n
 }
 
-// GetSignupsCountByActivated Get Signups via Activated
-func GetSignupsCountByActivated(iActivated time.Time) int64 {
+// GetSignupsCountViaActivated Get Signups via Activated
+func GetSignupsCountViaActivated(iActivated time.Time) int64 {
 	n, _ := Engine.Where("activated = ?", iActivated).Count(&Signups{Activated: iActivated})
 	return n
 }
 
-// GetSignupsCountByActive Get Signups via Active
-func GetSignupsCountByActive(iActive int) int64 {
+// GetSignupsCountViaActive Get Signups via Active
+func GetSignupsCountViaActive(iActive int) int64 {
 	n, _ := Engine.Where("active = ?", iActive).Count(&Signups{Active: iActive})
 	return n
 }
 
-// GetSignupsCountByActivationKey Get Signups via ActivationKey
-func GetSignupsCountByActivationKey(iActivationKey string) int64 {
+// GetSignupsCountViaActivationKey Get Signups via ActivationKey
+func GetSignupsCountViaActivationKey(iActivationKey string) int64 {
 	n, _ := Engine.Where("activation_key = ?", iActivationKey).Count(&Signups{ActivationKey: iActivationKey})
 	return n
 }
 
-// GetSignupsCountByMeta Get Signups via Meta
-func GetSignupsCountByMeta(iMeta string) int64 {
+// GetSignupsCountViaMeta Get Signups via Meta
+func GetSignupsCountViaMeta(iMeta string) int64 {
 	n, _ := Engine.Where("meta = ?", iMeta).Count(&Signups{Meta: iMeta})
 	return n
 }
@@ -1637,85 +1637,85 @@ func GetSignupses(offset int, limit int, field string) (*[]*Signups, error) {
 	return _Signups, err
 }
 
-// GetSignupsesBySignupId Get Signupss via SignupId
-func GetSignupsesBySignupId(offset int, limit int, SignupId_ int64, field string) (*[]*Signups, error) {
+// GetSignupsesViaSignupId Get Signupss via SignupId
+func GetSignupsesViaSignupId(offset int, limit int, SignupId_ int64, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("signup_id = ?", SignupId_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// GetSignupsesByDomain Get Signupss via Domain
-func GetSignupsesByDomain(offset int, limit int, Domain_ string, field string) (*[]*Signups, error) {
+// GetSignupsesViaDomain Get Signupss via Domain
+func GetSignupsesViaDomain(offset int, limit int, Domain_ string, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("domain = ?", Domain_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// GetSignupsesByPath Get Signupss via Path
-func GetSignupsesByPath(offset int, limit int, Path_ string, field string) (*[]*Signups, error) {
+// GetSignupsesViaPath Get Signupss via Path
+func GetSignupsesViaPath(offset int, limit int, Path_ string, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("path = ?", Path_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// GetSignupsesByTitle Get Signupss via Title
-func GetSignupsesByTitle(offset int, limit int, Title_ string, field string) (*[]*Signups, error) {
+// GetSignupsesViaTitle Get Signupss via Title
+func GetSignupsesViaTitle(offset int, limit int, Title_ string, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("title = ?", Title_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// GetSignupsesByUserLogin Get Signupss via UserLogin
-func GetSignupsesByUserLogin(offset int, limit int, UserLogin_ string, field string) (*[]*Signups, error) {
+// GetSignupsesViaUserLogin Get Signupss via UserLogin
+func GetSignupsesViaUserLogin(offset int, limit int, UserLogin_ string, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("user_login = ?", UserLogin_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// GetSignupsesByUserEmail Get Signupss via UserEmail
-func GetSignupsesByUserEmail(offset int, limit int, UserEmail_ string, field string) (*[]*Signups, error) {
+// GetSignupsesViaUserEmail Get Signupss via UserEmail
+func GetSignupsesViaUserEmail(offset int, limit int, UserEmail_ string, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("user_email = ?", UserEmail_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// GetSignupsesByRegistered Get Signupss via Registered
-func GetSignupsesByRegistered(offset int, limit int, Registered_ time.Time, field string) (*[]*Signups, error) {
+// GetSignupsesViaRegistered Get Signupss via Registered
+func GetSignupsesViaRegistered(offset int, limit int, Registered_ time.Time, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("registered = ?", Registered_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// GetSignupsesByActivated Get Signupss via Activated
-func GetSignupsesByActivated(offset int, limit int, Activated_ time.Time, field string) (*[]*Signups, error) {
+// GetSignupsesViaActivated Get Signupss via Activated
+func GetSignupsesViaActivated(offset int, limit int, Activated_ time.Time, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("activated = ?", Activated_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// GetSignupsesByActive Get Signupss via Active
-func GetSignupsesByActive(offset int, limit int, Active_ int, field string) (*[]*Signups, error) {
+// GetSignupsesViaActive Get Signupss via Active
+func GetSignupsesViaActive(offset int, limit int, Active_ int, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("active = ?", Active_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// GetSignupsesByActivationKey Get Signupss via ActivationKey
-func GetSignupsesByActivationKey(offset int, limit int, ActivationKey_ string, field string) (*[]*Signups, error) {
+// GetSignupsesViaActivationKey Get Signupss via ActivationKey
+func GetSignupsesViaActivationKey(offset int, limit int, ActivationKey_ string, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("activation_key = ?", ActivationKey_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// GetSignupsesByMeta Get Signupss via Meta
-func GetSignupsesByMeta(offset int, limit int, Meta_ string, field string) (*[]*Signups, error) {
+// GetSignupsesViaMeta Get Signupss via Meta
+func GetSignupsesViaMeta(offset int, limit int, Meta_ string, field string) (*[]*Signups, error) {
 	var _Signups = new([]*Signups)
 	err := Engine.Table("signups").Where("meta = ?", Meta_).Limit(limit, offset).Desc(field).Find(_Signups)
 	return _Signups, err
 }
 
-// HasSignupsBySignupId Has Signups via SignupId
-func HasSignupsBySignupId(iSignupId int64) bool {
+// HasSignupsViaSignupId Has Signups via SignupId
+func HasSignupsViaSignupId(iSignupId int64) bool {
 	if has, err := Engine.Where("signup_id = ?", iSignupId).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1726,8 +1726,8 @@ func HasSignupsBySignupId(iSignupId int64) bool {
 	}
 }
 
-// HasSignupsByDomain Has Signups via Domain
-func HasSignupsByDomain(iDomain string) bool {
+// HasSignupsViaDomain Has Signups via Domain
+func HasSignupsViaDomain(iDomain string) bool {
 	if has, err := Engine.Where("domain = ?", iDomain).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1738,8 +1738,8 @@ func HasSignupsByDomain(iDomain string) bool {
 	}
 }
 
-// HasSignupsByPath Has Signups via Path
-func HasSignupsByPath(iPath string) bool {
+// HasSignupsViaPath Has Signups via Path
+func HasSignupsViaPath(iPath string) bool {
 	if has, err := Engine.Where("path = ?", iPath).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1750,8 +1750,8 @@ func HasSignupsByPath(iPath string) bool {
 	}
 }
 
-// HasSignupsByTitle Has Signups via Title
-func HasSignupsByTitle(iTitle string) bool {
+// HasSignupsViaTitle Has Signups via Title
+func HasSignupsViaTitle(iTitle string) bool {
 	if has, err := Engine.Where("title = ?", iTitle).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1762,8 +1762,8 @@ func HasSignupsByTitle(iTitle string) bool {
 	}
 }
 
-// HasSignupsByUserLogin Has Signups via UserLogin
-func HasSignupsByUserLogin(iUserLogin string) bool {
+// HasSignupsViaUserLogin Has Signups via UserLogin
+func HasSignupsViaUserLogin(iUserLogin string) bool {
 	if has, err := Engine.Where("user_login = ?", iUserLogin).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1774,8 +1774,8 @@ func HasSignupsByUserLogin(iUserLogin string) bool {
 	}
 }
 
-// HasSignupsByUserEmail Has Signups via UserEmail
-func HasSignupsByUserEmail(iUserEmail string) bool {
+// HasSignupsViaUserEmail Has Signups via UserEmail
+func HasSignupsViaUserEmail(iUserEmail string) bool {
 	if has, err := Engine.Where("user_email = ?", iUserEmail).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1786,8 +1786,8 @@ func HasSignupsByUserEmail(iUserEmail string) bool {
 	}
 }
 
-// HasSignupsByRegistered Has Signups via Registered
-func HasSignupsByRegistered(iRegistered time.Time) bool {
+// HasSignupsViaRegistered Has Signups via Registered
+func HasSignupsViaRegistered(iRegistered time.Time) bool {
 	if has, err := Engine.Where("registered = ?", iRegistered).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1798,8 +1798,8 @@ func HasSignupsByRegistered(iRegistered time.Time) bool {
 	}
 }
 
-// HasSignupsByActivated Has Signups via Activated
-func HasSignupsByActivated(iActivated time.Time) bool {
+// HasSignupsViaActivated Has Signups via Activated
+func HasSignupsViaActivated(iActivated time.Time) bool {
 	if has, err := Engine.Where("activated = ?", iActivated).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1810,8 +1810,8 @@ func HasSignupsByActivated(iActivated time.Time) bool {
 	}
 }
 
-// HasSignupsByActive Has Signups via Active
-func HasSignupsByActive(iActive int) bool {
+// HasSignupsViaActive Has Signups via Active
+func HasSignupsViaActive(iActive int) bool {
 	if has, err := Engine.Where("active = ?", iActive).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1822,8 +1822,8 @@ func HasSignupsByActive(iActive int) bool {
 	}
 }
 
-// HasSignupsByActivationKey Has Signups via ActivationKey
-func HasSignupsByActivationKey(iActivationKey string) bool {
+// HasSignupsViaActivationKey Has Signups via ActivationKey
+func HasSignupsViaActivationKey(iActivationKey string) bool {
 	if has, err := Engine.Where("activation_key = ?", iActivationKey).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1834,8 +1834,8 @@ func HasSignupsByActivationKey(iActivationKey string) bool {
 	}
 }
 
-// HasSignupsByMeta Has Signups via Meta
-func HasSignupsByMeta(iMeta string) bool {
+// HasSignupsViaMeta Has Signups via Meta
+func HasSignupsViaMeta(iMeta string) bool {
 	if has, err := Engine.Where("meta = ?", iMeta).Get(new(Signups)); err != nil {
 		return false
 	} else {
@@ -1846,8 +1846,8 @@ func HasSignupsByMeta(iMeta string) bool {
 	}
 }
 
-// GetSignupsBySignupId Get Signups via SignupId
-func GetSignupsBySignupId(iSignupId int64) (*Signups, error) {
+// GetSignupsViaSignupId Get Signups via SignupId
+func GetSignupsViaSignupId(iSignupId int64) (*Signups, error) {
 	var _Signups = &Signups{SignupId: iSignupId}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1857,8 +1857,8 @@ func GetSignupsBySignupId(iSignupId int64) (*Signups, error) {
 	}
 }
 
-// GetSignupsByDomain Get Signups via Domain
-func GetSignupsByDomain(iDomain string) (*Signups, error) {
+// GetSignupsViaDomain Get Signups via Domain
+func GetSignupsViaDomain(iDomain string) (*Signups, error) {
 	var _Signups = &Signups{Domain: iDomain}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1868,8 +1868,8 @@ func GetSignupsByDomain(iDomain string) (*Signups, error) {
 	}
 }
 
-// GetSignupsByPath Get Signups via Path
-func GetSignupsByPath(iPath string) (*Signups, error) {
+// GetSignupsViaPath Get Signups via Path
+func GetSignupsViaPath(iPath string) (*Signups, error) {
 	var _Signups = &Signups{Path: iPath}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1879,8 +1879,8 @@ func GetSignupsByPath(iPath string) (*Signups, error) {
 	}
 }
 
-// GetSignupsByTitle Get Signups via Title
-func GetSignupsByTitle(iTitle string) (*Signups, error) {
+// GetSignupsViaTitle Get Signups via Title
+func GetSignupsViaTitle(iTitle string) (*Signups, error) {
 	var _Signups = &Signups{Title: iTitle}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1890,8 +1890,8 @@ func GetSignupsByTitle(iTitle string) (*Signups, error) {
 	}
 }
 
-// GetSignupsByUserLogin Get Signups via UserLogin
-func GetSignupsByUserLogin(iUserLogin string) (*Signups, error) {
+// GetSignupsViaUserLogin Get Signups via UserLogin
+func GetSignupsViaUserLogin(iUserLogin string) (*Signups, error) {
 	var _Signups = &Signups{UserLogin: iUserLogin}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1901,8 +1901,8 @@ func GetSignupsByUserLogin(iUserLogin string) (*Signups, error) {
 	}
 }
 
-// GetSignupsByUserEmail Get Signups via UserEmail
-func GetSignupsByUserEmail(iUserEmail string) (*Signups, error) {
+// GetSignupsViaUserEmail Get Signups via UserEmail
+func GetSignupsViaUserEmail(iUserEmail string) (*Signups, error) {
 	var _Signups = &Signups{UserEmail: iUserEmail}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1912,8 +1912,8 @@ func GetSignupsByUserEmail(iUserEmail string) (*Signups, error) {
 	}
 }
 
-// GetSignupsByRegistered Get Signups via Registered
-func GetSignupsByRegistered(iRegistered time.Time) (*Signups, error) {
+// GetSignupsViaRegistered Get Signups via Registered
+func GetSignupsViaRegistered(iRegistered time.Time) (*Signups, error) {
 	var _Signups = &Signups{Registered: iRegistered}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1923,8 +1923,8 @@ func GetSignupsByRegistered(iRegistered time.Time) (*Signups, error) {
 	}
 }
 
-// GetSignupsByActivated Get Signups via Activated
-func GetSignupsByActivated(iActivated time.Time) (*Signups, error) {
+// GetSignupsViaActivated Get Signups via Activated
+func GetSignupsViaActivated(iActivated time.Time) (*Signups, error) {
 	var _Signups = &Signups{Activated: iActivated}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1934,8 +1934,8 @@ func GetSignupsByActivated(iActivated time.Time) (*Signups, error) {
 	}
 }
 
-// GetSignupsByActive Get Signups via Active
-func GetSignupsByActive(iActive int) (*Signups, error) {
+// GetSignupsViaActive Get Signups via Active
+func GetSignupsViaActive(iActive int) (*Signups, error) {
 	var _Signups = &Signups{Active: iActive}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1945,8 +1945,8 @@ func GetSignupsByActive(iActive int) (*Signups, error) {
 	}
 }
 
-// GetSignupsByActivationKey Get Signups via ActivationKey
-func GetSignupsByActivationKey(iActivationKey string) (*Signups, error) {
+// GetSignupsViaActivationKey Get Signups via ActivationKey
+func GetSignupsViaActivationKey(iActivationKey string) (*Signups, error) {
 	var _Signups = &Signups{ActivationKey: iActivationKey}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1956,8 +1956,8 @@ func GetSignupsByActivationKey(iActivationKey string) (*Signups, error) {
 	}
 }
 
-// GetSignupsByMeta Get Signups via Meta
-func GetSignupsByMeta(iMeta string) (*Signups, error) {
+// GetSignupsViaMeta Get Signups via Meta
+func GetSignupsViaMeta(iMeta string) (*Signups, error) {
 	var _Signups = &Signups{Meta: iMeta}
 	has, err := Engine.Get(_Signups)
 	if has {
@@ -1967,68 +1967,68 @@ func GetSignupsByMeta(iMeta string) (*Signups, error) {
 	}
 }
 
-// SetSignupsBySignupId Set Signups via SignupId
-func SetSignupsBySignupId(iSignupId int64, signups *Signups) (int64, error) {
+// SetSignupsViaSignupId Set Signups via SignupId
+func SetSignupsViaSignupId(iSignupId int64, signups *Signups) (int64, error) {
 	signups.SignupId = iSignupId
 	return Engine.Insert(signups)
 }
 
-// SetSignupsByDomain Set Signups via Domain
-func SetSignupsByDomain(iDomain string, signups *Signups) (int64, error) {
+// SetSignupsViaDomain Set Signups via Domain
+func SetSignupsViaDomain(iDomain string, signups *Signups) (int64, error) {
 	signups.Domain = iDomain
 	return Engine.Insert(signups)
 }
 
-// SetSignupsByPath Set Signups via Path
-func SetSignupsByPath(iPath string, signups *Signups) (int64, error) {
+// SetSignupsViaPath Set Signups via Path
+func SetSignupsViaPath(iPath string, signups *Signups) (int64, error) {
 	signups.Path = iPath
 	return Engine.Insert(signups)
 }
 
-// SetSignupsByTitle Set Signups via Title
-func SetSignupsByTitle(iTitle string, signups *Signups) (int64, error) {
+// SetSignupsViaTitle Set Signups via Title
+func SetSignupsViaTitle(iTitle string, signups *Signups) (int64, error) {
 	signups.Title = iTitle
 	return Engine.Insert(signups)
 }
 
-// SetSignupsByUserLogin Set Signups via UserLogin
-func SetSignupsByUserLogin(iUserLogin string, signups *Signups) (int64, error) {
+// SetSignupsViaUserLogin Set Signups via UserLogin
+func SetSignupsViaUserLogin(iUserLogin string, signups *Signups) (int64, error) {
 	signups.UserLogin = iUserLogin
 	return Engine.Insert(signups)
 }
 
-// SetSignupsByUserEmail Set Signups via UserEmail
-func SetSignupsByUserEmail(iUserEmail string, signups *Signups) (int64, error) {
+// SetSignupsViaUserEmail Set Signups via UserEmail
+func SetSignupsViaUserEmail(iUserEmail string, signups *Signups) (int64, error) {
 	signups.UserEmail = iUserEmail
 	return Engine.Insert(signups)
 }
 
-// SetSignupsByRegistered Set Signups via Registered
-func SetSignupsByRegistered(iRegistered time.Time, signups *Signups) (int64, error) {
+// SetSignupsViaRegistered Set Signups via Registered
+func SetSignupsViaRegistered(iRegistered time.Time, signups *Signups) (int64, error) {
 	signups.Registered = iRegistered
 	return Engine.Insert(signups)
 }
 
-// SetSignupsByActivated Set Signups via Activated
-func SetSignupsByActivated(iActivated time.Time, signups *Signups) (int64, error) {
+// SetSignupsViaActivated Set Signups via Activated
+func SetSignupsViaActivated(iActivated time.Time, signups *Signups) (int64, error) {
 	signups.Activated = iActivated
 	return Engine.Insert(signups)
 }
 
-// SetSignupsByActive Set Signups via Active
-func SetSignupsByActive(iActive int, signups *Signups) (int64, error) {
+// SetSignupsViaActive Set Signups via Active
+func SetSignupsViaActive(iActive int, signups *Signups) (int64, error) {
 	signups.Active = iActive
 	return Engine.Insert(signups)
 }
 
-// SetSignupsByActivationKey Set Signups via ActivationKey
-func SetSignupsByActivationKey(iActivationKey string, signups *Signups) (int64, error) {
+// SetSignupsViaActivationKey Set Signups via ActivationKey
+func SetSignupsViaActivationKey(iActivationKey string, signups *Signups) (int64, error) {
 	signups.ActivationKey = iActivationKey
 	return Engine.Insert(signups)
 }
 
-// SetSignupsByMeta Set Signups via Meta
-func SetSignupsByMeta(iMeta string, signups *Signups) (int64, error) {
+// SetSignupsViaMeta Set Signups via Meta
+func SetSignupsViaMeta(iMeta string, signups *Signups) (int64, error) {
 	signups.Meta = iMeta
 	return Engine.Insert(signups)
 }
@@ -2055,74 +2055,74 @@ func PutSignups(iSignups *Signups) (int64, error) {
 	return iSignups.SignupId, err
 }
 
-// PutSignupsBySignupId Put Signups via SignupId
-func PutSignupsBySignupId(SignupId_ int64, iSignups *Signups) (int64, error) {
+// PutSignupsViaSignupId Put Signups via SignupId
+func PutSignupsViaSignupId(SignupId_ int64, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{SignupId: SignupId_})
 	return row, err
 }
 
-// PutSignupsByDomain Put Signups via Domain
-func PutSignupsByDomain(Domain_ string, iSignups *Signups) (int64, error) {
+// PutSignupsViaDomain Put Signups via Domain
+func PutSignupsViaDomain(Domain_ string, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{Domain: Domain_})
 	return row, err
 }
 
-// PutSignupsByPath Put Signups via Path
-func PutSignupsByPath(Path_ string, iSignups *Signups) (int64, error) {
+// PutSignupsViaPath Put Signups via Path
+func PutSignupsViaPath(Path_ string, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{Path: Path_})
 	return row, err
 }
 
-// PutSignupsByTitle Put Signups via Title
-func PutSignupsByTitle(Title_ string, iSignups *Signups) (int64, error) {
+// PutSignupsViaTitle Put Signups via Title
+func PutSignupsViaTitle(Title_ string, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{Title: Title_})
 	return row, err
 }
 
-// PutSignupsByUserLogin Put Signups via UserLogin
-func PutSignupsByUserLogin(UserLogin_ string, iSignups *Signups) (int64, error) {
+// PutSignupsViaUserLogin Put Signups via UserLogin
+func PutSignupsViaUserLogin(UserLogin_ string, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{UserLogin: UserLogin_})
 	return row, err
 }
 
-// PutSignupsByUserEmail Put Signups via UserEmail
-func PutSignupsByUserEmail(UserEmail_ string, iSignups *Signups) (int64, error) {
+// PutSignupsViaUserEmail Put Signups via UserEmail
+func PutSignupsViaUserEmail(UserEmail_ string, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{UserEmail: UserEmail_})
 	return row, err
 }
 
-// PutSignupsByRegistered Put Signups via Registered
-func PutSignupsByRegistered(Registered_ time.Time, iSignups *Signups) (int64, error) {
+// PutSignupsViaRegistered Put Signups via Registered
+func PutSignupsViaRegistered(Registered_ time.Time, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{Registered: Registered_})
 	return row, err
 }
 
-// PutSignupsByActivated Put Signups via Activated
-func PutSignupsByActivated(Activated_ time.Time, iSignups *Signups) (int64, error) {
+// PutSignupsViaActivated Put Signups via Activated
+func PutSignupsViaActivated(Activated_ time.Time, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{Activated: Activated_})
 	return row, err
 }
 
-// PutSignupsByActive Put Signups via Active
-func PutSignupsByActive(Active_ int, iSignups *Signups) (int64, error) {
+// PutSignupsViaActive Put Signups via Active
+func PutSignupsViaActive(Active_ int, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{Active: Active_})
 	return row, err
 }
 
-// PutSignupsByActivationKey Put Signups via ActivationKey
-func PutSignupsByActivationKey(ActivationKey_ string, iSignups *Signups) (int64, error) {
+// PutSignupsViaActivationKey Put Signups via ActivationKey
+func PutSignupsViaActivationKey(ActivationKey_ string, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{ActivationKey: ActivationKey_})
 	return row, err
 }
 
-// PutSignupsByMeta Put Signups via Meta
-func PutSignupsByMeta(Meta_ string, iSignups *Signups) (int64, error) {
+// PutSignupsViaMeta Put Signups via Meta
+func PutSignupsViaMeta(Meta_ string, iSignups *Signups) (int64, error) {
 	row, err := Engine.Update(iSignups, &Signups{Meta: Meta_})
 	return row, err
 }
 
-// UpdateSignupsBySignupId via map[string]interface{}{}
-func UpdateSignupsBySignupId(iSignupId int64, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaSignupId via map[string]interface{}{}
+func UpdateSignupsViaSignupId(iSignupId int64, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("signup_id = ?", iSignupId).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2130,8 +2130,8 @@ func UpdateSignupsBySignupId(iSignupId int64, iSignupsMap *map[string]interface{
 	}
 }
 
-// UpdateSignupsByDomain via map[string]interface{}{}
-func UpdateSignupsByDomain(iDomain string, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaDomain via map[string]interface{}{}
+func UpdateSignupsViaDomain(iDomain string, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("domain = ?", iDomain).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2139,8 +2139,8 @@ func UpdateSignupsByDomain(iDomain string, iSignupsMap *map[string]interface{}) 
 	}
 }
 
-// UpdateSignupsByPath via map[string]interface{}{}
-func UpdateSignupsByPath(iPath string, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaPath via map[string]interface{}{}
+func UpdateSignupsViaPath(iPath string, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("path = ?", iPath).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2148,8 +2148,8 @@ func UpdateSignupsByPath(iPath string, iSignupsMap *map[string]interface{}) erro
 	}
 }
 
-// UpdateSignupsByTitle via map[string]interface{}{}
-func UpdateSignupsByTitle(iTitle string, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaTitle via map[string]interface{}{}
+func UpdateSignupsViaTitle(iTitle string, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("title = ?", iTitle).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2157,8 +2157,8 @@ func UpdateSignupsByTitle(iTitle string, iSignupsMap *map[string]interface{}) er
 	}
 }
 
-// UpdateSignupsByUserLogin via map[string]interface{}{}
-func UpdateSignupsByUserLogin(iUserLogin string, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaUserLogin via map[string]interface{}{}
+func UpdateSignupsViaUserLogin(iUserLogin string, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("user_login = ?", iUserLogin).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2166,8 +2166,8 @@ func UpdateSignupsByUserLogin(iUserLogin string, iSignupsMap *map[string]interfa
 	}
 }
 
-// UpdateSignupsByUserEmail via map[string]interface{}{}
-func UpdateSignupsByUserEmail(iUserEmail string, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaUserEmail via map[string]interface{}{}
+func UpdateSignupsViaUserEmail(iUserEmail string, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("user_email = ?", iUserEmail).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2175,8 +2175,8 @@ func UpdateSignupsByUserEmail(iUserEmail string, iSignupsMap *map[string]interfa
 	}
 }
 
-// UpdateSignupsByRegistered via map[string]interface{}{}
-func UpdateSignupsByRegistered(iRegistered time.Time, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaRegistered via map[string]interface{}{}
+func UpdateSignupsViaRegistered(iRegistered time.Time, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("registered = ?", iRegistered).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2184,8 +2184,8 @@ func UpdateSignupsByRegistered(iRegistered time.Time, iSignupsMap *map[string]in
 	}
 }
 
-// UpdateSignupsByActivated via map[string]interface{}{}
-func UpdateSignupsByActivated(iActivated time.Time, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaActivated via map[string]interface{}{}
+func UpdateSignupsViaActivated(iActivated time.Time, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("activated = ?", iActivated).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2193,8 +2193,8 @@ func UpdateSignupsByActivated(iActivated time.Time, iSignupsMap *map[string]inte
 	}
 }
 
-// UpdateSignupsByActive via map[string]interface{}{}
-func UpdateSignupsByActive(iActive int, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaActive via map[string]interface{}{}
+func UpdateSignupsViaActive(iActive int, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("active = ?", iActive).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2202,8 +2202,8 @@ func UpdateSignupsByActive(iActive int, iSignupsMap *map[string]interface{}) err
 	}
 }
 
-// UpdateSignupsByActivationKey via map[string]interface{}{}
-func UpdateSignupsByActivationKey(iActivationKey string, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaActivationKey via map[string]interface{}{}
+func UpdateSignupsViaActivationKey(iActivationKey string, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("activation_key = ?", iActivationKey).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2211,8 +2211,8 @@ func UpdateSignupsByActivationKey(iActivationKey string, iSignupsMap *map[string
 	}
 }
 
-// UpdateSignupsByMeta via map[string]interface{}{}
-func UpdateSignupsByMeta(iMeta string, iSignupsMap *map[string]interface{}) error {
+// UpdateSignupsViaMeta via map[string]interface{}{}
+func UpdateSignupsViaMeta(iMeta string, iSignupsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Signups)).Where("meta = ?", iMeta).Update(iSignupsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2226,8 +2226,8 @@ func DeleteSignups(iSignupId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteSignupsBySignupId Delete Signups via SignupId
-func DeleteSignupsBySignupId(iSignupId int64) (err error) {
+// DeleteSignupsViaSignupId Delete Signups via SignupId
+func DeleteSignupsViaSignupId(iSignupId int64) (err error) {
 	var has bool
 	var _Signups = &Signups{SignupId: iSignupId}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {
@@ -2240,8 +2240,8 @@ func DeleteSignupsBySignupId(iSignupId int64) (err error) {
 	return
 }
 
-// DeleteSignupsByDomain Delete Signups via Domain
-func DeleteSignupsByDomain(iDomain string) (err error) {
+// DeleteSignupsViaDomain Delete Signups via Domain
+func DeleteSignupsViaDomain(iDomain string) (err error) {
 	var has bool
 	var _Signups = &Signups{Domain: iDomain}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {
@@ -2254,8 +2254,8 @@ func DeleteSignupsByDomain(iDomain string) (err error) {
 	return
 }
 
-// DeleteSignupsByPath Delete Signups via Path
-func DeleteSignupsByPath(iPath string) (err error) {
+// DeleteSignupsViaPath Delete Signups via Path
+func DeleteSignupsViaPath(iPath string) (err error) {
 	var has bool
 	var _Signups = &Signups{Path: iPath}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {
@@ -2268,8 +2268,8 @@ func DeleteSignupsByPath(iPath string) (err error) {
 	return
 }
 
-// DeleteSignupsByTitle Delete Signups via Title
-func DeleteSignupsByTitle(iTitle string) (err error) {
+// DeleteSignupsViaTitle Delete Signups via Title
+func DeleteSignupsViaTitle(iTitle string) (err error) {
 	var has bool
 	var _Signups = &Signups{Title: iTitle}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {
@@ -2282,8 +2282,8 @@ func DeleteSignupsByTitle(iTitle string) (err error) {
 	return
 }
 
-// DeleteSignupsByUserLogin Delete Signups via UserLogin
-func DeleteSignupsByUserLogin(iUserLogin string) (err error) {
+// DeleteSignupsViaUserLogin Delete Signups via UserLogin
+func DeleteSignupsViaUserLogin(iUserLogin string) (err error) {
 	var has bool
 	var _Signups = &Signups{UserLogin: iUserLogin}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {
@@ -2296,8 +2296,8 @@ func DeleteSignupsByUserLogin(iUserLogin string) (err error) {
 	return
 }
 
-// DeleteSignupsByUserEmail Delete Signups via UserEmail
-func DeleteSignupsByUserEmail(iUserEmail string) (err error) {
+// DeleteSignupsViaUserEmail Delete Signups via UserEmail
+func DeleteSignupsViaUserEmail(iUserEmail string) (err error) {
 	var has bool
 	var _Signups = &Signups{UserEmail: iUserEmail}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {
@@ -2310,8 +2310,8 @@ func DeleteSignupsByUserEmail(iUserEmail string) (err error) {
 	return
 }
 
-// DeleteSignupsByRegistered Delete Signups via Registered
-func DeleteSignupsByRegistered(iRegistered time.Time) (err error) {
+// DeleteSignupsViaRegistered Delete Signups via Registered
+func DeleteSignupsViaRegistered(iRegistered time.Time) (err error) {
 	var has bool
 	var _Signups = &Signups{Registered: iRegistered}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {
@@ -2324,8 +2324,8 @@ func DeleteSignupsByRegistered(iRegistered time.Time) (err error) {
 	return
 }
 
-// DeleteSignupsByActivated Delete Signups via Activated
-func DeleteSignupsByActivated(iActivated time.Time) (err error) {
+// DeleteSignupsViaActivated Delete Signups via Activated
+func DeleteSignupsViaActivated(iActivated time.Time) (err error) {
 	var has bool
 	var _Signups = &Signups{Activated: iActivated}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {
@@ -2338,8 +2338,8 @@ func DeleteSignupsByActivated(iActivated time.Time) (err error) {
 	return
 }
 
-// DeleteSignupsByActive Delete Signups via Active
-func DeleteSignupsByActive(iActive int) (err error) {
+// DeleteSignupsViaActive Delete Signups via Active
+func DeleteSignupsViaActive(iActive int) (err error) {
 	var has bool
 	var _Signups = &Signups{Active: iActive}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {
@@ -2352,8 +2352,8 @@ func DeleteSignupsByActive(iActive int) (err error) {
 	return
 }
 
-// DeleteSignupsByActivationKey Delete Signups via ActivationKey
-func DeleteSignupsByActivationKey(iActivationKey string) (err error) {
+// DeleteSignupsViaActivationKey Delete Signups via ActivationKey
+func DeleteSignupsViaActivationKey(iActivationKey string) (err error) {
 	var has bool
 	var _Signups = &Signups{ActivationKey: iActivationKey}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {
@@ -2366,8 +2366,8 @@ func DeleteSignupsByActivationKey(iActivationKey string) (err error) {
 	return
 }
 
-// DeleteSignupsByMeta Delete Signups via Meta
-func DeleteSignupsByMeta(iMeta string) (err error) {
+// DeleteSignupsViaMeta Delete Signups via Meta
+func DeleteSignupsViaMeta(iMeta string) (err error) {
 	var has bool
 	var _Signups = &Signups{Meta: iMeta}
 	if has, err = Engine.Get(_Signups); (has == true) && (err == nil) {

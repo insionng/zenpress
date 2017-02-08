@@ -27,9 +27,9 @@ func GetSignupsesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsCountBySignupIdHandler(self *macross.Context) error {
+func GetSignupsCountViaSignupIdHandler(self *macross.Context) error {
 	SignupId_ := self.Args("signup_id").MustInt64()
-	_int64 := model.GetSignupsCountBySignupId(SignupId_)
+	_int64 := model.GetSignupsCountViaSignupId(SignupId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -38,9 +38,9 @@ func GetSignupsCountBySignupIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsCountByDomainHandler(self *macross.Context) error {
+func GetSignupsCountViaDomainHandler(self *macross.Context) error {
 	Domain_ := self.Args("domain").String()
-	_int64 := model.GetSignupsCountByDomain(Domain_)
+	_int64 := model.GetSignupsCountViaDomain(Domain_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -49,9 +49,9 @@ func GetSignupsCountByDomainHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsCountByPathHandler(self *macross.Context) error {
+func GetSignupsCountViaPathHandler(self *macross.Context) error {
 	Path_ := self.Args("path").String()
-	_int64 := model.GetSignupsCountByPath(Path_)
+	_int64 := model.GetSignupsCountViaPath(Path_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -60,9 +60,9 @@ func GetSignupsCountByPathHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsCountByTitleHandler(self *macross.Context) error {
+func GetSignupsCountViaTitleHandler(self *macross.Context) error {
 	Title_ := self.Args("title").String()
-	_int64 := model.GetSignupsCountByTitle(Title_)
+	_int64 := model.GetSignupsCountViaTitle(Title_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -71,9 +71,9 @@ func GetSignupsCountByTitleHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsCountByUserLoginHandler(self *macross.Context) error {
+func GetSignupsCountViaUserLoginHandler(self *macross.Context) error {
 	UserLogin_ := self.Args("user_login").String()
-	_int64 := model.GetSignupsCountByUserLogin(UserLogin_)
+	_int64 := model.GetSignupsCountViaUserLogin(UserLogin_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -82,9 +82,9 @@ func GetSignupsCountByUserLoginHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsCountByUserEmailHandler(self *macross.Context) error {
+func GetSignupsCountViaUserEmailHandler(self *macross.Context) error {
 	UserEmail_ := self.Args("user_email").String()
-	_int64 := model.GetSignupsCountByUserEmail(UserEmail_)
+	_int64 := model.GetSignupsCountViaUserEmail(UserEmail_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -93,9 +93,9 @@ func GetSignupsCountByUserEmailHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsCountByRegisteredHandler(self *macross.Context) error {
+func GetSignupsCountViaRegisteredHandler(self *macross.Context) error {
 	Registered_ := self.Args("registered").Time()
-	_int64 := model.GetSignupsCountByRegistered(Registered_)
+	_int64 := model.GetSignupsCountViaRegistered(Registered_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -104,9 +104,9 @@ func GetSignupsCountByRegisteredHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsCountByActivatedHandler(self *macross.Context) error {
+func GetSignupsCountViaActivatedHandler(self *macross.Context) error {
 	Activated_ := self.Args("activated").Time()
-	_int64 := model.GetSignupsCountByActivated(Activated_)
+	_int64 := model.GetSignupsCountViaActivated(Activated_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -115,9 +115,9 @@ func GetSignupsCountByActivatedHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsCountByActiveHandler(self *macross.Context) error {
+func GetSignupsCountViaActiveHandler(self *macross.Context) error {
 	Active_ := self.Args("active").MustInt()
-	_int64 := model.GetSignupsCountByActive(Active_)
+	_int64 := model.GetSignupsCountViaActive(Active_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -126,9 +126,9 @@ func GetSignupsCountByActiveHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsCountByActivationKeyHandler(self *macross.Context) error {
+func GetSignupsCountViaActivationKeyHandler(self *macross.Context) error {
 	ActivationKey_ := self.Args("activation_key").String()
-	_int64 := model.GetSignupsCountByActivationKey(ActivationKey_)
+	_int64 := model.GetSignupsCountViaActivationKey(ActivationKey_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -137,9 +137,9 @@ func GetSignupsCountByActivationKeyHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsCountByMetaHandler(self *macross.Context) error {
+func GetSignupsCountViaMetaHandler(self *macross.Context) error {
 	Meta_ := self.Args("meta").String()
-	_int64 := model.GetSignupsCountByMeta(Meta_)
+	_int64 := model.GetSignupsCountViaMeta(Meta_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["signupsCount"] = 0
@@ -148,7 +148,7 @@ func GetSignupsCountByMetaHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSignupsesBySignupIdHandler(self *macross.Context) error {
+func GetSignupsesViaSignupIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -157,18 +157,18 @@ func GetSignupsesBySignupIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iSignupId := self.Args("signup_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iSignupId) {
-		_Signups, _error := model.GetSignupsesBySignupId(offset, limit, iSignupId, field)
+		_Signups, _error := model.GetSignupsesViaSignupId(offset, limit, iSignupId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesBySignupId's args."
+	herr.Message = "Can't get to the GetSignupsesViaSignupId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsesByDomainHandler(self *macross.Context) error {
+func GetSignupsesViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -177,18 +177,18 @@ func GetSignupsesByDomainHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iDomain := self.Args("domain").String()
 	if (offset > 0) && helper.IsHas(iDomain) {
-		_Signups, _error := model.GetSignupsesByDomain(offset, limit, iDomain, field)
+		_Signups, _error := model.GetSignupsesViaDomain(offset, limit, iDomain, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesByDomain's args."
+	herr.Message = "Can't get to the GetSignupsesViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsesByPathHandler(self *macross.Context) error {
+func GetSignupsesViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -197,18 +197,18 @@ func GetSignupsesByPathHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPath := self.Args("path").String()
 	if (offset > 0) && helper.IsHas(iPath) {
-		_Signups, _error := model.GetSignupsesByPath(offset, limit, iPath, field)
+		_Signups, _error := model.GetSignupsesViaPath(offset, limit, iPath, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesByPath's args."
+	herr.Message = "Can't get to the GetSignupsesViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsesByTitleHandler(self *macross.Context) error {
+func GetSignupsesViaTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -217,18 +217,18 @@ func GetSignupsesByTitleHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iTitle := self.Args("title").String()
 	if (offset > 0) && helper.IsHas(iTitle) {
-		_Signups, _error := model.GetSignupsesByTitle(offset, limit, iTitle, field)
+		_Signups, _error := model.GetSignupsesViaTitle(offset, limit, iTitle, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesByTitle's args."
+	herr.Message = "Can't get to the GetSignupsesViaTitle's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsesByUserLoginHandler(self *macross.Context) error {
+func GetSignupsesViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -237,18 +237,18 @@ func GetSignupsesByUserLoginHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserLogin := self.Args("user_login").String()
 	if (offset > 0) && helper.IsHas(iUserLogin) {
-		_Signups, _error := model.GetSignupsesByUserLogin(offset, limit, iUserLogin, field)
+		_Signups, _error := model.GetSignupsesViaUserLogin(offset, limit, iUserLogin, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesByUserLogin's args."
+	herr.Message = "Can't get to the GetSignupsesViaUserLogin's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsesByUserEmailHandler(self *macross.Context) error {
+func GetSignupsesViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -257,18 +257,18 @@ func GetSignupsesByUserEmailHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserEmail := self.Args("user_email").String()
 	if (offset > 0) && helper.IsHas(iUserEmail) {
-		_Signups, _error := model.GetSignupsesByUserEmail(offset, limit, iUserEmail, field)
+		_Signups, _error := model.GetSignupsesViaUserEmail(offset, limit, iUserEmail, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesByUserEmail's args."
+	herr.Message = "Can't get to the GetSignupsesViaUserEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsesByRegisteredHandler(self *macross.Context) error {
+func GetSignupsesViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -277,18 +277,18 @@ func GetSignupsesByRegisteredHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iRegistered := self.Args("registered").Time()
 	if (offset > 0) && helper.IsHas(iRegistered) {
-		_Signups, _error := model.GetSignupsesByRegistered(offset, limit, iRegistered, field)
+		_Signups, _error := model.GetSignupsesViaRegistered(offset, limit, iRegistered, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesByRegistered's args."
+	herr.Message = "Can't get to the GetSignupsesViaRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsesByActivatedHandler(self *macross.Context) error {
+func GetSignupsesViaActivatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -297,18 +297,18 @@ func GetSignupsesByActivatedHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iActivated := self.Args("activated").Time()
 	if (offset > 0) && helper.IsHas(iActivated) {
-		_Signups, _error := model.GetSignupsesByActivated(offset, limit, iActivated, field)
+		_Signups, _error := model.GetSignupsesViaActivated(offset, limit, iActivated, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesByActivated's args."
+	herr.Message = "Can't get to the GetSignupsesViaActivated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsesByActiveHandler(self *macross.Context) error {
+func GetSignupsesViaActiveHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -317,18 +317,18 @@ func GetSignupsesByActiveHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iActive := self.Args("active").MustInt()
 	if (offset > 0) && helper.IsHas(iActive) {
-		_Signups, _error := model.GetSignupsesByActive(offset, limit, iActive, field)
+		_Signups, _error := model.GetSignupsesViaActive(offset, limit, iActive, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesByActive's args."
+	herr.Message = "Can't get to the GetSignupsesViaActive's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsesByActivationKeyHandler(self *macross.Context) error {
+func GetSignupsesViaActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -337,18 +337,18 @@ func GetSignupsesByActivationKeyHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iActivationKey := self.Args("activation_key").String()
 	if (offset > 0) && helper.IsHas(iActivationKey) {
-		_Signups, _error := model.GetSignupsesByActivationKey(offset, limit, iActivationKey, field)
+		_Signups, _error := model.GetSignupsesViaActivationKey(offset, limit, iActivationKey, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesByActivationKey's args."
+	herr.Message = "Can't get to the GetSignupsesViaActivationKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsesByMetaHandler(self *macross.Context) error {
+func GetSignupsesViaMetaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -357,14 +357,14 @@ func GetSignupsesByMetaHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMeta := self.Args("meta").String()
 	if (offset > 0) && helper.IsHas(iMeta) {
-		_Signups, _error := model.GetSignupsesByMeta(offset, limit, iMeta, field)
+		_Signups, _error := model.GetSignupsesViaMeta(offset, limit, iMeta, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsesByMeta's args."
+	herr.Message = "Can't get to the GetSignupsesViaMeta's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -5172,359 +5172,359 @@ func GetSignupsesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsBySignupIdHandler(self *macross.Context) error {
+func GetHasSignupsViaSignupIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSignupId := self.Args("signup_id").MustInt64()
 	if helper.IsHas(iSignupId) {
-		_Signups := model.HasSignupsBySignupId(iSignupId)
+		_Signups := model.HasSignupsViaSignupId(iSignupId)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsBySignupId's args."
+	herr.Message = "Can't get to the HasSignupsViaSignupId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsByDomainHandler(self *macross.Context) error {
+func GetHasSignupsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDomain := self.Args("domain").String()
 	if helper.IsHas(iDomain) {
-		_Signups := model.HasSignupsByDomain(iDomain)
+		_Signups := model.HasSignupsViaDomain(iDomain)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsByDomain's args."
+	herr.Message = "Can't get to the HasSignupsViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsByPathHandler(self *macross.Context) error {
+func GetHasSignupsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPath := self.Args("path").String()
 	if helper.IsHas(iPath) {
-		_Signups := model.HasSignupsByPath(iPath)
+		_Signups := model.HasSignupsViaPath(iPath)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsByPath's args."
+	herr.Message = "Can't get to the HasSignupsViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsByTitleHandler(self *macross.Context) error {
+func GetHasSignupsViaTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTitle := self.Args("title").String()
 	if helper.IsHas(iTitle) {
-		_Signups := model.HasSignupsByTitle(iTitle)
+		_Signups := model.HasSignupsViaTitle(iTitle)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsByTitle's args."
+	herr.Message = "Can't get to the HasSignupsViaTitle's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsByUserLoginHandler(self *macross.Context) error {
+func GetHasSignupsViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserLogin := self.Args("user_login").String()
 	if helper.IsHas(iUserLogin) {
-		_Signups := model.HasSignupsByUserLogin(iUserLogin)
+		_Signups := model.HasSignupsViaUserLogin(iUserLogin)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsByUserLogin's args."
+	herr.Message = "Can't get to the HasSignupsViaUserLogin's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsByUserEmailHandler(self *macross.Context) error {
+func GetHasSignupsViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserEmail := self.Args("user_email").String()
 	if helper.IsHas(iUserEmail) {
-		_Signups := model.HasSignupsByUserEmail(iUserEmail)
+		_Signups := model.HasSignupsViaUserEmail(iUserEmail)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsByUserEmail's args."
+	herr.Message = "Can't get to the HasSignupsViaUserEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsByRegisteredHandler(self *macross.Context) error {
+func GetHasSignupsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iRegistered := self.Args("registered").Time()
 	if helper.IsHas(iRegistered) {
-		_Signups := model.HasSignupsByRegistered(iRegistered)
+		_Signups := model.HasSignupsViaRegistered(iRegistered)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsByRegistered's args."
+	herr.Message = "Can't get to the HasSignupsViaRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsByActivatedHandler(self *macross.Context) error {
+func GetHasSignupsViaActivatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iActivated := self.Args("activated").Time()
 	if helper.IsHas(iActivated) {
-		_Signups := model.HasSignupsByActivated(iActivated)
+		_Signups := model.HasSignupsViaActivated(iActivated)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsByActivated's args."
+	herr.Message = "Can't get to the HasSignupsViaActivated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsByActiveHandler(self *macross.Context) error {
+func GetHasSignupsViaActiveHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iActive := self.Args("active").MustInt()
 	if helper.IsHas(iActive) {
-		_Signups := model.HasSignupsByActive(iActive)
+		_Signups := model.HasSignupsViaActive(iActive)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsByActive's args."
+	herr.Message = "Can't get to the HasSignupsViaActive's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsByActivationKeyHandler(self *macross.Context) error {
+func GetHasSignupsViaActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iActivationKey := self.Args("activation_key").String()
 	if helper.IsHas(iActivationKey) {
-		_Signups := model.HasSignupsByActivationKey(iActivationKey)
+		_Signups := model.HasSignupsViaActivationKey(iActivationKey)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsByActivationKey's args."
+	herr.Message = "Can't get to the HasSignupsViaActivationKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSignupsByMetaHandler(self *macross.Context) error {
+func GetHasSignupsViaMetaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMeta := self.Args("meta").String()
 	if helper.IsHas(iMeta) {
-		_Signups := model.HasSignupsByMeta(iMeta)
+		_Signups := model.HasSignupsViaMeta(iMeta)
 		var m = map[string]interface{}{}
 		m["signups"] = _Signups
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSignupsByMeta's args."
+	herr.Message = "Can't get to the HasSignupsViaMeta's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsBySignupIdHandler(self *macross.Context) error {
+func GetSignupsViaSignupIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSignupId := self.Args("signup_id").MustInt64()
 	if helper.IsHas(iSignupId) {
-		_Signups, _error := model.GetSignupsBySignupId(iSignupId)
+		_Signups, _error := model.GetSignupsViaSignupId(iSignupId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsBySignupId's args."
+	herr.Message = "Can't get to the GetSignupsViaSignupId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsByDomainHandler(self *macross.Context) error {
+func GetSignupsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDomain := self.Args("domain").String()
 	if helper.IsHas(iDomain) {
-		_Signups, _error := model.GetSignupsByDomain(iDomain)
+		_Signups, _error := model.GetSignupsViaDomain(iDomain)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsByDomain's args."
+	herr.Message = "Can't get to the GetSignupsViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsByPathHandler(self *macross.Context) error {
+func GetSignupsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPath := self.Args("path").String()
 	if helper.IsHas(iPath) {
-		_Signups, _error := model.GetSignupsByPath(iPath)
+		_Signups, _error := model.GetSignupsViaPath(iPath)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsByPath's args."
+	herr.Message = "Can't get to the GetSignupsViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsByTitleHandler(self *macross.Context) error {
+func GetSignupsViaTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTitle := self.Args("title").String()
 	if helper.IsHas(iTitle) {
-		_Signups, _error := model.GetSignupsByTitle(iTitle)
+		_Signups, _error := model.GetSignupsViaTitle(iTitle)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsByTitle's args."
+	herr.Message = "Can't get to the GetSignupsViaTitle's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsByUserLoginHandler(self *macross.Context) error {
+func GetSignupsViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserLogin := self.Args("user_login").String()
 	if helper.IsHas(iUserLogin) {
-		_Signups, _error := model.GetSignupsByUserLogin(iUserLogin)
+		_Signups, _error := model.GetSignupsViaUserLogin(iUserLogin)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsByUserLogin's args."
+	herr.Message = "Can't get to the GetSignupsViaUserLogin's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsByUserEmailHandler(self *macross.Context) error {
+func GetSignupsViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserEmail := self.Args("user_email").String()
 	if helper.IsHas(iUserEmail) {
-		_Signups, _error := model.GetSignupsByUserEmail(iUserEmail)
+		_Signups, _error := model.GetSignupsViaUserEmail(iUserEmail)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsByUserEmail's args."
+	herr.Message = "Can't get to the GetSignupsViaUserEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsByRegisteredHandler(self *macross.Context) error {
+func GetSignupsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iRegistered := self.Args("registered").Time()
 	if helper.IsHas(iRegistered) {
-		_Signups, _error := model.GetSignupsByRegistered(iRegistered)
+		_Signups, _error := model.GetSignupsViaRegistered(iRegistered)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsByRegistered's args."
+	herr.Message = "Can't get to the GetSignupsViaRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsByActivatedHandler(self *macross.Context) error {
+func GetSignupsViaActivatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iActivated := self.Args("activated").Time()
 	if helper.IsHas(iActivated) {
-		_Signups, _error := model.GetSignupsByActivated(iActivated)
+		_Signups, _error := model.GetSignupsViaActivated(iActivated)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsByActivated's args."
+	herr.Message = "Can't get to the GetSignupsViaActivated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsByActiveHandler(self *macross.Context) error {
+func GetSignupsViaActiveHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iActive := self.Args("active").MustInt()
 	if helper.IsHas(iActive) {
-		_Signups, _error := model.GetSignupsByActive(iActive)
+		_Signups, _error := model.GetSignupsViaActive(iActive)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsByActive's args."
+	herr.Message = "Can't get to the GetSignupsViaActive's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsByActivationKeyHandler(self *macross.Context) error {
+func GetSignupsViaActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iActivationKey := self.Args("activation_key").String()
 	if helper.IsHas(iActivationKey) {
-		_Signups, _error := model.GetSignupsByActivationKey(iActivationKey)
+		_Signups, _error := model.GetSignupsViaActivationKey(iActivationKey)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsByActivationKey's args."
+	herr.Message = "Can't get to the GetSignupsViaActivationKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSignupsByMetaHandler(self *macross.Context) error {
+func GetSignupsViaMetaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMeta := self.Args("meta").String()
 	if helper.IsHas(iMeta) {
-		_Signups, _error := model.GetSignupsByMeta(iMeta)
+		_Signups, _error := model.GetSignupsViaMeta(iMeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the GetSignupsByMeta's args."
+	herr.Message = "Can't get to the GetSignupsViaMeta's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsBySignupIdHandler(self *macross.Context) error {
+func PostSetSignupsViaSignupIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5532,18 +5532,18 @@ func PostSetSignupsBySignupIdHandler(self *macross.Context) error {
 	if helper.IsHas(SignupId_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsBySignupId(SignupId_, &iSignups)
+		_Signups, _error := model.SetSignupsViaSignupId(SignupId_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsBySignupId's args."
+	herr.Message = "Can't get to the SetSignupsViaSignupId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsByDomainHandler(self *macross.Context) error {
+func PostSetSignupsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5551,18 +5551,18 @@ func PostSetSignupsByDomainHandler(self *macross.Context) error {
 	if helper.IsHas(Domain_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsByDomain(Domain_, &iSignups)
+		_Signups, _error := model.SetSignupsViaDomain(Domain_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsByDomain's args."
+	herr.Message = "Can't get to the SetSignupsViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsByPathHandler(self *macross.Context) error {
+func PostSetSignupsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5570,18 +5570,18 @@ func PostSetSignupsByPathHandler(self *macross.Context) error {
 	if helper.IsHas(Path_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsByPath(Path_, &iSignups)
+		_Signups, _error := model.SetSignupsViaPath(Path_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsByPath's args."
+	herr.Message = "Can't get to the SetSignupsViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsByTitleHandler(self *macross.Context) error {
+func PostSetSignupsViaTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5589,18 +5589,18 @@ func PostSetSignupsByTitleHandler(self *macross.Context) error {
 	if helper.IsHas(Title_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsByTitle(Title_, &iSignups)
+		_Signups, _error := model.SetSignupsViaTitle(Title_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsByTitle's args."
+	herr.Message = "Can't get to the SetSignupsViaTitle's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsByUserLoginHandler(self *macross.Context) error {
+func PostSetSignupsViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5608,18 +5608,18 @@ func PostSetSignupsByUserLoginHandler(self *macross.Context) error {
 	if helper.IsHas(UserLogin_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsByUserLogin(UserLogin_, &iSignups)
+		_Signups, _error := model.SetSignupsViaUserLogin(UserLogin_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsByUserLogin's args."
+	herr.Message = "Can't get to the SetSignupsViaUserLogin's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsByUserEmailHandler(self *macross.Context) error {
+func PostSetSignupsViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5627,18 +5627,18 @@ func PostSetSignupsByUserEmailHandler(self *macross.Context) error {
 	if helper.IsHas(UserEmail_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsByUserEmail(UserEmail_, &iSignups)
+		_Signups, _error := model.SetSignupsViaUserEmail(UserEmail_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsByUserEmail's args."
+	herr.Message = "Can't get to the SetSignupsViaUserEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsByRegisteredHandler(self *macross.Context) error {
+func PostSetSignupsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5646,18 +5646,18 @@ func PostSetSignupsByRegisteredHandler(self *macross.Context) error {
 	if helper.IsHas(Registered_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsByRegistered(Registered_, &iSignups)
+		_Signups, _error := model.SetSignupsViaRegistered(Registered_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsByRegistered's args."
+	herr.Message = "Can't get to the SetSignupsViaRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsByActivatedHandler(self *macross.Context) error {
+func PostSetSignupsViaActivatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5665,18 +5665,18 @@ func PostSetSignupsByActivatedHandler(self *macross.Context) error {
 	if helper.IsHas(Activated_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsByActivated(Activated_, &iSignups)
+		_Signups, _error := model.SetSignupsViaActivated(Activated_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsByActivated's args."
+	herr.Message = "Can't get to the SetSignupsViaActivated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsByActiveHandler(self *macross.Context) error {
+func PostSetSignupsViaActiveHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5684,18 +5684,18 @@ func PostSetSignupsByActiveHandler(self *macross.Context) error {
 	if helper.IsHas(Active_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsByActive(Active_, &iSignups)
+		_Signups, _error := model.SetSignupsViaActive(Active_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsByActive's args."
+	herr.Message = "Can't get to the SetSignupsViaActive's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsByActivationKeyHandler(self *macross.Context) error {
+func PostSetSignupsViaActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5703,18 +5703,18 @@ func PostSetSignupsByActivationKeyHandler(self *macross.Context) error {
 	if helper.IsHas(ActivationKey_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsByActivationKey(ActivationKey_, &iSignups)
+		_Signups, _error := model.SetSignupsViaActivationKey(ActivationKey_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsByActivationKey's args."
+	herr.Message = "Can't get to the SetSignupsViaActivationKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSignupsByMetaHandler(self *macross.Context) error {
+func PostSetSignupsViaMetaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5722,14 +5722,14 @@ func PostSetSignupsByMetaHandler(self *macross.Context) error {
 	if helper.IsHas(Meta_) {
 		var iSignups model.Signups
 		self.Bind(&iSignups)
-		_Signups, _error := model.SetSignupsByMeta(Meta_, &iSignups)
+		_Signups, _error := model.SetSignupsViaMeta(Meta_, &iSignups)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Signups)
 	}
-	herr.Message = "Can't get to the SetSignupsByMeta's args."
+	herr.Message = "Can't get to the SetSignupsViaMeta's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -5770,7 +5770,7 @@ func PostSignupsHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	_int64, _error := model.PostSignups(&iSignups)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -5788,7 +5788,7 @@ func PutSignupsHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	_int64, _error := model.PutSignups(&iSignups)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -5799,14 +5799,14 @@ func PutSignupsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsBySignupIdHandler(self *macross.Context) error {
+func PutSignupsViaSignupIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	SignupId_ := self.Args("signup_id").MustInt64()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsBySignupId(SignupId_, &iSignups)
+	_int64, _error := model.PutSignupsViaSignupId(SignupId_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5816,14 +5816,14 @@ func PutSignupsBySignupIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsByDomainHandler(self *macross.Context) error {
+func PutSignupsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Domain_ := self.Args("domain").String()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsByDomain(Domain_, &iSignups)
+	_int64, _error := model.PutSignupsViaDomain(Domain_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5833,14 +5833,14 @@ func PutSignupsByDomainHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsByPathHandler(self *macross.Context) error {
+func PutSignupsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Path_ := self.Args("path").String()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsByPath(Path_, &iSignups)
+	_int64, _error := model.PutSignupsViaPath(Path_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5850,14 +5850,14 @@ func PutSignupsByPathHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsByTitleHandler(self *macross.Context) error {
+func PutSignupsViaTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Title_ := self.Args("title").String()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsByTitle(Title_, &iSignups)
+	_int64, _error := model.PutSignupsViaTitle(Title_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5867,14 +5867,14 @@ func PutSignupsByTitleHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsByUserLoginHandler(self *macross.Context) error {
+func PutSignupsViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserLogin_ := self.Args("user_login").String()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsByUserLogin(UserLogin_, &iSignups)
+	_int64, _error := model.PutSignupsViaUserLogin(UserLogin_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5884,14 +5884,14 @@ func PutSignupsByUserLoginHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsByUserEmailHandler(self *macross.Context) error {
+func PutSignupsViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserEmail_ := self.Args("user_email").String()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsByUserEmail(UserEmail_, &iSignups)
+	_int64, _error := model.PutSignupsViaUserEmail(UserEmail_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5901,14 +5901,14 @@ func PutSignupsByUserEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsByRegisteredHandler(self *macross.Context) error {
+func PutSignupsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Registered_ := self.Args("registered").Time()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsByRegistered(Registered_, &iSignups)
+	_int64, _error := model.PutSignupsViaRegistered(Registered_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5918,14 +5918,14 @@ func PutSignupsByRegisteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsByActivatedHandler(self *macross.Context) error {
+func PutSignupsViaActivatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Activated_ := self.Args("activated").Time()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsByActivated(Activated_, &iSignups)
+	_int64, _error := model.PutSignupsViaActivated(Activated_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5935,14 +5935,14 @@ func PutSignupsByActivatedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsByActiveHandler(self *macross.Context) error {
+func PutSignupsViaActiveHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Active_ := self.Args("active").MustInt()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsByActive(Active_, &iSignups)
+	_int64, _error := model.PutSignupsViaActive(Active_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5952,14 +5952,14 @@ func PutSignupsByActiveHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsByActivationKeyHandler(self *macross.Context) error {
+func PutSignupsViaActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	ActivationKey_ := self.Args("activation_key").String()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsByActivationKey(ActivationKey_, &iSignups)
+	_int64, _error := model.PutSignupsViaActivationKey(ActivationKey_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5969,14 +5969,14 @@ func PutSignupsByActivationKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSignupsByMetaHandler(self *macross.Context) error {
+func PutSignupsViaMetaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Meta_ := self.Args("meta").String()
 	var iSignups model.Signups
 	self.Bind(&iSignups)
-	_int64, _error := model.PutSignupsByMeta(Meta_, &iSignups)
+	_int64, _error := model.PutSignupsViaMeta(Meta_, &iSignups)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -5986,7 +5986,7 @@ func PutSignupsByMetaHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsBySignupIdHandler(self *macross.Context) error {
+func PutUpdateSignupsViaSignupIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -5994,7 +5994,7 @@ func PutUpdateSignupsBySignupIdHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsBySignupId(SignupId_, &iMap)
+	_error := model.UpdateSignupsViaSignupId(SignupId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6004,7 +6004,7 @@ func PutUpdateSignupsBySignupIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsByDomainHandler(self *macross.Context) error {
+func PutUpdateSignupsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -6012,7 +6012,7 @@ func PutUpdateSignupsByDomainHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsByDomain(Domain_, &iMap)
+	_error := model.UpdateSignupsViaDomain(Domain_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6022,7 +6022,7 @@ func PutUpdateSignupsByDomainHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsByPathHandler(self *macross.Context) error {
+func PutUpdateSignupsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -6030,7 +6030,7 @@ func PutUpdateSignupsByPathHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsByPath(Path_, &iMap)
+	_error := model.UpdateSignupsViaPath(Path_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6040,7 +6040,7 @@ func PutUpdateSignupsByPathHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsByTitleHandler(self *macross.Context) error {
+func PutUpdateSignupsViaTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -6048,7 +6048,7 @@ func PutUpdateSignupsByTitleHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsByTitle(Title_, &iMap)
+	_error := model.UpdateSignupsViaTitle(Title_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6058,7 +6058,7 @@ func PutUpdateSignupsByTitleHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsByUserLoginHandler(self *macross.Context) error {
+func PutUpdateSignupsViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -6066,7 +6066,7 @@ func PutUpdateSignupsByUserLoginHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsByUserLogin(UserLogin_, &iMap)
+	_error := model.UpdateSignupsViaUserLogin(UserLogin_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6076,7 +6076,7 @@ func PutUpdateSignupsByUserLoginHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsByUserEmailHandler(self *macross.Context) error {
+func PutUpdateSignupsViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -6084,7 +6084,7 @@ func PutUpdateSignupsByUserEmailHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsByUserEmail(UserEmail_, &iMap)
+	_error := model.UpdateSignupsViaUserEmail(UserEmail_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6094,7 +6094,7 @@ func PutUpdateSignupsByUserEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsByRegisteredHandler(self *macross.Context) error {
+func PutUpdateSignupsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -6102,7 +6102,7 @@ func PutUpdateSignupsByRegisteredHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsByRegistered(Registered_, &iMap)
+	_error := model.UpdateSignupsViaRegistered(Registered_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6112,7 +6112,7 @@ func PutUpdateSignupsByRegisteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsByActivatedHandler(self *macross.Context) error {
+func PutUpdateSignupsViaActivatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -6120,7 +6120,7 @@ func PutUpdateSignupsByActivatedHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsByActivated(Activated_, &iMap)
+	_error := model.UpdateSignupsViaActivated(Activated_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6130,7 +6130,7 @@ func PutUpdateSignupsByActivatedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsByActiveHandler(self *macross.Context) error {
+func PutUpdateSignupsViaActiveHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -6138,7 +6138,7 @@ func PutUpdateSignupsByActiveHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsByActive(Active_, &iMap)
+	_error := model.UpdateSignupsViaActive(Active_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6148,7 +6148,7 @@ func PutUpdateSignupsByActiveHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsByActivationKeyHandler(self *macross.Context) error {
+func PutUpdateSignupsViaActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -6156,7 +6156,7 @@ func PutUpdateSignupsByActivationKeyHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsByActivationKey(ActivationKey_, &iMap)
+	_error := model.UpdateSignupsViaActivationKey(ActivationKey_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6166,7 +6166,7 @@ func PutUpdateSignupsByActivationKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSignupsByMetaHandler(self *macross.Context) error {
+func PutUpdateSignupsViaMetaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -6174,7 +6174,7 @@ func PutUpdateSignupsByMetaHandler(self *macross.Context) error {
 	var iSignups model.Signups
 	self.Bind(&iSignups)
 	var iMap = helper.StructToMap(iSignups)
-	_error := model.UpdateSignupsByMeta(Meta_, &iMap)
+	_error := model.UpdateSignupsViaMeta(Meta_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6201,12 +6201,12 @@ func DeleteSignupsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsBySignupIdHandler(self *macross.Context) error {
+func DeleteSignupsViaSignupIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	SignupId_ := self.Args("signup_id").MustInt64()
-	_error := model.DeleteSignupsBySignupId(SignupId_)
+	_error := model.DeleteSignupsViaSignupId(SignupId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6216,12 +6216,12 @@ func DeleteSignupsBySignupIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsByDomainHandler(self *macross.Context) error {
+func DeleteSignupsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Domain_ := self.Args("domain").String()
-	_error := model.DeleteSignupsByDomain(Domain_)
+	_error := model.DeleteSignupsViaDomain(Domain_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6231,12 +6231,12 @@ func DeleteSignupsByDomainHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsByPathHandler(self *macross.Context) error {
+func DeleteSignupsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Path_ := self.Args("path").String()
-	_error := model.DeleteSignupsByPath(Path_)
+	_error := model.DeleteSignupsViaPath(Path_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6246,12 +6246,12 @@ func DeleteSignupsByPathHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsByTitleHandler(self *macross.Context) error {
+func DeleteSignupsViaTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Title_ := self.Args("title").String()
-	_error := model.DeleteSignupsByTitle(Title_)
+	_error := model.DeleteSignupsViaTitle(Title_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6261,12 +6261,12 @@ func DeleteSignupsByTitleHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsByUserLoginHandler(self *macross.Context) error {
+func DeleteSignupsViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserLogin_ := self.Args("user_login").String()
-	_error := model.DeleteSignupsByUserLogin(UserLogin_)
+	_error := model.DeleteSignupsViaUserLogin(UserLogin_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6276,12 +6276,12 @@ func DeleteSignupsByUserLoginHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsByUserEmailHandler(self *macross.Context) error {
+func DeleteSignupsViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserEmail_ := self.Args("user_email").String()
-	_error := model.DeleteSignupsByUserEmail(UserEmail_)
+	_error := model.DeleteSignupsViaUserEmail(UserEmail_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6291,12 +6291,12 @@ func DeleteSignupsByUserEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsByRegisteredHandler(self *macross.Context) error {
+func DeleteSignupsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Registered_ := self.Args("registered").Time()
-	_error := model.DeleteSignupsByRegistered(Registered_)
+	_error := model.DeleteSignupsViaRegistered(Registered_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6306,12 +6306,12 @@ func DeleteSignupsByRegisteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsByActivatedHandler(self *macross.Context) error {
+func DeleteSignupsViaActivatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Activated_ := self.Args("activated").Time()
-	_error := model.DeleteSignupsByActivated(Activated_)
+	_error := model.DeleteSignupsViaActivated(Activated_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6321,12 +6321,12 @@ func DeleteSignupsByActivatedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsByActiveHandler(self *macross.Context) error {
+func DeleteSignupsViaActiveHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Active_ := self.Args("active").MustInt()
-	_error := model.DeleteSignupsByActive(Active_)
+	_error := model.DeleteSignupsViaActive(Active_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6336,12 +6336,12 @@ func DeleteSignupsByActiveHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsByActivationKeyHandler(self *macross.Context) error {
+func DeleteSignupsViaActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	ActivationKey_ := self.Args("activation_key").String()
-	_error := model.DeleteSignupsByActivationKey(ActivationKey_)
+	_error := model.DeleteSignupsViaActivationKey(ActivationKey_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -6351,12 +6351,12 @@ func DeleteSignupsByActivationKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSignupsByMetaHandler(self *macross.Context) error {
+func DeleteSignupsViaMetaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Meta_ := self.Args("meta").String()
-	_error := model.DeleteSignupsByMeta(Meta_)
+	_error := model.DeleteSignupsViaMeta(Meta_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

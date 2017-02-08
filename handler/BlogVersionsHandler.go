@@ -27,9 +27,9 @@ func GetBlogVersionsesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogVersionsCountByBlogIdHandler(self *macross.Context) error {
+func GetBlogVersionsCountViaBlogIdHandler(self *macross.Context) error {
 	BlogId_ := self.Args("blog_id").MustInt64()
-	_int64 := model.GetBlogVersionsCountByBlogId(BlogId_)
+	_int64 := model.GetBlogVersionsCountViaBlogId(BlogId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blog_versionsCount"] = 0
@@ -38,9 +38,9 @@ func GetBlogVersionsCountByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogVersionsCountByDbVersionHandler(self *macross.Context) error {
+func GetBlogVersionsCountViaDbVersionHandler(self *macross.Context) error {
 	DbVersion_ := self.Args("db_version").String()
-	_int64 := model.GetBlogVersionsCountByDbVersion(DbVersion_)
+	_int64 := model.GetBlogVersionsCountViaDbVersion(DbVersion_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blog_versionsCount"] = 0
@@ -49,9 +49,9 @@ func GetBlogVersionsCountByDbVersionHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogVersionsCountByLastUpdatedHandler(self *macross.Context) error {
+func GetBlogVersionsCountViaLastUpdatedHandler(self *macross.Context) error {
 	LastUpdated_ := self.Args("last_updated").Time()
-	_int64 := model.GetBlogVersionsCountByLastUpdated(LastUpdated_)
+	_int64 := model.GetBlogVersionsCountViaLastUpdated(LastUpdated_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blog_versionsCount"] = 0
@@ -60,7 +60,7 @@ func GetBlogVersionsCountByLastUpdatedHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogVersionsesByBlogIdHandler(self *macross.Context) error {
+func GetBlogVersionsesViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -69,18 +69,18 @@ func GetBlogVersionsesByBlogIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iBlogId := self.Args("blog_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iBlogId) {
-		_BlogVersions, _error := model.GetBlogVersionsesByBlogId(offset, limit, iBlogId, field)
+		_BlogVersions, _error := model.GetBlogVersionsesViaBlogId(offset, limit, iBlogId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_BlogVersions)
 	}
-	herr.Message = "Can't get to the GetBlogVersionsesByBlogId's args."
+	herr.Message = "Can't get to the GetBlogVersionsesViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogVersionsesByDbVersionHandler(self *macross.Context) error {
+func GetBlogVersionsesViaDbVersionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -89,18 +89,18 @@ func GetBlogVersionsesByDbVersionHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iDbVersion := self.Args("db_version").String()
 	if (offset > 0) && helper.IsHas(iDbVersion) {
-		_BlogVersions, _error := model.GetBlogVersionsesByDbVersion(offset, limit, iDbVersion, field)
+		_BlogVersions, _error := model.GetBlogVersionsesViaDbVersion(offset, limit, iDbVersion, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_BlogVersions)
 	}
-	herr.Message = "Can't get to the GetBlogVersionsesByDbVersion's args."
+	herr.Message = "Can't get to the GetBlogVersionsesViaDbVersion's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogVersionsesByLastUpdatedHandler(self *macross.Context) error {
+func GetBlogVersionsesViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -109,14 +109,14 @@ func GetBlogVersionsesByLastUpdatedHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLastUpdated := self.Args("last_updated").Time()
 	if (offset > 0) && helper.IsHas(iLastUpdated) {
-		_BlogVersions, _error := model.GetBlogVersionsesByLastUpdated(offset, limit, iLastUpdated, field)
+		_BlogVersions, _error := model.GetBlogVersionsesViaLastUpdated(offset, limit, iLastUpdated, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_BlogVersions)
 	}
-	herr.Message = "Can't get to the GetBlogVersionsesByLastUpdated's args."
+	herr.Message = "Can't get to the GetBlogVersionsesViaLastUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -224,103 +224,103 @@ func GetBlogVersionsesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogVersionsByBlogIdHandler(self *macross.Context) error {
+func GetHasBlogVersionsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iBlogId := self.Args("blog_id").MustInt64()
 	if helper.IsHas(iBlogId) {
-		_BlogVersions := model.HasBlogVersionsByBlogId(iBlogId)
+		_BlogVersions := model.HasBlogVersionsViaBlogId(iBlogId)
 		var m = map[string]interface{}{}
 		m["blog_versions"] = _BlogVersions
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogVersionsByBlogId's args."
+	herr.Message = "Can't get to the HasBlogVersionsViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogVersionsByDbVersionHandler(self *macross.Context) error {
+func GetHasBlogVersionsViaDbVersionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDbVersion := self.Args("db_version").String()
 	if helper.IsHas(iDbVersion) {
-		_BlogVersions := model.HasBlogVersionsByDbVersion(iDbVersion)
+		_BlogVersions := model.HasBlogVersionsViaDbVersion(iDbVersion)
 		var m = map[string]interface{}{}
 		m["blog_versions"] = _BlogVersions
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogVersionsByDbVersion's args."
+	herr.Message = "Can't get to the HasBlogVersionsViaDbVersion's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogVersionsByLastUpdatedHandler(self *macross.Context) error {
+func GetHasBlogVersionsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLastUpdated := self.Args("last_updated").Time()
 	if helper.IsHas(iLastUpdated) {
-		_BlogVersions := model.HasBlogVersionsByLastUpdated(iLastUpdated)
+		_BlogVersions := model.HasBlogVersionsViaLastUpdated(iLastUpdated)
 		var m = map[string]interface{}{}
 		m["blog_versions"] = _BlogVersions
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogVersionsByLastUpdated's args."
+	herr.Message = "Can't get to the HasBlogVersionsViaLastUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogVersionsByBlogIdHandler(self *macross.Context) error {
+func GetBlogVersionsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iBlogId := self.Args("blog_id").MustInt64()
 	if helper.IsHas(iBlogId) {
-		_BlogVersions, _error := model.GetBlogVersionsByBlogId(iBlogId)
+		_BlogVersions, _error := model.GetBlogVersionsViaBlogId(iBlogId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_BlogVersions)
 	}
-	herr.Message = "Can't get to the GetBlogVersionsByBlogId's args."
+	herr.Message = "Can't get to the GetBlogVersionsViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogVersionsByDbVersionHandler(self *macross.Context) error {
+func GetBlogVersionsViaDbVersionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDbVersion := self.Args("db_version").String()
 	if helper.IsHas(iDbVersion) {
-		_BlogVersions, _error := model.GetBlogVersionsByDbVersion(iDbVersion)
+		_BlogVersions, _error := model.GetBlogVersionsViaDbVersion(iDbVersion)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_BlogVersions)
 	}
-	herr.Message = "Can't get to the GetBlogVersionsByDbVersion's args."
+	herr.Message = "Can't get to the GetBlogVersionsViaDbVersion's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogVersionsByLastUpdatedHandler(self *macross.Context) error {
+func GetBlogVersionsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLastUpdated := self.Args("last_updated").Time()
 	if helper.IsHas(iLastUpdated) {
-		_BlogVersions, _error := model.GetBlogVersionsByLastUpdated(iLastUpdated)
+		_BlogVersions, _error := model.GetBlogVersionsViaLastUpdated(iLastUpdated)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_BlogVersions)
 	}
-	herr.Message = "Can't get to the GetBlogVersionsByLastUpdated's args."
+	herr.Message = "Can't get to the GetBlogVersionsViaLastUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogVersionsByBlogIdHandler(self *macross.Context) error {
+func PostSetBlogVersionsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -328,18 +328,18 @@ func PostSetBlogVersionsByBlogIdHandler(self *macross.Context) error {
 	if helper.IsHas(BlogId_) {
 		var iBlogVersions model.BlogVersions
 		self.Bind(&iBlogVersions)
-		_BlogVersions, _error := model.SetBlogVersionsByBlogId(BlogId_, &iBlogVersions)
+		_BlogVersions, _error := model.SetBlogVersionsViaBlogId(BlogId_, &iBlogVersions)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_BlogVersions)
 	}
-	herr.Message = "Can't get to the SetBlogVersionsByBlogId's args."
+	herr.Message = "Can't get to the SetBlogVersionsViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogVersionsByDbVersionHandler(self *macross.Context) error {
+func PostSetBlogVersionsViaDbVersionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -347,18 +347,18 @@ func PostSetBlogVersionsByDbVersionHandler(self *macross.Context) error {
 	if helper.IsHas(DbVersion_) {
 		var iBlogVersions model.BlogVersions
 		self.Bind(&iBlogVersions)
-		_BlogVersions, _error := model.SetBlogVersionsByDbVersion(DbVersion_, &iBlogVersions)
+		_BlogVersions, _error := model.SetBlogVersionsViaDbVersion(DbVersion_, &iBlogVersions)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_BlogVersions)
 	}
-	herr.Message = "Can't get to the SetBlogVersionsByDbVersion's args."
+	herr.Message = "Can't get to the SetBlogVersionsViaDbVersion's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogVersionsByLastUpdatedHandler(self *macross.Context) error {
+func PostSetBlogVersionsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -366,14 +366,14 @@ func PostSetBlogVersionsByLastUpdatedHandler(self *macross.Context) error {
 	if helper.IsHas(LastUpdated_) {
 		var iBlogVersions model.BlogVersions
 		self.Bind(&iBlogVersions)
-		_BlogVersions, _error := model.SetBlogVersionsByLastUpdated(LastUpdated_, &iBlogVersions)
+		_BlogVersions, _error := model.SetBlogVersionsViaLastUpdated(LastUpdated_, &iBlogVersions)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_BlogVersions)
 	}
-	herr.Message = "Can't get to the SetBlogVersionsByLastUpdated's args."
+	herr.Message = "Can't get to the SetBlogVersionsViaLastUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -406,7 +406,7 @@ func PostBlogVersionsHandler(self *macross.Context) error {
 	var iBlogVersions model.BlogVersions
 	self.Bind(&iBlogVersions)
 	_int64, _error := model.PostBlogVersions(&iBlogVersions)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -424,7 +424,7 @@ func PutBlogVersionsHandler(self *macross.Context) error {
 	var iBlogVersions model.BlogVersions
 	self.Bind(&iBlogVersions)
 	_int64, _error := model.PutBlogVersions(&iBlogVersions)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -435,14 +435,14 @@ func PutBlogVersionsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogVersionsByBlogIdHandler(self *macross.Context) error {
+func PutBlogVersionsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	BlogId_ := self.Args("blog_id").MustInt64()
 	var iBlogVersions model.BlogVersions
 	self.Bind(&iBlogVersions)
-	_int64, _error := model.PutBlogVersionsByBlogId(BlogId_, &iBlogVersions)
+	_int64, _error := model.PutBlogVersionsViaBlogId(BlogId_, &iBlogVersions)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -452,14 +452,14 @@ func PutBlogVersionsByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogVersionsByDbVersionHandler(self *macross.Context) error {
+func PutBlogVersionsViaDbVersionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	DbVersion_ := self.Args("db_version").String()
 	var iBlogVersions model.BlogVersions
 	self.Bind(&iBlogVersions)
-	_int64, _error := model.PutBlogVersionsByDbVersion(DbVersion_, &iBlogVersions)
+	_int64, _error := model.PutBlogVersionsViaDbVersion(DbVersion_, &iBlogVersions)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -469,14 +469,14 @@ func PutBlogVersionsByDbVersionHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogVersionsByLastUpdatedHandler(self *macross.Context) error {
+func PutBlogVersionsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LastUpdated_ := self.Args("last_updated").Time()
 	var iBlogVersions model.BlogVersions
 	self.Bind(&iBlogVersions)
-	_int64, _error := model.PutBlogVersionsByLastUpdated(LastUpdated_, &iBlogVersions)
+	_int64, _error := model.PutBlogVersionsViaLastUpdated(LastUpdated_, &iBlogVersions)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -486,7 +486,7 @@ func PutBlogVersionsByLastUpdatedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogVersionsByBlogIdHandler(self *macross.Context) error {
+func PutUpdateBlogVersionsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -494,7 +494,7 @@ func PutUpdateBlogVersionsByBlogIdHandler(self *macross.Context) error {
 	var iBlogVersions model.BlogVersions
 	self.Bind(&iBlogVersions)
 	var iMap = helper.StructToMap(iBlogVersions)
-	_error := model.UpdateBlogVersionsByBlogId(BlogId_, &iMap)
+	_error := model.UpdateBlogVersionsViaBlogId(BlogId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -504,7 +504,7 @@ func PutUpdateBlogVersionsByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogVersionsByDbVersionHandler(self *macross.Context) error {
+func PutUpdateBlogVersionsViaDbVersionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -512,7 +512,7 @@ func PutUpdateBlogVersionsByDbVersionHandler(self *macross.Context) error {
 	var iBlogVersions model.BlogVersions
 	self.Bind(&iBlogVersions)
 	var iMap = helper.StructToMap(iBlogVersions)
-	_error := model.UpdateBlogVersionsByDbVersion(DbVersion_, &iMap)
+	_error := model.UpdateBlogVersionsViaDbVersion(DbVersion_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -522,7 +522,7 @@ func PutUpdateBlogVersionsByDbVersionHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogVersionsByLastUpdatedHandler(self *macross.Context) error {
+func PutUpdateBlogVersionsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -530,7 +530,7 @@ func PutUpdateBlogVersionsByLastUpdatedHandler(self *macross.Context) error {
 	var iBlogVersions model.BlogVersions
 	self.Bind(&iBlogVersions)
 	var iMap = helper.StructToMap(iBlogVersions)
-	_error := model.UpdateBlogVersionsByLastUpdated(LastUpdated_, &iMap)
+	_error := model.UpdateBlogVersionsViaLastUpdated(LastUpdated_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -557,12 +557,12 @@ func DeleteBlogVersionsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogVersionsByBlogIdHandler(self *macross.Context) error {
+func DeleteBlogVersionsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	BlogId_ := self.Args("blog_id").MustInt64()
-	_error := model.DeleteBlogVersionsByBlogId(BlogId_)
+	_error := model.DeleteBlogVersionsViaBlogId(BlogId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -572,12 +572,12 @@ func DeleteBlogVersionsByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogVersionsByDbVersionHandler(self *macross.Context) error {
+func DeleteBlogVersionsViaDbVersionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	DbVersion_ := self.Args("db_version").String()
-	_error := model.DeleteBlogVersionsByDbVersion(DbVersion_)
+	_error := model.DeleteBlogVersionsViaDbVersion(DbVersion_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -587,12 +587,12 @@ func DeleteBlogVersionsByDbVersionHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogVersionsByLastUpdatedHandler(self *macross.Context) error {
+func DeleteBlogVersionsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LastUpdated_ := self.Args("last_updated").Time()
-	_error := model.DeleteBlogVersionsByLastUpdated(LastUpdated_)
+	_error := model.DeleteBlogVersionsViaLastUpdated(LastUpdated_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

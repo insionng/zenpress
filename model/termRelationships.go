@@ -12,20 +12,20 @@ func GetTermRelationshipsesCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetTermRelationshipsCountByObjectId Get TermRelationships via ObjectId
-func GetTermRelationshipsCountByObjectId(iObjectId int64) int64 {
+// GetTermRelationshipsCountViaObjectId Get TermRelationships via ObjectId
+func GetTermRelationshipsCountViaObjectId(iObjectId int64) int64 {
 	n, _ := Engine.Where("object_id = ?", iObjectId).Count(&TermRelationships{ObjectId: iObjectId})
 	return n
 }
 
-// GetTermRelationshipsCountByTermTaxonomyId Get TermRelationships via TermTaxonomyId
-func GetTermRelationshipsCountByTermTaxonomyId(iTermTaxonomyId int64) int64 {
+// GetTermRelationshipsCountViaTermTaxonomyId Get TermRelationships via TermTaxonomyId
+func GetTermRelationshipsCountViaTermTaxonomyId(iTermTaxonomyId int64) int64 {
 	n, _ := Engine.Where("term_taxonomy_id = ?", iTermTaxonomyId).Count(&TermRelationships{TermTaxonomyId: iTermTaxonomyId})
 	return n
 }
 
-// GetTermRelationshipsCountByTermOrder Get TermRelationships via TermOrder
-func GetTermRelationshipsCountByTermOrder(iTermOrder int) int64 {
+// GetTermRelationshipsCountViaTermOrder Get TermRelationships via TermOrder
+func GetTermRelationshipsCountViaTermOrder(iTermOrder int) int64 {
 	n, _ := Engine.Where("term_order = ?", iTermOrder).Count(&TermRelationships{TermOrder: iTermOrder})
 	return n
 }
@@ -65,29 +65,29 @@ func GetTermRelationshipses(offset int, limit int, field string) (*[]*TermRelati
 	return _TermRelationships, err
 }
 
-// GetTermRelationshipsesByObjectId Get TermRelationshipss via ObjectId
-func GetTermRelationshipsesByObjectId(offset int, limit int, ObjectId_ int64, field string) (*[]*TermRelationships, error) {
+// GetTermRelationshipsesViaObjectId Get TermRelationshipss via ObjectId
+func GetTermRelationshipsesViaObjectId(offset int, limit int, ObjectId_ int64, field string) (*[]*TermRelationships, error) {
 	var _TermRelationships = new([]*TermRelationships)
 	err := Engine.Table("term_relationships").Where("object_id = ?", ObjectId_).Limit(limit, offset).Desc(field).Find(_TermRelationships)
 	return _TermRelationships, err
 }
 
-// GetTermRelationshipsesByTermTaxonomyId Get TermRelationshipss via TermTaxonomyId
-func GetTermRelationshipsesByTermTaxonomyId(offset int, limit int, TermTaxonomyId_ int64, field string) (*[]*TermRelationships, error) {
+// GetTermRelationshipsesViaTermTaxonomyId Get TermRelationshipss via TermTaxonomyId
+func GetTermRelationshipsesViaTermTaxonomyId(offset int, limit int, TermTaxonomyId_ int64, field string) (*[]*TermRelationships, error) {
 	var _TermRelationships = new([]*TermRelationships)
 	err := Engine.Table("term_relationships").Where("term_taxonomy_id = ?", TermTaxonomyId_).Limit(limit, offset).Desc(field).Find(_TermRelationships)
 	return _TermRelationships, err
 }
 
-// GetTermRelationshipsesByTermOrder Get TermRelationshipss via TermOrder
-func GetTermRelationshipsesByTermOrder(offset int, limit int, TermOrder_ int, field string) (*[]*TermRelationships, error) {
+// GetTermRelationshipsesViaTermOrder Get TermRelationshipss via TermOrder
+func GetTermRelationshipsesViaTermOrder(offset int, limit int, TermOrder_ int, field string) (*[]*TermRelationships, error) {
 	var _TermRelationships = new([]*TermRelationships)
 	err := Engine.Table("term_relationships").Where("term_order = ?", TermOrder_).Limit(limit, offset).Desc(field).Find(_TermRelationships)
 	return _TermRelationships, err
 }
 
-// HasTermRelationshipsByObjectId Has TermRelationships via ObjectId
-func HasTermRelationshipsByObjectId(iObjectId int64) bool {
+// HasTermRelationshipsViaObjectId Has TermRelationships via ObjectId
+func HasTermRelationshipsViaObjectId(iObjectId int64) bool {
 	if has, err := Engine.Where("object_id = ?", iObjectId).Get(new(TermRelationships)); err != nil {
 		return false
 	} else {
@@ -98,8 +98,8 @@ func HasTermRelationshipsByObjectId(iObjectId int64) bool {
 	}
 }
 
-// HasTermRelationshipsByTermTaxonomyId Has TermRelationships via TermTaxonomyId
-func HasTermRelationshipsByTermTaxonomyId(iTermTaxonomyId int64) bool {
+// HasTermRelationshipsViaTermTaxonomyId Has TermRelationships via TermTaxonomyId
+func HasTermRelationshipsViaTermTaxonomyId(iTermTaxonomyId int64) bool {
 	if has, err := Engine.Where("term_taxonomy_id = ?", iTermTaxonomyId).Get(new(TermRelationships)); err != nil {
 		return false
 	} else {
@@ -110,8 +110,8 @@ func HasTermRelationshipsByTermTaxonomyId(iTermTaxonomyId int64) bool {
 	}
 }
 
-// HasTermRelationshipsByTermOrder Has TermRelationships via TermOrder
-func HasTermRelationshipsByTermOrder(iTermOrder int) bool {
+// HasTermRelationshipsViaTermOrder Has TermRelationships via TermOrder
+func HasTermRelationshipsViaTermOrder(iTermOrder int) bool {
 	if has, err := Engine.Where("term_order = ?", iTermOrder).Get(new(TermRelationships)); err != nil {
 		return false
 	} else {
@@ -122,8 +122,8 @@ func HasTermRelationshipsByTermOrder(iTermOrder int) bool {
 	}
 }
 
-// GetTermRelationshipsByObjectId Get TermRelationships via ObjectId
-func GetTermRelationshipsByObjectId(iObjectId int64) (*TermRelationships, error) {
+// GetTermRelationshipsViaObjectId Get TermRelationships via ObjectId
+func GetTermRelationshipsViaObjectId(iObjectId int64) (*TermRelationships, error) {
 	var _TermRelationships = &TermRelationships{ObjectId: iObjectId}
 	has, err := Engine.Get(_TermRelationships)
 	if has {
@@ -133,8 +133,8 @@ func GetTermRelationshipsByObjectId(iObjectId int64) (*TermRelationships, error)
 	}
 }
 
-// GetTermRelationshipsByTermTaxonomyId Get TermRelationships via TermTaxonomyId
-func GetTermRelationshipsByTermTaxonomyId(iTermTaxonomyId int64) (*TermRelationships, error) {
+// GetTermRelationshipsViaTermTaxonomyId Get TermRelationships via TermTaxonomyId
+func GetTermRelationshipsViaTermTaxonomyId(iTermTaxonomyId int64) (*TermRelationships, error) {
 	var _TermRelationships = &TermRelationships{TermTaxonomyId: iTermTaxonomyId}
 	has, err := Engine.Get(_TermRelationships)
 	if has {
@@ -144,8 +144,8 @@ func GetTermRelationshipsByTermTaxonomyId(iTermTaxonomyId int64) (*TermRelations
 	}
 }
 
-// GetTermRelationshipsByTermOrder Get TermRelationships via TermOrder
-func GetTermRelationshipsByTermOrder(iTermOrder int) (*TermRelationships, error) {
+// GetTermRelationshipsViaTermOrder Get TermRelationships via TermOrder
+func GetTermRelationshipsViaTermOrder(iTermOrder int) (*TermRelationships, error) {
 	var _TermRelationships = &TermRelationships{TermOrder: iTermOrder}
 	has, err := Engine.Get(_TermRelationships)
 	if has {
@@ -155,20 +155,20 @@ func GetTermRelationshipsByTermOrder(iTermOrder int) (*TermRelationships, error)
 	}
 }
 
-// SetTermRelationshipsByObjectId Set TermRelationships via ObjectId
-func SetTermRelationshipsByObjectId(iObjectId int64, term_relationships *TermRelationships) (int64, error) {
+// SetTermRelationshipsViaObjectId Set TermRelationships via ObjectId
+func SetTermRelationshipsViaObjectId(iObjectId int64, term_relationships *TermRelationships) (int64, error) {
 	term_relationships.ObjectId = iObjectId
 	return Engine.Insert(term_relationships)
 }
 
-// SetTermRelationshipsByTermTaxonomyId Set TermRelationships via TermTaxonomyId
-func SetTermRelationshipsByTermTaxonomyId(iTermTaxonomyId int64, term_relationships *TermRelationships) (int64, error) {
+// SetTermRelationshipsViaTermTaxonomyId Set TermRelationships via TermTaxonomyId
+func SetTermRelationshipsViaTermTaxonomyId(iTermTaxonomyId int64, term_relationships *TermRelationships) (int64, error) {
 	term_relationships.TermTaxonomyId = iTermTaxonomyId
 	return Engine.Insert(term_relationships)
 }
 
-// SetTermRelationshipsByTermOrder Set TermRelationships via TermOrder
-func SetTermRelationshipsByTermOrder(iTermOrder int, term_relationships *TermRelationships) (int64, error) {
+// SetTermRelationshipsViaTermOrder Set TermRelationships via TermOrder
+func SetTermRelationshipsViaTermOrder(iTermOrder int, term_relationships *TermRelationships) (int64, error) {
 	term_relationships.TermOrder = iTermOrder
 	return Engine.Insert(term_relationships)
 }
@@ -195,26 +195,26 @@ func PutTermRelationships(iTermRelationships *TermRelationships) (int64, error) 
 	return iTermRelationships.ObjectId, err
 }
 
-// PutTermRelationshipsByObjectId Put TermRelationships via ObjectId
-func PutTermRelationshipsByObjectId(ObjectId_ int64, iTermRelationships *TermRelationships) (int64, error) {
+// PutTermRelationshipsViaObjectId Put TermRelationships via ObjectId
+func PutTermRelationshipsViaObjectId(ObjectId_ int64, iTermRelationships *TermRelationships) (int64, error) {
 	row, err := Engine.Update(iTermRelationships, &TermRelationships{ObjectId: ObjectId_})
 	return row, err
 }
 
-// PutTermRelationshipsByTermTaxonomyId Put TermRelationships via TermTaxonomyId
-func PutTermRelationshipsByTermTaxonomyId(TermTaxonomyId_ int64, iTermRelationships *TermRelationships) (int64, error) {
+// PutTermRelationshipsViaTermTaxonomyId Put TermRelationships via TermTaxonomyId
+func PutTermRelationshipsViaTermTaxonomyId(TermTaxonomyId_ int64, iTermRelationships *TermRelationships) (int64, error) {
 	row, err := Engine.Update(iTermRelationships, &TermRelationships{TermTaxonomyId: TermTaxonomyId_})
 	return row, err
 }
 
-// PutTermRelationshipsByTermOrder Put TermRelationships via TermOrder
-func PutTermRelationshipsByTermOrder(TermOrder_ int, iTermRelationships *TermRelationships) (int64, error) {
+// PutTermRelationshipsViaTermOrder Put TermRelationships via TermOrder
+func PutTermRelationshipsViaTermOrder(TermOrder_ int, iTermRelationships *TermRelationships) (int64, error) {
 	row, err := Engine.Update(iTermRelationships, &TermRelationships{TermOrder: TermOrder_})
 	return row, err
 }
 
-// UpdateTermRelationshipsByObjectId via map[string]interface{}{}
-func UpdateTermRelationshipsByObjectId(iObjectId int64, iTermRelationshipsMap *map[string]interface{}) error {
+// UpdateTermRelationshipsViaObjectId via map[string]interface{}{}
+func UpdateTermRelationshipsViaObjectId(iObjectId int64, iTermRelationshipsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(TermRelationships)).Where("object_id = ?", iObjectId).Update(iTermRelationshipsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -222,8 +222,8 @@ func UpdateTermRelationshipsByObjectId(iObjectId int64, iTermRelationshipsMap *m
 	}
 }
 
-// UpdateTermRelationshipsByTermTaxonomyId via map[string]interface{}{}
-func UpdateTermRelationshipsByTermTaxonomyId(iTermTaxonomyId int64, iTermRelationshipsMap *map[string]interface{}) error {
+// UpdateTermRelationshipsViaTermTaxonomyId via map[string]interface{}{}
+func UpdateTermRelationshipsViaTermTaxonomyId(iTermTaxonomyId int64, iTermRelationshipsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(TermRelationships)).Where("term_taxonomy_id = ?", iTermTaxonomyId).Update(iTermRelationshipsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -231,8 +231,8 @@ func UpdateTermRelationshipsByTermTaxonomyId(iTermTaxonomyId int64, iTermRelatio
 	}
 }
 
-// UpdateTermRelationshipsByTermOrder via map[string]interface{}{}
-func UpdateTermRelationshipsByTermOrder(iTermOrder int, iTermRelationshipsMap *map[string]interface{}) error {
+// UpdateTermRelationshipsViaTermOrder via map[string]interface{}{}
+func UpdateTermRelationshipsViaTermOrder(iTermOrder int, iTermRelationshipsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(TermRelationships)).Where("term_order = ?", iTermOrder).Update(iTermRelationshipsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -246,8 +246,8 @@ func DeleteTermRelationships(iObjectId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteTermRelationshipsByObjectId Delete TermRelationships via ObjectId
-func DeleteTermRelationshipsByObjectId(iObjectId int64) (err error) {
+// DeleteTermRelationshipsViaObjectId Delete TermRelationships via ObjectId
+func DeleteTermRelationshipsViaObjectId(iObjectId int64) (err error) {
 	var has bool
 	var _TermRelationships = &TermRelationships{ObjectId: iObjectId}
 	if has, err = Engine.Get(_TermRelationships); (has == true) && (err == nil) {
@@ -260,8 +260,8 @@ func DeleteTermRelationshipsByObjectId(iObjectId int64) (err error) {
 	return
 }
 
-// DeleteTermRelationshipsByTermTaxonomyId Delete TermRelationships via TermTaxonomyId
-func DeleteTermRelationshipsByTermTaxonomyId(iTermTaxonomyId int64) (err error) {
+// DeleteTermRelationshipsViaTermTaxonomyId Delete TermRelationships via TermTaxonomyId
+func DeleteTermRelationshipsViaTermTaxonomyId(iTermTaxonomyId int64) (err error) {
 	var has bool
 	var _TermRelationships = &TermRelationships{TermTaxonomyId: iTermTaxonomyId}
 	if has, err = Engine.Get(_TermRelationships); (has == true) && (err == nil) {
@@ -274,8 +274,8 @@ func DeleteTermRelationshipsByTermTaxonomyId(iTermTaxonomyId int64) (err error) 
 	return
 }
 
-// DeleteTermRelationshipsByTermOrder Delete TermRelationships via TermOrder
-func DeleteTermRelationshipsByTermOrder(iTermOrder int) (err error) {
+// DeleteTermRelationshipsViaTermOrder Delete TermRelationships via TermOrder
+func DeleteTermRelationshipsViaTermOrder(iTermOrder int) (err error) {
 	var has bool
 	var _TermRelationships = &TermRelationships{TermOrder: iTermOrder}
 	if has, err = Engine.Get(_TermRelationships); (has == true) && (err == nil) {

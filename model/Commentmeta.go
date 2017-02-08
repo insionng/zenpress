@@ -13,26 +13,26 @@ func GetCommentmetasCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetCommentmetaCountByMetaId Get Commentmeta via MetaId
-func GetCommentmetaCountByMetaId(iMetaId int64) int64 {
+// GetCommentmetaCountViaMetaId Get Commentmeta via MetaId
+func GetCommentmetaCountViaMetaId(iMetaId int64) int64 {
 	n, _ := Engine.Where("meta_id = ?", iMetaId).Count(&Commentmeta{MetaId: iMetaId})
 	return n
 }
 
-// GetCommentmetaCountByCommentId Get Commentmeta via CommentId
-func GetCommentmetaCountByCommentId(iCommentId int64) int64 {
+// GetCommentmetaCountViaCommentId Get Commentmeta via CommentId
+func GetCommentmetaCountViaCommentId(iCommentId int64) int64 {
 	n, _ := Engine.Where("comment_id = ?", iCommentId).Count(&Commentmeta{CommentId: iCommentId})
 	return n
 }
 
-// GetCommentmetaCountByMetaKey Get Commentmeta via MetaKey
-func GetCommentmetaCountByMetaKey(iMetaKey string) int64 {
+// GetCommentmetaCountViaMetaKey Get Commentmeta via MetaKey
+func GetCommentmetaCountViaMetaKey(iMetaKey string) int64 {
 	n, _ := Engine.Where("meta_key = ?", iMetaKey).Count(&Commentmeta{MetaKey: iMetaKey})
 	return n
 }
 
-// GetCommentmetaCountByMetaValue Get Commentmeta via MetaValue
-func GetCommentmetaCountByMetaValue(iMetaValue string) int64 {
+// GetCommentmetaCountViaMetaValue Get Commentmeta via MetaValue
+func GetCommentmetaCountViaMetaValue(iMetaValue string) int64 {
 	n, _ := Engine.Where("meta_value = ?", iMetaValue).Count(&Commentmeta{MetaValue: iMetaValue})
 	return n
 }
@@ -114,36 +114,36 @@ func GetCommentmetas(offset int, limit int, field string) (*[]*Commentmeta, erro
 	return _Commentmeta, err
 }
 
-// GetCommentmetasByMetaId Get Commentmetas via MetaId
-func GetCommentmetasByMetaId(offset int, limit int, MetaId_ int64, field string) (*[]*Commentmeta, error) {
+// GetCommentmetasViaMetaId Get Commentmetas via MetaId
+func GetCommentmetasViaMetaId(offset int, limit int, MetaId_ int64, field string) (*[]*Commentmeta, error) {
 	var _Commentmeta = new([]*Commentmeta)
 	err := Engine.Table("commentmeta").Where("meta_id = ?", MetaId_).Limit(limit, offset).Desc(field).Find(_Commentmeta)
 	return _Commentmeta, err
 }
 
-// GetCommentmetasByCommentId Get Commentmetas via CommentId
-func GetCommentmetasByCommentId(offset int, limit int, CommentId_ int64, field string) (*[]*Commentmeta, error) {
+// GetCommentmetasViaCommentId Get Commentmetas via CommentId
+func GetCommentmetasViaCommentId(offset int, limit int, CommentId_ int64, field string) (*[]*Commentmeta, error) {
 	var _Commentmeta = new([]*Commentmeta)
 	err := Engine.Table("commentmeta").Where("comment_id = ?", CommentId_).Limit(limit, offset).Desc(field).Find(_Commentmeta)
 	return _Commentmeta, err
 }
 
-// GetCommentmetasByMetaKey Get Commentmetas via MetaKey
-func GetCommentmetasByMetaKey(offset int, limit int, MetaKey_ string, field string) (*[]*Commentmeta, error) {
+// GetCommentmetasViaMetaKey Get Commentmetas via MetaKey
+func GetCommentmetasViaMetaKey(offset int, limit int, MetaKey_ string, field string) (*[]*Commentmeta, error) {
 	var _Commentmeta = new([]*Commentmeta)
 	err := Engine.Table("commentmeta").Where("meta_key = ?", MetaKey_).Limit(limit, offset).Desc(field).Find(_Commentmeta)
 	return _Commentmeta, err
 }
 
-// GetCommentmetasByMetaValue Get Commentmetas via MetaValue
-func GetCommentmetasByMetaValue(offset int, limit int, MetaValue_ string, field string) (*[]*Commentmeta, error) {
+// GetCommentmetasViaMetaValue Get Commentmetas via MetaValue
+func GetCommentmetasViaMetaValue(offset int, limit int, MetaValue_ string, field string) (*[]*Commentmeta, error) {
 	var _Commentmeta = new([]*Commentmeta)
 	err := Engine.Table("commentmeta").Where("meta_value = ?", MetaValue_).Limit(limit, offset).Desc(field).Find(_Commentmeta)
 	return _Commentmeta, err
 }
 
-// HasCommentmetaByMetaId Has Commentmeta via MetaId
-func HasCommentmetaByMetaId(iMetaId int64) bool {
+// HasCommentmetaViaMetaId Has Commentmeta via MetaId
+func HasCommentmetaViaMetaId(iMetaId int64) bool {
 	if has, err := Engine.Where("meta_id = ?", iMetaId).Get(new(Commentmeta)); err != nil {
 		return false
 	} else {
@@ -154,8 +154,8 @@ func HasCommentmetaByMetaId(iMetaId int64) bool {
 	}
 }
 
-// HasCommentmetaByCommentId Has Commentmeta via CommentId
-func HasCommentmetaByCommentId(iCommentId int64) bool {
+// HasCommentmetaViaCommentId Has Commentmeta via CommentId
+func HasCommentmetaViaCommentId(iCommentId int64) bool {
 	if has, err := Engine.Where("comment_id = ?", iCommentId).Get(new(Commentmeta)); err != nil {
 		return false
 	} else {
@@ -166,8 +166,8 @@ func HasCommentmetaByCommentId(iCommentId int64) bool {
 	}
 }
 
-// HasCommentmetaByMetaKey Has Commentmeta via MetaKey
-func HasCommentmetaByMetaKey(iMetaKey string) bool {
+// HasCommentmetaViaMetaKey Has Commentmeta via MetaKey
+func HasCommentmetaViaMetaKey(iMetaKey string) bool {
 	if has, err := Engine.Where("meta_key = ?", iMetaKey).Get(new(Commentmeta)); err != nil {
 		return false
 	} else {
@@ -178,8 +178,8 @@ func HasCommentmetaByMetaKey(iMetaKey string) bool {
 	}
 }
 
-// HasCommentmetaByMetaValue Has Commentmeta via MetaValue
-func HasCommentmetaByMetaValue(iMetaValue string) bool {
+// HasCommentmetaViaMetaValue Has Commentmeta via MetaValue
+func HasCommentmetaViaMetaValue(iMetaValue string) bool {
 	if has, err := Engine.Where("meta_value = ?", iMetaValue).Get(new(Commentmeta)); err != nil {
 		return false
 	} else {
@@ -190,8 +190,8 @@ func HasCommentmetaByMetaValue(iMetaValue string) bool {
 	}
 }
 
-// GetCommentmetaByMetaId Get Commentmeta via MetaId
-func GetCommentmetaByMetaId(iMetaId int64) (*Commentmeta, error) {
+// GetCommentmetaViaMetaId Get Commentmeta via MetaId
+func GetCommentmetaViaMetaId(iMetaId int64) (*Commentmeta, error) {
 	var _Commentmeta = &Commentmeta{MetaId: iMetaId}
 	has, err := Engine.Get(_Commentmeta)
 	if has {
@@ -201,8 +201,8 @@ func GetCommentmetaByMetaId(iMetaId int64) (*Commentmeta, error) {
 	}
 }
 
-// GetCommentmetaByCommentId Get Commentmeta via CommentId
-func GetCommentmetaByCommentId(iCommentId int64) (*Commentmeta, error) {
+// GetCommentmetaViaCommentId Get Commentmeta via CommentId
+func GetCommentmetaViaCommentId(iCommentId int64) (*Commentmeta, error) {
 	var _Commentmeta = &Commentmeta{CommentId: iCommentId}
 	has, err := Engine.Get(_Commentmeta)
 	if has {
@@ -212,8 +212,8 @@ func GetCommentmetaByCommentId(iCommentId int64) (*Commentmeta, error) {
 	}
 }
 
-// GetCommentmetaByMetaKey Get Commentmeta via MetaKey
-func GetCommentmetaByMetaKey(iMetaKey string) (*Commentmeta, error) {
+// GetCommentmetaViaMetaKey Get Commentmeta via MetaKey
+func GetCommentmetaViaMetaKey(iMetaKey string) (*Commentmeta, error) {
 	var _Commentmeta = &Commentmeta{MetaKey: iMetaKey}
 	has, err := Engine.Get(_Commentmeta)
 	if has {
@@ -223,8 +223,8 @@ func GetCommentmetaByMetaKey(iMetaKey string) (*Commentmeta, error) {
 	}
 }
 
-// GetCommentmetaByMetaValue Get Commentmeta via MetaValue
-func GetCommentmetaByMetaValue(iMetaValue string) (*Commentmeta, error) {
+// GetCommentmetaViaMetaValue Get Commentmeta via MetaValue
+func GetCommentmetaViaMetaValue(iMetaValue string) (*Commentmeta, error) {
 	var _Commentmeta = &Commentmeta{MetaValue: iMetaValue}
 	has, err := Engine.Get(_Commentmeta)
 	if has {
@@ -234,26 +234,26 @@ func GetCommentmetaByMetaValue(iMetaValue string) (*Commentmeta, error) {
 	}
 }
 
-// SetCommentmetaByMetaId Set Commentmeta via MetaId
-func SetCommentmetaByMetaId(iMetaId int64, commentmeta *Commentmeta) (int64, error) {
+// SetCommentmetaViaMetaId Set Commentmeta via MetaId
+func SetCommentmetaViaMetaId(iMetaId int64, commentmeta *Commentmeta) (int64, error) {
 	commentmeta.MetaId = iMetaId
 	return Engine.Insert(commentmeta)
 }
 
-// SetCommentmetaByCommentId Set Commentmeta via CommentId
-func SetCommentmetaByCommentId(iCommentId int64, commentmeta *Commentmeta) (int64, error) {
+// SetCommentmetaViaCommentId Set Commentmeta via CommentId
+func SetCommentmetaViaCommentId(iCommentId int64, commentmeta *Commentmeta) (int64, error) {
 	commentmeta.CommentId = iCommentId
 	return Engine.Insert(commentmeta)
 }
 
-// SetCommentmetaByMetaKey Set Commentmeta via MetaKey
-func SetCommentmetaByMetaKey(iMetaKey string, commentmeta *Commentmeta) (int64, error) {
+// SetCommentmetaViaMetaKey Set Commentmeta via MetaKey
+func SetCommentmetaViaMetaKey(iMetaKey string, commentmeta *Commentmeta) (int64, error) {
 	commentmeta.MetaKey = iMetaKey
 	return Engine.Insert(commentmeta)
 }
 
-// SetCommentmetaByMetaValue Set Commentmeta via MetaValue
-func SetCommentmetaByMetaValue(iMetaValue string, commentmeta *Commentmeta) (int64, error) {
+// SetCommentmetaViaMetaValue Set Commentmeta via MetaValue
+func SetCommentmetaViaMetaValue(iMetaValue string, commentmeta *Commentmeta) (int64, error) {
 	commentmeta.MetaValue = iMetaValue
 	return Engine.Insert(commentmeta)
 }
@@ -280,32 +280,32 @@ func PutCommentmeta(iCommentmeta *Commentmeta) (int64, error) {
 	return iCommentmeta.MetaId, err
 }
 
-// PutCommentmetaByMetaId Put Commentmeta via MetaId
-func PutCommentmetaByMetaId(MetaId_ int64, iCommentmeta *Commentmeta) (int64, error) {
+// PutCommentmetaViaMetaId Put Commentmeta via MetaId
+func PutCommentmetaViaMetaId(MetaId_ int64, iCommentmeta *Commentmeta) (int64, error) {
 	row, err := Engine.Update(iCommentmeta, &Commentmeta{MetaId: MetaId_})
 	return row, err
 }
 
-// PutCommentmetaByCommentId Put Commentmeta via CommentId
-func PutCommentmetaByCommentId(CommentId_ int64, iCommentmeta *Commentmeta) (int64, error) {
+// PutCommentmetaViaCommentId Put Commentmeta via CommentId
+func PutCommentmetaViaCommentId(CommentId_ int64, iCommentmeta *Commentmeta) (int64, error) {
 	row, err := Engine.Update(iCommentmeta, &Commentmeta{CommentId: CommentId_})
 	return row, err
 }
 
-// PutCommentmetaByMetaKey Put Commentmeta via MetaKey
-func PutCommentmetaByMetaKey(MetaKey_ string, iCommentmeta *Commentmeta) (int64, error) {
+// PutCommentmetaViaMetaKey Put Commentmeta via MetaKey
+func PutCommentmetaViaMetaKey(MetaKey_ string, iCommentmeta *Commentmeta) (int64, error) {
 	row, err := Engine.Update(iCommentmeta, &Commentmeta{MetaKey: MetaKey_})
 	return row, err
 }
 
-// PutCommentmetaByMetaValue Put Commentmeta via MetaValue
-func PutCommentmetaByMetaValue(MetaValue_ string, iCommentmeta *Commentmeta) (int64, error) {
+// PutCommentmetaViaMetaValue Put Commentmeta via MetaValue
+func PutCommentmetaViaMetaValue(MetaValue_ string, iCommentmeta *Commentmeta) (int64, error) {
 	row, err := Engine.Update(iCommentmeta, &Commentmeta{MetaValue: MetaValue_})
 	return row, err
 }
 
-// UpdateCommentmetaByMetaId via map[string]interface{}{}
-func UpdateCommentmetaByMetaId(iMetaId int64, iCommentmetaMap *map[string]interface{}) error {
+// UpdateCommentmetaViaMetaId via map[string]interface{}{}
+func UpdateCommentmetaViaMetaId(iMetaId int64, iCommentmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Commentmeta)).Where("meta_id = ?", iMetaId).Update(iCommentmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -313,8 +313,8 @@ func UpdateCommentmetaByMetaId(iMetaId int64, iCommentmetaMap *map[string]interf
 	}
 }
 
-// UpdateCommentmetaByCommentId via map[string]interface{}{}
-func UpdateCommentmetaByCommentId(iCommentId int64, iCommentmetaMap *map[string]interface{}) error {
+// UpdateCommentmetaViaCommentId via map[string]interface{}{}
+func UpdateCommentmetaViaCommentId(iCommentId int64, iCommentmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Commentmeta)).Where("comment_id = ?", iCommentId).Update(iCommentmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -322,8 +322,8 @@ func UpdateCommentmetaByCommentId(iCommentId int64, iCommentmetaMap *map[string]
 	}
 }
 
-// UpdateCommentmetaByMetaKey via map[string]interface{}{}
-func UpdateCommentmetaByMetaKey(iMetaKey string, iCommentmetaMap *map[string]interface{}) error {
+// UpdateCommentmetaViaMetaKey via map[string]interface{}{}
+func UpdateCommentmetaViaMetaKey(iMetaKey string, iCommentmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Commentmeta)).Where("meta_key = ?", iMetaKey).Update(iCommentmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -331,8 +331,8 @@ func UpdateCommentmetaByMetaKey(iMetaKey string, iCommentmetaMap *map[string]int
 	}
 }
 
-// UpdateCommentmetaByMetaValue via map[string]interface{}{}
-func UpdateCommentmetaByMetaValue(iMetaValue string, iCommentmetaMap *map[string]interface{}) error {
+// UpdateCommentmetaViaMetaValue via map[string]interface{}{}
+func UpdateCommentmetaViaMetaValue(iMetaValue string, iCommentmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Commentmeta)).Where("meta_value = ?", iMetaValue).Update(iCommentmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -346,8 +346,8 @@ func DeleteCommentmeta(iMetaId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteCommentmetaByMetaId Delete Commentmeta via MetaId
-func DeleteCommentmetaByMetaId(iMetaId int64) (err error) {
+// DeleteCommentmetaViaMetaId Delete Commentmeta via MetaId
+func DeleteCommentmetaViaMetaId(iMetaId int64) (err error) {
 	var has bool
 	var _Commentmeta = &Commentmeta{MetaId: iMetaId}
 	if has, err = Engine.Get(_Commentmeta); (has == true) && (err == nil) {
@@ -360,8 +360,8 @@ func DeleteCommentmetaByMetaId(iMetaId int64) (err error) {
 	return
 }
 
-// DeleteCommentmetaByCommentId Delete Commentmeta via CommentId
-func DeleteCommentmetaByCommentId(iCommentId int64) (err error) {
+// DeleteCommentmetaViaCommentId Delete Commentmeta via CommentId
+func DeleteCommentmetaViaCommentId(iCommentId int64) (err error) {
 	var has bool
 	var _Commentmeta = &Commentmeta{CommentId: iCommentId}
 	if has, err = Engine.Get(_Commentmeta); (has == true) && (err == nil) {
@@ -374,8 +374,8 @@ func DeleteCommentmetaByCommentId(iCommentId int64) (err error) {
 	return
 }
 
-// DeleteCommentmetaByMetaKey Delete Commentmeta via MetaKey
-func DeleteCommentmetaByMetaKey(iMetaKey string) (err error) {
+// DeleteCommentmetaViaMetaKey Delete Commentmeta via MetaKey
+func DeleteCommentmetaViaMetaKey(iMetaKey string) (err error) {
 	var has bool
 	var _Commentmeta = &Commentmeta{MetaKey: iMetaKey}
 	if has, err = Engine.Get(_Commentmeta); (has == true) && (err == nil) {
@@ -388,8 +388,8 @@ func DeleteCommentmetaByMetaKey(iMetaKey string) (err error) {
 	return
 }
 
-// DeleteCommentmetaByMetaValue Delete Commentmeta via MetaValue
-func DeleteCommentmetaByMetaValue(iMetaValue string) (err error) {
+// DeleteCommentmetaViaMetaValue Delete Commentmeta via MetaValue
+func DeleteCommentmetaViaMetaValue(iMetaValue string) (err error) {
 	var has bool
 	var _Commentmeta = &Commentmeta{MetaValue: iMetaValue}
 	if has, err = Engine.Get(_Commentmeta); (has == true) && (err == nil) {

@@ -16,20 +16,20 @@ func GetBlogVersionsesCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetBlogVersionsCountByBlogId Get BlogVersions via BlogId
-func GetBlogVersionsCountByBlogId(iBlogId int64) int64 {
+// GetBlogVersionsCountViaBlogId Get BlogVersions via BlogId
+func GetBlogVersionsCountViaBlogId(iBlogId int64) int64 {
 	n, _ := Engine.Where("blog_id = ?", iBlogId).Count(&BlogVersions{BlogId: iBlogId})
 	return n
 }
 
-// GetBlogVersionsCountByDbVersion Get BlogVersions via DbVersion
-func GetBlogVersionsCountByDbVersion(iDbVersion string) int64 {
+// GetBlogVersionsCountViaDbVersion Get BlogVersions via DbVersion
+func GetBlogVersionsCountViaDbVersion(iDbVersion string) int64 {
 	n, _ := Engine.Where("db_version = ?", iDbVersion).Count(&BlogVersions{DbVersion: iDbVersion})
 	return n
 }
 
-// GetBlogVersionsCountByLastUpdated Get BlogVersions via LastUpdated
-func GetBlogVersionsCountByLastUpdated(iLastUpdated time.Time) int64 {
+// GetBlogVersionsCountViaLastUpdated Get BlogVersions via LastUpdated
+func GetBlogVersionsCountViaLastUpdated(iLastUpdated time.Time) int64 {
 	n, _ := Engine.Where("last_updated = ?", iLastUpdated).Count(&BlogVersions{LastUpdated: iLastUpdated})
 	return n
 }
@@ -69,29 +69,29 @@ func GetBlogVersionses(offset int, limit int, field string) (*[]*BlogVersions, e
 	return _BlogVersions, err
 }
 
-// GetBlogVersionsesByBlogId Get BlogVersionss via BlogId
-func GetBlogVersionsesByBlogId(offset int, limit int, BlogId_ int64, field string) (*[]*BlogVersions, error) {
+// GetBlogVersionsesViaBlogId Get BlogVersionss via BlogId
+func GetBlogVersionsesViaBlogId(offset int, limit int, BlogId_ int64, field string) (*[]*BlogVersions, error) {
 	var _BlogVersions = new([]*BlogVersions)
 	err := Engine.Table("blog_versions").Where("blog_id = ?", BlogId_).Limit(limit, offset).Desc(field).Find(_BlogVersions)
 	return _BlogVersions, err
 }
 
-// GetBlogVersionsesByDbVersion Get BlogVersionss via DbVersion
-func GetBlogVersionsesByDbVersion(offset int, limit int, DbVersion_ string, field string) (*[]*BlogVersions, error) {
+// GetBlogVersionsesViaDbVersion Get BlogVersionss via DbVersion
+func GetBlogVersionsesViaDbVersion(offset int, limit int, DbVersion_ string, field string) (*[]*BlogVersions, error) {
 	var _BlogVersions = new([]*BlogVersions)
 	err := Engine.Table("blog_versions").Where("db_version = ?", DbVersion_).Limit(limit, offset).Desc(field).Find(_BlogVersions)
 	return _BlogVersions, err
 }
 
-// GetBlogVersionsesByLastUpdated Get BlogVersionss via LastUpdated
-func GetBlogVersionsesByLastUpdated(offset int, limit int, LastUpdated_ time.Time, field string) (*[]*BlogVersions, error) {
+// GetBlogVersionsesViaLastUpdated Get BlogVersionss via LastUpdated
+func GetBlogVersionsesViaLastUpdated(offset int, limit int, LastUpdated_ time.Time, field string) (*[]*BlogVersions, error) {
 	var _BlogVersions = new([]*BlogVersions)
 	err := Engine.Table("blog_versions").Where("last_updated = ?", LastUpdated_).Limit(limit, offset).Desc(field).Find(_BlogVersions)
 	return _BlogVersions, err
 }
 
-// HasBlogVersionsByBlogId Has BlogVersions via BlogId
-func HasBlogVersionsByBlogId(iBlogId int64) bool {
+// HasBlogVersionsViaBlogId Has BlogVersions via BlogId
+func HasBlogVersionsViaBlogId(iBlogId int64) bool {
 	if has, err := Engine.Where("blog_id = ?", iBlogId).Get(new(BlogVersions)); err != nil {
 		return false
 	} else {
@@ -102,8 +102,8 @@ func HasBlogVersionsByBlogId(iBlogId int64) bool {
 	}
 }
 
-// HasBlogVersionsByDbVersion Has BlogVersions via DbVersion
-func HasBlogVersionsByDbVersion(iDbVersion string) bool {
+// HasBlogVersionsViaDbVersion Has BlogVersions via DbVersion
+func HasBlogVersionsViaDbVersion(iDbVersion string) bool {
 	if has, err := Engine.Where("db_version = ?", iDbVersion).Get(new(BlogVersions)); err != nil {
 		return false
 	} else {
@@ -114,8 +114,8 @@ func HasBlogVersionsByDbVersion(iDbVersion string) bool {
 	}
 }
 
-// HasBlogVersionsByLastUpdated Has BlogVersions via LastUpdated
-func HasBlogVersionsByLastUpdated(iLastUpdated time.Time) bool {
+// HasBlogVersionsViaLastUpdated Has BlogVersions via LastUpdated
+func HasBlogVersionsViaLastUpdated(iLastUpdated time.Time) bool {
 	if has, err := Engine.Where("last_updated = ?", iLastUpdated).Get(new(BlogVersions)); err != nil {
 		return false
 	} else {
@@ -126,8 +126,8 @@ func HasBlogVersionsByLastUpdated(iLastUpdated time.Time) bool {
 	}
 }
 
-// GetBlogVersionsByBlogId Get BlogVersions via BlogId
-func GetBlogVersionsByBlogId(iBlogId int64) (*BlogVersions, error) {
+// GetBlogVersionsViaBlogId Get BlogVersions via BlogId
+func GetBlogVersionsViaBlogId(iBlogId int64) (*BlogVersions, error) {
 	var _BlogVersions = &BlogVersions{BlogId: iBlogId}
 	has, err := Engine.Get(_BlogVersions)
 	if has {
@@ -137,8 +137,8 @@ func GetBlogVersionsByBlogId(iBlogId int64) (*BlogVersions, error) {
 	}
 }
 
-// GetBlogVersionsByDbVersion Get BlogVersions via DbVersion
-func GetBlogVersionsByDbVersion(iDbVersion string) (*BlogVersions, error) {
+// GetBlogVersionsViaDbVersion Get BlogVersions via DbVersion
+func GetBlogVersionsViaDbVersion(iDbVersion string) (*BlogVersions, error) {
 	var _BlogVersions = &BlogVersions{DbVersion: iDbVersion}
 	has, err := Engine.Get(_BlogVersions)
 	if has {
@@ -148,8 +148,8 @@ func GetBlogVersionsByDbVersion(iDbVersion string) (*BlogVersions, error) {
 	}
 }
 
-// GetBlogVersionsByLastUpdated Get BlogVersions via LastUpdated
-func GetBlogVersionsByLastUpdated(iLastUpdated time.Time) (*BlogVersions, error) {
+// GetBlogVersionsViaLastUpdated Get BlogVersions via LastUpdated
+func GetBlogVersionsViaLastUpdated(iLastUpdated time.Time) (*BlogVersions, error) {
 	var _BlogVersions = &BlogVersions{LastUpdated: iLastUpdated}
 	has, err := Engine.Get(_BlogVersions)
 	if has {
@@ -159,20 +159,20 @@ func GetBlogVersionsByLastUpdated(iLastUpdated time.Time) (*BlogVersions, error)
 	}
 }
 
-// SetBlogVersionsByBlogId Set BlogVersions via BlogId
-func SetBlogVersionsByBlogId(iBlogId int64, blog_versions *BlogVersions) (int64, error) {
+// SetBlogVersionsViaBlogId Set BlogVersions via BlogId
+func SetBlogVersionsViaBlogId(iBlogId int64, blog_versions *BlogVersions) (int64, error) {
 	blog_versions.BlogId = iBlogId
 	return Engine.Insert(blog_versions)
 }
 
-// SetBlogVersionsByDbVersion Set BlogVersions via DbVersion
-func SetBlogVersionsByDbVersion(iDbVersion string, blog_versions *BlogVersions) (int64, error) {
+// SetBlogVersionsViaDbVersion Set BlogVersions via DbVersion
+func SetBlogVersionsViaDbVersion(iDbVersion string, blog_versions *BlogVersions) (int64, error) {
 	blog_versions.DbVersion = iDbVersion
 	return Engine.Insert(blog_versions)
 }
 
-// SetBlogVersionsByLastUpdated Set BlogVersions via LastUpdated
-func SetBlogVersionsByLastUpdated(iLastUpdated time.Time, blog_versions *BlogVersions) (int64, error) {
+// SetBlogVersionsViaLastUpdated Set BlogVersions via LastUpdated
+func SetBlogVersionsViaLastUpdated(iLastUpdated time.Time, blog_versions *BlogVersions) (int64, error) {
 	blog_versions.LastUpdated = iLastUpdated
 	return Engine.Insert(blog_versions)
 }
@@ -199,26 +199,26 @@ func PutBlogVersions(iBlogVersions *BlogVersions) (int64, error) {
 	return iBlogVersions.BlogId, err
 }
 
-// PutBlogVersionsByBlogId Put BlogVersions via BlogId
-func PutBlogVersionsByBlogId(BlogId_ int64, iBlogVersions *BlogVersions) (int64, error) {
+// PutBlogVersionsViaBlogId Put BlogVersions via BlogId
+func PutBlogVersionsViaBlogId(BlogId_ int64, iBlogVersions *BlogVersions) (int64, error) {
 	row, err := Engine.Update(iBlogVersions, &BlogVersions{BlogId: BlogId_})
 	return row, err
 }
 
-// PutBlogVersionsByDbVersion Put BlogVersions via DbVersion
-func PutBlogVersionsByDbVersion(DbVersion_ string, iBlogVersions *BlogVersions) (int64, error) {
+// PutBlogVersionsViaDbVersion Put BlogVersions via DbVersion
+func PutBlogVersionsViaDbVersion(DbVersion_ string, iBlogVersions *BlogVersions) (int64, error) {
 	row, err := Engine.Update(iBlogVersions, &BlogVersions{DbVersion: DbVersion_})
 	return row, err
 }
 
-// PutBlogVersionsByLastUpdated Put BlogVersions via LastUpdated
-func PutBlogVersionsByLastUpdated(LastUpdated_ time.Time, iBlogVersions *BlogVersions) (int64, error) {
+// PutBlogVersionsViaLastUpdated Put BlogVersions via LastUpdated
+func PutBlogVersionsViaLastUpdated(LastUpdated_ time.Time, iBlogVersions *BlogVersions) (int64, error) {
 	row, err := Engine.Update(iBlogVersions, &BlogVersions{LastUpdated: LastUpdated_})
 	return row, err
 }
 
-// UpdateBlogVersionsByBlogId via map[string]interface{}{}
-func UpdateBlogVersionsByBlogId(iBlogId int64, iBlogVersionsMap *map[string]interface{}) error {
+// UpdateBlogVersionsViaBlogId via map[string]interface{}{}
+func UpdateBlogVersionsViaBlogId(iBlogId int64, iBlogVersionsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(BlogVersions)).Where("blog_id = ?", iBlogId).Update(iBlogVersionsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -226,8 +226,8 @@ func UpdateBlogVersionsByBlogId(iBlogId int64, iBlogVersionsMap *map[string]inte
 	}
 }
 
-// UpdateBlogVersionsByDbVersion via map[string]interface{}{}
-func UpdateBlogVersionsByDbVersion(iDbVersion string, iBlogVersionsMap *map[string]interface{}) error {
+// UpdateBlogVersionsViaDbVersion via map[string]interface{}{}
+func UpdateBlogVersionsViaDbVersion(iDbVersion string, iBlogVersionsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(BlogVersions)).Where("db_version = ?", iDbVersion).Update(iBlogVersionsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -235,8 +235,8 @@ func UpdateBlogVersionsByDbVersion(iDbVersion string, iBlogVersionsMap *map[stri
 	}
 }
 
-// UpdateBlogVersionsByLastUpdated via map[string]interface{}{}
-func UpdateBlogVersionsByLastUpdated(iLastUpdated time.Time, iBlogVersionsMap *map[string]interface{}) error {
+// UpdateBlogVersionsViaLastUpdated via map[string]interface{}{}
+func UpdateBlogVersionsViaLastUpdated(iLastUpdated time.Time, iBlogVersionsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(BlogVersions)).Where("last_updated = ?", iLastUpdated).Update(iBlogVersionsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -250,8 +250,8 @@ func DeleteBlogVersions(iBlogId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteBlogVersionsByBlogId Delete BlogVersions via BlogId
-func DeleteBlogVersionsByBlogId(iBlogId int64) (err error) {
+// DeleteBlogVersionsViaBlogId Delete BlogVersions via BlogId
+func DeleteBlogVersionsViaBlogId(iBlogId int64) (err error) {
 	var has bool
 	var _BlogVersions = &BlogVersions{BlogId: iBlogId}
 	if has, err = Engine.Get(_BlogVersions); (has == true) && (err == nil) {
@@ -264,8 +264,8 @@ func DeleteBlogVersionsByBlogId(iBlogId int64) (err error) {
 	return
 }
 
-// DeleteBlogVersionsByDbVersion Delete BlogVersions via DbVersion
-func DeleteBlogVersionsByDbVersion(iDbVersion string) (err error) {
+// DeleteBlogVersionsViaDbVersion Delete BlogVersions via DbVersion
+func DeleteBlogVersionsViaDbVersion(iDbVersion string) (err error) {
 	var has bool
 	var _BlogVersions = &BlogVersions{DbVersion: iDbVersion}
 	if has, err = Engine.Get(_BlogVersions); (has == true) && (err == nil) {
@@ -278,8 +278,8 @@ func DeleteBlogVersionsByDbVersion(iDbVersion string) (err error) {
 	return
 }
 
-// DeleteBlogVersionsByLastUpdated Delete BlogVersions via LastUpdated
-func DeleteBlogVersionsByLastUpdated(iLastUpdated time.Time) (err error) {
+// DeleteBlogVersionsViaLastUpdated Delete BlogVersions via LastUpdated
+func DeleteBlogVersionsViaLastUpdated(iLastUpdated time.Time) (err error) {
 	var has bool
 	var _BlogVersions = &BlogVersions{LastUpdated: iLastUpdated}
 	if has, err = Engine.Get(_BlogVersions); (has == true) && (err == nil) {

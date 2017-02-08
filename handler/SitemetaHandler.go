@@ -27,9 +27,9 @@ func GetSitemetasCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSitemetaCountByMetaIdHandler(self *macross.Context) error {
+func GetSitemetaCountViaMetaIdHandler(self *macross.Context) error {
 	MetaId_ := self.Args("meta_id").MustInt64()
-	_int64 := model.GetSitemetaCountByMetaId(MetaId_)
+	_int64 := model.GetSitemetaCountViaMetaId(MetaId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["sitemetaCount"] = 0
@@ -38,9 +38,9 @@ func GetSitemetaCountByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSitemetaCountBySiteIdHandler(self *macross.Context) error {
+func GetSitemetaCountViaSiteIdHandler(self *macross.Context) error {
 	SiteId_ := self.Args("site_id").MustInt64()
-	_int64 := model.GetSitemetaCountBySiteId(SiteId_)
+	_int64 := model.GetSitemetaCountViaSiteId(SiteId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["sitemetaCount"] = 0
@@ -49,9 +49,9 @@ func GetSitemetaCountBySiteIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSitemetaCountByMetaKeyHandler(self *macross.Context) error {
+func GetSitemetaCountViaMetaKeyHandler(self *macross.Context) error {
 	MetaKey_ := self.Args("meta_key").String()
-	_int64 := model.GetSitemetaCountByMetaKey(MetaKey_)
+	_int64 := model.GetSitemetaCountViaMetaKey(MetaKey_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["sitemetaCount"] = 0
@@ -60,9 +60,9 @@ func GetSitemetaCountByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSitemetaCountByMetaValueHandler(self *macross.Context) error {
+func GetSitemetaCountViaMetaValueHandler(self *macross.Context) error {
 	MetaValue_ := self.Args("meta_value").String()
-	_int64 := model.GetSitemetaCountByMetaValue(MetaValue_)
+	_int64 := model.GetSitemetaCountViaMetaValue(MetaValue_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["sitemetaCount"] = 0
@@ -71,7 +71,7 @@ func GetSitemetaCountByMetaValueHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSitemetasByMetaIdHandler(self *macross.Context) error {
+func GetSitemetasViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -80,18 +80,18 @@ func GetSitemetasByMetaIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMetaId := self.Args("meta_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iMetaId) {
-		_Sitemeta, _error := model.GetSitemetasByMetaId(offset, limit, iMetaId, field)
+		_Sitemeta, _error := model.GetSitemetasViaMetaId(offset, limit, iMetaId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the GetSitemetasByMetaId's args."
+	herr.Message = "Can't get to the GetSitemetasViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSitemetasBySiteIdHandler(self *macross.Context) error {
+func GetSitemetasViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -100,18 +100,18 @@ func GetSitemetasBySiteIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iSiteId := self.Args("site_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iSiteId) {
-		_Sitemeta, _error := model.GetSitemetasBySiteId(offset, limit, iSiteId, field)
+		_Sitemeta, _error := model.GetSitemetasViaSiteId(offset, limit, iSiteId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the GetSitemetasBySiteId's args."
+	herr.Message = "Can't get to the GetSitemetasViaSiteId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSitemetasByMetaKeyHandler(self *macross.Context) error {
+func GetSitemetasViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -120,18 +120,18 @@ func GetSitemetasByMetaKeyHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMetaKey := self.Args("meta_key").String()
 	if (offset > 0) && helper.IsHas(iMetaKey) {
-		_Sitemeta, _error := model.GetSitemetasByMetaKey(offset, limit, iMetaKey, field)
+		_Sitemeta, _error := model.GetSitemetasViaMetaKey(offset, limit, iMetaKey, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the GetSitemetasByMetaKey's args."
+	herr.Message = "Can't get to the GetSitemetasViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSitemetasByMetaValueHandler(self *macross.Context) error {
+func GetSitemetasViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -140,14 +140,14 @@ func GetSitemetasByMetaValueHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMetaValue := self.Args("meta_value").String()
 	if (offset > 0) && helper.IsHas(iMetaValue) {
-		_Sitemeta, _error := model.GetSitemetasByMetaValue(offset, limit, iMetaValue, field)
+		_Sitemeta, _error := model.GetSitemetasViaMetaValue(offset, limit, iMetaValue, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the GetSitemetasByMetaValue's args."
+	herr.Message = "Can't get to the GetSitemetasViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -384,135 +384,135 @@ func GetSitemetasHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSitemetaByMetaIdHandler(self *macross.Context) error {
+func GetHasSitemetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaId := self.Args("meta_id").MustInt64()
 	if helper.IsHas(iMetaId) {
-		_Sitemeta := model.HasSitemetaByMetaId(iMetaId)
+		_Sitemeta := model.HasSitemetaViaMetaId(iMetaId)
 		var m = map[string]interface{}{}
 		m["sitemeta"] = _Sitemeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSitemetaByMetaId's args."
+	herr.Message = "Can't get to the HasSitemetaViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSitemetaBySiteIdHandler(self *macross.Context) error {
+func GetHasSitemetaViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSiteId := self.Args("site_id").MustInt64()
 	if helper.IsHas(iSiteId) {
-		_Sitemeta := model.HasSitemetaBySiteId(iSiteId)
+		_Sitemeta := model.HasSitemetaViaSiteId(iSiteId)
 		var m = map[string]interface{}{}
 		m["sitemeta"] = _Sitemeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSitemetaBySiteId's args."
+	herr.Message = "Can't get to the HasSitemetaViaSiteId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSitemetaByMetaKeyHandler(self *macross.Context) error {
+func GetHasSitemetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaKey := self.Args("meta_key").String()
 	if helper.IsHas(iMetaKey) {
-		_Sitemeta := model.HasSitemetaByMetaKey(iMetaKey)
+		_Sitemeta := model.HasSitemetaViaMetaKey(iMetaKey)
 		var m = map[string]interface{}{}
 		m["sitemeta"] = _Sitemeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSitemetaByMetaKey's args."
+	herr.Message = "Can't get to the HasSitemetaViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSitemetaByMetaValueHandler(self *macross.Context) error {
+func GetHasSitemetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaValue := self.Args("meta_value").String()
 	if helper.IsHas(iMetaValue) {
-		_Sitemeta := model.HasSitemetaByMetaValue(iMetaValue)
+		_Sitemeta := model.HasSitemetaViaMetaValue(iMetaValue)
 		var m = map[string]interface{}{}
 		m["sitemeta"] = _Sitemeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSitemetaByMetaValue's args."
+	herr.Message = "Can't get to the HasSitemetaViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSitemetaByMetaIdHandler(self *macross.Context) error {
+func GetSitemetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaId := self.Args("meta_id").MustInt64()
 	if helper.IsHas(iMetaId) {
-		_Sitemeta, _error := model.GetSitemetaByMetaId(iMetaId)
+		_Sitemeta, _error := model.GetSitemetaViaMetaId(iMetaId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the GetSitemetaByMetaId's args."
+	herr.Message = "Can't get to the GetSitemetaViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSitemetaBySiteIdHandler(self *macross.Context) error {
+func GetSitemetaViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSiteId := self.Args("site_id").MustInt64()
 	if helper.IsHas(iSiteId) {
-		_Sitemeta, _error := model.GetSitemetaBySiteId(iSiteId)
+		_Sitemeta, _error := model.GetSitemetaViaSiteId(iSiteId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the GetSitemetaBySiteId's args."
+	herr.Message = "Can't get to the GetSitemetaViaSiteId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSitemetaByMetaKeyHandler(self *macross.Context) error {
+func GetSitemetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaKey := self.Args("meta_key").String()
 	if helper.IsHas(iMetaKey) {
-		_Sitemeta, _error := model.GetSitemetaByMetaKey(iMetaKey)
+		_Sitemeta, _error := model.GetSitemetaViaMetaKey(iMetaKey)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the GetSitemetaByMetaKey's args."
+	herr.Message = "Can't get to the GetSitemetaViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSitemetaByMetaValueHandler(self *macross.Context) error {
+func GetSitemetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaValue := self.Args("meta_value").String()
 	if helper.IsHas(iMetaValue) {
-		_Sitemeta, _error := model.GetSitemetaByMetaValue(iMetaValue)
+		_Sitemeta, _error := model.GetSitemetaViaMetaValue(iMetaValue)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the GetSitemetaByMetaValue's args."
+	herr.Message = "Can't get to the GetSitemetaViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSitemetaByMetaIdHandler(self *macross.Context) error {
+func PostSetSitemetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -520,18 +520,18 @@ func PostSetSitemetaByMetaIdHandler(self *macross.Context) error {
 	if helper.IsHas(MetaId_) {
 		var iSitemeta model.Sitemeta
 		self.Bind(&iSitemeta)
-		_Sitemeta, _error := model.SetSitemetaByMetaId(MetaId_, &iSitemeta)
+		_Sitemeta, _error := model.SetSitemetaViaMetaId(MetaId_, &iSitemeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the SetSitemetaByMetaId's args."
+	herr.Message = "Can't get to the SetSitemetaViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSitemetaBySiteIdHandler(self *macross.Context) error {
+func PostSetSitemetaViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -539,18 +539,18 @@ func PostSetSitemetaBySiteIdHandler(self *macross.Context) error {
 	if helper.IsHas(SiteId_) {
 		var iSitemeta model.Sitemeta
 		self.Bind(&iSitemeta)
-		_Sitemeta, _error := model.SetSitemetaBySiteId(SiteId_, &iSitemeta)
+		_Sitemeta, _error := model.SetSitemetaViaSiteId(SiteId_, &iSitemeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the SetSitemetaBySiteId's args."
+	herr.Message = "Can't get to the SetSitemetaViaSiteId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSitemetaByMetaKeyHandler(self *macross.Context) error {
+func PostSetSitemetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -558,18 +558,18 @@ func PostSetSitemetaByMetaKeyHandler(self *macross.Context) error {
 	if helper.IsHas(MetaKey_) {
 		var iSitemeta model.Sitemeta
 		self.Bind(&iSitemeta)
-		_Sitemeta, _error := model.SetSitemetaByMetaKey(MetaKey_, &iSitemeta)
+		_Sitemeta, _error := model.SetSitemetaViaMetaKey(MetaKey_, &iSitemeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the SetSitemetaByMetaKey's args."
+	herr.Message = "Can't get to the SetSitemetaViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSitemetaByMetaValueHandler(self *macross.Context) error {
+func PostSetSitemetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -577,14 +577,14 @@ func PostSetSitemetaByMetaValueHandler(self *macross.Context) error {
 	if helper.IsHas(MetaValue_) {
 		var iSitemeta model.Sitemeta
 		self.Bind(&iSitemeta)
-		_Sitemeta, _error := model.SetSitemetaByMetaValue(MetaValue_, &iSitemeta)
+		_Sitemeta, _error := model.SetSitemetaViaMetaValue(MetaValue_, &iSitemeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Sitemeta)
 	}
-	herr.Message = "Can't get to the SetSitemetaByMetaValue's args."
+	herr.Message = "Can't get to the SetSitemetaViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -618,7 +618,7 @@ func PostSitemetaHandler(self *macross.Context) error {
 	var iSitemeta model.Sitemeta
 	self.Bind(&iSitemeta)
 	_int64, _error := model.PostSitemeta(&iSitemeta)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -636,7 +636,7 @@ func PutSitemetaHandler(self *macross.Context) error {
 	var iSitemeta model.Sitemeta
 	self.Bind(&iSitemeta)
 	_int64, _error := model.PutSitemeta(&iSitemeta)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -647,14 +647,14 @@ func PutSitemetaHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSitemetaByMetaIdHandler(self *macross.Context) error {
+func PutSitemetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaId_ := self.Args("meta_id").MustInt64()
 	var iSitemeta model.Sitemeta
 	self.Bind(&iSitemeta)
-	_int64, _error := model.PutSitemetaByMetaId(MetaId_, &iSitemeta)
+	_int64, _error := model.PutSitemetaViaMetaId(MetaId_, &iSitemeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -664,14 +664,14 @@ func PutSitemetaByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSitemetaBySiteIdHandler(self *macross.Context) error {
+func PutSitemetaViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	SiteId_ := self.Args("site_id").MustInt64()
 	var iSitemeta model.Sitemeta
 	self.Bind(&iSitemeta)
-	_int64, _error := model.PutSitemetaBySiteId(SiteId_, &iSitemeta)
+	_int64, _error := model.PutSitemetaViaSiteId(SiteId_, &iSitemeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -681,14 +681,14 @@ func PutSitemetaBySiteIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSitemetaByMetaKeyHandler(self *macross.Context) error {
+func PutSitemetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaKey_ := self.Args("meta_key").String()
 	var iSitemeta model.Sitemeta
 	self.Bind(&iSitemeta)
-	_int64, _error := model.PutSitemetaByMetaKey(MetaKey_, &iSitemeta)
+	_int64, _error := model.PutSitemetaViaMetaKey(MetaKey_, &iSitemeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -698,14 +698,14 @@ func PutSitemetaByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSitemetaByMetaValueHandler(self *macross.Context) error {
+func PutSitemetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaValue_ := self.Args("meta_value").String()
 	var iSitemeta model.Sitemeta
 	self.Bind(&iSitemeta)
-	_int64, _error := model.PutSitemetaByMetaValue(MetaValue_, &iSitemeta)
+	_int64, _error := model.PutSitemetaViaMetaValue(MetaValue_, &iSitemeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -715,7 +715,7 @@ func PutSitemetaByMetaValueHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSitemetaByMetaIdHandler(self *macross.Context) error {
+func PutUpdateSitemetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -723,7 +723,7 @@ func PutUpdateSitemetaByMetaIdHandler(self *macross.Context) error {
 	var iSitemeta model.Sitemeta
 	self.Bind(&iSitemeta)
 	var iMap = helper.StructToMap(iSitemeta)
-	_error := model.UpdateSitemetaByMetaId(MetaId_, &iMap)
+	_error := model.UpdateSitemetaViaMetaId(MetaId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -733,7 +733,7 @@ func PutUpdateSitemetaByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSitemetaBySiteIdHandler(self *macross.Context) error {
+func PutUpdateSitemetaViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -741,7 +741,7 @@ func PutUpdateSitemetaBySiteIdHandler(self *macross.Context) error {
 	var iSitemeta model.Sitemeta
 	self.Bind(&iSitemeta)
 	var iMap = helper.StructToMap(iSitemeta)
-	_error := model.UpdateSitemetaBySiteId(SiteId_, &iMap)
+	_error := model.UpdateSitemetaViaSiteId(SiteId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -751,7 +751,7 @@ func PutUpdateSitemetaBySiteIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSitemetaByMetaKeyHandler(self *macross.Context) error {
+func PutUpdateSitemetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -759,7 +759,7 @@ func PutUpdateSitemetaByMetaKeyHandler(self *macross.Context) error {
 	var iSitemeta model.Sitemeta
 	self.Bind(&iSitemeta)
 	var iMap = helper.StructToMap(iSitemeta)
-	_error := model.UpdateSitemetaByMetaKey(MetaKey_, &iMap)
+	_error := model.UpdateSitemetaViaMetaKey(MetaKey_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -769,7 +769,7 @@ func PutUpdateSitemetaByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSitemetaByMetaValueHandler(self *macross.Context) error {
+func PutUpdateSitemetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -777,7 +777,7 @@ func PutUpdateSitemetaByMetaValueHandler(self *macross.Context) error {
 	var iSitemeta model.Sitemeta
 	self.Bind(&iSitemeta)
 	var iMap = helper.StructToMap(iSitemeta)
-	_error := model.UpdateSitemetaByMetaValue(MetaValue_, &iMap)
+	_error := model.UpdateSitemetaViaMetaValue(MetaValue_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -804,12 +804,12 @@ func DeleteSitemetaHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSitemetaByMetaIdHandler(self *macross.Context) error {
+func DeleteSitemetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaId_ := self.Args("meta_id").MustInt64()
-	_error := model.DeleteSitemetaByMetaId(MetaId_)
+	_error := model.DeleteSitemetaViaMetaId(MetaId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -819,12 +819,12 @@ func DeleteSitemetaByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSitemetaBySiteIdHandler(self *macross.Context) error {
+func DeleteSitemetaViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	SiteId_ := self.Args("site_id").MustInt64()
-	_error := model.DeleteSitemetaBySiteId(SiteId_)
+	_error := model.DeleteSitemetaViaSiteId(SiteId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -834,12 +834,12 @@ func DeleteSitemetaBySiteIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSitemetaByMetaKeyHandler(self *macross.Context) error {
+func DeleteSitemetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaKey_ := self.Args("meta_key").String()
-	_error := model.DeleteSitemetaByMetaKey(MetaKey_)
+	_error := model.DeleteSitemetaViaMetaKey(MetaKey_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -849,12 +849,12 @@ func DeleteSitemetaByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSitemetaByMetaValueHandler(self *macross.Context) error {
+func DeleteSitemetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaValue_ := self.Args("meta_value").String()
-	_error := model.DeleteSitemetaByMetaValue(MetaValue_)
+	_error := model.DeleteSitemetaViaMetaValue(MetaValue_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

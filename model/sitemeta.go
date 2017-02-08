@@ -13,26 +13,26 @@ func GetSitemetasCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetSitemetaCountByMetaId Get Sitemeta via MetaId
-func GetSitemetaCountByMetaId(iMetaId int64) int64 {
+// GetSitemetaCountViaMetaId Get Sitemeta via MetaId
+func GetSitemetaCountViaMetaId(iMetaId int64) int64 {
 	n, _ := Engine.Where("meta_id = ?", iMetaId).Count(&Sitemeta{MetaId: iMetaId})
 	return n
 }
 
-// GetSitemetaCountBySiteId Get Sitemeta via SiteId
-func GetSitemetaCountBySiteId(iSiteId int64) int64 {
+// GetSitemetaCountViaSiteId Get Sitemeta via SiteId
+func GetSitemetaCountViaSiteId(iSiteId int64) int64 {
 	n, _ := Engine.Where("site_id = ?", iSiteId).Count(&Sitemeta{SiteId: iSiteId})
 	return n
 }
 
-// GetSitemetaCountByMetaKey Get Sitemeta via MetaKey
-func GetSitemetaCountByMetaKey(iMetaKey string) int64 {
+// GetSitemetaCountViaMetaKey Get Sitemeta via MetaKey
+func GetSitemetaCountViaMetaKey(iMetaKey string) int64 {
 	n, _ := Engine.Where("meta_key = ?", iMetaKey).Count(&Sitemeta{MetaKey: iMetaKey})
 	return n
 }
 
-// GetSitemetaCountByMetaValue Get Sitemeta via MetaValue
-func GetSitemetaCountByMetaValue(iMetaValue string) int64 {
+// GetSitemetaCountViaMetaValue Get Sitemeta via MetaValue
+func GetSitemetaCountViaMetaValue(iMetaValue string) int64 {
 	n, _ := Engine.Where("meta_value = ?", iMetaValue).Count(&Sitemeta{MetaValue: iMetaValue})
 	return n
 }
@@ -114,36 +114,36 @@ func GetSitemetas(offset int, limit int, field string) (*[]*Sitemeta, error) {
 	return _Sitemeta, err
 }
 
-// GetSitemetasByMetaId Get Sitemetas via MetaId
-func GetSitemetasByMetaId(offset int, limit int, MetaId_ int64, field string) (*[]*Sitemeta, error) {
+// GetSitemetasViaMetaId Get Sitemetas via MetaId
+func GetSitemetasViaMetaId(offset int, limit int, MetaId_ int64, field string) (*[]*Sitemeta, error) {
 	var _Sitemeta = new([]*Sitemeta)
 	err := Engine.Table("sitemeta").Where("meta_id = ?", MetaId_).Limit(limit, offset).Desc(field).Find(_Sitemeta)
 	return _Sitemeta, err
 }
 
-// GetSitemetasBySiteId Get Sitemetas via SiteId
-func GetSitemetasBySiteId(offset int, limit int, SiteId_ int64, field string) (*[]*Sitemeta, error) {
+// GetSitemetasViaSiteId Get Sitemetas via SiteId
+func GetSitemetasViaSiteId(offset int, limit int, SiteId_ int64, field string) (*[]*Sitemeta, error) {
 	var _Sitemeta = new([]*Sitemeta)
 	err := Engine.Table("sitemeta").Where("site_id = ?", SiteId_).Limit(limit, offset).Desc(field).Find(_Sitemeta)
 	return _Sitemeta, err
 }
 
-// GetSitemetasByMetaKey Get Sitemetas via MetaKey
-func GetSitemetasByMetaKey(offset int, limit int, MetaKey_ string, field string) (*[]*Sitemeta, error) {
+// GetSitemetasViaMetaKey Get Sitemetas via MetaKey
+func GetSitemetasViaMetaKey(offset int, limit int, MetaKey_ string, field string) (*[]*Sitemeta, error) {
 	var _Sitemeta = new([]*Sitemeta)
 	err := Engine.Table("sitemeta").Where("meta_key = ?", MetaKey_).Limit(limit, offset).Desc(field).Find(_Sitemeta)
 	return _Sitemeta, err
 }
 
-// GetSitemetasByMetaValue Get Sitemetas via MetaValue
-func GetSitemetasByMetaValue(offset int, limit int, MetaValue_ string, field string) (*[]*Sitemeta, error) {
+// GetSitemetasViaMetaValue Get Sitemetas via MetaValue
+func GetSitemetasViaMetaValue(offset int, limit int, MetaValue_ string, field string) (*[]*Sitemeta, error) {
 	var _Sitemeta = new([]*Sitemeta)
 	err := Engine.Table("sitemeta").Where("meta_value = ?", MetaValue_).Limit(limit, offset).Desc(field).Find(_Sitemeta)
 	return _Sitemeta, err
 }
 
-// HasSitemetaByMetaId Has Sitemeta via MetaId
-func HasSitemetaByMetaId(iMetaId int64) bool {
+// HasSitemetaViaMetaId Has Sitemeta via MetaId
+func HasSitemetaViaMetaId(iMetaId int64) bool {
 	if has, err := Engine.Where("meta_id = ?", iMetaId).Get(new(Sitemeta)); err != nil {
 		return false
 	} else {
@@ -154,8 +154,8 @@ func HasSitemetaByMetaId(iMetaId int64) bool {
 	}
 }
 
-// HasSitemetaBySiteId Has Sitemeta via SiteId
-func HasSitemetaBySiteId(iSiteId int64) bool {
+// HasSitemetaViaSiteId Has Sitemeta via SiteId
+func HasSitemetaViaSiteId(iSiteId int64) bool {
 	if has, err := Engine.Where("site_id = ?", iSiteId).Get(new(Sitemeta)); err != nil {
 		return false
 	} else {
@@ -166,8 +166,8 @@ func HasSitemetaBySiteId(iSiteId int64) bool {
 	}
 }
 
-// HasSitemetaByMetaKey Has Sitemeta via MetaKey
-func HasSitemetaByMetaKey(iMetaKey string) bool {
+// HasSitemetaViaMetaKey Has Sitemeta via MetaKey
+func HasSitemetaViaMetaKey(iMetaKey string) bool {
 	if has, err := Engine.Where("meta_key = ?", iMetaKey).Get(new(Sitemeta)); err != nil {
 		return false
 	} else {
@@ -178,8 +178,8 @@ func HasSitemetaByMetaKey(iMetaKey string) bool {
 	}
 }
 
-// HasSitemetaByMetaValue Has Sitemeta via MetaValue
-func HasSitemetaByMetaValue(iMetaValue string) bool {
+// HasSitemetaViaMetaValue Has Sitemeta via MetaValue
+func HasSitemetaViaMetaValue(iMetaValue string) bool {
 	if has, err := Engine.Where("meta_value = ?", iMetaValue).Get(new(Sitemeta)); err != nil {
 		return false
 	} else {
@@ -190,8 +190,8 @@ func HasSitemetaByMetaValue(iMetaValue string) bool {
 	}
 }
 
-// GetSitemetaByMetaId Get Sitemeta via MetaId
-func GetSitemetaByMetaId(iMetaId int64) (*Sitemeta, error) {
+// GetSitemetaViaMetaId Get Sitemeta via MetaId
+func GetSitemetaViaMetaId(iMetaId int64) (*Sitemeta, error) {
 	var _Sitemeta = &Sitemeta{MetaId: iMetaId}
 	has, err := Engine.Get(_Sitemeta)
 	if has {
@@ -201,8 +201,8 @@ func GetSitemetaByMetaId(iMetaId int64) (*Sitemeta, error) {
 	}
 }
 
-// GetSitemetaBySiteId Get Sitemeta via SiteId
-func GetSitemetaBySiteId(iSiteId int64) (*Sitemeta, error) {
+// GetSitemetaViaSiteId Get Sitemeta via SiteId
+func GetSitemetaViaSiteId(iSiteId int64) (*Sitemeta, error) {
 	var _Sitemeta = &Sitemeta{SiteId: iSiteId}
 	has, err := Engine.Get(_Sitemeta)
 	if has {
@@ -212,8 +212,8 @@ func GetSitemetaBySiteId(iSiteId int64) (*Sitemeta, error) {
 	}
 }
 
-// GetSitemetaByMetaKey Get Sitemeta via MetaKey
-func GetSitemetaByMetaKey(iMetaKey string) (*Sitemeta, error) {
+// GetSitemetaViaMetaKey Get Sitemeta via MetaKey
+func GetSitemetaViaMetaKey(iMetaKey string) (*Sitemeta, error) {
 	var _Sitemeta = &Sitemeta{MetaKey: iMetaKey}
 	has, err := Engine.Get(_Sitemeta)
 	if has {
@@ -223,8 +223,8 @@ func GetSitemetaByMetaKey(iMetaKey string) (*Sitemeta, error) {
 	}
 }
 
-// GetSitemetaByMetaValue Get Sitemeta via MetaValue
-func GetSitemetaByMetaValue(iMetaValue string) (*Sitemeta, error) {
+// GetSitemetaViaMetaValue Get Sitemeta via MetaValue
+func GetSitemetaViaMetaValue(iMetaValue string) (*Sitemeta, error) {
 	var _Sitemeta = &Sitemeta{MetaValue: iMetaValue}
 	has, err := Engine.Get(_Sitemeta)
 	if has {
@@ -234,26 +234,26 @@ func GetSitemetaByMetaValue(iMetaValue string) (*Sitemeta, error) {
 	}
 }
 
-// SetSitemetaByMetaId Set Sitemeta via MetaId
-func SetSitemetaByMetaId(iMetaId int64, sitemeta *Sitemeta) (int64, error) {
+// SetSitemetaViaMetaId Set Sitemeta via MetaId
+func SetSitemetaViaMetaId(iMetaId int64, sitemeta *Sitemeta) (int64, error) {
 	sitemeta.MetaId = iMetaId
 	return Engine.Insert(sitemeta)
 }
 
-// SetSitemetaBySiteId Set Sitemeta via SiteId
-func SetSitemetaBySiteId(iSiteId int64, sitemeta *Sitemeta) (int64, error) {
+// SetSitemetaViaSiteId Set Sitemeta via SiteId
+func SetSitemetaViaSiteId(iSiteId int64, sitemeta *Sitemeta) (int64, error) {
 	sitemeta.SiteId = iSiteId
 	return Engine.Insert(sitemeta)
 }
 
-// SetSitemetaByMetaKey Set Sitemeta via MetaKey
-func SetSitemetaByMetaKey(iMetaKey string, sitemeta *Sitemeta) (int64, error) {
+// SetSitemetaViaMetaKey Set Sitemeta via MetaKey
+func SetSitemetaViaMetaKey(iMetaKey string, sitemeta *Sitemeta) (int64, error) {
 	sitemeta.MetaKey = iMetaKey
 	return Engine.Insert(sitemeta)
 }
 
-// SetSitemetaByMetaValue Set Sitemeta via MetaValue
-func SetSitemetaByMetaValue(iMetaValue string, sitemeta *Sitemeta) (int64, error) {
+// SetSitemetaViaMetaValue Set Sitemeta via MetaValue
+func SetSitemetaViaMetaValue(iMetaValue string, sitemeta *Sitemeta) (int64, error) {
 	sitemeta.MetaValue = iMetaValue
 	return Engine.Insert(sitemeta)
 }
@@ -280,32 +280,32 @@ func PutSitemeta(iSitemeta *Sitemeta) (int64, error) {
 	return iSitemeta.MetaId, err
 }
 
-// PutSitemetaByMetaId Put Sitemeta via MetaId
-func PutSitemetaByMetaId(MetaId_ int64, iSitemeta *Sitemeta) (int64, error) {
+// PutSitemetaViaMetaId Put Sitemeta via MetaId
+func PutSitemetaViaMetaId(MetaId_ int64, iSitemeta *Sitemeta) (int64, error) {
 	row, err := Engine.Update(iSitemeta, &Sitemeta{MetaId: MetaId_})
 	return row, err
 }
 
-// PutSitemetaBySiteId Put Sitemeta via SiteId
-func PutSitemetaBySiteId(SiteId_ int64, iSitemeta *Sitemeta) (int64, error) {
+// PutSitemetaViaSiteId Put Sitemeta via SiteId
+func PutSitemetaViaSiteId(SiteId_ int64, iSitemeta *Sitemeta) (int64, error) {
 	row, err := Engine.Update(iSitemeta, &Sitemeta{SiteId: SiteId_})
 	return row, err
 }
 
-// PutSitemetaByMetaKey Put Sitemeta via MetaKey
-func PutSitemetaByMetaKey(MetaKey_ string, iSitemeta *Sitemeta) (int64, error) {
+// PutSitemetaViaMetaKey Put Sitemeta via MetaKey
+func PutSitemetaViaMetaKey(MetaKey_ string, iSitemeta *Sitemeta) (int64, error) {
 	row, err := Engine.Update(iSitemeta, &Sitemeta{MetaKey: MetaKey_})
 	return row, err
 }
 
-// PutSitemetaByMetaValue Put Sitemeta via MetaValue
-func PutSitemetaByMetaValue(MetaValue_ string, iSitemeta *Sitemeta) (int64, error) {
+// PutSitemetaViaMetaValue Put Sitemeta via MetaValue
+func PutSitemetaViaMetaValue(MetaValue_ string, iSitemeta *Sitemeta) (int64, error) {
 	row, err := Engine.Update(iSitemeta, &Sitemeta{MetaValue: MetaValue_})
 	return row, err
 }
 
-// UpdateSitemetaByMetaId via map[string]interface{}{}
-func UpdateSitemetaByMetaId(iMetaId int64, iSitemetaMap *map[string]interface{}) error {
+// UpdateSitemetaViaMetaId via map[string]interface{}{}
+func UpdateSitemetaViaMetaId(iMetaId int64, iSitemetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Sitemeta)).Where("meta_id = ?", iMetaId).Update(iSitemetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -313,8 +313,8 @@ func UpdateSitemetaByMetaId(iMetaId int64, iSitemetaMap *map[string]interface{})
 	}
 }
 
-// UpdateSitemetaBySiteId via map[string]interface{}{}
-func UpdateSitemetaBySiteId(iSiteId int64, iSitemetaMap *map[string]interface{}) error {
+// UpdateSitemetaViaSiteId via map[string]interface{}{}
+func UpdateSitemetaViaSiteId(iSiteId int64, iSitemetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Sitemeta)).Where("site_id = ?", iSiteId).Update(iSitemetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -322,8 +322,8 @@ func UpdateSitemetaBySiteId(iSiteId int64, iSitemetaMap *map[string]interface{})
 	}
 }
 
-// UpdateSitemetaByMetaKey via map[string]interface{}{}
-func UpdateSitemetaByMetaKey(iMetaKey string, iSitemetaMap *map[string]interface{}) error {
+// UpdateSitemetaViaMetaKey via map[string]interface{}{}
+func UpdateSitemetaViaMetaKey(iMetaKey string, iSitemetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Sitemeta)).Where("meta_key = ?", iMetaKey).Update(iSitemetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -331,8 +331,8 @@ func UpdateSitemetaByMetaKey(iMetaKey string, iSitemetaMap *map[string]interface
 	}
 }
 
-// UpdateSitemetaByMetaValue via map[string]interface{}{}
-func UpdateSitemetaByMetaValue(iMetaValue string, iSitemetaMap *map[string]interface{}) error {
+// UpdateSitemetaViaMetaValue via map[string]interface{}{}
+func UpdateSitemetaViaMetaValue(iMetaValue string, iSitemetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Sitemeta)).Where("meta_value = ?", iMetaValue).Update(iSitemetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -346,8 +346,8 @@ func DeleteSitemeta(iMetaId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteSitemetaByMetaId Delete Sitemeta via MetaId
-func DeleteSitemetaByMetaId(iMetaId int64) (err error) {
+// DeleteSitemetaViaMetaId Delete Sitemeta via MetaId
+func DeleteSitemetaViaMetaId(iMetaId int64) (err error) {
 	var has bool
 	var _Sitemeta = &Sitemeta{MetaId: iMetaId}
 	if has, err = Engine.Get(_Sitemeta); (has == true) && (err == nil) {
@@ -360,8 +360,8 @@ func DeleteSitemetaByMetaId(iMetaId int64) (err error) {
 	return
 }
 
-// DeleteSitemetaBySiteId Delete Sitemeta via SiteId
-func DeleteSitemetaBySiteId(iSiteId int64) (err error) {
+// DeleteSitemetaViaSiteId Delete Sitemeta via SiteId
+func DeleteSitemetaViaSiteId(iSiteId int64) (err error) {
 	var has bool
 	var _Sitemeta = &Sitemeta{SiteId: iSiteId}
 	if has, err = Engine.Get(_Sitemeta); (has == true) && (err == nil) {
@@ -374,8 +374,8 @@ func DeleteSitemetaBySiteId(iSiteId int64) (err error) {
 	return
 }
 
-// DeleteSitemetaByMetaKey Delete Sitemeta via MetaKey
-func DeleteSitemetaByMetaKey(iMetaKey string) (err error) {
+// DeleteSitemetaViaMetaKey Delete Sitemeta via MetaKey
+func DeleteSitemetaViaMetaKey(iMetaKey string) (err error) {
 	var has bool
 	var _Sitemeta = &Sitemeta{MetaKey: iMetaKey}
 	if has, err = Engine.Get(_Sitemeta); (has == true) && (err == nil) {
@@ -388,8 +388,8 @@ func DeleteSitemetaByMetaKey(iMetaKey string) (err error) {
 	return
 }
 
-// DeleteSitemetaByMetaValue Delete Sitemeta via MetaValue
-func DeleteSitemetaByMetaValue(iMetaValue string) (err error) {
+// DeleteSitemetaViaMetaValue Delete Sitemeta via MetaValue
+func DeleteSitemetaViaMetaValue(iMetaValue string) (err error) {
 	var has bool
 	var _Sitemeta = &Sitemeta{MetaValue: iMetaValue}
 	if has, err = Engine.Get(_Sitemeta); (has == true) && (err == nil) {

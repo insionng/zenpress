@@ -13,26 +13,26 @@ func GetUsermetasCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetUsermetaCountByUmetaId Get Usermeta via UmetaId
-func GetUsermetaCountByUmetaId(iUmetaId int64) int64 {
+// GetUsermetaCountViaUmetaId Get Usermeta via UmetaId
+func GetUsermetaCountViaUmetaId(iUmetaId int64) int64 {
 	n, _ := Engine.Where("umeta_id = ?", iUmetaId).Count(&Usermeta{UmetaId: iUmetaId})
 	return n
 }
 
-// GetUsermetaCountByUserId Get Usermeta via UserId
-func GetUsermetaCountByUserId(iUserId int64) int64 {
+// GetUsermetaCountViaUserId Get Usermeta via UserId
+func GetUsermetaCountViaUserId(iUserId int64) int64 {
 	n, _ := Engine.Where("user_id = ?", iUserId).Count(&Usermeta{UserId: iUserId})
 	return n
 }
 
-// GetUsermetaCountByMetaKey Get Usermeta via MetaKey
-func GetUsermetaCountByMetaKey(iMetaKey string) int64 {
+// GetUsermetaCountViaMetaKey Get Usermeta via MetaKey
+func GetUsermetaCountViaMetaKey(iMetaKey string) int64 {
 	n, _ := Engine.Where("meta_key = ?", iMetaKey).Count(&Usermeta{MetaKey: iMetaKey})
 	return n
 }
 
-// GetUsermetaCountByMetaValue Get Usermeta via MetaValue
-func GetUsermetaCountByMetaValue(iMetaValue string) int64 {
+// GetUsermetaCountViaMetaValue Get Usermeta via MetaValue
+func GetUsermetaCountViaMetaValue(iMetaValue string) int64 {
 	n, _ := Engine.Where("meta_value = ?", iMetaValue).Count(&Usermeta{MetaValue: iMetaValue})
 	return n
 }
@@ -114,36 +114,36 @@ func GetUsermetas(offset int, limit int, field string) (*[]*Usermeta, error) {
 	return _Usermeta, err
 }
 
-// GetUsermetasByUmetaId Get Usermetas via UmetaId
-func GetUsermetasByUmetaId(offset int, limit int, UmetaId_ int64, field string) (*[]*Usermeta, error) {
+// GetUsermetasViaUmetaId Get Usermetas via UmetaId
+func GetUsermetasViaUmetaId(offset int, limit int, UmetaId_ int64, field string) (*[]*Usermeta, error) {
 	var _Usermeta = new([]*Usermeta)
 	err := Engine.Table("usermeta").Where("umeta_id = ?", UmetaId_).Limit(limit, offset).Desc(field).Find(_Usermeta)
 	return _Usermeta, err
 }
 
-// GetUsermetasByUserId Get Usermetas via UserId
-func GetUsermetasByUserId(offset int, limit int, UserId_ int64, field string) (*[]*Usermeta, error) {
+// GetUsermetasViaUserId Get Usermetas via UserId
+func GetUsermetasViaUserId(offset int, limit int, UserId_ int64, field string) (*[]*Usermeta, error) {
 	var _Usermeta = new([]*Usermeta)
 	err := Engine.Table("usermeta").Where("user_id = ?", UserId_).Limit(limit, offset).Desc(field).Find(_Usermeta)
 	return _Usermeta, err
 }
 
-// GetUsermetasByMetaKey Get Usermetas via MetaKey
-func GetUsermetasByMetaKey(offset int, limit int, MetaKey_ string, field string) (*[]*Usermeta, error) {
+// GetUsermetasViaMetaKey Get Usermetas via MetaKey
+func GetUsermetasViaMetaKey(offset int, limit int, MetaKey_ string, field string) (*[]*Usermeta, error) {
 	var _Usermeta = new([]*Usermeta)
 	err := Engine.Table("usermeta").Where("meta_key = ?", MetaKey_).Limit(limit, offset).Desc(field).Find(_Usermeta)
 	return _Usermeta, err
 }
 
-// GetUsermetasByMetaValue Get Usermetas via MetaValue
-func GetUsermetasByMetaValue(offset int, limit int, MetaValue_ string, field string) (*[]*Usermeta, error) {
+// GetUsermetasViaMetaValue Get Usermetas via MetaValue
+func GetUsermetasViaMetaValue(offset int, limit int, MetaValue_ string, field string) (*[]*Usermeta, error) {
 	var _Usermeta = new([]*Usermeta)
 	err := Engine.Table("usermeta").Where("meta_value = ?", MetaValue_).Limit(limit, offset).Desc(field).Find(_Usermeta)
 	return _Usermeta, err
 }
 
-// HasUsermetaByUmetaId Has Usermeta via UmetaId
-func HasUsermetaByUmetaId(iUmetaId int64) bool {
+// HasUsermetaViaUmetaId Has Usermeta via UmetaId
+func HasUsermetaViaUmetaId(iUmetaId int64) bool {
 	if has, err := Engine.Where("umeta_id = ?", iUmetaId).Get(new(Usermeta)); err != nil {
 		return false
 	} else {
@@ -154,8 +154,8 @@ func HasUsermetaByUmetaId(iUmetaId int64) bool {
 	}
 }
 
-// HasUsermetaByUserId Has Usermeta via UserId
-func HasUsermetaByUserId(iUserId int64) bool {
+// HasUsermetaViaUserId Has Usermeta via UserId
+func HasUsermetaViaUserId(iUserId int64) bool {
 	if has, err := Engine.Where("user_id = ?", iUserId).Get(new(Usermeta)); err != nil {
 		return false
 	} else {
@@ -166,8 +166,8 @@ func HasUsermetaByUserId(iUserId int64) bool {
 	}
 }
 
-// HasUsermetaByMetaKey Has Usermeta via MetaKey
-func HasUsermetaByMetaKey(iMetaKey string) bool {
+// HasUsermetaViaMetaKey Has Usermeta via MetaKey
+func HasUsermetaViaMetaKey(iMetaKey string) bool {
 	if has, err := Engine.Where("meta_key = ?", iMetaKey).Get(new(Usermeta)); err != nil {
 		return false
 	} else {
@@ -178,8 +178,8 @@ func HasUsermetaByMetaKey(iMetaKey string) bool {
 	}
 }
 
-// HasUsermetaByMetaValue Has Usermeta via MetaValue
-func HasUsermetaByMetaValue(iMetaValue string) bool {
+// HasUsermetaViaMetaValue Has Usermeta via MetaValue
+func HasUsermetaViaMetaValue(iMetaValue string) bool {
 	if has, err := Engine.Where("meta_value = ?", iMetaValue).Get(new(Usermeta)); err != nil {
 		return false
 	} else {
@@ -190,8 +190,8 @@ func HasUsermetaByMetaValue(iMetaValue string) bool {
 	}
 }
 
-// GetUsermetaByUmetaId Get Usermeta via UmetaId
-func GetUsermetaByUmetaId(iUmetaId int64) (*Usermeta, error) {
+// GetUsermetaViaUmetaId Get Usermeta via UmetaId
+func GetUsermetaViaUmetaId(iUmetaId int64) (*Usermeta, error) {
 	var _Usermeta = &Usermeta{UmetaId: iUmetaId}
 	has, err := Engine.Get(_Usermeta)
 	if has {
@@ -201,8 +201,8 @@ func GetUsermetaByUmetaId(iUmetaId int64) (*Usermeta, error) {
 	}
 }
 
-// GetUsermetaByUserId Get Usermeta via UserId
-func GetUsermetaByUserId(iUserId int64) (*Usermeta, error) {
+// GetUsermetaViaUserId Get Usermeta via UserId
+func GetUsermetaViaUserId(iUserId int64) (*Usermeta, error) {
 	var _Usermeta = &Usermeta{UserId: iUserId}
 	has, err := Engine.Get(_Usermeta)
 	if has {
@@ -212,8 +212,8 @@ func GetUsermetaByUserId(iUserId int64) (*Usermeta, error) {
 	}
 }
 
-// GetUsermetaByMetaKey Get Usermeta via MetaKey
-func GetUsermetaByMetaKey(iMetaKey string) (*Usermeta, error) {
+// GetUsermetaViaMetaKey Get Usermeta via MetaKey
+func GetUsermetaViaMetaKey(iMetaKey string) (*Usermeta, error) {
 	var _Usermeta = &Usermeta{MetaKey: iMetaKey}
 	has, err := Engine.Get(_Usermeta)
 	if has {
@@ -223,8 +223,8 @@ func GetUsermetaByMetaKey(iMetaKey string) (*Usermeta, error) {
 	}
 }
 
-// GetUsermetaByMetaValue Get Usermeta via MetaValue
-func GetUsermetaByMetaValue(iMetaValue string) (*Usermeta, error) {
+// GetUsermetaViaMetaValue Get Usermeta via MetaValue
+func GetUsermetaViaMetaValue(iMetaValue string) (*Usermeta, error) {
 	var _Usermeta = &Usermeta{MetaValue: iMetaValue}
 	has, err := Engine.Get(_Usermeta)
 	if has {
@@ -234,26 +234,26 @@ func GetUsermetaByMetaValue(iMetaValue string) (*Usermeta, error) {
 	}
 }
 
-// SetUsermetaByUmetaId Set Usermeta via UmetaId
-func SetUsermetaByUmetaId(iUmetaId int64, usermeta *Usermeta) (int64, error) {
+// SetUsermetaViaUmetaId Set Usermeta via UmetaId
+func SetUsermetaViaUmetaId(iUmetaId int64, usermeta *Usermeta) (int64, error) {
 	usermeta.UmetaId = iUmetaId
 	return Engine.Insert(usermeta)
 }
 
-// SetUsermetaByUserId Set Usermeta via UserId
-func SetUsermetaByUserId(iUserId int64, usermeta *Usermeta) (int64, error) {
+// SetUsermetaViaUserId Set Usermeta via UserId
+func SetUsermetaViaUserId(iUserId int64, usermeta *Usermeta) (int64, error) {
 	usermeta.UserId = iUserId
 	return Engine.Insert(usermeta)
 }
 
-// SetUsermetaByMetaKey Set Usermeta via MetaKey
-func SetUsermetaByMetaKey(iMetaKey string, usermeta *Usermeta) (int64, error) {
+// SetUsermetaViaMetaKey Set Usermeta via MetaKey
+func SetUsermetaViaMetaKey(iMetaKey string, usermeta *Usermeta) (int64, error) {
 	usermeta.MetaKey = iMetaKey
 	return Engine.Insert(usermeta)
 }
 
-// SetUsermetaByMetaValue Set Usermeta via MetaValue
-func SetUsermetaByMetaValue(iMetaValue string, usermeta *Usermeta) (int64, error) {
+// SetUsermetaViaMetaValue Set Usermeta via MetaValue
+func SetUsermetaViaMetaValue(iMetaValue string, usermeta *Usermeta) (int64, error) {
 	usermeta.MetaValue = iMetaValue
 	return Engine.Insert(usermeta)
 }
@@ -280,32 +280,32 @@ func PutUsermeta(iUsermeta *Usermeta) (int64, error) {
 	return iUsermeta.UmetaId, err
 }
 
-// PutUsermetaByUmetaId Put Usermeta via UmetaId
-func PutUsermetaByUmetaId(UmetaId_ int64, iUsermeta *Usermeta) (int64, error) {
+// PutUsermetaViaUmetaId Put Usermeta via UmetaId
+func PutUsermetaViaUmetaId(UmetaId_ int64, iUsermeta *Usermeta) (int64, error) {
 	row, err := Engine.Update(iUsermeta, &Usermeta{UmetaId: UmetaId_})
 	return row, err
 }
 
-// PutUsermetaByUserId Put Usermeta via UserId
-func PutUsermetaByUserId(UserId_ int64, iUsermeta *Usermeta) (int64, error) {
+// PutUsermetaViaUserId Put Usermeta via UserId
+func PutUsermetaViaUserId(UserId_ int64, iUsermeta *Usermeta) (int64, error) {
 	row, err := Engine.Update(iUsermeta, &Usermeta{UserId: UserId_})
 	return row, err
 }
 
-// PutUsermetaByMetaKey Put Usermeta via MetaKey
-func PutUsermetaByMetaKey(MetaKey_ string, iUsermeta *Usermeta) (int64, error) {
+// PutUsermetaViaMetaKey Put Usermeta via MetaKey
+func PutUsermetaViaMetaKey(MetaKey_ string, iUsermeta *Usermeta) (int64, error) {
 	row, err := Engine.Update(iUsermeta, &Usermeta{MetaKey: MetaKey_})
 	return row, err
 }
 
-// PutUsermetaByMetaValue Put Usermeta via MetaValue
-func PutUsermetaByMetaValue(MetaValue_ string, iUsermeta *Usermeta) (int64, error) {
+// PutUsermetaViaMetaValue Put Usermeta via MetaValue
+func PutUsermetaViaMetaValue(MetaValue_ string, iUsermeta *Usermeta) (int64, error) {
 	row, err := Engine.Update(iUsermeta, &Usermeta{MetaValue: MetaValue_})
 	return row, err
 }
 
-// UpdateUsermetaByUmetaId via map[string]interface{}{}
-func UpdateUsermetaByUmetaId(iUmetaId int64, iUsermetaMap *map[string]interface{}) error {
+// UpdateUsermetaViaUmetaId via map[string]interface{}{}
+func UpdateUsermetaViaUmetaId(iUmetaId int64, iUsermetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Usermeta)).Where("umeta_id = ?", iUmetaId).Update(iUsermetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -313,8 +313,8 @@ func UpdateUsermetaByUmetaId(iUmetaId int64, iUsermetaMap *map[string]interface{
 	}
 }
 
-// UpdateUsermetaByUserId via map[string]interface{}{}
-func UpdateUsermetaByUserId(iUserId int64, iUsermetaMap *map[string]interface{}) error {
+// UpdateUsermetaViaUserId via map[string]interface{}{}
+func UpdateUsermetaViaUserId(iUserId int64, iUsermetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Usermeta)).Where("user_id = ?", iUserId).Update(iUsermetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -322,8 +322,8 @@ func UpdateUsermetaByUserId(iUserId int64, iUsermetaMap *map[string]interface{})
 	}
 }
 
-// UpdateUsermetaByMetaKey via map[string]interface{}{}
-func UpdateUsermetaByMetaKey(iMetaKey string, iUsermetaMap *map[string]interface{}) error {
+// UpdateUsermetaViaMetaKey via map[string]interface{}{}
+func UpdateUsermetaViaMetaKey(iMetaKey string, iUsermetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Usermeta)).Where("meta_key = ?", iMetaKey).Update(iUsermetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -331,8 +331,8 @@ func UpdateUsermetaByMetaKey(iMetaKey string, iUsermetaMap *map[string]interface
 	}
 }
 
-// UpdateUsermetaByMetaValue via map[string]interface{}{}
-func UpdateUsermetaByMetaValue(iMetaValue string, iUsermetaMap *map[string]interface{}) error {
+// UpdateUsermetaViaMetaValue via map[string]interface{}{}
+func UpdateUsermetaViaMetaValue(iMetaValue string, iUsermetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Usermeta)).Where("meta_value = ?", iMetaValue).Update(iUsermetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -346,8 +346,8 @@ func DeleteUsermeta(iUmetaId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteUsermetaByUmetaId Delete Usermeta via UmetaId
-func DeleteUsermetaByUmetaId(iUmetaId int64) (err error) {
+// DeleteUsermetaViaUmetaId Delete Usermeta via UmetaId
+func DeleteUsermetaViaUmetaId(iUmetaId int64) (err error) {
 	var has bool
 	var _Usermeta = &Usermeta{UmetaId: iUmetaId}
 	if has, err = Engine.Get(_Usermeta); (has == true) && (err == nil) {
@@ -360,8 +360,8 @@ func DeleteUsermetaByUmetaId(iUmetaId int64) (err error) {
 	return
 }
 
-// DeleteUsermetaByUserId Delete Usermeta via UserId
-func DeleteUsermetaByUserId(iUserId int64) (err error) {
+// DeleteUsermetaViaUserId Delete Usermeta via UserId
+func DeleteUsermetaViaUserId(iUserId int64) (err error) {
 	var has bool
 	var _Usermeta = &Usermeta{UserId: iUserId}
 	if has, err = Engine.Get(_Usermeta); (has == true) && (err == nil) {
@@ -374,8 +374,8 @@ func DeleteUsermetaByUserId(iUserId int64) (err error) {
 	return
 }
 
-// DeleteUsermetaByMetaKey Delete Usermeta via MetaKey
-func DeleteUsermetaByMetaKey(iMetaKey string) (err error) {
+// DeleteUsermetaViaMetaKey Delete Usermeta via MetaKey
+func DeleteUsermetaViaMetaKey(iMetaKey string) (err error) {
 	var has bool
 	var _Usermeta = &Usermeta{MetaKey: iMetaKey}
 	if has, err = Engine.Get(_Usermeta); (has == true) && (err == nil) {
@@ -388,8 +388,8 @@ func DeleteUsermetaByMetaKey(iMetaKey string) (err error) {
 	return
 }
 
-// DeleteUsermetaByMetaValue Delete Usermeta via MetaValue
-func DeleteUsermetaByMetaValue(iMetaValue string) (err error) {
+// DeleteUsermetaViaMetaValue Delete Usermeta via MetaValue
+func DeleteUsermetaViaMetaValue(iMetaValue string) (err error) {
 	var has bool
 	var _Usermeta = &Usermeta{MetaValue: iMetaValue}
 	if has, err = Engine.Get(_Usermeta); (has == true) && (err == nil) {

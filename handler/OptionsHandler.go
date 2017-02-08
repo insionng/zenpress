@@ -27,9 +27,9 @@ func GetOptionsesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetOptionsCountByOptionIdHandler(self *macross.Context) error {
+func GetOptionsCountViaOptionIdHandler(self *macross.Context) error {
 	OptionId_ := self.Args("option_id").MustInt64()
-	_int64 := model.GetOptionsCountByOptionId(OptionId_)
+	_int64 := model.GetOptionsCountViaOptionId(OptionId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["optionsCount"] = 0
@@ -38,9 +38,9 @@ func GetOptionsCountByOptionIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetOptionsCountByOptionNameHandler(self *macross.Context) error {
+func GetOptionsCountViaOptionNameHandler(self *macross.Context) error {
 	OptionName_ := self.Args("option_name").String()
-	_int64 := model.GetOptionsCountByOptionName(OptionName_)
+	_int64 := model.GetOptionsCountViaOptionName(OptionName_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["optionsCount"] = 0
@@ -49,9 +49,9 @@ func GetOptionsCountByOptionNameHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetOptionsCountByOptionValueHandler(self *macross.Context) error {
+func GetOptionsCountViaOptionValueHandler(self *macross.Context) error {
 	OptionValue_ := self.Args("option_value").String()
-	_int64 := model.GetOptionsCountByOptionValue(OptionValue_)
+	_int64 := model.GetOptionsCountViaOptionValue(OptionValue_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["optionsCount"] = 0
@@ -60,9 +60,9 @@ func GetOptionsCountByOptionValueHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetOptionsCountByAutoloadHandler(self *macross.Context) error {
+func GetOptionsCountViaAutoloadHandler(self *macross.Context) error {
 	Autoload_ := self.Args("autoload").String()
-	_int64 := model.GetOptionsCountByAutoload(Autoload_)
+	_int64 := model.GetOptionsCountViaAutoload(Autoload_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["optionsCount"] = 0
@@ -71,7 +71,7 @@ func GetOptionsCountByAutoloadHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetOptionsesByOptionIdHandler(self *macross.Context) error {
+func GetOptionsesViaOptionIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -80,18 +80,18 @@ func GetOptionsesByOptionIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iOptionId := self.Args("option_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iOptionId) {
-		_Options, _error := model.GetOptionsesByOptionId(offset, limit, iOptionId, field)
+		_Options, _error := model.GetOptionsesViaOptionId(offset, limit, iOptionId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the GetOptionsesByOptionId's args."
+	herr.Message = "Can't get to the GetOptionsesViaOptionId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetOptionsesByOptionNameHandler(self *macross.Context) error {
+func GetOptionsesViaOptionNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -100,18 +100,18 @@ func GetOptionsesByOptionNameHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iOptionName := self.Args("option_name").String()
 	if (offset > 0) && helper.IsHas(iOptionName) {
-		_Options, _error := model.GetOptionsesByOptionName(offset, limit, iOptionName, field)
+		_Options, _error := model.GetOptionsesViaOptionName(offset, limit, iOptionName, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the GetOptionsesByOptionName's args."
+	herr.Message = "Can't get to the GetOptionsesViaOptionName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetOptionsesByOptionValueHandler(self *macross.Context) error {
+func GetOptionsesViaOptionValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -120,18 +120,18 @@ func GetOptionsesByOptionValueHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iOptionValue := self.Args("option_value").String()
 	if (offset > 0) && helper.IsHas(iOptionValue) {
-		_Options, _error := model.GetOptionsesByOptionValue(offset, limit, iOptionValue, field)
+		_Options, _error := model.GetOptionsesViaOptionValue(offset, limit, iOptionValue, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the GetOptionsesByOptionValue's args."
+	herr.Message = "Can't get to the GetOptionsesViaOptionValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetOptionsesByAutoloadHandler(self *macross.Context) error {
+func GetOptionsesViaAutoloadHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -140,14 +140,14 @@ func GetOptionsesByAutoloadHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iAutoload := self.Args("autoload").String()
 	if (offset > 0) && helper.IsHas(iAutoload) {
-		_Options, _error := model.GetOptionsesByAutoload(offset, limit, iAutoload, field)
+		_Options, _error := model.GetOptionsesViaAutoload(offset, limit, iAutoload, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the GetOptionsesByAutoload's args."
+	herr.Message = "Can't get to the GetOptionsesViaAutoload's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -384,135 +384,135 @@ func GetOptionsesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasOptionsByOptionIdHandler(self *macross.Context) error {
+func GetHasOptionsViaOptionIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iOptionId := self.Args("option_id").MustInt64()
 	if helper.IsHas(iOptionId) {
-		_Options := model.HasOptionsByOptionId(iOptionId)
+		_Options := model.HasOptionsViaOptionId(iOptionId)
 		var m = map[string]interface{}{}
 		m["options"] = _Options
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasOptionsByOptionId's args."
+	herr.Message = "Can't get to the HasOptionsViaOptionId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasOptionsByOptionNameHandler(self *macross.Context) error {
+func GetHasOptionsViaOptionNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iOptionName := self.Args("option_name").String()
 	if helper.IsHas(iOptionName) {
-		_Options := model.HasOptionsByOptionName(iOptionName)
+		_Options := model.HasOptionsViaOptionName(iOptionName)
 		var m = map[string]interface{}{}
 		m["options"] = _Options
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasOptionsByOptionName's args."
+	herr.Message = "Can't get to the HasOptionsViaOptionName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasOptionsByOptionValueHandler(self *macross.Context) error {
+func GetHasOptionsViaOptionValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iOptionValue := self.Args("option_value").String()
 	if helper.IsHas(iOptionValue) {
-		_Options := model.HasOptionsByOptionValue(iOptionValue)
+		_Options := model.HasOptionsViaOptionValue(iOptionValue)
 		var m = map[string]interface{}{}
 		m["options"] = _Options
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasOptionsByOptionValue's args."
+	herr.Message = "Can't get to the HasOptionsViaOptionValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasOptionsByAutoloadHandler(self *macross.Context) error {
+func GetHasOptionsViaAutoloadHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iAutoload := self.Args("autoload").String()
 	if helper.IsHas(iAutoload) {
-		_Options := model.HasOptionsByAutoload(iAutoload)
+		_Options := model.HasOptionsViaAutoload(iAutoload)
 		var m = map[string]interface{}{}
 		m["options"] = _Options
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasOptionsByAutoload's args."
+	herr.Message = "Can't get to the HasOptionsViaAutoload's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetOptionsByOptionIdHandler(self *macross.Context) error {
+func GetOptionsViaOptionIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iOptionId := self.Args("option_id").MustInt64()
 	if helper.IsHas(iOptionId) {
-		_Options, _error := model.GetOptionsByOptionId(iOptionId)
+		_Options, _error := model.GetOptionsViaOptionId(iOptionId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the GetOptionsByOptionId's args."
+	herr.Message = "Can't get to the GetOptionsViaOptionId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetOptionsByOptionNameHandler(self *macross.Context) error {
+func GetOptionsViaOptionNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iOptionName := self.Args("option_name").String()
 	if helper.IsHas(iOptionName) {
-		_Options, _error := model.GetOptionsByOptionName(iOptionName)
+		_Options, _error := model.GetOptionsViaOptionName(iOptionName)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the GetOptionsByOptionName's args."
+	herr.Message = "Can't get to the GetOptionsViaOptionName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetOptionsByOptionValueHandler(self *macross.Context) error {
+func GetOptionsViaOptionValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iOptionValue := self.Args("option_value").String()
 	if helper.IsHas(iOptionValue) {
-		_Options, _error := model.GetOptionsByOptionValue(iOptionValue)
+		_Options, _error := model.GetOptionsViaOptionValue(iOptionValue)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the GetOptionsByOptionValue's args."
+	herr.Message = "Can't get to the GetOptionsViaOptionValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetOptionsByAutoloadHandler(self *macross.Context) error {
+func GetOptionsViaAutoloadHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iAutoload := self.Args("autoload").String()
 	if helper.IsHas(iAutoload) {
-		_Options, _error := model.GetOptionsByAutoload(iAutoload)
+		_Options, _error := model.GetOptionsViaAutoload(iAutoload)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the GetOptionsByAutoload's args."
+	herr.Message = "Can't get to the GetOptionsViaAutoload's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetOptionsByOptionIdHandler(self *macross.Context) error {
+func PostSetOptionsViaOptionIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -520,18 +520,18 @@ func PostSetOptionsByOptionIdHandler(self *macross.Context) error {
 	if helper.IsHas(OptionId_) {
 		var iOptions model.Options
 		self.Bind(&iOptions)
-		_Options, _error := model.SetOptionsByOptionId(OptionId_, &iOptions)
+		_Options, _error := model.SetOptionsViaOptionId(OptionId_, &iOptions)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the SetOptionsByOptionId's args."
+	herr.Message = "Can't get to the SetOptionsViaOptionId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetOptionsByOptionNameHandler(self *macross.Context) error {
+func PostSetOptionsViaOptionNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -539,18 +539,18 @@ func PostSetOptionsByOptionNameHandler(self *macross.Context) error {
 	if helper.IsHas(OptionName_) {
 		var iOptions model.Options
 		self.Bind(&iOptions)
-		_Options, _error := model.SetOptionsByOptionName(OptionName_, &iOptions)
+		_Options, _error := model.SetOptionsViaOptionName(OptionName_, &iOptions)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the SetOptionsByOptionName's args."
+	herr.Message = "Can't get to the SetOptionsViaOptionName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetOptionsByOptionValueHandler(self *macross.Context) error {
+func PostSetOptionsViaOptionValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -558,18 +558,18 @@ func PostSetOptionsByOptionValueHandler(self *macross.Context) error {
 	if helper.IsHas(OptionValue_) {
 		var iOptions model.Options
 		self.Bind(&iOptions)
-		_Options, _error := model.SetOptionsByOptionValue(OptionValue_, &iOptions)
+		_Options, _error := model.SetOptionsViaOptionValue(OptionValue_, &iOptions)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the SetOptionsByOptionValue's args."
+	herr.Message = "Can't get to the SetOptionsViaOptionValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetOptionsByAutoloadHandler(self *macross.Context) error {
+func PostSetOptionsViaAutoloadHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -577,14 +577,14 @@ func PostSetOptionsByAutoloadHandler(self *macross.Context) error {
 	if helper.IsHas(Autoload_) {
 		var iOptions model.Options
 		self.Bind(&iOptions)
-		_Options, _error := model.SetOptionsByAutoload(Autoload_, &iOptions)
+		_Options, _error := model.SetOptionsViaAutoload(Autoload_, &iOptions)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Options)
 	}
-	herr.Message = "Can't get to the SetOptionsByAutoload's args."
+	herr.Message = "Can't get to the SetOptionsViaAutoload's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -618,7 +618,7 @@ func PostOptionsHandler(self *macross.Context) error {
 	var iOptions model.Options
 	self.Bind(&iOptions)
 	_int64, _error := model.PostOptions(&iOptions)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -636,7 +636,7 @@ func PutOptionsHandler(self *macross.Context) error {
 	var iOptions model.Options
 	self.Bind(&iOptions)
 	_int64, _error := model.PutOptions(&iOptions)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -647,14 +647,14 @@ func PutOptionsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutOptionsByOptionIdHandler(self *macross.Context) error {
+func PutOptionsViaOptionIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	OptionId_ := self.Args("option_id").MustInt64()
 	var iOptions model.Options
 	self.Bind(&iOptions)
-	_int64, _error := model.PutOptionsByOptionId(OptionId_, &iOptions)
+	_int64, _error := model.PutOptionsViaOptionId(OptionId_, &iOptions)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -664,14 +664,14 @@ func PutOptionsByOptionIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutOptionsByOptionNameHandler(self *macross.Context) error {
+func PutOptionsViaOptionNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	OptionName_ := self.Args("option_name").String()
 	var iOptions model.Options
 	self.Bind(&iOptions)
-	_int64, _error := model.PutOptionsByOptionName(OptionName_, &iOptions)
+	_int64, _error := model.PutOptionsViaOptionName(OptionName_, &iOptions)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -681,14 +681,14 @@ func PutOptionsByOptionNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutOptionsByOptionValueHandler(self *macross.Context) error {
+func PutOptionsViaOptionValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	OptionValue_ := self.Args("option_value").String()
 	var iOptions model.Options
 	self.Bind(&iOptions)
-	_int64, _error := model.PutOptionsByOptionValue(OptionValue_, &iOptions)
+	_int64, _error := model.PutOptionsViaOptionValue(OptionValue_, &iOptions)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -698,14 +698,14 @@ func PutOptionsByOptionValueHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutOptionsByAutoloadHandler(self *macross.Context) error {
+func PutOptionsViaAutoloadHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Autoload_ := self.Args("autoload").String()
 	var iOptions model.Options
 	self.Bind(&iOptions)
-	_int64, _error := model.PutOptionsByAutoload(Autoload_, &iOptions)
+	_int64, _error := model.PutOptionsViaAutoload(Autoload_, &iOptions)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -715,7 +715,7 @@ func PutOptionsByAutoloadHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateOptionsByOptionIdHandler(self *macross.Context) error {
+func PutUpdateOptionsViaOptionIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -723,7 +723,7 @@ func PutUpdateOptionsByOptionIdHandler(self *macross.Context) error {
 	var iOptions model.Options
 	self.Bind(&iOptions)
 	var iMap = helper.StructToMap(iOptions)
-	_error := model.UpdateOptionsByOptionId(OptionId_, &iMap)
+	_error := model.UpdateOptionsViaOptionId(OptionId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -733,7 +733,7 @@ func PutUpdateOptionsByOptionIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateOptionsByOptionNameHandler(self *macross.Context) error {
+func PutUpdateOptionsViaOptionNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -741,7 +741,7 @@ func PutUpdateOptionsByOptionNameHandler(self *macross.Context) error {
 	var iOptions model.Options
 	self.Bind(&iOptions)
 	var iMap = helper.StructToMap(iOptions)
-	_error := model.UpdateOptionsByOptionName(OptionName_, &iMap)
+	_error := model.UpdateOptionsViaOptionName(OptionName_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -751,7 +751,7 @@ func PutUpdateOptionsByOptionNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateOptionsByOptionValueHandler(self *macross.Context) error {
+func PutUpdateOptionsViaOptionValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -759,7 +759,7 @@ func PutUpdateOptionsByOptionValueHandler(self *macross.Context) error {
 	var iOptions model.Options
 	self.Bind(&iOptions)
 	var iMap = helper.StructToMap(iOptions)
-	_error := model.UpdateOptionsByOptionValue(OptionValue_, &iMap)
+	_error := model.UpdateOptionsViaOptionValue(OptionValue_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -769,7 +769,7 @@ func PutUpdateOptionsByOptionValueHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateOptionsByAutoloadHandler(self *macross.Context) error {
+func PutUpdateOptionsViaAutoloadHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -777,7 +777,7 @@ func PutUpdateOptionsByAutoloadHandler(self *macross.Context) error {
 	var iOptions model.Options
 	self.Bind(&iOptions)
 	var iMap = helper.StructToMap(iOptions)
-	_error := model.UpdateOptionsByAutoload(Autoload_, &iMap)
+	_error := model.UpdateOptionsViaAutoload(Autoload_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -804,12 +804,12 @@ func DeleteOptionsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteOptionsByOptionIdHandler(self *macross.Context) error {
+func DeleteOptionsViaOptionIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	OptionId_ := self.Args("option_id").MustInt64()
-	_error := model.DeleteOptionsByOptionId(OptionId_)
+	_error := model.DeleteOptionsViaOptionId(OptionId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -819,12 +819,12 @@ func DeleteOptionsByOptionIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteOptionsByOptionNameHandler(self *macross.Context) error {
+func DeleteOptionsViaOptionNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	OptionName_ := self.Args("option_name").String()
-	_error := model.DeleteOptionsByOptionName(OptionName_)
+	_error := model.DeleteOptionsViaOptionName(OptionName_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -834,12 +834,12 @@ func DeleteOptionsByOptionNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteOptionsByOptionValueHandler(self *macross.Context) error {
+func DeleteOptionsViaOptionValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	OptionValue_ := self.Args("option_value").String()
-	_error := model.DeleteOptionsByOptionValue(OptionValue_)
+	_error := model.DeleteOptionsViaOptionValue(OptionValue_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -849,12 +849,12 @@ func DeleteOptionsByOptionValueHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteOptionsByAutoloadHandler(self *macross.Context) error {
+func DeleteOptionsViaAutoloadHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Autoload_ := self.Args("autoload").String()
-	_error := model.DeleteOptionsByAutoload(Autoload_)
+	_error := model.DeleteOptionsViaAutoload(Autoload_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

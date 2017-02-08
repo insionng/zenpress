@@ -27,9 +27,9 @@ func GetBlogsesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsCountByBlogIdHandler(self *macross.Context) error {
+func GetBlogsCountViaBlogIdHandler(self *macross.Context) error {
 	BlogId_ := self.Args("blog_id").MustInt64()
-	_int64 := model.GetBlogsCountByBlogId(BlogId_)
+	_int64 := model.GetBlogsCountViaBlogId(BlogId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -38,9 +38,9 @@ func GetBlogsCountByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountBySiteIdHandler(self *macross.Context) error {
+func GetBlogsCountViaSiteIdHandler(self *macross.Context) error {
 	SiteId_ := self.Args("site_id").MustInt64()
-	_int64 := model.GetBlogsCountBySiteId(SiteId_)
+	_int64 := model.GetBlogsCountViaSiteId(SiteId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -49,9 +49,9 @@ func GetBlogsCountBySiteIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountByDomainHandler(self *macross.Context) error {
+func GetBlogsCountViaDomainHandler(self *macross.Context) error {
 	Domain_ := self.Args("domain").String()
-	_int64 := model.GetBlogsCountByDomain(Domain_)
+	_int64 := model.GetBlogsCountViaDomain(Domain_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -60,9 +60,9 @@ func GetBlogsCountByDomainHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountByPathHandler(self *macross.Context) error {
+func GetBlogsCountViaPathHandler(self *macross.Context) error {
 	Path_ := self.Args("path").String()
-	_int64 := model.GetBlogsCountByPath(Path_)
+	_int64 := model.GetBlogsCountViaPath(Path_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -71,9 +71,9 @@ func GetBlogsCountByPathHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountByRegisteredHandler(self *macross.Context) error {
+func GetBlogsCountViaRegisteredHandler(self *macross.Context) error {
 	Registered_ := self.Args("registered").Time()
-	_int64 := model.GetBlogsCountByRegistered(Registered_)
+	_int64 := model.GetBlogsCountViaRegistered(Registered_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -82,9 +82,9 @@ func GetBlogsCountByRegisteredHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountByLastUpdatedHandler(self *macross.Context) error {
+func GetBlogsCountViaLastUpdatedHandler(self *macross.Context) error {
 	LastUpdated_ := self.Args("last_updated").Time()
-	_int64 := model.GetBlogsCountByLastUpdated(LastUpdated_)
+	_int64 := model.GetBlogsCountViaLastUpdated(LastUpdated_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -93,9 +93,9 @@ func GetBlogsCountByLastUpdatedHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountByPublicHandler(self *macross.Context) error {
+func GetBlogsCountViaPublicHandler(self *macross.Context) error {
 	Public_ := self.Args("public").MustInt()
-	_int64 := model.GetBlogsCountByPublic(Public_)
+	_int64 := model.GetBlogsCountViaPublic(Public_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -104,9 +104,9 @@ func GetBlogsCountByPublicHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountByArchivedHandler(self *macross.Context) error {
+func GetBlogsCountViaArchivedHandler(self *macross.Context) error {
 	Archived_ := self.Args("archived").MustInt()
-	_int64 := model.GetBlogsCountByArchived(Archived_)
+	_int64 := model.GetBlogsCountViaArchived(Archived_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -115,9 +115,9 @@ func GetBlogsCountByArchivedHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountByMatureHandler(self *macross.Context) error {
+func GetBlogsCountViaMatureHandler(self *macross.Context) error {
 	Mature_ := self.Args("mature").MustInt()
-	_int64 := model.GetBlogsCountByMature(Mature_)
+	_int64 := model.GetBlogsCountViaMature(Mature_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -126,9 +126,9 @@ func GetBlogsCountByMatureHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountBySpamHandler(self *macross.Context) error {
+func GetBlogsCountViaSpamHandler(self *macross.Context) error {
 	Spam_ := self.Args("spam").MustInt()
-	_int64 := model.GetBlogsCountBySpam(Spam_)
+	_int64 := model.GetBlogsCountViaSpam(Spam_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -137,9 +137,9 @@ func GetBlogsCountBySpamHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountByDeletedHandler(self *macross.Context) error {
+func GetBlogsCountViaDeletedHandler(self *macross.Context) error {
 	Deleted_ := self.Args("deleted").MustInt()
-	_int64 := model.GetBlogsCountByDeleted(Deleted_)
+	_int64 := model.GetBlogsCountViaDeleted(Deleted_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -148,9 +148,9 @@ func GetBlogsCountByDeletedHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsCountByLangIdHandler(self *macross.Context) error {
+func GetBlogsCountViaLangIdHandler(self *macross.Context) error {
 	LangId_ := self.Args("lang_id").MustInt()
-	_int64 := model.GetBlogsCountByLangId(LangId_)
+	_int64 := model.GetBlogsCountViaLangId(LangId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["blogsCount"] = 0
@@ -159,7 +159,7 @@ func GetBlogsCountByLangIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetBlogsesByBlogIdHandler(self *macross.Context) error {
+func GetBlogsesViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -168,18 +168,18 @@ func GetBlogsesByBlogIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iBlogId := self.Args("blog_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iBlogId) {
-		_Blogs, _error := model.GetBlogsesByBlogId(offset, limit, iBlogId, field)
+		_Blogs, _error := model.GetBlogsesViaBlogId(offset, limit, iBlogId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesByBlogId's args."
+	herr.Message = "Can't get to the GetBlogsesViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesBySiteIdHandler(self *macross.Context) error {
+func GetBlogsesViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -188,18 +188,18 @@ func GetBlogsesBySiteIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iSiteId := self.Args("site_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iSiteId) {
-		_Blogs, _error := model.GetBlogsesBySiteId(offset, limit, iSiteId, field)
+		_Blogs, _error := model.GetBlogsesViaSiteId(offset, limit, iSiteId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesBySiteId's args."
+	herr.Message = "Can't get to the GetBlogsesViaSiteId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesByDomainHandler(self *macross.Context) error {
+func GetBlogsesViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -208,18 +208,18 @@ func GetBlogsesByDomainHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iDomain := self.Args("domain").String()
 	if (offset > 0) && helper.IsHas(iDomain) {
-		_Blogs, _error := model.GetBlogsesByDomain(offset, limit, iDomain, field)
+		_Blogs, _error := model.GetBlogsesViaDomain(offset, limit, iDomain, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesByDomain's args."
+	herr.Message = "Can't get to the GetBlogsesViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesByPathHandler(self *macross.Context) error {
+func GetBlogsesViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -228,18 +228,18 @@ func GetBlogsesByPathHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPath := self.Args("path").String()
 	if (offset > 0) && helper.IsHas(iPath) {
-		_Blogs, _error := model.GetBlogsesByPath(offset, limit, iPath, field)
+		_Blogs, _error := model.GetBlogsesViaPath(offset, limit, iPath, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesByPath's args."
+	herr.Message = "Can't get to the GetBlogsesViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesByRegisteredHandler(self *macross.Context) error {
+func GetBlogsesViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -248,18 +248,18 @@ func GetBlogsesByRegisteredHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iRegistered := self.Args("registered").Time()
 	if (offset > 0) && helper.IsHas(iRegistered) {
-		_Blogs, _error := model.GetBlogsesByRegistered(offset, limit, iRegistered, field)
+		_Blogs, _error := model.GetBlogsesViaRegistered(offset, limit, iRegistered, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesByRegistered's args."
+	herr.Message = "Can't get to the GetBlogsesViaRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesByLastUpdatedHandler(self *macross.Context) error {
+func GetBlogsesViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -268,18 +268,18 @@ func GetBlogsesByLastUpdatedHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLastUpdated := self.Args("last_updated").Time()
 	if (offset > 0) && helper.IsHas(iLastUpdated) {
-		_Blogs, _error := model.GetBlogsesByLastUpdated(offset, limit, iLastUpdated, field)
+		_Blogs, _error := model.GetBlogsesViaLastUpdated(offset, limit, iLastUpdated, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesByLastUpdated's args."
+	herr.Message = "Can't get to the GetBlogsesViaLastUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesByPublicHandler(self *macross.Context) error {
+func GetBlogsesViaPublicHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -288,18 +288,18 @@ func GetBlogsesByPublicHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPublic := self.Args("public").MustInt()
 	if (offset > 0) && helper.IsHas(iPublic) {
-		_Blogs, _error := model.GetBlogsesByPublic(offset, limit, iPublic, field)
+		_Blogs, _error := model.GetBlogsesViaPublic(offset, limit, iPublic, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesByPublic's args."
+	herr.Message = "Can't get to the GetBlogsesViaPublic's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesByArchivedHandler(self *macross.Context) error {
+func GetBlogsesViaArchivedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -308,18 +308,18 @@ func GetBlogsesByArchivedHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iArchived := self.Args("archived").MustInt()
 	if (offset > 0) && helper.IsHas(iArchived) {
-		_Blogs, _error := model.GetBlogsesByArchived(offset, limit, iArchived, field)
+		_Blogs, _error := model.GetBlogsesViaArchived(offset, limit, iArchived, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesByArchived's args."
+	herr.Message = "Can't get to the GetBlogsesViaArchived's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesByMatureHandler(self *macross.Context) error {
+func GetBlogsesViaMatureHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -328,18 +328,18 @@ func GetBlogsesByMatureHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMature := self.Args("mature").MustInt()
 	if (offset > 0) && helper.IsHas(iMature) {
-		_Blogs, _error := model.GetBlogsesByMature(offset, limit, iMature, field)
+		_Blogs, _error := model.GetBlogsesViaMature(offset, limit, iMature, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesByMature's args."
+	herr.Message = "Can't get to the GetBlogsesViaMature's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesBySpamHandler(self *macross.Context) error {
+func GetBlogsesViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -348,18 +348,18 @@ func GetBlogsesBySpamHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iSpam := self.Args("spam").MustInt()
 	if (offset > 0) && helper.IsHas(iSpam) {
-		_Blogs, _error := model.GetBlogsesBySpam(offset, limit, iSpam, field)
+		_Blogs, _error := model.GetBlogsesViaSpam(offset, limit, iSpam, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesBySpam's args."
+	herr.Message = "Can't get to the GetBlogsesViaSpam's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesByDeletedHandler(self *macross.Context) error {
+func GetBlogsesViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -368,18 +368,18 @@ func GetBlogsesByDeletedHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iDeleted := self.Args("deleted").MustInt()
 	if (offset > 0) && helper.IsHas(iDeleted) {
-		_Blogs, _error := model.GetBlogsesByDeleted(offset, limit, iDeleted, field)
+		_Blogs, _error := model.GetBlogsesViaDeleted(offset, limit, iDeleted, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesByDeleted's args."
+	herr.Message = "Can't get to the GetBlogsesViaDeleted's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsesByLangIdHandler(self *macross.Context) error {
+func GetBlogsesViaLangIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -388,14 +388,14 @@ func GetBlogsesByLangIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLangId := self.Args("lang_id").MustInt()
 	if (offset > 0) && helper.IsHas(iLangId) {
-		_Blogs, _error := model.GetBlogsesByLangId(offset, limit, iLangId, field)
+		_Blogs, _error := model.GetBlogsesViaLangId(offset, limit, iLangId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsesByLangId's args."
+	herr.Message = "Can't get to the GetBlogsesViaLangId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -6644,391 +6644,391 @@ func GetBlogsesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsByBlogIdHandler(self *macross.Context) error {
+func GetHasBlogsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iBlogId := self.Args("blog_id").MustInt64()
 	if helper.IsHas(iBlogId) {
-		_Blogs := model.HasBlogsByBlogId(iBlogId)
+		_Blogs := model.HasBlogsViaBlogId(iBlogId)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsByBlogId's args."
+	herr.Message = "Can't get to the HasBlogsViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsBySiteIdHandler(self *macross.Context) error {
+func GetHasBlogsViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSiteId := self.Args("site_id").MustInt64()
 	if helper.IsHas(iSiteId) {
-		_Blogs := model.HasBlogsBySiteId(iSiteId)
+		_Blogs := model.HasBlogsViaSiteId(iSiteId)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsBySiteId's args."
+	herr.Message = "Can't get to the HasBlogsViaSiteId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsByDomainHandler(self *macross.Context) error {
+func GetHasBlogsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDomain := self.Args("domain").String()
 	if helper.IsHas(iDomain) {
-		_Blogs := model.HasBlogsByDomain(iDomain)
+		_Blogs := model.HasBlogsViaDomain(iDomain)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsByDomain's args."
+	herr.Message = "Can't get to the HasBlogsViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsByPathHandler(self *macross.Context) error {
+func GetHasBlogsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPath := self.Args("path").String()
 	if helper.IsHas(iPath) {
-		_Blogs := model.HasBlogsByPath(iPath)
+		_Blogs := model.HasBlogsViaPath(iPath)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsByPath's args."
+	herr.Message = "Can't get to the HasBlogsViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsByRegisteredHandler(self *macross.Context) error {
+func GetHasBlogsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iRegistered := self.Args("registered").Time()
 	if helper.IsHas(iRegistered) {
-		_Blogs := model.HasBlogsByRegistered(iRegistered)
+		_Blogs := model.HasBlogsViaRegistered(iRegistered)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsByRegistered's args."
+	herr.Message = "Can't get to the HasBlogsViaRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsByLastUpdatedHandler(self *macross.Context) error {
+func GetHasBlogsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLastUpdated := self.Args("last_updated").Time()
 	if helper.IsHas(iLastUpdated) {
-		_Blogs := model.HasBlogsByLastUpdated(iLastUpdated)
+		_Blogs := model.HasBlogsViaLastUpdated(iLastUpdated)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsByLastUpdated's args."
+	herr.Message = "Can't get to the HasBlogsViaLastUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsByPublicHandler(self *macross.Context) error {
+func GetHasBlogsViaPublicHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPublic := self.Args("public").MustInt()
 	if helper.IsHas(iPublic) {
-		_Blogs := model.HasBlogsByPublic(iPublic)
+		_Blogs := model.HasBlogsViaPublic(iPublic)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsByPublic's args."
+	herr.Message = "Can't get to the HasBlogsViaPublic's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsByArchivedHandler(self *macross.Context) error {
+func GetHasBlogsViaArchivedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iArchived := self.Args("archived").MustInt()
 	if helper.IsHas(iArchived) {
-		_Blogs := model.HasBlogsByArchived(iArchived)
+		_Blogs := model.HasBlogsViaArchived(iArchived)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsByArchived's args."
+	herr.Message = "Can't get to the HasBlogsViaArchived's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsByMatureHandler(self *macross.Context) error {
+func GetHasBlogsViaMatureHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMature := self.Args("mature").MustInt()
 	if helper.IsHas(iMature) {
-		_Blogs := model.HasBlogsByMature(iMature)
+		_Blogs := model.HasBlogsViaMature(iMature)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsByMature's args."
+	herr.Message = "Can't get to the HasBlogsViaMature's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsBySpamHandler(self *macross.Context) error {
+func GetHasBlogsViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSpam := self.Args("spam").MustInt()
 	if helper.IsHas(iSpam) {
-		_Blogs := model.HasBlogsBySpam(iSpam)
+		_Blogs := model.HasBlogsViaSpam(iSpam)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsBySpam's args."
+	herr.Message = "Can't get to the HasBlogsViaSpam's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsByDeletedHandler(self *macross.Context) error {
+func GetHasBlogsViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDeleted := self.Args("deleted").MustInt()
 	if helper.IsHas(iDeleted) {
-		_Blogs := model.HasBlogsByDeleted(iDeleted)
+		_Blogs := model.HasBlogsViaDeleted(iDeleted)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsByDeleted's args."
+	herr.Message = "Can't get to the HasBlogsViaDeleted's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasBlogsByLangIdHandler(self *macross.Context) error {
+func GetHasBlogsViaLangIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLangId := self.Args("lang_id").MustInt()
 	if helper.IsHas(iLangId) {
-		_Blogs := model.HasBlogsByLangId(iLangId)
+		_Blogs := model.HasBlogsViaLangId(iLangId)
 		var m = map[string]interface{}{}
 		m["blogs"] = _Blogs
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasBlogsByLangId's args."
+	herr.Message = "Can't get to the HasBlogsViaLangId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsByBlogIdHandler(self *macross.Context) error {
+func GetBlogsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iBlogId := self.Args("blog_id").MustInt64()
 	if helper.IsHas(iBlogId) {
-		_Blogs, _error := model.GetBlogsByBlogId(iBlogId)
+		_Blogs, _error := model.GetBlogsViaBlogId(iBlogId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsByBlogId's args."
+	herr.Message = "Can't get to the GetBlogsViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsBySiteIdHandler(self *macross.Context) error {
+func GetBlogsViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSiteId := self.Args("site_id").MustInt64()
 	if helper.IsHas(iSiteId) {
-		_Blogs, _error := model.GetBlogsBySiteId(iSiteId)
+		_Blogs, _error := model.GetBlogsViaSiteId(iSiteId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsBySiteId's args."
+	herr.Message = "Can't get to the GetBlogsViaSiteId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsByDomainHandler(self *macross.Context) error {
+func GetBlogsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDomain := self.Args("domain").String()
 	if helper.IsHas(iDomain) {
-		_Blogs, _error := model.GetBlogsByDomain(iDomain)
+		_Blogs, _error := model.GetBlogsViaDomain(iDomain)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsByDomain's args."
+	herr.Message = "Can't get to the GetBlogsViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsByPathHandler(self *macross.Context) error {
+func GetBlogsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPath := self.Args("path").String()
 	if helper.IsHas(iPath) {
-		_Blogs, _error := model.GetBlogsByPath(iPath)
+		_Blogs, _error := model.GetBlogsViaPath(iPath)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsByPath's args."
+	herr.Message = "Can't get to the GetBlogsViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsByRegisteredHandler(self *macross.Context) error {
+func GetBlogsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iRegistered := self.Args("registered").Time()
 	if helper.IsHas(iRegistered) {
-		_Blogs, _error := model.GetBlogsByRegistered(iRegistered)
+		_Blogs, _error := model.GetBlogsViaRegistered(iRegistered)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsByRegistered's args."
+	herr.Message = "Can't get to the GetBlogsViaRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsByLastUpdatedHandler(self *macross.Context) error {
+func GetBlogsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLastUpdated := self.Args("last_updated").Time()
 	if helper.IsHas(iLastUpdated) {
-		_Blogs, _error := model.GetBlogsByLastUpdated(iLastUpdated)
+		_Blogs, _error := model.GetBlogsViaLastUpdated(iLastUpdated)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsByLastUpdated's args."
+	herr.Message = "Can't get to the GetBlogsViaLastUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsByPublicHandler(self *macross.Context) error {
+func GetBlogsViaPublicHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPublic := self.Args("public").MustInt()
 	if helper.IsHas(iPublic) {
-		_Blogs, _error := model.GetBlogsByPublic(iPublic)
+		_Blogs, _error := model.GetBlogsViaPublic(iPublic)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsByPublic's args."
+	herr.Message = "Can't get to the GetBlogsViaPublic's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsByArchivedHandler(self *macross.Context) error {
+func GetBlogsViaArchivedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iArchived := self.Args("archived").MustInt()
 	if helper.IsHas(iArchived) {
-		_Blogs, _error := model.GetBlogsByArchived(iArchived)
+		_Blogs, _error := model.GetBlogsViaArchived(iArchived)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsByArchived's args."
+	herr.Message = "Can't get to the GetBlogsViaArchived's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsByMatureHandler(self *macross.Context) error {
+func GetBlogsViaMatureHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMature := self.Args("mature").MustInt()
 	if helper.IsHas(iMature) {
-		_Blogs, _error := model.GetBlogsByMature(iMature)
+		_Blogs, _error := model.GetBlogsViaMature(iMature)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsByMature's args."
+	herr.Message = "Can't get to the GetBlogsViaMature's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsBySpamHandler(self *macross.Context) error {
+func GetBlogsViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSpam := self.Args("spam").MustInt()
 	if helper.IsHas(iSpam) {
-		_Blogs, _error := model.GetBlogsBySpam(iSpam)
+		_Blogs, _error := model.GetBlogsViaSpam(iSpam)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsBySpam's args."
+	herr.Message = "Can't get to the GetBlogsViaSpam's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsByDeletedHandler(self *macross.Context) error {
+func GetBlogsViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDeleted := self.Args("deleted").MustInt()
 	if helper.IsHas(iDeleted) {
-		_Blogs, _error := model.GetBlogsByDeleted(iDeleted)
+		_Blogs, _error := model.GetBlogsViaDeleted(iDeleted)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsByDeleted's args."
+	herr.Message = "Can't get to the GetBlogsViaDeleted's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetBlogsByLangIdHandler(self *macross.Context) error {
+func GetBlogsViaLangIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLangId := self.Args("lang_id").MustInt()
 	if helper.IsHas(iLangId) {
-		_Blogs, _error := model.GetBlogsByLangId(iLangId)
+		_Blogs, _error := model.GetBlogsViaLangId(iLangId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the GetBlogsByLangId's args."
+	herr.Message = "Can't get to the GetBlogsViaLangId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsByBlogIdHandler(self *macross.Context) error {
+func PostSetBlogsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7036,18 +7036,18 @@ func PostSetBlogsByBlogIdHandler(self *macross.Context) error {
 	if helper.IsHas(BlogId_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsByBlogId(BlogId_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaBlogId(BlogId_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsByBlogId's args."
+	herr.Message = "Can't get to the SetBlogsViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsBySiteIdHandler(self *macross.Context) error {
+func PostSetBlogsViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7055,18 +7055,18 @@ func PostSetBlogsBySiteIdHandler(self *macross.Context) error {
 	if helper.IsHas(SiteId_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsBySiteId(SiteId_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaSiteId(SiteId_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsBySiteId's args."
+	herr.Message = "Can't get to the SetBlogsViaSiteId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsByDomainHandler(self *macross.Context) error {
+func PostSetBlogsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7074,18 +7074,18 @@ func PostSetBlogsByDomainHandler(self *macross.Context) error {
 	if helper.IsHas(Domain_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsByDomain(Domain_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaDomain(Domain_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsByDomain's args."
+	herr.Message = "Can't get to the SetBlogsViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsByPathHandler(self *macross.Context) error {
+func PostSetBlogsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7093,18 +7093,18 @@ func PostSetBlogsByPathHandler(self *macross.Context) error {
 	if helper.IsHas(Path_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsByPath(Path_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaPath(Path_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsByPath's args."
+	herr.Message = "Can't get to the SetBlogsViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsByRegisteredHandler(self *macross.Context) error {
+func PostSetBlogsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7112,18 +7112,18 @@ func PostSetBlogsByRegisteredHandler(self *macross.Context) error {
 	if helper.IsHas(Registered_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsByRegistered(Registered_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaRegistered(Registered_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsByRegistered's args."
+	herr.Message = "Can't get to the SetBlogsViaRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsByLastUpdatedHandler(self *macross.Context) error {
+func PostSetBlogsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7131,18 +7131,18 @@ func PostSetBlogsByLastUpdatedHandler(self *macross.Context) error {
 	if helper.IsHas(LastUpdated_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsByLastUpdated(LastUpdated_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaLastUpdated(LastUpdated_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsByLastUpdated's args."
+	herr.Message = "Can't get to the SetBlogsViaLastUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsByPublicHandler(self *macross.Context) error {
+func PostSetBlogsViaPublicHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7150,18 +7150,18 @@ func PostSetBlogsByPublicHandler(self *macross.Context) error {
 	if helper.IsHas(Public_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsByPublic(Public_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaPublic(Public_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsByPublic's args."
+	herr.Message = "Can't get to the SetBlogsViaPublic's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsByArchivedHandler(self *macross.Context) error {
+func PostSetBlogsViaArchivedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7169,18 +7169,18 @@ func PostSetBlogsByArchivedHandler(self *macross.Context) error {
 	if helper.IsHas(Archived_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsByArchived(Archived_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaArchived(Archived_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsByArchived's args."
+	herr.Message = "Can't get to the SetBlogsViaArchived's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsByMatureHandler(self *macross.Context) error {
+func PostSetBlogsViaMatureHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7188,18 +7188,18 @@ func PostSetBlogsByMatureHandler(self *macross.Context) error {
 	if helper.IsHas(Mature_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsByMature(Mature_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaMature(Mature_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsByMature's args."
+	herr.Message = "Can't get to the SetBlogsViaMature's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsBySpamHandler(self *macross.Context) error {
+func PostSetBlogsViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7207,18 +7207,18 @@ func PostSetBlogsBySpamHandler(self *macross.Context) error {
 	if helper.IsHas(Spam_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsBySpam(Spam_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaSpam(Spam_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsBySpam's args."
+	herr.Message = "Can't get to the SetBlogsViaSpam's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsByDeletedHandler(self *macross.Context) error {
+func PostSetBlogsViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7226,18 +7226,18 @@ func PostSetBlogsByDeletedHandler(self *macross.Context) error {
 	if helper.IsHas(Deleted_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsByDeleted(Deleted_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaDeleted(Deleted_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsByDeleted's args."
+	herr.Message = "Can't get to the SetBlogsViaDeleted's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetBlogsByLangIdHandler(self *macross.Context) error {
+func PostSetBlogsViaLangIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7245,14 +7245,14 @@ func PostSetBlogsByLangIdHandler(self *macross.Context) error {
 	if helper.IsHas(LangId_) {
 		var iBlogs model.Blogs
 		self.Bind(&iBlogs)
-		_Blogs, _error := model.SetBlogsByLangId(LangId_, &iBlogs)
+		_Blogs, _error := model.SetBlogsViaLangId(LangId_, &iBlogs)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Blogs)
 	}
-	herr.Message = "Can't get to the SetBlogsByLangId's args."
+	herr.Message = "Can't get to the SetBlogsViaLangId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -7294,7 +7294,7 @@ func PostBlogsHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	_int64, _error := model.PostBlogs(&iBlogs)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -7312,7 +7312,7 @@ func PutBlogsHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	_int64, _error := model.PutBlogs(&iBlogs)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -7323,14 +7323,14 @@ func PutBlogsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsByBlogIdHandler(self *macross.Context) error {
+func PutBlogsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	BlogId_ := self.Args("blog_id").MustInt64()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsByBlogId(BlogId_, &iBlogs)
+	_int64, _error := model.PutBlogsViaBlogId(BlogId_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7340,14 +7340,14 @@ func PutBlogsByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsBySiteIdHandler(self *macross.Context) error {
+func PutBlogsViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	SiteId_ := self.Args("site_id").MustInt64()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsBySiteId(SiteId_, &iBlogs)
+	_int64, _error := model.PutBlogsViaSiteId(SiteId_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7357,14 +7357,14 @@ func PutBlogsBySiteIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsByDomainHandler(self *macross.Context) error {
+func PutBlogsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Domain_ := self.Args("domain").String()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsByDomain(Domain_, &iBlogs)
+	_int64, _error := model.PutBlogsViaDomain(Domain_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7374,14 +7374,14 @@ func PutBlogsByDomainHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsByPathHandler(self *macross.Context) error {
+func PutBlogsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Path_ := self.Args("path").String()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsByPath(Path_, &iBlogs)
+	_int64, _error := model.PutBlogsViaPath(Path_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7391,14 +7391,14 @@ func PutBlogsByPathHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsByRegisteredHandler(self *macross.Context) error {
+func PutBlogsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Registered_ := self.Args("registered").Time()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsByRegistered(Registered_, &iBlogs)
+	_int64, _error := model.PutBlogsViaRegistered(Registered_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7408,14 +7408,14 @@ func PutBlogsByRegisteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsByLastUpdatedHandler(self *macross.Context) error {
+func PutBlogsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LastUpdated_ := self.Args("last_updated").Time()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsByLastUpdated(LastUpdated_, &iBlogs)
+	_int64, _error := model.PutBlogsViaLastUpdated(LastUpdated_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7425,14 +7425,14 @@ func PutBlogsByLastUpdatedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsByPublicHandler(self *macross.Context) error {
+func PutBlogsViaPublicHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Public_ := self.Args("public").MustInt()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsByPublic(Public_, &iBlogs)
+	_int64, _error := model.PutBlogsViaPublic(Public_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7442,14 +7442,14 @@ func PutBlogsByPublicHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsByArchivedHandler(self *macross.Context) error {
+func PutBlogsViaArchivedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Archived_ := self.Args("archived").MustInt()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsByArchived(Archived_, &iBlogs)
+	_int64, _error := model.PutBlogsViaArchived(Archived_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7459,14 +7459,14 @@ func PutBlogsByArchivedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsByMatureHandler(self *macross.Context) error {
+func PutBlogsViaMatureHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Mature_ := self.Args("mature").MustInt()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsByMature(Mature_, &iBlogs)
+	_int64, _error := model.PutBlogsViaMature(Mature_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7476,14 +7476,14 @@ func PutBlogsByMatureHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsBySpamHandler(self *macross.Context) error {
+func PutBlogsViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Spam_ := self.Args("spam").MustInt()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsBySpam(Spam_, &iBlogs)
+	_int64, _error := model.PutBlogsViaSpam(Spam_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7493,14 +7493,14 @@ func PutBlogsBySpamHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsByDeletedHandler(self *macross.Context) error {
+func PutBlogsViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Deleted_ := self.Args("deleted").MustInt()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsByDeleted(Deleted_, &iBlogs)
+	_int64, _error := model.PutBlogsViaDeleted(Deleted_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7510,14 +7510,14 @@ func PutBlogsByDeletedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutBlogsByLangIdHandler(self *macross.Context) error {
+func PutBlogsViaLangIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LangId_ := self.Args("lang_id").MustInt()
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
-	_int64, _error := model.PutBlogsByLangId(LangId_, &iBlogs)
+	_int64, _error := model.PutBlogsViaLangId(LangId_, &iBlogs)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7527,7 +7527,7 @@ func PutBlogsByLangIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsByBlogIdHandler(self *macross.Context) error {
+func PutUpdateBlogsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7535,7 +7535,7 @@ func PutUpdateBlogsByBlogIdHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsByBlogId(BlogId_, &iMap)
+	_error := model.UpdateBlogsViaBlogId(BlogId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7545,7 +7545,7 @@ func PutUpdateBlogsByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsBySiteIdHandler(self *macross.Context) error {
+func PutUpdateBlogsViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7553,7 +7553,7 @@ func PutUpdateBlogsBySiteIdHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsBySiteId(SiteId_, &iMap)
+	_error := model.UpdateBlogsViaSiteId(SiteId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7563,7 +7563,7 @@ func PutUpdateBlogsBySiteIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsByDomainHandler(self *macross.Context) error {
+func PutUpdateBlogsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7571,7 +7571,7 @@ func PutUpdateBlogsByDomainHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsByDomain(Domain_, &iMap)
+	_error := model.UpdateBlogsViaDomain(Domain_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7581,7 +7581,7 @@ func PutUpdateBlogsByDomainHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsByPathHandler(self *macross.Context) error {
+func PutUpdateBlogsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7589,7 +7589,7 @@ func PutUpdateBlogsByPathHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsByPath(Path_, &iMap)
+	_error := model.UpdateBlogsViaPath(Path_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7599,7 +7599,7 @@ func PutUpdateBlogsByPathHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsByRegisteredHandler(self *macross.Context) error {
+func PutUpdateBlogsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7607,7 +7607,7 @@ func PutUpdateBlogsByRegisteredHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsByRegistered(Registered_, &iMap)
+	_error := model.UpdateBlogsViaRegistered(Registered_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7617,7 +7617,7 @@ func PutUpdateBlogsByRegisteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsByLastUpdatedHandler(self *macross.Context) error {
+func PutUpdateBlogsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7625,7 +7625,7 @@ func PutUpdateBlogsByLastUpdatedHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsByLastUpdated(LastUpdated_, &iMap)
+	_error := model.UpdateBlogsViaLastUpdated(LastUpdated_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7635,7 +7635,7 @@ func PutUpdateBlogsByLastUpdatedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsByPublicHandler(self *macross.Context) error {
+func PutUpdateBlogsViaPublicHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7643,7 +7643,7 @@ func PutUpdateBlogsByPublicHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsByPublic(Public_, &iMap)
+	_error := model.UpdateBlogsViaPublic(Public_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7653,7 +7653,7 @@ func PutUpdateBlogsByPublicHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsByArchivedHandler(self *macross.Context) error {
+func PutUpdateBlogsViaArchivedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7661,7 +7661,7 @@ func PutUpdateBlogsByArchivedHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsByArchived(Archived_, &iMap)
+	_error := model.UpdateBlogsViaArchived(Archived_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7671,7 +7671,7 @@ func PutUpdateBlogsByArchivedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsByMatureHandler(self *macross.Context) error {
+func PutUpdateBlogsViaMatureHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7679,7 +7679,7 @@ func PutUpdateBlogsByMatureHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsByMature(Mature_, &iMap)
+	_error := model.UpdateBlogsViaMature(Mature_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7689,7 +7689,7 @@ func PutUpdateBlogsByMatureHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsBySpamHandler(self *macross.Context) error {
+func PutUpdateBlogsViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7697,7 +7697,7 @@ func PutUpdateBlogsBySpamHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsBySpam(Spam_, &iMap)
+	_error := model.UpdateBlogsViaSpam(Spam_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7707,7 +7707,7 @@ func PutUpdateBlogsBySpamHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsByDeletedHandler(self *macross.Context) error {
+func PutUpdateBlogsViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7715,7 +7715,7 @@ func PutUpdateBlogsByDeletedHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsByDeleted(Deleted_, &iMap)
+	_error := model.UpdateBlogsViaDeleted(Deleted_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7725,7 +7725,7 @@ func PutUpdateBlogsByDeletedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateBlogsByLangIdHandler(self *macross.Context) error {
+func PutUpdateBlogsViaLangIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7733,7 +7733,7 @@ func PutUpdateBlogsByLangIdHandler(self *macross.Context) error {
 	var iBlogs model.Blogs
 	self.Bind(&iBlogs)
 	var iMap = helper.StructToMap(iBlogs)
-	_error := model.UpdateBlogsByLangId(LangId_, &iMap)
+	_error := model.UpdateBlogsViaLangId(LangId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7760,12 +7760,12 @@ func DeleteBlogsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsByBlogIdHandler(self *macross.Context) error {
+func DeleteBlogsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	BlogId_ := self.Args("blog_id").MustInt64()
-	_error := model.DeleteBlogsByBlogId(BlogId_)
+	_error := model.DeleteBlogsViaBlogId(BlogId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7775,12 +7775,12 @@ func DeleteBlogsByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsBySiteIdHandler(self *macross.Context) error {
+func DeleteBlogsViaSiteIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	SiteId_ := self.Args("site_id").MustInt64()
-	_error := model.DeleteBlogsBySiteId(SiteId_)
+	_error := model.DeleteBlogsViaSiteId(SiteId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7790,12 +7790,12 @@ func DeleteBlogsBySiteIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsByDomainHandler(self *macross.Context) error {
+func DeleteBlogsViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Domain_ := self.Args("domain").String()
-	_error := model.DeleteBlogsByDomain(Domain_)
+	_error := model.DeleteBlogsViaDomain(Domain_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7805,12 +7805,12 @@ func DeleteBlogsByDomainHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsByPathHandler(self *macross.Context) error {
+func DeleteBlogsViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Path_ := self.Args("path").String()
-	_error := model.DeleteBlogsByPath(Path_)
+	_error := model.DeleteBlogsViaPath(Path_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7820,12 +7820,12 @@ func DeleteBlogsByPathHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsByRegisteredHandler(self *macross.Context) error {
+func DeleteBlogsViaRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Registered_ := self.Args("registered").Time()
-	_error := model.DeleteBlogsByRegistered(Registered_)
+	_error := model.DeleteBlogsViaRegistered(Registered_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7835,12 +7835,12 @@ func DeleteBlogsByRegisteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsByLastUpdatedHandler(self *macross.Context) error {
+func DeleteBlogsViaLastUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LastUpdated_ := self.Args("last_updated").Time()
-	_error := model.DeleteBlogsByLastUpdated(LastUpdated_)
+	_error := model.DeleteBlogsViaLastUpdated(LastUpdated_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7850,12 +7850,12 @@ func DeleteBlogsByLastUpdatedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsByPublicHandler(self *macross.Context) error {
+func DeleteBlogsViaPublicHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Public_ := self.Args("public").MustInt()
-	_error := model.DeleteBlogsByPublic(Public_)
+	_error := model.DeleteBlogsViaPublic(Public_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7865,12 +7865,12 @@ func DeleteBlogsByPublicHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsByArchivedHandler(self *macross.Context) error {
+func DeleteBlogsViaArchivedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Archived_ := self.Args("archived").MustInt()
-	_error := model.DeleteBlogsByArchived(Archived_)
+	_error := model.DeleteBlogsViaArchived(Archived_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7880,12 +7880,12 @@ func DeleteBlogsByArchivedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsByMatureHandler(self *macross.Context) error {
+func DeleteBlogsViaMatureHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Mature_ := self.Args("mature").MustInt()
-	_error := model.DeleteBlogsByMature(Mature_)
+	_error := model.DeleteBlogsViaMature(Mature_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7895,12 +7895,12 @@ func DeleteBlogsByMatureHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsBySpamHandler(self *macross.Context) error {
+func DeleteBlogsViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Spam_ := self.Args("spam").MustInt()
-	_error := model.DeleteBlogsBySpam(Spam_)
+	_error := model.DeleteBlogsViaSpam(Spam_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7910,12 +7910,12 @@ func DeleteBlogsBySpamHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsByDeletedHandler(self *macross.Context) error {
+func DeleteBlogsViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Deleted_ := self.Args("deleted").MustInt()
-	_error := model.DeleteBlogsByDeleted(Deleted_)
+	_error := model.DeleteBlogsViaDeleted(Deleted_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7925,12 +7925,12 @@ func DeleteBlogsByDeletedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteBlogsByLangIdHandler(self *macross.Context) error {
+func DeleteBlogsViaLangIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LangId_ := self.Args("lang_id").MustInt()
-	_error := model.DeleteBlogsByLangId(LangId_)
+	_error := model.DeleteBlogsViaLangId(LangId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

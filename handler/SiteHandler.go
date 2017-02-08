@@ -27,9 +27,9 @@ func GetSitesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSiteCountByIdHandler(self *macross.Context) error {
+func GetSiteCountViaIdHandler(self *macross.Context) error {
 	Id_ := self.Args("id").MustInt64()
-	_int64 := model.GetSiteCountById(Id_)
+	_int64 := model.GetSiteCountViaId(Id_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["siteCount"] = 0
@@ -38,9 +38,9 @@ func GetSiteCountByIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSiteCountByDomainHandler(self *macross.Context) error {
+func GetSiteCountViaDomainHandler(self *macross.Context) error {
 	Domain_ := self.Args("domain").String()
-	_int64 := model.GetSiteCountByDomain(Domain_)
+	_int64 := model.GetSiteCountViaDomain(Domain_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["siteCount"] = 0
@@ -49,9 +49,9 @@ func GetSiteCountByDomainHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSiteCountByPathHandler(self *macross.Context) error {
+func GetSiteCountViaPathHandler(self *macross.Context) error {
 	Path_ := self.Args("path").String()
-	_int64 := model.GetSiteCountByPath(Path_)
+	_int64 := model.GetSiteCountViaPath(Path_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["siteCount"] = 0
@@ -60,7 +60,7 @@ func GetSiteCountByPathHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetSitesByIdHandler(self *macross.Context) error {
+func GetSitesViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -69,18 +69,18 @@ func GetSitesByIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iId := self.Args("id").MustInt64()
 	if (offset > 0) && helper.IsHas(iId) {
-		_Site, _error := model.GetSitesById(offset, limit, iId, field)
+		_Site, _error := model.GetSitesViaId(offset, limit, iId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Site)
 	}
-	herr.Message = "Can't get to the GetSitesById's args."
+	herr.Message = "Can't get to the GetSitesViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSitesByDomainHandler(self *macross.Context) error {
+func GetSitesViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -89,18 +89,18 @@ func GetSitesByDomainHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iDomain := self.Args("domain").String()
 	if (offset > 0) && helper.IsHas(iDomain) {
-		_Site, _error := model.GetSitesByDomain(offset, limit, iDomain, field)
+		_Site, _error := model.GetSitesViaDomain(offset, limit, iDomain, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Site)
 	}
-	herr.Message = "Can't get to the GetSitesByDomain's args."
+	herr.Message = "Can't get to the GetSitesViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSitesByPathHandler(self *macross.Context) error {
+func GetSitesViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -109,14 +109,14 @@ func GetSitesByPathHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPath := self.Args("path").String()
 	if (offset > 0) && helper.IsHas(iPath) {
-		_Site, _error := model.GetSitesByPath(offset, limit, iPath, field)
+		_Site, _error := model.GetSitesViaPath(offset, limit, iPath, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Site)
 	}
-	herr.Message = "Can't get to the GetSitesByPath's args."
+	herr.Message = "Can't get to the GetSitesViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -224,103 +224,103 @@ func GetSitesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSiteByIdHandler(self *macross.Context) error {
+func GetHasSiteViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iId := self.Args("id").MustInt64()
 	if helper.IsHas(iId) {
-		_Site := model.HasSiteById(iId)
+		_Site := model.HasSiteViaId(iId)
 		var m = map[string]interface{}{}
 		m["site"] = _Site
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSiteById's args."
+	herr.Message = "Can't get to the HasSiteViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSiteByDomainHandler(self *macross.Context) error {
+func GetHasSiteViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDomain := self.Args("domain").String()
 	if helper.IsHas(iDomain) {
-		_Site := model.HasSiteByDomain(iDomain)
+		_Site := model.HasSiteViaDomain(iDomain)
 		var m = map[string]interface{}{}
 		m["site"] = _Site
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSiteByDomain's args."
+	herr.Message = "Can't get to the HasSiteViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasSiteByPathHandler(self *macross.Context) error {
+func GetHasSiteViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPath := self.Args("path").String()
 	if helper.IsHas(iPath) {
-		_Site := model.HasSiteByPath(iPath)
+		_Site := model.HasSiteViaPath(iPath)
 		var m = map[string]interface{}{}
 		m["site"] = _Site
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasSiteByPath's args."
+	herr.Message = "Can't get to the HasSiteViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSiteByIdHandler(self *macross.Context) error {
+func GetSiteViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iId := self.Args("id").MustInt64()
 	if helper.IsHas(iId) {
-		_Site, _error := model.GetSiteById(iId)
+		_Site, _error := model.GetSiteViaId(iId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Site)
 	}
-	herr.Message = "Can't get to the GetSiteById's args."
+	herr.Message = "Can't get to the GetSiteViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSiteByDomainHandler(self *macross.Context) error {
+func GetSiteViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDomain := self.Args("domain").String()
 	if helper.IsHas(iDomain) {
-		_Site, _error := model.GetSiteByDomain(iDomain)
+		_Site, _error := model.GetSiteViaDomain(iDomain)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Site)
 	}
-	herr.Message = "Can't get to the GetSiteByDomain's args."
+	herr.Message = "Can't get to the GetSiteViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetSiteByPathHandler(self *macross.Context) error {
+func GetSiteViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPath := self.Args("path").String()
 	if helper.IsHas(iPath) {
-		_Site, _error := model.GetSiteByPath(iPath)
+		_Site, _error := model.GetSiteViaPath(iPath)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Site)
 	}
-	herr.Message = "Can't get to the GetSiteByPath's args."
+	herr.Message = "Can't get to the GetSiteViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSiteByIdHandler(self *macross.Context) error {
+func PostSetSiteViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -328,18 +328,18 @@ func PostSetSiteByIdHandler(self *macross.Context) error {
 	if helper.IsHas(Id_) {
 		var iSite model.Site
 		self.Bind(&iSite)
-		_Site, _error := model.SetSiteById(Id_, &iSite)
+		_Site, _error := model.SetSiteViaId(Id_, &iSite)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Site)
 	}
-	herr.Message = "Can't get to the SetSiteById's args."
+	herr.Message = "Can't get to the SetSiteViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSiteByDomainHandler(self *macross.Context) error {
+func PostSetSiteViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -347,18 +347,18 @@ func PostSetSiteByDomainHandler(self *macross.Context) error {
 	if helper.IsHas(Domain_) {
 		var iSite model.Site
 		self.Bind(&iSite)
-		_Site, _error := model.SetSiteByDomain(Domain_, &iSite)
+		_Site, _error := model.SetSiteViaDomain(Domain_, &iSite)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Site)
 	}
-	herr.Message = "Can't get to the SetSiteByDomain's args."
+	herr.Message = "Can't get to the SetSiteViaDomain's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetSiteByPathHandler(self *macross.Context) error {
+func PostSetSiteViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -366,14 +366,14 @@ func PostSetSiteByPathHandler(self *macross.Context) error {
 	if helper.IsHas(Path_) {
 		var iSite model.Site
 		self.Bind(&iSite)
-		_Site, _error := model.SetSiteByPath(Path_, &iSite)
+		_Site, _error := model.SetSiteViaPath(Path_, &iSite)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Site)
 	}
-	herr.Message = "Can't get to the SetSiteByPath's args."
+	herr.Message = "Can't get to the SetSiteViaPath's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -406,7 +406,7 @@ func PostSiteHandler(self *macross.Context) error {
 	var iSite model.Site
 	self.Bind(&iSite)
 	_int64, _error := model.PostSite(&iSite)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -424,7 +424,7 @@ func PutSiteHandler(self *macross.Context) error {
 	var iSite model.Site
 	self.Bind(&iSite)
 	_int64, _error := model.PutSite(&iSite)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -435,14 +435,14 @@ func PutSiteHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSiteByIdHandler(self *macross.Context) error {
+func PutSiteViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Id_ := self.Args("id").MustInt64()
 	var iSite model.Site
 	self.Bind(&iSite)
-	_int64, _error := model.PutSiteById(Id_, &iSite)
+	_int64, _error := model.PutSiteViaId(Id_, &iSite)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -452,14 +452,14 @@ func PutSiteByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSiteByDomainHandler(self *macross.Context) error {
+func PutSiteViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Domain_ := self.Args("domain").String()
 	var iSite model.Site
 	self.Bind(&iSite)
-	_int64, _error := model.PutSiteByDomain(Domain_, &iSite)
+	_int64, _error := model.PutSiteViaDomain(Domain_, &iSite)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -469,14 +469,14 @@ func PutSiteByDomainHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutSiteByPathHandler(self *macross.Context) error {
+func PutSiteViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Path_ := self.Args("path").String()
 	var iSite model.Site
 	self.Bind(&iSite)
-	_int64, _error := model.PutSiteByPath(Path_, &iSite)
+	_int64, _error := model.PutSiteViaPath(Path_, &iSite)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -486,7 +486,7 @@ func PutSiteByPathHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSiteByIdHandler(self *macross.Context) error {
+func PutUpdateSiteViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -494,7 +494,7 @@ func PutUpdateSiteByIdHandler(self *macross.Context) error {
 	var iSite model.Site
 	self.Bind(&iSite)
 	var iMap = helper.StructToMap(iSite)
-	_error := model.UpdateSiteById(Id_, &iMap)
+	_error := model.UpdateSiteViaId(Id_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -504,7 +504,7 @@ func PutUpdateSiteByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSiteByDomainHandler(self *macross.Context) error {
+func PutUpdateSiteViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -512,7 +512,7 @@ func PutUpdateSiteByDomainHandler(self *macross.Context) error {
 	var iSite model.Site
 	self.Bind(&iSite)
 	var iMap = helper.StructToMap(iSite)
-	_error := model.UpdateSiteByDomain(Domain_, &iMap)
+	_error := model.UpdateSiteViaDomain(Domain_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -522,7 +522,7 @@ func PutUpdateSiteByDomainHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateSiteByPathHandler(self *macross.Context) error {
+func PutUpdateSiteViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -530,7 +530,7 @@ func PutUpdateSiteByPathHandler(self *macross.Context) error {
 	var iSite model.Site
 	self.Bind(&iSite)
 	var iMap = helper.StructToMap(iSite)
-	_error := model.UpdateSiteByPath(Path_, &iMap)
+	_error := model.UpdateSiteViaPath(Path_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -557,12 +557,12 @@ func DeleteSiteHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSiteByIdHandler(self *macross.Context) error {
+func DeleteSiteViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Id_ := self.Args("id").MustInt64()
-	_error := model.DeleteSiteById(Id_)
+	_error := model.DeleteSiteViaId(Id_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -572,12 +572,12 @@ func DeleteSiteByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSiteByDomainHandler(self *macross.Context) error {
+func DeleteSiteViaDomainHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Domain_ := self.Args("domain").String()
-	_error := model.DeleteSiteByDomain(Domain_)
+	_error := model.DeleteSiteViaDomain(Domain_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -587,12 +587,12 @@ func DeleteSiteByDomainHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteSiteByPathHandler(self *macross.Context) error {
+func DeleteSiteViaPathHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Path_ := self.Args("path").String()
-	_error := model.DeleteSiteByPath(Path_)
+	_error := model.DeleteSiteViaPath(Path_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

@@ -25,74 +25,74 @@ func GetBlogsesCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetBlogsCountByBlogId Get Blogs via BlogId
-func GetBlogsCountByBlogId(iBlogId int64) int64 {
+// GetBlogsCountViaBlogId Get Blogs via BlogId
+func GetBlogsCountViaBlogId(iBlogId int64) int64 {
 	n, _ := Engine.Where("blog_id = ?", iBlogId).Count(&Blogs{BlogId: iBlogId})
 	return n
 }
 
-// GetBlogsCountBySiteId Get Blogs via SiteId
-func GetBlogsCountBySiteId(iSiteId int64) int64 {
+// GetBlogsCountViaSiteId Get Blogs via SiteId
+func GetBlogsCountViaSiteId(iSiteId int64) int64 {
 	n, _ := Engine.Where("site_id = ?", iSiteId).Count(&Blogs{SiteId: iSiteId})
 	return n
 }
 
-// GetBlogsCountByDomain Get Blogs via Domain
-func GetBlogsCountByDomain(iDomain string) int64 {
+// GetBlogsCountViaDomain Get Blogs via Domain
+func GetBlogsCountViaDomain(iDomain string) int64 {
 	n, _ := Engine.Where("domain = ?", iDomain).Count(&Blogs{Domain: iDomain})
 	return n
 }
 
-// GetBlogsCountByPath Get Blogs via Path
-func GetBlogsCountByPath(iPath string) int64 {
+// GetBlogsCountViaPath Get Blogs via Path
+func GetBlogsCountViaPath(iPath string) int64 {
 	n, _ := Engine.Where("path = ?", iPath).Count(&Blogs{Path: iPath})
 	return n
 }
 
-// GetBlogsCountByRegistered Get Blogs via Registered
-func GetBlogsCountByRegistered(iRegistered time.Time) int64 {
+// GetBlogsCountViaRegistered Get Blogs via Registered
+func GetBlogsCountViaRegistered(iRegistered time.Time) int64 {
 	n, _ := Engine.Where("registered = ?", iRegistered).Count(&Blogs{Registered: iRegistered})
 	return n
 }
 
-// GetBlogsCountByLastUpdated Get Blogs via LastUpdated
-func GetBlogsCountByLastUpdated(iLastUpdated time.Time) int64 {
+// GetBlogsCountViaLastUpdated Get Blogs via LastUpdated
+func GetBlogsCountViaLastUpdated(iLastUpdated time.Time) int64 {
 	n, _ := Engine.Where("last_updated = ?", iLastUpdated).Count(&Blogs{LastUpdated: iLastUpdated})
 	return n
 }
 
-// GetBlogsCountByPublic Get Blogs via Public
-func GetBlogsCountByPublic(iPublic int) int64 {
+// GetBlogsCountViaPublic Get Blogs via Public
+func GetBlogsCountViaPublic(iPublic int) int64 {
 	n, _ := Engine.Where("public = ?", iPublic).Count(&Blogs{Public: iPublic})
 	return n
 }
 
-// GetBlogsCountByArchived Get Blogs via Archived
-func GetBlogsCountByArchived(iArchived int) int64 {
+// GetBlogsCountViaArchived Get Blogs via Archived
+func GetBlogsCountViaArchived(iArchived int) int64 {
 	n, _ := Engine.Where("archived = ?", iArchived).Count(&Blogs{Archived: iArchived})
 	return n
 }
 
-// GetBlogsCountByMature Get Blogs via Mature
-func GetBlogsCountByMature(iMature int) int64 {
+// GetBlogsCountViaMature Get Blogs via Mature
+func GetBlogsCountViaMature(iMature int) int64 {
 	n, _ := Engine.Where("mature = ?", iMature).Count(&Blogs{Mature: iMature})
 	return n
 }
 
-// GetBlogsCountBySpam Get Blogs via Spam
-func GetBlogsCountBySpam(iSpam int) int64 {
+// GetBlogsCountViaSpam Get Blogs via Spam
+func GetBlogsCountViaSpam(iSpam int) int64 {
 	n, _ := Engine.Where("spam = ?", iSpam).Count(&Blogs{Spam: iSpam})
 	return n
 }
 
-// GetBlogsCountByDeleted Get Blogs via Deleted
-func GetBlogsCountByDeleted(iDeleted int) int64 {
+// GetBlogsCountViaDeleted Get Blogs via Deleted
+func GetBlogsCountViaDeleted(iDeleted int) int64 {
 	n, _ := Engine.Where("deleted = ?", iDeleted).Count(&Blogs{Deleted: iDeleted})
 	return n
 }
 
-// GetBlogsCountByLangId Get Blogs via LangId
-func GetBlogsCountByLangId(iLangId int) int64 {
+// GetBlogsCountViaLangId Get Blogs via LangId
+func GetBlogsCountViaLangId(iLangId int) int64 {
 	n, _ := Engine.Where("lang_id = ?", iLangId).Count(&Blogs{LangId: iLangId})
 	return n
 }
@@ -2106,92 +2106,92 @@ func GetBlogses(offset int, limit int, field string) (*[]*Blogs, error) {
 	return _Blogs, err
 }
 
-// GetBlogsesByBlogId Get Blogss via BlogId
-func GetBlogsesByBlogId(offset int, limit int, BlogId_ int64, field string) (*[]*Blogs, error) {
+// GetBlogsesViaBlogId Get Blogss via BlogId
+func GetBlogsesViaBlogId(offset int, limit int, BlogId_ int64, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("blog_id = ?", BlogId_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesBySiteId Get Blogss via SiteId
-func GetBlogsesBySiteId(offset int, limit int, SiteId_ int64, field string) (*[]*Blogs, error) {
+// GetBlogsesViaSiteId Get Blogss via SiteId
+func GetBlogsesViaSiteId(offset int, limit int, SiteId_ int64, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("site_id = ?", SiteId_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesByDomain Get Blogss via Domain
-func GetBlogsesByDomain(offset int, limit int, Domain_ string, field string) (*[]*Blogs, error) {
+// GetBlogsesViaDomain Get Blogss via Domain
+func GetBlogsesViaDomain(offset int, limit int, Domain_ string, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("domain = ?", Domain_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesByPath Get Blogss via Path
-func GetBlogsesByPath(offset int, limit int, Path_ string, field string) (*[]*Blogs, error) {
+// GetBlogsesViaPath Get Blogss via Path
+func GetBlogsesViaPath(offset int, limit int, Path_ string, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("path = ?", Path_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesByRegistered Get Blogss via Registered
-func GetBlogsesByRegistered(offset int, limit int, Registered_ time.Time, field string) (*[]*Blogs, error) {
+// GetBlogsesViaRegistered Get Blogss via Registered
+func GetBlogsesViaRegistered(offset int, limit int, Registered_ time.Time, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("registered = ?", Registered_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesByLastUpdated Get Blogss via LastUpdated
-func GetBlogsesByLastUpdated(offset int, limit int, LastUpdated_ time.Time, field string) (*[]*Blogs, error) {
+// GetBlogsesViaLastUpdated Get Blogss via LastUpdated
+func GetBlogsesViaLastUpdated(offset int, limit int, LastUpdated_ time.Time, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("last_updated = ?", LastUpdated_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesByPublic Get Blogss via Public
-func GetBlogsesByPublic(offset int, limit int, Public_ int, field string) (*[]*Blogs, error) {
+// GetBlogsesViaPublic Get Blogss via Public
+func GetBlogsesViaPublic(offset int, limit int, Public_ int, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("public = ?", Public_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesByArchived Get Blogss via Archived
-func GetBlogsesByArchived(offset int, limit int, Archived_ int, field string) (*[]*Blogs, error) {
+// GetBlogsesViaArchived Get Blogss via Archived
+func GetBlogsesViaArchived(offset int, limit int, Archived_ int, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("archived = ?", Archived_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesByMature Get Blogss via Mature
-func GetBlogsesByMature(offset int, limit int, Mature_ int, field string) (*[]*Blogs, error) {
+// GetBlogsesViaMature Get Blogss via Mature
+func GetBlogsesViaMature(offset int, limit int, Mature_ int, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("mature = ?", Mature_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesBySpam Get Blogss via Spam
-func GetBlogsesBySpam(offset int, limit int, Spam_ int, field string) (*[]*Blogs, error) {
+// GetBlogsesViaSpam Get Blogss via Spam
+func GetBlogsesViaSpam(offset int, limit int, Spam_ int, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("spam = ?", Spam_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesByDeleted Get Blogss via Deleted
-func GetBlogsesByDeleted(offset int, limit int, Deleted_ int, field string) (*[]*Blogs, error) {
+// GetBlogsesViaDeleted Get Blogss via Deleted
+func GetBlogsesViaDeleted(offset int, limit int, Deleted_ int, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("deleted = ?", Deleted_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// GetBlogsesByLangId Get Blogss via LangId
-func GetBlogsesByLangId(offset int, limit int, LangId_ int, field string) (*[]*Blogs, error) {
+// GetBlogsesViaLangId Get Blogss via LangId
+func GetBlogsesViaLangId(offset int, limit int, LangId_ int, field string) (*[]*Blogs, error) {
 	var _Blogs = new([]*Blogs)
 	err := Engine.Table("blogs").Where("lang_id = ?", LangId_).Limit(limit, offset).Desc(field).Find(_Blogs)
 	return _Blogs, err
 }
 
-// HasBlogsByBlogId Has Blogs via BlogId
-func HasBlogsByBlogId(iBlogId int64) bool {
+// HasBlogsViaBlogId Has Blogs via BlogId
+func HasBlogsViaBlogId(iBlogId int64) bool {
 	if has, err := Engine.Where("blog_id = ?", iBlogId).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2202,8 +2202,8 @@ func HasBlogsByBlogId(iBlogId int64) bool {
 	}
 }
 
-// HasBlogsBySiteId Has Blogs via SiteId
-func HasBlogsBySiteId(iSiteId int64) bool {
+// HasBlogsViaSiteId Has Blogs via SiteId
+func HasBlogsViaSiteId(iSiteId int64) bool {
 	if has, err := Engine.Where("site_id = ?", iSiteId).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2214,8 +2214,8 @@ func HasBlogsBySiteId(iSiteId int64) bool {
 	}
 }
 
-// HasBlogsByDomain Has Blogs via Domain
-func HasBlogsByDomain(iDomain string) bool {
+// HasBlogsViaDomain Has Blogs via Domain
+func HasBlogsViaDomain(iDomain string) bool {
 	if has, err := Engine.Where("domain = ?", iDomain).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2226,8 +2226,8 @@ func HasBlogsByDomain(iDomain string) bool {
 	}
 }
 
-// HasBlogsByPath Has Blogs via Path
-func HasBlogsByPath(iPath string) bool {
+// HasBlogsViaPath Has Blogs via Path
+func HasBlogsViaPath(iPath string) bool {
 	if has, err := Engine.Where("path = ?", iPath).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2238,8 +2238,8 @@ func HasBlogsByPath(iPath string) bool {
 	}
 }
 
-// HasBlogsByRegistered Has Blogs via Registered
-func HasBlogsByRegistered(iRegistered time.Time) bool {
+// HasBlogsViaRegistered Has Blogs via Registered
+func HasBlogsViaRegistered(iRegistered time.Time) bool {
 	if has, err := Engine.Where("registered = ?", iRegistered).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2250,8 +2250,8 @@ func HasBlogsByRegistered(iRegistered time.Time) bool {
 	}
 }
 
-// HasBlogsByLastUpdated Has Blogs via LastUpdated
-func HasBlogsByLastUpdated(iLastUpdated time.Time) bool {
+// HasBlogsViaLastUpdated Has Blogs via LastUpdated
+func HasBlogsViaLastUpdated(iLastUpdated time.Time) bool {
 	if has, err := Engine.Where("last_updated = ?", iLastUpdated).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2262,8 +2262,8 @@ func HasBlogsByLastUpdated(iLastUpdated time.Time) bool {
 	}
 }
 
-// HasBlogsByPublic Has Blogs via Public
-func HasBlogsByPublic(iPublic int) bool {
+// HasBlogsViaPublic Has Blogs via Public
+func HasBlogsViaPublic(iPublic int) bool {
 	if has, err := Engine.Where("public = ?", iPublic).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2274,8 +2274,8 @@ func HasBlogsByPublic(iPublic int) bool {
 	}
 }
 
-// HasBlogsByArchived Has Blogs via Archived
-func HasBlogsByArchived(iArchived int) bool {
+// HasBlogsViaArchived Has Blogs via Archived
+func HasBlogsViaArchived(iArchived int) bool {
 	if has, err := Engine.Where("archived = ?", iArchived).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2286,8 +2286,8 @@ func HasBlogsByArchived(iArchived int) bool {
 	}
 }
 
-// HasBlogsByMature Has Blogs via Mature
-func HasBlogsByMature(iMature int) bool {
+// HasBlogsViaMature Has Blogs via Mature
+func HasBlogsViaMature(iMature int) bool {
 	if has, err := Engine.Where("mature = ?", iMature).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2298,8 +2298,8 @@ func HasBlogsByMature(iMature int) bool {
 	}
 }
 
-// HasBlogsBySpam Has Blogs via Spam
-func HasBlogsBySpam(iSpam int) bool {
+// HasBlogsViaSpam Has Blogs via Spam
+func HasBlogsViaSpam(iSpam int) bool {
 	if has, err := Engine.Where("spam = ?", iSpam).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2310,8 +2310,8 @@ func HasBlogsBySpam(iSpam int) bool {
 	}
 }
 
-// HasBlogsByDeleted Has Blogs via Deleted
-func HasBlogsByDeleted(iDeleted int) bool {
+// HasBlogsViaDeleted Has Blogs via Deleted
+func HasBlogsViaDeleted(iDeleted int) bool {
 	if has, err := Engine.Where("deleted = ?", iDeleted).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2322,8 +2322,8 @@ func HasBlogsByDeleted(iDeleted int) bool {
 	}
 }
 
-// HasBlogsByLangId Has Blogs via LangId
-func HasBlogsByLangId(iLangId int) bool {
+// HasBlogsViaLangId Has Blogs via LangId
+func HasBlogsViaLangId(iLangId int) bool {
 	if has, err := Engine.Where("lang_id = ?", iLangId).Get(new(Blogs)); err != nil {
 		return false
 	} else {
@@ -2334,8 +2334,8 @@ func HasBlogsByLangId(iLangId int) bool {
 	}
 }
 
-// GetBlogsByBlogId Get Blogs via BlogId
-func GetBlogsByBlogId(iBlogId int64) (*Blogs, error) {
+// GetBlogsViaBlogId Get Blogs via BlogId
+func GetBlogsViaBlogId(iBlogId int64) (*Blogs, error) {
 	var _Blogs = &Blogs{BlogId: iBlogId}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2345,8 +2345,8 @@ func GetBlogsByBlogId(iBlogId int64) (*Blogs, error) {
 	}
 }
 
-// GetBlogsBySiteId Get Blogs via SiteId
-func GetBlogsBySiteId(iSiteId int64) (*Blogs, error) {
+// GetBlogsViaSiteId Get Blogs via SiteId
+func GetBlogsViaSiteId(iSiteId int64) (*Blogs, error) {
 	var _Blogs = &Blogs{SiteId: iSiteId}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2356,8 +2356,8 @@ func GetBlogsBySiteId(iSiteId int64) (*Blogs, error) {
 	}
 }
 
-// GetBlogsByDomain Get Blogs via Domain
-func GetBlogsByDomain(iDomain string) (*Blogs, error) {
+// GetBlogsViaDomain Get Blogs via Domain
+func GetBlogsViaDomain(iDomain string) (*Blogs, error) {
 	var _Blogs = &Blogs{Domain: iDomain}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2367,8 +2367,8 @@ func GetBlogsByDomain(iDomain string) (*Blogs, error) {
 	}
 }
 
-// GetBlogsByPath Get Blogs via Path
-func GetBlogsByPath(iPath string) (*Blogs, error) {
+// GetBlogsViaPath Get Blogs via Path
+func GetBlogsViaPath(iPath string) (*Blogs, error) {
 	var _Blogs = &Blogs{Path: iPath}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2378,8 +2378,8 @@ func GetBlogsByPath(iPath string) (*Blogs, error) {
 	}
 }
 
-// GetBlogsByRegistered Get Blogs via Registered
-func GetBlogsByRegistered(iRegistered time.Time) (*Blogs, error) {
+// GetBlogsViaRegistered Get Blogs via Registered
+func GetBlogsViaRegistered(iRegistered time.Time) (*Blogs, error) {
 	var _Blogs = &Blogs{Registered: iRegistered}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2389,8 +2389,8 @@ func GetBlogsByRegistered(iRegistered time.Time) (*Blogs, error) {
 	}
 }
 
-// GetBlogsByLastUpdated Get Blogs via LastUpdated
-func GetBlogsByLastUpdated(iLastUpdated time.Time) (*Blogs, error) {
+// GetBlogsViaLastUpdated Get Blogs via LastUpdated
+func GetBlogsViaLastUpdated(iLastUpdated time.Time) (*Blogs, error) {
 	var _Blogs = &Blogs{LastUpdated: iLastUpdated}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2400,8 +2400,8 @@ func GetBlogsByLastUpdated(iLastUpdated time.Time) (*Blogs, error) {
 	}
 }
 
-// GetBlogsByPublic Get Blogs via Public
-func GetBlogsByPublic(iPublic int) (*Blogs, error) {
+// GetBlogsViaPublic Get Blogs via Public
+func GetBlogsViaPublic(iPublic int) (*Blogs, error) {
 	var _Blogs = &Blogs{Public: iPublic}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2411,8 +2411,8 @@ func GetBlogsByPublic(iPublic int) (*Blogs, error) {
 	}
 }
 
-// GetBlogsByArchived Get Blogs via Archived
-func GetBlogsByArchived(iArchived int) (*Blogs, error) {
+// GetBlogsViaArchived Get Blogs via Archived
+func GetBlogsViaArchived(iArchived int) (*Blogs, error) {
 	var _Blogs = &Blogs{Archived: iArchived}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2422,8 +2422,8 @@ func GetBlogsByArchived(iArchived int) (*Blogs, error) {
 	}
 }
 
-// GetBlogsByMature Get Blogs via Mature
-func GetBlogsByMature(iMature int) (*Blogs, error) {
+// GetBlogsViaMature Get Blogs via Mature
+func GetBlogsViaMature(iMature int) (*Blogs, error) {
 	var _Blogs = &Blogs{Mature: iMature}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2433,8 +2433,8 @@ func GetBlogsByMature(iMature int) (*Blogs, error) {
 	}
 }
 
-// GetBlogsBySpam Get Blogs via Spam
-func GetBlogsBySpam(iSpam int) (*Blogs, error) {
+// GetBlogsViaSpam Get Blogs via Spam
+func GetBlogsViaSpam(iSpam int) (*Blogs, error) {
 	var _Blogs = &Blogs{Spam: iSpam}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2444,8 +2444,8 @@ func GetBlogsBySpam(iSpam int) (*Blogs, error) {
 	}
 }
 
-// GetBlogsByDeleted Get Blogs via Deleted
-func GetBlogsByDeleted(iDeleted int) (*Blogs, error) {
+// GetBlogsViaDeleted Get Blogs via Deleted
+func GetBlogsViaDeleted(iDeleted int) (*Blogs, error) {
 	var _Blogs = &Blogs{Deleted: iDeleted}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2455,8 +2455,8 @@ func GetBlogsByDeleted(iDeleted int) (*Blogs, error) {
 	}
 }
 
-// GetBlogsByLangId Get Blogs via LangId
-func GetBlogsByLangId(iLangId int) (*Blogs, error) {
+// GetBlogsViaLangId Get Blogs via LangId
+func GetBlogsViaLangId(iLangId int) (*Blogs, error) {
 	var _Blogs = &Blogs{LangId: iLangId}
 	has, err := Engine.Get(_Blogs)
 	if has {
@@ -2466,74 +2466,74 @@ func GetBlogsByLangId(iLangId int) (*Blogs, error) {
 	}
 }
 
-// SetBlogsByBlogId Set Blogs via BlogId
-func SetBlogsByBlogId(iBlogId int64, blogs *Blogs) (int64, error) {
+// SetBlogsViaBlogId Set Blogs via BlogId
+func SetBlogsViaBlogId(iBlogId int64, blogs *Blogs) (int64, error) {
 	blogs.BlogId = iBlogId
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsBySiteId Set Blogs via SiteId
-func SetBlogsBySiteId(iSiteId int64, blogs *Blogs) (int64, error) {
+// SetBlogsViaSiteId Set Blogs via SiteId
+func SetBlogsViaSiteId(iSiteId int64, blogs *Blogs) (int64, error) {
 	blogs.SiteId = iSiteId
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsByDomain Set Blogs via Domain
-func SetBlogsByDomain(iDomain string, blogs *Blogs) (int64, error) {
+// SetBlogsViaDomain Set Blogs via Domain
+func SetBlogsViaDomain(iDomain string, blogs *Blogs) (int64, error) {
 	blogs.Domain = iDomain
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsByPath Set Blogs via Path
-func SetBlogsByPath(iPath string, blogs *Blogs) (int64, error) {
+// SetBlogsViaPath Set Blogs via Path
+func SetBlogsViaPath(iPath string, blogs *Blogs) (int64, error) {
 	blogs.Path = iPath
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsByRegistered Set Blogs via Registered
-func SetBlogsByRegistered(iRegistered time.Time, blogs *Blogs) (int64, error) {
+// SetBlogsViaRegistered Set Blogs via Registered
+func SetBlogsViaRegistered(iRegistered time.Time, blogs *Blogs) (int64, error) {
 	blogs.Registered = iRegistered
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsByLastUpdated Set Blogs via LastUpdated
-func SetBlogsByLastUpdated(iLastUpdated time.Time, blogs *Blogs) (int64, error) {
+// SetBlogsViaLastUpdated Set Blogs via LastUpdated
+func SetBlogsViaLastUpdated(iLastUpdated time.Time, blogs *Blogs) (int64, error) {
 	blogs.LastUpdated = iLastUpdated
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsByPublic Set Blogs via Public
-func SetBlogsByPublic(iPublic int, blogs *Blogs) (int64, error) {
+// SetBlogsViaPublic Set Blogs via Public
+func SetBlogsViaPublic(iPublic int, blogs *Blogs) (int64, error) {
 	blogs.Public = iPublic
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsByArchived Set Blogs via Archived
-func SetBlogsByArchived(iArchived int, blogs *Blogs) (int64, error) {
+// SetBlogsViaArchived Set Blogs via Archived
+func SetBlogsViaArchived(iArchived int, blogs *Blogs) (int64, error) {
 	blogs.Archived = iArchived
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsByMature Set Blogs via Mature
-func SetBlogsByMature(iMature int, blogs *Blogs) (int64, error) {
+// SetBlogsViaMature Set Blogs via Mature
+func SetBlogsViaMature(iMature int, blogs *Blogs) (int64, error) {
 	blogs.Mature = iMature
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsBySpam Set Blogs via Spam
-func SetBlogsBySpam(iSpam int, blogs *Blogs) (int64, error) {
+// SetBlogsViaSpam Set Blogs via Spam
+func SetBlogsViaSpam(iSpam int, blogs *Blogs) (int64, error) {
 	blogs.Spam = iSpam
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsByDeleted Set Blogs via Deleted
-func SetBlogsByDeleted(iDeleted int, blogs *Blogs) (int64, error) {
+// SetBlogsViaDeleted Set Blogs via Deleted
+func SetBlogsViaDeleted(iDeleted int, blogs *Blogs) (int64, error) {
 	blogs.Deleted = iDeleted
 	return Engine.Insert(blogs)
 }
 
-// SetBlogsByLangId Set Blogs via LangId
-func SetBlogsByLangId(iLangId int, blogs *Blogs) (int64, error) {
+// SetBlogsViaLangId Set Blogs via LangId
+func SetBlogsViaLangId(iLangId int, blogs *Blogs) (int64, error) {
 	blogs.LangId = iLangId
 	return Engine.Insert(blogs)
 }
@@ -2560,80 +2560,80 @@ func PutBlogs(iBlogs *Blogs) (int64, error) {
 	return iBlogs.BlogId, err
 }
 
-// PutBlogsByBlogId Put Blogs via BlogId
-func PutBlogsByBlogId(BlogId_ int64, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaBlogId Put Blogs via BlogId
+func PutBlogsViaBlogId(BlogId_ int64, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{BlogId: BlogId_})
 	return row, err
 }
 
-// PutBlogsBySiteId Put Blogs via SiteId
-func PutBlogsBySiteId(SiteId_ int64, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaSiteId Put Blogs via SiteId
+func PutBlogsViaSiteId(SiteId_ int64, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{SiteId: SiteId_})
 	return row, err
 }
 
-// PutBlogsByDomain Put Blogs via Domain
-func PutBlogsByDomain(Domain_ string, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaDomain Put Blogs via Domain
+func PutBlogsViaDomain(Domain_ string, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{Domain: Domain_})
 	return row, err
 }
 
-// PutBlogsByPath Put Blogs via Path
-func PutBlogsByPath(Path_ string, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaPath Put Blogs via Path
+func PutBlogsViaPath(Path_ string, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{Path: Path_})
 	return row, err
 }
 
-// PutBlogsByRegistered Put Blogs via Registered
-func PutBlogsByRegistered(Registered_ time.Time, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaRegistered Put Blogs via Registered
+func PutBlogsViaRegistered(Registered_ time.Time, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{Registered: Registered_})
 	return row, err
 }
 
-// PutBlogsByLastUpdated Put Blogs via LastUpdated
-func PutBlogsByLastUpdated(LastUpdated_ time.Time, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaLastUpdated Put Blogs via LastUpdated
+func PutBlogsViaLastUpdated(LastUpdated_ time.Time, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{LastUpdated: LastUpdated_})
 	return row, err
 }
 
-// PutBlogsByPublic Put Blogs via Public
-func PutBlogsByPublic(Public_ int, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaPublic Put Blogs via Public
+func PutBlogsViaPublic(Public_ int, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{Public: Public_})
 	return row, err
 }
 
-// PutBlogsByArchived Put Blogs via Archived
-func PutBlogsByArchived(Archived_ int, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaArchived Put Blogs via Archived
+func PutBlogsViaArchived(Archived_ int, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{Archived: Archived_})
 	return row, err
 }
 
-// PutBlogsByMature Put Blogs via Mature
-func PutBlogsByMature(Mature_ int, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaMature Put Blogs via Mature
+func PutBlogsViaMature(Mature_ int, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{Mature: Mature_})
 	return row, err
 }
 
-// PutBlogsBySpam Put Blogs via Spam
-func PutBlogsBySpam(Spam_ int, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaSpam Put Blogs via Spam
+func PutBlogsViaSpam(Spam_ int, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{Spam: Spam_})
 	return row, err
 }
 
-// PutBlogsByDeleted Put Blogs via Deleted
-func PutBlogsByDeleted(Deleted_ int, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaDeleted Put Blogs via Deleted
+func PutBlogsViaDeleted(Deleted_ int, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{Deleted: Deleted_})
 	return row, err
 }
 
-// PutBlogsByLangId Put Blogs via LangId
-func PutBlogsByLangId(LangId_ int, iBlogs *Blogs) (int64, error) {
+// PutBlogsViaLangId Put Blogs via LangId
+func PutBlogsViaLangId(LangId_ int, iBlogs *Blogs) (int64, error) {
 	row, err := Engine.Update(iBlogs, &Blogs{LangId: LangId_})
 	return row, err
 }
 
-// UpdateBlogsByBlogId via map[string]interface{}{}
-func UpdateBlogsByBlogId(iBlogId int64, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaBlogId via map[string]interface{}{}
+func UpdateBlogsViaBlogId(iBlogId int64, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("blog_id = ?", iBlogId).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2641,8 +2641,8 @@ func UpdateBlogsByBlogId(iBlogId int64, iBlogsMap *map[string]interface{}) error
 	}
 }
 
-// UpdateBlogsBySiteId via map[string]interface{}{}
-func UpdateBlogsBySiteId(iSiteId int64, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaSiteId via map[string]interface{}{}
+func UpdateBlogsViaSiteId(iSiteId int64, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("site_id = ?", iSiteId).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2650,8 +2650,8 @@ func UpdateBlogsBySiteId(iSiteId int64, iBlogsMap *map[string]interface{}) error
 	}
 }
 
-// UpdateBlogsByDomain via map[string]interface{}{}
-func UpdateBlogsByDomain(iDomain string, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaDomain via map[string]interface{}{}
+func UpdateBlogsViaDomain(iDomain string, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("domain = ?", iDomain).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2659,8 +2659,8 @@ func UpdateBlogsByDomain(iDomain string, iBlogsMap *map[string]interface{}) erro
 	}
 }
 
-// UpdateBlogsByPath via map[string]interface{}{}
-func UpdateBlogsByPath(iPath string, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaPath via map[string]interface{}{}
+func UpdateBlogsViaPath(iPath string, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("path = ?", iPath).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2668,8 +2668,8 @@ func UpdateBlogsByPath(iPath string, iBlogsMap *map[string]interface{}) error {
 	}
 }
 
-// UpdateBlogsByRegistered via map[string]interface{}{}
-func UpdateBlogsByRegistered(iRegistered time.Time, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaRegistered via map[string]interface{}{}
+func UpdateBlogsViaRegistered(iRegistered time.Time, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("registered = ?", iRegistered).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2677,8 +2677,8 @@ func UpdateBlogsByRegistered(iRegistered time.Time, iBlogsMap *map[string]interf
 	}
 }
 
-// UpdateBlogsByLastUpdated via map[string]interface{}{}
-func UpdateBlogsByLastUpdated(iLastUpdated time.Time, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaLastUpdated via map[string]interface{}{}
+func UpdateBlogsViaLastUpdated(iLastUpdated time.Time, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("last_updated = ?", iLastUpdated).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2686,8 +2686,8 @@ func UpdateBlogsByLastUpdated(iLastUpdated time.Time, iBlogsMap *map[string]inte
 	}
 }
 
-// UpdateBlogsByPublic via map[string]interface{}{}
-func UpdateBlogsByPublic(iPublic int, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaPublic via map[string]interface{}{}
+func UpdateBlogsViaPublic(iPublic int, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("public = ?", iPublic).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2695,8 +2695,8 @@ func UpdateBlogsByPublic(iPublic int, iBlogsMap *map[string]interface{}) error {
 	}
 }
 
-// UpdateBlogsByArchived via map[string]interface{}{}
-func UpdateBlogsByArchived(iArchived int, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaArchived via map[string]interface{}{}
+func UpdateBlogsViaArchived(iArchived int, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("archived = ?", iArchived).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2704,8 +2704,8 @@ func UpdateBlogsByArchived(iArchived int, iBlogsMap *map[string]interface{}) err
 	}
 }
 
-// UpdateBlogsByMature via map[string]interface{}{}
-func UpdateBlogsByMature(iMature int, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaMature via map[string]interface{}{}
+func UpdateBlogsViaMature(iMature int, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("mature = ?", iMature).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2713,8 +2713,8 @@ func UpdateBlogsByMature(iMature int, iBlogsMap *map[string]interface{}) error {
 	}
 }
 
-// UpdateBlogsBySpam via map[string]interface{}{}
-func UpdateBlogsBySpam(iSpam int, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaSpam via map[string]interface{}{}
+func UpdateBlogsViaSpam(iSpam int, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("spam = ?", iSpam).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2722,8 +2722,8 @@ func UpdateBlogsBySpam(iSpam int, iBlogsMap *map[string]interface{}) error {
 	}
 }
 
-// UpdateBlogsByDeleted via map[string]interface{}{}
-func UpdateBlogsByDeleted(iDeleted int, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaDeleted via map[string]interface{}{}
+func UpdateBlogsViaDeleted(iDeleted int, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("deleted = ?", iDeleted).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2731,8 +2731,8 @@ func UpdateBlogsByDeleted(iDeleted int, iBlogsMap *map[string]interface{}) error
 	}
 }
 
-// UpdateBlogsByLangId via map[string]interface{}{}
-func UpdateBlogsByLangId(iLangId int, iBlogsMap *map[string]interface{}) error {
+// UpdateBlogsViaLangId via map[string]interface{}{}
+func UpdateBlogsViaLangId(iLangId int, iBlogsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Blogs)).Where("lang_id = ?", iLangId).Update(iBlogsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2746,8 +2746,8 @@ func DeleteBlogs(iBlogId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteBlogsByBlogId Delete Blogs via BlogId
-func DeleteBlogsByBlogId(iBlogId int64) (err error) {
+// DeleteBlogsViaBlogId Delete Blogs via BlogId
+func DeleteBlogsViaBlogId(iBlogId int64) (err error) {
 	var has bool
 	var _Blogs = &Blogs{BlogId: iBlogId}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2760,8 +2760,8 @@ func DeleteBlogsByBlogId(iBlogId int64) (err error) {
 	return
 }
 
-// DeleteBlogsBySiteId Delete Blogs via SiteId
-func DeleteBlogsBySiteId(iSiteId int64) (err error) {
+// DeleteBlogsViaSiteId Delete Blogs via SiteId
+func DeleteBlogsViaSiteId(iSiteId int64) (err error) {
 	var has bool
 	var _Blogs = &Blogs{SiteId: iSiteId}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2774,8 +2774,8 @@ func DeleteBlogsBySiteId(iSiteId int64) (err error) {
 	return
 }
 
-// DeleteBlogsByDomain Delete Blogs via Domain
-func DeleteBlogsByDomain(iDomain string) (err error) {
+// DeleteBlogsViaDomain Delete Blogs via Domain
+func DeleteBlogsViaDomain(iDomain string) (err error) {
 	var has bool
 	var _Blogs = &Blogs{Domain: iDomain}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2788,8 +2788,8 @@ func DeleteBlogsByDomain(iDomain string) (err error) {
 	return
 }
 
-// DeleteBlogsByPath Delete Blogs via Path
-func DeleteBlogsByPath(iPath string) (err error) {
+// DeleteBlogsViaPath Delete Blogs via Path
+func DeleteBlogsViaPath(iPath string) (err error) {
 	var has bool
 	var _Blogs = &Blogs{Path: iPath}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2802,8 +2802,8 @@ func DeleteBlogsByPath(iPath string) (err error) {
 	return
 }
 
-// DeleteBlogsByRegistered Delete Blogs via Registered
-func DeleteBlogsByRegistered(iRegistered time.Time) (err error) {
+// DeleteBlogsViaRegistered Delete Blogs via Registered
+func DeleteBlogsViaRegistered(iRegistered time.Time) (err error) {
 	var has bool
 	var _Blogs = &Blogs{Registered: iRegistered}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2816,8 +2816,8 @@ func DeleteBlogsByRegistered(iRegistered time.Time) (err error) {
 	return
 }
 
-// DeleteBlogsByLastUpdated Delete Blogs via LastUpdated
-func DeleteBlogsByLastUpdated(iLastUpdated time.Time) (err error) {
+// DeleteBlogsViaLastUpdated Delete Blogs via LastUpdated
+func DeleteBlogsViaLastUpdated(iLastUpdated time.Time) (err error) {
 	var has bool
 	var _Blogs = &Blogs{LastUpdated: iLastUpdated}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2830,8 +2830,8 @@ func DeleteBlogsByLastUpdated(iLastUpdated time.Time) (err error) {
 	return
 }
 
-// DeleteBlogsByPublic Delete Blogs via Public
-func DeleteBlogsByPublic(iPublic int) (err error) {
+// DeleteBlogsViaPublic Delete Blogs via Public
+func DeleteBlogsViaPublic(iPublic int) (err error) {
 	var has bool
 	var _Blogs = &Blogs{Public: iPublic}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2844,8 +2844,8 @@ func DeleteBlogsByPublic(iPublic int) (err error) {
 	return
 }
 
-// DeleteBlogsByArchived Delete Blogs via Archived
-func DeleteBlogsByArchived(iArchived int) (err error) {
+// DeleteBlogsViaArchived Delete Blogs via Archived
+func DeleteBlogsViaArchived(iArchived int) (err error) {
 	var has bool
 	var _Blogs = &Blogs{Archived: iArchived}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2858,8 +2858,8 @@ func DeleteBlogsByArchived(iArchived int) (err error) {
 	return
 }
 
-// DeleteBlogsByMature Delete Blogs via Mature
-func DeleteBlogsByMature(iMature int) (err error) {
+// DeleteBlogsViaMature Delete Blogs via Mature
+func DeleteBlogsViaMature(iMature int) (err error) {
 	var has bool
 	var _Blogs = &Blogs{Mature: iMature}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2872,8 +2872,8 @@ func DeleteBlogsByMature(iMature int) (err error) {
 	return
 }
 
-// DeleteBlogsBySpam Delete Blogs via Spam
-func DeleteBlogsBySpam(iSpam int) (err error) {
+// DeleteBlogsViaSpam Delete Blogs via Spam
+func DeleteBlogsViaSpam(iSpam int) (err error) {
 	var has bool
 	var _Blogs = &Blogs{Spam: iSpam}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2886,8 +2886,8 @@ func DeleteBlogsBySpam(iSpam int) (err error) {
 	return
 }
 
-// DeleteBlogsByDeleted Delete Blogs via Deleted
-func DeleteBlogsByDeleted(iDeleted int) (err error) {
+// DeleteBlogsViaDeleted Delete Blogs via Deleted
+func DeleteBlogsViaDeleted(iDeleted int) (err error) {
 	var has bool
 	var _Blogs = &Blogs{Deleted: iDeleted}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {
@@ -2900,8 +2900,8 @@ func DeleteBlogsByDeleted(iDeleted int) (err error) {
 	return
 }
 
-// DeleteBlogsByLangId Delete Blogs via LangId
-func DeleteBlogsByLangId(iLangId int) (err error) {
+// DeleteBlogsViaLangId Delete Blogs via LangId
+func DeleteBlogsViaLangId(iLangId int) (err error) {
 	var has bool
 	var _Blogs = &Blogs{LangId: iLangId}
 	if has, err = Engine.Get(_Blogs); (has == true) && (err == nil) {

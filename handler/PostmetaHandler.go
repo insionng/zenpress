@@ -27,9 +27,9 @@ func GetPostmetasCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostmetaCountByMetaIdHandler(self *macross.Context) error {
+func GetPostmetaCountViaMetaIdHandler(self *macross.Context) error {
 	MetaId_ := self.Args("meta_id").MustInt64()
-	_int64 := model.GetPostmetaCountByMetaId(MetaId_)
+	_int64 := model.GetPostmetaCountViaMetaId(MetaId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postmetaCount"] = 0
@@ -38,9 +38,9 @@ func GetPostmetaCountByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostmetaCountByPostIdHandler(self *macross.Context) error {
+func GetPostmetaCountViaPostIdHandler(self *macross.Context) error {
 	PostId_ := self.Args("post_id").MustInt64()
-	_int64 := model.GetPostmetaCountByPostId(PostId_)
+	_int64 := model.GetPostmetaCountViaPostId(PostId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postmetaCount"] = 0
@@ -49,9 +49,9 @@ func GetPostmetaCountByPostIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostmetaCountByMetaKeyHandler(self *macross.Context) error {
+func GetPostmetaCountViaMetaKeyHandler(self *macross.Context) error {
 	MetaKey_ := self.Args("meta_key").String()
-	_int64 := model.GetPostmetaCountByMetaKey(MetaKey_)
+	_int64 := model.GetPostmetaCountViaMetaKey(MetaKey_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postmetaCount"] = 0
@@ -60,9 +60,9 @@ func GetPostmetaCountByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostmetaCountByMetaValueHandler(self *macross.Context) error {
+func GetPostmetaCountViaMetaValueHandler(self *macross.Context) error {
 	MetaValue_ := self.Args("meta_value").String()
-	_int64 := model.GetPostmetaCountByMetaValue(MetaValue_)
+	_int64 := model.GetPostmetaCountViaMetaValue(MetaValue_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postmetaCount"] = 0
@@ -71,7 +71,7 @@ func GetPostmetaCountByMetaValueHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostmetasByMetaIdHandler(self *macross.Context) error {
+func GetPostmetasViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -80,18 +80,18 @@ func GetPostmetasByMetaIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMetaId := self.Args("meta_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iMetaId) {
-		_Postmeta, _error := model.GetPostmetasByMetaId(offset, limit, iMetaId, field)
+		_Postmeta, _error := model.GetPostmetasViaMetaId(offset, limit, iMetaId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the GetPostmetasByMetaId's args."
+	herr.Message = "Can't get to the GetPostmetasViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostmetasByPostIdHandler(self *macross.Context) error {
+func GetPostmetasViaPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -100,18 +100,18 @@ func GetPostmetasByPostIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostId := self.Args("post_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iPostId) {
-		_Postmeta, _error := model.GetPostmetasByPostId(offset, limit, iPostId, field)
+		_Postmeta, _error := model.GetPostmetasViaPostId(offset, limit, iPostId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the GetPostmetasByPostId's args."
+	herr.Message = "Can't get to the GetPostmetasViaPostId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostmetasByMetaKeyHandler(self *macross.Context) error {
+func GetPostmetasViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -120,18 +120,18 @@ func GetPostmetasByMetaKeyHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMetaKey := self.Args("meta_key").String()
 	if (offset > 0) && helper.IsHas(iMetaKey) {
-		_Postmeta, _error := model.GetPostmetasByMetaKey(offset, limit, iMetaKey, field)
+		_Postmeta, _error := model.GetPostmetasViaMetaKey(offset, limit, iMetaKey, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the GetPostmetasByMetaKey's args."
+	herr.Message = "Can't get to the GetPostmetasViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostmetasByMetaValueHandler(self *macross.Context) error {
+func GetPostmetasViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -140,14 +140,14 @@ func GetPostmetasByMetaValueHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMetaValue := self.Args("meta_value").String()
 	if (offset > 0) && helper.IsHas(iMetaValue) {
-		_Postmeta, _error := model.GetPostmetasByMetaValue(offset, limit, iMetaValue, field)
+		_Postmeta, _error := model.GetPostmetasViaMetaValue(offset, limit, iMetaValue, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the GetPostmetasByMetaValue's args."
+	herr.Message = "Can't get to the GetPostmetasViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -384,135 +384,135 @@ func GetPostmetasHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostmetaByMetaIdHandler(self *macross.Context) error {
+func GetHasPostmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaId := self.Args("meta_id").MustInt64()
 	if helper.IsHas(iMetaId) {
-		_Postmeta := model.HasPostmetaByMetaId(iMetaId)
+		_Postmeta := model.HasPostmetaViaMetaId(iMetaId)
 		var m = map[string]interface{}{}
 		m["postmeta"] = _Postmeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostmetaByMetaId's args."
+	herr.Message = "Can't get to the HasPostmetaViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostmetaByPostIdHandler(self *macross.Context) error {
+func GetHasPostmetaViaPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostId := self.Args("post_id").MustInt64()
 	if helper.IsHas(iPostId) {
-		_Postmeta := model.HasPostmetaByPostId(iPostId)
+		_Postmeta := model.HasPostmetaViaPostId(iPostId)
 		var m = map[string]interface{}{}
 		m["postmeta"] = _Postmeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostmetaByPostId's args."
+	herr.Message = "Can't get to the HasPostmetaViaPostId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostmetaByMetaKeyHandler(self *macross.Context) error {
+func GetHasPostmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaKey := self.Args("meta_key").String()
 	if helper.IsHas(iMetaKey) {
-		_Postmeta := model.HasPostmetaByMetaKey(iMetaKey)
+		_Postmeta := model.HasPostmetaViaMetaKey(iMetaKey)
 		var m = map[string]interface{}{}
 		m["postmeta"] = _Postmeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostmetaByMetaKey's args."
+	herr.Message = "Can't get to the HasPostmetaViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostmetaByMetaValueHandler(self *macross.Context) error {
+func GetHasPostmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaValue := self.Args("meta_value").String()
 	if helper.IsHas(iMetaValue) {
-		_Postmeta := model.HasPostmetaByMetaValue(iMetaValue)
+		_Postmeta := model.HasPostmetaViaMetaValue(iMetaValue)
 		var m = map[string]interface{}{}
 		m["postmeta"] = _Postmeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostmetaByMetaValue's args."
+	herr.Message = "Can't get to the HasPostmetaViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostmetaByMetaIdHandler(self *macross.Context) error {
+func GetPostmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaId := self.Args("meta_id").MustInt64()
 	if helper.IsHas(iMetaId) {
-		_Postmeta, _error := model.GetPostmetaByMetaId(iMetaId)
+		_Postmeta, _error := model.GetPostmetaViaMetaId(iMetaId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the GetPostmetaByMetaId's args."
+	herr.Message = "Can't get to the GetPostmetaViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostmetaByPostIdHandler(self *macross.Context) error {
+func GetPostmetaViaPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostId := self.Args("post_id").MustInt64()
 	if helper.IsHas(iPostId) {
-		_Postmeta, _error := model.GetPostmetaByPostId(iPostId)
+		_Postmeta, _error := model.GetPostmetaViaPostId(iPostId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the GetPostmetaByPostId's args."
+	herr.Message = "Can't get to the GetPostmetaViaPostId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostmetaByMetaKeyHandler(self *macross.Context) error {
+func GetPostmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaKey := self.Args("meta_key").String()
 	if helper.IsHas(iMetaKey) {
-		_Postmeta, _error := model.GetPostmetaByMetaKey(iMetaKey)
+		_Postmeta, _error := model.GetPostmetaViaMetaKey(iMetaKey)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the GetPostmetaByMetaKey's args."
+	herr.Message = "Can't get to the GetPostmetaViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostmetaByMetaValueHandler(self *macross.Context) error {
+func GetPostmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaValue := self.Args("meta_value").String()
 	if helper.IsHas(iMetaValue) {
-		_Postmeta, _error := model.GetPostmetaByMetaValue(iMetaValue)
+		_Postmeta, _error := model.GetPostmetaViaMetaValue(iMetaValue)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the GetPostmetaByMetaValue's args."
+	herr.Message = "Can't get to the GetPostmetaViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostmetaByMetaIdHandler(self *macross.Context) error {
+func PostSetPostmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -520,18 +520,18 @@ func PostSetPostmetaByMetaIdHandler(self *macross.Context) error {
 	if helper.IsHas(MetaId_) {
 		var iPostmeta model.Postmeta
 		self.Bind(&iPostmeta)
-		_Postmeta, _error := model.SetPostmetaByMetaId(MetaId_, &iPostmeta)
+		_Postmeta, _error := model.SetPostmetaViaMetaId(MetaId_, &iPostmeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the SetPostmetaByMetaId's args."
+	herr.Message = "Can't get to the SetPostmetaViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostmetaByPostIdHandler(self *macross.Context) error {
+func PostSetPostmetaViaPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -539,18 +539,18 @@ func PostSetPostmetaByPostIdHandler(self *macross.Context) error {
 	if helper.IsHas(PostId_) {
 		var iPostmeta model.Postmeta
 		self.Bind(&iPostmeta)
-		_Postmeta, _error := model.SetPostmetaByPostId(PostId_, &iPostmeta)
+		_Postmeta, _error := model.SetPostmetaViaPostId(PostId_, &iPostmeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the SetPostmetaByPostId's args."
+	herr.Message = "Can't get to the SetPostmetaViaPostId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostmetaByMetaKeyHandler(self *macross.Context) error {
+func PostSetPostmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -558,18 +558,18 @@ func PostSetPostmetaByMetaKeyHandler(self *macross.Context) error {
 	if helper.IsHas(MetaKey_) {
 		var iPostmeta model.Postmeta
 		self.Bind(&iPostmeta)
-		_Postmeta, _error := model.SetPostmetaByMetaKey(MetaKey_, &iPostmeta)
+		_Postmeta, _error := model.SetPostmetaViaMetaKey(MetaKey_, &iPostmeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the SetPostmetaByMetaKey's args."
+	herr.Message = "Can't get to the SetPostmetaViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostmetaByMetaValueHandler(self *macross.Context) error {
+func PostSetPostmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -577,14 +577,14 @@ func PostSetPostmetaByMetaValueHandler(self *macross.Context) error {
 	if helper.IsHas(MetaValue_) {
 		var iPostmeta model.Postmeta
 		self.Bind(&iPostmeta)
-		_Postmeta, _error := model.SetPostmetaByMetaValue(MetaValue_, &iPostmeta)
+		_Postmeta, _error := model.SetPostmetaViaMetaValue(MetaValue_, &iPostmeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Postmeta)
 	}
-	herr.Message = "Can't get to the SetPostmetaByMetaValue's args."
+	herr.Message = "Can't get to the SetPostmetaViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -618,7 +618,7 @@ func PostPostmetaHandler(self *macross.Context) error {
 	var iPostmeta model.Postmeta
 	self.Bind(&iPostmeta)
 	_int64, _error := model.PostPostmeta(&iPostmeta)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -636,7 +636,7 @@ func PutPostmetaHandler(self *macross.Context) error {
 	var iPostmeta model.Postmeta
 	self.Bind(&iPostmeta)
 	_int64, _error := model.PutPostmeta(&iPostmeta)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -647,14 +647,14 @@ func PutPostmetaHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostmetaByMetaIdHandler(self *macross.Context) error {
+func PutPostmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaId_ := self.Args("meta_id").MustInt64()
 	var iPostmeta model.Postmeta
 	self.Bind(&iPostmeta)
-	_int64, _error := model.PutPostmetaByMetaId(MetaId_, &iPostmeta)
+	_int64, _error := model.PutPostmetaViaMetaId(MetaId_, &iPostmeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -664,14 +664,14 @@ func PutPostmetaByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostmetaByPostIdHandler(self *macross.Context) error {
+func PutPostmetaViaPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostId_ := self.Args("post_id").MustInt64()
 	var iPostmeta model.Postmeta
 	self.Bind(&iPostmeta)
-	_int64, _error := model.PutPostmetaByPostId(PostId_, &iPostmeta)
+	_int64, _error := model.PutPostmetaViaPostId(PostId_, &iPostmeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -681,14 +681,14 @@ func PutPostmetaByPostIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostmetaByMetaKeyHandler(self *macross.Context) error {
+func PutPostmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaKey_ := self.Args("meta_key").String()
 	var iPostmeta model.Postmeta
 	self.Bind(&iPostmeta)
-	_int64, _error := model.PutPostmetaByMetaKey(MetaKey_, &iPostmeta)
+	_int64, _error := model.PutPostmetaViaMetaKey(MetaKey_, &iPostmeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -698,14 +698,14 @@ func PutPostmetaByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostmetaByMetaValueHandler(self *macross.Context) error {
+func PutPostmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaValue_ := self.Args("meta_value").String()
 	var iPostmeta model.Postmeta
 	self.Bind(&iPostmeta)
-	_int64, _error := model.PutPostmetaByMetaValue(MetaValue_, &iPostmeta)
+	_int64, _error := model.PutPostmetaViaMetaValue(MetaValue_, &iPostmeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -715,7 +715,7 @@ func PutPostmetaByMetaValueHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostmetaByMetaIdHandler(self *macross.Context) error {
+func PutUpdatePostmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -723,7 +723,7 @@ func PutUpdatePostmetaByMetaIdHandler(self *macross.Context) error {
 	var iPostmeta model.Postmeta
 	self.Bind(&iPostmeta)
 	var iMap = helper.StructToMap(iPostmeta)
-	_error := model.UpdatePostmetaByMetaId(MetaId_, &iMap)
+	_error := model.UpdatePostmetaViaMetaId(MetaId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -733,7 +733,7 @@ func PutUpdatePostmetaByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostmetaByPostIdHandler(self *macross.Context) error {
+func PutUpdatePostmetaViaPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -741,7 +741,7 @@ func PutUpdatePostmetaByPostIdHandler(self *macross.Context) error {
 	var iPostmeta model.Postmeta
 	self.Bind(&iPostmeta)
 	var iMap = helper.StructToMap(iPostmeta)
-	_error := model.UpdatePostmetaByPostId(PostId_, &iMap)
+	_error := model.UpdatePostmetaViaPostId(PostId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -751,7 +751,7 @@ func PutUpdatePostmetaByPostIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostmetaByMetaKeyHandler(self *macross.Context) error {
+func PutUpdatePostmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -759,7 +759,7 @@ func PutUpdatePostmetaByMetaKeyHandler(self *macross.Context) error {
 	var iPostmeta model.Postmeta
 	self.Bind(&iPostmeta)
 	var iMap = helper.StructToMap(iPostmeta)
-	_error := model.UpdatePostmetaByMetaKey(MetaKey_, &iMap)
+	_error := model.UpdatePostmetaViaMetaKey(MetaKey_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -769,7 +769,7 @@ func PutUpdatePostmetaByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostmetaByMetaValueHandler(self *macross.Context) error {
+func PutUpdatePostmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -777,7 +777,7 @@ func PutUpdatePostmetaByMetaValueHandler(self *macross.Context) error {
 	var iPostmeta model.Postmeta
 	self.Bind(&iPostmeta)
 	var iMap = helper.StructToMap(iPostmeta)
-	_error := model.UpdatePostmetaByMetaValue(MetaValue_, &iMap)
+	_error := model.UpdatePostmetaViaMetaValue(MetaValue_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -804,12 +804,12 @@ func DeletePostmetaHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostmetaByMetaIdHandler(self *macross.Context) error {
+func DeletePostmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaId_ := self.Args("meta_id").MustInt64()
-	_error := model.DeletePostmetaByMetaId(MetaId_)
+	_error := model.DeletePostmetaViaMetaId(MetaId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -819,12 +819,12 @@ func DeletePostmetaByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostmetaByPostIdHandler(self *macross.Context) error {
+func DeletePostmetaViaPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostId_ := self.Args("post_id").MustInt64()
-	_error := model.DeletePostmetaByPostId(PostId_)
+	_error := model.DeletePostmetaViaPostId(PostId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -834,12 +834,12 @@ func DeletePostmetaByPostIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostmetaByMetaKeyHandler(self *macross.Context) error {
+func DeletePostmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaKey_ := self.Args("meta_key").String()
-	_error := model.DeletePostmetaByMetaKey(MetaKey_)
+	_error := model.DeletePostmetaViaMetaKey(MetaKey_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -849,12 +849,12 @@ func DeletePostmetaByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostmetaByMetaValueHandler(self *macross.Context) error {
+func DeletePostmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaValue_ := self.Args("meta_value").String()
-	_error := model.DeletePostmetaByMetaValue(MetaValue_)
+	_error := model.DeletePostmetaViaMetaValue(MetaValue_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

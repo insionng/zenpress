@@ -27,9 +27,9 @@ func GetRegistrationLogsCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetRegistrationLogCountByIdHandler(self *macross.Context) error {
+func GetRegistrationLogCountViaIdHandler(self *macross.Context) error {
 	Id_ := self.Args("ID").MustInt64()
-	_int64 := model.GetRegistrationLogCountById(Id_)
+	_int64 := model.GetRegistrationLogCountViaId(Id_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["registration_logCount"] = 0
@@ -38,9 +38,9 @@ func GetRegistrationLogCountByIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetRegistrationLogCountByEmailHandler(self *macross.Context) error {
+func GetRegistrationLogCountViaEmailHandler(self *macross.Context) error {
 	Email_ := self.Args("email").String()
-	_int64 := model.GetRegistrationLogCountByEmail(Email_)
+	_int64 := model.GetRegistrationLogCountViaEmail(Email_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["registration_logCount"] = 0
@@ -49,9 +49,9 @@ func GetRegistrationLogCountByEmailHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetRegistrationLogCountByIpHandler(self *macross.Context) error {
+func GetRegistrationLogCountViaIpHandler(self *macross.Context) error {
 	Ip_ := self.Args("IP").String()
-	_int64 := model.GetRegistrationLogCountByIp(Ip_)
+	_int64 := model.GetRegistrationLogCountViaIp(Ip_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["registration_logCount"] = 0
@@ -60,9 +60,9 @@ func GetRegistrationLogCountByIpHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetRegistrationLogCountByBlogIdHandler(self *macross.Context) error {
+func GetRegistrationLogCountViaBlogIdHandler(self *macross.Context) error {
 	BlogId_ := self.Args("blog_id").MustInt64()
-	_int64 := model.GetRegistrationLogCountByBlogId(BlogId_)
+	_int64 := model.GetRegistrationLogCountViaBlogId(BlogId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["registration_logCount"] = 0
@@ -71,9 +71,9 @@ func GetRegistrationLogCountByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetRegistrationLogCountByDateRegisteredHandler(self *macross.Context) error {
+func GetRegistrationLogCountViaDateRegisteredHandler(self *macross.Context) error {
 	DateRegistered_ := self.Args("date_registered").Time()
-	_int64 := model.GetRegistrationLogCountByDateRegistered(DateRegistered_)
+	_int64 := model.GetRegistrationLogCountViaDateRegistered(DateRegistered_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["registration_logCount"] = 0
@@ -82,7 +82,7 @@ func GetRegistrationLogCountByDateRegisteredHandler(self *macross.Context) error
 	return self.JSON(m)
 }
 
-func GetRegistrationLogsByIdHandler(self *macross.Context) error {
+func GetRegistrationLogsViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -91,18 +91,18 @@ func GetRegistrationLogsByIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iId := self.Args("ID").MustInt64()
 	if (offset > 0) && helper.IsHas(iId) {
-		_RegistrationLog, _error := model.GetRegistrationLogsById(offset, limit, iId, field)
+		_RegistrationLog, _error := model.GetRegistrationLogsViaId(offset, limit, iId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the GetRegistrationLogsById's args."
+	herr.Message = "Can't get to the GetRegistrationLogsViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetRegistrationLogsByEmailHandler(self *macross.Context) error {
+func GetRegistrationLogsViaEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -111,18 +111,18 @@ func GetRegistrationLogsByEmailHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iEmail := self.Args("email").String()
 	if (offset > 0) && helper.IsHas(iEmail) {
-		_RegistrationLog, _error := model.GetRegistrationLogsByEmail(offset, limit, iEmail, field)
+		_RegistrationLog, _error := model.GetRegistrationLogsViaEmail(offset, limit, iEmail, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the GetRegistrationLogsByEmail's args."
+	herr.Message = "Can't get to the GetRegistrationLogsViaEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetRegistrationLogsByIpHandler(self *macross.Context) error {
+func GetRegistrationLogsViaIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -131,18 +131,18 @@ func GetRegistrationLogsByIpHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iIp := self.Args("IP").String()
 	if (offset > 0) && helper.IsHas(iIp) {
-		_RegistrationLog, _error := model.GetRegistrationLogsByIp(offset, limit, iIp, field)
+		_RegistrationLog, _error := model.GetRegistrationLogsViaIp(offset, limit, iIp, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the GetRegistrationLogsByIp's args."
+	herr.Message = "Can't get to the GetRegistrationLogsViaIp's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetRegistrationLogsByBlogIdHandler(self *macross.Context) error {
+func GetRegistrationLogsViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -151,18 +151,18 @@ func GetRegistrationLogsByBlogIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iBlogId := self.Args("blog_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iBlogId) {
-		_RegistrationLog, _error := model.GetRegistrationLogsByBlogId(offset, limit, iBlogId, field)
+		_RegistrationLog, _error := model.GetRegistrationLogsViaBlogId(offset, limit, iBlogId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the GetRegistrationLogsByBlogId's args."
+	herr.Message = "Can't get to the GetRegistrationLogsViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetRegistrationLogsByDateRegisteredHandler(self *macross.Context) error {
+func GetRegistrationLogsViaDateRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -171,14 +171,14 @@ func GetRegistrationLogsByDateRegisteredHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iDateRegistered := self.Args("date_registered").Time()
 	if (offset > 0) && helper.IsHas(iDateRegistered) {
-		_RegistrationLog, _error := model.GetRegistrationLogsByDateRegistered(offset, limit, iDateRegistered, field)
+		_RegistrationLog, _error := model.GetRegistrationLogsViaDateRegistered(offset, limit, iDateRegistered, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the GetRegistrationLogsByDateRegistered's args."
+	herr.Message = "Can't get to the GetRegistrationLogsViaDateRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -631,167 +631,167 @@ func GetRegistrationLogsHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasRegistrationLogByIdHandler(self *macross.Context) error {
+func GetHasRegistrationLogViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iId := self.Args("ID").MustInt64()
 	if helper.IsHas(iId) {
-		_RegistrationLog := model.HasRegistrationLogById(iId)
+		_RegistrationLog := model.HasRegistrationLogViaId(iId)
 		var m = map[string]interface{}{}
 		m["registration_log"] = _RegistrationLog
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasRegistrationLogById's args."
+	herr.Message = "Can't get to the HasRegistrationLogViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasRegistrationLogByEmailHandler(self *macross.Context) error {
+func GetHasRegistrationLogViaEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iEmail := self.Args("email").String()
 	if helper.IsHas(iEmail) {
-		_RegistrationLog := model.HasRegistrationLogByEmail(iEmail)
+		_RegistrationLog := model.HasRegistrationLogViaEmail(iEmail)
 		var m = map[string]interface{}{}
 		m["registration_log"] = _RegistrationLog
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasRegistrationLogByEmail's args."
+	herr.Message = "Can't get to the HasRegistrationLogViaEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasRegistrationLogByIpHandler(self *macross.Context) error {
+func GetHasRegistrationLogViaIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iIp := self.Args("IP").String()
 	if helper.IsHas(iIp) {
-		_RegistrationLog := model.HasRegistrationLogByIp(iIp)
+		_RegistrationLog := model.HasRegistrationLogViaIp(iIp)
 		var m = map[string]interface{}{}
 		m["registration_log"] = _RegistrationLog
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasRegistrationLogByIp's args."
+	herr.Message = "Can't get to the HasRegistrationLogViaIp's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasRegistrationLogByBlogIdHandler(self *macross.Context) error {
+func GetHasRegistrationLogViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iBlogId := self.Args("blog_id").MustInt64()
 	if helper.IsHas(iBlogId) {
-		_RegistrationLog := model.HasRegistrationLogByBlogId(iBlogId)
+		_RegistrationLog := model.HasRegistrationLogViaBlogId(iBlogId)
 		var m = map[string]interface{}{}
 		m["registration_log"] = _RegistrationLog
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasRegistrationLogByBlogId's args."
+	herr.Message = "Can't get to the HasRegistrationLogViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasRegistrationLogByDateRegisteredHandler(self *macross.Context) error {
+func GetHasRegistrationLogViaDateRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDateRegistered := self.Args("date_registered").Time()
 	if helper.IsHas(iDateRegistered) {
-		_RegistrationLog := model.HasRegistrationLogByDateRegistered(iDateRegistered)
+		_RegistrationLog := model.HasRegistrationLogViaDateRegistered(iDateRegistered)
 		var m = map[string]interface{}{}
 		m["registration_log"] = _RegistrationLog
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasRegistrationLogByDateRegistered's args."
+	herr.Message = "Can't get to the HasRegistrationLogViaDateRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetRegistrationLogByIdHandler(self *macross.Context) error {
+func GetRegistrationLogViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iId := self.Args("ID").MustInt64()
 	if helper.IsHas(iId) {
-		_RegistrationLog, _error := model.GetRegistrationLogById(iId)
+		_RegistrationLog, _error := model.GetRegistrationLogViaId(iId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the GetRegistrationLogById's args."
+	herr.Message = "Can't get to the GetRegistrationLogViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetRegistrationLogByEmailHandler(self *macross.Context) error {
+func GetRegistrationLogViaEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iEmail := self.Args("email").String()
 	if helper.IsHas(iEmail) {
-		_RegistrationLog, _error := model.GetRegistrationLogByEmail(iEmail)
+		_RegistrationLog, _error := model.GetRegistrationLogViaEmail(iEmail)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the GetRegistrationLogByEmail's args."
+	herr.Message = "Can't get to the GetRegistrationLogViaEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetRegistrationLogByIpHandler(self *macross.Context) error {
+func GetRegistrationLogViaIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iIp := self.Args("IP").String()
 	if helper.IsHas(iIp) {
-		_RegistrationLog, _error := model.GetRegistrationLogByIp(iIp)
+		_RegistrationLog, _error := model.GetRegistrationLogViaIp(iIp)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the GetRegistrationLogByIp's args."
+	herr.Message = "Can't get to the GetRegistrationLogViaIp's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetRegistrationLogByBlogIdHandler(self *macross.Context) error {
+func GetRegistrationLogViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iBlogId := self.Args("blog_id").MustInt64()
 	if helper.IsHas(iBlogId) {
-		_RegistrationLog, _error := model.GetRegistrationLogByBlogId(iBlogId)
+		_RegistrationLog, _error := model.GetRegistrationLogViaBlogId(iBlogId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the GetRegistrationLogByBlogId's args."
+	herr.Message = "Can't get to the GetRegistrationLogViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetRegistrationLogByDateRegisteredHandler(self *macross.Context) error {
+func GetRegistrationLogViaDateRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDateRegistered := self.Args("date_registered").Time()
 	if helper.IsHas(iDateRegistered) {
-		_RegistrationLog, _error := model.GetRegistrationLogByDateRegistered(iDateRegistered)
+		_RegistrationLog, _error := model.GetRegistrationLogViaDateRegistered(iDateRegistered)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the GetRegistrationLogByDateRegistered's args."
+	herr.Message = "Can't get to the GetRegistrationLogViaDateRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetRegistrationLogByIdHandler(self *macross.Context) error {
+func PostSetRegistrationLogViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -799,18 +799,18 @@ func PostSetRegistrationLogByIdHandler(self *macross.Context) error {
 	if helper.IsHas(Id_) {
 		var iRegistrationLog model.RegistrationLog
 		self.Bind(&iRegistrationLog)
-		_RegistrationLog, _error := model.SetRegistrationLogById(Id_, &iRegistrationLog)
+		_RegistrationLog, _error := model.SetRegistrationLogViaId(Id_, &iRegistrationLog)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the SetRegistrationLogById's args."
+	herr.Message = "Can't get to the SetRegistrationLogViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetRegistrationLogByEmailHandler(self *macross.Context) error {
+func PostSetRegistrationLogViaEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -818,18 +818,18 @@ func PostSetRegistrationLogByEmailHandler(self *macross.Context) error {
 	if helper.IsHas(Email_) {
 		var iRegistrationLog model.RegistrationLog
 		self.Bind(&iRegistrationLog)
-		_RegistrationLog, _error := model.SetRegistrationLogByEmail(Email_, &iRegistrationLog)
+		_RegistrationLog, _error := model.SetRegistrationLogViaEmail(Email_, &iRegistrationLog)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the SetRegistrationLogByEmail's args."
+	herr.Message = "Can't get to the SetRegistrationLogViaEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetRegistrationLogByIpHandler(self *macross.Context) error {
+func PostSetRegistrationLogViaIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -837,18 +837,18 @@ func PostSetRegistrationLogByIpHandler(self *macross.Context) error {
 	if helper.IsHas(Ip_) {
 		var iRegistrationLog model.RegistrationLog
 		self.Bind(&iRegistrationLog)
-		_RegistrationLog, _error := model.SetRegistrationLogByIp(Ip_, &iRegistrationLog)
+		_RegistrationLog, _error := model.SetRegistrationLogViaIp(Ip_, &iRegistrationLog)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the SetRegistrationLogByIp's args."
+	herr.Message = "Can't get to the SetRegistrationLogViaIp's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetRegistrationLogByBlogIdHandler(self *macross.Context) error {
+func PostSetRegistrationLogViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -856,18 +856,18 @@ func PostSetRegistrationLogByBlogIdHandler(self *macross.Context) error {
 	if helper.IsHas(BlogId_) {
 		var iRegistrationLog model.RegistrationLog
 		self.Bind(&iRegistrationLog)
-		_RegistrationLog, _error := model.SetRegistrationLogByBlogId(BlogId_, &iRegistrationLog)
+		_RegistrationLog, _error := model.SetRegistrationLogViaBlogId(BlogId_, &iRegistrationLog)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the SetRegistrationLogByBlogId's args."
+	herr.Message = "Can't get to the SetRegistrationLogViaBlogId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetRegistrationLogByDateRegisteredHandler(self *macross.Context) error {
+func PostSetRegistrationLogViaDateRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -875,14 +875,14 @@ func PostSetRegistrationLogByDateRegisteredHandler(self *macross.Context) error 
 	if helper.IsHas(DateRegistered_) {
 		var iRegistrationLog model.RegistrationLog
 		self.Bind(&iRegistrationLog)
-		_RegistrationLog, _error := model.SetRegistrationLogByDateRegistered(DateRegistered_, &iRegistrationLog)
+		_RegistrationLog, _error := model.SetRegistrationLogViaDateRegistered(DateRegistered_, &iRegistrationLog)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_RegistrationLog)
 	}
-	herr.Message = "Can't get to the SetRegistrationLogByDateRegistered's args."
+	herr.Message = "Can't get to the SetRegistrationLogViaDateRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -917,7 +917,7 @@ func PostRegistrationLogHandler(self *macross.Context) error {
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
 	_int64, _error := model.PostRegistrationLog(&iRegistrationLog)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -935,7 +935,7 @@ func PutRegistrationLogHandler(self *macross.Context) error {
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
 	_int64, _error := model.PutRegistrationLog(&iRegistrationLog)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -946,14 +946,14 @@ func PutRegistrationLogHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutRegistrationLogByIdHandler(self *macross.Context) error {
+func PutRegistrationLogViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Id_ := self.Args("ID").MustInt64()
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
-	_int64, _error := model.PutRegistrationLogById(Id_, &iRegistrationLog)
+	_int64, _error := model.PutRegistrationLogViaId(Id_, &iRegistrationLog)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -963,14 +963,14 @@ func PutRegistrationLogByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutRegistrationLogByEmailHandler(self *macross.Context) error {
+func PutRegistrationLogViaEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Email_ := self.Args("email").String()
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
-	_int64, _error := model.PutRegistrationLogByEmail(Email_, &iRegistrationLog)
+	_int64, _error := model.PutRegistrationLogViaEmail(Email_, &iRegistrationLog)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -980,14 +980,14 @@ func PutRegistrationLogByEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutRegistrationLogByIpHandler(self *macross.Context) error {
+func PutRegistrationLogViaIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Ip_ := self.Args("IP").String()
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
-	_int64, _error := model.PutRegistrationLogByIp(Ip_, &iRegistrationLog)
+	_int64, _error := model.PutRegistrationLogViaIp(Ip_, &iRegistrationLog)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -997,14 +997,14 @@ func PutRegistrationLogByIpHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutRegistrationLogByBlogIdHandler(self *macross.Context) error {
+func PutRegistrationLogViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	BlogId_ := self.Args("blog_id").MustInt64()
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
-	_int64, _error := model.PutRegistrationLogByBlogId(BlogId_, &iRegistrationLog)
+	_int64, _error := model.PutRegistrationLogViaBlogId(BlogId_, &iRegistrationLog)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1014,14 +1014,14 @@ func PutRegistrationLogByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutRegistrationLogByDateRegisteredHandler(self *macross.Context) error {
+func PutRegistrationLogViaDateRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	DateRegistered_ := self.Args("date_registered").Time()
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
-	_int64, _error := model.PutRegistrationLogByDateRegistered(DateRegistered_, &iRegistrationLog)
+	_int64, _error := model.PutRegistrationLogViaDateRegistered(DateRegistered_, &iRegistrationLog)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1031,7 +1031,7 @@ func PutRegistrationLogByDateRegisteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateRegistrationLogByIdHandler(self *macross.Context) error {
+func PutUpdateRegistrationLogViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1039,7 +1039,7 @@ func PutUpdateRegistrationLogByIdHandler(self *macross.Context) error {
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
 	var iMap = helper.StructToMap(iRegistrationLog)
-	_error := model.UpdateRegistrationLogById(Id_, &iMap)
+	_error := model.UpdateRegistrationLogViaId(Id_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1049,7 +1049,7 @@ func PutUpdateRegistrationLogByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateRegistrationLogByEmailHandler(self *macross.Context) error {
+func PutUpdateRegistrationLogViaEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1057,7 +1057,7 @@ func PutUpdateRegistrationLogByEmailHandler(self *macross.Context) error {
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
 	var iMap = helper.StructToMap(iRegistrationLog)
-	_error := model.UpdateRegistrationLogByEmail(Email_, &iMap)
+	_error := model.UpdateRegistrationLogViaEmail(Email_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1067,7 +1067,7 @@ func PutUpdateRegistrationLogByEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateRegistrationLogByIpHandler(self *macross.Context) error {
+func PutUpdateRegistrationLogViaIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1075,7 +1075,7 @@ func PutUpdateRegistrationLogByIpHandler(self *macross.Context) error {
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
 	var iMap = helper.StructToMap(iRegistrationLog)
-	_error := model.UpdateRegistrationLogByIp(Ip_, &iMap)
+	_error := model.UpdateRegistrationLogViaIp(Ip_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1085,7 +1085,7 @@ func PutUpdateRegistrationLogByIpHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateRegistrationLogByBlogIdHandler(self *macross.Context) error {
+func PutUpdateRegistrationLogViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1093,7 +1093,7 @@ func PutUpdateRegistrationLogByBlogIdHandler(self *macross.Context) error {
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
 	var iMap = helper.StructToMap(iRegistrationLog)
-	_error := model.UpdateRegistrationLogByBlogId(BlogId_, &iMap)
+	_error := model.UpdateRegistrationLogViaBlogId(BlogId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1103,7 +1103,7 @@ func PutUpdateRegistrationLogByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateRegistrationLogByDateRegisteredHandler(self *macross.Context) error {
+func PutUpdateRegistrationLogViaDateRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1111,7 +1111,7 @@ func PutUpdateRegistrationLogByDateRegisteredHandler(self *macross.Context) erro
 	var iRegistrationLog model.RegistrationLog
 	self.Bind(&iRegistrationLog)
 	var iMap = helper.StructToMap(iRegistrationLog)
-	_error := model.UpdateRegistrationLogByDateRegistered(DateRegistered_, &iMap)
+	_error := model.UpdateRegistrationLogViaDateRegistered(DateRegistered_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1138,12 +1138,12 @@ func DeleteRegistrationLogHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteRegistrationLogByIdHandler(self *macross.Context) error {
+func DeleteRegistrationLogViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Id_ := self.Args("ID").MustInt64()
-	_error := model.DeleteRegistrationLogById(Id_)
+	_error := model.DeleteRegistrationLogViaId(Id_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1153,12 +1153,12 @@ func DeleteRegistrationLogByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteRegistrationLogByEmailHandler(self *macross.Context) error {
+func DeleteRegistrationLogViaEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Email_ := self.Args("email").String()
-	_error := model.DeleteRegistrationLogByEmail(Email_)
+	_error := model.DeleteRegistrationLogViaEmail(Email_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1168,12 +1168,12 @@ func DeleteRegistrationLogByEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteRegistrationLogByIpHandler(self *macross.Context) error {
+func DeleteRegistrationLogViaIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Ip_ := self.Args("IP").String()
-	_error := model.DeleteRegistrationLogByIp(Ip_)
+	_error := model.DeleteRegistrationLogViaIp(Ip_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1183,12 +1183,12 @@ func DeleteRegistrationLogByIpHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteRegistrationLogByBlogIdHandler(self *macross.Context) error {
+func DeleteRegistrationLogViaBlogIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	BlogId_ := self.Args("blog_id").MustInt64()
-	_error := model.DeleteRegistrationLogByBlogId(BlogId_)
+	_error := model.DeleteRegistrationLogViaBlogId(BlogId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1198,12 +1198,12 @@ func DeleteRegistrationLogByBlogIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteRegistrationLogByDateRegisteredHandler(self *macross.Context) error {
+func DeleteRegistrationLogViaDateRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	DateRegistered_ := self.Args("date_registered").Time()
-	_error := model.DeleteRegistrationLogByDateRegistered(DateRegistered_)
+	_error := model.DeleteRegistrationLogViaDateRegistered(DateRegistered_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

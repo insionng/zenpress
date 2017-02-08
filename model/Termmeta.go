@@ -13,26 +13,26 @@ func GetTermmetasCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetTermmetaCountByMetaId Get Termmeta via MetaId
-func GetTermmetaCountByMetaId(iMetaId int64) int64 {
+// GetTermmetaCountViaMetaId Get Termmeta via MetaId
+func GetTermmetaCountViaMetaId(iMetaId int64) int64 {
 	n, _ := Engine.Where("meta_id = ?", iMetaId).Count(&Termmeta{MetaId: iMetaId})
 	return n
 }
 
-// GetTermmetaCountByTermId Get Termmeta via TermId
-func GetTermmetaCountByTermId(iTermId int64) int64 {
+// GetTermmetaCountViaTermId Get Termmeta via TermId
+func GetTermmetaCountViaTermId(iTermId int64) int64 {
 	n, _ := Engine.Where("term_id = ?", iTermId).Count(&Termmeta{TermId: iTermId})
 	return n
 }
 
-// GetTermmetaCountByMetaKey Get Termmeta via MetaKey
-func GetTermmetaCountByMetaKey(iMetaKey string) int64 {
+// GetTermmetaCountViaMetaKey Get Termmeta via MetaKey
+func GetTermmetaCountViaMetaKey(iMetaKey string) int64 {
 	n, _ := Engine.Where("meta_key = ?", iMetaKey).Count(&Termmeta{MetaKey: iMetaKey})
 	return n
 }
 
-// GetTermmetaCountByMetaValue Get Termmeta via MetaValue
-func GetTermmetaCountByMetaValue(iMetaValue string) int64 {
+// GetTermmetaCountViaMetaValue Get Termmeta via MetaValue
+func GetTermmetaCountViaMetaValue(iMetaValue string) int64 {
 	n, _ := Engine.Where("meta_value = ?", iMetaValue).Count(&Termmeta{MetaValue: iMetaValue})
 	return n
 }
@@ -114,36 +114,36 @@ func GetTermmetas(offset int, limit int, field string) (*[]*Termmeta, error) {
 	return _Termmeta, err
 }
 
-// GetTermmetasByMetaId Get Termmetas via MetaId
-func GetTermmetasByMetaId(offset int, limit int, MetaId_ int64, field string) (*[]*Termmeta, error) {
+// GetTermmetasViaMetaId Get Termmetas via MetaId
+func GetTermmetasViaMetaId(offset int, limit int, MetaId_ int64, field string) (*[]*Termmeta, error) {
 	var _Termmeta = new([]*Termmeta)
 	err := Engine.Table("termmeta").Where("meta_id = ?", MetaId_).Limit(limit, offset).Desc(field).Find(_Termmeta)
 	return _Termmeta, err
 }
 
-// GetTermmetasByTermId Get Termmetas via TermId
-func GetTermmetasByTermId(offset int, limit int, TermId_ int64, field string) (*[]*Termmeta, error) {
+// GetTermmetasViaTermId Get Termmetas via TermId
+func GetTermmetasViaTermId(offset int, limit int, TermId_ int64, field string) (*[]*Termmeta, error) {
 	var _Termmeta = new([]*Termmeta)
 	err := Engine.Table("termmeta").Where("term_id = ?", TermId_).Limit(limit, offset).Desc(field).Find(_Termmeta)
 	return _Termmeta, err
 }
 
-// GetTermmetasByMetaKey Get Termmetas via MetaKey
-func GetTermmetasByMetaKey(offset int, limit int, MetaKey_ string, field string) (*[]*Termmeta, error) {
+// GetTermmetasViaMetaKey Get Termmetas via MetaKey
+func GetTermmetasViaMetaKey(offset int, limit int, MetaKey_ string, field string) (*[]*Termmeta, error) {
 	var _Termmeta = new([]*Termmeta)
 	err := Engine.Table("termmeta").Where("meta_key = ?", MetaKey_).Limit(limit, offset).Desc(field).Find(_Termmeta)
 	return _Termmeta, err
 }
 
-// GetTermmetasByMetaValue Get Termmetas via MetaValue
-func GetTermmetasByMetaValue(offset int, limit int, MetaValue_ string, field string) (*[]*Termmeta, error) {
+// GetTermmetasViaMetaValue Get Termmetas via MetaValue
+func GetTermmetasViaMetaValue(offset int, limit int, MetaValue_ string, field string) (*[]*Termmeta, error) {
 	var _Termmeta = new([]*Termmeta)
 	err := Engine.Table("termmeta").Where("meta_value = ?", MetaValue_).Limit(limit, offset).Desc(field).Find(_Termmeta)
 	return _Termmeta, err
 }
 
-// HasTermmetaByMetaId Has Termmeta via MetaId
-func HasTermmetaByMetaId(iMetaId int64) bool {
+// HasTermmetaViaMetaId Has Termmeta via MetaId
+func HasTermmetaViaMetaId(iMetaId int64) bool {
 	if has, err := Engine.Where("meta_id = ?", iMetaId).Get(new(Termmeta)); err != nil {
 		return false
 	} else {
@@ -154,8 +154,8 @@ func HasTermmetaByMetaId(iMetaId int64) bool {
 	}
 }
 
-// HasTermmetaByTermId Has Termmeta via TermId
-func HasTermmetaByTermId(iTermId int64) bool {
+// HasTermmetaViaTermId Has Termmeta via TermId
+func HasTermmetaViaTermId(iTermId int64) bool {
 	if has, err := Engine.Where("term_id = ?", iTermId).Get(new(Termmeta)); err != nil {
 		return false
 	} else {
@@ -166,8 +166,8 @@ func HasTermmetaByTermId(iTermId int64) bool {
 	}
 }
 
-// HasTermmetaByMetaKey Has Termmeta via MetaKey
-func HasTermmetaByMetaKey(iMetaKey string) bool {
+// HasTermmetaViaMetaKey Has Termmeta via MetaKey
+func HasTermmetaViaMetaKey(iMetaKey string) bool {
 	if has, err := Engine.Where("meta_key = ?", iMetaKey).Get(new(Termmeta)); err != nil {
 		return false
 	} else {
@@ -178,8 +178,8 @@ func HasTermmetaByMetaKey(iMetaKey string) bool {
 	}
 }
 
-// HasTermmetaByMetaValue Has Termmeta via MetaValue
-func HasTermmetaByMetaValue(iMetaValue string) bool {
+// HasTermmetaViaMetaValue Has Termmeta via MetaValue
+func HasTermmetaViaMetaValue(iMetaValue string) bool {
 	if has, err := Engine.Where("meta_value = ?", iMetaValue).Get(new(Termmeta)); err != nil {
 		return false
 	} else {
@@ -190,8 +190,8 @@ func HasTermmetaByMetaValue(iMetaValue string) bool {
 	}
 }
 
-// GetTermmetaByMetaId Get Termmeta via MetaId
-func GetTermmetaByMetaId(iMetaId int64) (*Termmeta, error) {
+// GetTermmetaViaMetaId Get Termmeta via MetaId
+func GetTermmetaViaMetaId(iMetaId int64) (*Termmeta, error) {
 	var _Termmeta = &Termmeta{MetaId: iMetaId}
 	has, err := Engine.Get(_Termmeta)
 	if has {
@@ -201,8 +201,8 @@ func GetTermmetaByMetaId(iMetaId int64) (*Termmeta, error) {
 	}
 }
 
-// GetTermmetaByTermId Get Termmeta via TermId
-func GetTermmetaByTermId(iTermId int64) (*Termmeta, error) {
+// GetTermmetaViaTermId Get Termmeta via TermId
+func GetTermmetaViaTermId(iTermId int64) (*Termmeta, error) {
 	var _Termmeta = &Termmeta{TermId: iTermId}
 	has, err := Engine.Get(_Termmeta)
 	if has {
@@ -212,8 +212,8 @@ func GetTermmetaByTermId(iTermId int64) (*Termmeta, error) {
 	}
 }
 
-// GetTermmetaByMetaKey Get Termmeta via MetaKey
-func GetTermmetaByMetaKey(iMetaKey string) (*Termmeta, error) {
+// GetTermmetaViaMetaKey Get Termmeta via MetaKey
+func GetTermmetaViaMetaKey(iMetaKey string) (*Termmeta, error) {
 	var _Termmeta = &Termmeta{MetaKey: iMetaKey}
 	has, err := Engine.Get(_Termmeta)
 	if has {
@@ -223,8 +223,8 @@ func GetTermmetaByMetaKey(iMetaKey string) (*Termmeta, error) {
 	}
 }
 
-// GetTermmetaByMetaValue Get Termmeta via MetaValue
-func GetTermmetaByMetaValue(iMetaValue string) (*Termmeta, error) {
+// GetTermmetaViaMetaValue Get Termmeta via MetaValue
+func GetTermmetaViaMetaValue(iMetaValue string) (*Termmeta, error) {
 	var _Termmeta = &Termmeta{MetaValue: iMetaValue}
 	has, err := Engine.Get(_Termmeta)
 	if has {
@@ -234,26 +234,26 @@ func GetTermmetaByMetaValue(iMetaValue string) (*Termmeta, error) {
 	}
 }
 
-// SetTermmetaByMetaId Set Termmeta via MetaId
-func SetTermmetaByMetaId(iMetaId int64, termmeta *Termmeta) (int64, error) {
+// SetTermmetaViaMetaId Set Termmeta via MetaId
+func SetTermmetaViaMetaId(iMetaId int64, termmeta *Termmeta) (int64, error) {
 	termmeta.MetaId = iMetaId
 	return Engine.Insert(termmeta)
 }
 
-// SetTermmetaByTermId Set Termmeta via TermId
-func SetTermmetaByTermId(iTermId int64, termmeta *Termmeta) (int64, error) {
+// SetTermmetaViaTermId Set Termmeta via TermId
+func SetTermmetaViaTermId(iTermId int64, termmeta *Termmeta) (int64, error) {
 	termmeta.TermId = iTermId
 	return Engine.Insert(termmeta)
 }
 
-// SetTermmetaByMetaKey Set Termmeta via MetaKey
-func SetTermmetaByMetaKey(iMetaKey string, termmeta *Termmeta) (int64, error) {
+// SetTermmetaViaMetaKey Set Termmeta via MetaKey
+func SetTermmetaViaMetaKey(iMetaKey string, termmeta *Termmeta) (int64, error) {
 	termmeta.MetaKey = iMetaKey
 	return Engine.Insert(termmeta)
 }
 
-// SetTermmetaByMetaValue Set Termmeta via MetaValue
-func SetTermmetaByMetaValue(iMetaValue string, termmeta *Termmeta) (int64, error) {
+// SetTermmetaViaMetaValue Set Termmeta via MetaValue
+func SetTermmetaViaMetaValue(iMetaValue string, termmeta *Termmeta) (int64, error) {
 	termmeta.MetaValue = iMetaValue
 	return Engine.Insert(termmeta)
 }
@@ -280,32 +280,32 @@ func PutTermmeta(iTermmeta *Termmeta) (int64, error) {
 	return iTermmeta.MetaId, err
 }
 
-// PutTermmetaByMetaId Put Termmeta via MetaId
-func PutTermmetaByMetaId(MetaId_ int64, iTermmeta *Termmeta) (int64, error) {
+// PutTermmetaViaMetaId Put Termmeta via MetaId
+func PutTermmetaViaMetaId(MetaId_ int64, iTermmeta *Termmeta) (int64, error) {
 	row, err := Engine.Update(iTermmeta, &Termmeta{MetaId: MetaId_})
 	return row, err
 }
 
-// PutTermmetaByTermId Put Termmeta via TermId
-func PutTermmetaByTermId(TermId_ int64, iTermmeta *Termmeta) (int64, error) {
+// PutTermmetaViaTermId Put Termmeta via TermId
+func PutTermmetaViaTermId(TermId_ int64, iTermmeta *Termmeta) (int64, error) {
 	row, err := Engine.Update(iTermmeta, &Termmeta{TermId: TermId_})
 	return row, err
 }
 
-// PutTermmetaByMetaKey Put Termmeta via MetaKey
-func PutTermmetaByMetaKey(MetaKey_ string, iTermmeta *Termmeta) (int64, error) {
+// PutTermmetaViaMetaKey Put Termmeta via MetaKey
+func PutTermmetaViaMetaKey(MetaKey_ string, iTermmeta *Termmeta) (int64, error) {
 	row, err := Engine.Update(iTermmeta, &Termmeta{MetaKey: MetaKey_})
 	return row, err
 }
 
-// PutTermmetaByMetaValue Put Termmeta via MetaValue
-func PutTermmetaByMetaValue(MetaValue_ string, iTermmeta *Termmeta) (int64, error) {
+// PutTermmetaViaMetaValue Put Termmeta via MetaValue
+func PutTermmetaViaMetaValue(MetaValue_ string, iTermmeta *Termmeta) (int64, error) {
 	row, err := Engine.Update(iTermmeta, &Termmeta{MetaValue: MetaValue_})
 	return row, err
 }
 
-// UpdateTermmetaByMetaId via map[string]interface{}{}
-func UpdateTermmetaByMetaId(iMetaId int64, iTermmetaMap *map[string]interface{}) error {
+// UpdateTermmetaViaMetaId via map[string]interface{}{}
+func UpdateTermmetaViaMetaId(iMetaId int64, iTermmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Termmeta)).Where("meta_id = ?", iMetaId).Update(iTermmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -313,8 +313,8 @@ func UpdateTermmetaByMetaId(iMetaId int64, iTermmetaMap *map[string]interface{})
 	}
 }
 
-// UpdateTermmetaByTermId via map[string]interface{}{}
-func UpdateTermmetaByTermId(iTermId int64, iTermmetaMap *map[string]interface{}) error {
+// UpdateTermmetaViaTermId via map[string]interface{}{}
+func UpdateTermmetaViaTermId(iTermId int64, iTermmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Termmeta)).Where("term_id = ?", iTermId).Update(iTermmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -322,8 +322,8 @@ func UpdateTermmetaByTermId(iTermId int64, iTermmetaMap *map[string]interface{})
 	}
 }
 
-// UpdateTermmetaByMetaKey via map[string]interface{}{}
-func UpdateTermmetaByMetaKey(iMetaKey string, iTermmetaMap *map[string]interface{}) error {
+// UpdateTermmetaViaMetaKey via map[string]interface{}{}
+func UpdateTermmetaViaMetaKey(iMetaKey string, iTermmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Termmeta)).Where("meta_key = ?", iMetaKey).Update(iTermmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -331,8 +331,8 @@ func UpdateTermmetaByMetaKey(iMetaKey string, iTermmetaMap *map[string]interface
 	}
 }
 
-// UpdateTermmetaByMetaValue via map[string]interface{}{}
-func UpdateTermmetaByMetaValue(iMetaValue string, iTermmetaMap *map[string]interface{}) error {
+// UpdateTermmetaViaMetaValue via map[string]interface{}{}
+func UpdateTermmetaViaMetaValue(iMetaValue string, iTermmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Termmeta)).Where("meta_value = ?", iMetaValue).Update(iTermmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -346,8 +346,8 @@ func DeleteTermmeta(iMetaId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteTermmetaByMetaId Delete Termmeta via MetaId
-func DeleteTermmetaByMetaId(iMetaId int64) (err error) {
+// DeleteTermmetaViaMetaId Delete Termmeta via MetaId
+func DeleteTermmetaViaMetaId(iMetaId int64) (err error) {
 	var has bool
 	var _Termmeta = &Termmeta{MetaId: iMetaId}
 	if has, err = Engine.Get(_Termmeta); (has == true) && (err == nil) {
@@ -360,8 +360,8 @@ func DeleteTermmetaByMetaId(iMetaId int64) (err error) {
 	return
 }
 
-// DeleteTermmetaByTermId Delete Termmeta via TermId
-func DeleteTermmetaByTermId(iTermId int64) (err error) {
+// DeleteTermmetaViaTermId Delete Termmeta via TermId
+func DeleteTermmetaViaTermId(iTermId int64) (err error) {
 	var has bool
 	var _Termmeta = &Termmeta{TermId: iTermId}
 	if has, err = Engine.Get(_Termmeta); (has == true) && (err == nil) {
@@ -374,8 +374,8 @@ func DeleteTermmetaByTermId(iTermId int64) (err error) {
 	return
 }
 
-// DeleteTermmetaByMetaKey Delete Termmeta via MetaKey
-func DeleteTermmetaByMetaKey(iMetaKey string) (err error) {
+// DeleteTermmetaViaMetaKey Delete Termmeta via MetaKey
+func DeleteTermmetaViaMetaKey(iMetaKey string) (err error) {
 	var has bool
 	var _Termmeta = &Termmeta{MetaKey: iMetaKey}
 	if has, err = Engine.Get(_Termmeta); (has == true) && (err == nil) {
@@ -388,8 +388,8 @@ func DeleteTermmetaByMetaKey(iMetaKey string) (err error) {
 	return
 }
 
-// DeleteTermmetaByMetaValue Delete Termmeta via MetaValue
-func DeleteTermmetaByMetaValue(iMetaValue string) (err error) {
+// DeleteTermmetaViaMetaValue Delete Termmeta via MetaValue
+func DeleteTermmetaViaMetaValue(iMetaValue string) (err error) {
 	var has bool
 	var _Termmeta = &Termmeta{MetaValue: iMetaValue}
 	if has, err = Engine.Get(_Termmeta); (has == true) && (err == nil) {

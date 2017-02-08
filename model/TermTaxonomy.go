@@ -15,38 +15,38 @@ func GetTermTaxonomiesCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetTermTaxonomyCountByTermTaxonomyId Get TermTaxonomy via TermTaxonomyId
-func GetTermTaxonomyCountByTermTaxonomyId(iTermTaxonomyId int64) int64 {
+// GetTermTaxonomyCountViaTermTaxonomyId Get TermTaxonomy via TermTaxonomyId
+func GetTermTaxonomyCountViaTermTaxonomyId(iTermTaxonomyId int64) int64 {
 	n, _ := Engine.Where("term_taxonomy_id = ?", iTermTaxonomyId).Count(&TermTaxonomy{TermTaxonomyId: iTermTaxonomyId})
 	return n
 }
 
-// GetTermTaxonomyCountByTermId Get TermTaxonomy via TermId
-func GetTermTaxonomyCountByTermId(iTermId int64) int64 {
+// GetTermTaxonomyCountViaTermId Get TermTaxonomy via TermId
+func GetTermTaxonomyCountViaTermId(iTermId int64) int64 {
 	n, _ := Engine.Where("term_id = ?", iTermId).Count(&TermTaxonomy{TermId: iTermId})
 	return n
 }
 
-// GetTermTaxonomyCountByTaxonomy Get TermTaxonomy via Taxonomy
-func GetTermTaxonomyCountByTaxonomy(iTaxonomy string) int64 {
+// GetTermTaxonomyCountViaTaxonomy Get TermTaxonomy via Taxonomy
+func GetTermTaxonomyCountViaTaxonomy(iTaxonomy string) int64 {
 	n, _ := Engine.Where("taxonomy = ?", iTaxonomy).Count(&TermTaxonomy{Taxonomy: iTaxonomy})
 	return n
 }
 
-// GetTermTaxonomyCountByDescription Get TermTaxonomy via Description
-func GetTermTaxonomyCountByDescription(iDescription string) int64 {
+// GetTermTaxonomyCountViaDescription Get TermTaxonomy via Description
+func GetTermTaxonomyCountViaDescription(iDescription string) int64 {
 	n, _ := Engine.Where("description = ?", iDescription).Count(&TermTaxonomy{Description: iDescription})
 	return n
 }
 
-// GetTermTaxonomyCountByParent Get TermTaxonomy via Parent
-func GetTermTaxonomyCountByParent(iParent int64) int64 {
+// GetTermTaxonomyCountViaParent Get TermTaxonomy via Parent
+func GetTermTaxonomyCountViaParent(iParent int64) int64 {
 	n, _ := Engine.Where("parent = ?", iParent).Count(&TermTaxonomy{Parent: iParent})
 	return n
 }
 
-// GetTermTaxonomyCountByCount Get TermTaxonomy via Count
-func GetTermTaxonomyCountByCount(iCount int64) int64 {
+// GetTermTaxonomyCountViaCount Get TermTaxonomy via Count
+func GetTermTaxonomyCountViaCount(iCount int64) int64 {
 	n, _ := Engine.Where("count = ?", iCount).Count(&TermTaxonomy{Count: iCount})
 	return n
 }
@@ -303,50 +303,50 @@ func GetTermTaxonomies(offset int, limit int, field string) (*[]*TermTaxonomy, e
 	return _TermTaxonomy, err
 }
 
-// GetTermTaxonomiesByTermTaxonomyId Get TermTaxonomys via TermTaxonomyId
-func GetTermTaxonomiesByTermTaxonomyId(offset int, limit int, TermTaxonomyId_ int64, field string) (*[]*TermTaxonomy, error) {
+// GetTermTaxonomiesViaTermTaxonomyId Get TermTaxonomys via TermTaxonomyId
+func GetTermTaxonomiesViaTermTaxonomyId(offset int, limit int, TermTaxonomyId_ int64, field string) (*[]*TermTaxonomy, error) {
 	var _TermTaxonomy = new([]*TermTaxonomy)
 	err := Engine.Table("term_taxonomy").Where("term_taxonomy_id = ?", TermTaxonomyId_).Limit(limit, offset).Desc(field).Find(_TermTaxonomy)
 	return _TermTaxonomy, err
 }
 
-// GetTermTaxonomiesByTermId Get TermTaxonomys via TermId
-func GetTermTaxonomiesByTermId(offset int, limit int, TermId_ int64, field string) (*[]*TermTaxonomy, error) {
+// GetTermTaxonomiesViaTermId Get TermTaxonomys via TermId
+func GetTermTaxonomiesViaTermId(offset int, limit int, TermId_ int64, field string) (*[]*TermTaxonomy, error) {
 	var _TermTaxonomy = new([]*TermTaxonomy)
 	err := Engine.Table("term_taxonomy").Where("term_id = ?", TermId_).Limit(limit, offset).Desc(field).Find(_TermTaxonomy)
 	return _TermTaxonomy, err
 }
 
-// GetTermTaxonomiesByTaxonomy Get TermTaxonomys via Taxonomy
-func GetTermTaxonomiesByTaxonomy(offset int, limit int, Taxonomy_ string, field string) (*[]*TermTaxonomy, error) {
+// GetTermTaxonomiesViaTaxonomy Get TermTaxonomys via Taxonomy
+func GetTermTaxonomiesViaTaxonomy(offset int, limit int, Taxonomy_ string, field string) (*[]*TermTaxonomy, error) {
 	var _TermTaxonomy = new([]*TermTaxonomy)
 	err := Engine.Table("term_taxonomy").Where("taxonomy = ?", Taxonomy_).Limit(limit, offset).Desc(field).Find(_TermTaxonomy)
 	return _TermTaxonomy, err
 }
 
-// GetTermTaxonomiesByDescription Get TermTaxonomys via Description
-func GetTermTaxonomiesByDescription(offset int, limit int, Description_ string, field string) (*[]*TermTaxonomy, error) {
+// GetTermTaxonomiesViaDescription Get TermTaxonomys via Description
+func GetTermTaxonomiesViaDescription(offset int, limit int, Description_ string, field string) (*[]*TermTaxonomy, error) {
 	var _TermTaxonomy = new([]*TermTaxonomy)
 	err := Engine.Table("term_taxonomy").Where("description = ?", Description_).Limit(limit, offset).Desc(field).Find(_TermTaxonomy)
 	return _TermTaxonomy, err
 }
 
-// GetTermTaxonomiesByParent Get TermTaxonomys via Parent
-func GetTermTaxonomiesByParent(offset int, limit int, Parent_ int64, field string) (*[]*TermTaxonomy, error) {
+// GetTermTaxonomiesViaParent Get TermTaxonomys via Parent
+func GetTermTaxonomiesViaParent(offset int, limit int, Parent_ int64, field string) (*[]*TermTaxonomy, error) {
 	var _TermTaxonomy = new([]*TermTaxonomy)
 	err := Engine.Table("term_taxonomy").Where("parent = ?", Parent_).Limit(limit, offset).Desc(field).Find(_TermTaxonomy)
 	return _TermTaxonomy, err
 }
 
-// GetTermTaxonomiesByCount Get TermTaxonomys via Count
-func GetTermTaxonomiesByCount(offset int, limit int, Count_ int64, field string) (*[]*TermTaxonomy, error) {
+// GetTermTaxonomiesViaCount Get TermTaxonomys via Count
+func GetTermTaxonomiesViaCount(offset int, limit int, Count_ int64, field string) (*[]*TermTaxonomy, error) {
 	var _TermTaxonomy = new([]*TermTaxonomy)
 	err := Engine.Table("term_taxonomy").Where("count = ?", Count_).Limit(limit, offset).Desc(field).Find(_TermTaxonomy)
 	return _TermTaxonomy, err
 }
 
-// HasTermTaxonomyByTermTaxonomyId Has TermTaxonomy via TermTaxonomyId
-func HasTermTaxonomyByTermTaxonomyId(iTermTaxonomyId int64) bool {
+// HasTermTaxonomyViaTermTaxonomyId Has TermTaxonomy via TermTaxonomyId
+func HasTermTaxonomyViaTermTaxonomyId(iTermTaxonomyId int64) bool {
 	if has, err := Engine.Where("term_taxonomy_id = ?", iTermTaxonomyId).Get(new(TermTaxonomy)); err != nil {
 		return false
 	} else {
@@ -357,8 +357,8 @@ func HasTermTaxonomyByTermTaxonomyId(iTermTaxonomyId int64) bool {
 	}
 }
 
-// HasTermTaxonomyByTermId Has TermTaxonomy via TermId
-func HasTermTaxonomyByTermId(iTermId int64) bool {
+// HasTermTaxonomyViaTermId Has TermTaxonomy via TermId
+func HasTermTaxonomyViaTermId(iTermId int64) bool {
 	if has, err := Engine.Where("term_id = ?", iTermId).Get(new(TermTaxonomy)); err != nil {
 		return false
 	} else {
@@ -369,8 +369,8 @@ func HasTermTaxonomyByTermId(iTermId int64) bool {
 	}
 }
 
-// HasTermTaxonomyByTaxonomy Has TermTaxonomy via Taxonomy
-func HasTermTaxonomyByTaxonomy(iTaxonomy string) bool {
+// HasTermTaxonomyViaTaxonomy Has TermTaxonomy via Taxonomy
+func HasTermTaxonomyViaTaxonomy(iTaxonomy string) bool {
 	if has, err := Engine.Where("taxonomy = ?", iTaxonomy).Get(new(TermTaxonomy)); err != nil {
 		return false
 	} else {
@@ -381,8 +381,8 @@ func HasTermTaxonomyByTaxonomy(iTaxonomy string) bool {
 	}
 }
 
-// HasTermTaxonomyByDescription Has TermTaxonomy via Description
-func HasTermTaxonomyByDescription(iDescription string) bool {
+// HasTermTaxonomyViaDescription Has TermTaxonomy via Description
+func HasTermTaxonomyViaDescription(iDescription string) bool {
 	if has, err := Engine.Where("description = ?", iDescription).Get(new(TermTaxonomy)); err != nil {
 		return false
 	} else {
@@ -393,8 +393,8 @@ func HasTermTaxonomyByDescription(iDescription string) bool {
 	}
 }
 
-// HasTermTaxonomyByParent Has TermTaxonomy via Parent
-func HasTermTaxonomyByParent(iParent int64) bool {
+// HasTermTaxonomyViaParent Has TermTaxonomy via Parent
+func HasTermTaxonomyViaParent(iParent int64) bool {
 	if has, err := Engine.Where("parent = ?", iParent).Get(new(TermTaxonomy)); err != nil {
 		return false
 	} else {
@@ -405,8 +405,8 @@ func HasTermTaxonomyByParent(iParent int64) bool {
 	}
 }
 
-// HasTermTaxonomyByCount Has TermTaxonomy via Count
-func HasTermTaxonomyByCount(iCount int64) bool {
+// HasTermTaxonomyViaCount Has TermTaxonomy via Count
+func HasTermTaxonomyViaCount(iCount int64) bool {
 	if has, err := Engine.Where("count = ?", iCount).Get(new(TermTaxonomy)); err != nil {
 		return false
 	} else {
@@ -417,8 +417,8 @@ func HasTermTaxonomyByCount(iCount int64) bool {
 	}
 }
 
-// GetTermTaxonomyByTermTaxonomyId Get TermTaxonomy via TermTaxonomyId
-func GetTermTaxonomyByTermTaxonomyId(iTermTaxonomyId int64) (*TermTaxonomy, error) {
+// GetTermTaxonomyViaTermTaxonomyId Get TermTaxonomy via TermTaxonomyId
+func GetTermTaxonomyViaTermTaxonomyId(iTermTaxonomyId int64) (*TermTaxonomy, error) {
 	var _TermTaxonomy = &TermTaxonomy{TermTaxonomyId: iTermTaxonomyId}
 	has, err := Engine.Get(_TermTaxonomy)
 	if has {
@@ -428,8 +428,8 @@ func GetTermTaxonomyByTermTaxonomyId(iTermTaxonomyId int64) (*TermTaxonomy, erro
 	}
 }
 
-// GetTermTaxonomyByTermId Get TermTaxonomy via TermId
-func GetTermTaxonomyByTermId(iTermId int64) (*TermTaxonomy, error) {
+// GetTermTaxonomyViaTermId Get TermTaxonomy via TermId
+func GetTermTaxonomyViaTermId(iTermId int64) (*TermTaxonomy, error) {
 	var _TermTaxonomy = &TermTaxonomy{TermId: iTermId}
 	has, err := Engine.Get(_TermTaxonomy)
 	if has {
@@ -439,8 +439,8 @@ func GetTermTaxonomyByTermId(iTermId int64) (*TermTaxonomy, error) {
 	}
 }
 
-// GetTermTaxonomyByTaxonomy Get TermTaxonomy via Taxonomy
-func GetTermTaxonomyByTaxonomy(iTaxonomy string) (*TermTaxonomy, error) {
+// GetTermTaxonomyViaTaxonomy Get TermTaxonomy via Taxonomy
+func GetTermTaxonomyViaTaxonomy(iTaxonomy string) (*TermTaxonomy, error) {
 	var _TermTaxonomy = &TermTaxonomy{Taxonomy: iTaxonomy}
 	has, err := Engine.Get(_TermTaxonomy)
 	if has {
@@ -450,8 +450,8 @@ func GetTermTaxonomyByTaxonomy(iTaxonomy string) (*TermTaxonomy, error) {
 	}
 }
 
-// GetTermTaxonomyByDescription Get TermTaxonomy via Description
-func GetTermTaxonomyByDescription(iDescription string) (*TermTaxonomy, error) {
+// GetTermTaxonomyViaDescription Get TermTaxonomy via Description
+func GetTermTaxonomyViaDescription(iDescription string) (*TermTaxonomy, error) {
 	var _TermTaxonomy = &TermTaxonomy{Description: iDescription}
 	has, err := Engine.Get(_TermTaxonomy)
 	if has {
@@ -461,8 +461,8 @@ func GetTermTaxonomyByDescription(iDescription string) (*TermTaxonomy, error) {
 	}
 }
 
-// GetTermTaxonomyByParent Get TermTaxonomy via Parent
-func GetTermTaxonomyByParent(iParent int64) (*TermTaxonomy, error) {
+// GetTermTaxonomyViaParent Get TermTaxonomy via Parent
+func GetTermTaxonomyViaParent(iParent int64) (*TermTaxonomy, error) {
 	var _TermTaxonomy = &TermTaxonomy{Parent: iParent}
 	has, err := Engine.Get(_TermTaxonomy)
 	if has {
@@ -472,8 +472,8 @@ func GetTermTaxonomyByParent(iParent int64) (*TermTaxonomy, error) {
 	}
 }
 
-// GetTermTaxonomyByCount Get TermTaxonomy via Count
-func GetTermTaxonomyByCount(iCount int64) (*TermTaxonomy, error) {
+// GetTermTaxonomyViaCount Get TermTaxonomy via Count
+func GetTermTaxonomyViaCount(iCount int64) (*TermTaxonomy, error) {
 	var _TermTaxonomy = &TermTaxonomy{Count: iCount}
 	has, err := Engine.Get(_TermTaxonomy)
 	if has {
@@ -483,38 +483,38 @@ func GetTermTaxonomyByCount(iCount int64) (*TermTaxonomy, error) {
 	}
 }
 
-// SetTermTaxonomyByTermTaxonomyId Set TermTaxonomy via TermTaxonomyId
-func SetTermTaxonomyByTermTaxonomyId(iTermTaxonomyId int64, term_taxonomy *TermTaxonomy) (int64, error) {
+// SetTermTaxonomyViaTermTaxonomyId Set TermTaxonomy via TermTaxonomyId
+func SetTermTaxonomyViaTermTaxonomyId(iTermTaxonomyId int64, term_taxonomy *TermTaxonomy) (int64, error) {
 	term_taxonomy.TermTaxonomyId = iTermTaxonomyId
 	return Engine.Insert(term_taxonomy)
 }
 
-// SetTermTaxonomyByTermId Set TermTaxonomy via TermId
-func SetTermTaxonomyByTermId(iTermId int64, term_taxonomy *TermTaxonomy) (int64, error) {
+// SetTermTaxonomyViaTermId Set TermTaxonomy via TermId
+func SetTermTaxonomyViaTermId(iTermId int64, term_taxonomy *TermTaxonomy) (int64, error) {
 	term_taxonomy.TermId = iTermId
 	return Engine.Insert(term_taxonomy)
 }
 
-// SetTermTaxonomyByTaxonomy Set TermTaxonomy via Taxonomy
-func SetTermTaxonomyByTaxonomy(iTaxonomy string, term_taxonomy *TermTaxonomy) (int64, error) {
+// SetTermTaxonomyViaTaxonomy Set TermTaxonomy via Taxonomy
+func SetTermTaxonomyViaTaxonomy(iTaxonomy string, term_taxonomy *TermTaxonomy) (int64, error) {
 	term_taxonomy.Taxonomy = iTaxonomy
 	return Engine.Insert(term_taxonomy)
 }
 
-// SetTermTaxonomyByDescription Set TermTaxonomy via Description
-func SetTermTaxonomyByDescription(iDescription string, term_taxonomy *TermTaxonomy) (int64, error) {
+// SetTermTaxonomyViaDescription Set TermTaxonomy via Description
+func SetTermTaxonomyViaDescription(iDescription string, term_taxonomy *TermTaxonomy) (int64, error) {
 	term_taxonomy.Description = iDescription
 	return Engine.Insert(term_taxonomy)
 }
 
-// SetTermTaxonomyByParent Set TermTaxonomy via Parent
-func SetTermTaxonomyByParent(iParent int64, term_taxonomy *TermTaxonomy) (int64, error) {
+// SetTermTaxonomyViaParent Set TermTaxonomy via Parent
+func SetTermTaxonomyViaParent(iParent int64, term_taxonomy *TermTaxonomy) (int64, error) {
 	term_taxonomy.Parent = iParent
 	return Engine.Insert(term_taxonomy)
 }
 
-// SetTermTaxonomyByCount Set TermTaxonomy via Count
-func SetTermTaxonomyByCount(iCount int64, term_taxonomy *TermTaxonomy) (int64, error) {
+// SetTermTaxonomyViaCount Set TermTaxonomy via Count
+func SetTermTaxonomyViaCount(iCount int64, term_taxonomy *TermTaxonomy) (int64, error) {
 	term_taxonomy.Count = iCount
 	return Engine.Insert(term_taxonomy)
 }
@@ -541,44 +541,44 @@ func PutTermTaxonomy(iTermTaxonomy *TermTaxonomy) (int64, error) {
 	return iTermTaxonomy.TermTaxonomyId, err
 }
 
-// PutTermTaxonomyByTermTaxonomyId Put TermTaxonomy via TermTaxonomyId
-func PutTermTaxonomyByTermTaxonomyId(TermTaxonomyId_ int64, iTermTaxonomy *TermTaxonomy) (int64, error) {
+// PutTermTaxonomyViaTermTaxonomyId Put TermTaxonomy via TermTaxonomyId
+func PutTermTaxonomyViaTermTaxonomyId(TermTaxonomyId_ int64, iTermTaxonomy *TermTaxonomy) (int64, error) {
 	row, err := Engine.Update(iTermTaxonomy, &TermTaxonomy{TermTaxonomyId: TermTaxonomyId_})
 	return row, err
 }
 
-// PutTermTaxonomyByTermId Put TermTaxonomy via TermId
-func PutTermTaxonomyByTermId(TermId_ int64, iTermTaxonomy *TermTaxonomy) (int64, error) {
+// PutTermTaxonomyViaTermId Put TermTaxonomy via TermId
+func PutTermTaxonomyViaTermId(TermId_ int64, iTermTaxonomy *TermTaxonomy) (int64, error) {
 	row, err := Engine.Update(iTermTaxonomy, &TermTaxonomy{TermId: TermId_})
 	return row, err
 }
 
-// PutTermTaxonomyByTaxonomy Put TermTaxonomy via Taxonomy
-func PutTermTaxonomyByTaxonomy(Taxonomy_ string, iTermTaxonomy *TermTaxonomy) (int64, error) {
+// PutTermTaxonomyViaTaxonomy Put TermTaxonomy via Taxonomy
+func PutTermTaxonomyViaTaxonomy(Taxonomy_ string, iTermTaxonomy *TermTaxonomy) (int64, error) {
 	row, err := Engine.Update(iTermTaxonomy, &TermTaxonomy{Taxonomy: Taxonomy_})
 	return row, err
 }
 
-// PutTermTaxonomyByDescription Put TermTaxonomy via Description
-func PutTermTaxonomyByDescription(Description_ string, iTermTaxonomy *TermTaxonomy) (int64, error) {
+// PutTermTaxonomyViaDescription Put TermTaxonomy via Description
+func PutTermTaxonomyViaDescription(Description_ string, iTermTaxonomy *TermTaxonomy) (int64, error) {
 	row, err := Engine.Update(iTermTaxonomy, &TermTaxonomy{Description: Description_})
 	return row, err
 }
 
-// PutTermTaxonomyByParent Put TermTaxonomy via Parent
-func PutTermTaxonomyByParent(Parent_ int64, iTermTaxonomy *TermTaxonomy) (int64, error) {
+// PutTermTaxonomyViaParent Put TermTaxonomy via Parent
+func PutTermTaxonomyViaParent(Parent_ int64, iTermTaxonomy *TermTaxonomy) (int64, error) {
 	row, err := Engine.Update(iTermTaxonomy, &TermTaxonomy{Parent: Parent_})
 	return row, err
 }
 
-// PutTermTaxonomyByCount Put TermTaxonomy via Count
-func PutTermTaxonomyByCount(Count_ int64, iTermTaxonomy *TermTaxonomy) (int64, error) {
+// PutTermTaxonomyViaCount Put TermTaxonomy via Count
+func PutTermTaxonomyViaCount(Count_ int64, iTermTaxonomy *TermTaxonomy) (int64, error) {
 	row, err := Engine.Update(iTermTaxonomy, &TermTaxonomy{Count: Count_})
 	return row, err
 }
 
-// UpdateTermTaxonomyByTermTaxonomyId via map[string]interface{}{}
-func UpdateTermTaxonomyByTermTaxonomyId(iTermTaxonomyId int64, iTermTaxonomyMap *map[string]interface{}) error {
+// UpdateTermTaxonomyViaTermTaxonomyId via map[string]interface{}{}
+func UpdateTermTaxonomyViaTermTaxonomyId(iTermTaxonomyId int64, iTermTaxonomyMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(TermTaxonomy)).Where("term_taxonomy_id = ?", iTermTaxonomyId).Update(iTermTaxonomyMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -586,8 +586,8 @@ func UpdateTermTaxonomyByTermTaxonomyId(iTermTaxonomyId int64, iTermTaxonomyMap 
 	}
 }
 
-// UpdateTermTaxonomyByTermId via map[string]interface{}{}
-func UpdateTermTaxonomyByTermId(iTermId int64, iTermTaxonomyMap *map[string]interface{}) error {
+// UpdateTermTaxonomyViaTermId via map[string]interface{}{}
+func UpdateTermTaxonomyViaTermId(iTermId int64, iTermTaxonomyMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(TermTaxonomy)).Where("term_id = ?", iTermId).Update(iTermTaxonomyMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -595,8 +595,8 @@ func UpdateTermTaxonomyByTermId(iTermId int64, iTermTaxonomyMap *map[string]inte
 	}
 }
 
-// UpdateTermTaxonomyByTaxonomy via map[string]interface{}{}
-func UpdateTermTaxonomyByTaxonomy(iTaxonomy string, iTermTaxonomyMap *map[string]interface{}) error {
+// UpdateTermTaxonomyViaTaxonomy via map[string]interface{}{}
+func UpdateTermTaxonomyViaTaxonomy(iTaxonomy string, iTermTaxonomyMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(TermTaxonomy)).Where("taxonomy = ?", iTaxonomy).Update(iTermTaxonomyMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -604,8 +604,8 @@ func UpdateTermTaxonomyByTaxonomy(iTaxonomy string, iTermTaxonomyMap *map[string
 	}
 }
 
-// UpdateTermTaxonomyByDescription via map[string]interface{}{}
-func UpdateTermTaxonomyByDescription(iDescription string, iTermTaxonomyMap *map[string]interface{}) error {
+// UpdateTermTaxonomyViaDescription via map[string]interface{}{}
+func UpdateTermTaxonomyViaDescription(iDescription string, iTermTaxonomyMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(TermTaxonomy)).Where("description = ?", iDescription).Update(iTermTaxonomyMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -613,8 +613,8 @@ func UpdateTermTaxonomyByDescription(iDescription string, iTermTaxonomyMap *map[
 	}
 }
 
-// UpdateTermTaxonomyByParent via map[string]interface{}{}
-func UpdateTermTaxonomyByParent(iParent int64, iTermTaxonomyMap *map[string]interface{}) error {
+// UpdateTermTaxonomyViaParent via map[string]interface{}{}
+func UpdateTermTaxonomyViaParent(iParent int64, iTermTaxonomyMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(TermTaxonomy)).Where("parent = ?", iParent).Update(iTermTaxonomyMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -622,8 +622,8 @@ func UpdateTermTaxonomyByParent(iParent int64, iTermTaxonomyMap *map[string]inte
 	}
 }
 
-// UpdateTermTaxonomyByCount via map[string]interface{}{}
-func UpdateTermTaxonomyByCount(iCount int64, iTermTaxonomyMap *map[string]interface{}) error {
+// UpdateTermTaxonomyViaCount via map[string]interface{}{}
+func UpdateTermTaxonomyViaCount(iCount int64, iTermTaxonomyMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(TermTaxonomy)).Where("count = ?", iCount).Update(iTermTaxonomyMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -637,8 +637,8 @@ func DeleteTermTaxonomy(iTermTaxonomyId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteTermTaxonomyByTermTaxonomyId Delete TermTaxonomy via TermTaxonomyId
-func DeleteTermTaxonomyByTermTaxonomyId(iTermTaxonomyId int64) (err error) {
+// DeleteTermTaxonomyViaTermTaxonomyId Delete TermTaxonomy via TermTaxonomyId
+func DeleteTermTaxonomyViaTermTaxonomyId(iTermTaxonomyId int64) (err error) {
 	var has bool
 	var _TermTaxonomy = &TermTaxonomy{TermTaxonomyId: iTermTaxonomyId}
 	if has, err = Engine.Get(_TermTaxonomy); (has == true) && (err == nil) {
@@ -651,8 +651,8 @@ func DeleteTermTaxonomyByTermTaxonomyId(iTermTaxonomyId int64) (err error) {
 	return
 }
 
-// DeleteTermTaxonomyByTermId Delete TermTaxonomy via TermId
-func DeleteTermTaxonomyByTermId(iTermId int64) (err error) {
+// DeleteTermTaxonomyViaTermId Delete TermTaxonomy via TermId
+func DeleteTermTaxonomyViaTermId(iTermId int64) (err error) {
 	var has bool
 	var _TermTaxonomy = &TermTaxonomy{TermId: iTermId}
 	if has, err = Engine.Get(_TermTaxonomy); (has == true) && (err == nil) {
@@ -665,8 +665,8 @@ func DeleteTermTaxonomyByTermId(iTermId int64) (err error) {
 	return
 }
 
-// DeleteTermTaxonomyByTaxonomy Delete TermTaxonomy via Taxonomy
-func DeleteTermTaxonomyByTaxonomy(iTaxonomy string) (err error) {
+// DeleteTermTaxonomyViaTaxonomy Delete TermTaxonomy via Taxonomy
+func DeleteTermTaxonomyViaTaxonomy(iTaxonomy string) (err error) {
 	var has bool
 	var _TermTaxonomy = &TermTaxonomy{Taxonomy: iTaxonomy}
 	if has, err = Engine.Get(_TermTaxonomy); (has == true) && (err == nil) {
@@ -679,8 +679,8 @@ func DeleteTermTaxonomyByTaxonomy(iTaxonomy string) (err error) {
 	return
 }
 
-// DeleteTermTaxonomyByDescription Delete TermTaxonomy via Description
-func DeleteTermTaxonomyByDescription(iDescription string) (err error) {
+// DeleteTermTaxonomyViaDescription Delete TermTaxonomy via Description
+func DeleteTermTaxonomyViaDescription(iDescription string) (err error) {
 	var has bool
 	var _TermTaxonomy = &TermTaxonomy{Description: iDescription}
 	if has, err = Engine.Get(_TermTaxonomy); (has == true) && (err == nil) {
@@ -693,8 +693,8 @@ func DeleteTermTaxonomyByDescription(iDescription string) (err error) {
 	return
 }
 
-// DeleteTermTaxonomyByParent Delete TermTaxonomy via Parent
-func DeleteTermTaxonomyByParent(iParent int64) (err error) {
+// DeleteTermTaxonomyViaParent Delete TermTaxonomy via Parent
+func DeleteTermTaxonomyViaParent(iParent int64) (err error) {
 	var has bool
 	var _TermTaxonomy = &TermTaxonomy{Parent: iParent}
 	if has, err = Engine.Get(_TermTaxonomy); (has == true) && (err == nil) {
@@ -707,8 +707,8 @@ func DeleteTermTaxonomyByParent(iParent int64) (err error) {
 	return
 }
 
-// DeleteTermTaxonomyByCount Delete TermTaxonomy via Count
-func DeleteTermTaxonomyByCount(iCount int64) (err error) {
+// DeleteTermTaxonomyViaCount Delete TermTaxonomy via Count
+func DeleteTermTaxonomyViaCount(iCount int64) (err error) {
 	var has bool
 	var _TermTaxonomy = &TermTaxonomy{Count: iCount}
 	if has, err = Engine.Get(_TermTaxonomy); (has == true) && (err == nil) {

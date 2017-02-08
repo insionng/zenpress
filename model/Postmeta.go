@@ -13,26 +13,26 @@ func GetPostmetasCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetPostmetaCountByMetaId Get Postmeta via MetaId
-func GetPostmetaCountByMetaId(iMetaId int64) int64 {
+// GetPostmetaCountViaMetaId Get Postmeta via MetaId
+func GetPostmetaCountViaMetaId(iMetaId int64) int64 {
 	n, _ := Engine.Where("meta_id = ?", iMetaId).Count(&Postmeta{MetaId: iMetaId})
 	return n
 }
 
-// GetPostmetaCountByPostId Get Postmeta via PostId
-func GetPostmetaCountByPostId(iPostId int64) int64 {
+// GetPostmetaCountViaPostId Get Postmeta via PostId
+func GetPostmetaCountViaPostId(iPostId int64) int64 {
 	n, _ := Engine.Where("post_id = ?", iPostId).Count(&Postmeta{PostId: iPostId})
 	return n
 }
 
-// GetPostmetaCountByMetaKey Get Postmeta via MetaKey
-func GetPostmetaCountByMetaKey(iMetaKey string) int64 {
+// GetPostmetaCountViaMetaKey Get Postmeta via MetaKey
+func GetPostmetaCountViaMetaKey(iMetaKey string) int64 {
 	n, _ := Engine.Where("meta_key = ?", iMetaKey).Count(&Postmeta{MetaKey: iMetaKey})
 	return n
 }
 
-// GetPostmetaCountByMetaValue Get Postmeta via MetaValue
-func GetPostmetaCountByMetaValue(iMetaValue string) int64 {
+// GetPostmetaCountViaMetaValue Get Postmeta via MetaValue
+func GetPostmetaCountViaMetaValue(iMetaValue string) int64 {
 	n, _ := Engine.Where("meta_value = ?", iMetaValue).Count(&Postmeta{MetaValue: iMetaValue})
 	return n
 }
@@ -114,36 +114,36 @@ func GetPostmetas(offset int, limit int, field string) (*[]*Postmeta, error) {
 	return _Postmeta, err
 }
 
-// GetPostmetasByMetaId Get Postmetas via MetaId
-func GetPostmetasByMetaId(offset int, limit int, MetaId_ int64, field string) (*[]*Postmeta, error) {
+// GetPostmetasViaMetaId Get Postmetas via MetaId
+func GetPostmetasViaMetaId(offset int, limit int, MetaId_ int64, field string) (*[]*Postmeta, error) {
 	var _Postmeta = new([]*Postmeta)
 	err := Engine.Table("postmeta").Where("meta_id = ?", MetaId_).Limit(limit, offset).Desc(field).Find(_Postmeta)
 	return _Postmeta, err
 }
 
-// GetPostmetasByPostId Get Postmetas via PostId
-func GetPostmetasByPostId(offset int, limit int, PostId_ int64, field string) (*[]*Postmeta, error) {
+// GetPostmetasViaPostId Get Postmetas via PostId
+func GetPostmetasViaPostId(offset int, limit int, PostId_ int64, field string) (*[]*Postmeta, error) {
 	var _Postmeta = new([]*Postmeta)
 	err := Engine.Table("postmeta").Where("post_id = ?", PostId_).Limit(limit, offset).Desc(field).Find(_Postmeta)
 	return _Postmeta, err
 }
 
-// GetPostmetasByMetaKey Get Postmetas via MetaKey
-func GetPostmetasByMetaKey(offset int, limit int, MetaKey_ string, field string) (*[]*Postmeta, error) {
+// GetPostmetasViaMetaKey Get Postmetas via MetaKey
+func GetPostmetasViaMetaKey(offset int, limit int, MetaKey_ string, field string) (*[]*Postmeta, error) {
 	var _Postmeta = new([]*Postmeta)
 	err := Engine.Table("postmeta").Where("meta_key = ?", MetaKey_).Limit(limit, offset).Desc(field).Find(_Postmeta)
 	return _Postmeta, err
 }
 
-// GetPostmetasByMetaValue Get Postmetas via MetaValue
-func GetPostmetasByMetaValue(offset int, limit int, MetaValue_ string, field string) (*[]*Postmeta, error) {
+// GetPostmetasViaMetaValue Get Postmetas via MetaValue
+func GetPostmetasViaMetaValue(offset int, limit int, MetaValue_ string, field string) (*[]*Postmeta, error) {
 	var _Postmeta = new([]*Postmeta)
 	err := Engine.Table("postmeta").Where("meta_value = ?", MetaValue_).Limit(limit, offset).Desc(field).Find(_Postmeta)
 	return _Postmeta, err
 }
 
-// HasPostmetaByMetaId Has Postmeta via MetaId
-func HasPostmetaByMetaId(iMetaId int64) bool {
+// HasPostmetaViaMetaId Has Postmeta via MetaId
+func HasPostmetaViaMetaId(iMetaId int64) bool {
 	if has, err := Engine.Where("meta_id = ?", iMetaId).Get(new(Postmeta)); err != nil {
 		return false
 	} else {
@@ -154,8 +154,8 @@ func HasPostmetaByMetaId(iMetaId int64) bool {
 	}
 }
 
-// HasPostmetaByPostId Has Postmeta via PostId
-func HasPostmetaByPostId(iPostId int64) bool {
+// HasPostmetaViaPostId Has Postmeta via PostId
+func HasPostmetaViaPostId(iPostId int64) bool {
 	if has, err := Engine.Where("post_id = ?", iPostId).Get(new(Postmeta)); err != nil {
 		return false
 	} else {
@@ -166,8 +166,8 @@ func HasPostmetaByPostId(iPostId int64) bool {
 	}
 }
 
-// HasPostmetaByMetaKey Has Postmeta via MetaKey
-func HasPostmetaByMetaKey(iMetaKey string) bool {
+// HasPostmetaViaMetaKey Has Postmeta via MetaKey
+func HasPostmetaViaMetaKey(iMetaKey string) bool {
 	if has, err := Engine.Where("meta_key = ?", iMetaKey).Get(new(Postmeta)); err != nil {
 		return false
 	} else {
@@ -178,8 +178,8 @@ func HasPostmetaByMetaKey(iMetaKey string) bool {
 	}
 }
 
-// HasPostmetaByMetaValue Has Postmeta via MetaValue
-func HasPostmetaByMetaValue(iMetaValue string) bool {
+// HasPostmetaViaMetaValue Has Postmeta via MetaValue
+func HasPostmetaViaMetaValue(iMetaValue string) bool {
 	if has, err := Engine.Where("meta_value = ?", iMetaValue).Get(new(Postmeta)); err != nil {
 		return false
 	} else {
@@ -190,8 +190,8 @@ func HasPostmetaByMetaValue(iMetaValue string) bool {
 	}
 }
 
-// GetPostmetaByMetaId Get Postmeta via MetaId
-func GetPostmetaByMetaId(iMetaId int64) (*Postmeta, error) {
+// GetPostmetaViaMetaId Get Postmeta via MetaId
+func GetPostmetaViaMetaId(iMetaId int64) (*Postmeta, error) {
 	var _Postmeta = &Postmeta{MetaId: iMetaId}
 	has, err := Engine.Get(_Postmeta)
 	if has {
@@ -201,8 +201,8 @@ func GetPostmetaByMetaId(iMetaId int64) (*Postmeta, error) {
 	}
 }
 
-// GetPostmetaByPostId Get Postmeta via PostId
-func GetPostmetaByPostId(iPostId int64) (*Postmeta, error) {
+// GetPostmetaViaPostId Get Postmeta via PostId
+func GetPostmetaViaPostId(iPostId int64) (*Postmeta, error) {
 	var _Postmeta = &Postmeta{PostId: iPostId}
 	has, err := Engine.Get(_Postmeta)
 	if has {
@@ -212,8 +212,8 @@ func GetPostmetaByPostId(iPostId int64) (*Postmeta, error) {
 	}
 }
 
-// GetPostmetaByMetaKey Get Postmeta via MetaKey
-func GetPostmetaByMetaKey(iMetaKey string) (*Postmeta, error) {
+// GetPostmetaViaMetaKey Get Postmeta via MetaKey
+func GetPostmetaViaMetaKey(iMetaKey string) (*Postmeta, error) {
 	var _Postmeta = &Postmeta{MetaKey: iMetaKey}
 	has, err := Engine.Get(_Postmeta)
 	if has {
@@ -223,8 +223,8 @@ func GetPostmetaByMetaKey(iMetaKey string) (*Postmeta, error) {
 	}
 }
 
-// GetPostmetaByMetaValue Get Postmeta via MetaValue
-func GetPostmetaByMetaValue(iMetaValue string) (*Postmeta, error) {
+// GetPostmetaViaMetaValue Get Postmeta via MetaValue
+func GetPostmetaViaMetaValue(iMetaValue string) (*Postmeta, error) {
 	var _Postmeta = &Postmeta{MetaValue: iMetaValue}
 	has, err := Engine.Get(_Postmeta)
 	if has {
@@ -234,26 +234,26 @@ func GetPostmetaByMetaValue(iMetaValue string) (*Postmeta, error) {
 	}
 }
 
-// SetPostmetaByMetaId Set Postmeta via MetaId
-func SetPostmetaByMetaId(iMetaId int64, postmeta *Postmeta) (int64, error) {
+// SetPostmetaViaMetaId Set Postmeta via MetaId
+func SetPostmetaViaMetaId(iMetaId int64, postmeta *Postmeta) (int64, error) {
 	postmeta.MetaId = iMetaId
 	return Engine.Insert(postmeta)
 }
 
-// SetPostmetaByPostId Set Postmeta via PostId
-func SetPostmetaByPostId(iPostId int64, postmeta *Postmeta) (int64, error) {
+// SetPostmetaViaPostId Set Postmeta via PostId
+func SetPostmetaViaPostId(iPostId int64, postmeta *Postmeta) (int64, error) {
 	postmeta.PostId = iPostId
 	return Engine.Insert(postmeta)
 }
 
-// SetPostmetaByMetaKey Set Postmeta via MetaKey
-func SetPostmetaByMetaKey(iMetaKey string, postmeta *Postmeta) (int64, error) {
+// SetPostmetaViaMetaKey Set Postmeta via MetaKey
+func SetPostmetaViaMetaKey(iMetaKey string, postmeta *Postmeta) (int64, error) {
 	postmeta.MetaKey = iMetaKey
 	return Engine.Insert(postmeta)
 }
 
-// SetPostmetaByMetaValue Set Postmeta via MetaValue
-func SetPostmetaByMetaValue(iMetaValue string, postmeta *Postmeta) (int64, error) {
+// SetPostmetaViaMetaValue Set Postmeta via MetaValue
+func SetPostmetaViaMetaValue(iMetaValue string, postmeta *Postmeta) (int64, error) {
 	postmeta.MetaValue = iMetaValue
 	return Engine.Insert(postmeta)
 }
@@ -280,32 +280,32 @@ func PutPostmeta(iPostmeta *Postmeta) (int64, error) {
 	return iPostmeta.MetaId, err
 }
 
-// PutPostmetaByMetaId Put Postmeta via MetaId
-func PutPostmetaByMetaId(MetaId_ int64, iPostmeta *Postmeta) (int64, error) {
+// PutPostmetaViaMetaId Put Postmeta via MetaId
+func PutPostmetaViaMetaId(MetaId_ int64, iPostmeta *Postmeta) (int64, error) {
 	row, err := Engine.Update(iPostmeta, &Postmeta{MetaId: MetaId_})
 	return row, err
 }
 
-// PutPostmetaByPostId Put Postmeta via PostId
-func PutPostmetaByPostId(PostId_ int64, iPostmeta *Postmeta) (int64, error) {
+// PutPostmetaViaPostId Put Postmeta via PostId
+func PutPostmetaViaPostId(PostId_ int64, iPostmeta *Postmeta) (int64, error) {
 	row, err := Engine.Update(iPostmeta, &Postmeta{PostId: PostId_})
 	return row, err
 }
 
-// PutPostmetaByMetaKey Put Postmeta via MetaKey
-func PutPostmetaByMetaKey(MetaKey_ string, iPostmeta *Postmeta) (int64, error) {
+// PutPostmetaViaMetaKey Put Postmeta via MetaKey
+func PutPostmetaViaMetaKey(MetaKey_ string, iPostmeta *Postmeta) (int64, error) {
 	row, err := Engine.Update(iPostmeta, &Postmeta{MetaKey: MetaKey_})
 	return row, err
 }
 
-// PutPostmetaByMetaValue Put Postmeta via MetaValue
-func PutPostmetaByMetaValue(MetaValue_ string, iPostmeta *Postmeta) (int64, error) {
+// PutPostmetaViaMetaValue Put Postmeta via MetaValue
+func PutPostmetaViaMetaValue(MetaValue_ string, iPostmeta *Postmeta) (int64, error) {
 	row, err := Engine.Update(iPostmeta, &Postmeta{MetaValue: MetaValue_})
 	return row, err
 }
 
-// UpdatePostmetaByMetaId via map[string]interface{}{}
-func UpdatePostmetaByMetaId(iMetaId int64, iPostmetaMap *map[string]interface{}) error {
+// UpdatePostmetaViaMetaId via map[string]interface{}{}
+func UpdatePostmetaViaMetaId(iMetaId int64, iPostmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Postmeta)).Where("meta_id = ?", iMetaId).Update(iPostmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -313,8 +313,8 @@ func UpdatePostmetaByMetaId(iMetaId int64, iPostmetaMap *map[string]interface{})
 	}
 }
 
-// UpdatePostmetaByPostId via map[string]interface{}{}
-func UpdatePostmetaByPostId(iPostId int64, iPostmetaMap *map[string]interface{}) error {
+// UpdatePostmetaViaPostId via map[string]interface{}{}
+func UpdatePostmetaViaPostId(iPostId int64, iPostmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Postmeta)).Where("post_id = ?", iPostId).Update(iPostmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -322,8 +322,8 @@ func UpdatePostmetaByPostId(iPostId int64, iPostmetaMap *map[string]interface{})
 	}
 }
 
-// UpdatePostmetaByMetaKey via map[string]interface{}{}
-func UpdatePostmetaByMetaKey(iMetaKey string, iPostmetaMap *map[string]interface{}) error {
+// UpdatePostmetaViaMetaKey via map[string]interface{}{}
+func UpdatePostmetaViaMetaKey(iMetaKey string, iPostmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Postmeta)).Where("meta_key = ?", iMetaKey).Update(iPostmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -331,8 +331,8 @@ func UpdatePostmetaByMetaKey(iMetaKey string, iPostmetaMap *map[string]interface
 	}
 }
 
-// UpdatePostmetaByMetaValue via map[string]interface{}{}
-func UpdatePostmetaByMetaValue(iMetaValue string, iPostmetaMap *map[string]interface{}) error {
+// UpdatePostmetaViaMetaValue via map[string]interface{}{}
+func UpdatePostmetaViaMetaValue(iMetaValue string, iPostmetaMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Postmeta)).Where("meta_value = ?", iMetaValue).Update(iPostmetaMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -346,8 +346,8 @@ func DeletePostmeta(iMetaId int64) (int64, error) {
 	return row, err
 }
 
-// DeletePostmetaByMetaId Delete Postmeta via MetaId
-func DeletePostmetaByMetaId(iMetaId int64) (err error) {
+// DeletePostmetaViaMetaId Delete Postmeta via MetaId
+func DeletePostmetaViaMetaId(iMetaId int64) (err error) {
 	var has bool
 	var _Postmeta = &Postmeta{MetaId: iMetaId}
 	if has, err = Engine.Get(_Postmeta); (has == true) && (err == nil) {
@@ -360,8 +360,8 @@ func DeletePostmetaByMetaId(iMetaId int64) (err error) {
 	return
 }
 
-// DeletePostmetaByPostId Delete Postmeta via PostId
-func DeletePostmetaByPostId(iPostId int64) (err error) {
+// DeletePostmetaViaPostId Delete Postmeta via PostId
+func DeletePostmetaViaPostId(iPostId int64) (err error) {
 	var has bool
 	var _Postmeta = &Postmeta{PostId: iPostId}
 	if has, err = Engine.Get(_Postmeta); (has == true) && (err == nil) {
@@ -374,8 +374,8 @@ func DeletePostmetaByPostId(iPostId int64) (err error) {
 	return
 }
 
-// DeletePostmetaByMetaKey Delete Postmeta via MetaKey
-func DeletePostmetaByMetaKey(iMetaKey string) (err error) {
+// DeletePostmetaViaMetaKey Delete Postmeta via MetaKey
+func DeletePostmetaViaMetaKey(iMetaKey string) (err error) {
 	var has bool
 	var _Postmeta = &Postmeta{MetaKey: iMetaKey}
 	if has, err = Engine.Get(_Postmeta); (has == true) && (err == nil) {
@@ -388,8 +388,8 @@ func DeletePostmetaByMetaKey(iMetaKey string) (err error) {
 	return
 }
 
-// DeletePostmetaByMetaValue Delete Postmeta via MetaValue
-func DeletePostmetaByMetaValue(iMetaValue string) (err error) {
+// DeletePostmetaViaMetaValue Delete Postmeta via MetaValue
+func DeletePostmetaViaMetaValue(iMetaValue string) (err error) {
 	var has bool
 	var _Postmeta = &Postmeta{MetaValue: iMetaValue}
 	if has, err = Engine.Get(_Postmeta); (has == true) && (err == nil) {

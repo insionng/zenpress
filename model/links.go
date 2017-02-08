@@ -26,80 +26,80 @@ func GetLinksesCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetLinksCountByLinkId Get Links via LinkId
-func GetLinksCountByLinkId(iLinkId int64) int64 {
+// GetLinksCountViaLinkId Get Links via LinkId
+func GetLinksCountViaLinkId(iLinkId int64) int64 {
 	n, _ := Engine.Where("link_id = ?", iLinkId).Count(&Links{LinkId: iLinkId})
 	return n
 }
 
-// GetLinksCountByLinkUrl Get Links via LinkUrl
-func GetLinksCountByLinkUrl(iLinkUrl string) int64 {
+// GetLinksCountViaLinkUrl Get Links via LinkUrl
+func GetLinksCountViaLinkUrl(iLinkUrl string) int64 {
 	n, _ := Engine.Where("link_url = ?", iLinkUrl).Count(&Links{LinkUrl: iLinkUrl})
 	return n
 }
 
-// GetLinksCountByLinkName Get Links via LinkName
-func GetLinksCountByLinkName(iLinkName string) int64 {
+// GetLinksCountViaLinkName Get Links via LinkName
+func GetLinksCountViaLinkName(iLinkName string) int64 {
 	n, _ := Engine.Where("link_name = ?", iLinkName).Count(&Links{LinkName: iLinkName})
 	return n
 }
 
-// GetLinksCountByLinkImage Get Links via LinkImage
-func GetLinksCountByLinkImage(iLinkImage string) int64 {
+// GetLinksCountViaLinkImage Get Links via LinkImage
+func GetLinksCountViaLinkImage(iLinkImage string) int64 {
 	n, _ := Engine.Where("link_image = ?", iLinkImage).Count(&Links{LinkImage: iLinkImage})
 	return n
 }
 
-// GetLinksCountByLinkTarget Get Links via LinkTarget
-func GetLinksCountByLinkTarget(iLinkTarget string) int64 {
+// GetLinksCountViaLinkTarget Get Links via LinkTarget
+func GetLinksCountViaLinkTarget(iLinkTarget string) int64 {
 	n, _ := Engine.Where("link_target = ?", iLinkTarget).Count(&Links{LinkTarget: iLinkTarget})
 	return n
 }
 
-// GetLinksCountByLinkDescription Get Links via LinkDescription
-func GetLinksCountByLinkDescription(iLinkDescription string) int64 {
+// GetLinksCountViaLinkDescription Get Links via LinkDescription
+func GetLinksCountViaLinkDescription(iLinkDescription string) int64 {
 	n, _ := Engine.Where("link_description = ?", iLinkDescription).Count(&Links{LinkDescription: iLinkDescription})
 	return n
 }
 
-// GetLinksCountByLinkVisible Get Links via LinkVisible
-func GetLinksCountByLinkVisible(iLinkVisible string) int64 {
+// GetLinksCountViaLinkVisible Get Links via LinkVisible
+func GetLinksCountViaLinkVisible(iLinkVisible string) int64 {
 	n, _ := Engine.Where("link_visible = ?", iLinkVisible).Count(&Links{LinkVisible: iLinkVisible})
 	return n
 }
 
-// GetLinksCountByLinkOwner Get Links via LinkOwner
-func GetLinksCountByLinkOwner(iLinkOwner int64) int64 {
+// GetLinksCountViaLinkOwner Get Links via LinkOwner
+func GetLinksCountViaLinkOwner(iLinkOwner int64) int64 {
 	n, _ := Engine.Where("link_owner = ?", iLinkOwner).Count(&Links{LinkOwner: iLinkOwner})
 	return n
 }
 
-// GetLinksCountByLinkRating Get Links via LinkRating
-func GetLinksCountByLinkRating(iLinkRating int) int64 {
+// GetLinksCountViaLinkRating Get Links via LinkRating
+func GetLinksCountViaLinkRating(iLinkRating int) int64 {
 	n, _ := Engine.Where("link_rating = ?", iLinkRating).Count(&Links{LinkRating: iLinkRating})
 	return n
 }
 
-// GetLinksCountByLinkUpdated Get Links via LinkUpdated
-func GetLinksCountByLinkUpdated(iLinkUpdated time.Time) int64 {
+// GetLinksCountViaLinkUpdated Get Links via LinkUpdated
+func GetLinksCountViaLinkUpdated(iLinkUpdated time.Time) int64 {
 	n, _ := Engine.Where("link_updated = ?", iLinkUpdated).Count(&Links{LinkUpdated: iLinkUpdated})
 	return n
 }
 
-// GetLinksCountByLinkRel Get Links via LinkRel
-func GetLinksCountByLinkRel(iLinkRel string) int64 {
+// GetLinksCountViaLinkRel Get Links via LinkRel
+func GetLinksCountViaLinkRel(iLinkRel string) int64 {
 	n, _ := Engine.Where("link_rel = ?", iLinkRel).Count(&Links{LinkRel: iLinkRel})
 	return n
 }
 
-// GetLinksCountByLinkNotes Get Links via LinkNotes
-func GetLinksCountByLinkNotes(iLinkNotes string) int64 {
+// GetLinksCountViaLinkNotes Get Links via LinkNotes
+func GetLinksCountViaLinkNotes(iLinkNotes string) int64 {
 	n, _ := Engine.Where("link_notes = ?", iLinkNotes).Count(&Links{LinkNotes: iLinkNotes})
 	return n
 }
 
-// GetLinksCountByLinkRss Get Links via LinkRss
-func GetLinksCountByLinkRss(iLinkRss string) int64 {
+// GetLinksCountViaLinkRss Get Links via LinkRss
+func GetLinksCountViaLinkRss(iLinkRss string) int64 {
 	n, _ := Engine.Where("link_rss = ?", iLinkRss).Count(&Links{LinkRss: iLinkRss})
 	return n
 }
@@ -2659,99 +2659,99 @@ func GetLinkses(offset int, limit int, field string) (*[]*Links, error) {
 	return _Links, err
 }
 
-// GetLinksesByLinkId Get Linkss via LinkId
-func GetLinksesByLinkId(offset int, limit int, LinkId_ int64, field string) (*[]*Links, error) {
+// GetLinksesViaLinkId Get Linkss via LinkId
+func GetLinksesViaLinkId(offset int, limit int, LinkId_ int64, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_id = ?", LinkId_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkUrl Get Linkss via LinkUrl
-func GetLinksesByLinkUrl(offset int, limit int, LinkUrl_ string, field string) (*[]*Links, error) {
+// GetLinksesViaLinkUrl Get Linkss via LinkUrl
+func GetLinksesViaLinkUrl(offset int, limit int, LinkUrl_ string, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_url = ?", LinkUrl_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkName Get Linkss via LinkName
-func GetLinksesByLinkName(offset int, limit int, LinkName_ string, field string) (*[]*Links, error) {
+// GetLinksesViaLinkName Get Linkss via LinkName
+func GetLinksesViaLinkName(offset int, limit int, LinkName_ string, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_name = ?", LinkName_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkImage Get Linkss via LinkImage
-func GetLinksesByLinkImage(offset int, limit int, LinkImage_ string, field string) (*[]*Links, error) {
+// GetLinksesViaLinkImage Get Linkss via LinkImage
+func GetLinksesViaLinkImage(offset int, limit int, LinkImage_ string, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_image = ?", LinkImage_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkTarget Get Linkss via LinkTarget
-func GetLinksesByLinkTarget(offset int, limit int, LinkTarget_ string, field string) (*[]*Links, error) {
+// GetLinksesViaLinkTarget Get Linkss via LinkTarget
+func GetLinksesViaLinkTarget(offset int, limit int, LinkTarget_ string, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_target = ?", LinkTarget_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkDescription Get Linkss via LinkDescription
-func GetLinksesByLinkDescription(offset int, limit int, LinkDescription_ string, field string) (*[]*Links, error) {
+// GetLinksesViaLinkDescription Get Linkss via LinkDescription
+func GetLinksesViaLinkDescription(offset int, limit int, LinkDescription_ string, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_description = ?", LinkDescription_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkVisible Get Linkss via LinkVisible
-func GetLinksesByLinkVisible(offset int, limit int, LinkVisible_ string, field string) (*[]*Links, error) {
+// GetLinksesViaLinkVisible Get Linkss via LinkVisible
+func GetLinksesViaLinkVisible(offset int, limit int, LinkVisible_ string, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_visible = ?", LinkVisible_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkOwner Get Linkss via LinkOwner
-func GetLinksesByLinkOwner(offset int, limit int, LinkOwner_ int64, field string) (*[]*Links, error) {
+// GetLinksesViaLinkOwner Get Linkss via LinkOwner
+func GetLinksesViaLinkOwner(offset int, limit int, LinkOwner_ int64, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_owner = ?", LinkOwner_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkRating Get Linkss via LinkRating
-func GetLinksesByLinkRating(offset int, limit int, LinkRating_ int, field string) (*[]*Links, error) {
+// GetLinksesViaLinkRating Get Linkss via LinkRating
+func GetLinksesViaLinkRating(offset int, limit int, LinkRating_ int, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_rating = ?", LinkRating_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkUpdated Get Linkss via LinkUpdated
-func GetLinksesByLinkUpdated(offset int, limit int, LinkUpdated_ time.Time, field string) (*[]*Links, error) {
+// GetLinksesViaLinkUpdated Get Linkss via LinkUpdated
+func GetLinksesViaLinkUpdated(offset int, limit int, LinkUpdated_ time.Time, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_updated = ?", LinkUpdated_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkRel Get Linkss via LinkRel
-func GetLinksesByLinkRel(offset int, limit int, LinkRel_ string, field string) (*[]*Links, error) {
+// GetLinksesViaLinkRel Get Linkss via LinkRel
+func GetLinksesViaLinkRel(offset int, limit int, LinkRel_ string, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_rel = ?", LinkRel_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkNotes Get Linkss via LinkNotes
-func GetLinksesByLinkNotes(offset int, limit int, LinkNotes_ string, field string) (*[]*Links, error) {
+// GetLinksesViaLinkNotes Get Linkss via LinkNotes
+func GetLinksesViaLinkNotes(offset int, limit int, LinkNotes_ string, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_notes = ?", LinkNotes_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// GetLinksesByLinkRss Get Linkss via LinkRss
-func GetLinksesByLinkRss(offset int, limit int, LinkRss_ string, field string) (*[]*Links, error) {
+// GetLinksesViaLinkRss Get Linkss via LinkRss
+func GetLinksesViaLinkRss(offset int, limit int, LinkRss_ string, field string) (*[]*Links, error) {
 	var _Links = new([]*Links)
 	err := Engine.Table("links").Where("link_rss = ?", LinkRss_).Limit(limit, offset).Desc(field).Find(_Links)
 	return _Links, err
 }
 
-// HasLinksByLinkId Has Links via LinkId
-func HasLinksByLinkId(iLinkId int64) bool {
+// HasLinksViaLinkId Has Links via LinkId
+func HasLinksViaLinkId(iLinkId int64) bool {
 	if has, err := Engine.Where("link_id = ?", iLinkId).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2762,8 +2762,8 @@ func HasLinksByLinkId(iLinkId int64) bool {
 	}
 }
 
-// HasLinksByLinkUrl Has Links via LinkUrl
-func HasLinksByLinkUrl(iLinkUrl string) bool {
+// HasLinksViaLinkUrl Has Links via LinkUrl
+func HasLinksViaLinkUrl(iLinkUrl string) bool {
 	if has, err := Engine.Where("link_url = ?", iLinkUrl).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2774,8 +2774,8 @@ func HasLinksByLinkUrl(iLinkUrl string) bool {
 	}
 }
 
-// HasLinksByLinkName Has Links via LinkName
-func HasLinksByLinkName(iLinkName string) bool {
+// HasLinksViaLinkName Has Links via LinkName
+func HasLinksViaLinkName(iLinkName string) bool {
 	if has, err := Engine.Where("link_name = ?", iLinkName).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2786,8 +2786,8 @@ func HasLinksByLinkName(iLinkName string) bool {
 	}
 }
 
-// HasLinksByLinkImage Has Links via LinkImage
-func HasLinksByLinkImage(iLinkImage string) bool {
+// HasLinksViaLinkImage Has Links via LinkImage
+func HasLinksViaLinkImage(iLinkImage string) bool {
 	if has, err := Engine.Where("link_image = ?", iLinkImage).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2798,8 +2798,8 @@ func HasLinksByLinkImage(iLinkImage string) bool {
 	}
 }
 
-// HasLinksByLinkTarget Has Links via LinkTarget
-func HasLinksByLinkTarget(iLinkTarget string) bool {
+// HasLinksViaLinkTarget Has Links via LinkTarget
+func HasLinksViaLinkTarget(iLinkTarget string) bool {
 	if has, err := Engine.Where("link_target = ?", iLinkTarget).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2810,8 +2810,8 @@ func HasLinksByLinkTarget(iLinkTarget string) bool {
 	}
 }
 
-// HasLinksByLinkDescription Has Links via LinkDescription
-func HasLinksByLinkDescription(iLinkDescription string) bool {
+// HasLinksViaLinkDescription Has Links via LinkDescription
+func HasLinksViaLinkDescription(iLinkDescription string) bool {
 	if has, err := Engine.Where("link_description = ?", iLinkDescription).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2822,8 +2822,8 @@ func HasLinksByLinkDescription(iLinkDescription string) bool {
 	}
 }
 
-// HasLinksByLinkVisible Has Links via LinkVisible
-func HasLinksByLinkVisible(iLinkVisible string) bool {
+// HasLinksViaLinkVisible Has Links via LinkVisible
+func HasLinksViaLinkVisible(iLinkVisible string) bool {
 	if has, err := Engine.Where("link_visible = ?", iLinkVisible).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2834,8 +2834,8 @@ func HasLinksByLinkVisible(iLinkVisible string) bool {
 	}
 }
 
-// HasLinksByLinkOwner Has Links via LinkOwner
-func HasLinksByLinkOwner(iLinkOwner int64) bool {
+// HasLinksViaLinkOwner Has Links via LinkOwner
+func HasLinksViaLinkOwner(iLinkOwner int64) bool {
 	if has, err := Engine.Where("link_owner = ?", iLinkOwner).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2846,8 +2846,8 @@ func HasLinksByLinkOwner(iLinkOwner int64) bool {
 	}
 }
 
-// HasLinksByLinkRating Has Links via LinkRating
-func HasLinksByLinkRating(iLinkRating int) bool {
+// HasLinksViaLinkRating Has Links via LinkRating
+func HasLinksViaLinkRating(iLinkRating int) bool {
 	if has, err := Engine.Where("link_rating = ?", iLinkRating).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2858,8 +2858,8 @@ func HasLinksByLinkRating(iLinkRating int) bool {
 	}
 }
 
-// HasLinksByLinkUpdated Has Links via LinkUpdated
-func HasLinksByLinkUpdated(iLinkUpdated time.Time) bool {
+// HasLinksViaLinkUpdated Has Links via LinkUpdated
+func HasLinksViaLinkUpdated(iLinkUpdated time.Time) bool {
 	if has, err := Engine.Where("link_updated = ?", iLinkUpdated).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2870,8 +2870,8 @@ func HasLinksByLinkUpdated(iLinkUpdated time.Time) bool {
 	}
 }
 
-// HasLinksByLinkRel Has Links via LinkRel
-func HasLinksByLinkRel(iLinkRel string) bool {
+// HasLinksViaLinkRel Has Links via LinkRel
+func HasLinksViaLinkRel(iLinkRel string) bool {
 	if has, err := Engine.Where("link_rel = ?", iLinkRel).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2882,8 +2882,8 @@ func HasLinksByLinkRel(iLinkRel string) bool {
 	}
 }
 
-// HasLinksByLinkNotes Has Links via LinkNotes
-func HasLinksByLinkNotes(iLinkNotes string) bool {
+// HasLinksViaLinkNotes Has Links via LinkNotes
+func HasLinksViaLinkNotes(iLinkNotes string) bool {
 	if has, err := Engine.Where("link_notes = ?", iLinkNotes).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2894,8 +2894,8 @@ func HasLinksByLinkNotes(iLinkNotes string) bool {
 	}
 }
 
-// HasLinksByLinkRss Has Links via LinkRss
-func HasLinksByLinkRss(iLinkRss string) bool {
+// HasLinksViaLinkRss Has Links via LinkRss
+func HasLinksViaLinkRss(iLinkRss string) bool {
 	if has, err := Engine.Where("link_rss = ?", iLinkRss).Get(new(Links)); err != nil {
 		return false
 	} else {
@@ -2906,8 +2906,8 @@ func HasLinksByLinkRss(iLinkRss string) bool {
 	}
 }
 
-// GetLinksByLinkId Get Links via LinkId
-func GetLinksByLinkId(iLinkId int64) (*Links, error) {
+// GetLinksViaLinkId Get Links via LinkId
+func GetLinksViaLinkId(iLinkId int64) (*Links, error) {
 	var _Links = &Links{LinkId: iLinkId}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -2917,8 +2917,8 @@ func GetLinksByLinkId(iLinkId int64) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkUrl Get Links via LinkUrl
-func GetLinksByLinkUrl(iLinkUrl string) (*Links, error) {
+// GetLinksViaLinkUrl Get Links via LinkUrl
+func GetLinksViaLinkUrl(iLinkUrl string) (*Links, error) {
 	var _Links = &Links{LinkUrl: iLinkUrl}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -2928,8 +2928,8 @@ func GetLinksByLinkUrl(iLinkUrl string) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkName Get Links via LinkName
-func GetLinksByLinkName(iLinkName string) (*Links, error) {
+// GetLinksViaLinkName Get Links via LinkName
+func GetLinksViaLinkName(iLinkName string) (*Links, error) {
 	var _Links = &Links{LinkName: iLinkName}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -2939,8 +2939,8 @@ func GetLinksByLinkName(iLinkName string) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkImage Get Links via LinkImage
-func GetLinksByLinkImage(iLinkImage string) (*Links, error) {
+// GetLinksViaLinkImage Get Links via LinkImage
+func GetLinksViaLinkImage(iLinkImage string) (*Links, error) {
 	var _Links = &Links{LinkImage: iLinkImage}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -2950,8 +2950,8 @@ func GetLinksByLinkImage(iLinkImage string) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkTarget Get Links via LinkTarget
-func GetLinksByLinkTarget(iLinkTarget string) (*Links, error) {
+// GetLinksViaLinkTarget Get Links via LinkTarget
+func GetLinksViaLinkTarget(iLinkTarget string) (*Links, error) {
 	var _Links = &Links{LinkTarget: iLinkTarget}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -2961,8 +2961,8 @@ func GetLinksByLinkTarget(iLinkTarget string) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkDescription Get Links via LinkDescription
-func GetLinksByLinkDescription(iLinkDescription string) (*Links, error) {
+// GetLinksViaLinkDescription Get Links via LinkDescription
+func GetLinksViaLinkDescription(iLinkDescription string) (*Links, error) {
 	var _Links = &Links{LinkDescription: iLinkDescription}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -2972,8 +2972,8 @@ func GetLinksByLinkDescription(iLinkDescription string) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkVisible Get Links via LinkVisible
-func GetLinksByLinkVisible(iLinkVisible string) (*Links, error) {
+// GetLinksViaLinkVisible Get Links via LinkVisible
+func GetLinksViaLinkVisible(iLinkVisible string) (*Links, error) {
 	var _Links = &Links{LinkVisible: iLinkVisible}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -2983,8 +2983,8 @@ func GetLinksByLinkVisible(iLinkVisible string) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkOwner Get Links via LinkOwner
-func GetLinksByLinkOwner(iLinkOwner int64) (*Links, error) {
+// GetLinksViaLinkOwner Get Links via LinkOwner
+func GetLinksViaLinkOwner(iLinkOwner int64) (*Links, error) {
 	var _Links = &Links{LinkOwner: iLinkOwner}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -2994,8 +2994,8 @@ func GetLinksByLinkOwner(iLinkOwner int64) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkRating Get Links via LinkRating
-func GetLinksByLinkRating(iLinkRating int) (*Links, error) {
+// GetLinksViaLinkRating Get Links via LinkRating
+func GetLinksViaLinkRating(iLinkRating int) (*Links, error) {
 	var _Links = &Links{LinkRating: iLinkRating}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -3005,8 +3005,8 @@ func GetLinksByLinkRating(iLinkRating int) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkUpdated Get Links via LinkUpdated
-func GetLinksByLinkUpdated(iLinkUpdated time.Time) (*Links, error) {
+// GetLinksViaLinkUpdated Get Links via LinkUpdated
+func GetLinksViaLinkUpdated(iLinkUpdated time.Time) (*Links, error) {
 	var _Links = &Links{LinkUpdated: iLinkUpdated}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -3016,8 +3016,8 @@ func GetLinksByLinkUpdated(iLinkUpdated time.Time) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkRel Get Links via LinkRel
-func GetLinksByLinkRel(iLinkRel string) (*Links, error) {
+// GetLinksViaLinkRel Get Links via LinkRel
+func GetLinksViaLinkRel(iLinkRel string) (*Links, error) {
 	var _Links = &Links{LinkRel: iLinkRel}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -3027,8 +3027,8 @@ func GetLinksByLinkRel(iLinkRel string) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkNotes Get Links via LinkNotes
-func GetLinksByLinkNotes(iLinkNotes string) (*Links, error) {
+// GetLinksViaLinkNotes Get Links via LinkNotes
+func GetLinksViaLinkNotes(iLinkNotes string) (*Links, error) {
 	var _Links = &Links{LinkNotes: iLinkNotes}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -3038,8 +3038,8 @@ func GetLinksByLinkNotes(iLinkNotes string) (*Links, error) {
 	}
 }
 
-// GetLinksByLinkRss Get Links via LinkRss
-func GetLinksByLinkRss(iLinkRss string) (*Links, error) {
+// GetLinksViaLinkRss Get Links via LinkRss
+func GetLinksViaLinkRss(iLinkRss string) (*Links, error) {
 	var _Links = &Links{LinkRss: iLinkRss}
 	has, err := Engine.Get(_Links)
 	if has {
@@ -3049,80 +3049,80 @@ func GetLinksByLinkRss(iLinkRss string) (*Links, error) {
 	}
 }
 
-// SetLinksByLinkId Set Links via LinkId
-func SetLinksByLinkId(iLinkId int64, links *Links) (int64, error) {
+// SetLinksViaLinkId Set Links via LinkId
+func SetLinksViaLinkId(iLinkId int64, links *Links) (int64, error) {
 	links.LinkId = iLinkId
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkUrl Set Links via LinkUrl
-func SetLinksByLinkUrl(iLinkUrl string, links *Links) (int64, error) {
+// SetLinksViaLinkUrl Set Links via LinkUrl
+func SetLinksViaLinkUrl(iLinkUrl string, links *Links) (int64, error) {
 	links.LinkUrl = iLinkUrl
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkName Set Links via LinkName
-func SetLinksByLinkName(iLinkName string, links *Links) (int64, error) {
+// SetLinksViaLinkName Set Links via LinkName
+func SetLinksViaLinkName(iLinkName string, links *Links) (int64, error) {
 	links.LinkName = iLinkName
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkImage Set Links via LinkImage
-func SetLinksByLinkImage(iLinkImage string, links *Links) (int64, error) {
+// SetLinksViaLinkImage Set Links via LinkImage
+func SetLinksViaLinkImage(iLinkImage string, links *Links) (int64, error) {
 	links.LinkImage = iLinkImage
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkTarget Set Links via LinkTarget
-func SetLinksByLinkTarget(iLinkTarget string, links *Links) (int64, error) {
+// SetLinksViaLinkTarget Set Links via LinkTarget
+func SetLinksViaLinkTarget(iLinkTarget string, links *Links) (int64, error) {
 	links.LinkTarget = iLinkTarget
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkDescription Set Links via LinkDescription
-func SetLinksByLinkDescription(iLinkDescription string, links *Links) (int64, error) {
+// SetLinksViaLinkDescription Set Links via LinkDescription
+func SetLinksViaLinkDescription(iLinkDescription string, links *Links) (int64, error) {
 	links.LinkDescription = iLinkDescription
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkVisible Set Links via LinkVisible
-func SetLinksByLinkVisible(iLinkVisible string, links *Links) (int64, error) {
+// SetLinksViaLinkVisible Set Links via LinkVisible
+func SetLinksViaLinkVisible(iLinkVisible string, links *Links) (int64, error) {
 	links.LinkVisible = iLinkVisible
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkOwner Set Links via LinkOwner
-func SetLinksByLinkOwner(iLinkOwner int64, links *Links) (int64, error) {
+// SetLinksViaLinkOwner Set Links via LinkOwner
+func SetLinksViaLinkOwner(iLinkOwner int64, links *Links) (int64, error) {
 	links.LinkOwner = iLinkOwner
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkRating Set Links via LinkRating
-func SetLinksByLinkRating(iLinkRating int, links *Links) (int64, error) {
+// SetLinksViaLinkRating Set Links via LinkRating
+func SetLinksViaLinkRating(iLinkRating int, links *Links) (int64, error) {
 	links.LinkRating = iLinkRating
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkUpdated Set Links via LinkUpdated
-func SetLinksByLinkUpdated(iLinkUpdated time.Time, links *Links) (int64, error) {
+// SetLinksViaLinkUpdated Set Links via LinkUpdated
+func SetLinksViaLinkUpdated(iLinkUpdated time.Time, links *Links) (int64, error) {
 	links.LinkUpdated = iLinkUpdated
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkRel Set Links via LinkRel
-func SetLinksByLinkRel(iLinkRel string, links *Links) (int64, error) {
+// SetLinksViaLinkRel Set Links via LinkRel
+func SetLinksViaLinkRel(iLinkRel string, links *Links) (int64, error) {
 	links.LinkRel = iLinkRel
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkNotes Set Links via LinkNotes
-func SetLinksByLinkNotes(iLinkNotes string, links *Links) (int64, error) {
+// SetLinksViaLinkNotes Set Links via LinkNotes
+func SetLinksViaLinkNotes(iLinkNotes string, links *Links) (int64, error) {
 	links.LinkNotes = iLinkNotes
 	return Engine.Insert(links)
 }
 
-// SetLinksByLinkRss Set Links via LinkRss
-func SetLinksByLinkRss(iLinkRss string, links *Links) (int64, error) {
+// SetLinksViaLinkRss Set Links via LinkRss
+func SetLinksViaLinkRss(iLinkRss string, links *Links) (int64, error) {
 	links.LinkRss = iLinkRss
 	return Engine.Insert(links)
 }
@@ -3149,86 +3149,86 @@ func PutLinks(iLinks *Links) (int64, error) {
 	return iLinks.LinkId, err
 }
 
-// PutLinksByLinkId Put Links via LinkId
-func PutLinksByLinkId(LinkId_ int64, iLinks *Links) (int64, error) {
+// PutLinksViaLinkId Put Links via LinkId
+func PutLinksViaLinkId(LinkId_ int64, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkId: LinkId_})
 	return row, err
 }
 
-// PutLinksByLinkUrl Put Links via LinkUrl
-func PutLinksByLinkUrl(LinkUrl_ string, iLinks *Links) (int64, error) {
+// PutLinksViaLinkUrl Put Links via LinkUrl
+func PutLinksViaLinkUrl(LinkUrl_ string, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkUrl: LinkUrl_})
 	return row, err
 }
 
-// PutLinksByLinkName Put Links via LinkName
-func PutLinksByLinkName(LinkName_ string, iLinks *Links) (int64, error) {
+// PutLinksViaLinkName Put Links via LinkName
+func PutLinksViaLinkName(LinkName_ string, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkName: LinkName_})
 	return row, err
 }
 
-// PutLinksByLinkImage Put Links via LinkImage
-func PutLinksByLinkImage(LinkImage_ string, iLinks *Links) (int64, error) {
+// PutLinksViaLinkImage Put Links via LinkImage
+func PutLinksViaLinkImage(LinkImage_ string, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkImage: LinkImage_})
 	return row, err
 }
 
-// PutLinksByLinkTarget Put Links via LinkTarget
-func PutLinksByLinkTarget(LinkTarget_ string, iLinks *Links) (int64, error) {
+// PutLinksViaLinkTarget Put Links via LinkTarget
+func PutLinksViaLinkTarget(LinkTarget_ string, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkTarget: LinkTarget_})
 	return row, err
 }
 
-// PutLinksByLinkDescription Put Links via LinkDescription
-func PutLinksByLinkDescription(LinkDescription_ string, iLinks *Links) (int64, error) {
+// PutLinksViaLinkDescription Put Links via LinkDescription
+func PutLinksViaLinkDescription(LinkDescription_ string, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkDescription: LinkDescription_})
 	return row, err
 }
 
-// PutLinksByLinkVisible Put Links via LinkVisible
-func PutLinksByLinkVisible(LinkVisible_ string, iLinks *Links) (int64, error) {
+// PutLinksViaLinkVisible Put Links via LinkVisible
+func PutLinksViaLinkVisible(LinkVisible_ string, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkVisible: LinkVisible_})
 	return row, err
 }
 
-// PutLinksByLinkOwner Put Links via LinkOwner
-func PutLinksByLinkOwner(LinkOwner_ int64, iLinks *Links) (int64, error) {
+// PutLinksViaLinkOwner Put Links via LinkOwner
+func PutLinksViaLinkOwner(LinkOwner_ int64, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkOwner: LinkOwner_})
 	return row, err
 }
 
-// PutLinksByLinkRating Put Links via LinkRating
-func PutLinksByLinkRating(LinkRating_ int, iLinks *Links) (int64, error) {
+// PutLinksViaLinkRating Put Links via LinkRating
+func PutLinksViaLinkRating(LinkRating_ int, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkRating: LinkRating_})
 	return row, err
 }
 
-// PutLinksByLinkUpdated Put Links via LinkUpdated
-func PutLinksByLinkUpdated(LinkUpdated_ time.Time, iLinks *Links) (int64, error) {
+// PutLinksViaLinkUpdated Put Links via LinkUpdated
+func PutLinksViaLinkUpdated(LinkUpdated_ time.Time, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkUpdated: LinkUpdated_})
 	return row, err
 }
 
-// PutLinksByLinkRel Put Links via LinkRel
-func PutLinksByLinkRel(LinkRel_ string, iLinks *Links) (int64, error) {
+// PutLinksViaLinkRel Put Links via LinkRel
+func PutLinksViaLinkRel(LinkRel_ string, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkRel: LinkRel_})
 	return row, err
 }
 
-// PutLinksByLinkNotes Put Links via LinkNotes
-func PutLinksByLinkNotes(LinkNotes_ string, iLinks *Links) (int64, error) {
+// PutLinksViaLinkNotes Put Links via LinkNotes
+func PutLinksViaLinkNotes(LinkNotes_ string, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkNotes: LinkNotes_})
 	return row, err
 }
 
-// PutLinksByLinkRss Put Links via LinkRss
-func PutLinksByLinkRss(LinkRss_ string, iLinks *Links) (int64, error) {
+// PutLinksViaLinkRss Put Links via LinkRss
+func PutLinksViaLinkRss(LinkRss_ string, iLinks *Links) (int64, error) {
 	row, err := Engine.Update(iLinks, &Links{LinkRss: LinkRss_})
 	return row, err
 }
 
-// UpdateLinksByLinkId via map[string]interface{}{}
-func UpdateLinksByLinkId(iLinkId int64, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkId via map[string]interface{}{}
+func UpdateLinksViaLinkId(iLinkId int64, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_id = ?", iLinkId).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3236,8 +3236,8 @@ func UpdateLinksByLinkId(iLinkId int64, iLinksMap *map[string]interface{}) error
 	}
 }
 
-// UpdateLinksByLinkUrl via map[string]interface{}{}
-func UpdateLinksByLinkUrl(iLinkUrl string, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkUrl via map[string]interface{}{}
+func UpdateLinksViaLinkUrl(iLinkUrl string, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_url = ?", iLinkUrl).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3245,8 +3245,8 @@ func UpdateLinksByLinkUrl(iLinkUrl string, iLinksMap *map[string]interface{}) er
 	}
 }
 
-// UpdateLinksByLinkName via map[string]interface{}{}
-func UpdateLinksByLinkName(iLinkName string, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkName via map[string]interface{}{}
+func UpdateLinksViaLinkName(iLinkName string, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_name = ?", iLinkName).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3254,8 +3254,8 @@ func UpdateLinksByLinkName(iLinkName string, iLinksMap *map[string]interface{}) 
 	}
 }
 
-// UpdateLinksByLinkImage via map[string]interface{}{}
-func UpdateLinksByLinkImage(iLinkImage string, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkImage via map[string]interface{}{}
+func UpdateLinksViaLinkImage(iLinkImage string, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_image = ?", iLinkImage).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3263,8 +3263,8 @@ func UpdateLinksByLinkImage(iLinkImage string, iLinksMap *map[string]interface{}
 	}
 }
 
-// UpdateLinksByLinkTarget via map[string]interface{}{}
-func UpdateLinksByLinkTarget(iLinkTarget string, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkTarget via map[string]interface{}{}
+func UpdateLinksViaLinkTarget(iLinkTarget string, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_target = ?", iLinkTarget).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3272,8 +3272,8 @@ func UpdateLinksByLinkTarget(iLinkTarget string, iLinksMap *map[string]interface
 	}
 }
 
-// UpdateLinksByLinkDescription via map[string]interface{}{}
-func UpdateLinksByLinkDescription(iLinkDescription string, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkDescription via map[string]interface{}{}
+func UpdateLinksViaLinkDescription(iLinkDescription string, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_description = ?", iLinkDescription).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3281,8 +3281,8 @@ func UpdateLinksByLinkDescription(iLinkDescription string, iLinksMap *map[string
 	}
 }
 
-// UpdateLinksByLinkVisible via map[string]interface{}{}
-func UpdateLinksByLinkVisible(iLinkVisible string, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkVisible via map[string]interface{}{}
+func UpdateLinksViaLinkVisible(iLinkVisible string, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_visible = ?", iLinkVisible).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3290,8 +3290,8 @@ func UpdateLinksByLinkVisible(iLinkVisible string, iLinksMap *map[string]interfa
 	}
 }
 
-// UpdateLinksByLinkOwner via map[string]interface{}{}
-func UpdateLinksByLinkOwner(iLinkOwner int64, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkOwner via map[string]interface{}{}
+func UpdateLinksViaLinkOwner(iLinkOwner int64, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_owner = ?", iLinkOwner).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3299,8 +3299,8 @@ func UpdateLinksByLinkOwner(iLinkOwner int64, iLinksMap *map[string]interface{})
 	}
 }
 
-// UpdateLinksByLinkRating via map[string]interface{}{}
-func UpdateLinksByLinkRating(iLinkRating int, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkRating via map[string]interface{}{}
+func UpdateLinksViaLinkRating(iLinkRating int, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_rating = ?", iLinkRating).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3308,8 +3308,8 @@ func UpdateLinksByLinkRating(iLinkRating int, iLinksMap *map[string]interface{})
 	}
 }
 
-// UpdateLinksByLinkUpdated via map[string]interface{}{}
-func UpdateLinksByLinkUpdated(iLinkUpdated time.Time, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkUpdated via map[string]interface{}{}
+func UpdateLinksViaLinkUpdated(iLinkUpdated time.Time, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_updated = ?", iLinkUpdated).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3317,8 +3317,8 @@ func UpdateLinksByLinkUpdated(iLinkUpdated time.Time, iLinksMap *map[string]inte
 	}
 }
 
-// UpdateLinksByLinkRel via map[string]interface{}{}
-func UpdateLinksByLinkRel(iLinkRel string, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkRel via map[string]interface{}{}
+func UpdateLinksViaLinkRel(iLinkRel string, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_rel = ?", iLinkRel).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3326,8 +3326,8 @@ func UpdateLinksByLinkRel(iLinkRel string, iLinksMap *map[string]interface{}) er
 	}
 }
 
-// UpdateLinksByLinkNotes via map[string]interface{}{}
-func UpdateLinksByLinkNotes(iLinkNotes string, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkNotes via map[string]interface{}{}
+func UpdateLinksViaLinkNotes(iLinkNotes string, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_notes = ?", iLinkNotes).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3335,8 +3335,8 @@ func UpdateLinksByLinkNotes(iLinkNotes string, iLinksMap *map[string]interface{}
 	}
 }
 
-// UpdateLinksByLinkRss via map[string]interface{}{}
-func UpdateLinksByLinkRss(iLinkRss string, iLinksMap *map[string]interface{}) error {
+// UpdateLinksViaLinkRss via map[string]interface{}{}
+func UpdateLinksViaLinkRss(iLinkRss string, iLinksMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Links)).Where("link_rss = ?", iLinkRss).Update(iLinksMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -3350,8 +3350,8 @@ func DeleteLinks(iLinkId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteLinksByLinkId Delete Links via LinkId
-func DeleteLinksByLinkId(iLinkId int64) (err error) {
+// DeleteLinksViaLinkId Delete Links via LinkId
+func DeleteLinksViaLinkId(iLinkId int64) (err error) {
 	var has bool
 	var _Links = &Links{LinkId: iLinkId}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3364,8 +3364,8 @@ func DeleteLinksByLinkId(iLinkId int64) (err error) {
 	return
 }
 
-// DeleteLinksByLinkUrl Delete Links via LinkUrl
-func DeleteLinksByLinkUrl(iLinkUrl string) (err error) {
+// DeleteLinksViaLinkUrl Delete Links via LinkUrl
+func DeleteLinksViaLinkUrl(iLinkUrl string) (err error) {
 	var has bool
 	var _Links = &Links{LinkUrl: iLinkUrl}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3378,8 +3378,8 @@ func DeleteLinksByLinkUrl(iLinkUrl string) (err error) {
 	return
 }
 
-// DeleteLinksByLinkName Delete Links via LinkName
-func DeleteLinksByLinkName(iLinkName string) (err error) {
+// DeleteLinksViaLinkName Delete Links via LinkName
+func DeleteLinksViaLinkName(iLinkName string) (err error) {
 	var has bool
 	var _Links = &Links{LinkName: iLinkName}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3392,8 +3392,8 @@ func DeleteLinksByLinkName(iLinkName string) (err error) {
 	return
 }
 
-// DeleteLinksByLinkImage Delete Links via LinkImage
-func DeleteLinksByLinkImage(iLinkImage string) (err error) {
+// DeleteLinksViaLinkImage Delete Links via LinkImage
+func DeleteLinksViaLinkImage(iLinkImage string) (err error) {
 	var has bool
 	var _Links = &Links{LinkImage: iLinkImage}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3406,8 +3406,8 @@ func DeleteLinksByLinkImage(iLinkImage string) (err error) {
 	return
 }
 
-// DeleteLinksByLinkTarget Delete Links via LinkTarget
-func DeleteLinksByLinkTarget(iLinkTarget string) (err error) {
+// DeleteLinksViaLinkTarget Delete Links via LinkTarget
+func DeleteLinksViaLinkTarget(iLinkTarget string) (err error) {
 	var has bool
 	var _Links = &Links{LinkTarget: iLinkTarget}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3420,8 +3420,8 @@ func DeleteLinksByLinkTarget(iLinkTarget string) (err error) {
 	return
 }
 
-// DeleteLinksByLinkDescription Delete Links via LinkDescription
-func DeleteLinksByLinkDescription(iLinkDescription string) (err error) {
+// DeleteLinksViaLinkDescription Delete Links via LinkDescription
+func DeleteLinksViaLinkDescription(iLinkDescription string) (err error) {
 	var has bool
 	var _Links = &Links{LinkDescription: iLinkDescription}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3434,8 +3434,8 @@ func DeleteLinksByLinkDescription(iLinkDescription string) (err error) {
 	return
 }
 
-// DeleteLinksByLinkVisible Delete Links via LinkVisible
-func DeleteLinksByLinkVisible(iLinkVisible string) (err error) {
+// DeleteLinksViaLinkVisible Delete Links via LinkVisible
+func DeleteLinksViaLinkVisible(iLinkVisible string) (err error) {
 	var has bool
 	var _Links = &Links{LinkVisible: iLinkVisible}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3448,8 +3448,8 @@ func DeleteLinksByLinkVisible(iLinkVisible string) (err error) {
 	return
 }
 
-// DeleteLinksByLinkOwner Delete Links via LinkOwner
-func DeleteLinksByLinkOwner(iLinkOwner int64) (err error) {
+// DeleteLinksViaLinkOwner Delete Links via LinkOwner
+func DeleteLinksViaLinkOwner(iLinkOwner int64) (err error) {
 	var has bool
 	var _Links = &Links{LinkOwner: iLinkOwner}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3462,8 +3462,8 @@ func DeleteLinksByLinkOwner(iLinkOwner int64) (err error) {
 	return
 }
 
-// DeleteLinksByLinkRating Delete Links via LinkRating
-func DeleteLinksByLinkRating(iLinkRating int) (err error) {
+// DeleteLinksViaLinkRating Delete Links via LinkRating
+func DeleteLinksViaLinkRating(iLinkRating int) (err error) {
 	var has bool
 	var _Links = &Links{LinkRating: iLinkRating}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3476,8 +3476,8 @@ func DeleteLinksByLinkRating(iLinkRating int) (err error) {
 	return
 }
 
-// DeleteLinksByLinkUpdated Delete Links via LinkUpdated
-func DeleteLinksByLinkUpdated(iLinkUpdated time.Time) (err error) {
+// DeleteLinksViaLinkUpdated Delete Links via LinkUpdated
+func DeleteLinksViaLinkUpdated(iLinkUpdated time.Time) (err error) {
 	var has bool
 	var _Links = &Links{LinkUpdated: iLinkUpdated}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3490,8 +3490,8 @@ func DeleteLinksByLinkUpdated(iLinkUpdated time.Time) (err error) {
 	return
 }
 
-// DeleteLinksByLinkRel Delete Links via LinkRel
-func DeleteLinksByLinkRel(iLinkRel string) (err error) {
+// DeleteLinksViaLinkRel Delete Links via LinkRel
+func DeleteLinksViaLinkRel(iLinkRel string) (err error) {
 	var has bool
 	var _Links = &Links{LinkRel: iLinkRel}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3504,8 +3504,8 @@ func DeleteLinksByLinkRel(iLinkRel string) (err error) {
 	return
 }
 
-// DeleteLinksByLinkNotes Delete Links via LinkNotes
-func DeleteLinksByLinkNotes(iLinkNotes string) (err error) {
+// DeleteLinksViaLinkNotes Delete Links via LinkNotes
+func DeleteLinksViaLinkNotes(iLinkNotes string) (err error) {
 	var has bool
 	var _Links = &Links{LinkNotes: iLinkNotes}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {
@@ -3518,8 +3518,8 @@ func DeleteLinksByLinkNotes(iLinkNotes string) (err error) {
 	return
 }
 
-// DeleteLinksByLinkRss Delete Links via LinkRss
-func DeleteLinksByLinkRss(iLinkRss string) (err error) {
+// DeleteLinksViaLinkRss Delete Links via LinkRss
+func DeleteLinksViaLinkRss(iLinkRss string) (err error) {
 	var has bool
 	var _Links = &Links{LinkRss: iLinkRss}
 	if has, err = Engine.Get(_Links); (has == true) && (err == nil) {

@@ -12,7 +12,7 @@ type Comments struct {
 	CommentAuthorUrl   string    `xorm:"not null default '' VARCHAR(200)"`
 	CommentAuthorIp    string    `xorm:"not null default '' VARCHAR(100)"`
 	CommentDate        time.Time `xorm:"not null default '0000-00-00 00:00:00' DATETIME"`
-	CommentDateGmt     time.Time `xorm:"not null default '0000-00-00 00:00:00' index(comment_approved_date_gmt) index DATETIME"`
+	CommentDateGmt     time.Time `xorm:"not null default '0000-00-00 00:00:00' index index(comment_approved_date_gmt) DATETIME"`
 	CommentContent     string    `xorm:"not null TEXT"`
 	CommentKarma       int       `xorm:"not null default 0 INT(11)"`
 	CommentApproved    string    `xorm:"not null default '1' index(comment_approved_date_gmt) VARCHAR(20)"`
@@ -28,92 +28,92 @@ func GetCommentsesCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetCommentsCountByCommentId Get Comments via CommentId
-func GetCommentsCountByCommentId(iCommentId int64) int64 {
+// GetCommentsCountViaCommentId Get Comments via CommentId
+func GetCommentsCountViaCommentId(iCommentId int64) int64 {
 	n, _ := Engine.Where("comment_ID = ?", iCommentId).Count(&Comments{CommentId: iCommentId})
 	return n
 }
 
-// GetCommentsCountByCommentPostId Get Comments via CommentPostId
-func GetCommentsCountByCommentPostId(iCommentPostId int64) int64 {
+// GetCommentsCountViaCommentPostId Get Comments via CommentPostId
+func GetCommentsCountViaCommentPostId(iCommentPostId int64) int64 {
 	n, _ := Engine.Where("comment_post_ID = ?", iCommentPostId).Count(&Comments{CommentPostId: iCommentPostId})
 	return n
 }
 
-// GetCommentsCountByCommentAuthor Get Comments via CommentAuthor
-func GetCommentsCountByCommentAuthor(iCommentAuthor string) int64 {
+// GetCommentsCountViaCommentAuthor Get Comments via CommentAuthor
+func GetCommentsCountViaCommentAuthor(iCommentAuthor string) int64 {
 	n, _ := Engine.Where("comment_author = ?", iCommentAuthor).Count(&Comments{CommentAuthor: iCommentAuthor})
 	return n
 }
 
-// GetCommentsCountByCommentAuthorEmail Get Comments via CommentAuthorEmail
-func GetCommentsCountByCommentAuthorEmail(iCommentAuthorEmail string) int64 {
+// GetCommentsCountViaCommentAuthorEmail Get Comments via CommentAuthorEmail
+func GetCommentsCountViaCommentAuthorEmail(iCommentAuthorEmail string) int64 {
 	n, _ := Engine.Where("comment_author_email = ?", iCommentAuthorEmail).Count(&Comments{CommentAuthorEmail: iCommentAuthorEmail})
 	return n
 }
 
-// GetCommentsCountByCommentAuthorUrl Get Comments via CommentAuthorUrl
-func GetCommentsCountByCommentAuthorUrl(iCommentAuthorUrl string) int64 {
+// GetCommentsCountViaCommentAuthorUrl Get Comments via CommentAuthorUrl
+func GetCommentsCountViaCommentAuthorUrl(iCommentAuthorUrl string) int64 {
 	n, _ := Engine.Where("comment_author_url = ?", iCommentAuthorUrl).Count(&Comments{CommentAuthorUrl: iCommentAuthorUrl})
 	return n
 }
 
-// GetCommentsCountByCommentAuthorIp Get Comments via CommentAuthorIp
-func GetCommentsCountByCommentAuthorIp(iCommentAuthorIp string) int64 {
+// GetCommentsCountViaCommentAuthorIp Get Comments via CommentAuthorIp
+func GetCommentsCountViaCommentAuthorIp(iCommentAuthorIp string) int64 {
 	n, _ := Engine.Where("comment_author_IP = ?", iCommentAuthorIp).Count(&Comments{CommentAuthorIp: iCommentAuthorIp})
 	return n
 }
 
-// GetCommentsCountByCommentDate Get Comments via CommentDate
-func GetCommentsCountByCommentDate(iCommentDate time.Time) int64 {
+// GetCommentsCountViaCommentDate Get Comments via CommentDate
+func GetCommentsCountViaCommentDate(iCommentDate time.Time) int64 {
 	n, _ := Engine.Where("comment_date = ?", iCommentDate).Count(&Comments{CommentDate: iCommentDate})
 	return n
 }
 
-// GetCommentsCountByCommentDateGmt Get Comments via CommentDateGmt
-func GetCommentsCountByCommentDateGmt(iCommentDateGmt time.Time) int64 {
+// GetCommentsCountViaCommentDateGmt Get Comments via CommentDateGmt
+func GetCommentsCountViaCommentDateGmt(iCommentDateGmt time.Time) int64 {
 	n, _ := Engine.Where("comment_date_gmt = ?", iCommentDateGmt).Count(&Comments{CommentDateGmt: iCommentDateGmt})
 	return n
 }
 
-// GetCommentsCountByCommentContent Get Comments via CommentContent
-func GetCommentsCountByCommentContent(iCommentContent string) int64 {
+// GetCommentsCountViaCommentContent Get Comments via CommentContent
+func GetCommentsCountViaCommentContent(iCommentContent string) int64 {
 	n, _ := Engine.Where("comment_content = ?", iCommentContent).Count(&Comments{CommentContent: iCommentContent})
 	return n
 }
 
-// GetCommentsCountByCommentKarma Get Comments via CommentKarma
-func GetCommentsCountByCommentKarma(iCommentKarma int) int64 {
+// GetCommentsCountViaCommentKarma Get Comments via CommentKarma
+func GetCommentsCountViaCommentKarma(iCommentKarma int) int64 {
 	n, _ := Engine.Where("comment_karma = ?", iCommentKarma).Count(&Comments{CommentKarma: iCommentKarma})
 	return n
 }
 
-// GetCommentsCountByCommentApproved Get Comments via CommentApproved
-func GetCommentsCountByCommentApproved(iCommentApproved string) int64 {
+// GetCommentsCountViaCommentApproved Get Comments via CommentApproved
+func GetCommentsCountViaCommentApproved(iCommentApproved string) int64 {
 	n, _ := Engine.Where("comment_approved = ?", iCommentApproved).Count(&Comments{CommentApproved: iCommentApproved})
 	return n
 }
 
-// GetCommentsCountByCommentAgent Get Comments via CommentAgent
-func GetCommentsCountByCommentAgent(iCommentAgent string) int64 {
+// GetCommentsCountViaCommentAgent Get Comments via CommentAgent
+func GetCommentsCountViaCommentAgent(iCommentAgent string) int64 {
 	n, _ := Engine.Where("comment_agent = ?", iCommentAgent).Count(&Comments{CommentAgent: iCommentAgent})
 	return n
 }
 
-// GetCommentsCountByCommentType Get Comments via CommentType
-func GetCommentsCountByCommentType(iCommentType string) int64 {
+// GetCommentsCountViaCommentType Get Comments via CommentType
+func GetCommentsCountViaCommentType(iCommentType string) int64 {
 	n, _ := Engine.Where("comment_type = ?", iCommentType).Count(&Comments{CommentType: iCommentType})
 	return n
 }
 
-// GetCommentsCountByCommentParent Get Comments via CommentParent
-func GetCommentsCountByCommentParent(iCommentParent int64) int64 {
+// GetCommentsCountViaCommentParent Get Comments via CommentParent
+func GetCommentsCountViaCommentParent(iCommentParent int64) int64 {
 	n, _ := Engine.Where("comment_parent = ?", iCommentParent).Count(&Comments{CommentParent: iCommentParent})
 	return n
 }
 
-// GetCommentsCountByUserId Get Comments via UserId
-func GetCommentsCountByUserId(iUserId int64) int64 {
+// GetCommentsCountViaUserId Get Comments via UserId
+func GetCommentsCountViaUserId(iUserId int64) int64 {
 	n, _ := Engine.Where("user_id = ?", iUserId).Count(&Comments{UserId: iUserId})
 	return n
 }
@@ -4045,113 +4045,113 @@ func GetCommentses(offset int, limit int, field string) (*[]*Comments, error) {
 	return _Comments, err
 }
 
-// GetCommentsesByCommentId Get Commentss via CommentId
-func GetCommentsesByCommentId(offset int, limit int, CommentId_ int64, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentId Get Commentss via CommentId
+func GetCommentsesViaCommentId(offset int, limit int, CommentId_ int64, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_ID = ?", CommentId_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentPostId Get Commentss via CommentPostId
-func GetCommentsesByCommentPostId(offset int, limit int, CommentPostId_ int64, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentPostId Get Commentss via CommentPostId
+func GetCommentsesViaCommentPostId(offset int, limit int, CommentPostId_ int64, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_post_ID = ?", CommentPostId_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentAuthor Get Commentss via CommentAuthor
-func GetCommentsesByCommentAuthor(offset int, limit int, CommentAuthor_ string, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentAuthor Get Commentss via CommentAuthor
+func GetCommentsesViaCommentAuthor(offset int, limit int, CommentAuthor_ string, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_author = ?", CommentAuthor_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentAuthorEmail Get Commentss via CommentAuthorEmail
-func GetCommentsesByCommentAuthorEmail(offset int, limit int, CommentAuthorEmail_ string, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentAuthorEmail Get Commentss via CommentAuthorEmail
+func GetCommentsesViaCommentAuthorEmail(offset int, limit int, CommentAuthorEmail_ string, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_author_email = ?", CommentAuthorEmail_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentAuthorUrl Get Commentss via CommentAuthorUrl
-func GetCommentsesByCommentAuthorUrl(offset int, limit int, CommentAuthorUrl_ string, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentAuthorUrl Get Commentss via CommentAuthorUrl
+func GetCommentsesViaCommentAuthorUrl(offset int, limit int, CommentAuthorUrl_ string, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_author_url = ?", CommentAuthorUrl_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentAuthorIp Get Commentss via CommentAuthorIp
-func GetCommentsesByCommentAuthorIp(offset int, limit int, CommentAuthorIp_ string, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentAuthorIp Get Commentss via CommentAuthorIp
+func GetCommentsesViaCommentAuthorIp(offset int, limit int, CommentAuthorIp_ string, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_author_IP = ?", CommentAuthorIp_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentDate Get Commentss via CommentDate
-func GetCommentsesByCommentDate(offset int, limit int, CommentDate_ time.Time, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentDate Get Commentss via CommentDate
+func GetCommentsesViaCommentDate(offset int, limit int, CommentDate_ time.Time, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_date = ?", CommentDate_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentDateGmt Get Commentss via CommentDateGmt
-func GetCommentsesByCommentDateGmt(offset int, limit int, CommentDateGmt_ time.Time, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentDateGmt Get Commentss via CommentDateGmt
+func GetCommentsesViaCommentDateGmt(offset int, limit int, CommentDateGmt_ time.Time, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_date_gmt = ?", CommentDateGmt_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentContent Get Commentss via CommentContent
-func GetCommentsesByCommentContent(offset int, limit int, CommentContent_ string, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentContent Get Commentss via CommentContent
+func GetCommentsesViaCommentContent(offset int, limit int, CommentContent_ string, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_content = ?", CommentContent_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentKarma Get Commentss via CommentKarma
-func GetCommentsesByCommentKarma(offset int, limit int, CommentKarma_ int, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentKarma Get Commentss via CommentKarma
+func GetCommentsesViaCommentKarma(offset int, limit int, CommentKarma_ int, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_karma = ?", CommentKarma_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentApproved Get Commentss via CommentApproved
-func GetCommentsesByCommentApproved(offset int, limit int, CommentApproved_ string, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentApproved Get Commentss via CommentApproved
+func GetCommentsesViaCommentApproved(offset int, limit int, CommentApproved_ string, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_approved = ?", CommentApproved_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentAgent Get Commentss via CommentAgent
-func GetCommentsesByCommentAgent(offset int, limit int, CommentAgent_ string, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentAgent Get Commentss via CommentAgent
+func GetCommentsesViaCommentAgent(offset int, limit int, CommentAgent_ string, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_agent = ?", CommentAgent_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentType Get Commentss via CommentType
-func GetCommentsesByCommentType(offset int, limit int, CommentType_ string, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentType Get Commentss via CommentType
+func GetCommentsesViaCommentType(offset int, limit int, CommentType_ string, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_type = ?", CommentType_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByCommentParent Get Commentss via CommentParent
-func GetCommentsesByCommentParent(offset int, limit int, CommentParent_ int64, field string) (*[]*Comments, error) {
+// GetCommentsesViaCommentParent Get Commentss via CommentParent
+func GetCommentsesViaCommentParent(offset int, limit int, CommentParent_ int64, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("comment_parent = ?", CommentParent_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// GetCommentsesByUserId Get Commentss via UserId
-func GetCommentsesByUserId(offset int, limit int, UserId_ int64, field string) (*[]*Comments, error) {
+// GetCommentsesViaUserId Get Commentss via UserId
+func GetCommentsesViaUserId(offset int, limit int, UserId_ int64, field string) (*[]*Comments, error) {
 	var _Comments = new([]*Comments)
 	err := Engine.Table("comments").Where("user_id = ?", UserId_).Limit(limit, offset).Desc(field).Find(_Comments)
 	return _Comments, err
 }
 
-// HasCommentsByCommentId Has Comments via CommentId
-func HasCommentsByCommentId(iCommentId int64) bool {
+// HasCommentsViaCommentId Has Comments via CommentId
+func HasCommentsViaCommentId(iCommentId int64) bool {
 	if has, err := Engine.Where("comment_ID = ?", iCommentId).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4162,8 +4162,8 @@ func HasCommentsByCommentId(iCommentId int64) bool {
 	}
 }
 
-// HasCommentsByCommentPostId Has Comments via CommentPostId
-func HasCommentsByCommentPostId(iCommentPostId int64) bool {
+// HasCommentsViaCommentPostId Has Comments via CommentPostId
+func HasCommentsViaCommentPostId(iCommentPostId int64) bool {
 	if has, err := Engine.Where("comment_post_ID = ?", iCommentPostId).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4174,8 +4174,8 @@ func HasCommentsByCommentPostId(iCommentPostId int64) bool {
 	}
 }
 
-// HasCommentsByCommentAuthor Has Comments via CommentAuthor
-func HasCommentsByCommentAuthor(iCommentAuthor string) bool {
+// HasCommentsViaCommentAuthor Has Comments via CommentAuthor
+func HasCommentsViaCommentAuthor(iCommentAuthor string) bool {
 	if has, err := Engine.Where("comment_author = ?", iCommentAuthor).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4186,8 +4186,8 @@ func HasCommentsByCommentAuthor(iCommentAuthor string) bool {
 	}
 }
 
-// HasCommentsByCommentAuthorEmail Has Comments via CommentAuthorEmail
-func HasCommentsByCommentAuthorEmail(iCommentAuthorEmail string) bool {
+// HasCommentsViaCommentAuthorEmail Has Comments via CommentAuthorEmail
+func HasCommentsViaCommentAuthorEmail(iCommentAuthorEmail string) bool {
 	if has, err := Engine.Where("comment_author_email = ?", iCommentAuthorEmail).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4198,8 +4198,8 @@ func HasCommentsByCommentAuthorEmail(iCommentAuthorEmail string) bool {
 	}
 }
 
-// HasCommentsByCommentAuthorUrl Has Comments via CommentAuthorUrl
-func HasCommentsByCommentAuthorUrl(iCommentAuthorUrl string) bool {
+// HasCommentsViaCommentAuthorUrl Has Comments via CommentAuthorUrl
+func HasCommentsViaCommentAuthorUrl(iCommentAuthorUrl string) bool {
 	if has, err := Engine.Where("comment_author_url = ?", iCommentAuthorUrl).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4210,8 +4210,8 @@ func HasCommentsByCommentAuthorUrl(iCommentAuthorUrl string) bool {
 	}
 }
 
-// HasCommentsByCommentAuthorIp Has Comments via CommentAuthorIp
-func HasCommentsByCommentAuthorIp(iCommentAuthorIp string) bool {
+// HasCommentsViaCommentAuthorIp Has Comments via CommentAuthorIp
+func HasCommentsViaCommentAuthorIp(iCommentAuthorIp string) bool {
 	if has, err := Engine.Where("comment_author_IP = ?", iCommentAuthorIp).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4222,8 +4222,8 @@ func HasCommentsByCommentAuthorIp(iCommentAuthorIp string) bool {
 	}
 }
 
-// HasCommentsByCommentDate Has Comments via CommentDate
-func HasCommentsByCommentDate(iCommentDate time.Time) bool {
+// HasCommentsViaCommentDate Has Comments via CommentDate
+func HasCommentsViaCommentDate(iCommentDate time.Time) bool {
 	if has, err := Engine.Where("comment_date = ?", iCommentDate).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4234,8 +4234,8 @@ func HasCommentsByCommentDate(iCommentDate time.Time) bool {
 	}
 }
 
-// HasCommentsByCommentDateGmt Has Comments via CommentDateGmt
-func HasCommentsByCommentDateGmt(iCommentDateGmt time.Time) bool {
+// HasCommentsViaCommentDateGmt Has Comments via CommentDateGmt
+func HasCommentsViaCommentDateGmt(iCommentDateGmt time.Time) bool {
 	if has, err := Engine.Where("comment_date_gmt = ?", iCommentDateGmt).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4246,8 +4246,8 @@ func HasCommentsByCommentDateGmt(iCommentDateGmt time.Time) bool {
 	}
 }
 
-// HasCommentsByCommentContent Has Comments via CommentContent
-func HasCommentsByCommentContent(iCommentContent string) bool {
+// HasCommentsViaCommentContent Has Comments via CommentContent
+func HasCommentsViaCommentContent(iCommentContent string) bool {
 	if has, err := Engine.Where("comment_content = ?", iCommentContent).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4258,8 +4258,8 @@ func HasCommentsByCommentContent(iCommentContent string) bool {
 	}
 }
 
-// HasCommentsByCommentKarma Has Comments via CommentKarma
-func HasCommentsByCommentKarma(iCommentKarma int) bool {
+// HasCommentsViaCommentKarma Has Comments via CommentKarma
+func HasCommentsViaCommentKarma(iCommentKarma int) bool {
 	if has, err := Engine.Where("comment_karma = ?", iCommentKarma).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4270,8 +4270,8 @@ func HasCommentsByCommentKarma(iCommentKarma int) bool {
 	}
 }
 
-// HasCommentsByCommentApproved Has Comments via CommentApproved
-func HasCommentsByCommentApproved(iCommentApproved string) bool {
+// HasCommentsViaCommentApproved Has Comments via CommentApproved
+func HasCommentsViaCommentApproved(iCommentApproved string) bool {
 	if has, err := Engine.Where("comment_approved = ?", iCommentApproved).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4282,8 +4282,8 @@ func HasCommentsByCommentApproved(iCommentApproved string) bool {
 	}
 }
 
-// HasCommentsByCommentAgent Has Comments via CommentAgent
-func HasCommentsByCommentAgent(iCommentAgent string) bool {
+// HasCommentsViaCommentAgent Has Comments via CommentAgent
+func HasCommentsViaCommentAgent(iCommentAgent string) bool {
 	if has, err := Engine.Where("comment_agent = ?", iCommentAgent).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4294,8 +4294,8 @@ func HasCommentsByCommentAgent(iCommentAgent string) bool {
 	}
 }
 
-// HasCommentsByCommentType Has Comments via CommentType
-func HasCommentsByCommentType(iCommentType string) bool {
+// HasCommentsViaCommentType Has Comments via CommentType
+func HasCommentsViaCommentType(iCommentType string) bool {
 	if has, err := Engine.Where("comment_type = ?", iCommentType).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4306,8 +4306,8 @@ func HasCommentsByCommentType(iCommentType string) bool {
 	}
 }
 
-// HasCommentsByCommentParent Has Comments via CommentParent
-func HasCommentsByCommentParent(iCommentParent int64) bool {
+// HasCommentsViaCommentParent Has Comments via CommentParent
+func HasCommentsViaCommentParent(iCommentParent int64) bool {
 	if has, err := Engine.Where("comment_parent = ?", iCommentParent).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4318,8 +4318,8 @@ func HasCommentsByCommentParent(iCommentParent int64) bool {
 	}
 }
 
-// HasCommentsByUserId Has Comments via UserId
-func HasCommentsByUserId(iUserId int64) bool {
+// HasCommentsViaUserId Has Comments via UserId
+func HasCommentsViaUserId(iUserId int64) bool {
 	if has, err := Engine.Where("user_id = ?", iUserId).Get(new(Comments)); err != nil {
 		return false
 	} else {
@@ -4330,8 +4330,8 @@ func HasCommentsByUserId(iUserId int64) bool {
 	}
 }
 
-// GetCommentsByCommentId Get Comments via CommentId
-func GetCommentsByCommentId(iCommentId int64) (*Comments, error) {
+// GetCommentsViaCommentId Get Comments via CommentId
+func GetCommentsViaCommentId(iCommentId int64) (*Comments, error) {
 	var _Comments = &Comments{CommentId: iCommentId}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4341,8 +4341,8 @@ func GetCommentsByCommentId(iCommentId int64) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentPostId Get Comments via CommentPostId
-func GetCommentsByCommentPostId(iCommentPostId int64) (*Comments, error) {
+// GetCommentsViaCommentPostId Get Comments via CommentPostId
+func GetCommentsViaCommentPostId(iCommentPostId int64) (*Comments, error) {
 	var _Comments = &Comments{CommentPostId: iCommentPostId}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4352,8 +4352,8 @@ func GetCommentsByCommentPostId(iCommentPostId int64) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentAuthor Get Comments via CommentAuthor
-func GetCommentsByCommentAuthor(iCommentAuthor string) (*Comments, error) {
+// GetCommentsViaCommentAuthor Get Comments via CommentAuthor
+func GetCommentsViaCommentAuthor(iCommentAuthor string) (*Comments, error) {
 	var _Comments = &Comments{CommentAuthor: iCommentAuthor}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4363,8 +4363,8 @@ func GetCommentsByCommentAuthor(iCommentAuthor string) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentAuthorEmail Get Comments via CommentAuthorEmail
-func GetCommentsByCommentAuthorEmail(iCommentAuthorEmail string) (*Comments, error) {
+// GetCommentsViaCommentAuthorEmail Get Comments via CommentAuthorEmail
+func GetCommentsViaCommentAuthorEmail(iCommentAuthorEmail string) (*Comments, error) {
 	var _Comments = &Comments{CommentAuthorEmail: iCommentAuthorEmail}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4374,8 +4374,8 @@ func GetCommentsByCommentAuthorEmail(iCommentAuthorEmail string) (*Comments, err
 	}
 }
 
-// GetCommentsByCommentAuthorUrl Get Comments via CommentAuthorUrl
-func GetCommentsByCommentAuthorUrl(iCommentAuthorUrl string) (*Comments, error) {
+// GetCommentsViaCommentAuthorUrl Get Comments via CommentAuthorUrl
+func GetCommentsViaCommentAuthorUrl(iCommentAuthorUrl string) (*Comments, error) {
 	var _Comments = &Comments{CommentAuthorUrl: iCommentAuthorUrl}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4385,8 +4385,8 @@ func GetCommentsByCommentAuthorUrl(iCommentAuthorUrl string) (*Comments, error) 
 	}
 }
 
-// GetCommentsByCommentAuthorIp Get Comments via CommentAuthorIp
-func GetCommentsByCommentAuthorIp(iCommentAuthorIp string) (*Comments, error) {
+// GetCommentsViaCommentAuthorIp Get Comments via CommentAuthorIp
+func GetCommentsViaCommentAuthorIp(iCommentAuthorIp string) (*Comments, error) {
 	var _Comments = &Comments{CommentAuthorIp: iCommentAuthorIp}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4396,8 +4396,8 @@ func GetCommentsByCommentAuthorIp(iCommentAuthorIp string) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentDate Get Comments via CommentDate
-func GetCommentsByCommentDate(iCommentDate time.Time) (*Comments, error) {
+// GetCommentsViaCommentDate Get Comments via CommentDate
+func GetCommentsViaCommentDate(iCommentDate time.Time) (*Comments, error) {
 	var _Comments = &Comments{CommentDate: iCommentDate}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4407,8 +4407,8 @@ func GetCommentsByCommentDate(iCommentDate time.Time) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentDateGmt Get Comments via CommentDateGmt
-func GetCommentsByCommentDateGmt(iCommentDateGmt time.Time) (*Comments, error) {
+// GetCommentsViaCommentDateGmt Get Comments via CommentDateGmt
+func GetCommentsViaCommentDateGmt(iCommentDateGmt time.Time) (*Comments, error) {
 	var _Comments = &Comments{CommentDateGmt: iCommentDateGmt}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4418,8 +4418,8 @@ func GetCommentsByCommentDateGmt(iCommentDateGmt time.Time) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentContent Get Comments via CommentContent
-func GetCommentsByCommentContent(iCommentContent string) (*Comments, error) {
+// GetCommentsViaCommentContent Get Comments via CommentContent
+func GetCommentsViaCommentContent(iCommentContent string) (*Comments, error) {
 	var _Comments = &Comments{CommentContent: iCommentContent}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4429,8 +4429,8 @@ func GetCommentsByCommentContent(iCommentContent string) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentKarma Get Comments via CommentKarma
-func GetCommentsByCommentKarma(iCommentKarma int) (*Comments, error) {
+// GetCommentsViaCommentKarma Get Comments via CommentKarma
+func GetCommentsViaCommentKarma(iCommentKarma int) (*Comments, error) {
 	var _Comments = &Comments{CommentKarma: iCommentKarma}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4440,8 +4440,8 @@ func GetCommentsByCommentKarma(iCommentKarma int) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentApproved Get Comments via CommentApproved
-func GetCommentsByCommentApproved(iCommentApproved string) (*Comments, error) {
+// GetCommentsViaCommentApproved Get Comments via CommentApproved
+func GetCommentsViaCommentApproved(iCommentApproved string) (*Comments, error) {
 	var _Comments = &Comments{CommentApproved: iCommentApproved}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4451,8 +4451,8 @@ func GetCommentsByCommentApproved(iCommentApproved string) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentAgent Get Comments via CommentAgent
-func GetCommentsByCommentAgent(iCommentAgent string) (*Comments, error) {
+// GetCommentsViaCommentAgent Get Comments via CommentAgent
+func GetCommentsViaCommentAgent(iCommentAgent string) (*Comments, error) {
 	var _Comments = &Comments{CommentAgent: iCommentAgent}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4462,8 +4462,8 @@ func GetCommentsByCommentAgent(iCommentAgent string) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentType Get Comments via CommentType
-func GetCommentsByCommentType(iCommentType string) (*Comments, error) {
+// GetCommentsViaCommentType Get Comments via CommentType
+func GetCommentsViaCommentType(iCommentType string) (*Comments, error) {
 	var _Comments = &Comments{CommentType: iCommentType}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4473,8 +4473,8 @@ func GetCommentsByCommentType(iCommentType string) (*Comments, error) {
 	}
 }
 
-// GetCommentsByCommentParent Get Comments via CommentParent
-func GetCommentsByCommentParent(iCommentParent int64) (*Comments, error) {
+// GetCommentsViaCommentParent Get Comments via CommentParent
+func GetCommentsViaCommentParent(iCommentParent int64) (*Comments, error) {
 	var _Comments = &Comments{CommentParent: iCommentParent}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4484,8 +4484,8 @@ func GetCommentsByCommentParent(iCommentParent int64) (*Comments, error) {
 	}
 }
 
-// GetCommentsByUserId Get Comments via UserId
-func GetCommentsByUserId(iUserId int64) (*Comments, error) {
+// GetCommentsViaUserId Get Comments via UserId
+func GetCommentsViaUserId(iUserId int64) (*Comments, error) {
 	var _Comments = &Comments{UserId: iUserId}
 	has, err := Engine.Get(_Comments)
 	if has {
@@ -4495,92 +4495,92 @@ func GetCommentsByUserId(iUserId int64) (*Comments, error) {
 	}
 }
 
-// SetCommentsByCommentId Set Comments via CommentId
-func SetCommentsByCommentId(iCommentId int64, comments *Comments) (int64, error) {
+// SetCommentsViaCommentId Set Comments via CommentId
+func SetCommentsViaCommentId(iCommentId int64, comments *Comments) (int64, error) {
 	comments.CommentId = iCommentId
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentPostId Set Comments via CommentPostId
-func SetCommentsByCommentPostId(iCommentPostId int64, comments *Comments) (int64, error) {
+// SetCommentsViaCommentPostId Set Comments via CommentPostId
+func SetCommentsViaCommentPostId(iCommentPostId int64, comments *Comments) (int64, error) {
 	comments.CommentPostId = iCommentPostId
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentAuthor Set Comments via CommentAuthor
-func SetCommentsByCommentAuthor(iCommentAuthor string, comments *Comments) (int64, error) {
+// SetCommentsViaCommentAuthor Set Comments via CommentAuthor
+func SetCommentsViaCommentAuthor(iCommentAuthor string, comments *Comments) (int64, error) {
 	comments.CommentAuthor = iCommentAuthor
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentAuthorEmail Set Comments via CommentAuthorEmail
-func SetCommentsByCommentAuthorEmail(iCommentAuthorEmail string, comments *Comments) (int64, error) {
+// SetCommentsViaCommentAuthorEmail Set Comments via CommentAuthorEmail
+func SetCommentsViaCommentAuthorEmail(iCommentAuthorEmail string, comments *Comments) (int64, error) {
 	comments.CommentAuthorEmail = iCommentAuthorEmail
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentAuthorUrl Set Comments via CommentAuthorUrl
-func SetCommentsByCommentAuthorUrl(iCommentAuthorUrl string, comments *Comments) (int64, error) {
+// SetCommentsViaCommentAuthorUrl Set Comments via CommentAuthorUrl
+func SetCommentsViaCommentAuthorUrl(iCommentAuthorUrl string, comments *Comments) (int64, error) {
 	comments.CommentAuthorUrl = iCommentAuthorUrl
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentAuthorIp Set Comments via CommentAuthorIp
-func SetCommentsByCommentAuthorIp(iCommentAuthorIp string, comments *Comments) (int64, error) {
+// SetCommentsViaCommentAuthorIp Set Comments via CommentAuthorIp
+func SetCommentsViaCommentAuthorIp(iCommentAuthorIp string, comments *Comments) (int64, error) {
 	comments.CommentAuthorIp = iCommentAuthorIp
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentDate Set Comments via CommentDate
-func SetCommentsByCommentDate(iCommentDate time.Time, comments *Comments) (int64, error) {
+// SetCommentsViaCommentDate Set Comments via CommentDate
+func SetCommentsViaCommentDate(iCommentDate time.Time, comments *Comments) (int64, error) {
 	comments.CommentDate = iCommentDate
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentDateGmt Set Comments via CommentDateGmt
-func SetCommentsByCommentDateGmt(iCommentDateGmt time.Time, comments *Comments) (int64, error) {
+// SetCommentsViaCommentDateGmt Set Comments via CommentDateGmt
+func SetCommentsViaCommentDateGmt(iCommentDateGmt time.Time, comments *Comments) (int64, error) {
 	comments.CommentDateGmt = iCommentDateGmt
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentContent Set Comments via CommentContent
-func SetCommentsByCommentContent(iCommentContent string, comments *Comments) (int64, error) {
+// SetCommentsViaCommentContent Set Comments via CommentContent
+func SetCommentsViaCommentContent(iCommentContent string, comments *Comments) (int64, error) {
 	comments.CommentContent = iCommentContent
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentKarma Set Comments via CommentKarma
-func SetCommentsByCommentKarma(iCommentKarma int, comments *Comments) (int64, error) {
+// SetCommentsViaCommentKarma Set Comments via CommentKarma
+func SetCommentsViaCommentKarma(iCommentKarma int, comments *Comments) (int64, error) {
 	comments.CommentKarma = iCommentKarma
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentApproved Set Comments via CommentApproved
-func SetCommentsByCommentApproved(iCommentApproved string, comments *Comments) (int64, error) {
+// SetCommentsViaCommentApproved Set Comments via CommentApproved
+func SetCommentsViaCommentApproved(iCommentApproved string, comments *Comments) (int64, error) {
 	comments.CommentApproved = iCommentApproved
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentAgent Set Comments via CommentAgent
-func SetCommentsByCommentAgent(iCommentAgent string, comments *Comments) (int64, error) {
+// SetCommentsViaCommentAgent Set Comments via CommentAgent
+func SetCommentsViaCommentAgent(iCommentAgent string, comments *Comments) (int64, error) {
 	comments.CommentAgent = iCommentAgent
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentType Set Comments via CommentType
-func SetCommentsByCommentType(iCommentType string, comments *Comments) (int64, error) {
+// SetCommentsViaCommentType Set Comments via CommentType
+func SetCommentsViaCommentType(iCommentType string, comments *Comments) (int64, error) {
 	comments.CommentType = iCommentType
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByCommentParent Set Comments via CommentParent
-func SetCommentsByCommentParent(iCommentParent int64, comments *Comments) (int64, error) {
+// SetCommentsViaCommentParent Set Comments via CommentParent
+func SetCommentsViaCommentParent(iCommentParent int64, comments *Comments) (int64, error) {
 	comments.CommentParent = iCommentParent
 	return Engine.Insert(comments)
 }
 
-// SetCommentsByUserId Set Comments via UserId
-func SetCommentsByUserId(iUserId int64, comments *Comments) (int64, error) {
+// SetCommentsViaUserId Set Comments via UserId
+func SetCommentsViaUserId(iUserId int64, comments *Comments) (int64, error) {
 	comments.UserId = iUserId
 	return Engine.Insert(comments)
 }
@@ -4607,98 +4607,98 @@ func PutComments(iComments *Comments) (int64, error) {
 	return iComments.CommentId, err
 }
 
-// PutCommentsByCommentId Put Comments via CommentId
-func PutCommentsByCommentId(CommentId_ int64, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentId Put Comments via CommentId
+func PutCommentsViaCommentId(CommentId_ int64, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentId: CommentId_})
 	return row, err
 }
 
-// PutCommentsByCommentPostId Put Comments via CommentPostId
-func PutCommentsByCommentPostId(CommentPostId_ int64, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentPostId Put Comments via CommentPostId
+func PutCommentsViaCommentPostId(CommentPostId_ int64, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentPostId: CommentPostId_})
 	return row, err
 }
 
-// PutCommentsByCommentAuthor Put Comments via CommentAuthor
-func PutCommentsByCommentAuthor(CommentAuthor_ string, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentAuthor Put Comments via CommentAuthor
+func PutCommentsViaCommentAuthor(CommentAuthor_ string, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentAuthor: CommentAuthor_})
 	return row, err
 }
 
-// PutCommentsByCommentAuthorEmail Put Comments via CommentAuthorEmail
-func PutCommentsByCommentAuthorEmail(CommentAuthorEmail_ string, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentAuthorEmail Put Comments via CommentAuthorEmail
+func PutCommentsViaCommentAuthorEmail(CommentAuthorEmail_ string, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentAuthorEmail: CommentAuthorEmail_})
 	return row, err
 }
 
-// PutCommentsByCommentAuthorUrl Put Comments via CommentAuthorUrl
-func PutCommentsByCommentAuthorUrl(CommentAuthorUrl_ string, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentAuthorUrl Put Comments via CommentAuthorUrl
+func PutCommentsViaCommentAuthorUrl(CommentAuthorUrl_ string, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentAuthorUrl: CommentAuthorUrl_})
 	return row, err
 }
 
-// PutCommentsByCommentAuthorIp Put Comments via CommentAuthorIp
-func PutCommentsByCommentAuthorIp(CommentAuthorIp_ string, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentAuthorIp Put Comments via CommentAuthorIp
+func PutCommentsViaCommentAuthorIp(CommentAuthorIp_ string, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentAuthorIp: CommentAuthorIp_})
 	return row, err
 }
 
-// PutCommentsByCommentDate Put Comments via CommentDate
-func PutCommentsByCommentDate(CommentDate_ time.Time, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentDate Put Comments via CommentDate
+func PutCommentsViaCommentDate(CommentDate_ time.Time, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentDate: CommentDate_})
 	return row, err
 }
 
-// PutCommentsByCommentDateGmt Put Comments via CommentDateGmt
-func PutCommentsByCommentDateGmt(CommentDateGmt_ time.Time, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentDateGmt Put Comments via CommentDateGmt
+func PutCommentsViaCommentDateGmt(CommentDateGmt_ time.Time, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentDateGmt: CommentDateGmt_})
 	return row, err
 }
 
-// PutCommentsByCommentContent Put Comments via CommentContent
-func PutCommentsByCommentContent(CommentContent_ string, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentContent Put Comments via CommentContent
+func PutCommentsViaCommentContent(CommentContent_ string, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentContent: CommentContent_})
 	return row, err
 }
 
-// PutCommentsByCommentKarma Put Comments via CommentKarma
-func PutCommentsByCommentKarma(CommentKarma_ int, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentKarma Put Comments via CommentKarma
+func PutCommentsViaCommentKarma(CommentKarma_ int, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentKarma: CommentKarma_})
 	return row, err
 }
 
-// PutCommentsByCommentApproved Put Comments via CommentApproved
-func PutCommentsByCommentApproved(CommentApproved_ string, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentApproved Put Comments via CommentApproved
+func PutCommentsViaCommentApproved(CommentApproved_ string, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentApproved: CommentApproved_})
 	return row, err
 }
 
-// PutCommentsByCommentAgent Put Comments via CommentAgent
-func PutCommentsByCommentAgent(CommentAgent_ string, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentAgent Put Comments via CommentAgent
+func PutCommentsViaCommentAgent(CommentAgent_ string, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentAgent: CommentAgent_})
 	return row, err
 }
 
-// PutCommentsByCommentType Put Comments via CommentType
-func PutCommentsByCommentType(CommentType_ string, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentType Put Comments via CommentType
+func PutCommentsViaCommentType(CommentType_ string, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentType: CommentType_})
 	return row, err
 }
 
-// PutCommentsByCommentParent Put Comments via CommentParent
-func PutCommentsByCommentParent(CommentParent_ int64, iComments *Comments) (int64, error) {
+// PutCommentsViaCommentParent Put Comments via CommentParent
+func PutCommentsViaCommentParent(CommentParent_ int64, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{CommentParent: CommentParent_})
 	return row, err
 }
 
-// PutCommentsByUserId Put Comments via UserId
-func PutCommentsByUserId(UserId_ int64, iComments *Comments) (int64, error) {
+// PutCommentsViaUserId Put Comments via UserId
+func PutCommentsViaUserId(UserId_ int64, iComments *Comments) (int64, error) {
 	row, err := Engine.Update(iComments, &Comments{UserId: UserId_})
 	return row, err
 }
 
-// UpdateCommentsByCommentId via map[string]interface{}{}
-func UpdateCommentsByCommentId(iCommentId int64, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentId via map[string]interface{}{}
+func UpdateCommentsViaCommentId(iCommentId int64, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_ID = ?", iCommentId).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4706,8 +4706,8 @@ func UpdateCommentsByCommentId(iCommentId int64, iCommentsMap *map[string]interf
 	}
 }
 
-// UpdateCommentsByCommentPostId via map[string]interface{}{}
-func UpdateCommentsByCommentPostId(iCommentPostId int64, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentPostId via map[string]interface{}{}
+func UpdateCommentsViaCommentPostId(iCommentPostId int64, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_post_ID = ?", iCommentPostId).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4715,8 +4715,8 @@ func UpdateCommentsByCommentPostId(iCommentPostId int64, iCommentsMap *map[strin
 	}
 }
 
-// UpdateCommentsByCommentAuthor via map[string]interface{}{}
-func UpdateCommentsByCommentAuthor(iCommentAuthor string, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentAuthor via map[string]interface{}{}
+func UpdateCommentsViaCommentAuthor(iCommentAuthor string, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_author = ?", iCommentAuthor).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4724,8 +4724,8 @@ func UpdateCommentsByCommentAuthor(iCommentAuthor string, iCommentsMap *map[stri
 	}
 }
 
-// UpdateCommentsByCommentAuthorEmail via map[string]interface{}{}
-func UpdateCommentsByCommentAuthorEmail(iCommentAuthorEmail string, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentAuthorEmail via map[string]interface{}{}
+func UpdateCommentsViaCommentAuthorEmail(iCommentAuthorEmail string, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_author_email = ?", iCommentAuthorEmail).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4733,8 +4733,8 @@ func UpdateCommentsByCommentAuthorEmail(iCommentAuthorEmail string, iCommentsMap
 	}
 }
 
-// UpdateCommentsByCommentAuthorUrl via map[string]interface{}{}
-func UpdateCommentsByCommentAuthorUrl(iCommentAuthorUrl string, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentAuthorUrl via map[string]interface{}{}
+func UpdateCommentsViaCommentAuthorUrl(iCommentAuthorUrl string, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_author_url = ?", iCommentAuthorUrl).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4742,8 +4742,8 @@ func UpdateCommentsByCommentAuthorUrl(iCommentAuthorUrl string, iCommentsMap *ma
 	}
 }
 
-// UpdateCommentsByCommentAuthorIp via map[string]interface{}{}
-func UpdateCommentsByCommentAuthorIp(iCommentAuthorIp string, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentAuthorIp via map[string]interface{}{}
+func UpdateCommentsViaCommentAuthorIp(iCommentAuthorIp string, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_author_IP = ?", iCommentAuthorIp).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4751,8 +4751,8 @@ func UpdateCommentsByCommentAuthorIp(iCommentAuthorIp string, iCommentsMap *map[
 	}
 }
 
-// UpdateCommentsByCommentDate via map[string]interface{}{}
-func UpdateCommentsByCommentDate(iCommentDate time.Time, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentDate via map[string]interface{}{}
+func UpdateCommentsViaCommentDate(iCommentDate time.Time, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_date = ?", iCommentDate).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4760,8 +4760,8 @@ func UpdateCommentsByCommentDate(iCommentDate time.Time, iCommentsMap *map[strin
 	}
 }
 
-// UpdateCommentsByCommentDateGmt via map[string]interface{}{}
-func UpdateCommentsByCommentDateGmt(iCommentDateGmt time.Time, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentDateGmt via map[string]interface{}{}
+func UpdateCommentsViaCommentDateGmt(iCommentDateGmt time.Time, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_date_gmt = ?", iCommentDateGmt).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4769,8 +4769,8 @@ func UpdateCommentsByCommentDateGmt(iCommentDateGmt time.Time, iCommentsMap *map
 	}
 }
 
-// UpdateCommentsByCommentContent via map[string]interface{}{}
-func UpdateCommentsByCommentContent(iCommentContent string, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentContent via map[string]interface{}{}
+func UpdateCommentsViaCommentContent(iCommentContent string, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_content = ?", iCommentContent).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4778,8 +4778,8 @@ func UpdateCommentsByCommentContent(iCommentContent string, iCommentsMap *map[st
 	}
 }
 
-// UpdateCommentsByCommentKarma via map[string]interface{}{}
-func UpdateCommentsByCommentKarma(iCommentKarma int, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentKarma via map[string]interface{}{}
+func UpdateCommentsViaCommentKarma(iCommentKarma int, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_karma = ?", iCommentKarma).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4787,8 +4787,8 @@ func UpdateCommentsByCommentKarma(iCommentKarma int, iCommentsMap *map[string]in
 	}
 }
 
-// UpdateCommentsByCommentApproved via map[string]interface{}{}
-func UpdateCommentsByCommentApproved(iCommentApproved string, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentApproved via map[string]interface{}{}
+func UpdateCommentsViaCommentApproved(iCommentApproved string, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_approved = ?", iCommentApproved).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4796,8 +4796,8 @@ func UpdateCommentsByCommentApproved(iCommentApproved string, iCommentsMap *map[
 	}
 }
 
-// UpdateCommentsByCommentAgent via map[string]interface{}{}
-func UpdateCommentsByCommentAgent(iCommentAgent string, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentAgent via map[string]interface{}{}
+func UpdateCommentsViaCommentAgent(iCommentAgent string, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_agent = ?", iCommentAgent).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4805,8 +4805,8 @@ func UpdateCommentsByCommentAgent(iCommentAgent string, iCommentsMap *map[string
 	}
 }
 
-// UpdateCommentsByCommentType via map[string]interface{}{}
-func UpdateCommentsByCommentType(iCommentType string, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentType via map[string]interface{}{}
+func UpdateCommentsViaCommentType(iCommentType string, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_type = ?", iCommentType).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4814,8 +4814,8 @@ func UpdateCommentsByCommentType(iCommentType string, iCommentsMap *map[string]i
 	}
 }
 
-// UpdateCommentsByCommentParent via map[string]interface{}{}
-func UpdateCommentsByCommentParent(iCommentParent int64, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaCommentParent via map[string]interface{}{}
+func UpdateCommentsViaCommentParent(iCommentParent int64, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("comment_parent = ?", iCommentParent).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4823,8 +4823,8 @@ func UpdateCommentsByCommentParent(iCommentParent int64, iCommentsMap *map[strin
 	}
 }
 
-// UpdateCommentsByUserId via map[string]interface{}{}
-func UpdateCommentsByUserId(iUserId int64, iCommentsMap *map[string]interface{}) error {
+// UpdateCommentsViaUserId via map[string]interface{}{}
+func UpdateCommentsViaUserId(iUserId int64, iCommentsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Comments)).Where("user_id = ?", iUserId).Update(iCommentsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -4838,8 +4838,8 @@ func DeleteComments(iCommentId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteCommentsByCommentId Delete Comments via CommentId
-func DeleteCommentsByCommentId(iCommentId int64) (err error) {
+// DeleteCommentsViaCommentId Delete Comments via CommentId
+func DeleteCommentsViaCommentId(iCommentId int64) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentId: iCommentId}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4852,8 +4852,8 @@ func DeleteCommentsByCommentId(iCommentId int64) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentPostId Delete Comments via CommentPostId
-func DeleteCommentsByCommentPostId(iCommentPostId int64) (err error) {
+// DeleteCommentsViaCommentPostId Delete Comments via CommentPostId
+func DeleteCommentsViaCommentPostId(iCommentPostId int64) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentPostId: iCommentPostId}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4866,8 +4866,8 @@ func DeleteCommentsByCommentPostId(iCommentPostId int64) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentAuthor Delete Comments via CommentAuthor
-func DeleteCommentsByCommentAuthor(iCommentAuthor string) (err error) {
+// DeleteCommentsViaCommentAuthor Delete Comments via CommentAuthor
+func DeleteCommentsViaCommentAuthor(iCommentAuthor string) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentAuthor: iCommentAuthor}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4880,8 +4880,8 @@ func DeleteCommentsByCommentAuthor(iCommentAuthor string) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentAuthorEmail Delete Comments via CommentAuthorEmail
-func DeleteCommentsByCommentAuthorEmail(iCommentAuthorEmail string) (err error) {
+// DeleteCommentsViaCommentAuthorEmail Delete Comments via CommentAuthorEmail
+func DeleteCommentsViaCommentAuthorEmail(iCommentAuthorEmail string) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentAuthorEmail: iCommentAuthorEmail}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4894,8 +4894,8 @@ func DeleteCommentsByCommentAuthorEmail(iCommentAuthorEmail string) (err error) 
 	return
 }
 
-// DeleteCommentsByCommentAuthorUrl Delete Comments via CommentAuthorUrl
-func DeleteCommentsByCommentAuthorUrl(iCommentAuthorUrl string) (err error) {
+// DeleteCommentsViaCommentAuthorUrl Delete Comments via CommentAuthorUrl
+func DeleteCommentsViaCommentAuthorUrl(iCommentAuthorUrl string) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentAuthorUrl: iCommentAuthorUrl}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4908,8 +4908,8 @@ func DeleteCommentsByCommentAuthorUrl(iCommentAuthorUrl string) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentAuthorIp Delete Comments via CommentAuthorIp
-func DeleteCommentsByCommentAuthorIp(iCommentAuthorIp string) (err error) {
+// DeleteCommentsViaCommentAuthorIp Delete Comments via CommentAuthorIp
+func DeleteCommentsViaCommentAuthorIp(iCommentAuthorIp string) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentAuthorIp: iCommentAuthorIp}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4922,8 +4922,8 @@ func DeleteCommentsByCommentAuthorIp(iCommentAuthorIp string) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentDate Delete Comments via CommentDate
-func DeleteCommentsByCommentDate(iCommentDate time.Time) (err error) {
+// DeleteCommentsViaCommentDate Delete Comments via CommentDate
+func DeleteCommentsViaCommentDate(iCommentDate time.Time) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentDate: iCommentDate}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4936,8 +4936,8 @@ func DeleteCommentsByCommentDate(iCommentDate time.Time) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentDateGmt Delete Comments via CommentDateGmt
-func DeleteCommentsByCommentDateGmt(iCommentDateGmt time.Time) (err error) {
+// DeleteCommentsViaCommentDateGmt Delete Comments via CommentDateGmt
+func DeleteCommentsViaCommentDateGmt(iCommentDateGmt time.Time) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentDateGmt: iCommentDateGmt}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4950,8 +4950,8 @@ func DeleteCommentsByCommentDateGmt(iCommentDateGmt time.Time) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentContent Delete Comments via CommentContent
-func DeleteCommentsByCommentContent(iCommentContent string) (err error) {
+// DeleteCommentsViaCommentContent Delete Comments via CommentContent
+func DeleteCommentsViaCommentContent(iCommentContent string) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentContent: iCommentContent}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4964,8 +4964,8 @@ func DeleteCommentsByCommentContent(iCommentContent string) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentKarma Delete Comments via CommentKarma
-func DeleteCommentsByCommentKarma(iCommentKarma int) (err error) {
+// DeleteCommentsViaCommentKarma Delete Comments via CommentKarma
+func DeleteCommentsViaCommentKarma(iCommentKarma int) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentKarma: iCommentKarma}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4978,8 +4978,8 @@ func DeleteCommentsByCommentKarma(iCommentKarma int) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentApproved Delete Comments via CommentApproved
-func DeleteCommentsByCommentApproved(iCommentApproved string) (err error) {
+// DeleteCommentsViaCommentApproved Delete Comments via CommentApproved
+func DeleteCommentsViaCommentApproved(iCommentApproved string) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentApproved: iCommentApproved}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -4992,8 +4992,8 @@ func DeleteCommentsByCommentApproved(iCommentApproved string) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentAgent Delete Comments via CommentAgent
-func DeleteCommentsByCommentAgent(iCommentAgent string) (err error) {
+// DeleteCommentsViaCommentAgent Delete Comments via CommentAgent
+func DeleteCommentsViaCommentAgent(iCommentAgent string) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentAgent: iCommentAgent}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -5006,8 +5006,8 @@ func DeleteCommentsByCommentAgent(iCommentAgent string) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentType Delete Comments via CommentType
-func DeleteCommentsByCommentType(iCommentType string) (err error) {
+// DeleteCommentsViaCommentType Delete Comments via CommentType
+func DeleteCommentsViaCommentType(iCommentType string) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentType: iCommentType}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -5020,8 +5020,8 @@ func DeleteCommentsByCommentType(iCommentType string) (err error) {
 	return
 }
 
-// DeleteCommentsByCommentParent Delete Comments via CommentParent
-func DeleteCommentsByCommentParent(iCommentParent int64) (err error) {
+// DeleteCommentsViaCommentParent Delete Comments via CommentParent
+func DeleteCommentsViaCommentParent(iCommentParent int64) (err error) {
 	var has bool
 	var _Comments = &Comments{CommentParent: iCommentParent}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {
@@ -5034,8 +5034,8 @@ func DeleteCommentsByCommentParent(iCommentParent int64) (err error) {
 	return
 }
 
-// DeleteCommentsByUserId Delete Comments via UserId
-func DeleteCommentsByUserId(iUserId int64) (err error) {
+// DeleteCommentsViaUserId Delete Comments via UserId
+func DeleteCommentsViaUserId(iUserId int64) (err error) {
 	var has bool
 	var _Comments = &Comments{UserId: iUserId}
 	if has, err = Engine.Get(_Comments); (has == true) && (err == nil) {

@@ -13,26 +13,26 @@ func GetOptionsesCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetOptionsCountByOptionId Get Options via OptionId
-func GetOptionsCountByOptionId(iOptionId int64) int64 {
+// GetOptionsCountViaOptionId Get Options via OptionId
+func GetOptionsCountViaOptionId(iOptionId int64) int64 {
 	n, _ := Engine.Where("option_id = ?", iOptionId).Count(&Options{OptionId: iOptionId})
 	return n
 }
 
-// GetOptionsCountByOptionName Get Options via OptionName
-func GetOptionsCountByOptionName(iOptionName string) int64 {
+// GetOptionsCountViaOptionName Get Options via OptionName
+func GetOptionsCountViaOptionName(iOptionName string) int64 {
 	n, _ := Engine.Where("option_name = ?", iOptionName).Count(&Options{OptionName: iOptionName})
 	return n
 }
 
-// GetOptionsCountByOptionValue Get Options via OptionValue
-func GetOptionsCountByOptionValue(iOptionValue string) int64 {
+// GetOptionsCountViaOptionValue Get Options via OptionValue
+func GetOptionsCountViaOptionValue(iOptionValue string) int64 {
 	n, _ := Engine.Where("option_value = ?", iOptionValue).Count(&Options{OptionValue: iOptionValue})
 	return n
 }
 
-// GetOptionsCountByAutoload Get Options via Autoload
-func GetOptionsCountByAutoload(iAutoload string) int64 {
+// GetOptionsCountViaAutoload Get Options via Autoload
+func GetOptionsCountViaAutoload(iAutoload string) int64 {
 	n, _ := Engine.Where("autoload = ?", iAutoload).Count(&Options{Autoload: iAutoload})
 	return n
 }
@@ -114,36 +114,36 @@ func GetOptionses(offset int, limit int, field string) (*[]*Options, error) {
 	return _Options, err
 }
 
-// GetOptionsesByOptionId Get Optionss via OptionId
-func GetOptionsesByOptionId(offset int, limit int, OptionId_ int64, field string) (*[]*Options, error) {
+// GetOptionsesViaOptionId Get Optionss via OptionId
+func GetOptionsesViaOptionId(offset int, limit int, OptionId_ int64, field string) (*[]*Options, error) {
 	var _Options = new([]*Options)
 	err := Engine.Table("options").Where("option_id = ?", OptionId_).Limit(limit, offset).Desc(field).Find(_Options)
 	return _Options, err
 }
 
-// GetOptionsesByOptionName Get Optionss via OptionName
-func GetOptionsesByOptionName(offset int, limit int, OptionName_ string, field string) (*[]*Options, error) {
+// GetOptionsesViaOptionName Get Optionss via OptionName
+func GetOptionsesViaOptionName(offset int, limit int, OptionName_ string, field string) (*[]*Options, error) {
 	var _Options = new([]*Options)
 	err := Engine.Table("options").Where("option_name = ?", OptionName_).Limit(limit, offset).Desc(field).Find(_Options)
 	return _Options, err
 }
 
-// GetOptionsesByOptionValue Get Optionss via OptionValue
-func GetOptionsesByOptionValue(offset int, limit int, OptionValue_ string, field string) (*[]*Options, error) {
+// GetOptionsesViaOptionValue Get Optionss via OptionValue
+func GetOptionsesViaOptionValue(offset int, limit int, OptionValue_ string, field string) (*[]*Options, error) {
 	var _Options = new([]*Options)
 	err := Engine.Table("options").Where("option_value = ?", OptionValue_).Limit(limit, offset).Desc(field).Find(_Options)
 	return _Options, err
 }
 
-// GetOptionsesByAutoload Get Optionss via Autoload
-func GetOptionsesByAutoload(offset int, limit int, Autoload_ string, field string) (*[]*Options, error) {
+// GetOptionsesViaAutoload Get Optionss via Autoload
+func GetOptionsesViaAutoload(offset int, limit int, Autoload_ string, field string) (*[]*Options, error) {
 	var _Options = new([]*Options)
 	err := Engine.Table("options").Where("autoload = ?", Autoload_).Limit(limit, offset).Desc(field).Find(_Options)
 	return _Options, err
 }
 
-// HasOptionsByOptionId Has Options via OptionId
-func HasOptionsByOptionId(iOptionId int64) bool {
+// HasOptionsViaOptionId Has Options via OptionId
+func HasOptionsViaOptionId(iOptionId int64) bool {
 	if has, err := Engine.Where("option_id = ?", iOptionId).Get(new(Options)); err != nil {
 		return false
 	} else {
@@ -154,8 +154,8 @@ func HasOptionsByOptionId(iOptionId int64) bool {
 	}
 }
 
-// HasOptionsByOptionName Has Options via OptionName
-func HasOptionsByOptionName(iOptionName string) bool {
+// HasOptionsViaOptionName Has Options via OptionName
+func HasOptionsViaOptionName(iOptionName string) bool {
 	if has, err := Engine.Where("option_name = ?", iOptionName).Get(new(Options)); err != nil {
 		return false
 	} else {
@@ -166,8 +166,8 @@ func HasOptionsByOptionName(iOptionName string) bool {
 	}
 }
 
-// HasOptionsByOptionValue Has Options via OptionValue
-func HasOptionsByOptionValue(iOptionValue string) bool {
+// HasOptionsViaOptionValue Has Options via OptionValue
+func HasOptionsViaOptionValue(iOptionValue string) bool {
 	if has, err := Engine.Where("option_value = ?", iOptionValue).Get(new(Options)); err != nil {
 		return false
 	} else {
@@ -178,8 +178,8 @@ func HasOptionsByOptionValue(iOptionValue string) bool {
 	}
 }
 
-// HasOptionsByAutoload Has Options via Autoload
-func HasOptionsByAutoload(iAutoload string) bool {
+// HasOptionsViaAutoload Has Options via Autoload
+func HasOptionsViaAutoload(iAutoload string) bool {
 	if has, err := Engine.Where("autoload = ?", iAutoload).Get(new(Options)); err != nil {
 		return false
 	} else {
@@ -190,8 +190,8 @@ func HasOptionsByAutoload(iAutoload string) bool {
 	}
 }
 
-// GetOptionsByOptionId Get Options via OptionId
-func GetOptionsByOptionId(iOptionId int64) (*Options, error) {
+// GetOptionsViaOptionId Get Options via OptionId
+func GetOptionsViaOptionId(iOptionId int64) (*Options, error) {
 	var _Options = &Options{OptionId: iOptionId}
 	has, err := Engine.Get(_Options)
 	if has {
@@ -201,8 +201,8 @@ func GetOptionsByOptionId(iOptionId int64) (*Options, error) {
 	}
 }
 
-// GetOptionsByOptionName Get Options via OptionName
-func GetOptionsByOptionName(iOptionName string) (*Options, error) {
+// GetOptionsViaOptionName Get Options via OptionName
+func GetOptionsViaOptionName(iOptionName string) (*Options, error) {
 	var _Options = &Options{OptionName: iOptionName}
 	has, err := Engine.Get(_Options)
 	if has {
@@ -212,8 +212,8 @@ func GetOptionsByOptionName(iOptionName string) (*Options, error) {
 	}
 }
 
-// GetOptionsByOptionValue Get Options via OptionValue
-func GetOptionsByOptionValue(iOptionValue string) (*Options, error) {
+// GetOptionsViaOptionValue Get Options via OptionValue
+func GetOptionsViaOptionValue(iOptionValue string) (*Options, error) {
 	var _Options = &Options{OptionValue: iOptionValue}
 	has, err := Engine.Get(_Options)
 	if has {
@@ -223,8 +223,8 @@ func GetOptionsByOptionValue(iOptionValue string) (*Options, error) {
 	}
 }
 
-// GetOptionsByAutoload Get Options via Autoload
-func GetOptionsByAutoload(iAutoload string) (*Options, error) {
+// GetOptionsViaAutoload Get Options via Autoload
+func GetOptionsViaAutoload(iAutoload string) (*Options, error) {
 	var _Options = &Options{Autoload: iAutoload}
 	has, err := Engine.Get(_Options)
 	if has {
@@ -234,26 +234,26 @@ func GetOptionsByAutoload(iAutoload string) (*Options, error) {
 	}
 }
 
-// SetOptionsByOptionId Set Options via OptionId
-func SetOptionsByOptionId(iOptionId int64, options *Options) (int64, error) {
+// SetOptionsViaOptionId Set Options via OptionId
+func SetOptionsViaOptionId(iOptionId int64, options *Options) (int64, error) {
 	options.OptionId = iOptionId
 	return Engine.Insert(options)
 }
 
-// SetOptionsByOptionName Set Options via OptionName
-func SetOptionsByOptionName(iOptionName string, options *Options) (int64, error) {
+// SetOptionsViaOptionName Set Options via OptionName
+func SetOptionsViaOptionName(iOptionName string, options *Options) (int64, error) {
 	options.OptionName = iOptionName
 	return Engine.Insert(options)
 }
 
-// SetOptionsByOptionValue Set Options via OptionValue
-func SetOptionsByOptionValue(iOptionValue string, options *Options) (int64, error) {
+// SetOptionsViaOptionValue Set Options via OptionValue
+func SetOptionsViaOptionValue(iOptionValue string, options *Options) (int64, error) {
 	options.OptionValue = iOptionValue
 	return Engine.Insert(options)
 }
 
-// SetOptionsByAutoload Set Options via Autoload
-func SetOptionsByAutoload(iAutoload string, options *Options) (int64, error) {
+// SetOptionsViaAutoload Set Options via Autoload
+func SetOptionsViaAutoload(iAutoload string, options *Options) (int64, error) {
 	options.Autoload = iAutoload
 	return Engine.Insert(options)
 }
@@ -280,32 +280,32 @@ func PutOptions(iOptions *Options) (int64, error) {
 	return iOptions.OptionId, err
 }
 
-// PutOptionsByOptionId Put Options via OptionId
-func PutOptionsByOptionId(OptionId_ int64, iOptions *Options) (int64, error) {
+// PutOptionsViaOptionId Put Options via OptionId
+func PutOptionsViaOptionId(OptionId_ int64, iOptions *Options) (int64, error) {
 	row, err := Engine.Update(iOptions, &Options{OptionId: OptionId_})
 	return row, err
 }
 
-// PutOptionsByOptionName Put Options via OptionName
-func PutOptionsByOptionName(OptionName_ string, iOptions *Options) (int64, error) {
+// PutOptionsViaOptionName Put Options via OptionName
+func PutOptionsViaOptionName(OptionName_ string, iOptions *Options) (int64, error) {
 	row, err := Engine.Update(iOptions, &Options{OptionName: OptionName_})
 	return row, err
 }
 
-// PutOptionsByOptionValue Put Options via OptionValue
-func PutOptionsByOptionValue(OptionValue_ string, iOptions *Options) (int64, error) {
+// PutOptionsViaOptionValue Put Options via OptionValue
+func PutOptionsViaOptionValue(OptionValue_ string, iOptions *Options) (int64, error) {
 	row, err := Engine.Update(iOptions, &Options{OptionValue: OptionValue_})
 	return row, err
 }
 
-// PutOptionsByAutoload Put Options via Autoload
-func PutOptionsByAutoload(Autoload_ string, iOptions *Options) (int64, error) {
+// PutOptionsViaAutoload Put Options via Autoload
+func PutOptionsViaAutoload(Autoload_ string, iOptions *Options) (int64, error) {
 	row, err := Engine.Update(iOptions, &Options{Autoload: Autoload_})
 	return row, err
 }
 
-// UpdateOptionsByOptionId via map[string]interface{}{}
-func UpdateOptionsByOptionId(iOptionId int64, iOptionsMap *map[string]interface{}) error {
+// UpdateOptionsViaOptionId via map[string]interface{}{}
+func UpdateOptionsViaOptionId(iOptionId int64, iOptionsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Options)).Where("option_id = ?", iOptionId).Update(iOptionsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -313,8 +313,8 @@ func UpdateOptionsByOptionId(iOptionId int64, iOptionsMap *map[string]interface{
 	}
 }
 
-// UpdateOptionsByOptionName via map[string]interface{}{}
-func UpdateOptionsByOptionName(iOptionName string, iOptionsMap *map[string]interface{}) error {
+// UpdateOptionsViaOptionName via map[string]interface{}{}
+func UpdateOptionsViaOptionName(iOptionName string, iOptionsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Options)).Where("option_name = ?", iOptionName).Update(iOptionsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -322,8 +322,8 @@ func UpdateOptionsByOptionName(iOptionName string, iOptionsMap *map[string]inter
 	}
 }
 
-// UpdateOptionsByOptionValue via map[string]interface{}{}
-func UpdateOptionsByOptionValue(iOptionValue string, iOptionsMap *map[string]interface{}) error {
+// UpdateOptionsViaOptionValue via map[string]interface{}{}
+func UpdateOptionsViaOptionValue(iOptionValue string, iOptionsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Options)).Where("option_value = ?", iOptionValue).Update(iOptionsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -331,8 +331,8 @@ func UpdateOptionsByOptionValue(iOptionValue string, iOptionsMap *map[string]int
 	}
 }
 
-// UpdateOptionsByAutoload via map[string]interface{}{}
-func UpdateOptionsByAutoload(iAutoload string, iOptionsMap *map[string]interface{}) error {
+// UpdateOptionsViaAutoload via map[string]interface{}{}
+func UpdateOptionsViaAutoload(iAutoload string, iOptionsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Options)).Where("autoload = ?", iAutoload).Update(iOptionsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -346,8 +346,8 @@ func DeleteOptions(iOptionId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteOptionsByOptionId Delete Options via OptionId
-func DeleteOptionsByOptionId(iOptionId int64) (err error) {
+// DeleteOptionsViaOptionId Delete Options via OptionId
+func DeleteOptionsViaOptionId(iOptionId int64) (err error) {
 	var has bool
 	var _Options = &Options{OptionId: iOptionId}
 	if has, err = Engine.Get(_Options); (has == true) && (err == nil) {
@@ -360,8 +360,8 @@ func DeleteOptionsByOptionId(iOptionId int64) (err error) {
 	return
 }
 
-// DeleteOptionsByOptionName Delete Options via OptionName
-func DeleteOptionsByOptionName(iOptionName string) (err error) {
+// DeleteOptionsViaOptionName Delete Options via OptionName
+func DeleteOptionsViaOptionName(iOptionName string) (err error) {
 	var has bool
 	var _Options = &Options{OptionName: iOptionName}
 	if has, err = Engine.Get(_Options); (has == true) && (err == nil) {
@@ -374,8 +374,8 @@ func DeleteOptionsByOptionName(iOptionName string) (err error) {
 	return
 }
 
-// DeleteOptionsByOptionValue Delete Options via OptionValue
-func DeleteOptionsByOptionValue(iOptionValue string) (err error) {
+// DeleteOptionsViaOptionValue Delete Options via OptionValue
+func DeleteOptionsViaOptionValue(iOptionValue string) (err error) {
 	var has bool
 	var _Options = &Options{OptionValue: iOptionValue}
 	if has, err = Engine.Get(_Options); (has == true) && (err == nil) {
@@ -388,8 +388,8 @@ func DeleteOptionsByOptionValue(iOptionValue string) (err error) {
 	return
 }
 
-// DeleteOptionsByAutoload Delete Options via Autoload
-func DeleteOptionsByAutoload(iAutoload string) (err error) {
+// DeleteOptionsViaAutoload Delete Options via Autoload
+func DeleteOptionsViaAutoload(iAutoload string) (err error) {
 	var has bool
 	var _Options = &Options{Autoload: iAutoload}
 	if has, err = Engine.Get(_Options); (has == true) && (err == nil) {

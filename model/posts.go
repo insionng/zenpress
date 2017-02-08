@@ -36,140 +36,140 @@ func GetPostsesCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetPostsCountById Get Posts via Id
-func GetPostsCountById(iId int64) int64 {
+// GetPostsCountViaId Get Posts via Id
+func GetPostsCountViaId(iId int64) int64 {
 	n, _ := Engine.Where("ID = ?", iId).Count(&Posts{Id: iId})
 	return n
 }
 
-// GetPostsCountByPostAuthor Get Posts via PostAuthor
-func GetPostsCountByPostAuthor(iPostAuthor int64) int64 {
+// GetPostsCountViaPostAuthor Get Posts via PostAuthor
+func GetPostsCountViaPostAuthor(iPostAuthor int64) int64 {
 	n, _ := Engine.Where("post_author = ?", iPostAuthor).Count(&Posts{PostAuthor: iPostAuthor})
 	return n
 }
 
-// GetPostsCountByPostDate Get Posts via PostDate
-func GetPostsCountByPostDate(iPostDate time.Time) int64 {
+// GetPostsCountViaPostDate Get Posts via PostDate
+func GetPostsCountViaPostDate(iPostDate time.Time) int64 {
 	n, _ := Engine.Where("post_date = ?", iPostDate).Count(&Posts{PostDate: iPostDate})
 	return n
 }
 
-// GetPostsCountByPostDateGmt Get Posts via PostDateGmt
-func GetPostsCountByPostDateGmt(iPostDateGmt time.Time) int64 {
+// GetPostsCountViaPostDateGmt Get Posts via PostDateGmt
+func GetPostsCountViaPostDateGmt(iPostDateGmt time.Time) int64 {
 	n, _ := Engine.Where("post_date_gmt = ?", iPostDateGmt).Count(&Posts{PostDateGmt: iPostDateGmt})
 	return n
 }
 
-// GetPostsCountByPostContent Get Posts via PostContent
-func GetPostsCountByPostContent(iPostContent string) int64 {
+// GetPostsCountViaPostContent Get Posts via PostContent
+func GetPostsCountViaPostContent(iPostContent string) int64 {
 	n, _ := Engine.Where("post_content = ?", iPostContent).Count(&Posts{PostContent: iPostContent})
 	return n
 }
 
-// GetPostsCountByPostTitle Get Posts via PostTitle
-func GetPostsCountByPostTitle(iPostTitle string) int64 {
+// GetPostsCountViaPostTitle Get Posts via PostTitle
+func GetPostsCountViaPostTitle(iPostTitle string) int64 {
 	n, _ := Engine.Where("post_title = ?", iPostTitle).Count(&Posts{PostTitle: iPostTitle})
 	return n
 }
 
-// GetPostsCountByPostExcerpt Get Posts via PostExcerpt
-func GetPostsCountByPostExcerpt(iPostExcerpt string) int64 {
+// GetPostsCountViaPostExcerpt Get Posts via PostExcerpt
+func GetPostsCountViaPostExcerpt(iPostExcerpt string) int64 {
 	n, _ := Engine.Where("post_excerpt = ?", iPostExcerpt).Count(&Posts{PostExcerpt: iPostExcerpt})
 	return n
 }
 
-// GetPostsCountByPostStatus Get Posts via PostStatus
-func GetPostsCountByPostStatus(iPostStatus string) int64 {
+// GetPostsCountViaPostStatus Get Posts via PostStatus
+func GetPostsCountViaPostStatus(iPostStatus string) int64 {
 	n, _ := Engine.Where("post_status = ?", iPostStatus).Count(&Posts{PostStatus: iPostStatus})
 	return n
 }
 
-// GetPostsCountByCommentStatus Get Posts via CommentStatus
-func GetPostsCountByCommentStatus(iCommentStatus string) int64 {
+// GetPostsCountViaCommentStatus Get Posts via CommentStatus
+func GetPostsCountViaCommentStatus(iCommentStatus string) int64 {
 	n, _ := Engine.Where("comment_status = ?", iCommentStatus).Count(&Posts{CommentStatus: iCommentStatus})
 	return n
 }
 
-// GetPostsCountByPingStatus Get Posts via PingStatus
-func GetPostsCountByPingStatus(iPingStatus string) int64 {
+// GetPostsCountViaPingStatus Get Posts via PingStatus
+func GetPostsCountViaPingStatus(iPingStatus string) int64 {
 	n, _ := Engine.Where("ping_status = ?", iPingStatus).Count(&Posts{PingStatus: iPingStatus})
 	return n
 }
 
-// GetPostsCountByPostPassword Get Posts via PostPassword
-func GetPostsCountByPostPassword(iPostPassword string) int64 {
+// GetPostsCountViaPostPassword Get Posts via PostPassword
+func GetPostsCountViaPostPassword(iPostPassword string) int64 {
 	n, _ := Engine.Where("post_password = ?", iPostPassword).Count(&Posts{PostPassword: iPostPassword})
 	return n
 }
 
-// GetPostsCountByPostName Get Posts via PostName
-func GetPostsCountByPostName(iPostName string) int64 {
+// GetPostsCountViaPostName Get Posts via PostName
+func GetPostsCountViaPostName(iPostName string) int64 {
 	n, _ := Engine.Where("post_name = ?", iPostName).Count(&Posts{PostName: iPostName})
 	return n
 }
 
-// GetPostsCountByToPing Get Posts via ToPing
-func GetPostsCountByToPing(iToPing string) int64 {
+// GetPostsCountViaToPing Get Posts via ToPing
+func GetPostsCountViaToPing(iToPing string) int64 {
 	n, _ := Engine.Where("to_ping = ?", iToPing).Count(&Posts{ToPing: iToPing})
 	return n
 }
 
-// GetPostsCountByPinged Get Posts via Pinged
-func GetPostsCountByPinged(iPinged string) int64 {
+// GetPostsCountViaPinged Get Posts via Pinged
+func GetPostsCountViaPinged(iPinged string) int64 {
 	n, _ := Engine.Where("pinged = ?", iPinged).Count(&Posts{Pinged: iPinged})
 	return n
 }
 
-// GetPostsCountByPostModified Get Posts via PostModified
-func GetPostsCountByPostModified(iPostModified time.Time) int64 {
+// GetPostsCountViaPostModified Get Posts via PostModified
+func GetPostsCountViaPostModified(iPostModified time.Time) int64 {
 	n, _ := Engine.Where("post_modified = ?", iPostModified).Count(&Posts{PostModified: iPostModified})
 	return n
 }
 
-// GetPostsCountByPostModifiedGmt Get Posts via PostModifiedGmt
-func GetPostsCountByPostModifiedGmt(iPostModifiedGmt time.Time) int64 {
+// GetPostsCountViaPostModifiedGmt Get Posts via PostModifiedGmt
+func GetPostsCountViaPostModifiedGmt(iPostModifiedGmt time.Time) int64 {
 	n, _ := Engine.Where("post_modified_gmt = ?", iPostModifiedGmt).Count(&Posts{PostModifiedGmt: iPostModifiedGmt})
 	return n
 }
 
-// GetPostsCountByPostContentFiltered Get Posts via PostContentFiltered
-func GetPostsCountByPostContentFiltered(iPostContentFiltered string) int64 {
+// GetPostsCountViaPostContentFiltered Get Posts via PostContentFiltered
+func GetPostsCountViaPostContentFiltered(iPostContentFiltered string) int64 {
 	n, _ := Engine.Where("post_content_filtered = ?", iPostContentFiltered).Count(&Posts{PostContentFiltered: iPostContentFiltered})
 	return n
 }
 
-// GetPostsCountByPostParent Get Posts via PostParent
-func GetPostsCountByPostParent(iPostParent int64) int64 {
+// GetPostsCountViaPostParent Get Posts via PostParent
+func GetPostsCountViaPostParent(iPostParent int64) int64 {
 	n, _ := Engine.Where("post_parent = ?", iPostParent).Count(&Posts{PostParent: iPostParent})
 	return n
 }
 
-// GetPostsCountByGuid Get Posts via Guid
-func GetPostsCountByGuid(iGuid string) int64 {
+// GetPostsCountViaGuid Get Posts via Guid
+func GetPostsCountViaGuid(iGuid string) int64 {
 	n, _ := Engine.Where("guid = ?", iGuid).Count(&Posts{Guid: iGuid})
 	return n
 }
 
-// GetPostsCountByMenuOrder Get Posts via MenuOrder
-func GetPostsCountByMenuOrder(iMenuOrder int) int64 {
+// GetPostsCountViaMenuOrder Get Posts via MenuOrder
+func GetPostsCountViaMenuOrder(iMenuOrder int) int64 {
 	n, _ := Engine.Where("menu_order = ?", iMenuOrder).Count(&Posts{MenuOrder: iMenuOrder})
 	return n
 }
 
-// GetPostsCountByPostType Get Posts via PostType
-func GetPostsCountByPostType(iPostType string) int64 {
+// GetPostsCountViaPostType Get Posts via PostType
+func GetPostsCountViaPostType(iPostType string) int64 {
 	n, _ := Engine.Where("post_type = ?", iPostType).Count(&Posts{PostType: iPostType})
 	return n
 }
 
-// GetPostsCountByPostMimeType Get Posts via PostMimeType
-func GetPostsCountByPostMimeType(iPostMimeType string) int64 {
+// GetPostsCountViaPostMimeType Get Posts via PostMimeType
+func GetPostsCountViaPostMimeType(iPostMimeType string) int64 {
 	n, _ := Engine.Where("post_mime_type = ?", iPostMimeType).Count(&Posts{PostMimeType: iPostMimeType})
 	return n
 }
 
-// GetPostsCountByCommentCount Get Posts via CommentCount
-func GetPostsCountByCommentCount(iCommentCount int64) int64 {
+// GetPostsCountViaCommentCount Get Posts via CommentCount
+func GetPostsCountViaCommentCount(iCommentCount int64) int64 {
 	n, _ := Engine.Where("comment_count = ?", iCommentCount).Count(&Posts{CommentCount: iCommentCount})
 	return n
 }
@@ -14349,169 +14349,169 @@ func GetPostses(offset int, limit int, field string) (*[]*Posts, error) {
 	return _Posts, err
 }
 
-// GetPostsesById Get Postss via Id
-func GetPostsesById(offset int, limit int, Id_ int64, field string) (*[]*Posts, error) {
+// GetPostsesViaId Get Postss via Id
+func GetPostsesViaId(offset int, limit int, Id_ int64, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("ID = ?", Id_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostAuthor Get Postss via PostAuthor
-func GetPostsesByPostAuthor(offset int, limit int, PostAuthor_ int64, field string) (*[]*Posts, error) {
+// GetPostsesViaPostAuthor Get Postss via PostAuthor
+func GetPostsesViaPostAuthor(offset int, limit int, PostAuthor_ int64, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_author = ?", PostAuthor_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostDate Get Postss via PostDate
-func GetPostsesByPostDate(offset int, limit int, PostDate_ time.Time, field string) (*[]*Posts, error) {
+// GetPostsesViaPostDate Get Postss via PostDate
+func GetPostsesViaPostDate(offset int, limit int, PostDate_ time.Time, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_date = ?", PostDate_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostDateGmt Get Postss via PostDateGmt
-func GetPostsesByPostDateGmt(offset int, limit int, PostDateGmt_ time.Time, field string) (*[]*Posts, error) {
+// GetPostsesViaPostDateGmt Get Postss via PostDateGmt
+func GetPostsesViaPostDateGmt(offset int, limit int, PostDateGmt_ time.Time, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_date_gmt = ?", PostDateGmt_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostContent Get Postss via PostContent
-func GetPostsesByPostContent(offset int, limit int, PostContent_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPostContent Get Postss via PostContent
+func GetPostsesViaPostContent(offset int, limit int, PostContent_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_content = ?", PostContent_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostTitle Get Postss via PostTitle
-func GetPostsesByPostTitle(offset int, limit int, PostTitle_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPostTitle Get Postss via PostTitle
+func GetPostsesViaPostTitle(offset int, limit int, PostTitle_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_title = ?", PostTitle_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostExcerpt Get Postss via PostExcerpt
-func GetPostsesByPostExcerpt(offset int, limit int, PostExcerpt_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPostExcerpt Get Postss via PostExcerpt
+func GetPostsesViaPostExcerpt(offset int, limit int, PostExcerpt_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_excerpt = ?", PostExcerpt_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostStatus Get Postss via PostStatus
-func GetPostsesByPostStatus(offset int, limit int, PostStatus_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPostStatus Get Postss via PostStatus
+func GetPostsesViaPostStatus(offset int, limit int, PostStatus_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_status = ?", PostStatus_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByCommentStatus Get Postss via CommentStatus
-func GetPostsesByCommentStatus(offset int, limit int, CommentStatus_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaCommentStatus Get Postss via CommentStatus
+func GetPostsesViaCommentStatus(offset int, limit int, CommentStatus_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("comment_status = ?", CommentStatus_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPingStatus Get Postss via PingStatus
-func GetPostsesByPingStatus(offset int, limit int, PingStatus_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPingStatus Get Postss via PingStatus
+func GetPostsesViaPingStatus(offset int, limit int, PingStatus_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("ping_status = ?", PingStatus_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostPassword Get Postss via PostPassword
-func GetPostsesByPostPassword(offset int, limit int, PostPassword_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPostPassword Get Postss via PostPassword
+func GetPostsesViaPostPassword(offset int, limit int, PostPassword_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_password = ?", PostPassword_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostName Get Postss via PostName
-func GetPostsesByPostName(offset int, limit int, PostName_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPostName Get Postss via PostName
+func GetPostsesViaPostName(offset int, limit int, PostName_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_name = ?", PostName_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByToPing Get Postss via ToPing
-func GetPostsesByToPing(offset int, limit int, ToPing_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaToPing Get Postss via ToPing
+func GetPostsesViaToPing(offset int, limit int, ToPing_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("to_ping = ?", ToPing_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPinged Get Postss via Pinged
-func GetPostsesByPinged(offset int, limit int, Pinged_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPinged Get Postss via Pinged
+func GetPostsesViaPinged(offset int, limit int, Pinged_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("pinged = ?", Pinged_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostModified Get Postss via PostModified
-func GetPostsesByPostModified(offset int, limit int, PostModified_ time.Time, field string) (*[]*Posts, error) {
+// GetPostsesViaPostModified Get Postss via PostModified
+func GetPostsesViaPostModified(offset int, limit int, PostModified_ time.Time, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_modified = ?", PostModified_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostModifiedGmt Get Postss via PostModifiedGmt
-func GetPostsesByPostModifiedGmt(offset int, limit int, PostModifiedGmt_ time.Time, field string) (*[]*Posts, error) {
+// GetPostsesViaPostModifiedGmt Get Postss via PostModifiedGmt
+func GetPostsesViaPostModifiedGmt(offset int, limit int, PostModifiedGmt_ time.Time, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_modified_gmt = ?", PostModifiedGmt_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostContentFiltered Get Postss via PostContentFiltered
-func GetPostsesByPostContentFiltered(offset int, limit int, PostContentFiltered_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPostContentFiltered Get Postss via PostContentFiltered
+func GetPostsesViaPostContentFiltered(offset int, limit int, PostContentFiltered_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_content_filtered = ?", PostContentFiltered_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostParent Get Postss via PostParent
-func GetPostsesByPostParent(offset int, limit int, PostParent_ int64, field string) (*[]*Posts, error) {
+// GetPostsesViaPostParent Get Postss via PostParent
+func GetPostsesViaPostParent(offset int, limit int, PostParent_ int64, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_parent = ?", PostParent_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByGuid Get Postss via Guid
-func GetPostsesByGuid(offset int, limit int, Guid_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaGuid Get Postss via Guid
+func GetPostsesViaGuid(offset int, limit int, Guid_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("guid = ?", Guid_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByMenuOrder Get Postss via MenuOrder
-func GetPostsesByMenuOrder(offset int, limit int, MenuOrder_ int, field string) (*[]*Posts, error) {
+// GetPostsesViaMenuOrder Get Postss via MenuOrder
+func GetPostsesViaMenuOrder(offset int, limit int, MenuOrder_ int, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("menu_order = ?", MenuOrder_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostType Get Postss via PostType
-func GetPostsesByPostType(offset int, limit int, PostType_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPostType Get Postss via PostType
+func GetPostsesViaPostType(offset int, limit int, PostType_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_type = ?", PostType_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByPostMimeType Get Postss via PostMimeType
-func GetPostsesByPostMimeType(offset int, limit int, PostMimeType_ string, field string) (*[]*Posts, error) {
+// GetPostsesViaPostMimeType Get Postss via PostMimeType
+func GetPostsesViaPostMimeType(offset int, limit int, PostMimeType_ string, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("post_mime_type = ?", PostMimeType_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// GetPostsesByCommentCount Get Postss via CommentCount
-func GetPostsesByCommentCount(offset int, limit int, CommentCount_ int64, field string) (*[]*Posts, error) {
+// GetPostsesViaCommentCount Get Postss via CommentCount
+func GetPostsesViaCommentCount(offset int, limit int, CommentCount_ int64, field string) (*[]*Posts, error) {
 	var _Posts = new([]*Posts)
 	err := Engine.Table("posts").Where("comment_count = ?", CommentCount_).Limit(limit, offset).Desc(field).Find(_Posts)
 	return _Posts, err
 }
 
-// HasPostsById Has Posts via Id
-func HasPostsById(iId int64) bool {
+// HasPostsViaId Has Posts via Id
+func HasPostsViaId(iId int64) bool {
 	if has, err := Engine.Where("ID = ?", iId).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14522,8 +14522,8 @@ func HasPostsById(iId int64) bool {
 	}
 }
 
-// HasPostsByPostAuthor Has Posts via PostAuthor
-func HasPostsByPostAuthor(iPostAuthor int64) bool {
+// HasPostsViaPostAuthor Has Posts via PostAuthor
+func HasPostsViaPostAuthor(iPostAuthor int64) bool {
 	if has, err := Engine.Where("post_author = ?", iPostAuthor).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14534,8 +14534,8 @@ func HasPostsByPostAuthor(iPostAuthor int64) bool {
 	}
 }
 
-// HasPostsByPostDate Has Posts via PostDate
-func HasPostsByPostDate(iPostDate time.Time) bool {
+// HasPostsViaPostDate Has Posts via PostDate
+func HasPostsViaPostDate(iPostDate time.Time) bool {
 	if has, err := Engine.Where("post_date = ?", iPostDate).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14546,8 +14546,8 @@ func HasPostsByPostDate(iPostDate time.Time) bool {
 	}
 }
 
-// HasPostsByPostDateGmt Has Posts via PostDateGmt
-func HasPostsByPostDateGmt(iPostDateGmt time.Time) bool {
+// HasPostsViaPostDateGmt Has Posts via PostDateGmt
+func HasPostsViaPostDateGmt(iPostDateGmt time.Time) bool {
 	if has, err := Engine.Where("post_date_gmt = ?", iPostDateGmt).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14558,8 +14558,8 @@ func HasPostsByPostDateGmt(iPostDateGmt time.Time) bool {
 	}
 }
 
-// HasPostsByPostContent Has Posts via PostContent
-func HasPostsByPostContent(iPostContent string) bool {
+// HasPostsViaPostContent Has Posts via PostContent
+func HasPostsViaPostContent(iPostContent string) bool {
 	if has, err := Engine.Where("post_content = ?", iPostContent).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14570,8 +14570,8 @@ func HasPostsByPostContent(iPostContent string) bool {
 	}
 }
 
-// HasPostsByPostTitle Has Posts via PostTitle
-func HasPostsByPostTitle(iPostTitle string) bool {
+// HasPostsViaPostTitle Has Posts via PostTitle
+func HasPostsViaPostTitle(iPostTitle string) bool {
 	if has, err := Engine.Where("post_title = ?", iPostTitle).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14582,8 +14582,8 @@ func HasPostsByPostTitle(iPostTitle string) bool {
 	}
 }
 
-// HasPostsByPostExcerpt Has Posts via PostExcerpt
-func HasPostsByPostExcerpt(iPostExcerpt string) bool {
+// HasPostsViaPostExcerpt Has Posts via PostExcerpt
+func HasPostsViaPostExcerpt(iPostExcerpt string) bool {
 	if has, err := Engine.Where("post_excerpt = ?", iPostExcerpt).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14594,8 +14594,8 @@ func HasPostsByPostExcerpt(iPostExcerpt string) bool {
 	}
 }
 
-// HasPostsByPostStatus Has Posts via PostStatus
-func HasPostsByPostStatus(iPostStatus string) bool {
+// HasPostsViaPostStatus Has Posts via PostStatus
+func HasPostsViaPostStatus(iPostStatus string) bool {
 	if has, err := Engine.Where("post_status = ?", iPostStatus).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14606,8 +14606,8 @@ func HasPostsByPostStatus(iPostStatus string) bool {
 	}
 }
 
-// HasPostsByCommentStatus Has Posts via CommentStatus
-func HasPostsByCommentStatus(iCommentStatus string) bool {
+// HasPostsViaCommentStatus Has Posts via CommentStatus
+func HasPostsViaCommentStatus(iCommentStatus string) bool {
 	if has, err := Engine.Where("comment_status = ?", iCommentStatus).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14618,8 +14618,8 @@ func HasPostsByCommentStatus(iCommentStatus string) bool {
 	}
 }
 
-// HasPostsByPingStatus Has Posts via PingStatus
-func HasPostsByPingStatus(iPingStatus string) bool {
+// HasPostsViaPingStatus Has Posts via PingStatus
+func HasPostsViaPingStatus(iPingStatus string) bool {
 	if has, err := Engine.Where("ping_status = ?", iPingStatus).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14630,8 +14630,8 @@ func HasPostsByPingStatus(iPingStatus string) bool {
 	}
 }
 
-// HasPostsByPostPassword Has Posts via PostPassword
-func HasPostsByPostPassword(iPostPassword string) bool {
+// HasPostsViaPostPassword Has Posts via PostPassword
+func HasPostsViaPostPassword(iPostPassword string) bool {
 	if has, err := Engine.Where("post_password = ?", iPostPassword).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14642,8 +14642,8 @@ func HasPostsByPostPassword(iPostPassword string) bool {
 	}
 }
 
-// HasPostsByPostName Has Posts via PostName
-func HasPostsByPostName(iPostName string) bool {
+// HasPostsViaPostName Has Posts via PostName
+func HasPostsViaPostName(iPostName string) bool {
 	if has, err := Engine.Where("post_name = ?", iPostName).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14654,8 +14654,8 @@ func HasPostsByPostName(iPostName string) bool {
 	}
 }
 
-// HasPostsByToPing Has Posts via ToPing
-func HasPostsByToPing(iToPing string) bool {
+// HasPostsViaToPing Has Posts via ToPing
+func HasPostsViaToPing(iToPing string) bool {
 	if has, err := Engine.Where("to_ping = ?", iToPing).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14666,8 +14666,8 @@ func HasPostsByToPing(iToPing string) bool {
 	}
 }
 
-// HasPostsByPinged Has Posts via Pinged
-func HasPostsByPinged(iPinged string) bool {
+// HasPostsViaPinged Has Posts via Pinged
+func HasPostsViaPinged(iPinged string) bool {
 	if has, err := Engine.Where("pinged = ?", iPinged).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14678,8 +14678,8 @@ func HasPostsByPinged(iPinged string) bool {
 	}
 }
 
-// HasPostsByPostModified Has Posts via PostModified
-func HasPostsByPostModified(iPostModified time.Time) bool {
+// HasPostsViaPostModified Has Posts via PostModified
+func HasPostsViaPostModified(iPostModified time.Time) bool {
 	if has, err := Engine.Where("post_modified = ?", iPostModified).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14690,8 +14690,8 @@ func HasPostsByPostModified(iPostModified time.Time) bool {
 	}
 }
 
-// HasPostsByPostModifiedGmt Has Posts via PostModifiedGmt
-func HasPostsByPostModifiedGmt(iPostModifiedGmt time.Time) bool {
+// HasPostsViaPostModifiedGmt Has Posts via PostModifiedGmt
+func HasPostsViaPostModifiedGmt(iPostModifiedGmt time.Time) bool {
 	if has, err := Engine.Where("post_modified_gmt = ?", iPostModifiedGmt).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14702,8 +14702,8 @@ func HasPostsByPostModifiedGmt(iPostModifiedGmt time.Time) bool {
 	}
 }
 
-// HasPostsByPostContentFiltered Has Posts via PostContentFiltered
-func HasPostsByPostContentFiltered(iPostContentFiltered string) bool {
+// HasPostsViaPostContentFiltered Has Posts via PostContentFiltered
+func HasPostsViaPostContentFiltered(iPostContentFiltered string) bool {
 	if has, err := Engine.Where("post_content_filtered = ?", iPostContentFiltered).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14714,8 +14714,8 @@ func HasPostsByPostContentFiltered(iPostContentFiltered string) bool {
 	}
 }
 
-// HasPostsByPostParent Has Posts via PostParent
-func HasPostsByPostParent(iPostParent int64) bool {
+// HasPostsViaPostParent Has Posts via PostParent
+func HasPostsViaPostParent(iPostParent int64) bool {
 	if has, err := Engine.Where("post_parent = ?", iPostParent).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14726,8 +14726,8 @@ func HasPostsByPostParent(iPostParent int64) bool {
 	}
 }
 
-// HasPostsByGuid Has Posts via Guid
-func HasPostsByGuid(iGuid string) bool {
+// HasPostsViaGuid Has Posts via Guid
+func HasPostsViaGuid(iGuid string) bool {
 	if has, err := Engine.Where("guid = ?", iGuid).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14738,8 +14738,8 @@ func HasPostsByGuid(iGuid string) bool {
 	}
 }
 
-// HasPostsByMenuOrder Has Posts via MenuOrder
-func HasPostsByMenuOrder(iMenuOrder int) bool {
+// HasPostsViaMenuOrder Has Posts via MenuOrder
+func HasPostsViaMenuOrder(iMenuOrder int) bool {
 	if has, err := Engine.Where("menu_order = ?", iMenuOrder).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14750,8 +14750,8 @@ func HasPostsByMenuOrder(iMenuOrder int) bool {
 	}
 }
 
-// HasPostsByPostType Has Posts via PostType
-func HasPostsByPostType(iPostType string) bool {
+// HasPostsViaPostType Has Posts via PostType
+func HasPostsViaPostType(iPostType string) bool {
 	if has, err := Engine.Where("post_type = ?", iPostType).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14762,8 +14762,8 @@ func HasPostsByPostType(iPostType string) bool {
 	}
 }
 
-// HasPostsByPostMimeType Has Posts via PostMimeType
-func HasPostsByPostMimeType(iPostMimeType string) bool {
+// HasPostsViaPostMimeType Has Posts via PostMimeType
+func HasPostsViaPostMimeType(iPostMimeType string) bool {
 	if has, err := Engine.Where("post_mime_type = ?", iPostMimeType).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14774,8 +14774,8 @@ func HasPostsByPostMimeType(iPostMimeType string) bool {
 	}
 }
 
-// HasPostsByCommentCount Has Posts via CommentCount
-func HasPostsByCommentCount(iCommentCount int64) bool {
+// HasPostsViaCommentCount Has Posts via CommentCount
+func HasPostsViaCommentCount(iCommentCount int64) bool {
 	if has, err := Engine.Where("comment_count = ?", iCommentCount).Get(new(Posts)); err != nil {
 		return false
 	} else {
@@ -14786,8 +14786,8 @@ func HasPostsByCommentCount(iCommentCount int64) bool {
 	}
 }
 
-// GetPostsById Get Posts via Id
-func GetPostsById(iId int64) (*Posts, error) {
+// GetPostsViaId Get Posts via Id
+func GetPostsViaId(iId int64) (*Posts, error) {
 	var _Posts = &Posts{Id: iId}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14797,8 +14797,8 @@ func GetPostsById(iId int64) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostAuthor Get Posts via PostAuthor
-func GetPostsByPostAuthor(iPostAuthor int64) (*Posts, error) {
+// GetPostsViaPostAuthor Get Posts via PostAuthor
+func GetPostsViaPostAuthor(iPostAuthor int64) (*Posts, error) {
 	var _Posts = &Posts{PostAuthor: iPostAuthor}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14808,8 +14808,8 @@ func GetPostsByPostAuthor(iPostAuthor int64) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostDate Get Posts via PostDate
-func GetPostsByPostDate(iPostDate time.Time) (*Posts, error) {
+// GetPostsViaPostDate Get Posts via PostDate
+func GetPostsViaPostDate(iPostDate time.Time) (*Posts, error) {
 	var _Posts = &Posts{PostDate: iPostDate}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14819,8 +14819,8 @@ func GetPostsByPostDate(iPostDate time.Time) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostDateGmt Get Posts via PostDateGmt
-func GetPostsByPostDateGmt(iPostDateGmt time.Time) (*Posts, error) {
+// GetPostsViaPostDateGmt Get Posts via PostDateGmt
+func GetPostsViaPostDateGmt(iPostDateGmt time.Time) (*Posts, error) {
 	var _Posts = &Posts{PostDateGmt: iPostDateGmt}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14830,8 +14830,8 @@ func GetPostsByPostDateGmt(iPostDateGmt time.Time) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostContent Get Posts via PostContent
-func GetPostsByPostContent(iPostContent string) (*Posts, error) {
+// GetPostsViaPostContent Get Posts via PostContent
+func GetPostsViaPostContent(iPostContent string) (*Posts, error) {
 	var _Posts = &Posts{PostContent: iPostContent}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14841,8 +14841,8 @@ func GetPostsByPostContent(iPostContent string) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostTitle Get Posts via PostTitle
-func GetPostsByPostTitle(iPostTitle string) (*Posts, error) {
+// GetPostsViaPostTitle Get Posts via PostTitle
+func GetPostsViaPostTitle(iPostTitle string) (*Posts, error) {
 	var _Posts = &Posts{PostTitle: iPostTitle}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14852,8 +14852,8 @@ func GetPostsByPostTitle(iPostTitle string) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostExcerpt Get Posts via PostExcerpt
-func GetPostsByPostExcerpt(iPostExcerpt string) (*Posts, error) {
+// GetPostsViaPostExcerpt Get Posts via PostExcerpt
+func GetPostsViaPostExcerpt(iPostExcerpt string) (*Posts, error) {
 	var _Posts = &Posts{PostExcerpt: iPostExcerpt}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14863,8 +14863,8 @@ func GetPostsByPostExcerpt(iPostExcerpt string) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostStatus Get Posts via PostStatus
-func GetPostsByPostStatus(iPostStatus string) (*Posts, error) {
+// GetPostsViaPostStatus Get Posts via PostStatus
+func GetPostsViaPostStatus(iPostStatus string) (*Posts, error) {
 	var _Posts = &Posts{PostStatus: iPostStatus}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14874,8 +14874,8 @@ func GetPostsByPostStatus(iPostStatus string) (*Posts, error) {
 	}
 }
 
-// GetPostsByCommentStatus Get Posts via CommentStatus
-func GetPostsByCommentStatus(iCommentStatus string) (*Posts, error) {
+// GetPostsViaCommentStatus Get Posts via CommentStatus
+func GetPostsViaCommentStatus(iCommentStatus string) (*Posts, error) {
 	var _Posts = &Posts{CommentStatus: iCommentStatus}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14885,8 +14885,8 @@ func GetPostsByCommentStatus(iCommentStatus string) (*Posts, error) {
 	}
 }
 
-// GetPostsByPingStatus Get Posts via PingStatus
-func GetPostsByPingStatus(iPingStatus string) (*Posts, error) {
+// GetPostsViaPingStatus Get Posts via PingStatus
+func GetPostsViaPingStatus(iPingStatus string) (*Posts, error) {
 	var _Posts = &Posts{PingStatus: iPingStatus}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14896,8 +14896,8 @@ func GetPostsByPingStatus(iPingStatus string) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostPassword Get Posts via PostPassword
-func GetPostsByPostPassword(iPostPassword string) (*Posts, error) {
+// GetPostsViaPostPassword Get Posts via PostPassword
+func GetPostsViaPostPassword(iPostPassword string) (*Posts, error) {
 	var _Posts = &Posts{PostPassword: iPostPassword}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14907,8 +14907,8 @@ func GetPostsByPostPassword(iPostPassword string) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostName Get Posts via PostName
-func GetPostsByPostName(iPostName string) (*Posts, error) {
+// GetPostsViaPostName Get Posts via PostName
+func GetPostsViaPostName(iPostName string) (*Posts, error) {
 	var _Posts = &Posts{PostName: iPostName}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14918,8 +14918,8 @@ func GetPostsByPostName(iPostName string) (*Posts, error) {
 	}
 }
 
-// GetPostsByToPing Get Posts via ToPing
-func GetPostsByToPing(iToPing string) (*Posts, error) {
+// GetPostsViaToPing Get Posts via ToPing
+func GetPostsViaToPing(iToPing string) (*Posts, error) {
 	var _Posts = &Posts{ToPing: iToPing}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14929,8 +14929,8 @@ func GetPostsByToPing(iToPing string) (*Posts, error) {
 	}
 }
 
-// GetPostsByPinged Get Posts via Pinged
-func GetPostsByPinged(iPinged string) (*Posts, error) {
+// GetPostsViaPinged Get Posts via Pinged
+func GetPostsViaPinged(iPinged string) (*Posts, error) {
 	var _Posts = &Posts{Pinged: iPinged}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14940,8 +14940,8 @@ func GetPostsByPinged(iPinged string) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostModified Get Posts via PostModified
-func GetPostsByPostModified(iPostModified time.Time) (*Posts, error) {
+// GetPostsViaPostModified Get Posts via PostModified
+func GetPostsViaPostModified(iPostModified time.Time) (*Posts, error) {
 	var _Posts = &Posts{PostModified: iPostModified}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14951,8 +14951,8 @@ func GetPostsByPostModified(iPostModified time.Time) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostModifiedGmt Get Posts via PostModifiedGmt
-func GetPostsByPostModifiedGmt(iPostModifiedGmt time.Time) (*Posts, error) {
+// GetPostsViaPostModifiedGmt Get Posts via PostModifiedGmt
+func GetPostsViaPostModifiedGmt(iPostModifiedGmt time.Time) (*Posts, error) {
 	var _Posts = &Posts{PostModifiedGmt: iPostModifiedGmt}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14962,8 +14962,8 @@ func GetPostsByPostModifiedGmt(iPostModifiedGmt time.Time) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostContentFiltered Get Posts via PostContentFiltered
-func GetPostsByPostContentFiltered(iPostContentFiltered string) (*Posts, error) {
+// GetPostsViaPostContentFiltered Get Posts via PostContentFiltered
+func GetPostsViaPostContentFiltered(iPostContentFiltered string) (*Posts, error) {
 	var _Posts = &Posts{PostContentFiltered: iPostContentFiltered}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14973,8 +14973,8 @@ func GetPostsByPostContentFiltered(iPostContentFiltered string) (*Posts, error) 
 	}
 }
 
-// GetPostsByPostParent Get Posts via PostParent
-func GetPostsByPostParent(iPostParent int64) (*Posts, error) {
+// GetPostsViaPostParent Get Posts via PostParent
+func GetPostsViaPostParent(iPostParent int64) (*Posts, error) {
 	var _Posts = &Posts{PostParent: iPostParent}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14984,8 +14984,8 @@ func GetPostsByPostParent(iPostParent int64) (*Posts, error) {
 	}
 }
 
-// GetPostsByGuid Get Posts via Guid
-func GetPostsByGuid(iGuid string) (*Posts, error) {
+// GetPostsViaGuid Get Posts via Guid
+func GetPostsViaGuid(iGuid string) (*Posts, error) {
 	var _Posts = &Posts{Guid: iGuid}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -14995,8 +14995,8 @@ func GetPostsByGuid(iGuid string) (*Posts, error) {
 	}
 }
 
-// GetPostsByMenuOrder Get Posts via MenuOrder
-func GetPostsByMenuOrder(iMenuOrder int) (*Posts, error) {
+// GetPostsViaMenuOrder Get Posts via MenuOrder
+func GetPostsViaMenuOrder(iMenuOrder int) (*Posts, error) {
 	var _Posts = &Posts{MenuOrder: iMenuOrder}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -15006,8 +15006,8 @@ func GetPostsByMenuOrder(iMenuOrder int) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostType Get Posts via PostType
-func GetPostsByPostType(iPostType string) (*Posts, error) {
+// GetPostsViaPostType Get Posts via PostType
+func GetPostsViaPostType(iPostType string) (*Posts, error) {
 	var _Posts = &Posts{PostType: iPostType}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -15017,8 +15017,8 @@ func GetPostsByPostType(iPostType string) (*Posts, error) {
 	}
 }
 
-// GetPostsByPostMimeType Get Posts via PostMimeType
-func GetPostsByPostMimeType(iPostMimeType string) (*Posts, error) {
+// GetPostsViaPostMimeType Get Posts via PostMimeType
+func GetPostsViaPostMimeType(iPostMimeType string) (*Posts, error) {
 	var _Posts = &Posts{PostMimeType: iPostMimeType}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -15028,8 +15028,8 @@ func GetPostsByPostMimeType(iPostMimeType string) (*Posts, error) {
 	}
 }
 
-// GetPostsByCommentCount Get Posts via CommentCount
-func GetPostsByCommentCount(iCommentCount int64) (*Posts, error) {
+// GetPostsViaCommentCount Get Posts via CommentCount
+func GetPostsViaCommentCount(iCommentCount int64) (*Posts, error) {
 	var _Posts = &Posts{CommentCount: iCommentCount}
 	has, err := Engine.Get(_Posts)
 	if has {
@@ -15039,140 +15039,140 @@ func GetPostsByCommentCount(iCommentCount int64) (*Posts, error) {
 	}
 }
 
-// SetPostsById Set Posts via Id
-func SetPostsById(iId int64, posts *Posts) (int64, error) {
+// SetPostsViaId Set Posts via Id
+func SetPostsViaId(iId int64, posts *Posts) (int64, error) {
 	posts.Id = iId
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostAuthor Set Posts via PostAuthor
-func SetPostsByPostAuthor(iPostAuthor int64, posts *Posts) (int64, error) {
+// SetPostsViaPostAuthor Set Posts via PostAuthor
+func SetPostsViaPostAuthor(iPostAuthor int64, posts *Posts) (int64, error) {
 	posts.PostAuthor = iPostAuthor
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostDate Set Posts via PostDate
-func SetPostsByPostDate(iPostDate time.Time, posts *Posts) (int64, error) {
+// SetPostsViaPostDate Set Posts via PostDate
+func SetPostsViaPostDate(iPostDate time.Time, posts *Posts) (int64, error) {
 	posts.PostDate = iPostDate
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostDateGmt Set Posts via PostDateGmt
-func SetPostsByPostDateGmt(iPostDateGmt time.Time, posts *Posts) (int64, error) {
+// SetPostsViaPostDateGmt Set Posts via PostDateGmt
+func SetPostsViaPostDateGmt(iPostDateGmt time.Time, posts *Posts) (int64, error) {
 	posts.PostDateGmt = iPostDateGmt
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostContent Set Posts via PostContent
-func SetPostsByPostContent(iPostContent string, posts *Posts) (int64, error) {
+// SetPostsViaPostContent Set Posts via PostContent
+func SetPostsViaPostContent(iPostContent string, posts *Posts) (int64, error) {
 	posts.PostContent = iPostContent
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostTitle Set Posts via PostTitle
-func SetPostsByPostTitle(iPostTitle string, posts *Posts) (int64, error) {
+// SetPostsViaPostTitle Set Posts via PostTitle
+func SetPostsViaPostTitle(iPostTitle string, posts *Posts) (int64, error) {
 	posts.PostTitle = iPostTitle
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostExcerpt Set Posts via PostExcerpt
-func SetPostsByPostExcerpt(iPostExcerpt string, posts *Posts) (int64, error) {
+// SetPostsViaPostExcerpt Set Posts via PostExcerpt
+func SetPostsViaPostExcerpt(iPostExcerpt string, posts *Posts) (int64, error) {
 	posts.PostExcerpt = iPostExcerpt
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostStatus Set Posts via PostStatus
-func SetPostsByPostStatus(iPostStatus string, posts *Posts) (int64, error) {
+// SetPostsViaPostStatus Set Posts via PostStatus
+func SetPostsViaPostStatus(iPostStatus string, posts *Posts) (int64, error) {
 	posts.PostStatus = iPostStatus
 	return Engine.Insert(posts)
 }
 
-// SetPostsByCommentStatus Set Posts via CommentStatus
-func SetPostsByCommentStatus(iCommentStatus string, posts *Posts) (int64, error) {
+// SetPostsViaCommentStatus Set Posts via CommentStatus
+func SetPostsViaCommentStatus(iCommentStatus string, posts *Posts) (int64, error) {
 	posts.CommentStatus = iCommentStatus
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPingStatus Set Posts via PingStatus
-func SetPostsByPingStatus(iPingStatus string, posts *Posts) (int64, error) {
+// SetPostsViaPingStatus Set Posts via PingStatus
+func SetPostsViaPingStatus(iPingStatus string, posts *Posts) (int64, error) {
 	posts.PingStatus = iPingStatus
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostPassword Set Posts via PostPassword
-func SetPostsByPostPassword(iPostPassword string, posts *Posts) (int64, error) {
+// SetPostsViaPostPassword Set Posts via PostPassword
+func SetPostsViaPostPassword(iPostPassword string, posts *Posts) (int64, error) {
 	posts.PostPassword = iPostPassword
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostName Set Posts via PostName
-func SetPostsByPostName(iPostName string, posts *Posts) (int64, error) {
+// SetPostsViaPostName Set Posts via PostName
+func SetPostsViaPostName(iPostName string, posts *Posts) (int64, error) {
 	posts.PostName = iPostName
 	return Engine.Insert(posts)
 }
 
-// SetPostsByToPing Set Posts via ToPing
-func SetPostsByToPing(iToPing string, posts *Posts) (int64, error) {
+// SetPostsViaToPing Set Posts via ToPing
+func SetPostsViaToPing(iToPing string, posts *Posts) (int64, error) {
 	posts.ToPing = iToPing
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPinged Set Posts via Pinged
-func SetPostsByPinged(iPinged string, posts *Posts) (int64, error) {
+// SetPostsViaPinged Set Posts via Pinged
+func SetPostsViaPinged(iPinged string, posts *Posts) (int64, error) {
 	posts.Pinged = iPinged
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostModified Set Posts via PostModified
-func SetPostsByPostModified(iPostModified time.Time, posts *Posts) (int64, error) {
+// SetPostsViaPostModified Set Posts via PostModified
+func SetPostsViaPostModified(iPostModified time.Time, posts *Posts) (int64, error) {
 	posts.PostModified = iPostModified
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostModifiedGmt Set Posts via PostModifiedGmt
-func SetPostsByPostModifiedGmt(iPostModifiedGmt time.Time, posts *Posts) (int64, error) {
+// SetPostsViaPostModifiedGmt Set Posts via PostModifiedGmt
+func SetPostsViaPostModifiedGmt(iPostModifiedGmt time.Time, posts *Posts) (int64, error) {
 	posts.PostModifiedGmt = iPostModifiedGmt
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostContentFiltered Set Posts via PostContentFiltered
-func SetPostsByPostContentFiltered(iPostContentFiltered string, posts *Posts) (int64, error) {
+// SetPostsViaPostContentFiltered Set Posts via PostContentFiltered
+func SetPostsViaPostContentFiltered(iPostContentFiltered string, posts *Posts) (int64, error) {
 	posts.PostContentFiltered = iPostContentFiltered
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostParent Set Posts via PostParent
-func SetPostsByPostParent(iPostParent int64, posts *Posts) (int64, error) {
+// SetPostsViaPostParent Set Posts via PostParent
+func SetPostsViaPostParent(iPostParent int64, posts *Posts) (int64, error) {
 	posts.PostParent = iPostParent
 	return Engine.Insert(posts)
 }
 
-// SetPostsByGuid Set Posts via Guid
-func SetPostsByGuid(iGuid string, posts *Posts) (int64, error) {
+// SetPostsViaGuid Set Posts via Guid
+func SetPostsViaGuid(iGuid string, posts *Posts) (int64, error) {
 	posts.Guid = iGuid
 	return Engine.Insert(posts)
 }
 
-// SetPostsByMenuOrder Set Posts via MenuOrder
-func SetPostsByMenuOrder(iMenuOrder int, posts *Posts) (int64, error) {
+// SetPostsViaMenuOrder Set Posts via MenuOrder
+func SetPostsViaMenuOrder(iMenuOrder int, posts *Posts) (int64, error) {
 	posts.MenuOrder = iMenuOrder
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostType Set Posts via PostType
-func SetPostsByPostType(iPostType string, posts *Posts) (int64, error) {
+// SetPostsViaPostType Set Posts via PostType
+func SetPostsViaPostType(iPostType string, posts *Posts) (int64, error) {
 	posts.PostType = iPostType
 	return Engine.Insert(posts)
 }
 
-// SetPostsByPostMimeType Set Posts via PostMimeType
-func SetPostsByPostMimeType(iPostMimeType string, posts *Posts) (int64, error) {
+// SetPostsViaPostMimeType Set Posts via PostMimeType
+func SetPostsViaPostMimeType(iPostMimeType string, posts *Posts) (int64, error) {
 	posts.PostMimeType = iPostMimeType
 	return Engine.Insert(posts)
 }
 
-// SetPostsByCommentCount Set Posts via CommentCount
-func SetPostsByCommentCount(iCommentCount int64, posts *Posts) (int64, error) {
+// SetPostsViaCommentCount Set Posts via CommentCount
+func SetPostsViaCommentCount(iCommentCount int64, posts *Posts) (int64, error) {
 	posts.CommentCount = iCommentCount
 	return Engine.Insert(posts)
 }
@@ -15199,146 +15199,146 @@ func PutPosts(iPosts *Posts) (int64, error) {
 	return iPosts.Id, err
 }
 
-// PutPostsById Put Posts via Id
-func PutPostsById(Id_ int64, iPosts *Posts) (int64, error) {
+// PutPostsViaId Put Posts via Id
+func PutPostsViaId(Id_ int64, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{Id: Id_})
 	return row, err
 }
 
-// PutPostsByPostAuthor Put Posts via PostAuthor
-func PutPostsByPostAuthor(PostAuthor_ int64, iPosts *Posts) (int64, error) {
+// PutPostsViaPostAuthor Put Posts via PostAuthor
+func PutPostsViaPostAuthor(PostAuthor_ int64, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostAuthor: PostAuthor_})
 	return row, err
 }
 
-// PutPostsByPostDate Put Posts via PostDate
-func PutPostsByPostDate(PostDate_ time.Time, iPosts *Posts) (int64, error) {
+// PutPostsViaPostDate Put Posts via PostDate
+func PutPostsViaPostDate(PostDate_ time.Time, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostDate: PostDate_})
 	return row, err
 }
 
-// PutPostsByPostDateGmt Put Posts via PostDateGmt
-func PutPostsByPostDateGmt(PostDateGmt_ time.Time, iPosts *Posts) (int64, error) {
+// PutPostsViaPostDateGmt Put Posts via PostDateGmt
+func PutPostsViaPostDateGmt(PostDateGmt_ time.Time, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostDateGmt: PostDateGmt_})
 	return row, err
 }
 
-// PutPostsByPostContent Put Posts via PostContent
-func PutPostsByPostContent(PostContent_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPostContent Put Posts via PostContent
+func PutPostsViaPostContent(PostContent_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostContent: PostContent_})
 	return row, err
 }
 
-// PutPostsByPostTitle Put Posts via PostTitle
-func PutPostsByPostTitle(PostTitle_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPostTitle Put Posts via PostTitle
+func PutPostsViaPostTitle(PostTitle_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostTitle: PostTitle_})
 	return row, err
 }
 
-// PutPostsByPostExcerpt Put Posts via PostExcerpt
-func PutPostsByPostExcerpt(PostExcerpt_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPostExcerpt Put Posts via PostExcerpt
+func PutPostsViaPostExcerpt(PostExcerpt_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostExcerpt: PostExcerpt_})
 	return row, err
 }
 
-// PutPostsByPostStatus Put Posts via PostStatus
-func PutPostsByPostStatus(PostStatus_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPostStatus Put Posts via PostStatus
+func PutPostsViaPostStatus(PostStatus_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostStatus: PostStatus_})
 	return row, err
 }
 
-// PutPostsByCommentStatus Put Posts via CommentStatus
-func PutPostsByCommentStatus(CommentStatus_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaCommentStatus Put Posts via CommentStatus
+func PutPostsViaCommentStatus(CommentStatus_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{CommentStatus: CommentStatus_})
 	return row, err
 }
 
-// PutPostsByPingStatus Put Posts via PingStatus
-func PutPostsByPingStatus(PingStatus_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPingStatus Put Posts via PingStatus
+func PutPostsViaPingStatus(PingStatus_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PingStatus: PingStatus_})
 	return row, err
 }
 
-// PutPostsByPostPassword Put Posts via PostPassword
-func PutPostsByPostPassword(PostPassword_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPostPassword Put Posts via PostPassword
+func PutPostsViaPostPassword(PostPassword_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostPassword: PostPassword_})
 	return row, err
 }
 
-// PutPostsByPostName Put Posts via PostName
-func PutPostsByPostName(PostName_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPostName Put Posts via PostName
+func PutPostsViaPostName(PostName_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostName: PostName_})
 	return row, err
 }
 
-// PutPostsByToPing Put Posts via ToPing
-func PutPostsByToPing(ToPing_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaToPing Put Posts via ToPing
+func PutPostsViaToPing(ToPing_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{ToPing: ToPing_})
 	return row, err
 }
 
-// PutPostsByPinged Put Posts via Pinged
-func PutPostsByPinged(Pinged_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPinged Put Posts via Pinged
+func PutPostsViaPinged(Pinged_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{Pinged: Pinged_})
 	return row, err
 }
 
-// PutPostsByPostModified Put Posts via PostModified
-func PutPostsByPostModified(PostModified_ time.Time, iPosts *Posts) (int64, error) {
+// PutPostsViaPostModified Put Posts via PostModified
+func PutPostsViaPostModified(PostModified_ time.Time, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostModified: PostModified_})
 	return row, err
 }
 
-// PutPostsByPostModifiedGmt Put Posts via PostModifiedGmt
-func PutPostsByPostModifiedGmt(PostModifiedGmt_ time.Time, iPosts *Posts) (int64, error) {
+// PutPostsViaPostModifiedGmt Put Posts via PostModifiedGmt
+func PutPostsViaPostModifiedGmt(PostModifiedGmt_ time.Time, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostModifiedGmt: PostModifiedGmt_})
 	return row, err
 }
 
-// PutPostsByPostContentFiltered Put Posts via PostContentFiltered
-func PutPostsByPostContentFiltered(PostContentFiltered_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPostContentFiltered Put Posts via PostContentFiltered
+func PutPostsViaPostContentFiltered(PostContentFiltered_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostContentFiltered: PostContentFiltered_})
 	return row, err
 }
 
-// PutPostsByPostParent Put Posts via PostParent
-func PutPostsByPostParent(PostParent_ int64, iPosts *Posts) (int64, error) {
+// PutPostsViaPostParent Put Posts via PostParent
+func PutPostsViaPostParent(PostParent_ int64, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostParent: PostParent_})
 	return row, err
 }
 
-// PutPostsByGuid Put Posts via Guid
-func PutPostsByGuid(Guid_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaGuid Put Posts via Guid
+func PutPostsViaGuid(Guid_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{Guid: Guid_})
 	return row, err
 }
 
-// PutPostsByMenuOrder Put Posts via MenuOrder
-func PutPostsByMenuOrder(MenuOrder_ int, iPosts *Posts) (int64, error) {
+// PutPostsViaMenuOrder Put Posts via MenuOrder
+func PutPostsViaMenuOrder(MenuOrder_ int, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{MenuOrder: MenuOrder_})
 	return row, err
 }
 
-// PutPostsByPostType Put Posts via PostType
-func PutPostsByPostType(PostType_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPostType Put Posts via PostType
+func PutPostsViaPostType(PostType_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostType: PostType_})
 	return row, err
 }
 
-// PutPostsByPostMimeType Put Posts via PostMimeType
-func PutPostsByPostMimeType(PostMimeType_ string, iPosts *Posts) (int64, error) {
+// PutPostsViaPostMimeType Put Posts via PostMimeType
+func PutPostsViaPostMimeType(PostMimeType_ string, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{PostMimeType: PostMimeType_})
 	return row, err
 }
 
-// PutPostsByCommentCount Put Posts via CommentCount
-func PutPostsByCommentCount(CommentCount_ int64, iPosts *Posts) (int64, error) {
+// PutPostsViaCommentCount Put Posts via CommentCount
+func PutPostsViaCommentCount(CommentCount_ int64, iPosts *Posts) (int64, error) {
 	row, err := Engine.Update(iPosts, &Posts{CommentCount: CommentCount_})
 	return row, err
 }
 
-// UpdatePostsById via map[string]interface{}{}
-func UpdatePostsById(iId int64, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaId via map[string]interface{}{}
+func UpdatePostsViaId(iId int64, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("ID = ?", iId).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15346,8 +15346,8 @@ func UpdatePostsById(iId int64, iPostsMap *map[string]interface{}) error {
 	}
 }
 
-// UpdatePostsByPostAuthor via map[string]interface{}{}
-func UpdatePostsByPostAuthor(iPostAuthor int64, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostAuthor via map[string]interface{}{}
+func UpdatePostsViaPostAuthor(iPostAuthor int64, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_author = ?", iPostAuthor).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15355,8 +15355,8 @@ func UpdatePostsByPostAuthor(iPostAuthor int64, iPostsMap *map[string]interface{
 	}
 }
 
-// UpdatePostsByPostDate via map[string]interface{}{}
-func UpdatePostsByPostDate(iPostDate time.Time, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostDate via map[string]interface{}{}
+func UpdatePostsViaPostDate(iPostDate time.Time, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_date = ?", iPostDate).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15364,8 +15364,8 @@ func UpdatePostsByPostDate(iPostDate time.Time, iPostsMap *map[string]interface{
 	}
 }
 
-// UpdatePostsByPostDateGmt via map[string]interface{}{}
-func UpdatePostsByPostDateGmt(iPostDateGmt time.Time, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostDateGmt via map[string]interface{}{}
+func UpdatePostsViaPostDateGmt(iPostDateGmt time.Time, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_date_gmt = ?", iPostDateGmt).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15373,8 +15373,8 @@ func UpdatePostsByPostDateGmt(iPostDateGmt time.Time, iPostsMap *map[string]inte
 	}
 }
 
-// UpdatePostsByPostContent via map[string]interface{}{}
-func UpdatePostsByPostContent(iPostContent string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostContent via map[string]interface{}{}
+func UpdatePostsViaPostContent(iPostContent string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_content = ?", iPostContent).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15382,8 +15382,8 @@ func UpdatePostsByPostContent(iPostContent string, iPostsMap *map[string]interfa
 	}
 }
 
-// UpdatePostsByPostTitle via map[string]interface{}{}
-func UpdatePostsByPostTitle(iPostTitle string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostTitle via map[string]interface{}{}
+func UpdatePostsViaPostTitle(iPostTitle string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_title = ?", iPostTitle).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15391,8 +15391,8 @@ func UpdatePostsByPostTitle(iPostTitle string, iPostsMap *map[string]interface{}
 	}
 }
 
-// UpdatePostsByPostExcerpt via map[string]interface{}{}
-func UpdatePostsByPostExcerpt(iPostExcerpt string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostExcerpt via map[string]interface{}{}
+func UpdatePostsViaPostExcerpt(iPostExcerpt string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_excerpt = ?", iPostExcerpt).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15400,8 +15400,8 @@ func UpdatePostsByPostExcerpt(iPostExcerpt string, iPostsMap *map[string]interfa
 	}
 }
 
-// UpdatePostsByPostStatus via map[string]interface{}{}
-func UpdatePostsByPostStatus(iPostStatus string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostStatus via map[string]interface{}{}
+func UpdatePostsViaPostStatus(iPostStatus string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_status = ?", iPostStatus).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15409,8 +15409,8 @@ func UpdatePostsByPostStatus(iPostStatus string, iPostsMap *map[string]interface
 	}
 }
 
-// UpdatePostsByCommentStatus via map[string]interface{}{}
-func UpdatePostsByCommentStatus(iCommentStatus string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaCommentStatus via map[string]interface{}{}
+func UpdatePostsViaCommentStatus(iCommentStatus string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("comment_status = ?", iCommentStatus).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15418,8 +15418,8 @@ func UpdatePostsByCommentStatus(iCommentStatus string, iPostsMap *map[string]int
 	}
 }
 
-// UpdatePostsByPingStatus via map[string]interface{}{}
-func UpdatePostsByPingStatus(iPingStatus string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPingStatus via map[string]interface{}{}
+func UpdatePostsViaPingStatus(iPingStatus string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("ping_status = ?", iPingStatus).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15427,8 +15427,8 @@ func UpdatePostsByPingStatus(iPingStatus string, iPostsMap *map[string]interface
 	}
 }
 
-// UpdatePostsByPostPassword via map[string]interface{}{}
-func UpdatePostsByPostPassword(iPostPassword string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostPassword via map[string]interface{}{}
+func UpdatePostsViaPostPassword(iPostPassword string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_password = ?", iPostPassword).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15436,8 +15436,8 @@ func UpdatePostsByPostPassword(iPostPassword string, iPostsMap *map[string]inter
 	}
 }
 
-// UpdatePostsByPostName via map[string]interface{}{}
-func UpdatePostsByPostName(iPostName string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostName via map[string]interface{}{}
+func UpdatePostsViaPostName(iPostName string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_name = ?", iPostName).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15445,8 +15445,8 @@ func UpdatePostsByPostName(iPostName string, iPostsMap *map[string]interface{}) 
 	}
 }
 
-// UpdatePostsByToPing via map[string]interface{}{}
-func UpdatePostsByToPing(iToPing string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaToPing via map[string]interface{}{}
+func UpdatePostsViaToPing(iToPing string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("to_ping = ?", iToPing).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15454,8 +15454,8 @@ func UpdatePostsByToPing(iToPing string, iPostsMap *map[string]interface{}) erro
 	}
 }
 
-// UpdatePostsByPinged via map[string]interface{}{}
-func UpdatePostsByPinged(iPinged string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPinged via map[string]interface{}{}
+func UpdatePostsViaPinged(iPinged string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("pinged = ?", iPinged).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15463,8 +15463,8 @@ func UpdatePostsByPinged(iPinged string, iPostsMap *map[string]interface{}) erro
 	}
 }
 
-// UpdatePostsByPostModified via map[string]interface{}{}
-func UpdatePostsByPostModified(iPostModified time.Time, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostModified via map[string]interface{}{}
+func UpdatePostsViaPostModified(iPostModified time.Time, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_modified = ?", iPostModified).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15472,8 +15472,8 @@ func UpdatePostsByPostModified(iPostModified time.Time, iPostsMap *map[string]in
 	}
 }
 
-// UpdatePostsByPostModifiedGmt via map[string]interface{}{}
-func UpdatePostsByPostModifiedGmt(iPostModifiedGmt time.Time, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostModifiedGmt via map[string]interface{}{}
+func UpdatePostsViaPostModifiedGmt(iPostModifiedGmt time.Time, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_modified_gmt = ?", iPostModifiedGmt).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15481,8 +15481,8 @@ func UpdatePostsByPostModifiedGmt(iPostModifiedGmt time.Time, iPostsMap *map[str
 	}
 }
 
-// UpdatePostsByPostContentFiltered via map[string]interface{}{}
-func UpdatePostsByPostContentFiltered(iPostContentFiltered string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostContentFiltered via map[string]interface{}{}
+func UpdatePostsViaPostContentFiltered(iPostContentFiltered string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_content_filtered = ?", iPostContentFiltered).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15490,8 +15490,8 @@ func UpdatePostsByPostContentFiltered(iPostContentFiltered string, iPostsMap *ma
 	}
 }
 
-// UpdatePostsByPostParent via map[string]interface{}{}
-func UpdatePostsByPostParent(iPostParent int64, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostParent via map[string]interface{}{}
+func UpdatePostsViaPostParent(iPostParent int64, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_parent = ?", iPostParent).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15499,8 +15499,8 @@ func UpdatePostsByPostParent(iPostParent int64, iPostsMap *map[string]interface{
 	}
 }
 
-// UpdatePostsByGuid via map[string]interface{}{}
-func UpdatePostsByGuid(iGuid string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaGuid via map[string]interface{}{}
+func UpdatePostsViaGuid(iGuid string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("guid = ?", iGuid).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15508,8 +15508,8 @@ func UpdatePostsByGuid(iGuid string, iPostsMap *map[string]interface{}) error {
 	}
 }
 
-// UpdatePostsByMenuOrder via map[string]interface{}{}
-func UpdatePostsByMenuOrder(iMenuOrder int, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaMenuOrder via map[string]interface{}{}
+func UpdatePostsViaMenuOrder(iMenuOrder int, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("menu_order = ?", iMenuOrder).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15517,8 +15517,8 @@ func UpdatePostsByMenuOrder(iMenuOrder int, iPostsMap *map[string]interface{}) e
 	}
 }
 
-// UpdatePostsByPostType via map[string]interface{}{}
-func UpdatePostsByPostType(iPostType string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostType via map[string]interface{}{}
+func UpdatePostsViaPostType(iPostType string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_type = ?", iPostType).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15526,8 +15526,8 @@ func UpdatePostsByPostType(iPostType string, iPostsMap *map[string]interface{}) 
 	}
 }
 
-// UpdatePostsByPostMimeType via map[string]interface{}{}
-func UpdatePostsByPostMimeType(iPostMimeType string, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaPostMimeType via map[string]interface{}{}
+func UpdatePostsViaPostMimeType(iPostMimeType string, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("post_mime_type = ?", iPostMimeType).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15535,8 +15535,8 @@ func UpdatePostsByPostMimeType(iPostMimeType string, iPostsMap *map[string]inter
 	}
 }
 
-// UpdatePostsByCommentCount via map[string]interface{}{}
-func UpdatePostsByCommentCount(iCommentCount int64, iPostsMap *map[string]interface{}) error {
+// UpdatePostsViaCommentCount via map[string]interface{}{}
+func UpdatePostsViaCommentCount(iCommentCount int64, iPostsMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Posts)).Where("comment_count = ?", iCommentCount).Update(iPostsMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -15550,8 +15550,8 @@ func DeletePosts(iId int64) (int64, error) {
 	return row, err
 }
 
-// DeletePostsById Delete Posts via Id
-func DeletePostsById(iId int64) (err error) {
+// DeletePostsViaId Delete Posts via Id
+func DeletePostsViaId(iId int64) (err error) {
 	var has bool
 	var _Posts = &Posts{Id: iId}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15564,8 +15564,8 @@ func DeletePostsById(iId int64) (err error) {
 	return
 }
 
-// DeletePostsByPostAuthor Delete Posts via PostAuthor
-func DeletePostsByPostAuthor(iPostAuthor int64) (err error) {
+// DeletePostsViaPostAuthor Delete Posts via PostAuthor
+func DeletePostsViaPostAuthor(iPostAuthor int64) (err error) {
 	var has bool
 	var _Posts = &Posts{PostAuthor: iPostAuthor}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15578,8 +15578,8 @@ func DeletePostsByPostAuthor(iPostAuthor int64) (err error) {
 	return
 }
 
-// DeletePostsByPostDate Delete Posts via PostDate
-func DeletePostsByPostDate(iPostDate time.Time) (err error) {
+// DeletePostsViaPostDate Delete Posts via PostDate
+func DeletePostsViaPostDate(iPostDate time.Time) (err error) {
 	var has bool
 	var _Posts = &Posts{PostDate: iPostDate}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15592,8 +15592,8 @@ func DeletePostsByPostDate(iPostDate time.Time) (err error) {
 	return
 }
 
-// DeletePostsByPostDateGmt Delete Posts via PostDateGmt
-func DeletePostsByPostDateGmt(iPostDateGmt time.Time) (err error) {
+// DeletePostsViaPostDateGmt Delete Posts via PostDateGmt
+func DeletePostsViaPostDateGmt(iPostDateGmt time.Time) (err error) {
 	var has bool
 	var _Posts = &Posts{PostDateGmt: iPostDateGmt}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15606,8 +15606,8 @@ func DeletePostsByPostDateGmt(iPostDateGmt time.Time) (err error) {
 	return
 }
 
-// DeletePostsByPostContent Delete Posts via PostContent
-func DeletePostsByPostContent(iPostContent string) (err error) {
+// DeletePostsViaPostContent Delete Posts via PostContent
+func DeletePostsViaPostContent(iPostContent string) (err error) {
 	var has bool
 	var _Posts = &Posts{PostContent: iPostContent}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15620,8 +15620,8 @@ func DeletePostsByPostContent(iPostContent string) (err error) {
 	return
 }
 
-// DeletePostsByPostTitle Delete Posts via PostTitle
-func DeletePostsByPostTitle(iPostTitle string) (err error) {
+// DeletePostsViaPostTitle Delete Posts via PostTitle
+func DeletePostsViaPostTitle(iPostTitle string) (err error) {
 	var has bool
 	var _Posts = &Posts{PostTitle: iPostTitle}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15634,8 +15634,8 @@ func DeletePostsByPostTitle(iPostTitle string) (err error) {
 	return
 }
 
-// DeletePostsByPostExcerpt Delete Posts via PostExcerpt
-func DeletePostsByPostExcerpt(iPostExcerpt string) (err error) {
+// DeletePostsViaPostExcerpt Delete Posts via PostExcerpt
+func DeletePostsViaPostExcerpt(iPostExcerpt string) (err error) {
 	var has bool
 	var _Posts = &Posts{PostExcerpt: iPostExcerpt}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15648,8 +15648,8 @@ func DeletePostsByPostExcerpt(iPostExcerpt string) (err error) {
 	return
 }
 
-// DeletePostsByPostStatus Delete Posts via PostStatus
-func DeletePostsByPostStatus(iPostStatus string) (err error) {
+// DeletePostsViaPostStatus Delete Posts via PostStatus
+func DeletePostsViaPostStatus(iPostStatus string) (err error) {
 	var has bool
 	var _Posts = &Posts{PostStatus: iPostStatus}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15662,8 +15662,8 @@ func DeletePostsByPostStatus(iPostStatus string) (err error) {
 	return
 }
 
-// DeletePostsByCommentStatus Delete Posts via CommentStatus
-func DeletePostsByCommentStatus(iCommentStatus string) (err error) {
+// DeletePostsViaCommentStatus Delete Posts via CommentStatus
+func DeletePostsViaCommentStatus(iCommentStatus string) (err error) {
 	var has bool
 	var _Posts = &Posts{CommentStatus: iCommentStatus}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15676,8 +15676,8 @@ func DeletePostsByCommentStatus(iCommentStatus string) (err error) {
 	return
 }
 
-// DeletePostsByPingStatus Delete Posts via PingStatus
-func DeletePostsByPingStatus(iPingStatus string) (err error) {
+// DeletePostsViaPingStatus Delete Posts via PingStatus
+func DeletePostsViaPingStatus(iPingStatus string) (err error) {
 	var has bool
 	var _Posts = &Posts{PingStatus: iPingStatus}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15690,8 +15690,8 @@ func DeletePostsByPingStatus(iPingStatus string) (err error) {
 	return
 }
 
-// DeletePostsByPostPassword Delete Posts via PostPassword
-func DeletePostsByPostPassword(iPostPassword string) (err error) {
+// DeletePostsViaPostPassword Delete Posts via PostPassword
+func DeletePostsViaPostPassword(iPostPassword string) (err error) {
 	var has bool
 	var _Posts = &Posts{PostPassword: iPostPassword}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15704,8 +15704,8 @@ func DeletePostsByPostPassword(iPostPassword string) (err error) {
 	return
 }
 
-// DeletePostsByPostName Delete Posts via PostName
-func DeletePostsByPostName(iPostName string) (err error) {
+// DeletePostsViaPostName Delete Posts via PostName
+func DeletePostsViaPostName(iPostName string) (err error) {
 	var has bool
 	var _Posts = &Posts{PostName: iPostName}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15718,8 +15718,8 @@ func DeletePostsByPostName(iPostName string) (err error) {
 	return
 }
 
-// DeletePostsByToPing Delete Posts via ToPing
-func DeletePostsByToPing(iToPing string) (err error) {
+// DeletePostsViaToPing Delete Posts via ToPing
+func DeletePostsViaToPing(iToPing string) (err error) {
 	var has bool
 	var _Posts = &Posts{ToPing: iToPing}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15732,8 +15732,8 @@ func DeletePostsByToPing(iToPing string) (err error) {
 	return
 }
 
-// DeletePostsByPinged Delete Posts via Pinged
-func DeletePostsByPinged(iPinged string) (err error) {
+// DeletePostsViaPinged Delete Posts via Pinged
+func DeletePostsViaPinged(iPinged string) (err error) {
 	var has bool
 	var _Posts = &Posts{Pinged: iPinged}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15746,8 +15746,8 @@ func DeletePostsByPinged(iPinged string) (err error) {
 	return
 }
 
-// DeletePostsByPostModified Delete Posts via PostModified
-func DeletePostsByPostModified(iPostModified time.Time) (err error) {
+// DeletePostsViaPostModified Delete Posts via PostModified
+func DeletePostsViaPostModified(iPostModified time.Time) (err error) {
 	var has bool
 	var _Posts = &Posts{PostModified: iPostModified}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15760,8 +15760,8 @@ func DeletePostsByPostModified(iPostModified time.Time) (err error) {
 	return
 }
 
-// DeletePostsByPostModifiedGmt Delete Posts via PostModifiedGmt
-func DeletePostsByPostModifiedGmt(iPostModifiedGmt time.Time) (err error) {
+// DeletePostsViaPostModifiedGmt Delete Posts via PostModifiedGmt
+func DeletePostsViaPostModifiedGmt(iPostModifiedGmt time.Time) (err error) {
 	var has bool
 	var _Posts = &Posts{PostModifiedGmt: iPostModifiedGmt}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15774,8 +15774,8 @@ func DeletePostsByPostModifiedGmt(iPostModifiedGmt time.Time) (err error) {
 	return
 }
 
-// DeletePostsByPostContentFiltered Delete Posts via PostContentFiltered
-func DeletePostsByPostContentFiltered(iPostContentFiltered string) (err error) {
+// DeletePostsViaPostContentFiltered Delete Posts via PostContentFiltered
+func DeletePostsViaPostContentFiltered(iPostContentFiltered string) (err error) {
 	var has bool
 	var _Posts = &Posts{PostContentFiltered: iPostContentFiltered}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15788,8 +15788,8 @@ func DeletePostsByPostContentFiltered(iPostContentFiltered string) (err error) {
 	return
 }
 
-// DeletePostsByPostParent Delete Posts via PostParent
-func DeletePostsByPostParent(iPostParent int64) (err error) {
+// DeletePostsViaPostParent Delete Posts via PostParent
+func DeletePostsViaPostParent(iPostParent int64) (err error) {
 	var has bool
 	var _Posts = &Posts{PostParent: iPostParent}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15802,8 +15802,8 @@ func DeletePostsByPostParent(iPostParent int64) (err error) {
 	return
 }
 
-// DeletePostsByGuid Delete Posts via Guid
-func DeletePostsByGuid(iGuid string) (err error) {
+// DeletePostsViaGuid Delete Posts via Guid
+func DeletePostsViaGuid(iGuid string) (err error) {
 	var has bool
 	var _Posts = &Posts{Guid: iGuid}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15816,8 +15816,8 @@ func DeletePostsByGuid(iGuid string) (err error) {
 	return
 }
 
-// DeletePostsByMenuOrder Delete Posts via MenuOrder
-func DeletePostsByMenuOrder(iMenuOrder int) (err error) {
+// DeletePostsViaMenuOrder Delete Posts via MenuOrder
+func DeletePostsViaMenuOrder(iMenuOrder int) (err error) {
 	var has bool
 	var _Posts = &Posts{MenuOrder: iMenuOrder}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15830,8 +15830,8 @@ func DeletePostsByMenuOrder(iMenuOrder int) (err error) {
 	return
 }
 
-// DeletePostsByPostType Delete Posts via PostType
-func DeletePostsByPostType(iPostType string) (err error) {
+// DeletePostsViaPostType Delete Posts via PostType
+func DeletePostsViaPostType(iPostType string) (err error) {
 	var has bool
 	var _Posts = &Posts{PostType: iPostType}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15844,8 +15844,8 @@ func DeletePostsByPostType(iPostType string) (err error) {
 	return
 }
 
-// DeletePostsByPostMimeType Delete Posts via PostMimeType
-func DeletePostsByPostMimeType(iPostMimeType string) (err error) {
+// DeletePostsViaPostMimeType Delete Posts via PostMimeType
+func DeletePostsViaPostMimeType(iPostMimeType string) (err error) {
 	var has bool
 	var _Posts = &Posts{PostMimeType: iPostMimeType}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {
@@ -15858,8 +15858,8 @@ func DeletePostsByPostMimeType(iPostMimeType string) (err error) {
 	return
 }
 
-// DeletePostsByCommentCount Delete Posts via CommentCount
-func DeletePostsByCommentCount(iCommentCount int64) (err error) {
+// DeletePostsViaCommentCount Delete Posts via CommentCount
+func DeletePostsViaCommentCount(iCommentCount int64) (err error) {
 	var has bool
 	var _Posts = &Posts{CommentCount: iCommentCount}
 	if has, err = Engine.Get(_Posts); (has == true) && (err == nil) {

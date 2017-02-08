@@ -27,9 +27,9 @@ func GetCommentsesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsCountByCommentIdHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentIdHandler(self *macross.Context) error {
 	CommentId_ := self.Args("comment_ID").MustInt64()
-	_int64 := model.GetCommentsCountByCommentId(CommentId_)
+	_int64 := model.GetCommentsCountViaCommentId(CommentId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -38,9 +38,9 @@ func GetCommentsCountByCommentIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentPostIdHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentPostIdHandler(self *macross.Context) error {
 	CommentPostId_ := self.Args("comment_post_ID").MustInt64()
-	_int64 := model.GetCommentsCountByCommentPostId(CommentPostId_)
+	_int64 := model.GetCommentsCountViaCommentPostId(CommentPostId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -49,9 +49,9 @@ func GetCommentsCountByCommentPostIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentAuthorHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentAuthorHandler(self *macross.Context) error {
 	CommentAuthor_ := self.Args("comment_author").String()
-	_int64 := model.GetCommentsCountByCommentAuthor(CommentAuthor_)
+	_int64 := model.GetCommentsCountViaCommentAuthor(CommentAuthor_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -60,9 +60,9 @@ func GetCommentsCountByCommentAuthorHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentAuthorEmailHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentAuthorEmailHandler(self *macross.Context) error {
 	CommentAuthorEmail_ := self.Args("comment_author_email").String()
-	_int64 := model.GetCommentsCountByCommentAuthorEmail(CommentAuthorEmail_)
+	_int64 := model.GetCommentsCountViaCommentAuthorEmail(CommentAuthorEmail_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -71,9 +71,9 @@ func GetCommentsCountByCommentAuthorEmailHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentAuthorUrlHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentAuthorUrlHandler(self *macross.Context) error {
 	CommentAuthorUrl_ := self.Args("comment_author_url").String()
-	_int64 := model.GetCommentsCountByCommentAuthorUrl(CommentAuthorUrl_)
+	_int64 := model.GetCommentsCountViaCommentAuthorUrl(CommentAuthorUrl_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -82,9 +82,9 @@ func GetCommentsCountByCommentAuthorUrlHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentAuthorIpHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentAuthorIpHandler(self *macross.Context) error {
 	CommentAuthorIp_ := self.Args("comment_author_IP").String()
-	_int64 := model.GetCommentsCountByCommentAuthorIp(CommentAuthorIp_)
+	_int64 := model.GetCommentsCountViaCommentAuthorIp(CommentAuthorIp_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -93,9 +93,9 @@ func GetCommentsCountByCommentAuthorIpHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentDateHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentDateHandler(self *macross.Context) error {
 	CommentDate_ := self.Args("comment_date").Time()
-	_int64 := model.GetCommentsCountByCommentDate(CommentDate_)
+	_int64 := model.GetCommentsCountViaCommentDate(CommentDate_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -104,9 +104,9 @@ func GetCommentsCountByCommentDateHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentDateGmtHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentDateGmtHandler(self *macross.Context) error {
 	CommentDateGmt_ := self.Args("comment_date_gmt").Time()
-	_int64 := model.GetCommentsCountByCommentDateGmt(CommentDateGmt_)
+	_int64 := model.GetCommentsCountViaCommentDateGmt(CommentDateGmt_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -115,9 +115,9 @@ func GetCommentsCountByCommentDateGmtHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentContentHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentContentHandler(self *macross.Context) error {
 	CommentContent_ := self.Args("comment_content").String()
-	_int64 := model.GetCommentsCountByCommentContent(CommentContent_)
+	_int64 := model.GetCommentsCountViaCommentContent(CommentContent_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -126,9 +126,9 @@ func GetCommentsCountByCommentContentHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentKarmaHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentKarmaHandler(self *macross.Context) error {
 	CommentKarma_ := self.Args("comment_karma").MustInt()
-	_int64 := model.GetCommentsCountByCommentKarma(CommentKarma_)
+	_int64 := model.GetCommentsCountViaCommentKarma(CommentKarma_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -137,9 +137,9 @@ func GetCommentsCountByCommentKarmaHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentApprovedHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentApprovedHandler(self *macross.Context) error {
 	CommentApproved_ := self.Args("comment_approved").String()
-	_int64 := model.GetCommentsCountByCommentApproved(CommentApproved_)
+	_int64 := model.GetCommentsCountViaCommentApproved(CommentApproved_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -148,9 +148,9 @@ func GetCommentsCountByCommentApprovedHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentAgentHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentAgentHandler(self *macross.Context) error {
 	CommentAgent_ := self.Args("comment_agent").String()
-	_int64 := model.GetCommentsCountByCommentAgent(CommentAgent_)
+	_int64 := model.GetCommentsCountViaCommentAgent(CommentAgent_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -159,9 +159,9 @@ func GetCommentsCountByCommentAgentHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentTypeHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentTypeHandler(self *macross.Context) error {
 	CommentType_ := self.Args("comment_type").String()
-	_int64 := model.GetCommentsCountByCommentType(CommentType_)
+	_int64 := model.GetCommentsCountViaCommentType(CommentType_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -170,9 +170,9 @@ func GetCommentsCountByCommentTypeHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByCommentParentHandler(self *macross.Context) error {
+func GetCommentsCountViaCommentParentHandler(self *macross.Context) error {
 	CommentParent_ := self.Args("comment_parent").MustInt64()
-	_int64 := model.GetCommentsCountByCommentParent(CommentParent_)
+	_int64 := model.GetCommentsCountViaCommentParent(CommentParent_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -181,9 +181,9 @@ func GetCommentsCountByCommentParentHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsCountByUserIdHandler(self *macross.Context) error {
+func GetCommentsCountViaUserIdHandler(self *macross.Context) error {
 	UserId_ := self.Args("user_id").MustInt64()
-	_int64 := model.GetCommentsCountByUserId(UserId_)
+	_int64 := model.GetCommentsCountViaUserId(UserId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentsCount"] = 0
@@ -192,7 +192,7 @@ func GetCommentsCountByUserIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentsesByCommentIdHandler(self *macross.Context) error {
+func GetCommentsesViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -201,18 +201,18 @@ func GetCommentsesByCommentIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentId := self.Args("comment_ID").MustInt64()
 	if (offset > 0) && helper.IsHas(iCommentId) {
-		_Comments, _error := model.GetCommentsesByCommentId(offset, limit, iCommentId, field)
+		_Comments, _error := model.GetCommentsesViaCommentId(offset, limit, iCommentId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentId's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentPostIdHandler(self *macross.Context) error {
+func GetCommentsesViaCommentPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -221,18 +221,18 @@ func GetCommentsesByCommentPostIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentPostId := self.Args("comment_post_ID").MustInt64()
 	if (offset > 0) && helper.IsHas(iCommentPostId) {
-		_Comments, _error := model.GetCommentsesByCommentPostId(offset, limit, iCommentPostId, field)
+		_Comments, _error := model.GetCommentsesViaCommentPostId(offset, limit, iCommentPostId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentPostId's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentPostId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentAuthorHandler(self *macross.Context) error {
+func GetCommentsesViaCommentAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -241,18 +241,18 @@ func GetCommentsesByCommentAuthorHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentAuthor := self.Args("comment_author").String()
 	if (offset > 0) && helper.IsHas(iCommentAuthor) {
-		_Comments, _error := model.GetCommentsesByCommentAuthor(offset, limit, iCommentAuthor, field)
+		_Comments, _error := model.GetCommentsesViaCommentAuthor(offset, limit, iCommentAuthor, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentAuthor's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentAuthor's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentAuthorEmailHandler(self *macross.Context) error {
+func GetCommentsesViaCommentAuthorEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -261,18 +261,18 @@ func GetCommentsesByCommentAuthorEmailHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentAuthorEmail := self.Args("comment_author_email").String()
 	if (offset > 0) && helper.IsHas(iCommentAuthorEmail) {
-		_Comments, _error := model.GetCommentsesByCommentAuthorEmail(offset, limit, iCommentAuthorEmail, field)
+		_Comments, _error := model.GetCommentsesViaCommentAuthorEmail(offset, limit, iCommentAuthorEmail, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentAuthorEmail's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentAuthorEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentAuthorUrlHandler(self *macross.Context) error {
+func GetCommentsesViaCommentAuthorUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -281,18 +281,18 @@ func GetCommentsesByCommentAuthorUrlHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentAuthorUrl := self.Args("comment_author_url").String()
 	if (offset > 0) && helper.IsHas(iCommentAuthorUrl) {
-		_Comments, _error := model.GetCommentsesByCommentAuthorUrl(offset, limit, iCommentAuthorUrl, field)
+		_Comments, _error := model.GetCommentsesViaCommentAuthorUrl(offset, limit, iCommentAuthorUrl, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentAuthorUrl's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentAuthorUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentAuthorIpHandler(self *macross.Context) error {
+func GetCommentsesViaCommentAuthorIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -301,18 +301,18 @@ func GetCommentsesByCommentAuthorIpHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentAuthorIp := self.Args("comment_author_IP").String()
 	if (offset > 0) && helper.IsHas(iCommentAuthorIp) {
-		_Comments, _error := model.GetCommentsesByCommentAuthorIp(offset, limit, iCommentAuthorIp, field)
+		_Comments, _error := model.GetCommentsesViaCommentAuthorIp(offset, limit, iCommentAuthorIp, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentAuthorIp's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentAuthorIp's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentDateHandler(self *macross.Context) error {
+func GetCommentsesViaCommentDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -321,18 +321,18 @@ func GetCommentsesByCommentDateHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentDate := self.Args("comment_date").Time()
 	if (offset > 0) && helper.IsHas(iCommentDate) {
-		_Comments, _error := model.GetCommentsesByCommentDate(offset, limit, iCommentDate, field)
+		_Comments, _error := model.GetCommentsesViaCommentDate(offset, limit, iCommentDate, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentDate's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentDate's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentDateGmtHandler(self *macross.Context) error {
+func GetCommentsesViaCommentDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -341,18 +341,18 @@ func GetCommentsesByCommentDateGmtHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentDateGmt := self.Args("comment_date_gmt").Time()
 	if (offset > 0) && helper.IsHas(iCommentDateGmt) {
-		_Comments, _error := model.GetCommentsesByCommentDateGmt(offset, limit, iCommentDateGmt, field)
+		_Comments, _error := model.GetCommentsesViaCommentDateGmt(offset, limit, iCommentDateGmt, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentDateGmt's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentDateGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentContentHandler(self *macross.Context) error {
+func GetCommentsesViaCommentContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -361,18 +361,18 @@ func GetCommentsesByCommentContentHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentContent := self.Args("comment_content").String()
 	if (offset > 0) && helper.IsHas(iCommentContent) {
-		_Comments, _error := model.GetCommentsesByCommentContent(offset, limit, iCommentContent, field)
+		_Comments, _error := model.GetCommentsesViaCommentContent(offset, limit, iCommentContent, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentContent's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentContent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentKarmaHandler(self *macross.Context) error {
+func GetCommentsesViaCommentKarmaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -381,18 +381,18 @@ func GetCommentsesByCommentKarmaHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentKarma := self.Args("comment_karma").MustInt()
 	if (offset > 0) && helper.IsHas(iCommentKarma) {
-		_Comments, _error := model.GetCommentsesByCommentKarma(offset, limit, iCommentKarma, field)
+		_Comments, _error := model.GetCommentsesViaCommentKarma(offset, limit, iCommentKarma, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentKarma's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentKarma's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentApprovedHandler(self *macross.Context) error {
+func GetCommentsesViaCommentApprovedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -401,18 +401,18 @@ func GetCommentsesByCommentApprovedHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentApproved := self.Args("comment_approved").String()
 	if (offset > 0) && helper.IsHas(iCommentApproved) {
-		_Comments, _error := model.GetCommentsesByCommentApproved(offset, limit, iCommentApproved, field)
+		_Comments, _error := model.GetCommentsesViaCommentApproved(offset, limit, iCommentApproved, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentApproved's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentApproved's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentAgentHandler(self *macross.Context) error {
+func GetCommentsesViaCommentAgentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -421,18 +421,18 @@ func GetCommentsesByCommentAgentHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentAgent := self.Args("comment_agent").String()
 	if (offset > 0) && helper.IsHas(iCommentAgent) {
-		_Comments, _error := model.GetCommentsesByCommentAgent(offset, limit, iCommentAgent, field)
+		_Comments, _error := model.GetCommentsesViaCommentAgent(offset, limit, iCommentAgent, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentAgent's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentAgent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentTypeHandler(self *macross.Context) error {
+func GetCommentsesViaCommentTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -441,18 +441,18 @@ func GetCommentsesByCommentTypeHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentType := self.Args("comment_type").String()
 	if (offset > 0) && helper.IsHas(iCommentType) {
-		_Comments, _error := model.GetCommentsesByCommentType(offset, limit, iCommentType, field)
+		_Comments, _error := model.GetCommentsesViaCommentType(offset, limit, iCommentType, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentType's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByCommentParentHandler(self *macross.Context) error {
+func GetCommentsesViaCommentParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -461,18 +461,18 @@ func GetCommentsesByCommentParentHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentParent := self.Args("comment_parent").MustInt64()
 	if (offset > 0) && helper.IsHas(iCommentParent) {
-		_Comments, _error := model.GetCommentsesByCommentParent(offset, limit, iCommentParent, field)
+		_Comments, _error := model.GetCommentsesViaCommentParent(offset, limit, iCommentParent, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByCommentParent's args."
+	herr.Message = "Can't get to the GetCommentsesViaCommentParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsesByUserIdHandler(self *macross.Context) error {
+func GetCommentsesViaUserIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -481,14 +481,14 @@ func GetCommentsesByUserIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserId := self.Args("user_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iUserId) {
-		_Comments, _error := model.GetCommentsesByUserId(offset, limit, iUserId, field)
+		_Comments, _error := model.GetCommentsesViaUserId(offset, limit, iUserId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsesByUserId's args."
+	herr.Message = "Can't get to the GetCommentsesViaUserId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -12726,487 +12726,487 @@ func GetCommentsesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentIdHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentId := self.Args("comment_ID").MustInt64()
 	if helper.IsHas(iCommentId) {
-		_Comments := model.HasCommentsByCommentId(iCommentId)
+		_Comments := model.HasCommentsViaCommentId(iCommentId)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentId's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentPostIdHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentPostId := self.Args("comment_post_ID").MustInt64()
 	if helper.IsHas(iCommentPostId) {
-		_Comments := model.HasCommentsByCommentPostId(iCommentPostId)
+		_Comments := model.HasCommentsViaCommentPostId(iCommentPostId)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentPostId's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentPostId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentAuthorHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentAuthor := self.Args("comment_author").String()
 	if helper.IsHas(iCommentAuthor) {
-		_Comments := model.HasCommentsByCommentAuthor(iCommentAuthor)
+		_Comments := model.HasCommentsViaCommentAuthor(iCommentAuthor)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentAuthor's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentAuthor's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentAuthorEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentAuthorEmail := self.Args("comment_author_email").String()
 	if helper.IsHas(iCommentAuthorEmail) {
-		_Comments := model.HasCommentsByCommentAuthorEmail(iCommentAuthorEmail)
+		_Comments := model.HasCommentsViaCommentAuthorEmail(iCommentAuthorEmail)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentAuthorEmail's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentAuthorEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentAuthorUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentAuthorUrl := self.Args("comment_author_url").String()
 	if helper.IsHas(iCommentAuthorUrl) {
-		_Comments := model.HasCommentsByCommentAuthorUrl(iCommentAuthorUrl)
+		_Comments := model.HasCommentsViaCommentAuthorUrl(iCommentAuthorUrl)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentAuthorUrl's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentAuthorUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentAuthorIpHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentAuthorIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentAuthorIp := self.Args("comment_author_IP").String()
 	if helper.IsHas(iCommentAuthorIp) {
-		_Comments := model.HasCommentsByCommentAuthorIp(iCommentAuthorIp)
+		_Comments := model.HasCommentsViaCommentAuthorIp(iCommentAuthorIp)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentAuthorIp's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentAuthorIp's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentDateHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentDate := self.Args("comment_date").Time()
 	if helper.IsHas(iCommentDate) {
-		_Comments := model.HasCommentsByCommentDate(iCommentDate)
+		_Comments := model.HasCommentsViaCommentDate(iCommentDate)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentDate's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentDate's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentDateGmtHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentDateGmt := self.Args("comment_date_gmt").Time()
 	if helper.IsHas(iCommentDateGmt) {
-		_Comments := model.HasCommentsByCommentDateGmt(iCommentDateGmt)
+		_Comments := model.HasCommentsViaCommentDateGmt(iCommentDateGmt)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentDateGmt's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentDateGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentContentHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentContent := self.Args("comment_content").String()
 	if helper.IsHas(iCommentContent) {
-		_Comments := model.HasCommentsByCommentContent(iCommentContent)
+		_Comments := model.HasCommentsViaCommentContent(iCommentContent)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentContent's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentContent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentKarmaHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentKarmaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentKarma := self.Args("comment_karma").MustInt()
 	if helper.IsHas(iCommentKarma) {
-		_Comments := model.HasCommentsByCommentKarma(iCommentKarma)
+		_Comments := model.HasCommentsViaCommentKarma(iCommentKarma)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentKarma's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentKarma's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentApprovedHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentApprovedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentApproved := self.Args("comment_approved").String()
 	if helper.IsHas(iCommentApproved) {
-		_Comments := model.HasCommentsByCommentApproved(iCommentApproved)
+		_Comments := model.HasCommentsViaCommentApproved(iCommentApproved)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentApproved's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentApproved's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentAgentHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentAgentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentAgent := self.Args("comment_agent").String()
 	if helper.IsHas(iCommentAgent) {
-		_Comments := model.HasCommentsByCommentAgent(iCommentAgent)
+		_Comments := model.HasCommentsViaCommentAgent(iCommentAgent)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentAgent's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentAgent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentTypeHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentType := self.Args("comment_type").String()
 	if helper.IsHas(iCommentType) {
-		_Comments := model.HasCommentsByCommentType(iCommentType)
+		_Comments := model.HasCommentsViaCommentType(iCommentType)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentType's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByCommentParentHandler(self *macross.Context) error {
+func GetHasCommentsViaCommentParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentParent := self.Args("comment_parent").MustInt64()
 	if helper.IsHas(iCommentParent) {
-		_Comments := model.HasCommentsByCommentParent(iCommentParent)
+		_Comments := model.HasCommentsViaCommentParent(iCommentParent)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByCommentParent's args."
+	herr.Message = "Can't get to the HasCommentsViaCommentParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentsByUserIdHandler(self *macross.Context) error {
+func GetHasCommentsViaUserIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserId := self.Args("user_id").MustInt64()
 	if helper.IsHas(iUserId) {
-		_Comments := model.HasCommentsByUserId(iUserId)
+		_Comments := model.HasCommentsViaUserId(iUserId)
 		var m = map[string]interface{}{}
 		m["comments"] = _Comments
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentsByUserId's args."
+	herr.Message = "Can't get to the HasCommentsViaUserId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentIdHandler(self *macross.Context) error {
+func GetCommentsViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentId := self.Args("comment_ID").MustInt64()
 	if helper.IsHas(iCommentId) {
-		_Comments, _error := model.GetCommentsByCommentId(iCommentId)
+		_Comments, _error := model.GetCommentsViaCommentId(iCommentId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentId's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentPostIdHandler(self *macross.Context) error {
+func GetCommentsViaCommentPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentPostId := self.Args("comment_post_ID").MustInt64()
 	if helper.IsHas(iCommentPostId) {
-		_Comments, _error := model.GetCommentsByCommentPostId(iCommentPostId)
+		_Comments, _error := model.GetCommentsViaCommentPostId(iCommentPostId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentPostId's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentPostId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentAuthorHandler(self *macross.Context) error {
+func GetCommentsViaCommentAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentAuthor := self.Args("comment_author").String()
 	if helper.IsHas(iCommentAuthor) {
-		_Comments, _error := model.GetCommentsByCommentAuthor(iCommentAuthor)
+		_Comments, _error := model.GetCommentsViaCommentAuthor(iCommentAuthor)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentAuthor's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentAuthor's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
+func GetCommentsViaCommentAuthorEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentAuthorEmail := self.Args("comment_author_email").String()
 	if helper.IsHas(iCommentAuthorEmail) {
-		_Comments, _error := model.GetCommentsByCommentAuthorEmail(iCommentAuthorEmail)
+		_Comments, _error := model.GetCommentsViaCommentAuthorEmail(iCommentAuthorEmail)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentAuthorEmail's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentAuthorEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
+func GetCommentsViaCommentAuthorUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentAuthorUrl := self.Args("comment_author_url").String()
 	if helper.IsHas(iCommentAuthorUrl) {
-		_Comments, _error := model.GetCommentsByCommentAuthorUrl(iCommentAuthorUrl)
+		_Comments, _error := model.GetCommentsViaCommentAuthorUrl(iCommentAuthorUrl)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentAuthorUrl's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentAuthorUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentAuthorIpHandler(self *macross.Context) error {
+func GetCommentsViaCommentAuthorIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentAuthorIp := self.Args("comment_author_IP").String()
 	if helper.IsHas(iCommentAuthorIp) {
-		_Comments, _error := model.GetCommentsByCommentAuthorIp(iCommentAuthorIp)
+		_Comments, _error := model.GetCommentsViaCommentAuthorIp(iCommentAuthorIp)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentAuthorIp's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentAuthorIp's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentDateHandler(self *macross.Context) error {
+func GetCommentsViaCommentDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentDate := self.Args("comment_date").Time()
 	if helper.IsHas(iCommentDate) {
-		_Comments, _error := model.GetCommentsByCommentDate(iCommentDate)
+		_Comments, _error := model.GetCommentsViaCommentDate(iCommentDate)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentDate's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentDate's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentDateGmtHandler(self *macross.Context) error {
+func GetCommentsViaCommentDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentDateGmt := self.Args("comment_date_gmt").Time()
 	if helper.IsHas(iCommentDateGmt) {
-		_Comments, _error := model.GetCommentsByCommentDateGmt(iCommentDateGmt)
+		_Comments, _error := model.GetCommentsViaCommentDateGmt(iCommentDateGmt)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentDateGmt's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentDateGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentContentHandler(self *macross.Context) error {
+func GetCommentsViaCommentContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentContent := self.Args("comment_content").String()
 	if helper.IsHas(iCommentContent) {
-		_Comments, _error := model.GetCommentsByCommentContent(iCommentContent)
+		_Comments, _error := model.GetCommentsViaCommentContent(iCommentContent)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentContent's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentContent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentKarmaHandler(self *macross.Context) error {
+func GetCommentsViaCommentKarmaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentKarma := self.Args("comment_karma").MustInt()
 	if helper.IsHas(iCommentKarma) {
-		_Comments, _error := model.GetCommentsByCommentKarma(iCommentKarma)
+		_Comments, _error := model.GetCommentsViaCommentKarma(iCommentKarma)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentKarma's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentKarma's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentApprovedHandler(self *macross.Context) error {
+func GetCommentsViaCommentApprovedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentApproved := self.Args("comment_approved").String()
 	if helper.IsHas(iCommentApproved) {
-		_Comments, _error := model.GetCommentsByCommentApproved(iCommentApproved)
+		_Comments, _error := model.GetCommentsViaCommentApproved(iCommentApproved)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentApproved's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentApproved's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentAgentHandler(self *macross.Context) error {
+func GetCommentsViaCommentAgentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentAgent := self.Args("comment_agent").String()
 	if helper.IsHas(iCommentAgent) {
-		_Comments, _error := model.GetCommentsByCommentAgent(iCommentAgent)
+		_Comments, _error := model.GetCommentsViaCommentAgent(iCommentAgent)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentAgent's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentAgent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentTypeHandler(self *macross.Context) error {
+func GetCommentsViaCommentTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentType := self.Args("comment_type").String()
 	if helper.IsHas(iCommentType) {
-		_Comments, _error := model.GetCommentsByCommentType(iCommentType)
+		_Comments, _error := model.GetCommentsViaCommentType(iCommentType)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentType's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByCommentParentHandler(self *macross.Context) error {
+func GetCommentsViaCommentParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentParent := self.Args("comment_parent").MustInt64()
 	if helper.IsHas(iCommentParent) {
-		_Comments, _error := model.GetCommentsByCommentParent(iCommentParent)
+		_Comments, _error := model.GetCommentsViaCommentParent(iCommentParent)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByCommentParent's args."
+	herr.Message = "Can't get to the GetCommentsViaCommentParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentsByUserIdHandler(self *macross.Context) error {
+func GetCommentsViaUserIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserId := self.Args("user_id").MustInt64()
 	if helper.IsHas(iUserId) {
-		_Comments, _error := model.GetCommentsByUserId(iUserId)
+		_Comments, _error := model.GetCommentsViaUserId(iUserId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the GetCommentsByUserId's args."
+	herr.Message = "Can't get to the GetCommentsViaUserId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentIdHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13214,18 +13214,18 @@ func PostSetCommentsByCommentIdHandler(self *macross.Context) error {
 	if helper.IsHas(CommentId_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentId(CommentId_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentId(CommentId_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentId's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentPostIdHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13233,18 +13233,18 @@ func PostSetCommentsByCommentPostIdHandler(self *macross.Context) error {
 	if helper.IsHas(CommentPostId_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentPostId(CommentPostId_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentPostId(CommentPostId_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentPostId's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentPostId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentAuthorHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13252,18 +13252,18 @@ func PostSetCommentsByCommentAuthorHandler(self *macross.Context) error {
 	if helper.IsHas(CommentAuthor_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentAuthor(CommentAuthor_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentAuthor(CommentAuthor_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentAuthor's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentAuthor's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentAuthorEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13271,18 +13271,18 @@ func PostSetCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
 	if helper.IsHas(CommentAuthorEmail_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentAuthorEmail(CommentAuthorEmail_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentAuthorEmail(CommentAuthorEmail_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentAuthorEmail's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentAuthorEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentAuthorUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13290,18 +13290,18 @@ func PostSetCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
 	if helper.IsHas(CommentAuthorUrl_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentAuthorUrl(CommentAuthorUrl_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentAuthorUrl(CommentAuthorUrl_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentAuthorUrl's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentAuthorUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentAuthorIpHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentAuthorIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13309,18 +13309,18 @@ func PostSetCommentsByCommentAuthorIpHandler(self *macross.Context) error {
 	if helper.IsHas(CommentAuthorIp_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentAuthorIp(CommentAuthorIp_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentAuthorIp(CommentAuthorIp_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentAuthorIp's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentAuthorIp's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentDateHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13328,18 +13328,18 @@ func PostSetCommentsByCommentDateHandler(self *macross.Context) error {
 	if helper.IsHas(CommentDate_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentDate(CommentDate_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentDate(CommentDate_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentDate's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentDate's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentDateGmtHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13347,18 +13347,18 @@ func PostSetCommentsByCommentDateGmtHandler(self *macross.Context) error {
 	if helper.IsHas(CommentDateGmt_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentDateGmt(CommentDateGmt_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentDateGmt(CommentDateGmt_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentDateGmt's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentDateGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentContentHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13366,18 +13366,18 @@ func PostSetCommentsByCommentContentHandler(self *macross.Context) error {
 	if helper.IsHas(CommentContent_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentContent(CommentContent_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentContent(CommentContent_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentContent's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentContent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentKarmaHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentKarmaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13385,18 +13385,18 @@ func PostSetCommentsByCommentKarmaHandler(self *macross.Context) error {
 	if helper.IsHas(CommentKarma_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentKarma(CommentKarma_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentKarma(CommentKarma_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentKarma's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentKarma's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentApprovedHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentApprovedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13404,18 +13404,18 @@ func PostSetCommentsByCommentApprovedHandler(self *macross.Context) error {
 	if helper.IsHas(CommentApproved_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentApproved(CommentApproved_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentApproved(CommentApproved_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentApproved's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentApproved's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentAgentHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentAgentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13423,18 +13423,18 @@ func PostSetCommentsByCommentAgentHandler(self *macross.Context) error {
 	if helper.IsHas(CommentAgent_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentAgent(CommentAgent_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentAgent(CommentAgent_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentAgent's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentAgent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentTypeHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13442,18 +13442,18 @@ func PostSetCommentsByCommentTypeHandler(self *macross.Context) error {
 	if helper.IsHas(CommentType_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentType(CommentType_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentType(CommentType_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentType's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByCommentParentHandler(self *macross.Context) error {
+func PostSetCommentsViaCommentParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13461,18 +13461,18 @@ func PostSetCommentsByCommentParentHandler(self *macross.Context) error {
 	if helper.IsHas(CommentParent_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByCommentParent(CommentParent_, &iComments)
+		_Comments, _error := model.SetCommentsViaCommentParent(CommentParent_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByCommentParent's args."
+	herr.Message = "Can't get to the SetCommentsViaCommentParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentsByUserIdHandler(self *macross.Context) error {
+func PostSetCommentsViaUserIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13480,14 +13480,14 @@ func PostSetCommentsByUserIdHandler(self *macross.Context) error {
 	if helper.IsHas(UserId_) {
 		var iComments model.Comments
 		self.Bind(&iComments)
-		_Comments, _error := model.SetCommentsByUserId(UserId_, &iComments)
+		_Comments, _error := model.SetCommentsViaUserId(UserId_, &iComments)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Comments)
 	}
-	herr.Message = "Can't get to the SetCommentsByUserId's args."
+	herr.Message = "Can't get to the SetCommentsViaUserId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -13532,7 +13532,7 @@ func PostCommentsHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	_int64, _error := model.PostComments(&iComments)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -13550,7 +13550,7 @@ func PutCommentsHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	_int64, _error := model.PutComments(&iComments)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -13561,14 +13561,14 @@ func PutCommentsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentIdHandler(self *macross.Context) error {
+func PutCommentsViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentId_ := self.Args("comment_ID").MustInt64()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentId(CommentId_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentId(CommentId_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13578,14 +13578,14 @@ func PutCommentsByCommentIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentPostIdHandler(self *macross.Context) error {
+func PutCommentsViaCommentPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentPostId_ := self.Args("comment_post_ID").MustInt64()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentPostId(CommentPostId_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentPostId(CommentPostId_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13595,14 +13595,14 @@ func PutCommentsByCommentPostIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentAuthorHandler(self *macross.Context) error {
+func PutCommentsViaCommentAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentAuthor_ := self.Args("comment_author").String()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentAuthor(CommentAuthor_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentAuthor(CommentAuthor_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13612,14 +13612,14 @@ func PutCommentsByCommentAuthorHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
+func PutCommentsViaCommentAuthorEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentAuthorEmail_ := self.Args("comment_author_email").String()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentAuthorEmail(CommentAuthorEmail_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentAuthorEmail(CommentAuthorEmail_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13629,14 +13629,14 @@ func PutCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
+func PutCommentsViaCommentAuthorUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentAuthorUrl_ := self.Args("comment_author_url").String()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentAuthorUrl(CommentAuthorUrl_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentAuthorUrl(CommentAuthorUrl_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13646,14 +13646,14 @@ func PutCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentAuthorIpHandler(self *macross.Context) error {
+func PutCommentsViaCommentAuthorIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentAuthorIp_ := self.Args("comment_author_IP").String()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentAuthorIp(CommentAuthorIp_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentAuthorIp(CommentAuthorIp_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13663,14 +13663,14 @@ func PutCommentsByCommentAuthorIpHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentDateHandler(self *macross.Context) error {
+func PutCommentsViaCommentDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentDate_ := self.Args("comment_date").Time()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentDate(CommentDate_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentDate(CommentDate_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13680,14 +13680,14 @@ func PutCommentsByCommentDateHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentDateGmtHandler(self *macross.Context) error {
+func PutCommentsViaCommentDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentDateGmt_ := self.Args("comment_date_gmt").Time()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentDateGmt(CommentDateGmt_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentDateGmt(CommentDateGmt_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13697,14 +13697,14 @@ func PutCommentsByCommentDateGmtHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentContentHandler(self *macross.Context) error {
+func PutCommentsViaCommentContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentContent_ := self.Args("comment_content").String()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentContent(CommentContent_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentContent(CommentContent_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13714,14 +13714,14 @@ func PutCommentsByCommentContentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentKarmaHandler(self *macross.Context) error {
+func PutCommentsViaCommentKarmaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentKarma_ := self.Args("comment_karma").MustInt()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentKarma(CommentKarma_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentKarma(CommentKarma_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13731,14 +13731,14 @@ func PutCommentsByCommentKarmaHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentApprovedHandler(self *macross.Context) error {
+func PutCommentsViaCommentApprovedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentApproved_ := self.Args("comment_approved").String()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentApproved(CommentApproved_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentApproved(CommentApproved_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13748,14 +13748,14 @@ func PutCommentsByCommentApprovedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentAgentHandler(self *macross.Context) error {
+func PutCommentsViaCommentAgentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentAgent_ := self.Args("comment_agent").String()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentAgent(CommentAgent_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentAgent(CommentAgent_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13765,14 +13765,14 @@ func PutCommentsByCommentAgentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentTypeHandler(self *macross.Context) error {
+func PutCommentsViaCommentTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentType_ := self.Args("comment_type").String()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentType(CommentType_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentType(CommentType_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13782,14 +13782,14 @@ func PutCommentsByCommentTypeHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByCommentParentHandler(self *macross.Context) error {
+func PutCommentsViaCommentParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentParent_ := self.Args("comment_parent").MustInt64()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByCommentParent(CommentParent_, &iComments)
+	_int64, _error := model.PutCommentsViaCommentParent(CommentParent_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13799,14 +13799,14 @@ func PutCommentsByCommentParentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentsByUserIdHandler(self *macross.Context) error {
+func PutCommentsViaUserIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserId_ := self.Args("user_id").MustInt64()
 	var iComments model.Comments
 	self.Bind(&iComments)
-	_int64, _error := model.PutCommentsByUserId(UserId_, &iComments)
+	_int64, _error := model.PutCommentsViaUserId(UserId_, &iComments)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13816,7 +13816,7 @@ func PutCommentsByUserIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentIdHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13824,7 +13824,7 @@ func PutUpdateCommentsByCommentIdHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentId(CommentId_, &iMap)
+	_error := model.UpdateCommentsViaCommentId(CommentId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13834,7 +13834,7 @@ func PutUpdateCommentsByCommentIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentPostIdHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13842,7 +13842,7 @@ func PutUpdateCommentsByCommentPostIdHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentPostId(CommentPostId_, &iMap)
+	_error := model.UpdateCommentsViaCommentPostId(CommentPostId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13852,7 +13852,7 @@ func PutUpdateCommentsByCommentPostIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentAuthorHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13860,7 +13860,7 @@ func PutUpdateCommentsByCommentAuthorHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentAuthor(CommentAuthor_, &iMap)
+	_error := model.UpdateCommentsViaCommentAuthor(CommentAuthor_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13870,7 +13870,7 @@ func PutUpdateCommentsByCommentAuthorHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentAuthorEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13878,7 +13878,7 @@ func PutUpdateCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentAuthorEmail(CommentAuthorEmail_, &iMap)
+	_error := model.UpdateCommentsViaCommentAuthorEmail(CommentAuthorEmail_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13888,7 +13888,7 @@ func PutUpdateCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentAuthorUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13896,7 +13896,7 @@ func PutUpdateCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentAuthorUrl(CommentAuthorUrl_, &iMap)
+	_error := model.UpdateCommentsViaCommentAuthorUrl(CommentAuthorUrl_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13906,7 +13906,7 @@ func PutUpdateCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentAuthorIpHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentAuthorIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13914,7 +13914,7 @@ func PutUpdateCommentsByCommentAuthorIpHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentAuthorIp(CommentAuthorIp_, &iMap)
+	_error := model.UpdateCommentsViaCommentAuthorIp(CommentAuthorIp_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13924,7 +13924,7 @@ func PutUpdateCommentsByCommentAuthorIpHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentDateHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13932,7 +13932,7 @@ func PutUpdateCommentsByCommentDateHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentDate(CommentDate_, &iMap)
+	_error := model.UpdateCommentsViaCommentDate(CommentDate_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13942,7 +13942,7 @@ func PutUpdateCommentsByCommentDateHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentDateGmtHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13950,7 +13950,7 @@ func PutUpdateCommentsByCommentDateGmtHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentDateGmt(CommentDateGmt_, &iMap)
+	_error := model.UpdateCommentsViaCommentDateGmt(CommentDateGmt_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13960,7 +13960,7 @@ func PutUpdateCommentsByCommentDateGmtHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentContentHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13968,7 +13968,7 @@ func PutUpdateCommentsByCommentContentHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentContent(CommentContent_, &iMap)
+	_error := model.UpdateCommentsViaCommentContent(CommentContent_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13978,7 +13978,7 @@ func PutUpdateCommentsByCommentContentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentKarmaHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentKarmaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -13986,7 +13986,7 @@ func PutUpdateCommentsByCommentKarmaHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentKarma(CommentKarma_, &iMap)
+	_error := model.UpdateCommentsViaCommentKarma(CommentKarma_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -13996,7 +13996,7 @@ func PutUpdateCommentsByCommentKarmaHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentApprovedHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentApprovedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -14004,7 +14004,7 @@ func PutUpdateCommentsByCommentApprovedHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentApproved(CommentApproved_, &iMap)
+	_error := model.UpdateCommentsViaCommentApproved(CommentApproved_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14014,7 +14014,7 @@ func PutUpdateCommentsByCommentApprovedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentAgentHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentAgentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -14022,7 +14022,7 @@ func PutUpdateCommentsByCommentAgentHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentAgent(CommentAgent_, &iMap)
+	_error := model.UpdateCommentsViaCommentAgent(CommentAgent_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14032,7 +14032,7 @@ func PutUpdateCommentsByCommentAgentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentTypeHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -14040,7 +14040,7 @@ func PutUpdateCommentsByCommentTypeHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentType(CommentType_, &iMap)
+	_error := model.UpdateCommentsViaCommentType(CommentType_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14050,7 +14050,7 @@ func PutUpdateCommentsByCommentTypeHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByCommentParentHandler(self *macross.Context) error {
+func PutUpdateCommentsViaCommentParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -14058,7 +14058,7 @@ func PutUpdateCommentsByCommentParentHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByCommentParent(CommentParent_, &iMap)
+	_error := model.UpdateCommentsViaCommentParent(CommentParent_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14068,7 +14068,7 @@ func PutUpdateCommentsByCommentParentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentsByUserIdHandler(self *macross.Context) error {
+func PutUpdateCommentsViaUserIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -14076,7 +14076,7 @@ func PutUpdateCommentsByUserIdHandler(self *macross.Context) error {
 	var iComments model.Comments
 	self.Bind(&iComments)
 	var iMap = helper.StructToMap(iComments)
-	_error := model.UpdateCommentsByUserId(UserId_, &iMap)
+	_error := model.UpdateCommentsViaUserId(UserId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14103,12 +14103,12 @@ func DeleteCommentsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentIdHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentId_ := self.Args("comment_ID").MustInt64()
-	_error := model.DeleteCommentsByCommentId(CommentId_)
+	_error := model.DeleteCommentsViaCommentId(CommentId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14118,12 +14118,12 @@ func DeleteCommentsByCommentIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentPostIdHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentPostIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentPostId_ := self.Args("comment_post_ID").MustInt64()
-	_error := model.DeleteCommentsByCommentPostId(CommentPostId_)
+	_error := model.DeleteCommentsViaCommentPostId(CommentPostId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14133,12 +14133,12 @@ func DeleteCommentsByCommentPostIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentAuthorHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentAuthor_ := self.Args("comment_author").String()
-	_error := model.DeleteCommentsByCommentAuthor(CommentAuthor_)
+	_error := model.DeleteCommentsViaCommentAuthor(CommentAuthor_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14148,12 +14148,12 @@ func DeleteCommentsByCommentAuthorHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentAuthorEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentAuthorEmail_ := self.Args("comment_author_email").String()
-	_error := model.DeleteCommentsByCommentAuthorEmail(CommentAuthorEmail_)
+	_error := model.DeleteCommentsViaCommentAuthorEmail(CommentAuthorEmail_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14163,12 +14163,12 @@ func DeleteCommentsByCommentAuthorEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentAuthorUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentAuthorUrl_ := self.Args("comment_author_url").String()
-	_error := model.DeleteCommentsByCommentAuthorUrl(CommentAuthorUrl_)
+	_error := model.DeleteCommentsViaCommentAuthorUrl(CommentAuthorUrl_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14178,12 +14178,12 @@ func DeleteCommentsByCommentAuthorUrlHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentAuthorIpHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentAuthorIpHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentAuthorIp_ := self.Args("comment_author_IP").String()
-	_error := model.DeleteCommentsByCommentAuthorIp(CommentAuthorIp_)
+	_error := model.DeleteCommentsViaCommentAuthorIp(CommentAuthorIp_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14193,12 +14193,12 @@ func DeleteCommentsByCommentAuthorIpHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentDateHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentDate_ := self.Args("comment_date").Time()
-	_error := model.DeleteCommentsByCommentDate(CommentDate_)
+	_error := model.DeleteCommentsViaCommentDate(CommentDate_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14208,12 +14208,12 @@ func DeleteCommentsByCommentDateHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentDateGmtHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentDateGmt_ := self.Args("comment_date_gmt").Time()
-	_error := model.DeleteCommentsByCommentDateGmt(CommentDateGmt_)
+	_error := model.DeleteCommentsViaCommentDateGmt(CommentDateGmt_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14223,12 +14223,12 @@ func DeleteCommentsByCommentDateGmtHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentContentHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentContent_ := self.Args("comment_content").String()
-	_error := model.DeleteCommentsByCommentContent(CommentContent_)
+	_error := model.DeleteCommentsViaCommentContent(CommentContent_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14238,12 +14238,12 @@ func DeleteCommentsByCommentContentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentKarmaHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentKarmaHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentKarma_ := self.Args("comment_karma").MustInt()
-	_error := model.DeleteCommentsByCommentKarma(CommentKarma_)
+	_error := model.DeleteCommentsViaCommentKarma(CommentKarma_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14253,12 +14253,12 @@ func DeleteCommentsByCommentKarmaHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentApprovedHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentApprovedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentApproved_ := self.Args("comment_approved").String()
-	_error := model.DeleteCommentsByCommentApproved(CommentApproved_)
+	_error := model.DeleteCommentsViaCommentApproved(CommentApproved_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14268,12 +14268,12 @@ func DeleteCommentsByCommentApprovedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentAgentHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentAgentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentAgent_ := self.Args("comment_agent").String()
-	_error := model.DeleteCommentsByCommentAgent(CommentAgent_)
+	_error := model.DeleteCommentsViaCommentAgent(CommentAgent_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14283,12 +14283,12 @@ func DeleteCommentsByCommentAgentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentTypeHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentType_ := self.Args("comment_type").String()
-	_error := model.DeleteCommentsByCommentType(CommentType_)
+	_error := model.DeleteCommentsViaCommentType(CommentType_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14298,12 +14298,12 @@ func DeleteCommentsByCommentTypeHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByCommentParentHandler(self *macross.Context) error {
+func DeleteCommentsViaCommentParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentParent_ := self.Args("comment_parent").MustInt64()
-	_error := model.DeleteCommentsByCommentParent(CommentParent_)
+	_error := model.DeleteCommentsViaCommentParent(CommentParent_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -14313,12 +14313,12 @@ func DeleteCommentsByCommentParentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentsByUserIdHandler(self *macross.Context) error {
+func DeleteCommentsViaUserIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserId_ := self.Args("user_id").MustInt64()
-	_error := model.DeleteCommentsByUserId(UserId_)
+	_error := model.DeleteCommentsViaUserId(UserId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

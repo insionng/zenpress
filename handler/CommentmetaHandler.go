@@ -27,9 +27,9 @@ func GetCommentmetasCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentmetaCountByMetaIdHandler(self *macross.Context) error {
+func GetCommentmetaCountViaMetaIdHandler(self *macross.Context) error {
 	MetaId_ := self.Args("meta_id").MustInt64()
-	_int64 := model.GetCommentmetaCountByMetaId(MetaId_)
+	_int64 := model.GetCommentmetaCountViaMetaId(MetaId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentmetaCount"] = 0
@@ -38,9 +38,9 @@ func GetCommentmetaCountByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentmetaCountByCommentIdHandler(self *macross.Context) error {
+func GetCommentmetaCountViaCommentIdHandler(self *macross.Context) error {
 	CommentId_ := self.Args("comment_id").MustInt64()
-	_int64 := model.GetCommentmetaCountByCommentId(CommentId_)
+	_int64 := model.GetCommentmetaCountViaCommentId(CommentId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentmetaCount"] = 0
@@ -49,9 +49,9 @@ func GetCommentmetaCountByCommentIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentmetaCountByMetaKeyHandler(self *macross.Context) error {
+func GetCommentmetaCountViaMetaKeyHandler(self *macross.Context) error {
 	MetaKey_ := self.Args("meta_key").String()
-	_int64 := model.GetCommentmetaCountByMetaKey(MetaKey_)
+	_int64 := model.GetCommentmetaCountViaMetaKey(MetaKey_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentmetaCount"] = 0
@@ -60,9 +60,9 @@ func GetCommentmetaCountByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentmetaCountByMetaValueHandler(self *macross.Context) error {
+func GetCommentmetaCountViaMetaValueHandler(self *macross.Context) error {
 	MetaValue_ := self.Args("meta_value").String()
-	_int64 := model.GetCommentmetaCountByMetaValue(MetaValue_)
+	_int64 := model.GetCommentmetaCountViaMetaValue(MetaValue_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["commentmetaCount"] = 0
@@ -71,7 +71,7 @@ func GetCommentmetaCountByMetaValueHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetCommentmetasByMetaIdHandler(self *macross.Context) error {
+func GetCommentmetasViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -80,18 +80,18 @@ func GetCommentmetasByMetaIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMetaId := self.Args("meta_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iMetaId) {
-		_Commentmeta, _error := model.GetCommentmetasByMetaId(offset, limit, iMetaId, field)
+		_Commentmeta, _error := model.GetCommentmetasViaMetaId(offset, limit, iMetaId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the GetCommentmetasByMetaId's args."
+	herr.Message = "Can't get to the GetCommentmetasViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentmetasByCommentIdHandler(self *macross.Context) error {
+func GetCommentmetasViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -100,18 +100,18 @@ func GetCommentmetasByCommentIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentId := self.Args("comment_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iCommentId) {
-		_Commentmeta, _error := model.GetCommentmetasByCommentId(offset, limit, iCommentId, field)
+		_Commentmeta, _error := model.GetCommentmetasViaCommentId(offset, limit, iCommentId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the GetCommentmetasByCommentId's args."
+	herr.Message = "Can't get to the GetCommentmetasViaCommentId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentmetasByMetaKeyHandler(self *macross.Context) error {
+func GetCommentmetasViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -120,18 +120,18 @@ func GetCommentmetasByMetaKeyHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMetaKey := self.Args("meta_key").String()
 	if (offset > 0) && helper.IsHas(iMetaKey) {
-		_Commentmeta, _error := model.GetCommentmetasByMetaKey(offset, limit, iMetaKey, field)
+		_Commentmeta, _error := model.GetCommentmetasViaMetaKey(offset, limit, iMetaKey, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the GetCommentmetasByMetaKey's args."
+	herr.Message = "Can't get to the GetCommentmetasViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentmetasByMetaValueHandler(self *macross.Context) error {
+func GetCommentmetasViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -140,14 +140,14 @@ func GetCommentmetasByMetaValueHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMetaValue := self.Args("meta_value").String()
 	if (offset > 0) && helper.IsHas(iMetaValue) {
-		_Commentmeta, _error := model.GetCommentmetasByMetaValue(offset, limit, iMetaValue, field)
+		_Commentmeta, _error := model.GetCommentmetasViaMetaValue(offset, limit, iMetaValue, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the GetCommentmetasByMetaValue's args."
+	herr.Message = "Can't get to the GetCommentmetasViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -384,135 +384,135 @@ func GetCommentmetasHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentmetaByMetaIdHandler(self *macross.Context) error {
+func GetHasCommentmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaId := self.Args("meta_id").MustInt64()
 	if helper.IsHas(iMetaId) {
-		_Commentmeta := model.HasCommentmetaByMetaId(iMetaId)
+		_Commentmeta := model.HasCommentmetaViaMetaId(iMetaId)
 		var m = map[string]interface{}{}
 		m["commentmeta"] = _Commentmeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentmetaByMetaId's args."
+	herr.Message = "Can't get to the HasCommentmetaViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentmetaByCommentIdHandler(self *macross.Context) error {
+func GetHasCommentmetaViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentId := self.Args("comment_id").MustInt64()
 	if helper.IsHas(iCommentId) {
-		_Commentmeta := model.HasCommentmetaByCommentId(iCommentId)
+		_Commentmeta := model.HasCommentmetaViaCommentId(iCommentId)
 		var m = map[string]interface{}{}
 		m["commentmeta"] = _Commentmeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentmetaByCommentId's args."
+	herr.Message = "Can't get to the HasCommentmetaViaCommentId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentmetaByMetaKeyHandler(self *macross.Context) error {
+func GetHasCommentmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaKey := self.Args("meta_key").String()
 	if helper.IsHas(iMetaKey) {
-		_Commentmeta := model.HasCommentmetaByMetaKey(iMetaKey)
+		_Commentmeta := model.HasCommentmetaViaMetaKey(iMetaKey)
 		var m = map[string]interface{}{}
 		m["commentmeta"] = _Commentmeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentmetaByMetaKey's args."
+	herr.Message = "Can't get to the HasCommentmetaViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasCommentmetaByMetaValueHandler(self *macross.Context) error {
+func GetHasCommentmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaValue := self.Args("meta_value").String()
 	if helper.IsHas(iMetaValue) {
-		_Commentmeta := model.HasCommentmetaByMetaValue(iMetaValue)
+		_Commentmeta := model.HasCommentmetaViaMetaValue(iMetaValue)
 		var m = map[string]interface{}{}
 		m["commentmeta"] = _Commentmeta
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasCommentmetaByMetaValue's args."
+	herr.Message = "Can't get to the HasCommentmetaViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentmetaByMetaIdHandler(self *macross.Context) error {
+func GetCommentmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaId := self.Args("meta_id").MustInt64()
 	if helper.IsHas(iMetaId) {
-		_Commentmeta, _error := model.GetCommentmetaByMetaId(iMetaId)
+		_Commentmeta, _error := model.GetCommentmetaViaMetaId(iMetaId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the GetCommentmetaByMetaId's args."
+	herr.Message = "Can't get to the GetCommentmetaViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentmetaByCommentIdHandler(self *macross.Context) error {
+func GetCommentmetaViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentId := self.Args("comment_id").MustInt64()
 	if helper.IsHas(iCommentId) {
-		_Commentmeta, _error := model.GetCommentmetaByCommentId(iCommentId)
+		_Commentmeta, _error := model.GetCommentmetaViaCommentId(iCommentId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the GetCommentmetaByCommentId's args."
+	herr.Message = "Can't get to the GetCommentmetaViaCommentId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentmetaByMetaKeyHandler(self *macross.Context) error {
+func GetCommentmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaKey := self.Args("meta_key").String()
 	if helper.IsHas(iMetaKey) {
-		_Commentmeta, _error := model.GetCommentmetaByMetaKey(iMetaKey)
+		_Commentmeta, _error := model.GetCommentmetaViaMetaKey(iMetaKey)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the GetCommentmetaByMetaKey's args."
+	herr.Message = "Can't get to the GetCommentmetaViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetCommentmetaByMetaValueHandler(self *macross.Context) error {
+func GetCommentmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMetaValue := self.Args("meta_value").String()
 	if helper.IsHas(iMetaValue) {
-		_Commentmeta, _error := model.GetCommentmetaByMetaValue(iMetaValue)
+		_Commentmeta, _error := model.GetCommentmetaViaMetaValue(iMetaValue)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the GetCommentmetaByMetaValue's args."
+	herr.Message = "Can't get to the GetCommentmetaViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentmetaByMetaIdHandler(self *macross.Context) error {
+func PostSetCommentmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -520,18 +520,18 @@ func PostSetCommentmetaByMetaIdHandler(self *macross.Context) error {
 	if helper.IsHas(MetaId_) {
 		var iCommentmeta model.Commentmeta
 		self.Bind(&iCommentmeta)
-		_Commentmeta, _error := model.SetCommentmetaByMetaId(MetaId_, &iCommentmeta)
+		_Commentmeta, _error := model.SetCommentmetaViaMetaId(MetaId_, &iCommentmeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the SetCommentmetaByMetaId's args."
+	herr.Message = "Can't get to the SetCommentmetaViaMetaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentmetaByCommentIdHandler(self *macross.Context) error {
+func PostSetCommentmetaViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -539,18 +539,18 @@ func PostSetCommentmetaByCommentIdHandler(self *macross.Context) error {
 	if helper.IsHas(CommentId_) {
 		var iCommentmeta model.Commentmeta
 		self.Bind(&iCommentmeta)
-		_Commentmeta, _error := model.SetCommentmetaByCommentId(CommentId_, &iCommentmeta)
+		_Commentmeta, _error := model.SetCommentmetaViaCommentId(CommentId_, &iCommentmeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the SetCommentmetaByCommentId's args."
+	herr.Message = "Can't get to the SetCommentmetaViaCommentId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentmetaByMetaKeyHandler(self *macross.Context) error {
+func PostSetCommentmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -558,18 +558,18 @@ func PostSetCommentmetaByMetaKeyHandler(self *macross.Context) error {
 	if helper.IsHas(MetaKey_) {
 		var iCommentmeta model.Commentmeta
 		self.Bind(&iCommentmeta)
-		_Commentmeta, _error := model.SetCommentmetaByMetaKey(MetaKey_, &iCommentmeta)
+		_Commentmeta, _error := model.SetCommentmetaViaMetaKey(MetaKey_, &iCommentmeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the SetCommentmetaByMetaKey's args."
+	herr.Message = "Can't get to the SetCommentmetaViaMetaKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetCommentmetaByMetaValueHandler(self *macross.Context) error {
+func PostSetCommentmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -577,14 +577,14 @@ func PostSetCommentmetaByMetaValueHandler(self *macross.Context) error {
 	if helper.IsHas(MetaValue_) {
 		var iCommentmeta model.Commentmeta
 		self.Bind(&iCommentmeta)
-		_Commentmeta, _error := model.SetCommentmetaByMetaValue(MetaValue_, &iCommentmeta)
+		_Commentmeta, _error := model.SetCommentmetaViaMetaValue(MetaValue_, &iCommentmeta)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Commentmeta)
 	}
-	herr.Message = "Can't get to the SetCommentmetaByMetaValue's args."
+	herr.Message = "Can't get to the SetCommentmetaViaMetaValue's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -618,7 +618,7 @@ func PostCommentmetaHandler(self *macross.Context) error {
 	var iCommentmeta model.Commentmeta
 	self.Bind(&iCommentmeta)
 	_int64, _error := model.PostCommentmeta(&iCommentmeta)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -636,7 +636,7 @@ func PutCommentmetaHandler(self *macross.Context) error {
 	var iCommentmeta model.Commentmeta
 	self.Bind(&iCommentmeta)
 	_int64, _error := model.PutCommentmeta(&iCommentmeta)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -647,14 +647,14 @@ func PutCommentmetaHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentmetaByMetaIdHandler(self *macross.Context) error {
+func PutCommentmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaId_ := self.Args("meta_id").MustInt64()
 	var iCommentmeta model.Commentmeta
 	self.Bind(&iCommentmeta)
-	_int64, _error := model.PutCommentmetaByMetaId(MetaId_, &iCommentmeta)
+	_int64, _error := model.PutCommentmetaViaMetaId(MetaId_, &iCommentmeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -664,14 +664,14 @@ func PutCommentmetaByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentmetaByCommentIdHandler(self *macross.Context) error {
+func PutCommentmetaViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentId_ := self.Args("comment_id").MustInt64()
 	var iCommentmeta model.Commentmeta
 	self.Bind(&iCommentmeta)
-	_int64, _error := model.PutCommentmetaByCommentId(CommentId_, &iCommentmeta)
+	_int64, _error := model.PutCommentmetaViaCommentId(CommentId_, &iCommentmeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -681,14 +681,14 @@ func PutCommentmetaByCommentIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentmetaByMetaKeyHandler(self *macross.Context) error {
+func PutCommentmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaKey_ := self.Args("meta_key").String()
 	var iCommentmeta model.Commentmeta
 	self.Bind(&iCommentmeta)
-	_int64, _error := model.PutCommentmetaByMetaKey(MetaKey_, &iCommentmeta)
+	_int64, _error := model.PutCommentmetaViaMetaKey(MetaKey_, &iCommentmeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -698,14 +698,14 @@ func PutCommentmetaByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutCommentmetaByMetaValueHandler(self *macross.Context) error {
+func PutCommentmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaValue_ := self.Args("meta_value").String()
 	var iCommentmeta model.Commentmeta
 	self.Bind(&iCommentmeta)
-	_int64, _error := model.PutCommentmetaByMetaValue(MetaValue_, &iCommentmeta)
+	_int64, _error := model.PutCommentmetaViaMetaValue(MetaValue_, &iCommentmeta)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -715,7 +715,7 @@ func PutCommentmetaByMetaValueHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentmetaByMetaIdHandler(self *macross.Context) error {
+func PutUpdateCommentmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -723,7 +723,7 @@ func PutUpdateCommentmetaByMetaIdHandler(self *macross.Context) error {
 	var iCommentmeta model.Commentmeta
 	self.Bind(&iCommentmeta)
 	var iMap = helper.StructToMap(iCommentmeta)
-	_error := model.UpdateCommentmetaByMetaId(MetaId_, &iMap)
+	_error := model.UpdateCommentmetaViaMetaId(MetaId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -733,7 +733,7 @@ func PutUpdateCommentmetaByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentmetaByCommentIdHandler(self *macross.Context) error {
+func PutUpdateCommentmetaViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -741,7 +741,7 @@ func PutUpdateCommentmetaByCommentIdHandler(self *macross.Context) error {
 	var iCommentmeta model.Commentmeta
 	self.Bind(&iCommentmeta)
 	var iMap = helper.StructToMap(iCommentmeta)
-	_error := model.UpdateCommentmetaByCommentId(CommentId_, &iMap)
+	_error := model.UpdateCommentmetaViaCommentId(CommentId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -751,7 +751,7 @@ func PutUpdateCommentmetaByCommentIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentmetaByMetaKeyHandler(self *macross.Context) error {
+func PutUpdateCommentmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -759,7 +759,7 @@ func PutUpdateCommentmetaByMetaKeyHandler(self *macross.Context) error {
 	var iCommentmeta model.Commentmeta
 	self.Bind(&iCommentmeta)
 	var iMap = helper.StructToMap(iCommentmeta)
-	_error := model.UpdateCommentmetaByMetaKey(MetaKey_, &iMap)
+	_error := model.UpdateCommentmetaViaMetaKey(MetaKey_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -769,7 +769,7 @@ func PutUpdateCommentmetaByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateCommentmetaByMetaValueHandler(self *macross.Context) error {
+func PutUpdateCommentmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -777,7 +777,7 @@ func PutUpdateCommentmetaByMetaValueHandler(self *macross.Context) error {
 	var iCommentmeta model.Commentmeta
 	self.Bind(&iCommentmeta)
 	var iMap = helper.StructToMap(iCommentmeta)
-	_error := model.UpdateCommentmetaByMetaValue(MetaValue_, &iMap)
+	_error := model.UpdateCommentmetaViaMetaValue(MetaValue_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -804,12 +804,12 @@ func DeleteCommentmetaHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentmetaByMetaIdHandler(self *macross.Context) error {
+func DeleteCommentmetaViaMetaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaId_ := self.Args("meta_id").MustInt64()
-	_error := model.DeleteCommentmetaByMetaId(MetaId_)
+	_error := model.DeleteCommentmetaViaMetaId(MetaId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -819,12 +819,12 @@ func DeleteCommentmetaByMetaIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentmetaByCommentIdHandler(self *macross.Context) error {
+func DeleteCommentmetaViaCommentIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentId_ := self.Args("comment_id").MustInt64()
-	_error := model.DeleteCommentmetaByCommentId(CommentId_)
+	_error := model.DeleteCommentmetaViaCommentId(CommentId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -834,12 +834,12 @@ func DeleteCommentmetaByCommentIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentmetaByMetaKeyHandler(self *macross.Context) error {
+func DeleteCommentmetaViaMetaKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaKey_ := self.Args("meta_key").String()
-	_error := model.DeleteCommentmetaByMetaKey(MetaKey_)
+	_error := model.DeleteCommentmetaViaMetaKey(MetaKey_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -849,12 +849,12 @@ func DeleteCommentmetaByMetaKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteCommentmetaByMetaValueHandler(self *macross.Context) error {
+func DeleteCommentmetaViaMetaValueHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MetaValue_ := self.Args("meta_value").String()
-	_error := model.DeleteCommentmetaByMetaValue(MetaValue_)
+	_error := model.DeleteCommentmetaViaMetaValue(MetaValue_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

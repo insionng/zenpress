@@ -27,9 +27,9 @@ func GetTermsesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermsCountByTermIdHandler(self *macross.Context) error {
+func GetTermsCountViaTermIdHandler(self *macross.Context) error {
 	TermId_ := self.Args("term_id").MustInt64()
-	_int64 := model.GetTermsCountByTermId(TermId_)
+	_int64 := model.GetTermsCountViaTermId(TermId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["termsCount"] = 0
@@ -38,9 +38,9 @@ func GetTermsCountByTermIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetTermsCountByNameHandler(self *macross.Context) error {
+func GetTermsCountViaNameHandler(self *macross.Context) error {
 	Name_ := self.Args("name").String()
-	_int64 := model.GetTermsCountByName(Name_)
+	_int64 := model.GetTermsCountViaName(Name_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["termsCount"] = 0
@@ -49,9 +49,9 @@ func GetTermsCountByNameHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetTermsCountBySlugHandler(self *macross.Context) error {
+func GetTermsCountViaSlugHandler(self *macross.Context) error {
 	Slug_ := self.Args("slug").String()
-	_int64 := model.GetTermsCountBySlug(Slug_)
+	_int64 := model.GetTermsCountViaSlug(Slug_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["termsCount"] = 0
@@ -60,9 +60,9 @@ func GetTermsCountBySlugHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetTermsCountByTermGroupHandler(self *macross.Context) error {
+func GetTermsCountViaTermGroupHandler(self *macross.Context) error {
 	TermGroup_ := self.Args("term_group").MustInt64()
-	_int64 := model.GetTermsCountByTermGroup(TermGroup_)
+	_int64 := model.GetTermsCountViaTermGroup(TermGroup_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["termsCount"] = 0
@@ -71,7 +71,7 @@ func GetTermsCountByTermGroupHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetTermsesByTermIdHandler(self *macross.Context) error {
+func GetTermsesViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -80,18 +80,18 @@ func GetTermsesByTermIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iTermId := self.Args("term_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iTermId) {
-		_Terms, _error := model.GetTermsesByTermId(offset, limit, iTermId, field)
+		_Terms, _error := model.GetTermsesViaTermId(offset, limit, iTermId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the GetTermsesByTermId's args."
+	herr.Message = "Can't get to the GetTermsesViaTermId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermsesByNameHandler(self *macross.Context) error {
+func GetTermsesViaNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -100,18 +100,18 @@ func GetTermsesByNameHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iName := self.Args("name").String()
 	if (offset > 0) && helper.IsHas(iName) {
-		_Terms, _error := model.GetTermsesByName(offset, limit, iName, field)
+		_Terms, _error := model.GetTermsesViaName(offset, limit, iName, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the GetTermsesByName's args."
+	herr.Message = "Can't get to the GetTermsesViaName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermsesBySlugHandler(self *macross.Context) error {
+func GetTermsesViaSlugHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -120,18 +120,18 @@ func GetTermsesBySlugHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iSlug := self.Args("slug").String()
 	if (offset > 0) && helper.IsHas(iSlug) {
-		_Terms, _error := model.GetTermsesBySlug(offset, limit, iSlug, field)
+		_Terms, _error := model.GetTermsesViaSlug(offset, limit, iSlug, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the GetTermsesBySlug's args."
+	herr.Message = "Can't get to the GetTermsesViaSlug's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermsesByTermGroupHandler(self *macross.Context) error {
+func GetTermsesViaTermGroupHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -140,14 +140,14 @@ func GetTermsesByTermGroupHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iTermGroup := self.Args("term_group").MustInt64()
 	if (offset > 0) && helper.IsHas(iTermGroup) {
-		_Terms, _error := model.GetTermsesByTermGroup(offset, limit, iTermGroup, field)
+		_Terms, _error := model.GetTermsesViaTermGroup(offset, limit, iTermGroup, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the GetTermsesByTermGroup's args."
+	herr.Message = "Can't get to the GetTermsesViaTermGroup's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -384,135 +384,135 @@ func GetTermsesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasTermsByTermIdHandler(self *macross.Context) error {
+func GetHasTermsViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTermId := self.Args("term_id").MustInt64()
 	if helper.IsHas(iTermId) {
-		_Terms := model.HasTermsByTermId(iTermId)
+		_Terms := model.HasTermsViaTermId(iTermId)
 		var m = map[string]interface{}{}
 		m["terms"] = _Terms
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasTermsByTermId's args."
+	herr.Message = "Can't get to the HasTermsViaTermId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasTermsByNameHandler(self *macross.Context) error {
+func GetHasTermsViaNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iName := self.Args("name").String()
 	if helper.IsHas(iName) {
-		_Terms := model.HasTermsByName(iName)
+		_Terms := model.HasTermsViaName(iName)
 		var m = map[string]interface{}{}
 		m["terms"] = _Terms
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasTermsByName's args."
+	herr.Message = "Can't get to the HasTermsViaName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasTermsBySlugHandler(self *macross.Context) error {
+func GetHasTermsViaSlugHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSlug := self.Args("slug").String()
 	if helper.IsHas(iSlug) {
-		_Terms := model.HasTermsBySlug(iSlug)
+		_Terms := model.HasTermsViaSlug(iSlug)
 		var m = map[string]interface{}{}
 		m["terms"] = _Terms
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasTermsBySlug's args."
+	herr.Message = "Can't get to the HasTermsViaSlug's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasTermsByTermGroupHandler(self *macross.Context) error {
+func GetHasTermsViaTermGroupHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTermGroup := self.Args("term_group").MustInt64()
 	if helper.IsHas(iTermGroup) {
-		_Terms := model.HasTermsByTermGroup(iTermGroup)
+		_Terms := model.HasTermsViaTermGroup(iTermGroup)
 		var m = map[string]interface{}{}
 		m["terms"] = _Terms
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasTermsByTermGroup's args."
+	herr.Message = "Can't get to the HasTermsViaTermGroup's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermsByTermIdHandler(self *macross.Context) error {
+func GetTermsViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTermId := self.Args("term_id").MustInt64()
 	if helper.IsHas(iTermId) {
-		_Terms, _error := model.GetTermsByTermId(iTermId)
+		_Terms, _error := model.GetTermsViaTermId(iTermId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the GetTermsByTermId's args."
+	herr.Message = "Can't get to the GetTermsViaTermId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermsByNameHandler(self *macross.Context) error {
+func GetTermsViaNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iName := self.Args("name").String()
 	if helper.IsHas(iName) {
-		_Terms, _error := model.GetTermsByName(iName)
+		_Terms, _error := model.GetTermsViaName(iName)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the GetTermsByName's args."
+	herr.Message = "Can't get to the GetTermsViaName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermsBySlugHandler(self *macross.Context) error {
+func GetTermsViaSlugHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSlug := self.Args("slug").String()
 	if helper.IsHas(iSlug) {
-		_Terms, _error := model.GetTermsBySlug(iSlug)
+		_Terms, _error := model.GetTermsViaSlug(iSlug)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the GetTermsBySlug's args."
+	herr.Message = "Can't get to the GetTermsViaSlug's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermsByTermGroupHandler(self *macross.Context) error {
+func GetTermsViaTermGroupHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTermGroup := self.Args("term_group").MustInt64()
 	if helper.IsHas(iTermGroup) {
-		_Terms, _error := model.GetTermsByTermGroup(iTermGroup)
+		_Terms, _error := model.GetTermsViaTermGroup(iTermGroup)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the GetTermsByTermGroup's args."
+	herr.Message = "Can't get to the GetTermsViaTermGroup's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetTermsByTermIdHandler(self *macross.Context) error {
+func PostSetTermsViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -520,18 +520,18 @@ func PostSetTermsByTermIdHandler(self *macross.Context) error {
 	if helper.IsHas(TermId_) {
 		var iTerms model.Terms
 		self.Bind(&iTerms)
-		_Terms, _error := model.SetTermsByTermId(TermId_, &iTerms)
+		_Terms, _error := model.SetTermsViaTermId(TermId_, &iTerms)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the SetTermsByTermId's args."
+	herr.Message = "Can't get to the SetTermsViaTermId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetTermsByNameHandler(self *macross.Context) error {
+func PostSetTermsViaNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -539,18 +539,18 @@ func PostSetTermsByNameHandler(self *macross.Context) error {
 	if helper.IsHas(Name_) {
 		var iTerms model.Terms
 		self.Bind(&iTerms)
-		_Terms, _error := model.SetTermsByName(Name_, &iTerms)
+		_Terms, _error := model.SetTermsViaName(Name_, &iTerms)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the SetTermsByName's args."
+	herr.Message = "Can't get to the SetTermsViaName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetTermsBySlugHandler(self *macross.Context) error {
+func PostSetTermsViaSlugHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -558,18 +558,18 @@ func PostSetTermsBySlugHandler(self *macross.Context) error {
 	if helper.IsHas(Slug_) {
 		var iTerms model.Terms
 		self.Bind(&iTerms)
-		_Terms, _error := model.SetTermsBySlug(Slug_, &iTerms)
+		_Terms, _error := model.SetTermsViaSlug(Slug_, &iTerms)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the SetTermsBySlug's args."
+	herr.Message = "Can't get to the SetTermsViaSlug's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetTermsByTermGroupHandler(self *macross.Context) error {
+func PostSetTermsViaTermGroupHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -577,14 +577,14 @@ func PostSetTermsByTermGroupHandler(self *macross.Context) error {
 	if helper.IsHas(TermGroup_) {
 		var iTerms model.Terms
 		self.Bind(&iTerms)
-		_Terms, _error := model.SetTermsByTermGroup(TermGroup_, &iTerms)
+		_Terms, _error := model.SetTermsViaTermGroup(TermGroup_, &iTerms)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Terms)
 	}
-	herr.Message = "Can't get to the SetTermsByTermGroup's args."
+	herr.Message = "Can't get to the SetTermsViaTermGroup's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -618,7 +618,7 @@ func PostTermsHandler(self *macross.Context) error {
 	var iTerms model.Terms
 	self.Bind(&iTerms)
 	_int64, _error := model.PostTerms(&iTerms)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -636,7 +636,7 @@ func PutTermsHandler(self *macross.Context) error {
 	var iTerms model.Terms
 	self.Bind(&iTerms)
 	_int64, _error := model.PutTerms(&iTerms)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -647,14 +647,14 @@ func PutTermsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutTermsByTermIdHandler(self *macross.Context) error {
+func PutTermsViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	TermId_ := self.Args("term_id").MustInt64()
 	var iTerms model.Terms
 	self.Bind(&iTerms)
-	_int64, _error := model.PutTermsByTermId(TermId_, &iTerms)
+	_int64, _error := model.PutTermsViaTermId(TermId_, &iTerms)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -664,14 +664,14 @@ func PutTermsByTermIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutTermsByNameHandler(self *macross.Context) error {
+func PutTermsViaNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Name_ := self.Args("name").String()
 	var iTerms model.Terms
 	self.Bind(&iTerms)
-	_int64, _error := model.PutTermsByName(Name_, &iTerms)
+	_int64, _error := model.PutTermsViaName(Name_, &iTerms)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -681,14 +681,14 @@ func PutTermsByNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutTermsBySlugHandler(self *macross.Context) error {
+func PutTermsViaSlugHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Slug_ := self.Args("slug").String()
 	var iTerms model.Terms
 	self.Bind(&iTerms)
-	_int64, _error := model.PutTermsBySlug(Slug_, &iTerms)
+	_int64, _error := model.PutTermsViaSlug(Slug_, &iTerms)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -698,14 +698,14 @@ func PutTermsBySlugHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutTermsByTermGroupHandler(self *macross.Context) error {
+func PutTermsViaTermGroupHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	TermGroup_ := self.Args("term_group").MustInt64()
 	var iTerms model.Terms
 	self.Bind(&iTerms)
-	_int64, _error := model.PutTermsByTermGroup(TermGroup_, &iTerms)
+	_int64, _error := model.PutTermsViaTermGroup(TermGroup_, &iTerms)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -715,7 +715,7 @@ func PutTermsByTermGroupHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateTermsByTermIdHandler(self *macross.Context) error {
+func PutUpdateTermsViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -723,7 +723,7 @@ func PutUpdateTermsByTermIdHandler(self *macross.Context) error {
 	var iTerms model.Terms
 	self.Bind(&iTerms)
 	var iMap = helper.StructToMap(iTerms)
-	_error := model.UpdateTermsByTermId(TermId_, &iMap)
+	_error := model.UpdateTermsViaTermId(TermId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -733,7 +733,7 @@ func PutUpdateTermsByTermIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateTermsByNameHandler(self *macross.Context) error {
+func PutUpdateTermsViaNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -741,7 +741,7 @@ func PutUpdateTermsByNameHandler(self *macross.Context) error {
 	var iTerms model.Terms
 	self.Bind(&iTerms)
 	var iMap = helper.StructToMap(iTerms)
-	_error := model.UpdateTermsByName(Name_, &iMap)
+	_error := model.UpdateTermsViaName(Name_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -751,7 +751,7 @@ func PutUpdateTermsByNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateTermsBySlugHandler(self *macross.Context) error {
+func PutUpdateTermsViaSlugHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -759,7 +759,7 @@ func PutUpdateTermsBySlugHandler(self *macross.Context) error {
 	var iTerms model.Terms
 	self.Bind(&iTerms)
 	var iMap = helper.StructToMap(iTerms)
-	_error := model.UpdateTermsBySlug(Slug_, &iMap)
+	_error := model.UpdateTermsViaSlug(Slug_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -769,7 +769,7 @@ func PutUpdateTermsBySlugHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateTermsByTermGroupHandler(self *macross.Context) error {
+func PutUpdateTermsViaTermGroupHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -777,7 +777,7 @@ func PutUpdateTermsByTermGroupHandler(self *macross.Context) error {
 	var iTerms model.Terms
 	self.Bind(&iTerms)
 	var iMap = helper.StructToMap(iTerms)
-	_error := model.UpdateTermsByTermGroup(TermGroup_, &iMap)
+	_error := model.UpdateTermsViaTermGroup(TermGroup_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -804,12 +804,12 @@ func DeleteTermsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteTermsByTermIdHandler(self *macross.Context) error {
+func DeleteTermsViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	TermId_ := self.Args("term_id").MustInt64()
-	_error := model.DeleteTermsByTermId(TermId_)
+	_error := model.DeleteTermsViaTermId(TermId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -819,12 +819,12 @@ func DeleteTermsByTermIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteTermsByNameHandler(self *macross.Context) error {
+func DeleteTermsViaNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Name_ := self.Args("name").String()
-	_error := model.DeleteTermsByName(Name_)
+	_error := model.DeleteTermsViaName(Name_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -834,12 +834,12 @@ func DeleteTermsByNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteTermsBySlugHandler(self *macross.Context) error {
+func DeleteTermsViaSlugHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Slug_ := self.Args("slug").String()
-	_error := model.DeleteTermsBySlug(Slug_)
+	_error := model.DeleteTermsViaSlug(Slug_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -849,12 +849,12 @@ func DeleteTermsBySlugHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteTermsByTermGroupHandler(self *macross.Context) error {
+func DeleteTermsViaTermGroupHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	TermGroup_ := self.Args("term_group").MustInt64()
-	_error := model.DeleteTermsByTermGroup(TermGroup_)
+	_error := model.DeleteTermsViaTermGroup(TermGroup_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

@@ -27,9 +27,9 @@ func GetPostsesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsCountByIdHandler(self *macross.Context) error {
+func GetPostsCountViaIdHandler(self *macross.Context) error {
 	Id_ := self.Args("ID").MustInt64()
-	_int64 := model.GetPostsCountById(Id_)
+	_int64 := model.GetPostsCountViaId(Id_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -38,9 +38,9 @@ func GetPostsCountByIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostAuthorHandler(self *macross.Context) error {
+func GetPostsCountViaPostAuthorHandler(self *macross.Context) error {
 	PostAuthor_ := self.Args("post_author").MustInt64()
-	_int64 := model.GetPostsCountByPostAuthor(PostAuthor_)
+	_int64 := model.GetPostsCountViaPostAuthor(PostAuthor_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -49,9 +49,9 @@ func GetPostsCountByPostAuthorHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostDateHandler(self *macross.Context) error {
+func GetPostsCountViaPostDateHandler(self *macross.Context) error {
 	PostDate_ := self.Args("post_date").Time()
-	_int64 := model.GetPostsCountByPostDate(PostDate_)
+	_int64 := model.GetPostsCountViaPostDate(PostDate_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -60,9 +60,9 @@ func GetPostsCountByPostDateHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostDateGmtHandler(self *macross.Context) error {
+func GetPostsCountViaPostDateGmtHandler(self *macross.Context) error {
 	PostDateGmt_ := self.Args("post_date_gmt").Time()
-	_int64 := model.GetPostsCountByPostDateGmt(PostDateGmt_)
+	_int64 := model.GetPostsCountViaPostDateGmt(PostDateGmt_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -71,9 +71,9 @@ func GetPostsCountByPostDateGmtHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostContentHandler(self *macross.Context) error {
+func GetPostsCountViaPostContentHandler(self *macross.Context) error {
 	PostContent_ := self.Args("post_content").String()
-	_int64 := model.GetPostsCountByPostContent(PostContent_)
+	_int64 := model.GetPostsCountViaPostContent(PostContent_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -82,9 +82,9 @@ func GetPostsCountByPostContentHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostTitleHandler(self *macross.Context) error {
+func GetPostsCountViaPostTitleHandler(self *macross.Context) error {
 	PostTitle_ := self.Args("post_title").String()
-	_int64 := model.GetPostsCountByPostTitle(PostTitle_)
+	_int64 := model.GetPostsCountViaPostTitle(PostTitle_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -93,9 +93,9 @@ func GetPostsCountByPostTitleHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostExcerptHandler(self *macross.Context) error {
+func GetPostsCountViaPostExcerptHandler(self *macross.Context) error {
 	PostExcerpt_ := self.Args("post_excerpt").String()
-	_int64 := model.GetPostsCountByPostExcerpt(PostExcerpt_)
+	_int64 := model.GetPostsCountViaPostExcerpt(PostExcerpt_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -104,9 +104,9 @@ func GetPostsCountByPostExcerptHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostStatusHandler(self *macross.Context) error {
+func GetPostsCountViaPostStatusHandler(self *macross.Context) error {
 	PostStatus_ := self.Args("post_status").String()
-	_int64 := model.GetPostsCountByPostStatus(PostStatus_)
+	_int64 := model.GetPostsCountViaPostStatus(PostStatus_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -115,9 +115,9 @@ func GetPostsCountByPostStatusHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByCommentStatusHandler(self *macross.Context) error {
+func GetPostsCountViaCommentStatusHandler(self *macross.Context) error {
 	CommentStatus_ := self.Args("comment_status").String()
-	_int64 := model.GetPostsCountByCommentStatus(CommentStatus_)
+	_int64 := model.GetPostsCountViaCommentStatus(CommentStatus_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -126,9 +126,9 @@ func GetPostsCountByCommentStatusHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPingStatusHandler(self *macross.Context) error {
+func GetPostsCountViaPingStatusHandler(self *macross.Context) error {
 	PingStatus_ := self.Args("ping_status").String()
-	_int64 := model.GetPostsCountByPingStatus(PingStatus_)
+	_int64 := model.GetPostsCountViaPingStatus(PingStatus_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -137,9 +137,9 @@ func GetPostsCountByPingStatusHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostPasswordHandler(self *macross.Context) error {
+func GetPostsCountViaPostPasswordHandler(self *macross.Context) error {
 	PostPassword_ := self.Args("post_password").String()
-	_int64 := model.GetPostsCountByPostPassword(PostPassword_)
+	_int64 := model.GetPostsCountViaPostPassword(PostPassword_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -148,9 +148,9 @@ func GetPostsCountByPostPasswordHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostNameHandler(self *macross.Context) error {
+func GetPostsCountViaPostNameHandler(self *macross.Context) error {
 	PostName_ := self.Args("post_name").String()
-	_int64 := model.GetPostsCountByPostName(PostName_)
+	_int64 := model.GetPostsCountViaPostName(PostName_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -159,9 +159,9 @@ func GetPostsCountByPostNameHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByToPingHandler(self *macross.Context) error {
+func GetPostsCountViaToPingHandler(self *macross.Context) error {
 	ToPing_ := self.Args("to_ping").String()
-	_int64 := model.GetPostsCountByToPing(ToPing_)
+	_int64 := model.GetPostsCountViaToPing(ToPing_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -170,9 +170,9 @@ func GetPostsCountByToPingHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPingedHandler(self *macross.Context) error {
+func GetPostsCountViaPingedHandler(self *macross.Context) error {
 	Pinged_ := self.Args("pinged").String()
-	_int64 := model.GetPostsCountByPinged(Pinged_)
+	_int64 := model.GetPostsCountViaPinged(Pinged_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -181,9 +181,9 @@ func GetPostsCountByPingedHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostModifiedHandler(self *macross.Context) error {
+func GetPostsCountViaPostModifiedHandler(self *macross.Context) error {
 	PostModified_ := self.Args("post_modified").Time()
-	_int64 := model.GetPostsCountByPostModified(PostModified_)
+	_int64 := model.GetPostsCountViaPostModified(PostModified_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -192,9 +192,9 @@ func GetPostsCountByPostModifiedHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostModifiedGmtHandler(self *macross.Context) error {
+func GetPostsCountViaPostModifiedGmtHandler(self *macross.Context) error {
 	PostModifiedGmt_ := self.Args("post_modified_gmt").Time()
-	_int64 := model.GetPostsCountByPostModifiedGmt(PostModifiedGmt_)
+	_int64 := model.GetPostsCountViaPostModifiedGmt(PostModifiedGmt_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -203,9 +203,9 @@ func GetPostsCountByPostModifiedGmtHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostContentFilteredHandler(self *macross.Context) error {
+func GetPostsCountViaPostContentFilteredHandler(self *macross.Context) error {
 	PostContentFiltered_ := self.Args("post_content_filtered").String()
-	_int64 := model.GetPostsCountByPostContentFiltered(PostContentFiltered_)
+	_int64 := model.GetPostsCountViaPostContentFiltered(PostContentFiltered_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -214,9 +214,9 @@ func GetPostsCountByPostContentFilteredHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostParentHandler(self *macross.Context) error {
+func GetPostsCountViaPostParentHandler(self *macross.Context) error {
 	PostParent_ := self.Args("post_parent").MustInt64()
-	_int64 := model.GetPostsCountByPostParent(PostParent_)
+	_int64 := model.GetPostsCountViaPostParent(PostParent_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -225,9 +225,9 @@ func GetPostsCountByPostParentHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByGuidHandler(self *macross.Context) error {
+func GetPostsCountViaGuidHandler(self *macross.Context) error {
 	Guid_ := self.Args("guid").String()
-	_int64 := model.GetPostsCountByGuid(Guid_)
+	_int64 := model.GetPostsCountViaGuid(Guid_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -236,9 +236,9 @@ func GetPostsCountByGuidHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByMenuOrderHandler(self *macross.Context) error {
+func GetPostsCountViaMenuOrderHandler(self *macross.Context) error {
 	MenuOrder_ := self.Args("menu_order").MustInt()
-	_int64 := model.GetPostsCountByMenuOrder(MenuOrder_)
+	_int64 := model.GetPostsCountViaMenuOrder(MenuOrder_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -247,9 +247,9 @@ func GetPostsCountByMenuOrderHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostTypeHandler(self *macross.Context) error {
+func GetPostsCountViaPostTypeHandler(self *macross.Context) error {
 	PostType_ := self.Args("post_type").String()
-	_int64 := model.GetPostsCountByPostType(PostType_)
+	_int64 := model.GetPostsCountViaPostType(PostType_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -258,9 +258,9 @@ func GetPostsCountByPostTypeHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByPostMimeTypeHandler(self *macross.Context) error {
+func GetPostsCountViaPostMimeTypeHandler(self *macross.Context) error {
 	PostMimeType_ := self.Args("post_mime_type").String()
-	_int64 := model.GetPostsCountByPostMimeType(PostMimeType_)
+	_int64 := model.GetPostsCountViaPostMimeType(PostMimeType_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -269,9 +269,9 @@ func GetPostsCountByPostMimeTypeHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsCountByCommentCountHandler(self *macross.Context) error {
+func GetPostsCountViaCommentCountHandler(self *macross.Context) error {
 	CommentCount_ := self.Args("comment_count").MustInt64()
-	_int64 := model.GetPostsCountByCommentCount(CommentCount_)
+	_int64 := model.GetPostsCountViaCommentCount(CommentCount_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["postsCount"] = 0
@@ -280,7 +280,7 @@ func GetPostsCountByCommentCountHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetPostsesByIdHandler(self *macross.Context) error {
+func GetPostsesViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -289,18 +289,18 @@ func GetPostsesByIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iId := self.Args("ID").MustInt64()
 	if (offset > 0) && helper.IsHas(iId) {
-		_Posts, _error := model.GetPostsesById(offset, limit, iId, field)
+		_Posts, _error := model.GetPostsesViaId(offset, limit, iId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesById's args."
+	herr.Message = "Can't get to the GetPostsesViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostAuthorHandler(self *macross.Context) error {
+func GetPostsesViaPostAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -309,18 +309,18 @@ func GetPostsesByPostAuthorHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostAuthor := self.Args("post_author").MustInt64()
 	if (offset > 0) && helper.IsHas(iPostAuthor) {
-		_Posts, _error := model.GetPostsesByPostAuthor(offset, limit, iPostAuthor, field)
+		_Posts, _error := model.GetPostsesViaPostAuthor(offset, limit, iPostAuthor, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostAuthor's args."
+	herr.Message = "Can't get to the GetPostsesViaPostAuthor's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostDateHandler(self *macross.Context) error {
+func GetPostsesViaPostDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -329,18 +329,18 @@ func GetPostsesByPostDateHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostDate := self.Args("post_date").Time()
 	if (offset > 0) && helper.IsHas(iPostDate) {
-		_Posts, _error := model.GetPostsesByPostDate(offset, limit, iPostDate, field)
+		_Posts, _error := model.GetPostsesViaPostDate(offset, limit, iPostDate, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostDate's args."
+	herr.Message = "Can't get to the GetPostsesViaPostDate's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostDateGmtHandler(self *macross.Context) error {
+func GetPostsesViaPostDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -349,18 +349,18 @@ func GetPostsesByPostDateGmtHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostDateGmt := self.Args("post_date_gmt").Time()
 	if (offset > 0) && helper.IsHas(iPostDateGmt) {
-		_Posts, _error := model.GetPostsesByPostDateGmt(offset, limit, iPostDateGmt, field)
+		_Posts, _error := model.GetPostsesViaPostDateGmt(offset, limit, iPostDateGmt, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostDateGmt's args."
+	herr.Message = "Can't get to the GetPostsesViaPostDateGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostContentHandler(self *macross.Context) error {
+func GetPostsesViaPostContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -369,18 +369,18 @@ func GetPostsesByPostContentHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostContent := self.Args("post_content").String()
 	if (offset > 0) && helper.IsHas(iPostContent) {
-		_Posts, _error := model.GetPostsesByPostContent(offset, limit, iPostContent, field)
+		_Posts, _error := model.GetPostsesViaPostContent(offset, limit, iPostContent, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostContent's args."
+	herr.Message = "Can't get to the GetPostsesViaPostContent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostTitleHandler(self *macross.Context) error {
+func GetPostsesViaPostTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -389,18 +389,18 @@ func GetPostsesByPostTitleHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostTitle := self.Args("post_title").String()
 	if (offset > 0) && helper.IsHas(iPostTitle) {
-		_Posts, _error := model.GetPostsesByPostTitle(offset, limit, iPostTitle, field)
+		_Posts, _error := model.GetPostsesViaPostTitle(offset, limit, iPostTitle, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostTitle's args."
+	herr.Message = "Can't get to the GetPostsesViaPostTitle's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostExcerptHandler(self *macross.Context) error {
+func GetPostsesViaPostExcerptHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -409,18 +409,18 @@ func GetPostsesByPostExcerptHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostExcerpt := self.Args("post_excerpt").String()
 	if (offset > 0) && helper.IsHas(iPostExcerpt) {
-		_Posts, _error := model.GetPostsesByPostExcerpt(offset, limit, iPostExcerpt, field)
+		_Posts, _error := model.GetPostsesViaPostExcerpt(offset, limit, iPostExcerpt, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostExcerpt's args."
+	herr.Message = "Can't get to the GetPostsesViaPostExcerpt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostStatusHandler(self *macross.Context) error {
+func GetPostsesViaPostStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -429,18 +429,18 @@ func GetPostsesByPostStatusHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostStatus := self.Args("post_status").String()
 	if (offset > 0) && helper.IsHas(iPostStatus) {
-		_Posts, _error := model.GetPostsesByPostStatus(offset, limit, iPostStatus, field)
+		_Posts, _error := model.GetPostsesViaPostStatus(offset, limit, iPostStatus, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostStatus's args."
+	herr.Message = "Can't get to the GetPostsesViaPostStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByCommentStatusHandler(self *macross.Context) error {
+func GetPostsesViaCommentStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -449,18 +449,18 @@ func GetPostsesByCommentStatusHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentStatus := self.Args("comment_status").String()
 	if (offset > 0) && helper.IsHas(iCommentStatus) {
-		_Posts, _error := model.GetPostsesByCommentStatus(offset, limit, iCommentStatus, field)
+		_Posts, _error := model.GetPostsesViaCommentStatus(offset, limit, iCommentStatus, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByCommentStatus's args."
+	herr.Message = "Can't get to the GetPostsesViaCommentStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPingStatusHandler(self *macross.Context) error {
+func GetPostsesViaPingStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -469,18 +469,18 @@ func GetPostsesByPingStatusHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPingStatus := self.Args("ping_status").String()
 	if (offset > 0) && helper.IsHas(iPingStatus) {
-		_Posts, _error := model.GetPostsesByPingStatus(offset, limit, iPingStatus, field)
+		_Posts, _error := model.GetPostsesViaPingStatus(offset, limit, iPingStatus, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPingStatus's args."
+	herr.Message = "Can't get to the GetPostsesViaPingStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostPasswordHandler(self *macross.Context) error {
+func GetPostsesViaPostPasswordHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -489,18 +489,18 @@ func GetPostsesByPostPasswordHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostPassword := self.Args("post_password").String()
 	if (offset > 0) && helper.IsHas(iPostPassword) {
-		_Posts, _error := model.GetPostsesByPostPassword(offset, limit, iPostPassword, field)
+		_Posts, _error := model.GetPostsesViaPostPassword(offset, limit, iPostPassword, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostPassword's args."
+	herr.Message = "Can't get to the GetPostsesViaPostPassword's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostNameHandler(self *macross.Context) error {
+func GetPostsesViaPostNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -509,18 +509,18 @@ func GetPostsesByPostNameHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostName := self.Args("post_name").String()
 	if (offset > 0) && helper.IsHas(iPostName) {
-		_Posts, _error := model.GetPostsesByPostName(offset, limit, iPostName, field)
+		_Posts, _error := model.GetPostsesViaPostName(offset, limit, iPostName, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostName's args."
+	herr.Message = "Can't get to the GetPostsesViaPostName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByToPingHandler(self *macross.Context) error {
+func GetPostsesViaToPingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -529,18 +529,18 @@ func GetPostsesByToPingHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iToPing := self.Args("to_ping").String()
 	if (offset > 0) && helper.IsHas(iToPing) {
-		_Posts, _error := model.GetPostsesByToPing(offset, limit, iToPing, field)
+		_Posts, _error := model.GetPostsesViaToPing(offset, limit, iToPing, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByToPing's args."
+	herr.Message = "Can't get to the GetPostsesViaToPing's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPingedHandler(self *macross.Context) error {
+func GetPostsesViaPingedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -549,18 +549,18 @@ func GetPostsesByPingedHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPinged := self.Args("pinged").String()
 	if (offset > 0) && helper.IsHas(iPinged) {
-		_Posts, _error := model.GetPostsesByPinged(offset, limit, iPinged, field)
+		_Posts, _error := model.GetPostsesViaPinged(offset, limit, iPinged, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPinged's args."
+	herr.Message = "Can't get to the GetPostsesViaPinged's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostModifiedHandler(self *macross.Context) error {
+func GetPostsesViaPostModifiedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -569,18 +569,18 @@ func GetPostsesByPostModifiedHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostModified := self.Args("post_modified").Time()
 	if (offset > 0) && helper.IsHas(iPostModified) {
-		_Posts, _error := model.GetPostsesByPostModified(offset, limit, iPostModified, field)
+		_Posts, _error := model.GetPostsesViaPostModified(offset, limit, iPostModified, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostModified's args."
+	herr.Message = "Can't get to the GetPostsesViaPostModified's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostModifiedGmtHandler(self *macross.Context) error {
+func GetPostsesViaPostModifiedGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -589,18 +589,18 @@ func GetPostsesByPostModifiedGmtHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostModifiedGmt := self.Args("post_modified_gmt").Time()
 	if (offset > 0) && helper.IsHas(iPostModifiedGmt) {
-		_Posts, _error := model.GetPostsesByPostModifiedGmt(offset, limit, iPostModifiedGmt, field)
+		_Posts, _error := model.GetPostsesViaPostModifiedGmt(offset, limit, iPostModifiedGmt, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostModifiedGmt's args."
+	herr.Message = "Can't get to the GetPostsesViaPostModifiedGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostContentFilteredHandler(self *macross.Context) error {
+func GetPostsesViaPostContentFilteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -609,18 +609,18 @@ func GetPostsesByPostContentFilteredHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostContentFiltered := self.Args("post_content_filtered").String()
 	if (offset > 0) && helper.IsHas(iPostContentFiltered) {
-		_Posts, _error := model.GetPostsesByPostContentFiltered(offset, limit, iPostContentFiltered, field)
+		_Posts, _error := model.GetPostsesViaPostContentFiltered(offset, limit, iPostContentFiltered, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostContentFiltered's args."
+	herr.Message = "Can't get to the GetPostsesViaPostContentFiltered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostParentHandler(self *macross.Context) error {
+func GetPostsesViaPostParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -629,18 +629,18 @@ func GetPostsesByPostParentHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostParent := self.Args("post_parent").MustInt64()
 	if (offset > 0) && helper.IsHas(iPostParent) {
-		_Posts, _error := model.GetPostsesByPostParent(offset, limit, iPostParent, field)
+		_Posts, _error := model.GetPostsesViaPostParent(offset, limit, iPostParent, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostParent's args."
+	herr.Message = "Can't get to the GetPostsesViaPostParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByGuidHandler(self *macross.Context) error {
+func GetPostsesViaGuidHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -649,18 +649,18 @@ func GetPostsesByGuidHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iGuid := self.Args("guid").String()
 	if (offset > 0) && helper.IsHas(iGuid) {
-		_Posts, _error := model.GetPostsesByGuid(offset, limit, iGuid, field)
+		_Posts, _error := model.GetPostsesViaGuid(offset, limit, iGuid, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByGuid's args."
+	herr.Message = "Can't get to the GetPostsesViaGuid's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByMenuOrderHandler(self *macross.Context) error {
+func GetPostsesViaMenuOrderHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -669,18 +669,18 @@ func GetPostsesByMenuOrderHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iMenuOrder := self.Args("menu_order").MustInt()
 	if (offset > 0) && helper.IsHas(iMenuOrder) {
-		_Posts, _error := model.GetPostsesByMenuOrder(offset, limit, iMenuOrder, field)
+		_Posts, _error := model.GetPostsesViaMenuOrder(offset, limit, iMenuOrder, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByMenuOrder's args."
+	herr.Message = "Can't get to the GetPostsesViaMenuOrder's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostTypeHandler(self *macross.Context) error {
+func GetPostsesViaPostTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -689,18 +689,18 @@ func GetPostsesByPostTypeHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostType := self.Args("post_type").String()
 	if (offset > 0) && helper.IsHas(iPostType) {
-		_Posts, _error := model.GetPostsesByPostType(offset, limit, iPostType, field)
+		_Posts, _error := model.GetPostsesViaPostType(offset, limit, iPostType, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostType's args."
+	herr.Message = "Can't get to the GetPostsesViaPostType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByPostMimeTypeHandler(self *macross.Context) error {
+func GetPostsesViaPostMimeTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -709,18 +709,18 @@ func GetPostsesByPostMimeTypeHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iPostMimeType := self.Args("post_mime_type").String()
 	if (offset > 0) && helper.IsHas(iPostMimeType) {
-		_Posts, _error := model.GetPostsesByPostMimeType(offset, limit, iPostMimeType, field)
+		_Posts, _error := model.GetPostsesViaPostMimeType(offset, limit, iPostMimeType, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByPostMimeType's args."
+	herr.Message = "Can't get to the GetPostsesViaPostMimeType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsesByCommentCountHandler(self *macross.Context) error {
+func GetPostsesViaCommentCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -729,14 +729,14 @@ func GetPostsesByCommentCountHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCommentCount := self.Args("comment_count").MustInt64()
 	if (offset > 0) && helper.IsHas(iCommentCount) {
-		_Posts, _error := model.GetPostsesByCommentCount(offset, limit, iCommentCount, field)
+		_Posts, _error := model.GetPostsesViaCommentCount(offset, limit, iCommentCount, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsesByCommentCount's args."
+	herr.Message = "Can't get to the GetPostsesViaCommentCount's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -45034,743 +45034,743 @@ func GetPostsesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByIdHandler(self *macross.Context) error {
+func GetHasPostsViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iId := self.Args("ID").MustInt64()
 	if helper.IsHas(iId) {
-		_Posts := model.HasPostsById(iId)
+		_Posts := model.HasPostsViaId(iId)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsById's args."
+	herr.Message = "Can't get to the HasPostsViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostAuthorHandler(self *macross.Context) error {
+func GetHasPostsViaPostAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostAuthor := self.Args("post_author").MustInt64()
 	if helper.IsHas(iPostAuthor) {
-		_Posts := model.HasPostsByPostAuthor(iPostAuthor)
+		_Posts := model.HasPostsViaPostAuthor(iPostAuthor)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostAuthor's args."
+	herr.Message = "Can't get to the HasPostsViaPostAuthor's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostDateHandler(self *macross.Context) error {
+func GetHasPostsViaPostDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostDate := self.Args("post_date").Time()
 	if helper.IsHas(iPostDate) {
-		_Posts := model.HasPostsByPostDate(iPostDate)
+		_Posts := model.HasPostsViaPostDate(iPostDate)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostDate's args."
+	herr.Message = "Can't get to the HasPostsViaPostDate's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostDateGmtHandler(self *macross.Context) error {
+func GetHasPostsViaPostDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostDateGmt := self.Args("post_date_gmt").Time()
 	if helper.IsHas(iPostDateGmt) {
-		_Posts := model.HasPostsByPostDateGmt(iPostDateGmt)
+		_Posts := model.HasPostsViaPostDateGmt(iPostDateGmt)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostDateGmt's args."
+	herr.Message = "Can't get to the HasPostsViaPostDateGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostContentHandler(self *macross.Context) error {
+func GetHasPostsViaPostContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostContent := self.Args("post_content").String()
 	if helper.IsHas(iPostContent) {
-		_Posts := model.HasPostsByPostContent(iPostContent)
+		_Posts := model.HasPostsViaPostContent(iPostContent)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostContent's args."
+	herr.Message = "Can't get to the HasPostsViaPostContent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostTitleHandler(self *macross.Context) error {
+func GetHasPostsViaPostTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostTitle := self.Args("post_title").String()
 	if helper.IsHas(iPostTitle) {
-		_Posts := model.HasPostsByPostTitle(iPostTitle)
+		_Posts := model.HasPostsViaPostTitle(iPostTitle)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostTitle's args."
+	herr.Message = "Can't get to the HasPostsViaPostTitle's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostExcerptHandler(self *macross.Context) error {
+func GetHasPostsViaPostExcerptHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostExcerpt := self.Args("post_excerpt").String()
 	if helper.IsHas(iPostExcerpt) {
-		_Posts := model.HasPostsByPostExcerpt(iPostExcerpt)
+		_Posts := model.HasPostsViaPostExcerpt(iPostExcerpt)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostExcerpt's args."
+	herr.Message = "Can't get to the HasPostsViaPostExcerpt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostStatusHandler(self *macross.Context) error {
+func GetHasPostsViaPostStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostStatus := self.Args("post_status").String()
 	if helper.IsHas(iPostStatus) {
-		_Posts := model.HasPostsByPostStatus(iPostStatus)
+		_Posts := model.HasPostsViaPostStatus(iPostStatus)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostStatus's args."
+	herr.Message = "Can't get to the HasPostsViaPostStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByCommentStatusHandler(self *macross.Context) error {
+func GetHasPostsViaCommentStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentStatus := self.Args("comment_status").String()
 	if helper.IsHas(iCommentStatus) {
-		_Posts := model.HasPostsByCommentStatus(iCommentStatus)
+		_Posts := model.HasPostsViaCommentStatus(iCommentStatus)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByCommentStatus's args."
+	herr.Message = "Can't get to the HasPostsViaCommentStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPingStatusHandler(self *macross.Context) error {
+func GetHasPostsViaPingStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPingStatus := self.Args("ping_status").String()
 	if helper.IsHas(iPingStatus) {
-		_Posts := model.HasPostsByPingStatus(iPingStatus)
+		_Posts := model.HasPostsViaPingStatus(iPingStatus)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPingStatus's args."
+	herr.Message = "Can't get to the HasPostsViaPingStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostPasswordHandler(self *macross.Context) error {
+func GetHasPostsViaPostPasswordHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostPassword := self.Args("post_password").String()
 	if helper.IsHas(iPostPassword) {
-		_Posts := model.HasPostsByPostPassword(iPostPassword)
+		_Posts := model.HasPostsViaPostPassword(iPostPassword)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostPassword's args."
+	herr.Message = "Can't get to the HasPostsViaPostPassword's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostNameHandler(self *macross.Context) error {
+func GetHasPostsViaPostNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostName := self.Args("post_name").String()
 	if helper.IsHas(iPostName) {
-		_Posts := model.HasPostsByPostName(iPostName)
+		_Posts := model.HasPostsViaPostName(iPostName)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostName's args."
+	herr.Message = "Can't get to the HasPostsViaPostName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByToPingHandler(self *macross.Context) error {
+func GetHasPostsViaToPingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iToPing := self.Args("to_ping").String()
 	if helper.IsHas(iToPing) {
-		_Posts := model.HasPostsByToPing(iToPing)
+		_Posts := model.HasPostsViaToPing(iToPing)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByToPing's args."
+	herr.Message = "Can't get to the HasPostsViaToPing's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPingedHandler(self *macross.Context) error {
+func GetHasPostsViaPingedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPinged := self.Args("pinged").String()
 	if helper.IsHas(iPinged) {
-		_Posts := model.HasPostsByPinged(iPinged)
+		_Posts := model.HasPostsViaPinged(iPinged)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPinged's args."
+	herr.Message = "Can't get to the HasPostsViaPinged's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostModifiedHandler(self *macross.Context) error {
+func GetHasPostsViaPostModifiedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostModified := self.Args("post_modified").Time()
 	if helper.IsHas(iPostModified) {
-		_Posts := model.HasPostsByPostModified(iPostModified)
+		_Posts := model.HasPostsViaPostModified(iPostModified)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostModified's args."
+	herr.Message = "Can't get to the HasPostsViaPostModified's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostModifiedGmtHandler(self *macross.Context) error {
+func GetHasPostsViaPostModifiedGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostModifiedGmt := self.Args("post_modified_gmt").Time()
 	if helper.IsHas(iPostModifiedGmt) {
-		_Posts := model.HasPostsByPostModifiedGmt(iPostModifiedGmt)
+		_Posts := model.HasPostsViaPostModifiedGmt(iPostModifiedGmt)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostModifiedGmt's args."
+	herr.Message = "Can't get to the HasPostsViaPostModifiedGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostContentFilteredHandler(self *macross.Context) error {
+func GetHasPostsViaPostContentFilteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostContentFiltered := self.Args("post_content_filtered").String()
 	if helper.IsHas(iPostContentFiltered) {
-		_Posts := model.HasPostsByPostContentFiltered(iPostContentFiltered)
+		_Posts := model.HasPostsViaPostContentFiltered(iPostContentFiltered)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostContentFiltered's args."
+	herr.Message = "Can't get to the HasPostsViaPostContentFiltered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostParentHandler(self *macross.Context) error {
+func GetHasPostsViaPostParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostParent := self.Args("post_parent").MustInt64()
 	if helper.IsHas(iPostParent) {
-		_Posts := model.HasPostsByPostParent(iPostParent)
+		_Posts := model.HasPostsViaPostParent(iPostParent)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostParent's args."
+	herr.Message = "Can't get to the HasPostsViaPostParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByGuidHandler(self *macross.Context) error {
+func GetHasPostsViaGuidHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iGuid := self.Args("guid").String()
 	if helper.IsHas(iGuid) {
-		_Posts := model.HasPostsByGuid(iGuid)
+		_Posts := model.HasPostsViaGuid(iGuid)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByGuid's args."
+	herr.Message = "Can't get to the HasPostsViaGuid's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByMenuOrderHandler(self *macross.Context) error {
+func GetHasPostsViaMenuOrderHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMenuOrder := self.Args("menu_order").MustInt()
 	if helper.IsHas(iMenuOrder) {
-		_Posts := model.HasPostsByMenuOrder(iMenuOrder)
+		_Posts := model.HasPostsViaMenuOrder(iMenuOrder)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByMenuOrder's args."
+	herr.Message = "Can't get to the HasPostsViaMenuOrder's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostTypeHandler(self *macross.Context) error {
+func GetHasPostsViaPostTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostType := self.Args("post_type").String()
 	if helper.IsHas(iPostType) {
-		_Posts := model.HasPostsByPostType(iPostType)
+		_Posts := model.HasPostsViaPostType(iPostType)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostType's args."
+	herr.Message = "Can't get to the HasPostsViaPostType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByPostMimeTypeHandler(self *macross.Context) error {
+func GetHasPostsViaPostMimeTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostMimeType := self.Args("post_mime_type").String()
 	if helper.IsHas(iPostMimeType) {
-		_Posts := model.HasPostsByPostMimeType(iPostMimeType)
+		_Posts := model.HasPostsViaPostMimeType(iPostMimeType)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByPostMimeType's args."
+	herr.Message = "Can't get to the HasPostsViaPostMimeType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasPostsByCommentCountHandler(self *macross.Context) error {
+func GetHasPostsViaCommentCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentCount := self.Args("comment_count").MustInt64()
 	if helper.IsHas(iCommentCount) {
-		_Posts := model.HasPostsByCommentCount(iCommentCount)
+		_Posts := model.HasPostsViaCommentCount(iCommentCount)
 		var m = map[string]interface{}{}
 		m["posts"] = _Posts
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasPostsByCommentCount's args."
+	herr.Message = "Can't get to the HasPostsViaCommentCount's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByIdHandler(self *macross.Context) error {
+func GetPostsViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iId := self.Args("ID").MustInt64()
 	if helper.IsHas(iId) {
-		_Posts, _error := model.GetPostsById(iId)
+		_Posts, _error := model.GetPostsViaId(iId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsById's args."
+	herr.Message = "Can't get to the GetPostsViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostAuthorHandler(self *macross.Context) error {
+func GetPostsViaPostAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostAuthor := self.Args("post_author").MustInt64()
 	if helper.IsHas(iPostAuthor) {
-		_Posts, _error := model.GetPostsByPostAuthor(iPostAuthor)
+		_Posts, _error := model.GetPostsViaPostAuthor(iPostAuthor)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostAuthor's args."
+	herr.Message = "Can't get to the GetPostsViaPostAuthor's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostDateHandler(self *macross.Context) error {
+func GetPostsViaPostDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostDate := self.Args("post_date").Time()
 	if helper.IsHas(iPostDate) {
-		_Posts, _error := model.GetPostsByPostDate(iPostDate)
+		_Posts, _error := model.GetPostsViaPostDate(iPostDate)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostDate's args."
+	herr.Message = "Can't get to the GetPostsViaPostDate's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostDateGmtHandler(self *macross.Context) error {
+func GetPostsViaPostDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostDateGmt := self.Args("post_date_gmt").Time()
 	if helper.IsHas(iPostDateGmt) {
-		_Posts, _error := model.GetPostsByPostDateGmt(iPostDateGmt)
+		_Posts, _error := model.GetPostsViaPostDateGmt(iPostDateGmt)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostDateGmt's args."
+	herr.Message = "Can't get to the GetPostsViaPostDateGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostContentHandler(self *macross.Context) error {
+func GetPostsViaPostContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostContent := self.Args("post_content").String()
 	if helper.IsHas(iPostContent) {
-		_Posts, _error := model.GetPostsByPostContent(iPostContent)
+		_Posts, _error := model.GetPostsViaPostContent(iPostContent)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostContent's args."
+	herr.Message = "Can't get to the GetPostsViaPostContent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostTitleHandler(self *macross.Context) error {
+func GetPostsViaPostTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostTitle := self.Args("post_title").String()
 	if helper.IsHas(iPostTitle) {
-		_Posts, _error := model.GetPostsByPostTitle(iPostTitle)
+		_Posts, _error := model.GetPostsViaPostTitle(iPostTitle)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostTitle's args."
+	herr.Message = "Can't get to the GetPostsViaPostTitle's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostExcerptHandler(self *macross.Context) error {
+func GetPostsViaPostExcerptHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostExcerpt := self.Args("post_excerpt").String()
 	if helper.IsHas(iPostExcerpt) {
-		_Posts, _error := model.GetPostsByPostExcerpt(iPostExcerpt)
+		_Posts, _error := model.GetPostsViaPostExcerpt(iPostExcerpt)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostExcerpt's args."
+	herr.Message = "Can't get to the GetPostsViaPostExcerpt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostStatusHandler(self *macross.Context) error {
+func GetPostsViaPostStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostStatus := self.Args("post_status").String()
 	if helper.IsHas(iPostStatus) {
-		_Posts, _error := model.GetPostsByPostStatus(iPostStatus)
+		_Posts, _error := model.GetPostsViaPostStatus(iPostStatus)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostStatus's args."
+	herr.Message = "Can't get to the GetPostsViaPostStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByCommentStatusHandler(self *macross.Context) error {
+func GetPostsViaCommentStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentStatus := self.Args("comment_status").String()
 	if helper.IsHas(iCommentStatus) {
-		_Posts, _error := model.GetPostsByCommentStatus(iCommentStatus)
+		_Posts, _error := model.GetPostsViaCommentStatus(iCommentStatus)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByCommentStatus's args."
+	herr.Message = "Can't get to the GetPostsViaCommentStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPingStatusHandler(self *macross.Context) error {
+func GetPostsViaPingStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPingStatus := self.Args("ping_status").String()
 	if helper.IsHas(iPingStatus) {
-		_Posts, _error := model.GetPostsByPingStatus(iPingStatus)
+		_Posts, _error := model.GetPostsViaPingStatus(iPingStatus)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPingStatus's args."
+	herr.Message = "Can't get to the GetPostsViaPingStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostPasswordHandler(self *macross.Context) error {
+func GetPostsViaPostPasswordHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostPassword := self.Args("post_password").String()
 	if helper.IsHas(iPostPassword) {
-		_Posts, _error := model.GetPostsByPostPassword(iPostPassword)
+		_Posts, _error := model.GetPostsViaPostPassword(iPostPassword)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostPassword's args."
+	herr.Message = "Can't get to the GetPostsViaPostPassword's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostNameHandler(self *macross.Context) error {
+func GetPostsViaPostNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostName := self.Args("post_name").String()
 	if helper.IsHas(iPostName) {
-		_Posts, _error := model.GetPostsByPostName(iPostName)
+		_Posts, _error := model.GetPostsViaPostName(iPostName)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostName's args."
+	herr.Message = "Can't get to the GetPostsViaPostName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByToPingHandler(self *macross.Context) error {
+func GetPostsViaToPingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iToPing := self.Args("to_ping").String()
 	if helper.IsHas(iToPing) {
-		_Posts, _error := model.GetPostsByToPing(iToPing)
+		_Posts, _error := model.GetPostsViaToPing(iToPing)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByToPing's args."
+	herr.Message = "Can't get to the GetPostsViaToPing's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPingedHandler(self *macross.Context) error {
+func GetPostsViaPingedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPinged := self.Args("pinged").String()
 	if helper.IsHas(iPinged) {
-		_Posts, _error := model.GetPostsByPinged(iPinged)
+		_Posts, _error := model.GetPostsViaPinged(iPinged)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPinged's args."
+	herr.Message = "Can't get to the GetPostsViaPinged's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostModifiedHandler(self *macross.Context) error {
+func GetPostsViaPostModifiedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostModified := self.Args("post_modified").Time()
 	if helper.IsHas(iPostModified) {
-		_Posts, _error := model.GetPostsByPostModified(iPostModified)
+		_Posts, _error := model.GetPostsViaPostModified(iPostModified)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostModified's args."
+	herr.Message = "Can't get to the GetPostsViaPostModified's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostModifiedGmtHandler(self *macross.Context) error {
+func GetPostsViaPostModifiedGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostModifiedGmt := self.Args("post_modified_gmt").Time()
 	if helper.IsHas(iPostModifiedGmt) {
-		_Posts, _error := model.GetPostsByPostModifiedGmt(iPostModifiedGmt)
+		_Posts, _error := model.GetPostsViaPostModifiedGmt(iPostModifiedGmt)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostModifiedGmt's args."
+	herr.Message = "Can't get to the GetPostsViaPostModifiedGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostContentFilteredHandler(self *macross.Context) error {
+func GetPostsViaPostContentFilteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostContentFiltered := self.Args("post_content_filtered").String()
 	if helper.IsHas(iPostContentFiltered) {
-		_Posts, _error := model.GetPostsByPostContentFiltered(iPostContentFiltered)
+		_Posts, _error := model.GetPostsViaPostContentFiltered(iPostContentFiltered)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostContentFiltered's args."
+	herr.Message = "Can't get to the GetPostsViaPostContentFiltered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostParentHandler(self *macross.Context) error {
+func GetPostsViaPostParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostParent := self.Args("post_parent").MustInt64()
 	if helper.IsHas(iPostParent) {
-		_Posts, _error := model.GetPostsByPostParent(iPostParent)
+		_Posts, _error := model.GetPostsViaPostParent(iPostParent)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostParent's args."
+	herr.Message = "Can't get to the GetPostsViaPostParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByGuidHandler(self *macross.Context) error {
+func GetPostsViaGuidHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iGuid := self.Args("guid").String()
 	if helper.IsHas(iGuid) {
-		_Posts, _error := model.GetPostsByGuid(iGuid)
+		_Posts, _error := model.GetPostsViaGuid(iGuid)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByGuid's args."
+	herr.Message = "Can't get to the GetPostsViaGuid's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByMenuOrderHandler(self *macross.Context) error {
+func GetPostsViaMenuOrderHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iMenuOrder := self.Args("menu_order").MustInt()
 	if helper.IsHas(iMenuOrder) {
-		_Posts, _error := model.GetPostsByMenuOrder(iMenuOrder)
+		_Posts, _error := model.GetPostsViaMenuOrder(iMenuOrder)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByMenuOrder's args."
+	herr.Message = "Can't get to the GetPostsViaMenuOrder's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostTypeHandler(self *macross.Context) error {
+func GetPostsViaPostTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostType := self.Args("post_type").String()
 	if helper.IsHas(iPostType) {
-		_Posts, _error := model.GetPostsByPostType(iPostType)
+		_Posts, _error := model.GetPostsViaPostType(iPostType)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostType's args."
+	herr.Message = "Can't get to the GetPostsViaPostType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByPostMimeTypeHandler(self *macross.Context) error {
+func GetPostsViaPostMimeTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iPostMimeType := self.Args("post_mime_type").String()
 	if helper.IsHas(iPostMimeType) {
-		_Posts, _error := model.GetPostsByPostMimeType(iPostMimeType)
+		_Posts, _error := model.GetPostsViaPostMimeType(iPostMimeType)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByPostMimeType's args."
+	herr.Message = "Can't get to the GetPostsViaPostMimeType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetPostsByCommentCountHandler(self *macross.Context) error {
+func GetPostsViaCommentCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCommentCount := self.Args("comment_count").MustInt64()
 	if helper.IsHas(iCommentCount) {
-		_Posts, _error := model.GetPostsByCommentCount(iCommentCount)
+		_Posts, _error := model.GetPostsViaCommentCount(iCommentCount)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the GetPostsByCommentCount's args."
+	herr.Message = "Can't get to the GetPostsViaCommentCount's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByIdHandler(self *macross.Context) error {
+func PostSetPostsViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45778,18 +45778,18 @@ func PostSetPostsByIdHandler(self *macross.Context) error {
 	if helper.IsHas(Id_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsById(Id_, &iPosts)
+		_Posts, _error := model.SetPostsViaId(Id_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsById's args."
+	herr.Message = "Can't get to the SetPostsViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostAuthorHandler(self *macross.Context) error {
+func PostSetPostsViaPostAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45797,18 +45797,18 @@ func PostSetPostsByPostAuthorHandler(self *macross.Context) error {
 	if helper.IsHas(PostAuthor_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostAuthor(PostAuthor_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostAuthor(PostAuthor_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostAuthor's args."
+	herr.Message = "Can't get to the SetPostsViaPostAuthor's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostDateHandler(self *macross.Context) error {
+func PostSetPostsViaPostDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45816,18 +45816,18 @@ func PostSetPostsByPostDateHandler(self *macross.Context) error {
 	if helper.IsHas(PostDate_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostDate(PostDate_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostDate(PostDate_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostDate's args."
+	herr.Message = "Can't get to the SetPostsViaPostDate's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostDateGmtHandler(self *macross.Context) error {
+func PostSetPostsViaPostDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45835,18 +45835,18 @@ func PostSetPostsByPostDateGmtHandler(self *macross.Context) error {
 	if helper.IsHas(PostDateGmt_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostDateGmt(PostDateGmt_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostDateGmt(PostDateGmt_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostDateGmt's args."
+	herr.Message = "Can't get to the SetPostsViaPostDateGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostContentHandler(self *macross.Context) error {
+func PostSetPostsViaPostContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45854,18 +45854,18 @@ func PostSetPostsByPostContentHandler(self *macross.Context) error {
 	if helper.IsHas(PostContent_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostContent(PostContent_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostContent(PostContent_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostContent's args."
+	herr.Message = "Can't get to the SetPostsViaPostContent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostTitleHandler(self *macross.Context) error {
+func PostSetPostsViaPostTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45873,18 +45873,18 @@ func PostSetPostsByPostTitleHandler(self *macross.Context) error {
 	if helper.IsHas(PostTitle_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostTitle(PostTitle_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostTitle(PostTitle_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostTitle's args."
+	herr.Message = "Can't get to the SetPostsViaPostTitle's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostExcerptHandler(self *macross.Context) error {
+func PostSetPostsViaPostExcerptHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45892,18 +45892,18 @@ func PostSetPostsByPostExcerptHandler(self *macross.Context) error {
 	if helper.IsHas(PostExcerpt_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostExcerpt(PostExcerpt_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostExcerpt(PostExcerpt_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostExcerpt's args."
+	herr.Message = "Can't get to the SetPostsViaPostExcerpt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostStatusHandler(self *macross.Context) error {
+func PostSetPostsViaPostStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45911,18 +45911,18 @@ func PostSetPostsByPostStatusHandler(self *macross.Context) error {
 	if helper.IsHas(PostStatus_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostStatus(PostStatus_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostStatus(PostStatus_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostStatus's args."
+	herr.Message = "Can't get to the SetPostsViaPostStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByCommentStatusHandler(self *macross.Context) error {
+func PostSetPostsViaCommentStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45930,18 +45930,18 @@ func PostSetPostsByCommentStatusHandler(self *macross.Context) error {
 	if helper.IsHas(CommentStatus_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByCommentStatus(CommentStatus_, &iPosts)
+		_Posts, _error := model.SetPostsViaCommentStatus(CommentStatus_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByCommentStatus's args."
+	herr.Message = "Can't get to the SetPostsViaCommentStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPingStatusHandler(self *macross.Context) error {
+func PostSetPostsViaPingStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45949,18 +45949,18 @@ func PostSetPostsByPingStatusHandler(self *macross.Context) error {
 	if helper.IsHas(PingStatus_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPingStatus(PingStatus_, &iPosts)
+		_Posts, _error := model.SetPostsViaPingStatus(PingStatus_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPingStatus's args."
+	herr.Message = "Can't get to the SetPostsViaPingStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostPasswordHandler(self *macross.Context) error {
+func PostSetPostsViaPostPasswordHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45968,18 +45968,18 @@ func PostSetPostsByPostPasswordHandler(self *macross.Context) error {
 	if helper.IsHas(PostPassword_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostPassword(PostPassword_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostPassword(PostPassword_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostPassword's args."
+	herr.Message = "Can't get to the SetPostsViaPostPassword's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostNameHandler(self *macross.Context) error {
+func PostSetPostsViaPostNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -45987,18 +45987,18 @@ func PostSetPostsByPostNameHandler(self *macross.Context) error {
 	if helper.IsHas(PostName_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostName(PostName_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostName(PostName_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostName's args."
+	herr.Message = "Can't get to the SetPostsViaPostName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByToPingHandler(self *macross.Context) error {
+func PostSetPostsViaToPingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46006,18 +46006,18 @@ func PostSetPostsByToPingHandler(self *macross.Context) error {
 	if helper.IsHas(ToPing_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByToPing(ToPing_, &iPosts)
+		_Posts, _error := model.SetPostsViaToPing(ToPing_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByToPing's args."
+	herr.Message = "Can't get to the SetPostsViaToPing's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPingedHandler(self *macross.Context) error {
+func PostSetPostsViaPingedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46025,18 +46025,18 @@ func PostSetPostsByPingedHandler(self *macross.Context) error {
 	if helper.IsHas(Pinged_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPinged(Pinged_, &iPosts)
+		_Posts, _error := model.SetPostsViaPinged(Pinged_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPinged's args."
+	herr.Message = "Can't get to the SetPostsViaPinged's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostModifiedHandler(self *macross.Context) error {
+func PostSetPostsViaPostModifiedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46044,18 +46044,18 @@ func PostSetPostsByPostModifiedHandler(self *macross.Context) error {
 	if helper.IsHas(PostModified_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostModified(PostModified_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostModified(PostModified_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostModified's args."
+	herr.Message = "Can't get to the SetPostsViaPostModified's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostModifiedGmtHandler(self *macross.Context) error {
+func PostSetPostsViaPostModifiedGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46063,18 +46063,18 @@ func PostSetPostsByPostModifiedGmtHandler(self *macross.Context) error {
 	if helper.IsHas(PostModifiedGmt_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostModifiedGmt(PostModifiedGmt_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostModifiedGmt(PostModifiedGmt_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostModifiedGmt's args."
+	herr.Message = "Can't get to the SetPostsViaPostModifiedGmt's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostContentFilteredHandler(self *macross.Context) error {
+func PostSetPostsViaPostContentFilteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46082,18 +46082,18 @@ func PostSetPostsByPostContentFilteredHandler(self *macross.Context) error {
 	if helper.IsHas(PostContentFiltered_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostContentFiltered(PostContentFiltered_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostContentFiltered(PostContentFiltered_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostContentFiltered's args."
+	herr.Message = "Can't get to the SetPostsViaPostContentFiltered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostParentHandler(self *macross.Context) error {
+func PostSetPostsViaPostParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46101,18 +46101,18 @@ func PostSetPostsByPostParentHandler(self *macross.Context) error {
 	if helper.IsHas(PostParent_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostParent(PostParent_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostParent(PostParent_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostParent's args."
+	herr.Message = "Can't get to the SetPostsViaPostParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByGuidHandler(self *macross.Context) error {
+func PostSetPostsViaGuidHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46120,18 +46120,18 @@ func PostSetPostsByGuidHandler(self *macross.Context) error {
 	if helper.IsHas(Guid_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByGuid(Guid_, &iPosts)
+		_Posts, _error := model.SetPostsViaGuid(Guid_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByGuid's args."
+	herr.Message = "Can't get to the SetPostsViaGuid's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByMenuOrderHandler(self *macross.Context) error {
+func PostSetPostsViaMenuOrderHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46139,18 +46139,18 @@ func PostSetPostsByMenuOrderHandler(self *macross.Context) error {
 	if helper.IsHas(MenuOrder_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByMenuOrder(MenuOrder_, &iPosts)
+		_Posts, _error := model.SetPostsViaMenuOrder(MenuOrder_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByMenuOrder's args."
+	herr.Message = "Can't get to the SetPostsViaMenuOrder's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostTypeHandler(self *macross.Context) error {
+func PostSetPostsViaPostTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46158,18 +46158,18 @@ func PostSetPostsByPostTypeHandler(self *macross.Context) error {
 	if helper.IsHas(PostType_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostType(PostType_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostType(PostType_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostType's args."
+	herr.Message = "Can't get to the SetPostsViaPostType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByPostMimeTypeHandler(self *macross.Context) error {
+func PostSetPostsViaPostMimeTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46177,18 +46177,18 @@ func PostSetPostsByPostMimeTypeHandler(self *macross.Context) error {
 	if helper.IsHas(PostMimeType_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByPostMimeType(PostMimeType_, &iPosts)
+		_Posts, _error := model.SetPostsViaPostMimeType(PostMimeType_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByPostMimeType's args."
+	herr.Message = "Can't get to the SetPostsViaPostMimeType's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetPostsByCommentCountHandler(self *macross.Context) error {
+func PostSetPostsViaCommentCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46196,14 +46196,14 @@ func PostSetPostsByCommentCountHandler(self *macross.Context) error {
 	if helper.IsHas(CommentCount_) {
 		var iPosts model.Posts
 		self.Bind(&iPosts)
-		_Posts, _error := model.SetPostsByCommentCount(CommentCount_, &iPosts)
+		_Posts, _error := model.SetPostsViaCommentCount(CommentCount_, &iPosts)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Posts)
 	}
-	herr.Message = "Can't get to the SetPostsByCommentCount's args."
+	herr.Message = "Can't get to the SetPostsViaCommentCount's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -46256,7 +46256,7 @@ func PostPostsHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	_int64, _error := model.PostPosts(&iPosts)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -46274,7 +46274,7 @@ func PutPostsHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	_int64, _error := model.PutPosts(&iPosts)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -46285,14 +46285,14 @@ func PutPostsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByIdHandler(self *macross.Context) error {
+func PutPostsViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Id_ := self.Args("ID").MustInt64()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsById(Id_, &iPosts)
+	_int64, _error := model.PutPostsViaId(Id_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46302,14 +46302,14 @@ func PutPostsByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostAuthorHandler(self *macross.Context) error {
+func PutPostsViaPostAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostAuthor_ := self.Args("post_author").MustInt64()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostAuthor(PostAuthor_, &iPosts)
+	_int64, _error := model.PutPostsViaPostAuthor(PostAuthor_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46319,14 +46319,14 @@ func PutPostsByPostAuthorHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostDateHandler(self *macross.Context) error {
+func PutPostsViaPostDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostDate_ := self.Args("post_date").Time()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostDate(PostDate_, &iPosts)
+	_int64, _error := model.PutPostsViaPostDate(PostDate_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46336,14 +46336,14 @@ func PutPostsByPostDateHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostDateGmtHandler(self *macross.Context) error {
+func PutPostsViaPostDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostDateGmt_ := self.Args("post_date_gmt").Time()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostDateGmt(PostDateGmt_, &iPosts)
+	_int64, _error := model.PutPostsViaPostDateGmt(PostDateGmt_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46353,14 +46353,14 @@ func PutPostsByPostDateGmtHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostContentHandler(self *macross.Context) error {
+func PutPostsViaPostContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostContent_ := self.Args("post_content").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostContent(PostContent_, &iPosts)
+	_int64, _error := model.PutPostsViaPostContent(PostContent_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46370,14 +46370,14 @@ func PutPostsByPostContentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostTitleHandler(self *macross.Context) error {
+func PutPostsViaPostTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostTitle_ := self.Args("post_title").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostTitle(PostTitle_, &iPosts)
+	_int64, _error := model.PutPostsViaPostTitle(PostTitle_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46387,14 +46387,14 @@ func PutPostsByPostTitleHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostExcerptHandler(self *macross.Context) error {
+func PutPostsViaPostExcerptHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostExcerpt_ := self.Args("post_excerpt").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostExcerpt(PostExcerpt_, &iPosts)
+	_int64, _error := model.PutPostsViaPostExcerpt(PostExcerpt_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46404,14 +46404,14 @@ func PutPostsByPostExcerptHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostStatusHandler(self *macross.Context) error {
+func PutPostsViaPostStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostStatus_ := self.Args("post_status").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostStatus(PostStatus_, &iPosts)
+	_int64, _error := model.PutPostsViaPostStatus(PostStatus_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46421,14 +46421,14 @@ func PutPostsByPostStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByCommentStatusHandler(self *macross.Context) error {
+func PutPostsViaCommentStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentStatus_ := self.Args("comment_status").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByCommentStatus(CommentStatus_, &iPosts)
+	_int64, _error := model.PutPostsViaCommentStatus(CommentStatus_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46438,14 +46438,14 @@ func PutPostsByCommentStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPingStatusHandler(self *macross.Context) error {
+func PutPostsViaPingStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PingStatus_ := self.Args("ping_status").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPingStatus(PingStatus_, &iPosts)
+	_int64, _error := model.PutPostsViaPingStatus(PingStatus_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46455,14 +46455,14 @@ func PutPostsByPingStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostPasswordHandler(self *macross.Context) error {
+func PutPostsViaPostPasswordHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostPassword_ := self.Args("post_password").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostPassword(PostPassword_, &iPosts)
+	_int64, _error := model.PutPostsViaPostPassword(PostPassword_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46472,14 +46472,14 @@ func PutPostsByPostPasswordHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostNameHandler(self *macross.Context) error {
+func PutPostsViaPostNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostName_ := self.Args("post_name").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostName(PostName_, &iPosts)
+	_int64, _error := model.PutPostsViaPostName(PostName_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46489,14 +46489,14 @@ func PutPostsByPostNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByToPingHandler(self *macross.Context) error {
+func PutPostsViaToPingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	ToPing_ := self.Args("to_ping").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByToPing(ToPing_, &iPosts)
+	_int64, _error := model.PutPostsViaToPing(ToPing_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46506,14 +46506,14 @@ func PutPostsByToPingHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPingedHandler(self *macross.Context) error {
+func PutPostsViaPingedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Pinged_ := self.Args("pinged").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPinged(Pinged_, &iPosts)
+	_int64, _error := model.PutPostsViaPinged(Pinged_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46523,14 +46523,14 @@ func PutPostsByPingedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostModifiedHandler(self *macross.Context) error {
+func PutPostsViaPostModifiedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostModified_ := self.Args("post_modified").Time()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostModified(PostModified_, &iPosts)
+	_int64, _error := model.PutPostsViaPostModified(PostModified_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46540,14 +46540,14 @@ func PutPostsByPostModifiedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostModifiedGmtHandler(self *macross.Context) error {
+func PutPostsViaPostModifiedGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostModifiedGmt_ := self.Args("post_modified_gmt").Time()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostModifiedGmt(PostModifiedGmt_, &iPosts)
+	_int64, _error := model.PutPostsViaPostModifiedGmt(PostModifiedGmt_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46557,14 +46557,14 @@ func PutPostsByPostModifiedGmtHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostContentFilteredHandler(self *macross.Context) error {
+func PutPostsViaPostContentFilteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostContentFiltered_ := self.Args("post_content_filtered").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostContentFiltered(PostContentFiltered_, &iPosts)
+	_int64, _error := model.PutPostsViaPostContentFiltered(PostContentFiltered_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46574,14 +46574,14 @@ func PutPostsByPostContentFilteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostParentHandler(self *macross.Context) error {
+func PutPostsViaPostParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostParent_ := self.Args("post_parent").MustInt64()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostParent(PostParent_, &iPosts)
+	_int64, _error := model.PutPostsViaPostParent(PostParent_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46591,14 +46591,14 @@ func PutPostsByPostParentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByGuidHandler(self *macross.Context) error {
+func PutPostsViaGuidHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Guid_ := self.Args("guid").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByGuid(Guid_, &iPosts)
+	_int64, _error := model.PutPostsViaGuid(Guid_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46608,14 +46608,14 @@ func PutPostsByGuidHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByMenuOrderHandler(self *macross.Context) error {
+func PutPostsViaMenuOrderHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MenuOrder_ := self.Args("menu_order").MustInt()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByMenuOrder(MenuOrder_, &iPosts)
+	_int64, _error := model.PutPostsViaMenuOrder(MenuOrder_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46625,14 +46625,14 @@ func PutPostsByMenuOrderHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostTypeHandler(self *macross.Context) error {
+func PutPostsViaPostTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostType_ := self.Args("post_type").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostType(PostType_, &iPosts)
+	_int64, _error := model.PutPostsViaPostType(PostType_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46642,14 +46642,14 @@ func PutPostsByPostTypeHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByPostMimeTypeHandler(self *macross.Context) error {
+func PutPostsViaPostMimeTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostMimeType_ := self.Args("post_mime_type").String()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByPostMimeType(PostMimeType_, &iPosts)
+	_int64, _error := model.PutPostsViaPostMimeType(PostMimeType_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46659,14 +46659,14 @@ func PutPostsByPostMimeTypeHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutPostsByCommentCountHandler(self *macross.Context) error {
+func PutPostsViaCommentCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentCount_ := self.Args("comment_count").MustInt64()
 	var iPosts model.Posts
 	self.Bind(&iPosts)
-	_int64, _error := model.PutPostsByCommentCount(CommentCount_, &iPosts)
+	_int64, _error := model.PutPostsViaCommentCount(CommentCount_, &iPosts)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46676,7 +46676,7 @@ func PutPostsByCommentCountHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByIdHandler(self *macross.Context) error {
+func PutUpdatePostsViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46684,7 +46684,7 @@ func PutUpdatePostsByIdHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsById(Id_, &iMap)
+	_error := model.UpdatePostsViaId(Id_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46694,7 +46694,7 @@ func PutUpdatePostsByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostAuthorHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46702,7 +46702,7 @@ func PutUpdatePostsByPostAuthorHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostAuthor(PostAuthor_, &iMap)
+	_error := model.UpdatePostsViaPostAuthor(PostAuthor_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46712,7 +46712,7 @@ func PutUpdatePostsByPostAuthorHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostDateHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46720,7 +46720,7 @@ func PutUpdatePostsByPostDateHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostDate(PostDate_, &iMap)
+	_error := model.UpdatePostsViaPostDate(PostDate_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46730,7 +46730,7 @@ func PutUpdatePostsByPostDateHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostDateGmtHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46738,7 +46738,7 @@ func PutUpdatePostsByPostDateGmtHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostDateGmt(PostDateGmt_, &iMap)
+	_error := model.UpdatePostsViaPostDateGmt(PostDateGmt_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46748,7 +46748,7 @@ func PutUpdatePostsByPostDateGmtHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostContentHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46756,7 +46756,7 @@ func PutUpdatePostsByPostContentHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostContent(PostContent_, &iMap)
+	_error := model.UpdatePostsViaPostContent(PostContent_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46766,7 +46766,7 @@ func PutUpdatePostsByPostContentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostTitleHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46774,7 +46774,7 @@ func PutUpdatePostsByPostTitleHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostTitle(PostTitle_, &iMap)
+	_error := model.UpdatePostsViaPostTitle(PostTitle_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46784,7 +46784,7 @@ func PutUpdatePostsByPostTitleHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostExcerptHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostExcerptHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46792,7 +46792,7 @@ func PutUpdatePostsByPostExcerptHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostExcerpt(PostExcerpt_, &iMap)
+	_error := model.UpdatePostsViaPostExcerpt(PostExcerpt_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46802,7 +46802,7 @@ func PutUpdatePostsByPostExcerptHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostStatusHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46810,7 +46810,7 @@ func PutUpdatePostsByPostStatusHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostStatus(PostStatus_, &iMap)
+	_error := model.UpdatePostsViaPostStatus(PostStatus_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46820,7 +46820,7 @@ func PutUpdatePostsByPostStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByCommentStatusHandler(self *macross.Context) error {
+func PutUpdatePostsViaCommentStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46828,7 +46828,7 @@ func PutUpdatePostsByCommentStatusHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByCommentStatus(CommentStatus_, &iMap)
+	_error := model.UpdatePostsViaCommentStatus(CommentStatus_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46838,7 +46838,7 @@ func PutUpdatePostsByCommentStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPingStatusHandler(self *macross.Context) error {
+func PutUpdatePostsViaPingStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46846,7 +46846,7 @@ func PutUpdatePostsByPingStatusHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPingStatus(PingStatus_, &iMap)
+	_error := model.UpdatePostsViaPingStatus(PingStatus_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46856,7 +46856,7 @@ func PutUpdatePostsByPingStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostPasswordHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostPasswordHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46864,7 +46864,7 @@ func PutUpdatePostsByPostPasswordHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostPassword(PostPassword_, &iMap)
+	_error := model.UpdatePostsViaPostPassword(PostPassword_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46874,7 +46874,7 @@ func PutUpdatePostsByPostPasswordHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostNameHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46882,7 +46882,7 @@ func PutUpdatePostsByPostNameHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostName(PostName_, &iMap)
+	_error := model.UpdatePostsViaPostName(PostName_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46892,7 +46892,7 @@ func PutUpdatePostsByPostNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByToPingHandler(self *macross.Context) error {
+func PutUpdatePostsViaToPingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46900,7 +46900,7 @@ func PutUpdatePostsByToPingHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByToPing(ToPing_, &iMap)
+	_error := model.UpdatePostsViaToPing(ToPing_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46910,7 +46910,7 @@ func PutUpdatePostsByToPingHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPingedHandler(self *macross.Context) error {
+func PutUpdatePostsViaPingedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46918,7 +46918,7 @@ func PutUpdatePostsByPingedHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPinged(Pinged_, &iMap)
+	_error := model.UpdatePostsViaPinged(Pinged_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46928,7 +46928,7 @@ func PutUpdatePostsByPingedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostModifiedHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostModifiedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46936,7 +46936,7 @@ func PutUpdatePostsByPostModifiedHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostModified(PostModified_, &iMap)
+	_error := model.UpdatePostsViaPostModified(PostModified_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46946,7 +46946,7 @@ func PutUpdatePostsByPostModifiedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostModifiedGmtHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostModifiedGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46954,7 +46954,7 @@ func PutUpdatePostsByPostModifiedGmtHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostModifiedGmt(PostModifiedGmt_, &iMap)
+	_error := model.UpdatePostsViaPostModifiedGmt(PostModifiedGmt_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46964,7 +46964,7 @@ func PutUpdatePostsByPostModifiedGmtHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostContentFilteredHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostContentFilteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46972,7 +46972,7 @@ func PutUpdatePostsByPostContentFilteredHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostContentFiltered(PostContentFiltered_, &iMap)
+	_error := model.UpdatePostsViaPostContentFiltered(PostContentFiltered_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -46982,7 +46982,7 @@ func PutUpdatePostsByPostContentFilteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostParentHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -46990,7 +46990,7 @@ func PutUpdatePostsByPostParentHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostParent(PostParent_, &iMap)
+	_error := model.UpdatePostsViaPostParent(PostParent_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47000,7 +47000,7 @@ func PutUpdatePostsByPostParentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByGuidHandler(self *macross.Context) error {
+func PutUpdatePostsViaGuidHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -47008,7 +47008,7 @@ func PutUpdatePostsByGuidHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByGuid(Guid_, &iMap)
+	_error := model.UpdatePostsViaGuid(Guid_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47018,7 +47018,7 @@ func PutUpdatePostsByGuidHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByMenuOrderHandler(self *macross.Context) error {
+func PutUpdatePostsViaMenuOrderHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -47026,7 +47026,7 @@ func PutUpdatePostsByMenuOrderHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByMenuOrder(MenuOrder_, &iMap)
+	_error := model.UpdatePostsViaMenuOrder(MenuOrder_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47036,7 +47036,7 @@ func PutUpdatePostsByMenuOrderHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostTypeHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -47044,7 +47044,7 @@ func PutUpdatePostsByPostTypeHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostType(PostType_, &iMap)
+	_error := model.UpdatePostsViaPostType(PostType_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47054,7 +47054,7 @@ func PutUpdatePostsByPostTypeHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByPostMimeTypeHandler(self *macross.Context) error {
+func PutUpdatePostsViaPostMimeTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -47062,7 +47062,7 @@ func PutUpdatePostsByPostMimeTypeHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByPostMimeType(PostMimeType_, &iMap)
+	_error := model.UpdatePostsViaPostMimeType(PostMimeType_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47072,7 +47072,7 @@ func PutUpdatePostsByPostMimeTypeHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdatePostsByCommentCountHandler(self *macross.Context) error {
+func PutUpdatePostsViaCommentCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -47080,7 +47080,7 @@ func PutUpdatePostsByCommentCountHandler(self *macross.Context) error {
 	var iPosts model.Posts
 	self.Bind(&iPosts)
 	var iMap = helper.StructToMap(iPosts)
-	_error := model.UpdatePostsByCommentCount(CommentCount_, &iMap)
+	_error := model.UpdatePostsViaCommentCount(CommentCount_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47107,12 +47107,12 @@ func DeletePostsHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByIdHandler(self *macross.Context) error {
+func DeletePostsViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Id_ := self.Args("ID").MustInt64()
-	_error := model.DeletePostsById(Id_)
+	_error := model.DeletePostsViaId(Id_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47122,12 +47122,12 @@ func DeletePostsByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostAuthorHandler(self *macross.Context) error {
+func DeletePostsViaPostAuthorHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostAuthor_ := self.Args("post_author").MustInt64()
-	_error := model.DeletePostsByPostAuthor(PostAuthor_)
+	_error := model.DeletePostsViaPostAuthor(PostAuthor_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47137,12 +47137,12 @@ func DeletePostsByPostAuthorHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostDateHandler(self *macross.Context) error {
+func DeletePostsViaPostDateHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostDate_ := self.Args("post_date").Time()
-	_error := model.DeletePostsByPostDate(PostDate_)
+	_error := model.DeletePostsViaPostDate(PostDate_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47152,12 +47152,12 @@ func DeletePostsByPostDateHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostDateGmtHandler(self *macross.Context) error {
+func DeletePostsViaPostDateGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostDateGmt_ := self.Args("post_date_gmt").Time()
-	_error := model.DeletePostsByPostDateGmt(PostDateGmt_)
+	_error := model.DeletePostsViaPostDateGmt(PostDateGmt_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47167,12 +47167,12 @@ func DeletePostsByPostDateGmtHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostContentHandler(self *macross.Context) error {
+func DeletePostsViaPostContentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostContent_ := self.Args("post_content").String()
-	_error := model.DeletePostsByPostContent(PostContent_)
+	_error := model.DeletePostsViaPostContent(PostContent_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47182,12 +47182,12 @@ func DeletePostsByPostContentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostTitleHandler(self *macross.Context) error {
+func DeletePostsViaPostTitleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostTitle_ := self.Args("post_title").String()
-	_error := model.DeletePostsByPostTitle(PostTitle_)
+	_error := model.DeletePostsViaPostTitle(PostTitle_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47197,12 +47197,12 @@ func DeletePostsByPostTitleHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostExcerptHandler(self *macross.Context) error {
+func DeletePostsViaPostExcerptHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostExcerpt_ := self.Args("post_excerpt").String()
-	_error := model.DeletePostsByPostExcerpt(PostExcerpt_)
+	_error := model.DeletePostsViaPostExcerpt(PostExcerpt_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47212,12 +47212,12 @@ func DeletePostsByPostExcerptHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostStatusHandler(self *macross.Context) error {
+func DeletePostsViaPostStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostStatus_ := self.Args("post_status").String()
-	_error := model.DeletePostsByPostStatus(PostStatus_)
+	_error := model.DeletePostsViaPostStatus(PostStatus_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47227,12 +47227,12 @@ func DeletePostsByPostStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByCommentStatusHandler(self *macross.Context) error {
+func DeletePostsViaCommentStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentStatus_ := self.Args("comment_status").String()
-	_error := model.DeletePostsByCommentStatus(CommentStatus_)
+	_error := model.DeletePostsViaCommentStatus(CommentStatus_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47242,12 +47242,12 @@ func DeletePostsByCommentStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPingStatusHandler(self *macross.Context) error {
+func DeletePostsViaPingStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PingStatus_ := self.Args("ping_status").String()
-	_error := model.DeletePostsByPingStatus(PingStatus_)
+	_error := model.DeletePostsViaPingStatus(PingStatus_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47257,12 +47257,12 @@ func DeletePostsByPingStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostPasswordHandler(self *macross.Context) error {
+func DeletePostsViaPostPasswordHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostPassword_ := self.Args("post_password").String()
-	_error := model.DeletePostsByPostPassword(PostPassword_)
+	_error := model.DeletePostsViaPostPassword(PostPassword_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47272,12 +47272,12 @@ func DeletePostsByPostPasswordHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostNameHandler(self *macross.Context) error {
+func DeletePostsViaPostNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostName_ := self.Args("post_name").String()
-	_error := model.DeletePostsByPostName(PostName_)
+	_error := model.DeletePostsViaPostName(PostName_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47287,12 +47287,12 @@ func DeletePostsByPostNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByToPingHandler(self *macross.Context) error {
+func DeletePostsViaToPingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	ToPing_ := self.Args("to_ping").String()
-	_error := model.DeletePostsByToPing(ToPing_)
+	_error := model.DeletePostsViaToPing(ToPing_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47302,12 +47302,12 @@ func DeletePostsByToPingHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPingedHandler(self *macross.Context) error {
+func DeletePostsViaPingedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Pinged_ := self.Args("pinged").String()
-	_error := model.DeletePostsByPinged(Pinged_)
+	_error := model.DeletePostsViaPinged(Pinged_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47317,12 +47317,12 @@ func DeletePostsByPingedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostModifiedHandler(self *macross.Context) error {
+func DeletePostsViaPostModifiedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostModified_ := self.Args("post_modified").Time()
-	_error := model.DeletePostsByPostModified(PostModified_)
+	_error := model.DeletePostsViaPostModified(PostModified_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47332,12 +47332,12 @@ func DeletePostsByPostModifiedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostModifiedGmtHandler(self *macross.Context) error {
+func DeletePostsViaPostModifiedGmtHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostModifiedGmt_ := self.Args("post_modified_gmt").Time()
-	_error := model.DeletePostsByPostModifiedGmt(PostModifiedGmt_)
+	_error := model.DeletePostsViaPostModifiedGmt(PostModifiedGmt_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47347,12 +47347,12 @@ func DeletePostsByPostModifiedGmtHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostContentFilteredHandler(self *macross.Context) error {
+func DeletePostsViaPostContentFilteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostContentFiltered_ := self.Args("post_content_filtered").String()
-	_error := model.DeletePostsByPostContentFiltered(PostContentFiltered_)
+	_error := model.DeletePostsViaPostContentFiltered(PostContentFiltered_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47362,12 +47362,12 @@ func DeletePostsByPostContentFilteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostParentHandler(self *macross.Context) error {
+func DeletePostsViaPostParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostParent_ := self.Args("post_parent").MustInt64()
-	_error := model.DeletePostsByPostParent(PostParent_)
+	_error := model.DeletePostsViaPostParent(PostParent_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47377,12 +47377,12 @@ func DeletePostsByPostParentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByGuidHandler(self *macross.Context) error {
+func DeletePostsViaGuidHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Guid_ := self.Args("guid").String()
-	_error := model.DeletePostsByGuid(Guid_)
+	_error := model.DeletePostsViaGuid(Guid_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47392,12 +47392,12 @@ func DeletePostsByGuidHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByMenuOrderHandler(self *macross.Context) error {
+func DeletePostsViaMenuOrderHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	MenuOrder_ := self.Args("menu_order").MustInt()
-	_error := model.DeletePostsByMenuOrder(MenuOrder_)
+	_error := model.DeletePostsViaMenuOrder(MenuOrder_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47407,12 +47407,12 @@ func DeletePostsByMenuOrderHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostTypeHandler(self *macross.Context) error {
+func DeletePostsViaPostTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostType_ := self.Args("post_type").String()
-	_error := model.DeletePostsByPostType(PostType_)
+	_error := model.DeletePostsViaPostType(PostType_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47422,12 +47422,12 @@ func DeletePostsByPostTypeHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByPostMimeTypeHandler(self *macross.Context) error {
+func DeletePostsViaPostMimeTypeHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	PostMimeType_ := self.Args("post_mime_type").String()
-	_error := model.DeletePostsByPostMimeType(PostMimeType_)
+	_error := model.DeletePostsViaPostMimeType(PostMimeType_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -47437,12 +47437,12 @@ func DeletePostsByPostMimeTypeHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeletePostsByCommentCountHandler(self *macross.Context) error {
+func DeletePostsViaCommentCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	CommentCount_ := self.Args("comment_count").MustInt64()
-	_error := model.DeletePostsByCommentCount(CommentCount_)
+	_error := model.DeletePostsViaCommentCount(CommentCount_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

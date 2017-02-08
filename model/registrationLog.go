@@ -18,32 +18,32 @@ func GetRegistrationLogsCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetRegistrationLogCountById Get RegistrationLog via Id
-func GetRegistrationLogCountById(iId int64) int64 {
+// GetRegistrationLogCountViaId Get RegistrationLog via Id
+func GetRegistrationLogCountViaId(iId int64) int64 {
 	n, _ := Engine.Where("ID = ?", iId).Count(&RegistrationLog{Id: iId})
 	return n
 }
 
-// GetRegistrationLogCountByEmail Get RegistrationLog via Email
-func GetRegistrationLogCountByEmail(iEmail string) int64 {
+// GetRegistrationLogCountViaEmail Get RegistrationLog via Email
+func GetRegistrationLogCountViaEmail(iEmail string) int64 {
 	n, _ := Engine.Where("email = ?", iEmail).Count(&RegistrationLog{Email: iEmail})
 	return n
 }
 
-// GetRegistrationLogCountByIp Get RegistrationLog via Ip
-func GetRegistrationLogCountByIp(iIp string) int64 {
+// GetRegistrationLogCountViaIp Get RegistrationLog via Ip
+func GetRegistrationLogCountViaIp(iIp string) int64 {
 	n, _ := Engine.Where("IP = ?", iIp).Count(&RegistrationLog{Ip: iIp})
 	return n
 }
 
-// GetRegistrationLogCountByBlogId Get RegistrationLog via BlogId
-func GetRegistrationLogCountByBlogId(iBlogId int64) int64 {
+// GetRegistrationLogCountViaBlogId Get RegistrationLog via BlogId
+func GetRegistrationLogCountViaBlogId(iBlogId int64) int64 {
 	n, _ := Engine.Where("blog_id = ?", iBlogId).Count(&RegistrationLog{BlogId: iBlogId})
 	return n
 }
 
-// GetRegistrationLogCountByDateRegistered Get RegistrationLog via DateRegistered
-func GetRegistrationLogCountByDateRegistered(iDateRegistered time.Time) int64 {
+// GetRegistrationLogCountViaDateRegistered Get RegistrationLog via DateRegistered
+func GetRegistrationLogCountViaDateRegistered(iDateRegistered time.Time) int64 {
 	n, _ := Engine.Where("date_registered = ?", iDateRegistered).Count(&RegistrationLog{DateRegistered: iDateRegistered})
 	return n
 }
@@ -195,43 +195,43 @@ func GetRegistrationLogs(offset int, limit int, field string) (*[]*RegistrationL
 	return _RegistrationLog, err
 }
 
-// GetRegistrationLogsById Get RegistrationLogs via Id
-func GetRegistrationLogsById(offset int, limit int, Id_ int64, field string) (*[]*RegistrationLog, error) {
+// GetRegistrationLogsViaId Get RegistrationLogs via Id
+func GetRegistrationLogsViaId(offset int, limit int, Id_ int64, field string) (*[]*RegistrationLog, error) {
 	var _RegistrationLog = new([]*RegistrationLog)
 	err := Engine.Table("registration_log").Where("ID = ?", Id_).Limit(limit, offset).Desc(field).Find(_RegistrationLog)
 	return _RegistrationLog, err
 }
 
-// GetRegistrationLogsByEmail Get RegistrationLogs via Email
-func GetRegistrationLogsByEmail(offset int, limit int, Email_ string, field string) (*[]*RegistrationLog, error) {
+// GetRegistrationLogsViaEmail Get RegistrationLogs via Email
+func GetRegistrationLogsViaEmail(offset int, limit int, Email_ string, field string) (*[]*RegistrationLog, error) {
 	var _RegistrationLog = new([]*RegistrationLog)
 	err := Engine.Table("registration_log").Where("email = ?", Email_).Limit(limit, offset).Desc(field).Find(_RegistrationLog)
 	return _RegistrationLog, err
 }
 
-// GetRegistrationLogsByIp Get RegistrationLogs via Ip
-func GetRegistrationLogsByIp(offset int, limit int, Ip_ string, field string) (*[]*RegistrationLog, error) {
+// GetRegistrationLogsViaIp Get RegistrationLogs via Ip
+func GetRegistrationLogsViaIp(offset int, limit int, Ip_ string, field string) (*[]*RegistrationLog, error) {
 	var _RegistrationLog = new([]*RegistrationLog)
 	err := Engine.Table("registration_log").Where("IP = ?", Ip_).Limit(limit, offset).Desc(field).Find(_RegistrationLog)
 	return _RegistrationLog, err
 }
 
-// GetRegistrationLogsByBlogId Get RegistrationLogs via BlogId
-func GetRegistrationLogsByBlogId(offset int, limit int, BlogId_ int64, field string) (*[]*RegistrationLog, error) {
+// GetRegistrationLogsViaBlogId Get RegistrationLogs via BlogId
+func GetRegistrationLogsViaBlogId(offset int, limit int, BlogId_ int64, field string) (*[]*RegistrationLog, error) {
 	var _RegistrationLog = new([]*RegistrationLog)
 	err := Engine.Table("registration_log").Where("blog_id = ?", BlogId_).Limit(limit, offset).Desc(field).Find(_RegistrationLog)
 	return _RegistrationLog, err
 }
 
-// GetRegistrationLogsByDateRegistered Get RegistrationLogs via DateRegistered
-func GetRegistrationLogsByDateRegistered(offset int, limit int, DateRegistered_ time.Time, field string) (*[]*RegistrationLog, error) {
+// GetRegistrationLogsViaDateRegistered Get RegistrationLogs via DateRegistered
+func GetRegistrationLogsViaDateRegistered(offset int, limit int, DateRegistered_ time.Time, field string) (*[]*RegistrationLog, error) {
 	var _RegistrationLog = new([]*RegistrationLog)
 	err := Engine.Table("registration_log").Where("date_registered = ?", DateRegistered_).Limit(limit, offset).Desc(field).Find(_RegistrationLog)
 	return _RegistrationLog, err
 }
 
-// HasRegistrationLogById Has RegistrationLog via Id
-func HasRegistrationLogById(iId int64) bool {
+// HasRegistrationLogViaId Has RegistrationLog via Id
+func HasRegistrationLogViaId(iId int64) bool {
 	if has, err := Engine.Where("ID = ?", iId).Get(new(RegistrationLog)); err != nil {
 		return false
 	} else {
@@ -242,8 +242,8 @@ func HasRegistrationLogById(iId int64) bool {
 	}
 }
 
-// HasRegistrationLogByEmail Has RegistrationLog via Email
-func HasRegistrationLogByEmail(iEmail string) bool {
+// HasRegistrationLogViaEmail Has RegistrationLog via Email
+func HasRegistrationLogViaEmail(iEmail string) bool {
 	if has, err := Engine.Where("email = ?", iEmail).Get(new(RegistrationLog)); err != nil {
 		return false
 	} else {
@@ -254,8 +254,8 @@ func HasRegistrationLogByEmail(iEmail string) bool {
 	}
 }
 
-// HasRegistrationLogByIp Has RegistrationLog via Ip
-func HasRegistrationLogByIp(iIp string) bool {
+// HasRegistrationLogViaIp Has RegistrationLog via Ip
+func HasRegistrationLogViaIp(iIp string) bool {
 	if has, err := Engine.Where("IP = ?", iIp).Get(new(RegistrationLog)); err != nil {
 		return false
 	} else {
@@ -266,8 +266,8 @@ func HasRegistrationLogByIp(iIp string) bool {
 	}
 }
 
-// HasRegistrationLogByBlogId Has RegistrationLog via BlogId
-func HasRegistrationLogByBlogId(iBlogId int64) bool {
+// HasRegistrationLogViaBlogId Has RegistrationLog via BlogId
+func HasRegistrationLogViaBlogId(iBlogId int64) bool {
 	if has, err := Engine.Where("blog_id = ?", iBlogId).Get(new(RegistrationLog)); err != nil {
 		return false
 	} else {
@@ -278,8 +278,8 @@ func HasRegistrationLogByBlogId(iBlogId int64) bool {
 	}
 }
 
-// HasRegistrationLogByDateRegistered Has RegistrationLog via DateRegistered
-func HasRegistrationLogByDateRegistered(iDateRegistered time.Time) bool {
+// HasRegistrationLogViaDateRegistered Has RegistrationLog via DateRegistered
+func HasRegistrationLogViaDateRegistered(iDateRegistered time.Time) bool {
 	if has, err := Engine.Where("date_registered = ?", iDateRegistered).Get(new(RegistrationLog)); err != nil {
 		return false
 	} else {
@@ -290,8 +290,8 @@ func HasRegistrationLogByDateRegistered(iDateRegistered time.Time) bool {
 	}
 }
 
-// GetRegistrationLogById Get RegistrationLog via Id
-func GetRegistrationLogById(iId int64) (*RegistrationLog, error) {
+// GetRegistrationLogViaId Get RegistrationLog via Id
+func GetRegistrationLogViaId(iId int64) (*RegistrationLog, error) {
 	var _RegistrationLog = &RegistrationLog{Id: iId}
 	has, err := Engine.Get(_RegistrationLog)
 	if has {
@@ -301,8 +301,8 @@ func GetRegistrationLogById(iId int64) (*RegistrationLog, error) {
 	}
 }
 
-// GetRegistrationLogByEmail Get RegistrationLog via Email
-func GetRegistrationLogByEmail(iEmail string) (*RegistrationLog, error) {
+// GetRegistrationLogViaEmail Get RegistrationLog via Email
+func GetRegistrationLogViaEmail(iEmail string) (*RegistrationLog, error) {
 	var _RegistrationLog = &RegistrationLog{Email: iEmail}
 	has, err := Engine.Get(_RegistrationLog)
 	if has {
@@ -312,8 +312,8 @@ func GetRegistrationLogByEmail(iEmail string) (*RegistrationLog, error) {
 	}
 }
 
-// GetRegistrationLogByIp Get RegistrationLog via Ip
-func GetRegistrationLogByIp(iIp string) (*RegistrationLog, error) {
+// GetRegistrationLogViaIp Get RegistrationLog via Ip
+func GetRegistrationLogViaIp(iIp string) (*RegistrationLog, error) {
 	var _RegistrationLog = &RegistrationLog{Ip: iIp}
 	has, err := Engine.Get(_RegistrationLog)
 	if has {
@@ -323,8 +323,8 @@ func GetRegistrationLogByIp(iIp string) (*RegistrationLog, error) {
 	}
 }
 
-// GetRegistrationLogByBlogId Get RegistrationLog via BlogId
-func GetRegistrationLogByBlogId(iBlogId int64) (*RegistrationLog, error) {
+// GetRegistrationLogViaBlogId Get RegistrationLog via BlogId
+func GetRegistrationLogViaBlogId(iBlogId int64) (*RegistrationLog, error) {
 	var _RegistrationLog = &RegistrationLog{BlogId: iBlogId}
 	has, err := Engine.Get(_RegistrationLog)
 	if has {
@@ -334,8 +334,8 @@ func GetRegistrationLogByBlogId(iBlogId int64) (*RegistrationLog, error) {
 	}
 }
 
-// GetRegistrationLogByDateRegistered Get RegistrationLog via DateRegistered
-func GetRegistrationLogByDateRegistered(iDateRegistered time.Time) (*RegistrationLog, error) {
+// GetRegistrationLogViaDateRegistered Get RegistrationLog via DateRegistered
+func GetRegistrationLogViaDateRegistered(iDateRegistered time.Time) (*RegistrationLog, error) {
 	var _RegistrationLog = &RegistrationLog{DateRegistered: iDateRegistered}
 	has, err := Engine.Get(_RegistrationLog)
 	if has {
@@ -345,32 +345,32 @@ func GetRegistrationLogByDateRegistered(iDateRegistered time.Time) (*Registratio
 	}
 }
 
-// SetRegistrationLogById Set RegistrationLog via Id
-func SetRegistrationLogById(iId int64, registration_log *RegistrationLog) (int64, error) {
+// SetRegistrationLogViaId Set RegistrationLog via Id
+func SetRegistrationLogViaId(iId int64, registration_log *RegistrationLog) (int64, error) {
 	registration_log.Id = iId
 	return Engine.Insert(registration_log)
 }
 
-// SetRegistrationLogByEmail Set RegistrationLog via Email
-func SetRegistrationLogByEmail(iEmail string, registration_log *RegistrationLog) (int64, error) {
+// SetRegistrationLogViaEmail Set RegistrationLog via Email
+func SetRegistrationLogViaEmail(iEmail string, registration_log *RegistrationLog) (int64, error) {
 	registration_log.Email = iEmail
 	return Engine.Insert(registration_log)
 }
 
-// SetRegistrationLogByIp Set RegistrationLog via Ip
-func SetRegistrationLogByIp(iIp string, registration_log *RegistrationLog) (int64, error) {
+// SetRegistrationLogViaIp Set RegistrationLog via Ip
+func SetRegistrationLogViaIp(iIp string, registration_log *RegistrationLog) (int64, error) {
 	registration_log.Ip = iIp
 	return Engine.Insert(registration_log)
 }
 
-// SetRegistrationLogByBlogId Set RegistrationLog via BlogId
-func SetRegistrationLogByBlogId(iBlogId int64, registration_log *RegistrationLog) (int64, error) {
+// SetRegistrationLogViaBlogId Set RegistrationLog via BlogId
+func SetRegistrationLogViaBlogId(iBlogId int64, registration_log *RegistrationLog) (int64, error) {
 	registration_log.BlogId = iBlogId
 	return Engine.Insert(registration_log)
 }
 
-// SetRegistrationLogByDateRegistered Set RegistrationLog via DateRegistered
-func SetRegistrationLogByDateRegistered(iDateRegistered time.Time, registration_log *RegistrationLog) (int64, error) {
+// SetRegistrationLogViaDateRegistered Set RegistrationLog via DateRegistered
+func SetRegistrationLogViaDateRegistered(iDateRegistered time.Time, registration_log *RegistrationLog) (int64, error) {
 	registration_log.DateRegistered = iDateRegistered
 	return Engine.Insert(registration_log)
 }
@@ -397,38 +397,38 @@ func PutRegistrationLog(iRegistrationLog *RegistrationLog) (int64, error) {
 	return iRegistrationLog.Id, err
 }
 
-// PutRegistrationLogById Put RegistrationLog via Id
-func PutRegistrationLogById(Id_ int64, iRegistrationLog *RegistrationLog) (int64, error) {
+// PutRegistrationLogViaId Put RegistrationLog via Id
+func PutRegistrationLogViaId(Id_ int64, iRegistrationLog *RegistrationLog) (int64, error) {
 	row, err := Engine.Update(iRegistrationLog, &RegistrationLog{Id: Id_})
 	return row, err
 }
 
-// PutRegistrationLogByEmail Put RegistrationLog via Email
-func PutRegistrationLogByEmail(Email_ string, iRegistrationLog *RegistrationLog) (int64, error) {
+// PutRegistrationLogViaEmail Put RegistrationLog via Email
+func PutRegistrationLogViaEmail(Email_ string, iRegistrationLog *RegistrationLog) (int64, error) {
 	row, err := Engine.Update(iRegistrationLog, &RegistrationLog{Email: Email_})
 	return row, err
 }
 
-// PutRegistrationLogByIp Put RegistrationLog via Ip
-func PutRegistrationLogByIp(Ip_ string, iRegistrationLog *RegistrationLog) (int64, error) {
+// PutRegistrationLogViaIp Put RegistrationLog via Ip
+func PutRegistrationLogViaIp(Ip_ string, iRegistrationLog *RegistrationLog) (int64, error) {
 	row, err := Engine.Update(iRegistrationLog, &RegistrationLog{Ip: Ip_})
 	return row, err
 }
 
-// PutRegistrationLogByBlogId Put RegistrationLog via BlogId
-func PutRegistrationLogByBlogId(BlogId_ int64, iRegistrationLog *RegistrationLog) (int64, error) {
+// PutRegistrationLogViaBlogId Put RegistrationLog via BlogId
+func PutRegistrationLogViaBlogId(BlogId_ int64, iRegistrationLog *RegistrationLog) (int64, error) {
 	row, err := Engine.Update(iRegistrationLog, &RegistrationLog{BlogId: BlogId_})
 	return row, err
 }
 
-// PutRegistrationLogByDateRegistered Put RegistrationLog via DateRegistered
-func PutRegistrationLogByDateRegistered(DateRegistered_ time.Time, iRegistrationLog *RegistrationLog) (int64, error) {
+// PutRegistrationLogViaDateRegistered Put RegistrationLog via DateRegistered
+func PutRegistrationLogViaDateRegistered(DateRegistered_ time.Time, iRegistrationLog *RegistrationLog) (int64, error) {
 	row, err := Engine.Update(iRegistrationLog, &RegistrationLog{DateRegistered: DateRegistered_})
 	return row, err
 }
 
-// UpdateRegistrationLogById via map[string]interface{}{}
-func UpdateRegistrationLogById(iId int64, iRegistrationLogMap *map[string]interface{}) error {
+// UpdateRegistrationLogViaId via map[string]interface{}{}
+func UpdateRegistrationLogViaId(iId int64, iRegistrationLogMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(RegistrationLog)).Where("ID = ?", iId).Update(iRegistrationLogMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -436,8 +436,8 @@ func UpdateRegistrationLogById(iId int64, iRegistrationLogMap *map[string]interf
 	}
 }
 
-// UpdateRegistrationLogByEmail via map[string]interface{}{}
-func UpdateRegistrationLogByEmail(iEmail string, iRegistrationLogMap *map[string]interface{}) error {
+// UpdateRegistrationLogViaEmail via map[string]interface{}{}
+func UpdateRegistrationLogViaEmail(iEmail string, iRegistrationLogMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(RegistrationLog)).Where("email = ?", iEmail).Update(iRegistrationLogMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -445,8 +445,8 @@ func UpdateRegistrationLogByEmail(iEmail string, iRegistrationLogMap *map[string
 	}
 }
 
-// UpdateRegistrationLogByIp via map[string]interface{}{}
-func UpdateRegistrationLogByIp(iIp string, iRegistrationLogMap *map[string]interface{}) error {
+// UpdateRegistrationLogViaIp via map[string]interface{}{}
+func UpdateRegistrationLogViaIp(iIp string, iRegistrationLogMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(RegistrationLog)).Where("IP = ?", iIp).Update(iRegistrationLogMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -454,8 +454,8 @@ func UpdateRegistrationLogByIp(iIp string, iRegistrationLogMap *map[string]inter
 	}
 }
 
-// UpdateRegistrationLogByBlogId via map[string]interface{}{}
-func UpdateRegistrationLogByBlogId(iBlogId int64, iRegistrationLogMap *map[string]interface{}) error {
+// UpdateRegistrationLogViaBlogId via map[string]interface{}{}
+func UpdateRegistrationLogViaBlogId(iBlogId int64, iRegistrationLogMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(RegistrationLog)).Where("blog_id = ?", iBlogId).Update(iRegistrationLogMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -463,8 +463,8 @@ func UpdateRegistrationLogByBlogId(iBlogId int64, iRegistrationLogMap *map[strin
 	}
 }
 
-// UpdateRegistrationLogByDateRegistered via map[string]interface{}{}
-func UpdateRegistrationLogByDateRegistered(iDateRegistered time.Time, iRegistrationLogMap *map[string]interface{}) error {
+// UpdateRegistrationLogViaDateRegistered via map[string]interface{}{}
+func UpdateRegistrationLogViaDateRegistered(iDateRegistered time.Time, iRegistrationLogMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(RegistrationLog)).Where("date_registered = ?", iDateRegistered).Update(iRegistrationLogMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -478,8 +478,8 @@ func DeleteRegistrationLog(iId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteRegistrationLogById Delete RegistrationLog via Id
-func DeleteRegistrationLogById(iId int64) (err error) {
+// DeleteRegistrationLogViaId Delete RegistrationLog via Id
+func DeleteRegistrationLogViaId(iId int64) (err error) {
 	var has bool
 	var _RegistrationLog = &RegistrationLog{Id: iId}
 	if has, err = Engine.Get(_RegistrationLog); (has == true) && (err == nil) {
@@ -492,8 +492,8 @@ func DeleteRegistrationLogById(iId int64) (err error) {
 	return
 }
 
-// DeleteRegistrationLogByEmail Delete RegistrationLog via Email
-func DeleteRegistrationLogByEmail(iEmail string) (err error) {
+// DeleteRegistrationLogViaEmail Delete RegistrationLog via Email
+func DeleteRegistrationLogViaEmail(iEmail string) (err error) {
 	var has bool
 	var _RegistrationLog = &RegistrationLog{Email: iEmail}
 	if has, err = Engine.Get(_RegistrationLog); (has == true) && (err == nil) {
@@ -506,8 +506,8 @@ func DeleteRegistrationLogByEmail(iEmail string) (err error) {
 	return
 }
 
-// DeleteRegistrationLogByIp Delete RegistrationLog via Ip
-func DeleteRegistrationLogByIp(iIp string) (err error) {
+// DeleteRegistrationLogViaIp Delete RegistrationLog via Ip
+func DeleteRegistrationLogViaIp(iIp string) (err error) {
 	var has bool
 	var _RegistrationLog = &RegistrationLog{Ip: iIp}
 	if has, err = Engine.Get(_RegistrationLog); (has == true) && (err == nil) {
@@ -520,8 +520,8 @@ func DeleteRegistrationLogByIp(iIp string) (err error) {
 	return
 }
 
-// DeleteRegistrationLogByBlogId Delete RegistrationLog via BlogId
-func DeleteRegistrationLogByBlogId(iBlogId int64) (err error) {
+// DeleteRegistrationLogViaBlogId Delete RegistrationLog via BlogId
+func DeleteRegistrationLogViaBlogId(iBlogId int64) (err error) {
 	var has bool
 	var _RegistrationLog = &RegistrationLog{BlogId: iBlogId}
 	if has, err = Engine.Get(_RegistrationLog); (has == true) && (err == nil) {
@@ -534,8 +534,8 @@ func DeleteRegistrationLogByBlogId(iBlogId int64) (err error) {
 	return
 }
 
-// DeleteRegistrationLogByDateRegistered Delete RegistrationLog via DateRegistered
-func DeleteRegistrationLogByDateRegistered(iDateRegistered time.Time) (err error) {
+// DeleteRegistrationLogViaDateRegistered Delete RegistrationLog via DateRegistered
+func DeleteRegistrationLogViaDateRegistered(iDateRegistered time.Time) (err error) {
 	var has bool
 	var _RegistrationLog = &RegistrationLog{DateRegistered: iDateRegistered}
 	if has, err = Engine.Get(_RegistrationLog); (has == true) && (err == nil) {

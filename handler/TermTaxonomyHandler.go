@@ -27,9 +27,9 @@ func GetTermTaxonomiesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomyCountByTermTaxonomyIdHandler(self *macross.Context) error {
+func GetTermTaxonomyCountViaTermTaxonomyIdHandler(self *macross.Context) error {
 	TermTaxonomyId_ := self.Args("term_taxonomy_id").MustInt64()
-	_int64 := model.GetTermTaxonomyCountByTermTaxonomyId(TermTaxonomyId_)
+	_int64 := model.GetTermTaxonomyCountViaTermTaxonomyId(TermTaxonomyId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["term_taxonomyCount"] = 0
@@ -38,9 +38,9 @@ func GetTermTaxonomyCountByTermTaxonomyIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetTermTaxonomyCountByTermIdHandler(self *macross.Context) error {
+func GetTermTaxonomyCountViaTermIdHandler(self *macross.Context) error {
 	TermId_ := self.Args("term_id").MustInt64()
-	_int64 := model.GetTermTaxonomyCountByTermId(TermId_)
+	_int64 := model.GetTermTaxonomyCountViaTermId(TermId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["term_taxonomyCount"] = 0
@@ -49,9 +49,9 @@ func GetTermTaxonomyCountByTermIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetTermTaxonomyCountByTaxonomyHandler(self *macross.Context) error {
+func GetTermTaxonomyCountViaTaxonomyHandler(self *macross.Context) error {
 	Taxonomy_ := self.Args("taxonomy").String()
-	_int64 := model.GetTermTaxonomyCountByTaxonomy(Taxonomy_)
+	_int64 := model.GetTermTaxonomyCountViaTaxonomy(Taxonomy_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["term_taxonomyCount"] = 0
@@ -60,9 +60,9 @@ func GetTermTaxonomyCountByTaxonomyHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetTermTaxonomyCountByDescriptionHandler(self *macross.Context) error {
+func GetTermTaxonomyCountViaDescriptionHandler(self *macross.Context) error {
 	Description_ := self.Args("description").String()
-	_int64 := model.GetTermTaxonomyCountByDescription(Description_)
+	_int64 := model.GetTermTaxonomyCountViaDescription(Description_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["term_taxonomyCount"] = 0
@@ -71,9 +71,9 @@ func GetTermTaxonomyCountByDescriptionHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetTermTaxonomyCountByParentHandler(self *macross.Context) error {
+func GetTermTaxonomyCountViaParentHandler(self *macross.Context) error {
 	Parent_ := self.Args("parent").MustInt64()
-	_int64 := model.GetTermTaxonomyCountByParent(Parent_)
+	_int64 := model.GetTermTaxonomyCountViaParent(Parent_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["term_taxonomyCount"] = 0
@@ -82,9 +82,9 @@ func GetTermTaxonomyCountByParentHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetTermTaxonomyCountByCountHandler(self *macross.Context) error {
+func GetTermTaxonomyCountViaCountHandler(self *macross.Context) error {
 	Count_ := self.Args("count").MustInt64()
-	_int64 := model.GetTermTaxonomyCountByCount(Count_)
+	_int64 := model.GetTermTaxonomyCountViaCount(Count_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["term_taxonomyCount"] = 0
@@ -93,7 +93,7 @@ func GetTermTaxonomyCountByCountHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetTermTaxonomiesByTermTaxonomyIdHandler(self *macross.Context) error {
+func GetTermTaxonomiesViaTermTaxonomyIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -102,18 +102,18 @@ func GetTermTaxonomiesByTermTaxonomyIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iTermTaxonomyId := self.Args("term_taxonomy_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iTermTaxonomyId) {
-		_TermTaxonomy, _error := model.GetTermTaxonomiesByTermTaxonomyId(offset, limit, iTermTaxonomyId, field)
+		_TermTaxonomy, _error := model.GetTermTaxonomiesViaTermTaxonomyId(offset, limit, iTermTaxonomyId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomiesByTermTaxonomyId's args."
+	herr.Message = "Can't get to the GetTermTaxonomiesViaTermTaxonomyId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomiesByTermIdHandler(self *macross.Context) error {
+func GetTermTaxonomiesViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -122,18 +122,18 @@ func GetTermTaxonomiesByTermIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iTermId := self.Args("term_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iTermId) {
-		_TermTaxonomy, _error := model.GetTermTaxonomiesByTermId(offset, limit, iTermId, field)
+		_TermTaxonomy, _error := model.GetTermTaxonomiesViaTermId(offset, limit, iTermId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomiesByTermId's args."
+	herr.Message = "Can't get to the GetTermTaxonomiesViaTermId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomiesByTaxonomyHandler(self *macross.Context) error {
+func GetTermTaxonomiesViaTaxonomyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -142,18 +142,18 @@ func GetTermTaxonomiesByTaxonomyHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iTaxonomy := self.Args("taxonomy").String()
 	if (offset > 0) && helper.IsHas(iTaxonomy) {
-		_TermTaxonomy, _error := model.GetTermTaxonomiesByTaxonomy(offset, limit, iTaxonomy, field)
+		_TermTaxonomy, _error := model.GetTermTaxonomiesViaTaxonomy(offset, limit, iTaxonomy, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomiesByTaxonomy's args."
+	herr.Message = "Can't get to the GetTermTaxonomiesViaTaxonomy's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomiesByDescriptionHandler(self *macross.Context) error {
+func GetTermTaxonomiesViaDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -162,18 +162,18 @@ func GetTermTaxonomiesByDescriptionHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iDescription := self.Args("description").String()
 	if (offset > 0) && helper.IsHas(iDescription) {
-		_TermTaxonomy, _error := model.GetTermTaxonomiesByDescription(offset, limit, iDescription, field)
+		_TermTaxonomy, _error := model.GetTermTaxonomiesViaDescription(offset, limit, iDescription, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomiesByDescription's args."
+	herr.Message = "Can't get to the GetTermTaxonomiesViaDescription's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomiesByParentHandler(self *macross.Context) error {
+func GetTermTaxonomiesViaParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -182,18 +182,18 @@ func GetTermTaxonomiesByParentHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iParent := self.Args("parent").MustInt64()
 	if (offset > 0) && helper.IsHas(iParent) {
-		_TermTaxonomy, _error := model.GetTermTaxonomiesByParent(offset, limit, iParent, field)
+		_TermTaxonomy, _error := model.GetTermTaxonomiesViaParent(offset, limit, iParent, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomiesByParent's args."
+	herr.Message = "Can't get to the GetTermTaxonomiesViaParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomiesByCountHandler(self *macross.Context) error {
+func GetTermTaxonomiesViaCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -202,14 +202,14 @@ func GetTermTaxonomiesByCountHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iCount := self.Args("count").MustInt64()
 	if (offset > 0) && helper.IsHas(iCount) {
-		_TermTaxonomy, _error := model.GetTermTaxonomiesByCount(offset, limit, iCount, field)
+		_TermTaxonomy, _error := model.GetTermTaxonomiesViaCount(offset, limit, iCount, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomiesByCount's args."
+	herr.Message = "Can't get to the GetTermTaxonomiesViaCount's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -987,199 +987,199 @@ func GetTermTaxonomiesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
+func GetHasTermTaxonomyViaTermTaxonomyIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTermTaxonomyId := self.Args("term_taxonomy_id").MustInt64()
 	if helper.IsHas(iTermTaxonomyId) {
-		_TermTaxonomy := model.HasTermTaxonomyByTermTaxonomyId(iTermTaxonomyId)
+		_TermTaxonomy := model.HasTermTaxonomyViaTermTaxonomyId(iTermTaxonomyId)
 		var m = map[string]interface{}{}
 		m["term_taxonomy"] = _TermTaxonomy
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasTermTaxonomyByTermTaxonomyId's args."
+	herr.Message = "Can't get to the HasTermTaxonomyViaTermTaxonomyId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasTermTaxonomyByTermIdHandler(self *macross.Context) error {
+func GetHasTermTaxonomyViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTermId := self.Args("term_id").MustInt64()
 	if helper.IsHas(iTermId) {
-		_TermTaxonomy := model.HasTermTaxonomyByTermId(iTermId)
+		_TermTaxonomy := model.HasTermTaxonomyViaTermId(iTermId)
 		var m = map[string]interface{}{}
 		m["term_taxonomy"] = _TermTaxonomy
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasTermTaxonomyByTermId's args."
+	herr.Message = "Can't get to the HasTermTaxonomyViaTermId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
+func GetHasTermTaxonomyViaTaxonomyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTaxonomy := self.Args("taxonomy").String()
 	if helper.IsHas(iTaxonomy) {
-		_TermTaxonomy := model.HasTermTaxonomyByTaxonomy(iTaxonomy)
+		_TermTaxonomy := model.HasTermTaxonomyViaTaxonomy(iTaxonomy)
 		var m = map[string]interface{}{}
 		m["term_taxonomy"] = _TermTaxonomy
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasTermTaxonomyByTaxonomy's args."
+	herr.Message = "Can't get to the HasTermTaxonomyViaTaxonomy's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasTermTaxonomyByDescriptionHandler(self *macross.Context) error {
+func GetHasTermTaxonomyViaDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDescription := self.Args("description").String()
 	if helper.IsHas(iDescription) {
-		_TermTaxonomy := model.HasTermTaxonomyByDescription(iDescription)
+		_TermTaxonomy := model.HasTermTaxonomyViaDescription(iDescription)
 		var m = map[string]interface{}{}
 		m["term_taxonomy"] = _TermTaxonomy
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasTermTaxonomyByDescription's args."
+	herr.Message = "Can't get to the HasTermTaxonomyViaDescription's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasTermTaxonomyByParentHandler(self *macross.Context) error {
+func GetHasTermTaxonomyViaParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iParent := self.Args("parent").MustInt64()
 	if helper.IsHas(iParent) {
-		_TermTaxonomy := model.HasTermTaxonomyByParent(iParent)
+		_TermTaxonomy := model.HasTermTaxonomyViaParent(iParent)
 		var m = map[string]interface{}{}
 		m["term_taxonomy"] = _TermTaxonomy
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasTermTaxonomyByParent's args."
+	herr.Message = "Can't get to the HasTermTaxonomyViaParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasTermTaxonomyByCountHandler(self *macross.Context) error {
+func GetHasTermTaxonomyViaCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCount := self.Args("count").MustInt64()
 	if helper.IsHas(iCount) {
-		_TermTaxonomy := model.HasTermTaxonomyByCount(iCount)
+		_TermTaxonomy := model.HasTermTaxonomyViaCount(iCount)
 		var m = map[string]interface{}{}
 		m["term_taxonomy"] = _TermTaxonomy
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasTermTaxonomyByCount's args."
+	herr.Message = "Can't get to the HasTermTaxonomyViaCount's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
+func GetTermTaxonomyViaTermTaxonomyIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTermTaxonomyId := self.Args("term_taxonomy_id").MustInt64()
 	if helper.IsHas(iTermTaxonomyId) {
-		_TermTaxonomy, _error := model.GetTermTaxonomyByTermTaxonomyId(iTermTaxonomyId)
+		_TermTaxonomy, _error := model.GetTermTaxonomyViaTermTaxonomyId(iTermTaxonomyId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomyByTermTaxonomyId's args."
+	herr.Message = "Can't get to the GetTermTaxonomyViaTermTaxonomyId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomyByTermIdHandler(self *macross.Context) error {
+func GetTermTaxonomyViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTermId := self.Args("term_id").MustInt64()
 	if helper.IsHas(iTermId) {
-		_TermTaxonomy, _error := model.GetTermTaxonomyByTermId(iTermId)
+		_TermTaxonomy, _error := model.GetTermTaxonomyViaTermId(iTermId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomyByTermId's args."
+	herr.Message = "Can't get to the GetTermTaxonomyViaTermId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
+func GetTermTaxonomyViaTaxonomyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iTaxonomy := self.Args("taxonomy").String()
 	if helper.IsHas(iTaxonomy) {
-		_TermTaxonomy, _error := model.GetTermTaxonomyByTaxonomy(iTaxonomy)
+		_TermTaxonomy, _error := model.GetTermTaxonomyViaTaxonomy(iTaxonomy)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomyByTaxonomy's args."
+	herr.Message = "Can't get to the GetTermTaxonomyViaTaxonomy's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomyByDescriptionHandler(self *macross.Context) error {
+func GetTermTaxonomyViaDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDescription := self.Args("description").String()
 	if helper.IsHas(iDescription) {
-		_TermTaxonomy, _error := model.GetTermTaxonomyByDescription(iDescription)
+		_TermTaxonomy, _error := model.GetTermTaxonomyViaDescription(iDescription)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomyByDescription's args."
+	herr.Message = "Can't get to the GetTermTaxonomyViaDescription's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomyByParentHandler(self *macross.Context) error {
+func GetTermTaxonomyViaParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iParent := self.Args("parent").MustInt64()
 	if helper.IsHas(iParent) {
-		_TermTaxonomy, _error := model.GetTermTaxonomyByParent(iParent)
+		_TermTaxonomy, _error := model.GetTermTaxonomyViaParent(iParent)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomyByParent's args."
+	herr.Message = "Can't get to the GetTermTaxonomyViaParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetTermTaxonomyByCountHandler(self *macross.Context) error {
+func GetTermTaxonomyViaCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iCount := self.Args("count").MustInt64()
 	if helper.IsHas(iCount) {
-		_TermTaxonomy, _error := model.GetTermTaxonomyByCount(iCount)
+		_TermTaxonomy, _error := model.GetTermTaxonomyViaCount(iCount)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the GetTermTaxonomyByCount's args."
+	herr.Message = "Can't get to the GetTermTaxonomyViaCount's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
+func PostSetTermTaxonomyViaTermTaxonomyIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1187,18 +1187,18 @@ func PostSetTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
 	if helper.IsHas(TermTaxonomyId_) {
 		var iTermTaxonomy model.TermTaxonomy
 		self.Bind(&iTermTaxonomy)
-		_TermTaxonomy, _error := model.SetTermTaxonomyByTermTaxonomyId(TermTaxonomyId_, &iTermTaxonomy)
+		_TermTaxonomy, _error := model.SetTermTaxonomyViaTermTaxonomyId(TermTaxonomyId_, &iTermTaxonomy)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the SetTermTaxonomyByTermTaxonomyId's args."
+	herr.Message = "Can't get to the SetTermTaxonomyViaTermTaxonomyId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetTermTaxonomyByTermIdHandler(self *macross.Context) error {
+func PostSetTermTaxonomyViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1206,18 +1206,18 @@ func PostSetTermTaxonomyByTermIdHandler(self *macross.Context) error {
 	if helper.IsHas(TermId_) {
 		var iTermTaxonomy model.TermTaxonomy
 		self.Bind(&iTermTaxonomy)
-		_TermTaxonomy, _error := model.SetTermTaxonomyByTermId(TermId_, &iTermTaxonomy)
+		_TermTaxonomy, _error := model.SetTermTaxonomyViaTermId(TermId_, &iTermTaxonomy)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the SetTermTaxonomyByTermId's args."
+	herr.Message = "Can't get to the SetTermTaxonomyViaTermId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
+func PostSetTermTaxonomyViaTaxonomyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1225,18 +1225,18 @@ func PostSetTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
 	if helper.IsHas(Taxonomy_) {
 		var iTermTaxonomy model.TermTaxonomy
 		self.Bind(&iTermTaxonomy)
-		_TermTaxonomy, _error := model.SetTermTaxonomyByTaxonomy(Taxonomy_, &iTermTaxonomy)
+		_TermTaxonomy, _error := model.SetTermTaxonomyViaTaxonomy(Taxonomy_, &iTermTaxonomy)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the SetTermTaxonomyByTaxonomy's args."
+	herr.Message = "Can't get to the SetTermTaxonomyViaTaxonomy's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetTermTaxonomyByDescriptionHandler(self *macross.Context) error {
+func PostSetTermTaxonomyViaDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1244,18 +1244,18 @@ func PostSetTermTaxonomyByDescriptionHandler(self *macross.Context) error {
 	if helper.IsHas(Description_) {
 		var iTermTaxonomy model.TermTaxonomy
 		self.Bind(&iTermTaxonomy)
-		_TermTaxonomy, _error := model.SetTermTaxonomyByDescription(Description_, &iTermTaxonomy)
+		_TermTaxonomy, _error := model.SetTermTaxonomyViaDescription(Description_, &iTermTaxonomy)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the SetTermTaxonomyByDescription's args."
+	herr.Message = "Can't get to the SetTermTaxonomyViaDescription's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetTermTaxonomyByParentHandler(self *macross.Context) error {
+func PostSetTermTaxonomyViaParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1263,18 +1263,18 @@ func PostSetTermTaxonomyByParentHandler(self *macross.Context) error {
 	if helper.IsHas(Parent_) {
 		var iTermTaxonomy model.TermTaxonomy
 		self.Bind(&iTermTaxonomy)
-		_TermTaxonomy, _error := model.SetTermTaxonomyByParent(Parent_, &iTermTaxonomy)
+		_TermTaxonomy, _error := model.SetTermTaxonomyViaParent(Parent_, &iTermTaxonomy)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the SetTermTaxonomyByParent's args."
+	herr.Message = "Can't get to the SetTermTaxonomyViaParent's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetTermTaxonomyByCountHandler(self *macross.Context) error {
+func PostSetTermTaxonomyViaCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1282,14 +1282,14 @@ func PostSetTermTaxonomyByCountHandler(self *macross.Context) error {
 	if helper.IsHas(Count_) {
 		var iTermTaxonomy model.TermTaxonomy
 		self.Bind(&iTermTaxonomy)
-		_TermTaxonomy, _error := model.SetTermTaxonomyByCount(Count_, &iTermTaxonomy)
+		_TermTaxonomy, _error := model.SetTermTaxonomyViaCount(Count_, &iTermTaxonomy)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_TermTaxonomy)
 	}
-	herr.Message = "Can't get to the SetTermTaxonomyByCount's args."
+	herr.Message = "Can't get to the SetTermTaxonomyViaCount's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -1325,7 +1325,7 @@ func PostTermTaxonomyHandler(self *macross.Context) error {
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
 	_int64, _error := model.PostTermTaxonomy(&iTermTaxonomy)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -1343,7 +1343,7 @@ func PutTermTaxonomyHandler(self *macross.Context) error {
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
 	_int64, _error := model.PutTermTaxonomy(&iTermTaxonomy)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -1354,14 +1354,14 @@ func PutTermTaxonomyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
+func PutTermTaxonomyViaTermTaxonomyIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	TermTaxonomyId_ := self.Args("term_taxonomy_id").MustInt64()
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
-	_int64, _error := model.PutTermTaxonomyByTermTaxonomyId(TermTaxonomyId_, &iTermTaxonomy)
+	_int64, _error := model.PutTermTaxonomyViaTermTaxonomyId(TermTaxonomyId_, &iTermTaxonomy)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1371,14 +1371,14 @@ func PutTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutTermTaxonomyByTermIdHandler(self *macross.Context) error {
+func PutTermTaxonomyViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	TermId_ := self.Args("term_id").MustInt64()
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
-	_int64, _error := model.PutTermTaxonomyByTermId(TermId_, &iTermTaxonomy)
+	_int64, _error := model.PutTermTaxonomyViaTermId(TermId_, &iTermTaxonomy)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1388,14 +1388,14 @@ func PutTermTaxonomyByTermIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
+func PutTermTaxonomyViaTaxonomyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Taxonomy_ := self.Args("taxonomy").String()
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
-	_int64, _error := model.PutTermTaxonomyByTaxonomy(Taxonomy_, &iTermTaxonomy)
+	_int64, _error := model.PutTermTaxonomyViaTaxonomy(Taxonomy_, &iTermTaxonomy)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1405,14 +1405,14 @@ func PutTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutTermTaxonomyByDescriptionHandler(self *macross.Context) error {
+func PutTermTaxonomyViaDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Description_ := self.Args("description").String()
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
-	_int64, _error := model.PutTermTaxonomyByDescription(Description_, &iTermTaxonomy)
+	_int64, _error := model.PutTermTaxonomyViaDescription(Description_, &iTermTaxonomy)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1422,14 +1422,14 @@ func PutTermTaxonomyByDescriptionHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutTermTaxonomyByParentHandler(self *macross.Context) error {
+func PutTermTaxonomyViaParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Parent_ := self.Args("parent").MustInt64()
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
-	_int64, _error := model.PutTermTaxonomyByParent(Parent_, &iTermTaxonomy)
+	_int64, _error := model.PutTermTaxonomyViaParent(Parent_, &iTermTaxonomy)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1439,14 +1439,14 @@ func PutTermTaxonomyByParentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutTermTaxonomyByCountHandler(self *macross.Context) error {
+func PutTermTaxonomyViaCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Count_ := self.Args("count").MustInt64()
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
-	_int64, _error := model.PutTermTaxonomyByCount(Count_, &iTermTaxonomy)
+	_int64, _error := model.PutTermTaxonomyViaCount(Count_, &iTermTaxonomy)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1456,7 +1456,7 @@ func PutTermTaxonomyByCountHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
+func PutUpdateTermTaxonomyViaTermTaxonomyIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1464,7 +1464,7 @@ func PutUpdateTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
 	var iMap = helper.StructToMap(iTermTaxonomy)
-	_error := model.UpdateTermTaxonomyByTermTaxonomyId(TermTaxonomyId_, &iMap)
+	_error := model.UpdateTermTaxonomyViaTermTaxonomyId(TermTaxonomyId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1474,7 +1474,7 @@ func PutUpdateTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateTermTaxonomyByTermIdHandler(self *macross.Context) error {
+func PutUpdateTermTaxonomyViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1482,7 +1482,7 @@ func PutUpdateTermTaxonomyByTermIdHandler(self *macross.Context) error {
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
 	var iMap = helper.StructToMap(iTermTaxonomy)
-	_error := model.UpdateTermTaxonomyByTermId(TermId_, &iMap)
+	_error := model.UpdateTermTaxonomyViaTermId(TermId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1492,7 +1492,7 @@ func PutUpdateTermTaxonomyByTermIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
+func PutUpdateTermTaxonomyViaTaxonomyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1500,7 +1500,7 @@ func PutUpdateTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
 	var iMap = helper.StructToMap(iTermTaxonomy)
-	_error := model.UpdateTermTaxonomyByTaxonomy(Taxonomy_, &iMap)
+	_error := model.UpdateTermTaxonomyViaTaxonomy(Taxonomy_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1510,7 +1510,7 @@ func PutUpdateTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateTermTaxonomyByDescriptionHandler(self *macross.Context) error {
+func PutUpdateTermTaxonomyViaDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1518,7 +1518,7 @@ func PutUpdateTermTaxonomyByDescriptionHandler(self *macross.Context) error {
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
 	var iMap = helper.StructToMap(iTermTaxonomy)
-	_error := model.UpdateTermTaxonomyByDescription(Description_, &iMap)
+	_error := model.UpdateTermTaxonomyViaDescription(Description_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1528,7 +1528,7 @@ func PutUpdateTermTaxonomyByDescriptionHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateTermTaxonomyByParentHandler(self *macross.Context) error {
+func PutUpdateTermTaxonomyViaParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1536,7 +1536,7 @@ func PutUpdateTermTaxonomyByParentHandler(self *macross.Context) error {
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
 	var iMap = helper.StructToMap(iTermTaxonomy)
-	_error := model.UpdateTermTaxonomyByParent(Parent_, &iMap)
+	_error := model.UpdateTermTaxonomyViaParent(Parent_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1546,7 +1546,7 @@ func PutUpdateTermTaxonomyByParentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateTermTaxonomyByCountHandler(self *macross.Context) error {
+func PutUpdateTermTaxonomyViaCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -1554,7 +1554,7 @@ func PutUpdateTermTaxonomyByCountHandler(self *macross.Context) error {
 	var iTermTaxonomy model.TermTaxonomy
 	self.Bind(&iTermTaxonomy)
 	var iMap = helper.StructToMap(iTermTaxonomy)
-	_error := model.UpdateTermTaxonomyByCount(Count_, &iMap)
+	_error := model.UpdateTermTaxonomyViaCount(Count_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1581,12 +1581,12 @@ func DeleteTermTaxonomyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
+func DeleteTermTaxonomyViaTermTaxonomyIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	TermTaxonomyId_ := self.Args("term_taxonomy_id").MustInt64()
-	_error := model.DeleteTermTaxonomyByTermTaxonomyId(TermTaxonomyId_)
+	_error := model.DeleteTermTaxonomyViaTermTaxonomyId(TermTaxonomyId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1596,12 +1596,12 @@ func DeleteTermTaxonomyByTermTaxonomyIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteTermTaxonomyByTermIdHandler(self *macross.Context) error {
+func DeleteTermTaxonomyViaTermIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	TermId_ := self.Args("term_id").MustInt64()
-	_error := model.DeleteTermTaxonomyByTermId(TermId_)
+	_error := model.DeleteTermTaxonomyViaTermId(TermId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1611,12 +1611,12 @@ func DeleteTermTaxonomyByTermIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
+func DeleteTermTaxonomyViaTaxonomyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Taxonomy_ := self.Args("taxonomy").String()
-	_error := model.DeleteTermTaxonomyByTaxonomy(Taxonomy_)
+	_error := model.DeleteTermTaxonomyViaTaxonomy(Taxonomy_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1626,12 +1626,12 @@ func DeleteTermTaxonomyByTaxonomyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteTermTaxonomyByDescriptionHandler(self *macross.Context) error {
+func DeleteTermTaxonomyViaDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Description_ := self.Args("description").String()
-	_error := model.DeleteTermTaxonomyByDescription(Description_)
+	_error := model.DeleteTermTaxonomyViaDescription(Description_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1641,12 +1641,12 @@ func DeleteTermTaxonomyByDescriptionHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteTermTaxonomyByParentHandler(self *macross.Context) error {
+func DeleteTermTaxonomyViaParentHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Parent_ := self.Args("parent").MustInt64()
-	_error := model.DeleteTermTaxonomyByParent(Parent_)
+	_error := model.DeleteTermTaxonomyViaParent(Parent_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -1656,12 +1656,12 @@ func DeleteTermTaxonomyByParentHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteTermTaxonomyByCountHandler(self *macross.Context) error {
+func DeleteTermTaxonomyViaCountHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Count_ := self.Args("count").MustInt64()
-	_error := model.DeleteTermTaxonomyByCount(Count_)
+	_error := model.DeleteTermTaxonomyViaCount(Count_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

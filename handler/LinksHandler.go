@@ -27,9 +27,9 @@ func GetLinksesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksCountByLinkIdHandler(self *macross.Context) error {
+func GetLinksCountViaLinkIdHandler(self *macross.Context) error {
 	LinkId_ := self.Args("link_id").MustInt64()
-	_int64 := model.GetLinksCountByLinkId(LinkId_)
+	_int64 := model.GetLinksCountViaLinkId(LinkId_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -38,9 +38,9 @@ func GetLinksCountByLinkIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkUrlHandler(self *macross.Context) error {
+func GetLinksCountViaLinkUrlHandler(self *macross.Context) error {
 	LinkUrl_ := self.Args("link_url").String()
-	_int64 := model.GetLinksCountByLinkUrl(LinkUrl_)
+	_int64 := model.GetLinksCountViaLinkUrl(LinkUrl_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -49,9 +49,9 @@ func GetLinksCountByLinkUrlHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkNameHandler(self *macross.Context) error {
+func GetLinksCountViaLinkNameHandler(self *macross.Context) error {
 	LinkName_ := self.Args("link_name").String()
-	_int64 := model.GetLinksCountByLinkName(LinkName_)
+	_int64 := model.GetLinksCountViaLinkName(LinkName_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -60,9 +60,9 @@ func GetLinksCountByLinkNameHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkImageHandler(self *macross.Context) error {
+func GetLinksCountViaLinkImageHandler(self *macross.Context) error {
 	LinkImage_ := self.Args("link_image").String()
-	_int64 := model.GetLinksCountByLinkImage(LinkImage_)
+	_int64 := model.GetLinksCountViaLinkImage(LinkImage_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -71,9 +71,9 @@ func GetLinksCountByLinkImageHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkTargetHandler(self *macross.Context) error {
+func GetLinksCountViaLinkTargetHandler(self *macross.Context) error {
 	LinkTarget_ := self.Args("link_target").String()
-	_int64 := model.GetLinksCountByLinkTarget(LinkTarget_)
+	_int64 := model.GetLinksCountViaLinkTarget(LinkTarget_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -82,9 +82,9 @@ func GetLinksCountByLinkTargetHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkDescriptionHandler(self *macross.Context) error {
+func GetLinksCountViaLinkDescriptionHandler(self *macross.Context) error {
 	LinkDescription_ := self.Args("link_description").String()
-	_int64 := model.GetLinksCountByLinkDescription(LinkDescription_)
+	_int64 := model.GetLinksCountViaLinkDescription(LinkDescription_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -93,9 +93,9 @@ func GetLinksCountByLinkDescriptionHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkVisibleHandler(self *macross.Context) error {
+func GetLinksCountViaLinkVisibleHandler(self *macross.Context) error {
 	LinkVisible_ := self.Args("link_visible").String()
-	_int64 := model.GetLinksCountByLinkVisible(LinkVisible_)
+	_int64 := model.GetLinksCountViaLinkVisible(LinkVisible_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -104,9 +104,9 @@ func GetLinksCountByLinkVisibleHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkOwnerHandler(self *macross.Context) error {
+func GetLinksCountViaLinkOwnerHandler(self *macross.Context) error {
 	LinkOwner_ := self.Args("link_owner").MustInt64()
-	_int64 := model.GetLinksCountByLinkOwner(LinkOwner_)
+	_int64 := model.GetLinksCountViaLinkOwner(LinkOwner_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -115,9 +115,9 @@ func GetLinksCountByLinkOwnerHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkRatingHandler(self *macross.Context) error {
+func GetLinksCountViaLinkRatingHandler(self *macross.Context) error {
 	LinkRating_ := self.Args("link_rating").MustInt()
-	_int64 := model.GetLinksCountByLinkRating(LinkRating_)
+	_int64 := model.GetLinksCountViaLinkRating(LinkRating_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -126,9 +126,9 @@ func GetLinksCountByLinkRatingHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkUpdatedHandler(self *macross.Context) error {
+func GetLinksCountViaLinkUpdatedHandler(self *macross.Context) error {
 	LinkUpdated_ := self.Args("link_updated").Time()
-	_int64 := model.GetLinksCountByLinkUpdated(LinkUpdated_)
+	_int64 := model.GetLinksCountViaLinkUpdated(LinkUpdated_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -137,9 +137,9 @@ func GetLinksCountByLinkUpdatedHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkRelHandler(self *macross.Context) error {
+func GetLinksCountViaLinkRelHandler(self *macross.Context) error {
 	LinkRel_ := self.Args("link_rel").String()
-	_int64 := model.GetLinksCountByLinkRel(LinkRel_)
+	_int64 := model.GetLinksCountViaLinkRel(LinkRel_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -148,9 +148,9 @@ func GetLinksCountByLinkRelHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkNotesHandler(self *macross.Context) error {
+func GetLinksCountViaLinkNotesHandler(self *macross.Context) error {
 	LinkNotes_ := self.Args("link_notes").String()
-	_int64 := model.GetLinksCountByLinkNotes(LinkNotes_)
+	_int64 := model.GetLinksCountViaLinkNotes(LinkNotes_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -159,9 +159,9 @@ func GetLinksCountByLinkNotesHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksCountByLinkRssHandler(self *macross.Context) error {
+func GetLinksCountViaLinkRssHandler(self *macross.Context) error {
 	LinkRss_ := self.Args("link_rss").String()
-	_int64 := model.GetLinksCountByLinkRss(LinkRss_)
+	_int64 := model.GetLinksCountViaLinkRss(LinkRss_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["linksCount"] = 0
@@ -170,7 +170,7 @@ func GetLinksCountByLinkRssHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetLinksesByLinkIdHandler(self *macross.Context) error {
+func GetLinksesViaLinkIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -179,18 +179,18 @@ func GetLinksesByLinkIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkId := self.Args("link_id").MustInt64()
 	if (offset > 0) && helper.IsHas(iLinkId) {
-		_Links, _error := model.GetLinksesByLinkId(offset, limit, iLinkId, field)
+		_Links, _error := model.GetLinksesViaLinkId(offset, limit, iLinkId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkId's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkUrlHandler(self *macross.Context) error {
+func GetLinksesViaLinkUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -199,18 +199,18 @@ func GetLinksesByLinkUrlHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkUrl := self.Args("link_url").String()
 	if (offset > 0) && helper.IsHas(iLinkUrl) {
-		_Links, _error := model.GetLinksesByLinkUrl(offset, limit, iLinkUrl, field)
+		_Links, _error := model.GetLinksesViaLinkUrl(offset, limit, iLinkUrl, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkUrl's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkNameHandler(self *macross.Context) error {
+func GetLinksesViaLinkNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -219,18 +219,18 @@ func GetLinksesByLinkNameHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkName := self.Args("link_name").String()
 	if (offset > 0) && helper.IsHas(iLinkName) {
-		_Links, _error := model.GetLinksesByLinkName(offset, limit, iLinkName, field)
+		_Links, _error := model.GetLinksesViaLinkName(offset, limit, iLinkName, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkName's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkImageHandler(self *macross.Context) error {
+func GetLinksesViaLinkImageHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -239,18 +239,18 @@ func GetLinksesByLinkImageHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkImage := self.Args("link_image").String()
 	if (offset > 0) && helper.IsHas(iLinkImage) {
-		_Links, _error := model.GetLinksesByLinkImage(offset, limit, iLinkImage, field)
+		_Links, _error := model.GetLinksesViaLinkImage(offset, limit, iLinkImage, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkImage's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkImage's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkTargetHandler(self *macross.Context) error {
+func GetLinksesViaLinkTargetHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -259,18 +259,18 @@ func GetLinksesByLinkTargetHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkTarget := self.Args("link_target").String()
 	if (offset > 0) && helper.IsHas(iLinkTarget) {
-		_Links, _error := model.GetLinksesByLinkTarget(offset, limit, iLinkTarget, field)
+		_Links, _error := model.GetLinksesViaLinkTarget(offset, limit, iLinkTarget, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkTarget's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkTarget's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkDescriptionHandler(self *macross.Context) error {
+func GetLinksesViaLinkDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -279,18 +279,18 @@ func GetLinksesByLinkDescriptionHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkDescription := self.Args("link_description").String()
 	if (offset > 0) && helper.IsHas(iLinkDescription) {
-		_Links, _error := model.GetLinksesByLinkDescription(offset, limit, iLinkDescription, field)
+		_Links, _error := model.GetLinksesViaLinkDescription(offset, limit, iLinkDescription, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkDescription's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkDescription's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkVisibleHandler(self *macross.Context) error {
+func GetLinksesViaLinkVisibleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -299,18 +299,18 @@ func GetLinksesByLinkVisibleHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkVisible := self.Args("link_visible").String()
 	if (offset > 0) && helper.IsHas(iLinkVisible) {
-		_Links, _error := model.GetLinksesByLinkVisible(offset, limit, iLinkVisible, field)
+		_Links, _error := model.GetLinksesViaLinkVisible(offset, limit, iLinkVisible, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkVisible's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkVisible's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkOwnerHandler(self *macross.Context) error {
+func GetLinksesViaLinkOwnerHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -319,18 +319,18 @@ func GetLinksesByLinkOwnerHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkOwner := self.Args("link_owner").MustInt64()
 	if (offset > 0) && helper.IsHas(iLinkOwner) {
-		_Links, _error := model.GetLinksesByLinkOwner(offset, limit, iLinkOwner, field)
+		_Links, _error := model.GetLinksesViaLinkOwner(offset, limit, iLinkOwner, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkOwner's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkOwner's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkRatingHandler(self *macross.Context) error {
+func GetLinksesViaLinkRatingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -339,18 +339,18 @@ func GetLinksesByLinkRatingHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkRating := self.Args("link_rating").MustInt()
 	if (offset > 0) && helper.IsHas(iLinkRating) {
-		_Links, _error := model.GetLinksesByLinkRating(offset, limit, iLinkRating, field)
+		_Links, _error := model.GetLinksesViaLinkRating(offset, limit, iLinkRating, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkRating's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkRating's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkUpdatedHandler(self *macross.Context) error {
+func GetLinksesViaLinkUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -359,18 +359,18 @@ func GetLinksesByLinkUpdatedHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkUpdated := self.Args("link_updated").Time()
 	if (offset > 0) && helper.IsHas(iLinkUpdated) {
-		_Links, _error := model.GetLinksesByLinkUpdated(offset, limit, iLinkUpdated, field)
+		_Links, _error := model.GetLinksesViaLinkUpdated(offset, limit, iLinkUpdated, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkUpdated's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkRelHandler(self *macross.Context) error {
+func GetLinksesViaLinkRelHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -379,18 +379,18 @@ func GetLinksesByLinkRelHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkRel := self.Args("link_rel").String()
 	if (offset > 0) && helper.IsHas(iLinkRel) {
-		_Links, _error := model.GetLinksesByLinkRel(offset, limit, iLinkRel, field)
+		_Links, _error := model.GetLinksesViaLinkRel(offset, limit, iLinkRel, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkRel's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkRel's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkNotesHandler(self *macross.Context) error {
+func GetLinksesViaLinkNotesHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -399,18 +399,18 @@ func GetLinksesByLinkNotesHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkNotes := self.Args("link_notes").String()
 	if (offset > 0) && helper.IsHas(iLinkNotes) {
-		_Links, _error := model.GetLinksesByLinkNotes(offset, limit, iLinkNotes, field)
+		_Links, _error := model.GetLinksesViaLinkNotes(offset, limit, iLinkNotes, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkNotes's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkNotes's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksesByLinkRssHandler(self *macross.Context) error {
+func GetLinksesViaLinkRssHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -419,14 +419,14 @@ func GetLinksesByLinkRssHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iLinkRss := self.Args("link_rss").String()
 	if (offset > 0) && helper.IsHas(iLinkRss) {
-		_Links, _error := model.GetLinksesByLinkRss(offset, limit, iLinkRss, field)
+		_Links, _error := model.GetLinksesViaLinkRss(offset, limit, iLinkRss, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksesByLinkRss's args."
+	herr.Message = "Can't get to the GetLinksesViaLinkRss's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -8379,423 +8379,423 @@ func GetLinksesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkIdHandler(self *macross.Context) error {
+func GetHasLinksViaLinkIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkId := self.Args("link_id").MustInt64()
 	if helper.IsHas(iLinkId) {
-		_Links := model.HasLinksByLinkId(iLinkId)
+		_Links := model.HasLinksViaLinkId(iLinkId)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkId's args."
+	herr.Message = "Can't get to the HasLinksViaLinkId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkUrlHandler(self *macross.Context) error {
+func GetHasLinksViaLinkUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkUrl := self.Args("link_url").String()
 	if helper.IsHas(iLinkUrl) {
-		_Links := model.HasLinksByLinkUrl(iLinkUrl)
+		_Links := model.HasLinksViaLinkUrl(iLinkUrl)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkUrl's args."
+	herr.Message = "Can't get to the HasLinksViaLinkUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkNameHandler(self *macross.Context) error {
+func GetHasLinksViaLinkNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkName := self.Args("link_name").String()
 	if helper.IsHas(iLinkName) {
-		_Links := model.HasLinksByLinkName(iLinkName)
+		_Links := model.HasLinksViaLinkName(iLinkName)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkName's args."
+	herr.Message = "Can't get to the HasLinksViaLinkName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkImageHandler(self *macross.Context) error {
+func GetHasLinksViaLinkImageHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkImage := self.Args("link_image").String()
 	if helper.IsHas(iLinkImage) {
-		_Links := model.HasLinksByLinkImage(iLinkImage)
+		_Links := model.HasLinksViaLinkImage(iLinkImage)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkImage's args."
+	herr.Message = "Can't get to the HasLinksViaLinkImage's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkTargetHandler(self *macross.Context) error {
+func GetHasLinksViaLinkTargetHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkTarget := self.Args("link_target").String()
 	if helper.IsHas(iLinkTarget) {
-		_Links := model.HasLinksByLinkTarget(iLinkTarget)
+		_Links := model.HasLinksViaLinkTarget(iLinkTarget)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkTarget's args."
+	herr.Message = "Can't get to the HasLinksViaLinkTarget's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkDescriptionHandler(self *macross.Context) error {
+func GetHasLinksViaLinkDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkDescription := self.Args("link_description").String()
 	if helper.IsHas(iLinkDescription) {
-		_Links := model.HasLinksByLinkDescription(iLinkDescription)
+		_Links := model.HasLinksViaLinkDescription(iLinkDescription)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkDescription's args."
+	herr.Message = "Can't get to the HasLinksViaLinkDescription's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkVisibleHandler(self *macross.Context) error {
+func GetHasLinksViaLinkVisibleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkVisible := self.Args("link_visible").String()
 	if helper.IsHas(iLinkVisible) {
-		_Links := model.HasLinksByLinkVisible(iLinkVisible)
+		_Links := model.HasLinksViaLinkVisible(iLinkVisible)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkVisible's args."
+	herr.Message = "Can't get to the HasLinksViaLinkVisible's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkOwnerHandler(self *macross.Context) error {
+func GetHasLinksViaLinkOwnerHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkOwner := self.Args("link_owner").MustInt64()
 	if helper.IsHas(iLinkOwner) {
-		_Links := model.HasLinksByLinkOwner(iLinkOwner)
+		_Links := model.HasLinksViaLinkOwner(iLinkOwner)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkOwner's args."
+	herr.Message = "Can't get to the HasLinksViaLinkOwner's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkRatingHandler(self *macross.Context) error {
+func GetHasLinksViaLinkRatingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkRating := self.Args("link_rating").MustInt()
 	if helper.IsHas(iLinkRating) {
-		_Links := model.HasLinksByLinkRating(iLinkRating)
+		_Links := model.HasLinksViaLinkRating(iLinkRating)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkRating's args."
+	herr.Message = "Can't get to the HasLinksViaLinkRating's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkUpdatedHandler(self *macross.Context) error {
+func GetHasLinksViaLinkUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkUpdated := self.Args("link_updated").Time()
 	if helper.IsHas(iLinkUpdated) {
-		_Links := model.HasLinksByLinkUpdated(iLinkUpdated)
+		_Links := model.HasLinksViaLinkUpdated(iLinkUpdated)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkUpdated's args."
+	herr.Message = "Can't get to the HasLinksViaLinkUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkRelHandler(self *macross.Context) error {
+func GetHasLinksViaLinkRelHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkRel := self.Args("link_rel").String()
 	if helper.IsHas(iLinkRel) {
-		_Links := model.HasLinksByLinkRel(iLinkRel)
+		_Links := model.HasLinksViaLinkRel(iLinkRel)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkRel's args."
+	herr.Message = "Can't get to the HasLinksViaLinkRel's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkNotesHandler(self *macross.Context) error {
+func GetHasLinksViaLinkNotesHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkNotes := self.Args("link_notes").String()
 	if helper.IsHas(iLinkNotes) {
-		_Links := model.HasLinksByLinkNotes(iLinkNotes)
+		_Links := model.HasLinksViaLinkNotes(iLinkNotes)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkNotes's args."
+	herr.Message = "Can't get to the HasLinksViaLinkNotes's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasLinksByLinkRssHandler(self *macross.Context) error {
+func GetHasLinksViaLinkRssHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkRss := self.Args("link_rss").String()
 	if helper.IsHas(iLinkRss) {
-		_Links := model.HasLinksByLinkRss(iLinkRss)
+		_Links := model.HasLinksViaLinkRss(iLinkRss)
 		var m = map[string]interface{}{}
 		m["links"] = _Links
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasLinksByLinkRss's args."
+	herr.Message = "Can't get to the HasLinksViaLinkRss's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkIdHandler(self *macross.Context) error {
+func GetLinksViaLinkIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkId := self.Args("link_id").MustInt64()
 	if helper.IsHas(iLinkId) {
-		_Links, _error := model.GetLinksByLinkId(iLinkId)
+		_Links, _error := model.GetLinksViaLinkId(iLinkId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkId's args."
+	herr.Message = "Can't get to the GetLinksViaLinkId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkUrlHandler(self *macross.Context) error {
+func GetLinksViaLinkUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkUrl := self.Args("link_url").String()
 	if helper.IsHas(iLinkUrl) {
-		_Links, _error := model.GetLinksByLinkUrl(iLinkUrl)
+		_Links, _error := model.GetLinksViaLinkUrl(iLinkUrl)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkUrl's args."
+	herr.Message = "Can't get to the GetLinksViaLinkUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkNameHandler(self *macross.Context) error {
+func GetLinksViaLinkNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkName := self.Args("link_name").String()
 	if helper.IsHas(iLinkName) {
-		_Links, _error := model.GetLinksByLinkName(iLinkName)
+		_Links, _error := model.GetLinksViaLinkName(iLinkName)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkName's args."
+	herr.Message = "Can't get to the GetLinksViaLinkName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkImageHandler(self *macross.Context) error {
+func GetLinksViaLinkImageHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkImage := self.Args("link_image").String()
 	if helper.IsHas(iLinkImage) {
-		_Links, _error := model.GetLinksByLinkImage(iLinkImage)
+		_Links, _error := model.GetLinksViaLinkImage(iLinkImage)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkImage's args."
+	herr.Message = "Can't get to the GetLinksViaLinkImage's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkTargetHandler(self *macross.Context) error {
+func GetLinksViaLinkTargetHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkTarget := self.Args("link_target").String()
 	if helper.IsHas(iLinkTarget) {
-		_Links, _error := model.GetLinksByLinkTarget(iLinkTarget)
+		_Links, _error := model.GetLinksViaLinkTarget(iLinkTarget)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkTarget's args."
+	herr.Message = "Can't get to the GetLinksViaLinkTarget's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkDescriptionHandler(self *macross.Context) error {
+func GetLinksViaLinkDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkDescription := self.Args("link_description").String()
 	if helper.IsHas(iLinkDescription) {
-		_Links, _error := model.GetLinksByLinkDescription(iLinkDescription)
+		_Links, _error := model.GetLinksViaLinkDescription(iLinkDescription)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkDescription's args."
+	herr.Message = "Can't get to the GetLinksViaLinkDescription's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkVisibleHandler(self *macross.Context) error {
+func GetLinksViaLinkVisibleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkVisible := self.Args("link_visible").String()
 	if helper.IsHas(iLinkVisible) {
-		_Links, _error := model.GetLinksByLinkVisible(iLinkVisible)
+		_Links, _error := model.GetLinksViaLinkVisible(iLinkVisible)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkVisible's args."
+	herr.Message = "Can't get to the GetLinksViaLinkVisible's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkOwnerHandler(self *macross.Context) error {
+func GetLinksViaLinkOwnerHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkOwner := self.Args("link_owner").MustInt64()
 	if helper.IsHas(iLinkOwner) {
-		_Links, _error := model.GetLinksByLinkOwner(iLinkOwner)
+		_Links, _error := model.GetLinksViaLinkOwner(iLinkOwner)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkOwner's args."
+	herr.Message = "Can't get to the GetLinksViaLinkOwner's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkRatingHandler(self *macross.Context) error {
+func GetLinksViaLinkRatingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkRating := self.Args("link_rating").MustInt()
 	if helper.IsHas(iLinkRating) {
-		_Links, _error := model.GetLinksByLinkRating(iLinkRating)
+		_Links, _error := model.GetLinksViaLinkRating(iLinkRating)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkRating's args."
+	herr.Message = "Can't get to the GetLinksViaLinkRating's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkUpdatedHandler(self *macross.Context) error {
+func GetLinksViaLinkUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkUpdated := self.Args("link_updated").Time()
 	if helper.IsHas(iLinkUpdated) {
-		_Links, _error := model.GetLinksByLinkUpdated(iLinkUpdated)
+		_Links, _error := model.GetLinksViaLinkUpdated(iLinkUpdated)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkUpdated's args."
+	herr.Message = "Can't get to the GetLinksViaLinkUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkRelHandler(self *macross.Context) error {
+func GetLinksViaLinkRelHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkRel := self.Args("link_rel").String()
 	if helper.IsHas(iLinkRel) {
-		_Links, _error := model.GetLinksByLinkRel(iLinkRel)
+		_Links, _error := model.GetLinksViaLinkRel(iLinkRel)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkRel's args."
+	herr.Message = "Can't get to the GetLinksViaLinkRel's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkNotesHandler(self *macross.Context) error {
+func GetLinksViaLinkNotesHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkNotes := self.Args("link_notes").String()
 	if helper.IsHas(iLinkNotes) {
-		_Links, _error := model.GetLinksByLinkNotes(iLinkNotes)
+		_Links, _error := model.GetLinksViaLinkNotes(iLinkNotes)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkNotes's args."
+	herr.Message = "Can't get to the GetLinksViaLinkNotes's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetLinksByLinkRssHandler(self *macross.Context) error {
+func GetLinksViaLinkRssHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iLinkRss := self.Args("link_rss").String()
 	if helper.IsHas(iLinkRss) {
-		_Links, _error := model.GetLinksByLinkRss(iLinkRss)
+		_Links, _error := model.GetLinksViaLinkRss(iLinkRss)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the GetLinksByLinkRss's args."
+	herr.Message = "Can't get to the GetLinksViaLinkRss's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkIdHandler(self *macross.Context) error {
+func PostSetLinksViaLinkIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8803,18 +8803,18 @@ func PostSetLinksByLinkIdHandler(self *macross.Context) error {
 	if helper.IsHas(LinkId_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkId(LinkId_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkId(LinkId_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkId's args."
+	herr.Message = "Can't get to the SetLinksViaLinkId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkUrlHandler(self *macross.Context) error {
+func PostSetLinksViaLinkUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8822,18 +8822,18 @@ func PostSetLinksByLinkUrlHandler(self *macross.Context) error {
 	if helper.IsHas(LinkUrl_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkUrl(LinkUrl_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkUrl(LinkUrl_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkUrl's args."
+	herr.Message = "Can't get to the SetLinksViaLinkUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkNameHandler(self *macross.Context) error {
+func PostSetLinksViaLinkNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8841,18 +8841,18 @@ func PostSetLinksByLinkNameHandler(self *macross.Context) error {
 	if helper.IsHas(LinkName_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkName(LinkName_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkName(LinkName_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkName's args."
+	herr.Message = "Can't get to the SetLinksViaLinkName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkImageHandler(self *macross.Context) error {
+func PostSetLinksViaLinkImageHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8860,18 +8860,18 @@ func PostSetLinksByLinkImageHandler(self *macross.Context) error {
 	if helper.IsHas(LinkImage_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkImage(LinkImage_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkImage(LinkImage_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkImage's args."
+	herr.Message = "Can't get to the SetLinksViaLinkImage's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkTargetHandler(self *macross.Context) error {
+func PostSetLinksViaLinkTargetHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8879,18 +8879,18 @@ func PostSetLinksByLinkTargetHandler(self *macross.Context) error {
 	if helper.IsHas(LinkTarget_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkTarget(LinkTarget_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkTarget(LinkTarget_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkTarget's args."
+	herr.Message = "Can't get to the SetLinksViaLinkTarget's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkDescriptionHandler(self *macross.Context) error {
+func PostSetLinksViaLinkDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8898,18 +8898,18 @@ func PostSetLinksByLinkDescriptionHandler(self *macross.Context) error {
 	if helper.IsHas(LinkDescription_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkDescription(LinkDescription_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkDescription(LinkDescription_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkDescription's args."
+	herr.Message = "Can't get to the SetLinksViaLinkDescription's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkVisibleHandler(self *macross.Context) error {
+func PostSetLinksViaLinkVisibleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8917,18 +8917,18 @@ func PostSetLinksByLinkVisibleHandler(self *macross.Context) error {
 	if helper.IsHas(LinkVisible_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkVisible(LinkVisible_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkVisible(LinkVisible_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkVisible's args."
+	herr.Message = "Can't get to the SetLinksViaLinkVisible's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkOwnerHandler(self *macross.Context) error {
+func PostSetLinksViaLinkOwnerHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8936,18 +8936,18 @@ func PostSetLinksByLinkOwnerHandler(self *macross.Context) error {
 	if helper.IsHas(LinkOwner_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkOwner(LinkOwner_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkOwner(LinkOwner_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkOwner's args."
+	herr.Message = "Can't get to the SetLinksViaLinkOwner's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkRatingHandler(self *macross.Context) error {
+func PostSetLinksViaLinkRatingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8955,18 +8955,18 @@ func PostSetLinksByLinkRatingHandler(self *macross.Context) error {
 	if helper.IsHas(LinkRating_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkRating(LinkRating_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkRating(LinkRating_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkRating's args."
+	herr.Message = "Can't get to the SetLinksViaLinkRating's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkUpdatedHandler(self *macross.Context) error {
+func PostSetLinksViaLinkUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8974,18 +8974,18 @@ func PostSetLinksByLinkUpdatedHandler(self *macross.Context) error {
 	if helper.IsHas(LinkUpdated_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkUpdated(LinkUpdated_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkUpdated(LinkUpdated_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkUpdated's args."
+	herr.Message = "Can't get to the SetLinksViaLinkUpdated's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkRelHandler(self *macross.Context) error {
+func PostSetLinksViaLinkRelHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -8993,18 +8993,18 @@ func PostSetLinksByLinkRelHandler(self *macross.Context) error {
 	if helper.IsHas(LinkRel_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkRel(LinkRel_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkRel(LinkRel_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkRel's args."
+	herr.Message = "Can't get to the SetLinksViaLinkRel's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkNotesHandler(self *macross.Context) error {
+func PostSetLinksViaLinkNotesHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9012,18 +9012,18 @@ func PostSetLinksByLinkNotesHandler(self *macross.Context) error {
 	if helper.IsHas(LinkNotes_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkNotes(LinkNotes_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkNotes(LinkNotes_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkNotes's args."
+	herr.Message = "Can't get to the SetLinksViaLinkNotes's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetLinksByLinkRssHandler(self *macross.Context) error {
+func PostSetLinksViaLinkRssHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9031,14 +9031,14 @@ func PostSetLinksByLinkRssHandler(self *macross.Context) error {
 	if helper.IsHas(LinkRss_) {
 		var iLinks model.Links
 		self.Bind(&iLinks)
-		_Links, _error := model.SetLinksByLinkRss(LinkRss_, &iLinks)
+		_Links, _error := model.SetLinksViaLinkRss(LinkRss_, &iLinks)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Links)
 	}
-	herr.Message = "Can't get to the SetLinksByLinkRss's args."
+	herr.Message = "Can't get to the SetLinksViaLinkRss's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -9081,7 +9081,7 @@ func PostLinksHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	_int64, _error := model.PostLinks(&iLinks)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -9099,7 +9099,7 @@ func PutLinksHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	_int64, _error := model.PutLinks(&iLinks)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -9110,14 +9110,14 @@ func PutLinksHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkIdHandler(self *macross.Context) error {
+func PutLinksViaLinkIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkId_ := self.Args("link_id").MustInt64()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkId(LinkId_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkId(LinkId_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9127,14 +9127,14 @@ func PutLinksByLinkIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkUrlHandler(self *macross.Context) error {
+func PutLinksViaLinkUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkUrl_ := self.Args("link_url").String()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkUrl(LinkUrl_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkUrl(LinkUrl_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9144,14 +9144,14 @@ func PutLinksByLinkUrlHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkNameHandler(self *macross.Context) error {
+func PutLinksViaLinkNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkName_ := self.Args("link_name").String()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkName(LinkName_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkName(LinkName_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9161,14 +9161,14 @@ func PutLinksByLinkNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkImageHandler(self *macross.Context) error {
+func PutLinksViaLinkImageHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkImage_ := self.Args("link_image").String()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkImage(LinkImage_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkImage(LinkImage_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9178,14 +9178,14 @@ func PutLinksByLinkImageHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkTargetHandler(self *macross.Context) error {
+func PutLinksViaLinkTargetHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkTarget_ := self.Args("link_target").String()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkTarget(LinkTarget_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkTarget(LinkTarget_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9195,14 +9195,14 @@ func PutLinksByLinkTargetHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkDescriptionHandler(self *macross.Context) error {
+func PutLinksViaLinkDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkDescription_ := self.Args("link_description").String()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkDescription(LinkDescription_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkDescription(LinkDescription_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9212,14 +9212,14 @@ func PutLinksByLinkDescriptionHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkVisibleHandler(self *macross.Context) error {
+func PutLinksViaLinkVisibleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkVisible_ := self.Args("link_visible").String()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkVisible(LinkVisible_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkVisible(LinkVisible_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9229,14 +9229,14 @@ func PutLinksByLinkVisibleHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkOwnerHandler(self *macross.Context) error {
+func PutLinksViaLinkOwnerHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkOwner_ := self.Args("link_owner").MustInt64()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkOwner(LinkOwner_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkOwner(LinkOwner_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9246,14 +9246,14 @@ func PutLinksByLinkOwnerHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkRatingHandler(self *macross.Context) error {
+func PutLinksViaLinkRatingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkRating_ := self.Args("link_rating").MustInt()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkRating(LinkRating_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkRating(LinkRating_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9263,14 +9263,14 @@ func PutLinksByLinkRatingHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkUpdatedHandler(self *macross.Context) error {
+func PutLinksViaLinkUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkUpdated_ := self.Args("link_updated").Time()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkUpdated(LinkUpdated_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkUpdated(LinkUpdated_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9280,14 +9280,14 @@ func PutLinksByLinkUpdatedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkRelHandler(self *macross.Context) error {
+func PutLinksViaLinkRelHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkRel_ := self.Args("link_rel").String()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkRel(LinkRel_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkRel(LinkRel_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9297,14 +9297,14 @@ func PutLinksByLinkRelHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkNotesHandler(self *macross.Context) error {
+func PutLinksViaLinkNotesHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkNotes_ := self.Args("link_notes").String()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkNotes(LinkNotes_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkNotes(LinkNotes_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9314,14 +9314,14 @@ func PutLinksByLinkNotesHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutLinksByLinkRssHandler(self *macross.Context) error {
+func PutLinksViaLinkRssHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkRss_ := self.Args("link_rss").String()
 	var iLinks model.Links
 	self.Bind(&iLinks)
-	_int64, _error := model.PutLinksByLinkRss(LinkRss_, &iLinks)
+	_int64, _error := model.PutLinksViaLinkRss(LinkRss_, &iLinks)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9331,7 +9331,7 @@ func PutLinksByLinkRssHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkIdHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9339,7 +9339,7 @@ func PutUpdateLinksByLinkIdHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkId(LinkId_, &iMap)
+	_error := model.UpdateLinksViaLinkId(LinkId_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9349,7 +9349,7 @@ func PutUpdateLinksByLinkIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkUrlHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9357,7 +9357,7 @@ func PutUpdateLinksByLinkUrlHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkUrl(LinkUrl_, &iMap)
+	_error := model.UpdateLinksViaLinkUrl(LinkUrl_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9367,7 +9367,7 @@ func PutUpdateLinksByLinkUrlHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkNameHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9375,7 +9375,7 @@ func PutUpdateLinksByLinkNameHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkName(LinkName_, &iMap)
+	_error := model.UpdateLinksViaLinkName(LinkName_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9385,7 +9385,7 @@ func PutUpdateLinksByLinkNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkImageHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkImageHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9393,7 +9393,7 @@ func PutUpdateLinksByLinkImageHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkImage(LinkImage_, &iMap)
+	_error := model.UpdateLinksViaLinkImage(LinkImage_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9403,7 +9403,7 @@ func PutUpdateLinksByLinkImageHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkTargetHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkTargetHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9411,7 +9411,7 @@ func PutUpdateLinksByLinkTargetHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkTarget(LinkTarget_, &iMap)
+	_error := model.UpdateLinksViaLinkTarget(LinkTarget_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9421,7 +9421,7 @@ func PutUpdateLinksByLinkTargetHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkDescriptionHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9429,7 +9429,7 @@ func PutUpdateLinksByLinkDescriptionHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkDescription(LinkDescription_, &iMap)
+	_error := model.UpdateLinksViaLinkDescription(LinkDescription_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9439,7 +9439,7 @@ func PutUpdateLinksByLinkDescriptionHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkVisibleHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkVisibleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9447,7 +9447,7 @@ func PutUpdateLinksByLinkVisibleHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkVisible(LinkVisible_, &iMap)
+	_error := model.UpdateLinksViaLinkVisible(LinkVisible_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9457,7 +9457,7 @@ func PutUpdateLinksByLinkVisibleHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkOwnerHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkOwnerHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9465,7 +9465,7 @@ func PutUpdateLinksByLinkOwnerHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkOwner(LinkOwner_, &iMap)
+	_error := model.UpdateLinksViaLinkOwner(LinkOwner_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9475,7 +9475,7 @@ func PutUpdateLinksByLinkOwnerHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkRatingHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkRatingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9483,7 +9483,7 @@ func PutUpdateLinksByLinkRatingHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkRating(LinkRating_, &iMap)
+	_error := model.UpdateLinksViaLinkRating(LinkRating_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9493,7 +9493,7 @@ func PutUpdateLinksByLinkRatingHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkUpdatedHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9501,7 +9501,7 @@ func PutUpdateLinksByLinkUpdatedHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkUpdated(LinkUpdated_, &iMap)
+	_error := model.UpdateLinksViaLinkUpdated(LinkUpdated_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9511,7 +9511,7 @@ func PutUpdateLinksByLinkUpdatedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkRelHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkRelHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9519,7 +9519,7 @@ func PutUpdateLinksByLinkRelHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkRel(LinkRel_, &iMap)
+	_error := model.UpdateLinksViaLinkRel(LinkRel_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9529,7 +9529,7 @@ func PutUpdateLinksByLinkRelHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkNotesHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkNotesHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9537,7 +9537,7 @@ func PutUpdateLinksByLinkNotesHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkNotes(LinkNotes_, &iMap)
+	_error := model.UpdateLinksViaLinkNotes(LinkNotes_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9547,7 +9547,7 @@ func PutUpdateLinksByLinkNotesHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateLinksByLinkRssHandler(self *macross.Context) error {
+func PutUpdateLinksViaLinkRssHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -9555,7 +9555,7 @@ func PutUpdateLinksByLinkRssHandler(self *macross.Context) error {
 	var iLinks model.Links
 	self.Bind(&iLinks)
 	var iMap = helper.StructToMap(iLinks)
-	_error := model.UpdateLinksByLinkRss(LinkRss_, &iMap)
+	_error := model.UpdateLinksViaLinkRss(LinkRss_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9582,12 +9582,12 @@ func DeleteLinksHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkIdHandler(self *macross.Context) error {
+func DeleteLinksViaLinkIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkId_ := self.Args("link_id").MustInt64()
-	_error := model.DeleteLinksByLinkId(LinkId_)
+	_error := model.DeleteLinksViaLinkId(LinkId_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9597,12 +9597,12 @@ func DeleteLinksByLinkIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkUrlHandler(self *macross.Context) error {
+func DeleteLinksViaLinkUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkUrl_ := self.Args("link_url").String()
-	_error := model.DeleteLinksByLinkUrl(LinkUrl_)
+	_error := model.DeleteLinksViaLinkUrl(LinkUrl_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9612,12 +9612,12 @@ func DeleteLinksByLinkUrlHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkNameHandler(self *macross.Context) error {
+func DeleteLinksViaLinkNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkName_ := self.Args("link_name").String()
-	_error := model.DeleteLinksByLinkName(LinkName_)
+	_error := model.DeleteLinksViaLinkName(LinkName_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9627,12 +9627,12 @@ func DeleteLinksByLinkNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkImageHandler(self *macross.Context) error {
+func DeleteLinksViaLinkImageHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkImage_ := self.Args("link_image").String()
-	_error := model.DeleteLinksByLinkImage(LinkImage_)
+	_error := model.DeleteLinksViaLinkImage(LinkImage_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9642,12 +9642,12 @@ func DeleteLinksByLinkImageHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkTargetHandler(self *macross.Context) error {
+func DeleteLinksViaLinkTargetHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkTarget_ := self.Args("link_target").String()
-	_error := model.DeleteLinksByLinkTarget(LinkTarget_)
+	_error := model.DeleteLinksViaLinkTarget(LinkTarget_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9657,12 +9657,12 @@ func DeleteLinksByLinkTargetHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkDescriptionHandler(self *macross.Context) error {
+func DeleteLinksViaLinkDescriptionHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkDescription_ := self.Args("link_description").String()
-	_error := model.DeleteLinksByLinkDescription(LinkDescription_)
+	_error := model.DeleteLinksViaLinkDescription(LinkDescription_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9672,12 +9672,12 @@ func DeleteLinksByLinkDescriptionHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkVisibleHandler(self *macross.Context) error {
+func DeleteLinksViaLinkVisibleHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkVisible_ := self.Args("link_visible").String()
-	_error := model.DeleteLinksByLinkVisible(LinkVisible_)
+	_error := model.DeleteLinksViaLinkVisible(LinkVisible_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9687,12 +9687,12 @@ func DeleteLinksByLinkVisibleHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkOwnerHandler(self *macross.Context) error {
+func DeleteLinksViaLinkOwnerHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkOwner_ := self.Args("link_owner").MustInt64()
-	_error := model.DeleteLinksByLinkOwner(LinkOwner_)
+	_error := model.DeleteLinksViaLinkOwner(LinkOwner_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9702,12 +9702,12 @@ func DeleteLinksByLinkOwnerHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkRatingHandler(self *macross.Context) error {
+func DeleteLinksViaLinkRatingHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkRating_ := self.Args("link_rating").MustInt()
-	_error := model.DeleteLinksByLinkRating(LinkRating_)
+	_error := model.DeleteLinksViaLinkRating(LinkRating_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9717,12 +9717,12 @@ func DeleteLinksByLinkRatingHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkUpdatedHandler(self *macross.Context) error {
+func DeleteLinksViaLinkUpdatedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkUpdated_ := self.Args("link_updated").Time()
-	_error := model.DeleteLinksByLinkUpdated(LinkUpdated_)
+	_error := model.DeleteLinksViaLinkUpdated(LinkUpdated_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9732,12 +9732,12 @@ func DeleteLinksByLinkUpdatedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkRelHandler(self *macross.Context) error {
+func DeleteLinksViaLinkRelHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkRel_ := self.Args("link_rel").String()
-	_error := model.DeleteLinksByLinkRel(LinkRel_)
+	_error := model.DeleteLinksViaLinkRel(LinkRel_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9747,12 +9747,12 @@ func DeleteLinksByLinkRelHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkNotesHandler(self *macross.Context) error {
+func DeleteLinksViaLinkNotesHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkNotes_ := self.Args("link_notes").String()
-	_error := model.DeleteLinksByLinkNotes(LinkNotes_)
+	_error := model.DeleteLinksViaLinkNotes(LinkNotes_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -9762,12 +9762,12 @@ func DeleteLinksByLinkNotesHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteLinksByLinkRssHandler(self *macross.Context) error {
+func DeleteLinksViaLinkRssHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	LinkRss_ := self.Args("link_rss").String()
-	_error := model.DeleteLinksByLinkRss(LinkRss_)
+	_error := model.DeleteLinksViaLinkRss(LinkRss_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

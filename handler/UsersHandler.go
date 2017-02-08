@@ -27,9 +27,9 @@ func GetUsersesCountHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersCountByIdHandler(self *macross.Context) error {
+func GetUsersCountViaIdHandler(self *macross.Context) error {
 	Id_ := self.Args("ID").MustInt64()
-	_int64 := model.GetUsersCountById(Id_)
+	_int64 := model.GetUsersCountViaId(Id_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -38,9 +38,9 @@ func GetUsersCountByIdHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountByUserLoginHandler(self *macross.Context) error {
+func GetUsersCountViaUserLoginHandler(self *macross.Context) error {
 	UserLogin_ := self.Args("user_login").String()
-	_int64 := model.GetUsersCountByUserLogin(UserLogin_)
+	_int64 := model.GetUsersCountViaUserLogin(UserLogin_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -49,9 +49,9 @@ func GetUsersCountByUserLoginHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountByUserPassHandler(self *macross.Context) error {
+func GetUsersCountViaUserPassHandler(self *macross.Context) error {
 	UserPass_ := self.Args("user_pass").String()
-	_int64 := model.GetUsersCountByUserPass(UserPass_)
+	_int64 := model.GetUsersCountViaUserPass(UserPass_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -60,9 +60,9 @@ func GetUsersCountByUserPassHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountByUserNicenameHandler(self *macross.Context) error {
+func GetUsersCountViaUserNicenameHandler(self *macross.Context) error {
 	UserNicename_ := self.Args("user_nicename").String()
-	_int64 := model.GetUsersCountByUserNicename(UserNicename_)
+	_int64 := model.GetUsersCountViaUserNicename(UserNicename_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -71,9 +71,9 @@ func GetUsersCountByUserNicenameHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountByUserEmailHandler(self *macross.Context) error {
+func GetUsersCountViaUserEmailHandler(self *macross.Context) error {
 	UserEmail_ := self.Args("user_email").String()
-	_int64 := model.GetUsersCountByUserEmail(UserEmail_)
+	_int64 := model.GetUsersCountViaUserEmail(UserEmail_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -82,9 +82,9 @@ func GetUsersCountByUserEmailHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountByUserUrlHandler(self *macross.Context) error {
+func GetUsersCountViaUserUrlHandler(self *macross.Context) error {
 	UserUrl_ := self.Args("user_url").String()
-	_int64 := model.GetUsersCountByUserUrl(UserUrl_)
+	_int64 := model.GetUsersCountViaUserUrl(UserUrl_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -93,9 +93,9 @@ func GetUsersCountByUserUrlHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountByUserRegisteredHandler(self *macross.Context) error {
+func GetUsersCountViaUserRegisteredHandler(self *macross.Context) error {
 	UserRegistered_ := self.Args("user_registered").Time()
-	_int64 := model.GetUsersCountByUserRegistered(UserRegistered_)
+	_int64 := model.GetUsersCountViaUserRegistered(UserRegistered_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -104,9 +104,9 @@ func GetUsersCountByUserRegisteredHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountByUserActivationKeyHandler(self *macross.Context) error {
+func GetUsersCountViaUserActivationKeyHandler(self *macross.Context) error {
 	UserActivationKey_ := self.Args("user_activation_key").String()
-	_int64 := model.GetUsersCountByUserActivationKey(UserActivationKey_)
+	_int64 := model.GetUsersCountViaUserActivationKey(UserActivationKey_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -115,9 +115,9 @@ func GetUsersCountByUserActivationKeyHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountByUserStatusHandler(self *macross.Context) error {
+func GetUsersCountViaUserStatusHandler(self *macross.Context) error {
 	UserStatus_ := self.Args("user_status").MustInt()
-	_int64 := model.GetUsersCountByUserStatus(UserStatus_)
+	_int64 := model.GetUsersCountViaUserStatus(UserStatus_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -126,9 +126,9 @@ func GetUsersCountByUserStatusHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountByDisplayNameHandler(self *macross.Context) error {
+func GetUsersCountViaDisplayNameHandler(self *macross.Context) error {
 	DisplayName_ := self.Args("display_name").String()
-	_int64 := model.GetUsersCountByDisplayName(DisplayName_)
+	_int64 := model.GetUsersCountViaDisplayName(DisplayName_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -137,9 +137,9 @@ func GetUsersCountByDisplayNameHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountBySpamHandler(self *macross.Context) error {
+func GetUsersCountViaSpamHandler(self *macross.Context) error {
 	Spam_ := self.Args("spam").MustInt()
-	_int64 := model.GetUsersCountBySpam(Spam_)
+	_int64 := model.GetUsersCountViaSpam(Spam_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -148,9 +148,9 @@ func GetUsersCountBySpamHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersCountByDeletedHandler(self *macross.Context) error {
+func GetUsersCountViaDeletedHandler(self *macross.Context) error {
 	Deleted_ := self.Args("deleted").MustInt()
-	_int64 := model.GetUsersCountByDeleted(Deleted_)
+	_int64 := model.GetUsersCountViaDeleted(Deleted_)
 	var m = map[string]interface{}{}
 	if _int64 <= 0 {
 		m["usersCount"] = 0
@@ -159,7 +159,7 @@ func GetUsersCountByDeletedHandler(self *macross.Context) error {
 	return self.JSON(m)
 }
 
-func GetUsersesByIdHandler(self *macross.Context) error {
+func GetUsersesViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -168,18 +168,18 @@ func GetUsersesByIdHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iId := self.Args("ID").MustInt64()
 	if (offset > 0) && helper.IsHas(iId) {
-		_Users, _error := model.GetUsersesById(offset, limit, iId, field)
+		_Users, _error := model.GetUsersesViaId(offset, limit, iId, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesById's args."
+	herr.Message = "Can't get to the GetUsersesViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesByUserLoginHandler(self *macross.Context) error {
+func GetUsersesViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -188,18 +188,18 @@ func GetUsersesByUserLoginHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserLogin := self.Args("user_login").String()
 	if (offset > 0) && helper.IsHas(iUserLogin) {
-		_Users, _error := model.GetUsersesByUserLogin(offset, limit, iUserLogin, field)
+		_Users, _error := model.GetUsersesViaUserLogin(offset, limit, iUserLogin, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesByUserLogin's args."
+	herr.Message = "Can't get to the GetUsersesViaUserLogin's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesByUserPassHandler(self *macross.Context) error {
+func GetUsersesViaUserPassHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -208,18 +208,18 @@ func GetUsersesByUserPassHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserPass := self.Args("user_pass").String()
 	if (offset > 0) && helper.IsHas(iUserPass) {
-		_Users, _error := model.GetUsersesByUserPass(offset, limit, iUserPass, field)
+		_Users, _error := model.GetUsersesViaUserPass(offset, limit, iUserPass, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesByUserPass's args."
+	herr.Message = "Can't get to the GetUsersesViaUserPass's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesByUserNicenameHandler(self *macross.Context) error {
+func GetUsersesViaUserNicenameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -228,18 +228,18 @@ func GetUsersesByUserNicenameHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserNicename := self.Args("user_nicename").String()
 	if (offset > 0) && helper.IsHas(iUserNicename) {
-		_Users, _error := model.GetUsersesByUserNicename(offset, limit, iUserNicename, field)
+		_Users, _error := model.GetUsersesViaUserNicename(offset, limit, iUserNicename, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesByUserNicename's args."
+	herr.Message = "Can't get to the GetUsersesViaUserNicename's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesByUserEmailHandler(self *macross.Context) error {
+func GetUsersesViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -248,18 +248,18 @@ func GetUsersesByUserEmailHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserEmail := self.Args("user_email").String()
 	if (offset > 0) && helper.IsHas(iUserEmail) {
-		_Users, _error := model.GetUsersesByUserEmail(offset, limit, iUserEmail, field)
+		_Users, _error := model.GetUsersesViaUserEmail(offset, limit, iUserEmail, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesByUserEmail's args."
+	herr.Message = "Can't get to the GetUsersesViaUserEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesByUserUrlHandler(self *macross.Context) error {
+func GetUsersesViaUserUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -268,18 +268,18 @@ func GetUsersesByUserUrlHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserUrl := self.Args("user_url").String()
 	if (offset > 0) && helper.IsHas(iUserUrl) {
-		_Users, _error := model.GetUsersesByUserUrl(offset, limit, iUserUrl, field)
+		_Users, _error := model.GetUsersesViaUserUrl(offset, limit, iUserUrl, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesByUserUrl's args."
+	herr.Message = "Can't get to the GetUsersesViaUserUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesByUserRegisteredHandler(self *macross.Context) error {
+func GetUsersesViaUserRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -288,18 +288,18 @@ func GetUsersesByUserRegisteredHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserRegistered := self.Args("user_registered").Time()
 	if (offset > 0) && helper.IsHas(iUserRegistered) {
-		_Users, _error := model.GetUsersesByUserRegistered(offset, limit, iUserRegistered, field)
+		_Users, _error := model.GetUsersesViaUserRegistered(offset, limit, iUserRegistered, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesByUserRegistered's args."
+	herr.Message = "Can't get to the GetUsersesViaUserRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesByUserActivationKeyHandler(self *macross.Context) error {
+func GetUsersesViaUserActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -308,18 +308,18 @@ func GetUsersesByUserActivationKeyHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserActivationKey := self.Args("user_activation_key").String()
 	if (offset > 0) && helper.IsHas(iUserActivationKey) {
-		_Users, _error := model.GetUsersesByUserActivationKey(offset, limit, iUserActivationKey, field)
+		_Users, _error := model.GetUsersesViaUserActivationKey(offset, limit, iUserActivationKey, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesByUserActivationKey's args."
+	herr.Message = "Can't get to the GetUsersesViaUserActivationKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesByUserStatusHandler(self *macross.Context) error {
+func GetUsersesViaUserStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -328,18 +328,18 @@ func GetUsersesByUserStatusHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iUserStatus := self.Args("user_status").MustInt()
 	if (offset > 0) && helper.IsHas(iUserStatus) {
-		_Users, _error := model.GetUsersesByUserStatus(offset, limit, iUserStatus, field)
+		_Users, _error := model.GetUsersesViaUserStatus(offset, limit, iUserStatus, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesByUserStatus's args."
+	herr.Message = "Can't get to the GetUsersesViaUserStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesByDisplayNameHandler(self *macross.Context) error {
+func GetUsersesViaDisplayNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -348,18 +348,18 @@ func GetUsersesByDisplayNameHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iDisplayName := self.Args("display_name").String()
 	if (offset > 0) && helper.IsHas(iDisplayName) {
-		_Users, _error := model.GetUsersesByDisplayName(offset, limit, iDisplayName, field)
+		_Users, _error := model.GetUsersesViaDisplayName(offset, limit, iDisplayName, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesByDisplayName's args."
+	herr.Message = "Can't get to the GetUsersesViaDisplayName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesBySpamHandler(self *macross.Context) error {
+func GetUsersesViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -368,18 +368,18 @@ func GetUsersesBySpamHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iSpam := self.Args("spam").MustInt()
 	if (offset > 0) && helper.IsHas(iSpam) {
-		_Users, _error := model.GetUsersesBySpam(offset, limit, iSpam, field)
+		_Users, _error := model.GetUsersesViaSpam(offset, limit, iSpam, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesBySpam's args."
+	herr.Message = "Can't get to the GetUsersesViaSpam's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersesByDeletedHandler(self *macross.Context) error {
+func GetUsersesViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -388,14 +388,14 @@ func GetUsersesByDeletedHandler(self *macross.Context) error {
 	field := self.Args("field").String()
 	iDeleted := self.Args("deleted").MustInt()
 	if (offset > 0) && helper.IsHas(iDeleted) {
-		_Users, _error := model.GetUsersesByDeleted(offset, limit, iDeleted, field)
+		_Users, _error := model.GetUsersesViaDeleted(offset, limit, iDeleted, field)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersesByDeleted's args."
+	herr.Message = "Can't get to the GetUsersesViaDeleted's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -6644,391 +6644,391 @@ func GetUsersesHandler(self *macross.Context) error {
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByIdHandler(self *macross.Context) error {
+func GetHasUsersViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iId := self.Args("ID").MustInt64()
 	if helper.IsHas(iId) {
-		_Users := model.HasUsersById(iId)
+		_Users := model.HasUsersViaId(iId)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersById's args."
+	herr.Message = "Can't get to the HasUsersViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByUserLoginHandler(self *macross.Context) error {
+func GetHasUsersViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserLogin := self.Args("user_login").String()
 	if helper.IsHas(iUserLogin) {
-		_Users := model.HasUsersByUserLogin(iUserLogin)
+		_Users := model.HasUsersViaUserLogin(iUserLogin)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersByUserLogin's args."
+	herr.Message = "Can't get to the HasUsersViaUserLogin's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByUserPassHandler(self *macross.Context) error {
+func GetHasUsersViaUserPassHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserPass := self.Args("user_pass").String()
 	if helper.IsHas(iUserPass) {
-		_Users := model.HasUsersByUserPass(iUserPass)
+		_Users := model.HasUsersViaUserPass(iUserPass)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersByUserPass's args."
+	herr.Message = "Can't get to the HasUsersViaUserPass's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByUserNicenameHandler(self *macross.Context) error {
+func GetHasUsersViaUserNicenameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserNicename := self.Args("user_nicename").String()
 	if helper.IsHas(iUserNicename) {
-		_Users := model.HasUsersByUserNicename(iUserNicename)
+		_Users := model.HasUsersViaUserNicename(iUserNicename)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersByUserNicename's args."
+	herr.Message = "Can't get to the HasUsersViaUserNicename's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByUserEmailHandler(self *macross.Context) error {
+func GetHasUsersViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserEmail := self.Args("user_email").String()
 	if helper.IsHas(iUserEmail) {
-		_Users := model.HasUsersByUserEmail(iUserEmail)
+		_Users := model.HasUsersViaUserEmail(iUserEmail)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersByUserEmail's args."
+	herr.Message = "Can't get to the HasUsersViaUserEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByUserUrlHandler(self *macross.Context) error {
+func GetHasUsersViaUserUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserUrl := self.Args("user_url").String()
 	if helper.IsHas(iUserUrl) {
-		_Users := model.HasUsersByUserUrl(iUserUrl)
+		_Users := model.HasUsersViaUserUrl(iUserUrl)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersByUserUrl's args."
+	herr.Message = "Can't get to the HasUsersViaUserUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByUserRegisteredHandler(self *macross.Context) error {
+func GetHasUsersViaUserRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserRegistered := self.Args("user_registered").Time()
 	if helper.IsHas(iUserRegistered) {
-		_Users := model.HasUsersByUserRegistered(iUserRegistered)
+		_Users := model.HasUsersViaUserRegistered(iUserRegistered)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersByUserRegistered's args."
+	herr.Message = "Can't get to the HasUsersViaUserRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByUserActivationKeyHandler(self *macross.Context) error {
+func GetHasUsersViaUserActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserActivationKey := self.Args("user_activation_key").String()
 	if helper.IsHas(iUserActivationKey) {
-		_Users := model.HasUsersByUserActivationKey(iUserActivationKey)
+		_Users := model.HasUsersViaUserActivationKey(iUserActivationKey)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersByUserActivationKey's args."
+	herr.Message = "Can't get to the HasUsersViaUserActivationKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByUserStatusHandler(self *macross.Context) error {
+func GetHasUsersViaUserStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserStatus := self.Args("user_status").MustInt()
 	if helper.IsHas(iUserStatus) {
-		_Users := model.HasUsersByUserStatus(iUserStatus)
+		_Users := model.HasUsersViaUserStatus(iUserStatus)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersByUserStatus's args."
+	herr.Message = "Can't get to the HasUsersViaUserStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByDisplayNameHandler(self *macross.Context) error {
+func GetHasUsersViaDisplayNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDisplayName := self.Args("display_name").String()
 	if helper.IsHas(iDisplayName) {
-		_Users := model.HasUsersByDisplayName(iDisplayName)
+		_Users := model.HasUsersViaDisplayName(iDisplayName)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersByDisplayName's args."
+	herr.Message = "Can't get to the HasUsersViaDisplayName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersBySpamHandler(self *macross.Context) error {
+func GetHasUsersViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSpam := self.Args("spam").MustInt()
 	if helper.IsHas(iSpam) {
-		_Users := model.HasUsersBySpam(iSpam)
+		_Users := model.HasUsersViaSpam(iSpam)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersBySpam's args."
+	herr.Message = "Can't get to the HasUsersViaSpam's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetHasUsersByDeletedHandler(self *macross.Context) error {
+func GetHasUsersViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDeleted := self.Args("deleted").MustInt()
 	if helper.IsHas(iDeleted) {
-		_Users := model.HasUsersByDeleted(iDeleted)
+		_Users := model.HasUsersViaDeleted(iDeleted)
 		var m = map[string]interface{}{}
 		m["users"] = _Users
 		return self.JSON(m)
 	}
-	herr.Message = "Can't get to the HasUsersByDeleted's args."
+	herr.Message = "Can't get to the HasUsersViaDeleted's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByIdHandler(self *macross.Context) error {
+func GetUsersViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iId := self.Args("ID").MustInt64()
 	if helper.IsHas(iId) {
-		_Users, _error := model.GetUsersById(iId)
+		_Users, _error := model.GetUsersViaId(iId)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersById's args."
+	herr.Message = "Can't get to the GetUsersViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByUserLoginHandler(self *macross.Context) error {
+func GetUsersViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserLogin := self.Args("user_login").String()
 	if helper.IsHas(iUserLogin) {
-		_Users, _error := model.GetUsersByUserLogin(iUserLogin)
+		_Users, _error := model.GetUsersViaUserLogin(iUserLogin)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersByUserLogin's args."
+	herr.Message = "Can't get to the GetUsersViaUserLogin's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByUserPassHandler(self *macross.Context) error {
+func GetUsersViaUserPassHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserPass := self.Args("user_pass").String()
 	if helper.IsHas(iUserPass) {
-		_Users, _error := model.GetUsersByUserPass(iUserPass)
+		_Users, _error := model.GetUsersViaUserPass(iUserPass)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersByUserPass's args."
+	herr.Message = "Can't get to the GetUsersViaUserPass's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByUserNicenameHandler(self *macross.Context) error {
+func GetUsersViaUserNicenameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserNicename := self.Args("user_nicename").String()
 	if helper.IsHas(iUserNicename) {
-		_Users, _error := model.GetUsersByUserNicename(iUserNicename)
+		_Users, _error := model.GetUsersViaUserNicename(iUserNicename)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersByUserNicename's args."
+	herr.Message = "Can't get to the GetUsersViaUserNicename's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByUserEmailHandler(self *macross.Context) error {
+func GetUsersViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserEmail := self.Args("user_email").String()
 	if helper.IsHas(iUserEmail) {
-		_Users, _error := model.GetUsersByUserEmail(iUserEmail)
+		_Users, _error := model.GetUsersViaUserEmail(iUserEmail)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersByUserEmail's args."
+	herr.Message = "Can't get to the GetUsersViaUserEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByUserUrlHandler(self *macross.Context) error {
+func GetUsersViaUserUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserUrl := self.Args("user_url").String()
 	if helper.IsHas(iUserUrl) {
-		_Users, _error := model.GetUsersByUserUrl(iUserUrl)
+		_Users, _error := model.GetUsersViaUserUrl(iUserUrl)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersByUserUrl's args."
+	herr.Message = "Can't get to the GetUsersViaUserUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByUserRegisteredHandler(self *macross.Context) error {
+func GetUsersViaUserRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserRegistered := self.Args("user_registered").Time()
 	if helper.IsHas(iUserRegistered) {
-		_Users, _error := model.GetUsersByUserRegistered(iUserRegistered)
+		_Users, _error := model.GetUsersViaUserRegistered(iUserRegistered)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersByUserRegistered's args."
+	herr.Message = "Can't get to the GetUsersViaUserRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByUserActivationKeyHandler(self *macross.Context) error {
+func GetUsersViaUserActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserActivationKey := self.Args("user_activation_key").String()
 	if helper.IsHas(iUserActivationKey) {
-		_Users, _error := model.GetUsersByUserActivationKey(iUserActivationKey)
+		_Users, _error := model.GetUsersViaUserActivationKey(iUserActivationKey)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersByUserActivationKey's args."
+	herr.Message = "Can't get to the GetUsersViaUserActivationKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByUserStatusHandler(self *macross.Context) error {
+func GetUsersViaUserStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iUserStatus := self.Args("user_status").MustInt()
 	if helper.IsHas(iUserStatus) {
-		_Users, _error := model.GetUsersByUserStatus(iUserStatus)
+		_Users, _error := model.GetUsersViaUserStatus(iUserStatus)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersByUserStatus's args."
+	herr.Message = "Can't get to the GetUsersViaUserStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByDisplayNameHandler(self *macross.Context) error {
+func GetUsersViaDisplayNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDisplayName := self.Args("display_name").String()
 	if helper.IsHas(iDisplayName) {
-		_Users, _error := model.GetUsersByDisplayName(iDisplayName)
+		_Users, _error := model.GetUsersViaDisplayName(iDisplayName)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersByDisplayName's args."
+	herr.Message = "Can't get to the GetUsersViaDisplayName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersBySpamHandler(self *macross.Context) error {
+func GetUsersViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iSpam := self.Args("spam").MustInt()
 	if helper.IsHas(iSpam) {
-		_Users, _error := model.GetUsersBySpam(iSpam)
+		_Users, _error := model.GetUsersViaSpam(iSpam)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersBySpam's args."
+	herr.Message = "Can't get to the GetUsersViaSpam's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func GetUsersByDeletedHandler(self *macross.Context) error {
+func GetUsersViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	iDeleted := self.Args("deleted").MustInt()
 	if helper.IsHas(iDeleted) {
-		_Users, _error := model.GetUsersByDeleted(iDeleted)
+		_Users, _error := model.GetUsersViaDeleted(iDeleted)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the GetUsersByDeleted's args."
+	herr.Message = "Can't get to the GetUsersViaDeleted's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByIdHandler(self *macross.Context) error {
+func PostSetUsersViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7036,18 +7036,18 @@ func PostSetUsersByIdHandler(self *macross.Context) error {
 	if helper.IsHas(Id_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersById(Id_, &iUsers)
+		_Users, _error := model.SetUsersViaId(Id_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersById's args."
+	herr.Message = "Can't get to the SetUsersViaId's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByUserLoginHandler(self *macross.Context) error {
+func PostSetUsersViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7055,18 +7055,18 @@ func PostSetUsersByUserLoginHandler(self *macross.Context) error {
 	if helper.IsHas(UserLogin_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersByUserLogin(UserLogin_, &iUsers)
+		_Users, _error := model.SetUsersViaUserLogin(UserLogin_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersByUserLogin's args."
+	herr.Message = "Can't get to the SetUsersViaUserLogin's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByUserPassHandler(self *macross.Context) error {
+func PostSetUsersViaUserPassHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7074,18 +7074,18 @@ func PostSetUsersByUserPassHandler(self *macross.Context) error {
 	if helper.IsHas(UserPass_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersByUserPass(UserPass_, &iUsers)
+		_Users, _error := model.SetUsersViaUserPass(UserPass_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersByUserPass's args."
+	herr.Message = "Can't get to the SetUsersViaUserPass's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByUserNicenameHandler(self *macross.Context) error {
+func PostSetUsersViaUserNicenameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7093,18 +7093,18 @@ func PostSetUsersByUserNicenameHandler(self *macross.Context) error {
 	if helper.IsHas(UserNicename_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersByUserNicename(UserNicename_, &iUsers)
+		_Users, _error := model.SetUsersViaUserNicename(UserNicename_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersByUserNicename's args."
+	herr.Message = "Can't get to the SetUsersViaUserNicename's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByUserEmailHandler(self *macross.Context) error {
+func PostSetUsersViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7112,18 +7112,18 @@ func PostSetUsersByUserEmailHandler(self *macross.Context) error {
 	if helper.IsHas(UserEmail_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersByUserEmail(UserEmail_, &iUsers)
+		_Users, _error := model.SetUsersViaUserEmail(UserEmail_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersByUserEmail's args."
+	herr.Message = "Can't get to the SetUsersViaUserEmail's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByUserUrlHandler(self *macross.Context) error {
+func PostSetUsersViaUserUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7131,18 +7131,18 @@ func PostSetUsersByUserUrlHandler(self *macross.Context) error {
 	if helper.IsHas(UserUrl_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersByUserUrl(UserUrl_, &iUsers)
+		_Users, _error := model.SetUsersViaUserUrl(UserUrl_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersByUserUrl's args."
+	herr.Message = "Can't get to the SetUsersViaUserUrl's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByUserRegisteredHandler(self *macross.Context) error {
+func PostSetUsersViaUserRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7150,18 +7150,18 @@ func PostSetUsersByUserRegisteredHandler(self *macross.Context) error {
 	if helper.IsHas(UserRegistered_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersByUserRegistered(UserRegistered_, &iUsers)
+		_Users, _error := model.SetUsersViaUserRegistered(UserRegistered_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersByUserRegistered's args."
+	herr.Message = "Can't get to the SetUsersViaUserRegistered's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByUserActivationKeyHandler(self *macross.Context) error {
+func PostSetUsersViaUserActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7169,18 +7169,18 @@ func PostSetUsersByUserActivationKeyHandler(self *macross.Context) error {
 	if helper.IsHas(UserActivationKey_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersByUserActivationKey(UserActivationKey_, &iUsers)
+		_Users, _error := model.SetUsersViaUserActivationKey(UserActivationKey_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersByUserActivationKey's args."
+	herr.Message = "Can't get to the SetUsersViaUserActivationKey's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByUserStatusHandler(self *macross.Context) error {
+func PostSetUsersViaUserStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7188,18 +7188,18 @@ func PostSetUsersByUserStatusHandler(self *macross.Context) error {
 	if helper.IsHas(UserStatus_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersByUserStatus(UserStatus_, &iUsers)
+		_Users, _error := model.SetUsersViaUserStatus(UserStatus_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersByUserStatus's args."
+	herr.Message = "Can't get to the SetUsersViaUserStatus's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByDisplayNameHandler(self *macross.Context) error {
+func PostSetUsersViaDisplayNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7207,18 +7207,18 @@ func PostSetUsersByDisplayNameHandler(self *macross.Context) error {
 	if helper.IsHas(DisplayName_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersByDisplayName(DisplayName_, &iUsers)
+		_Users, _error := model.SetUsersViaDisplayName(DisplayName_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersByDisplayName's args."
+	herr.Message = "Can't get to the SetUsersViaDisplayName's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersBySpamHandler(self *macross.Context) error {
+func PostSetUsersViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7226,18 +7226,18 @@ func PostSetUsersBySpamHandler(self *macross.Context) error {
 	if helper.IsHas(Spam_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersBySpam(Spam_, &iUsers)
+		_Users, _error := model.SetUsersViaSpam(Spam_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersBySpam's args."
+	herr.Message = "Can't get to the SetUsersViaSpam's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
-func PostSetUsersByDeletedHandler(self *macross.Context) error {
+func PostSetUsersViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7245,14 +7245,14 @@ func PostSetUsersByDeletedHandler(self *macross.Context) error {
 	if helper.IsHas(Deleted_) {
 		var iUsers model.Users
 		self.Bind(&iUsers)
-		_Users, _error := model.SetUsersByDeleted(Deleted_, &iUsers)
+		_Users, _error := model.SetUsersViaDeleted(Deleted_, &iUsers)
 		if _error != nil {
 			herr.Message = _error.Error()
 			return self.JSON(herr, macross.StatusServiceUnavailable)
 		}
 		return self.JSON(_Users)
 	}
-	herr.Message = "Can't get to the SetUsersByDeleted's args."
+	herr.Message = "Can't get to the SetUsersViaDeleted's args."
 	return self.JSON(herr, macross.StatusServiceUnavailable)
 }
 
@@ -7294,7 +7294,7 @@ func PostUsersHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	_int64, _error := model.PostUsers(&iUsers)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -7312,7 +7312,7 @@ func PutUsersHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	_int64, _error := model.PutUsers(&iUsers)
-	if (_int64 <= 0) || (_error != nil) {
+	if (helper.IsHas(_int64)) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
 	} else {
@@ -7323,14 +7323,14 @@ func PutUsersHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByIdHandler(self *macross.Context) error {
+func PutUsersViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Id_ := self.Args("ID").MustInt64()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersById(Id_, &iUsers)
+	_int64, _error := model.PutUsersViaId(Id_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7340,14 +7340,14 @@ func PutUsersByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByUserLoginHandler(self *macross.Context) error {
+func PutUsersViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserLogin_ := self.Args("user_login").String()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersByUserLogin(UserLogin_, &iUsers)
+	_int64, _error := model.PutUsersViaUserLogin(UserLogin_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7357,14 +7357,14 @@ func PutUsersByUserLoginHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByUserPassHandler(self *macross.Context) error {
+func PutUsersViaUserPassHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserPass_ := self.Args("user_pass").String()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersByUserPass(UserPass_, &iUsers)
+	_int64, _error := model.PutUsersViaUserPass(UserPass_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7374,14 +7374,14 @@ func PutUsersByUserPassHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByUserNicenameHandler(self *macross.Context) error {
+func PutUsersViaUserNicenameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserNicename_ := self.Args("user_nicename").String()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersByUserNicename(UserNicename_, &iUsers)
+	_int64, _error := model.PutUsersViaUserNicename(UserNicename_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7391,14 +7391,14 @@ func PutUsersByUserNicenameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByUserEmailHandler(self *macross.Context) error {
+func PutUsersViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserEmail_ := self.Args("user_email").String()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersByUserEmail(UserEmail_, &iUsers)
+	_int64, _error := model.PutUsersViaUserEmail(UserEmail_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7408,14 +7408,14 @@ func PutUsersByUserEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByUserUrlHandler(self *macross.Context) error {
+func PutUsersViaUserUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserUrl_ := self.Args("user_url").String()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersByUserUrl(UserUrl_, &iUsers)
+	_int64, _error := model.PutUsersViaUserUrl(UserUrl_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7425,14 +7425,14 @@ func PutUsersByUserUrlHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByUserRegisteredHandler(self *macross.Context) error {
+func PutUsersViaUserRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserRegistered_ := self.Args("user_registered").Time()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersByUserRegistered(UserRegistered_, &iUsers)
+	_int64, _error := model.PutUsersViaUserRegistered(UserRegistered_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7442,14 +7442,14 @@ func PutUsersByUserRegisteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByUserActivationKeyHandler(self *macross.Context) error {
+func PutUsersViaUserActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserActivationKey_ := self.Args("user_activation_key").String()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersByUserActivationKey(UserActivationKey_, &iUsers)
+	_int64, _error := model.PutUsersViaUserActivationKey(UserActivationKey_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7459,14 +7459,14 @@ func PutUsersByUserActivationKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByUserStatusHandler(self *macross.Context) error {
+func PutUsersViaUserStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserStatus_ := self.Args("user_status").MustInt()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersByUserStatus(UserStatus_, &iUsers)
+	_int64, _error := model.PutUsersViaUserStatus(UserStatus_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7476,14 +7476,14 @@ func PutUsersByUserStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByDisplayNameHandler(self *macross.Context) error {
+func PutUsersViaDisplayNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	DisplayName_ := self.Args("display_name").String()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersByDisplayName(DisplayName_, &iUsers)
+	_int64, _error := model.PutUsersViaDisplayName(DisplayName_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7493,14 +7493,14 @@ func PutUsersByDisplayNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersBySpamHandler(self *macross.Context) error {
+func PutUsersViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Spam_ := self.Args("spam").MustInt()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersBySpam(Spam_, &iUsers)
+	_int64, _error := model.PutUsersViaSpam(Spam_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7510,14 +7510,14 @@ func PutUsersBySpamHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUsersByDeletedHandler(self *macross.Context) error {
+func PutUsersViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Deleted_ := self.Args("deleted").MustInt()
 	var iUsers model.Users
 	self.Bind(&iUsers)
-	_int64, _error := model.PutUsersByDeleted(Deleted_, &iUsers)
+	_int64, _error := model.PutUsersViaDeleted(Deleted_, &iUsers)
 	if (_int64 <= 0) || (_error != nil) {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7527,7 +7527,7 @@ func PutUsersByDeletedHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByIdHandler(self *macross.Context) error {
+func PutUpdateUsersViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7535,7 +7535,7 @@ func PutUpdateUsersByIdHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersById(Id_, &iMap)
+	_error := model.UpdateUsersViaId(Id_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7545,7 +7545,7 @@ func PutUpdateUsersByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByUserLoginHandler(self *macross.Context) error {
+func PutUpdateUsersViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7553,7 +7553,7 @@ func PutUpdateUsersByUserLoginHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersByUserLogin(UserLogin_, &iMap)
+	_error := model.UpdateUsersViaUserLogin(UserLogin_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7563,7 +7563,7 @@ func PutUpdateUsersByUserLoginHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByUserPassHandler(self *macross.Context) error {
+func PutUpdateUsersViaUserPassHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7571,7 +7571,7 @@ func PutUpdateUsersByUserPassHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersByUserPass(UserPass_, &iMap)
+	_error := model.UpdateUsersViaUserPass(UserPass_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7581,7 +7581,7 @@ func PutUpdateUsersByUserPassHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByUserNicenameHandler(self *macross.Context) error {
+func PutUpdateUsersViaUserNicenameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7589,7 +7589,7 @@ func PutUpdateUsersByUserNicenameHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersByUserNicename(UserNicename_, &iMap)
+	_error := model.UpdateUsersViaUserNicename(UserNicename_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7599,7 +7599,7 @@ func PutUpdateUsersByUserNicenameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByUserEmailHandler(self *macross.Context) error {
+func PutUpdateUsersViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7607,7 +7607,7 @@ func PutUpdateUsersByUserEmailHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersByUserEmail(UserEmail_, &iMap)
+	_error := model.UpdateUsersViaUserEmail(UserEmail_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7617,7 +7617,7 @@ func PutUpdateUsersByUserEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByUserUrlHandler(self *macross.Context) error {
+func PutUpdateUsersViaUserUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7625,7 +7625,7 @@ func PutUpdateUsersByUserUrlHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersByUserUrl(UserUrl_, &iMap)
+	_error := model.UpdateUsersViaUserUrl(UserUrl_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7635,7 +7635,7 @@ func PutUpdateUsersByUserUrlHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByUserRegisteredHandler(self *macross.Context) error {
+func PutUpdateUsersViaUserRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7643,7 +7643,7 @@ func PutUpdateUsersByUserRegisteredHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersByUserRegistered(UserRegistered_, &iMap)
+	_error := model.UpdateUsersViaUserRegistered(UserRegistered_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7653,7 +7653,7 @@ func PutUpdateUsersByUserRegisteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByUserActivationKeyHandler(self *macross.Context) error {
+func PutUpdateUsersViaUserActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7661,7 +7661,7 @@ func PutUpdateUsersByUserActivationKeyHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersByUserActivationKey(UserActivationKey_, &iMap)
+	_error := model.UpdateUsersViaUserActivationKey(UserActivationKey_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7671,7 +7671,7 @@ func PutUpdateUsersByUserActivationKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByUserStatusHandler(self *macross.Context) error {
+func PutUpdateUsersViaUserStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7679,7 +7679,7 @@ func PutUpdateUsersByUserStatusHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersByUserStatus(UserStatus_, &iMap)
+	_error := model.UpdateUsersViaUserStatus(UserStatus_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7689,7 +7689,7 @@ func PutUpdateUsersByUserStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByDisplayNameHandler(self *macross.Context) error {
+func PutUpdateUsersViaDisplayNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7697,7 +7697,7 @@ func PutUpdateUsersByDisplayNameHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersByDisplayName(DisplayName_, &iMap)
+	_error := model.UpdateUsersViaDisplayName(DisplayName_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7707,7 +7707,7 @@ func PutUpdateUsersByDisplayNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersBySpamHandler(self *macross.Context) error {
+func PutUpdateUsersViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7715,7 +7715,7 @@ func PutUpdateUsersBySpamHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersBySpam(Spam_, &iMap)
+	_error := model.UpdateUsersViaSpam(Spam_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7725,7 +7725,7 @@ func PutUpdateUsersBySpamHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func PutUpdateUsersByDeletedHandler(self *macross.Context) error {
+func PutUpdateUsersViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
@@ -7733,7 +7733,7 @@ func PutUpdateUsersByDeletedHandler(self *macross.Context) error {
 	var iUsers model.Users
 	self.Bind(&iUsers)
 	var iMap = helper.StructToMap(iUsers)
-	_error := model.UpdateUsersByDeleted(Deleted_, &iMap)
+	_error := model.UpdateUsersViaDeleted(Deleted_, &iMap)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7760,12 +7760,12 @@ func DeleteUsersHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByIdHandler(self *macross.Context) error {
+func DeleteUsersViaIdHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Id_ := self.Args("ID").MustInt64()
-	_error := model.DeleteUsersById(Id_)
+	_error := model.DeleteUsersViaId(Id_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7775,12 +7775,12 @@ func DeleteUsersByIdHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByUserLoginHandler(self *macross.Context) error {
+func DeleteUsersViaUserLoginHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserLogin_ := self.Args("user_login").String()
-	_error := model.DeleteUsersByUserLogin(UserLogin_)
+	_error := model.DeleteUsersViaUserLogin(UserLogin_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7790,12 +7790,12 @@ func DeleteUsersByUserLoginHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByUserPassHandler(self *macross.Context) error {
+func DeleteUsersViaUserPassHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserPass_ := self.Args("user_pass").String()
-	_error := model.DeleteUsersByUserPass(UserPass_)
+	_error := model.DeleteUsersViaUserPass(UserPass_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7805,12 +7805,12 @@ func DeleteUsersByUserPassHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByUserNicenameHandler(self *macross.Context) error {
+func DeleteUsersViaUserNicenameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserNicename_ := self.Args("user_nicename").String()
-	_error := model.DeleteUsersByUserNicename(UserNicename_)
+	_error := model.DeleteUsersViaUserNicename(UserNicename_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7820,12 +7820,12 @@ func DeleteUsersByUserNicenameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByUserEmailHandler(self *macross.Context) error {
+func DeleteUsersViaUserEmailHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserEmail_ := self.Args("user_email").String()
-	_error := model.DeleteUsersByUserEmail(UserEmail_)
+	_error := model.DeleteUsersViaUserEmail(UserEmail_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7835,12 +7835,12 @@ func DeleteUsersByUserEmailHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByUserUrlHandler(self *macross.Context) error {
+func DeleteUsersViaUserUrlHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserUrl_ := self.Args("user_url").String()
-	_error := model.DeleteUsersByUserUrl(UserUrl_)
+	_error := model.DeleteUsersViaUserUrl(UserUrl_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7850,12 +7850,12 @@ func DeleteUsersByUserUrlHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByUserRegisteredHandler(self *macross.Context) error {
+func DeleteUsersViaUserRegisteredHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserRegistered_ := self.Args("user_registered").Time()
-	_error := model.DeleteUsersByUserRegistered(UserRegistered_)
+	_error := model.DeleteUsersViaUserRegistered(UserRegistered_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7865,12 +7865,12 @@ func DeleteUsersByUserRegisteredHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByUserActivationKeyHandler(self *macross.Context) error {
+func DeleteUsersViaUserActivationKeyHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserActivationKey_ := self.Args("user_activation_key").String()
-	_error := model.DeleteUsersByUserActivationKey(UserActivationKey_)
+	_error := model.DeleteUsersViaUserActivationKey(UserActivationKey_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7880,12 +7880,12 @@ func DeleteUsersByUserActivationKeyHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByUserStatusHandler(self *macross.Context) error {
+func DeleteUsersViaUserStatusHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	UserStatus_ := self.Args("user_status").MustInt()
-	_error := model.DeleteUsersByUserStatus(UserStatus_)
+	_error := model.DeleteUsersViaUserStatus(UserStatus_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7895,12 +7895,12 @@ func DeleteUsersByUserStatusHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByDisplayNameHandler(self *macross.Context) error {
+func DeleteUsersViaDisplayNameHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	DisplayName_ := self.Args("display_name").String()
-	_error := model.DeleteUsersByDisplayName(DisplayName_)
+	_error := model.DeleteUsersViaDisplayName(DisplayName_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7910,12 +7910,12 @@ func DeleteUsersByDisplayNameHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersBySpamHandler(self *macross.Context) error {
+func DeleteUsersViaSpamHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Spam_ := self.Args("spam").MustInt()
-	_error := model.DeleteUsersBySpam(Spam_)
+	_error := model.DeleteUsersViaSpam(Spam_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)
@@ -7925,12 +7925,12 @@ func DeleteUsersBySpamHandler(self *macross.Context) error {
 	return self.JSON(herr)
 }
 
-func DeleteUsersByDeletedHandler(self *macross.Context) error {
+func DeleteUsersViaDeletedHandler(self *macross.Context) error {
 	var herr = new(macross.HTTPError)
 	herr.Message = "ErrServiceUnavailable"
 	herr.Status = macross.StatusServiceUnavailable
 	Deleted_ := self.Args("deleted").MustInt()
-	_error := model.DeleteUsersByDeleted(Deleted_)
+	_error := model.DeleteUsersViaDeleted(Deleted_)
 	if _error != nil {
 		herr.Message = _error.Error()
 		return self.JSON(herr, macross.StatusServiceUnavailable)

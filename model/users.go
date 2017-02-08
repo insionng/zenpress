@@ -25,74 +25,74 @@ func GetUsersesCount(offset int, limit int) (int64, error) {
 	return total, err
 }
 
-// GetUsersCountById Get Users via Id
-func GetUsersCountById(iId int64) int64 {
+// GetUsersCountViaId Get Users via Id
+func GetUsersCountViaId(iId int64) int64 {
 	n, _ := Engine.Where("ID = ?", iId).Count(&Users{Id: iId})
 	return n
 }
 
-// GetUsersCountByUserLogin Get Users via UserLogin
-func GetUsersCountByUserLogin(iUserLogin string) int64 {
+// GetUsersCountViaUserLogin Get Users via UserLogin
+func GetUsersCountViaUserLogin(iUserLogin string) int64 {
 	n, _ := Engine.Where("user_login = ?", iUserLogin).Count(&Users{UserLogin: iUserLogin})
 	return n
 }
 
-// GetUsersCountByUserPass Get Users via UserPass
-func GetUsersCountByUserPass(iUserPass string) int64 {
+// GetUsersCountViaUserPass Get Users via UserPass
+func GetUsersCountViaUserPass(iUserPass string) int64 {
 	n, _ := Engine.Where("user_pass = ?", iUserPass).Count(&Users{UserPass: iUserPass})
 	return n
 }
 
-// GetUsersCountByUserNicename Get Users via UserNicename
-func GetUsersCountByUserNicename(iUserNicename string) int64 {
+// GetUsersCountViaUserNicename Get Users via UserNicename
+func GetUsersCountViaUserNicename(iUserNicename string) int64 {
 	n, _ := Engine.Where("user_nicename = ?", iUserNicename).Count(&Users{UserNicename: iUserNicename})
 	return n
 }
 
-// GetUsersCountByUserEmail Get Users via UserEmail
-func GetUsersCountByUserEmail(iUserEmail string) int64 {
+// GetUsersCountViaUserEmail Get Users via UserEmail
+func GetUsersCountViaUserEmail(iUserEmail string) int64 {
 	n, _ := Engine.Where("user_email = ?", iUserEmail).Count(&Users{UserEmail: iUserEmail})
 	return n
 }
 
-// GetUsersCountByUserUrl Get Users via UserUrl
-func GetUsersCountByUserUrl(iUserUrl string) int64 {
+// GetUsersCountViaUserUrl Get Users via UserUrl
+func GetUsersCountViaUserUrl(iUserUrl string) int64 {
 	n, _ := Engine.Where("user_url = ?", iUserUrl).Count(&Users{UserUrl: iUserUrl})
 	return n
 }
 
-// GetUsersCountByUserRegistered Get Users via UserRegistered
-func GetUsersCountByUserRegistered(iUserRegistered time.Time) int64 {
+// GetUsersCountViaUserRegistered Get Users via UserRegistered
+func GetUsersCountViaUserRegistered(iUserRegistered time.Time) int64 {
 	n, _ := Engine.Where("user_registered = ?", iUserRegistered).Count(&Users{UserRegistered: iUserRegistered})
 	return n
 }
 
-// GetUsersCountByUserActivationKey Get Users via UserActivationKey
-func GetUsersCountByUserActivationKey(iUserActivationKey string) int64 {
+// GetUsersCountViaUserActivationKey Get Users via UserActivationKey
+func GetUsersCountViaUserActivationKey(iUserActivationKey string) int64 {
 	n, _ := Engine.Where("user_activation_key = ?", iUserActivationKey).Count(&Users{UserActivationKey: iUserActivationKey})
 	return n
 }
 
-// GetUsersCountByUserStatus Get Users via UserStatus
-func GetUsersCountByUserStatus(iUserStatus int) int64 {
+// GetUsersCountViaUserStatus Get Users via UserStatus
+func GetUsersCountViaUserStatus(iUserStatus int) int64 {
 	n, _ := Engine.Where("user_status = ?", iUserStatus).Count(&Users{UserStatus: iUserStatus})
 	return n
 }
 
-// GetUsersCountByDisplayName Get Users via DisplayName
-func GetUsersCountByDisplayName(iDisplayName string) int64 {
+// GetUsersCountViaDisplayName Get Users via DisplayName
+func GetUsersCountViaDisplayName(iDisplayName string) int64 {
 	n, _ := Engine.Where("display_name = ?", iDisplayName).Count(&Users{DisplayName: iDisplayName})
 	return n
 }
 
-// GetUsersCountBySpam Get Users via Spam
-func GetUsersCountBySpam(iSpam int) int64 {
+// GetUsersCountViaSpam Get Users via Spam
+func GetUsersCountViaSpam(iSpam int) int64 {
 	n, _ := Engine.Where("spam = ?", iSpam).Count(&Users{Spam: iSpam})
 	return n
 }
 
-// GetUsersCountByDeleted Get Users via Deleted
-func GetUsersCountByDeleted(iDeleted int) int64 {
+// GetUsersCountViaDeleted Get Users via Deleted
+func GetUsersCountViaDeleted(iDeleted int) int64 {
 	n, _ := Engine.Where("deleted = ?", iDeleted).Count(&Users{Deleted: iDeleted})
 	return n
 }
@@ -2106,92 +2106,92 @@ func GetUserses(offset int, limit int, field string) (*[]*Users, error) {
 	return _Users, err
 }
 
-// GetUsersesById Get Userss via Id
-func GetUsersesById(offset int, limit int, Id_ int64, field string) (*[]*Users, error) {
+// GetUsersesViaId Get Userss via Id
+func GetUsersesViaId(offset int, limit int, Id_ int64, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("ID = ?", Id_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesByUserLogin Get Userss via UserLogin
-func GetUsersesByUserLogin(offset int, limit int, UserLogin_ string, field string) (*[]*Users, error) {
+// GetUsersesViaUserLogin Get Userss via UserLogin
+func GetUsersesViaUserLogin(offset int, limit int, UserLogin_ string, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("user_login = ?", UserLogin_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesByUserPass Get Userss via UserPass
-func GetUsersesByUserPass(offset int, limit int, UserPass_ string, field string) (*[]*Users, error) {
+// GetUsersesViaUserPass Get Userss via UserPass
+func GetUsersesViaUserPass(offset int, limit int, UserPass_ string, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("user_pass = ?", UserPass_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesByUserNicename Get Userss via UserNicename
-func GetUsersesByUserNicename(offset int, limit int, UserNicename_ string, field string) (*[]*Users, error) {
+// GetUsersesViaUserNicename Get Userss via UserNicename
+func GetUsersesViaUserNicename(offset int, limit int, UserNicename_ string, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("user_nicename = ?", UserNicename_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesByUserEmail Get Userss via UserEmail
-func GetUsersesByUserEmail(offset int, limit int, UserEmail_ string, field string) (*[]*Users, error) {
+// GetUsersesViaUserEmail Get Userss via UserEmail
+func GetUsersesViaUserEmail(offset int, limit int, UserEmail_ string, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("user_email = ?", UserEmail_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesByUserUrl Get Userss via UserUrl
-func GetUsersesByUserUrl(offset int, limit int, UserUrl_ string, field string) (*[]*Users, error) {
+// GetUsersesViaUserUrl Get Userss via UserUrl
+func GetUsersesViaUserUrl(offset int, limit int, UserUrl_ string, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("user_url = ?", UserUrl_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesByUserRegistered Get Userss via UserRegistered
-func GetUsersesByUserRegistered(offset int, limit int, UserRegistered_ time.Time, field string) (*[]*Users, error) {
+// GetUsersesViaUserRegistered Get Userss via UserRegistered
+func GetUsersesViaUserRegistered(offset int, limit int, UserRegistered_ time.Time, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("user_registered = ?", UserRegistered_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesByUserActivationKey Get Userss via UserActivationKey
-func GetUsersesByUserActivationKey(offset int, limit int, UserActivationKey_ string, field string) (*[]*Users, error) {
+// GetUsersesViaUserActivationKey Get Userss via UserActivationKey
+func GetUsersesViaUserActivationKey(offset int, limit int, UserActivationKey_ string, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("user_activation_key = ?", UserActivationKey_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesByUserStatus Get Userss via UserStatus
-func GetUsersesByUserStatus(offset int, limit int, UserStatus_ int, field string) (*[]*Users, error) {
+// GetUsersesViaUserStatus Get Userss via UserStatus
+func GetUsersesViaUserStatus(offset int, limit int, UserStatus_ int, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("user_status = ?", UserStatus_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesByDisplayName Get Userss via DisplayName
-func GetUsersesByDisplayName(offset int, limit int, DisplayName_ string, field string) (*[]*Users, error) {
+// GetUsersesViaDisplayName Get Userss via DisplayName
+func GetUsersesViaDisplayName(offset int, limit int, DisplayName_ string, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("display_name = ?", DisplayName_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesBySpam Get Userss via Spam
-func GetUsersesBySpam(offset int, limit int, Spam_ int, field string) (*[]*Users, error) {
+// GetUsersesViaSpam Get Userss via Spam
+func GetUsersesViaSpam(offset int, limit int, Spam_ int, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("spam = ?", Spam_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// GetUsersesByDeleted Get Userss via Deleted
-func GetUsersesByDeleted(offset int, limit int, Deleted_ int, field string) (*[]*Users, error) {
+// GetUsersesViaDeleted Get Userss via Deleted
+func GetUsersesViaDeleted(offset int, limit int, Deleted_ int, field string) (*[]*Users, error) {
 	var _Users = new([]*Users)
 	err := Engine.Table("users").Where("deleted = ?", Deleted_).Limit(limit, offset).Desc(field).Find(_Users)
 	return _Users, err
 }
 
-// HasUsersById Has Users via Id
-func HasUsersById(iId int64) bool {
+// HasUsersViaId Has Users via Id
+func HasUsersViaId(iId int64) bool {
 	if has, err := Engine.Where("ID = ?", iId).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2202,8 +2202,8 @@ func HasUsersById(iId int64) bool {
 	}
 }
 
-// HasUsersByUserLogin Has Users via UserLogin
-func HasUsersByUserLogin(iUserLogin string) bool {
+// HasUsersViaUserLogin Has Users via UserLogin
+func HasUsersViaUserLogin(iUserLogin string) bool {
 	if has, err := Engine.Where("user_login = ?", iUserLogin).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2214,8 +2214,8 @@ func HasUsersByUserLogin(iUserLogin string) bool {
 	}
 }
 
-// HasUsersByUserPass Has Users via UserPass
-func HasUsersByUserPass(iUserPass string) bool {
+// HasUsersViaUserPass Has Users via UserPass
+func HasUsersViaUserPass(iUserPass string) bool {
 	if has, err := Engine.Where("user_pass = ?", iUserPass).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2226,8 +2226,8 @@ func HasUsersByUserPass(iUserPass string) bool {
 	}
 }
 
-// HasUsersByUserNicename Has Users via UserNicename
-func HasUsersByUserNicename(iUserNicename string) bool {
+// HasUsersViaUserNicename Has Users via UserNicename
+func HasUsersViaUserNicename(iUserNicename string) bool {
 	if has, err := Engine.Where("user_nicename = ?", iUserNicename).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2238,8 +2238,8 @@ func HasUsersByUserNicename(iUserNicename string) bool {
 	}
 }
 
-// HasUsersByUserEmail Has Users via UserEmail
-func HasUsersByUserEmail(iUserEmail string) bool {
+// HasUsersViaUserEmail Has Users via UserEmail
+func HasUsersViaUserEmail(iUserEmail string) bool {
 	if has, err := Engine.Where("user_email = ?", iUserEmail).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2250,8 +2250,8 @@ func HasUsersByUserEmail(iUserEmail string) bool {
 	}
 }
 
-// HasUsersByUserUrl Has Users via UserUrl
-func HasUsersByUserUrl(iUserUrl string) bool {
+// HasUsersViaUserUrl Has Users via UserUrl
+func HasUsersViaUserUrl(iUserUrl string) bool {
 	if has, err := Engine.Where("user_url = ?", iUserUrl).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2262,8 +2262,8 @@ func HasUsersByUserUrl(iUserUrl string) bool {
 	}
 }
 
-// HasUsersByUserRegistered Has Users via UserRegistered
-func HasUsersByUserRegistered(iUserRegistered time.Time) bool {
+// HasUsersViaUserRegistered Has Users via UserRegistered
+func HasUsersViaUserRegistered(iUserRegistered time.Time) bool {
 	if has, err := Engine.Where("user_registered = ?", iUserRegistered).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2274,8 +2274,8 @@ func HasUsersByUserRegistered(iUserRegistered time.Time) bool {
 	}
 }
 
-// HasUsersByUserActivationKey Has Users via UserActivationKey
-func HasUsersByUserActivationKey(iUserActivationKey string) bool {
+// HasUsersViaUserActivationKey Has Users via UserActivationKey
+func HasUsersViaUserActivationKey(iUserActivationKey string) bool {
 	if has, err := Engine.Where("user_activation_key = ?", iUserActivationKey).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2286,8 +2286,8 @@ func HasUsersByUserActivationKey(iUserActivationKey string) bool {
 	}
 }
 
-// HasUsersByUserStatus Has Users via UserStatus
-func HasUsersByUserStatus(iUserStatus int) bool {
+// HasUsersViaUserStatus Has Users via UserStatus
+func HasUsersViaUserStatus(iUserStatus int) bool {
 	if has, err := Engine.Where("user_status = ?", iUserStatus).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2298,8 +2298,8 @@ func HasUsersByUserStatus(iUserStatus int) bool {
 	}
 }
 
-// HasUsersByDisplayName Has Users via DisplayName
-func HasUsersByDisplayName(iDisplayName string) bool {
+// HasUsersViaDisplayName Has Users via DisplayName
+func HasUsersViaDisplayName(iDisplayName string) bool {
 	if has, err := Engine.Where("display_name = ?", iDisplayName).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2310,8 +2310,8 @@ func HasUsersByDisplayName(iDisplayName string) bool {
 	}
 }
 
-// HasUsersBySpam Has Users via Spam
-func HasUsersBySpam(iSpam int) bool {
+// HasUsersViaSpam Has Users via Spam
+func HasUsersViaSpam(iSpam int) bool {
 	if has, err := Engine.Where("spam = ?", iSpam).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2322,8 +2322,8 @@ func HasUsersBySpam(iSpam int) bool {
 	}
 }
 
-// HasUsersByDeleted Has Users via Deleted
-func HasUsersByDeleted(iDeleted int) bool {
+// HasUsersViaDeleted Has Users via Deleted
+func HasUsersViaDeleted(iDeleted int) bool {
 	if has, err := Engine.Where("deleted = ?", iDeleted).Get(new(Users)); err != nil {
 		return false
 	} else {
@@ -2334,8 +2334,8 @@ func HasUsersByDeleted(iDeleted int) bool {
 	}
 }
 
-// GetUsersById Get Users via Id
-func GetUsersById(iId int64) (*Users, error) {
+// GetUsersViaId Get Users via Id
+func GetUsersViaId(iId int64) (*Users, error) {
 	var _Users = &Users{Id: iId}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2345,8 +2345,8 @@ func GetUsersById(iId int64) (*Users, error) {
 	}
 }
 
-// GetUsersByUserLogin Get Users via UserLogin
-func GetUsersByUserLogin(iUserLogin string) (*Users, error) {
+// GetUsersViaUserLogin Get Users via UserLogin
+func GetUsersViaUserLogin(iUserLogin string) (*Users, error) {
 	var _Users = &Users{UserLogin: iUserLogin}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2356,8 +2356,8 @@ func GetUsersByUserLogin(iUserLogin string) (*Users, error) {
 	}
 }
 
-// GetUsersByUserPass Get Users via UserPass
-func GetUsersByUserPass(iUserPass string) (*Users, error) {
+// GetUsersViaUserPass Get Users via UserPass
+func GetUsersViaUserPass(iUserPass string) (*Users, error) {
 	var _Users = &Users{UserPass: iUserPass}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2367,8 +2367,8 @@ func GetUsersByUserPass(iUserPass string) (*Users, error) {
 	}
 }
 
-// GetUsersByUserNicename Get Users via UserNicename
-func GetUsersByUserNicename(iUserNicename string) (*Users, error) {
+// GetUsersViaUserNicename Get Users via UserNicename
+func GetUsersViaUserNicename(iUserNicename string) (*Users, error) {
 	var _Users = &Users{UserNicename: iUserNicename}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2378,8 +2378,8 @@ func GetUsersByUserNicename(iUserNicename string) (*Users, error) {
 	}
 }
 
-// GetUsersByUserEmail Get Users via UserEmail
-func GetUsersByUserEmail(iUserEmail string) (*Users, error) {
+// GetUsersViaUserEmail Get Users via UserEmail
+func GetUsersViaUserEmail(iUserEmail string) (*Users, error) {
 	var _Users = &Users{UserEmail: iUserEmail}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2389,8 +2389,8 @@ func GetUsersByUserEmail(iUserEmail string) (*Users, error) {
 	}
 }
 
-// GetUsersByUserUrl Get Users via UserUrl
-func GetUsersByUserUrl(iUserUrl string) (*Users, error) {
+// GetUsersViaUserUrl Get Users via UserUrl
+func GetUsersViaUserUrl(iUserUrl string) (*Users, error) {
 	var _Users = &Users{UserUrl: iUserUrl}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2400,8 +2400,8 @@ func GetUsersByUserUrl(iUserUrl string) (*Users, error) {
 	}
 }
 
-// GetUsersByUserRegistered Get Users via UserRegistered
-func GetUsersByUserRegistered(iUserRegistered time.Time) (*Users, error) {
+// GetUsersViaUserRegistered Get Users via UserRegistered
+func GetUsersViaUserRegistered(iUserRegistered time.Time) (*Users, error) {
 	var _Users = &Users{UserRegistered: iUserRegistered}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2411,8 +2411,8 @@ func GetUsersByUserRegistered(iUserRegistered time.Time) (*Users, error) {
 	}
 }
 
-// GetUsersByUserActivationKey Get Users via UserActivationKey
-func GetUsersByUserActivationKey(iUserActivationKey string) (*Users, error) {
+// GetUsersViaUserActivationKey Get Users via UserActivationKey
+func GetUsersViaUserActivationKey(iUserActivationKey string) (*Users, error) {
 	var _Users = &Users{UserActivationKey: iUserActivationKey}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2422,8 +2422,8 @@ func GetUsersByUserActivationKey(iUserActivationKey string) (*Users, error) {
 	}
 }
 
-// GetUsersByUserStatus Get Users via UserStatus
-func GetUsersByUserStatus(iUserStatus int) (*Users, error) {
+// GetUsersViaUserStatus Get Users via UserStatus
+func GetUsersViaUserStatus(iUserStatus int) (*Users, error) {
 	var _Users = &Users{UserStatus: iUserStatus}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2433,8 +2433,8 @@ func GetUsersByUserStatus(iUserStatus int) (*Users, error) {
 	}
 }
 
-// GetUsersByDisplayName Get Users via DisplayName
-func GetUsersByDisplayName(iDisplayName string) (*Users, error) {
+// GetUsersViaDisplayName Get Users via DisplayName
+func GetUsersViaDisplayName(iDisplayName string) (*Users, error) {
 	var _Users = &Users{DisplayName: iDisplayName}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2444,8 +2444,8 @@ func GetUsersByDisplayName(iDisplayName string) (*Users, error) {
 	}
 }
 
-// GetUsersBySpam Get Users via Spam
-func GetUsersBySpam(iSpam int) (*Users, error) {
+// GetUsersViaSpam Get Users via Spam
+func GetUsersViaSpam(iSpam int) (*Users, error) {
 	var _Users = &Users{Spam: iSpam}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2455,8 +2455,8 @@ func GetUsersBySpam(iSpam int) (*Users, error) {
 	}
 }
 
-// GetUsersByDeleted Get Users via Deleted
-func GetUsersByDeleted(iDeleted int) (*Users, error) {
+// GetUsersViaDeleted Get Users via Deleted
+func GetUsersViaDeleted(iDeleted int) (*Users, error) {
 	var _Users = &Users{Deleted: iDeleted}
 	has, err := Engine.Get(_Users)
 	if has {
@@ -2466,74 +2466,74 @@ func GetUsersByDeleted(iDeleted int) (*Users, error) {
 	}
 }
 
-// SetUsersById Set Users via Id
-func SetUsersById(iId int64, users *Users) (int64, error) {
+// SetUsersViaId Set Users via Id
+func SetUsersViaId(iId int64, users *Users) (int64, error) {
 	users.Id = iId
 	return Engine.Insert(users)
 }
 
-// SetUsersByUserLogin Set Users via UserLogin
-func SetUsersByUserLogin(iUserLogin string, users *Users) (int64, error) {
+// SetUsersViaUserLogin Set Users via UserLogin
+func SetUsersViaUserLogin(iUserLogin string, users *Users) (int64, error) {
 	users.UserLogin = iUserLogin
 	return Engine.Insert(users)
 }
 
-// SetUsersByUserPass Set Users via UserPass
-func SetUsersByUserPass(iUserPass string, users *Users) (int64, error) {
+// SetUsersViaUserPass Set Users via UserPass
+func SetUsersViaUserPass(iUserPass string, users *Users) (int64, error) {
 	users.UserPass = iUserPass
 	return Engine.Insert(users)
 }
 
-// SetUsersByUserNicename Set Users via UserNicename
-func SetUsersByUserNicename(iUserNicename string, users *Users) (int64, error) {
+// SetUsersViaUserNicename Set Users via UserNicename
+func SetUsersViaUserNicename(iUserNicename string, users *Users) (int64, error) {
 	users.UserNicename = iUserNicename
 	return Engine.Insert(users)
 }
 
-// SetUsersByUserEmail Set Users via UserEmail
-func SetUsersByUserEmail(iUserEmail string, users *Users) (int64, error) {
+// SetUsersViaUserEmail Set Users via UserEmail
+func SetUsersViaUserEmail(iUserEmail string, users *Users) (int64, error) {
 	users.UserEmail = iUserEmail
 	return Engine.Insert(users)
 }
 
-// SetUsersByUserUrl Set Users via UserUrl
-func SetUsersByUserUrl(iUserUrl string, users *Users) (int64, error) {
+// SetUsersViaUserUrl Set Users via UserUrl
+func SetUsersViaUserUrl(iUserUrl string, users *Users) (int64, error) {
 	users.UserUrl = iUserUrl
 	return Engine.Insert(users)
 }
 
-// SetUsersByUserRegistered Set Users via UserRegistered
-func SetUsersByUserRegistered(iUserRegistered time.Time, users *Users) (int64, error) {
+// SetUsersViaUserRegistered Set Users via UserRegistered
+func SetUsersViaUserRegistered(iUserRegistered time.Time, users *Users) (int64, error) {
 	users.UserRegistered = iUserRegistered
 	return Engine.Insert(users)
 }
 
-// SetUsersByUserActivationKey Set Users via UserActivationKey
-func SetUsersByUserActivationKey(iUserActivationKey string, users *Users) (int64, error) {
+// SetUsersViaUserActivationKey Set Users via UserActivationKey
+func SetUsersViaUserActivationKey(iUserActivationKey string, users *Users) (int64, error) {
 	users.UserActivationKey = iUserActivationKey
 	return Engine.Insert(users)
 }
 
-// SetUsersByUserStatus Set Users via UserStatus
-func SetUsersByUserStatus(iUserStatus int, users *Users) (int64, error) {
+// SetUsersViaUserStatus Set Users via UserStatus
+func SetUsersViaUserStatus(iUserStatus int, users *Users) (int64, error) {
 	users.UserStatus = iUserStatus
 	return Engine.Insert(users)
 }
 
-// SetUsersByDisplayName Set Users via DisplayName
-func SetUsersByDisplayName(iDisplayName string, users *Users) (int64, error) {
+// SetUsersViaDisplayName Set Users via DisplayName
+func SetUsersViaDisplayName(iDisplayName string, users *Users) (int64, error) {
 	users.DisplayName = iDisplayName
 	return Engine.Insert(users)
 }
 
-// SetUsersBySpam Set Users via Spam
-func SetUsersBySpam(iSpam int, users *Users) (int64, error) {
+// SetUsersViaSpam Set Users via Spam
+func SetUsersViaSpam(iSpam int, users *Users) (int64, error) {
 	users.Spam = iSpam
 	return Engine.Insert(users)
 }
 
-// SetUsersByDeleted Set Users via Deleted
-func SetUsersByDeleted(iDeleted int, users *Users) (int64, error) {
+// SetUsersViaDeleted Set Users via Deleted
+func SetUsersViaDeleted(iDeleted int, users *Users) (int64, error) {
 	users.Deleted = iDeleted
 	return Engine.Insert(users)
 }
@@ -2560,80 +2560,80 @@ func PutUsers(iUsers *Users) (int64, error) {
 	return iUsers.Id, err
 }
 
-// PutUsersById Put Users via Id
-func PutUsersById(Id_ int64, iUsers *Users) (int64, error) {
+// PutUsersViaId Put Users via Id
+func PutUsersViaId(Id_ int64, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{Id: Id_})
 	return row, err
 }
 
-// PutUsersByUserLogin Put Users via UserLogin
-func PutUsersByUserLogin(UserLogin_ string, iUsers *Users) (int64, error) {
+// PutUsersViaUserLogin Put Users via UserLogin
+func PutUsersViaUserLogin(UserLogin_ string, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{UserLogin: UserLogin_})
 	return row, err
 }
 
-// PutUsersByUserPass Put Users via UserPass
-func PutUsersByUserPass(UserPass_ string, iUsers *Users) (int64, error) {
+// PutUsersViaUserPass Put Users via UserPass
+func PutUsersViaUserPass(UserPass_ string, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{UserPass: UserPass_})
 	return row, err
 }
 
-// PutUsersByUserNicename Put Users via UserNicename
-func PutUsersByUserNicename(UserNicename_ string, iUsers *Users) (int64, error) {
+// PutUsersViaUserNicename Put Users via UserNicename
+func PutUsersViaUserNicename(UserNicename_ string, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{UserNicename: UserNicename_})
 	return row, err
 }
 
-// PutUsersByUserEmail Put Users via UserEmail
-func PutUsersByUserEmail(UserEmail_ string, iUsers *Users) (int64, error) {
+// PutUsersViaUserEmail Put Users via UserEmail
+func PutUsersViaUserEmail(UserEmail_ string, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{UserEmail: UserEmail_})
 	return row, err
 }
 
-// PutUsersByUserUrl Put Users via UserUrl
-func PutUsersByUserUrl(UserUrl_ string, iUsers *Users) (int64, error) {
+// PutUsersViaUserUrl Put Users via UserUrl
+func PutUsersViaUserUrl(UserUrl_ string, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{UserUrl: UserUrl_})
 	return row, err
 }
 
-// PutUsersByUserRegistered Put Users via UserRegistered
-func PutUsersByUserRegistered(UserRegistered_ time.Time, iUsers *Users) (int64, error) {
+// PutUsersViaUserRegistered Put Users via UserRegistered
+func PutUsersViaUserRegistered(UserRegistered_ time.Time, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{UserRegistered: UserRegistered_})
 	return row, err
 }
 
-// PutUsersByUserActivationKey Put Users via UserActivationKey
-func PutUsersByUserActivationKey(UserActivationKey_ string, iUsers *Users) (int64, error) {
+// PutUsersViaUserActivationKey Put Users via UserActivationKey
+func PutUsersViaUserActivationKey(UserActivationKey_ string, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{UserActivationKey: UserActivationKey_})
 	return row, err
 }
 
-// PutUsersByUserStatus Put Users via UserStatus
-func PutUsersByUserStatus(UserStatus_ int, iUsers *Users) (int64, error) {
+// PutUsersViaUserStatus Put Users via UserStatus
+func PutUsersViaUserStatus(UserStatus_ int, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{UserStatus: UserStatus_})
 	return row, err
 }
 
-// PutUsersByDisplayName Put Users via DisplayName
-func PutUsersByDisplayName(DisplayName_ string, iUsers *Users) (int64, error) {
+// PutUsersViaDisplayName Put Users via DisplayName
+func PutUsersViaDisplayName(DisplayName_ string, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{DisplayName: DisplayName_})
 	return row, err
 }
 
-// PutUsersBySpam Put Users via Spam
-func PutUsersBySpam(Spam_ int, iUsers *Users) (int64, error) {
+// PutUsersViaSpam Put Users via Spam
+func PutUsersViaSpam(Spam_ int, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{Spam: Spam_})
 	return row, err
 }
 
-// PutUsersByDeleted Put Users via Deleted
-func PutUsersByDeleted(Deleted_ int, iUsers *Users) (int64, error) {
+// PutUsersViaDeleted Put Users via Deleted
+func PutUsersViaDeleted(Deleted_ int, iUsers *Users) (int64, error) {
 	row, err := Engine.Update(iUsers, &Users{Deleted: Deleted_})
 	return row, err
 }
 
-// UpdateUsersById via map[string]interface{}{}
-func UpdateUsersById(iId int64, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaId via map[string]interface{}{}
+func UpdateUsersViaId(iId int64, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("ID = ?", iId).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2641,8 +2641,8 @@ func UpdateUsersById(iId int64, iUsersMap *map[string]interface{}) error {
 	}
 }
 
-// UpdateUsersByUserLogin via map[string]interface{}{}
-func UpdateUsersByUserLogin(iUserLogin string, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaUserLogin via map[string]interface{}{}
+func UpdateUsersViaUserLogin(iUserLogin string, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("user_login = ?", iUserLogin).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2650,8 +2650,8 @@ func UpdateUsersByUserLogin(iUserLogin string, iUsersMap *map[string]interface{}
 	}
 }
 
-// UpdateUsersByUserPass via map[string]interface{}{}
-func UpdateUsersByUserPass(iUserPass string, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaUserPass via map[string]interface{}{}
+func UpdateUsersViaUserPass(iUserPass string, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("user_pass = ?", iUserPass).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2659,8 +2659,8 @@ func UpdateUsersByUserPass(iUserPass string, iUsersMap *map[string]interface{}) 
 	}
 }
 
-// UpdateUsersByUserNicename via map[string]interface{}{}
-func UpdateUsersByUserNicename(iUserNicename string, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaUserNicename via map[string]interface{}{}
+func UpdateUsersViaUserNicename(iUserNicename string, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("user_nicename = ?", iUserNicename).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2668,8 +2668,8 @@ func UpdateUsersByUserNicename(iUserNicename string, iUsersMap *map[string]inter
 	}
 }
 
-// UpdateUsersByUserEmail via map[string]interface{}{}
-func UpdateUsersByUserEmail(iUserEmail string, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaUserEmail via map[string]interface{}{}
+func UpdateUsersViaUserEmail(iUserEmail string, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("user_email = ?", iUserEmail).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2677,8 +2677,8 @@ func UpdateUsersByUserEmail(iUserEmail string, iUsersMap *map[string]interface{}
 	}
 }
 
-// UpdateUsersByUserUrl via map[string]interface{}{}
-func UpdateUsersByUserUrl(iUserUrl string, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaUserUrl via map[string]interface{}{}
+func UpdateUsersViaUserUrl(iUserUrl string, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("user_url = ?", iUserUrl).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2686,8 +2686,8 @@ func UpdateUsersByUserUrl(iUserUrl string, iUsersMap *map[string]interface{}) er
 	}
 }
 
-// UpdateUsersByUserRegistered via map[string]interface{}{}
-func UpdateUsersByUserRegistered(iUserRegistered time.Time, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaUserRegistered via map[string]interface{}{}
+func UpdateUsersViaUserRegistered(iUserRegistered time.Time, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("user_registered = ?", iUserRegistered).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2695,8 +2695,8 @@ func UpdateUsersByUserRegistered(iUserRegistered time.Time, iUsersMap *map[strin
 	}
 }
 
-// UpdateUsersByUserActivationKey via map[string]interface{}{}
-func UpdateUsersByUserActivationKey(iUserActivationKey string, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaUserActivationKey via map[string]interface{}{}
+func UpdateUsersViaUserActivationKey(iUserActivationKey string, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("user_activation_key = ?", iUserActivationKey).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2704,8 +2704,8 @@ func UpdateUsersByUserActivationKey(iUserActivationKey string, iUsersMap *map[st
 	}
 }
 
-// UpdateUsersByUserStatus via map[string]interface{}{}
-func UpdateUsersByUserStatus(iUserStatus int, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaUserStatus via map[string]interface{}{}
+func UpdateUsersViaUserStatus(iUserStatus int, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("user_status = ?", iUserStatus).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2713,8 +2713,8 @@ func UpdateUsersByUserStatus(iUserStatus int, iUsersMap *map[string]interface{})
 	}
 }
 
-// UpdateUsersByDisplayName via map[string]interface{}{}
-func UpdateUsersByDisplayName(iDisplayName string, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaDisplayName via map[string]interface{}{}
+func UpdateUsersViaDisplayName(iDisplayName string, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("display_name = ?", iDisplayName).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2722,8 +2722,8 @@ func UpdateUsersByDisplayName(iDisplayName string, iUsersMap *map[string]interfa
 	}
 }
 
-// UpdateUsersBySpam via map[string]interface{}{}
-func UpdateUsersBySpam(iSpam int, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaSpam via map[string]interface{}{}
+func UpdateUsersViaSpam(iSpam int, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("spam = ?", iSpam).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2731,8 +2731,8 @@ func UpdateUsersBySpam(iSpam int, iUsersMap *map[string]interface{}) error {
 	}
 }
 
-// UpdateUsersByDeleted via map[string]interface{}{}
-func UpdateUsersByDeleted(iDeleted int, iUsersMap *map[string]interface{}) error {
+// UpdateUsersViaDeleted via map[string]interface{}{}
+func UpdateUsersViaDeleted(iDeleted int, iUsersMap *map[string]interface{}) error {
 	if row, err := Engine.Table(new(Users)).Where("deleted = ?", iDeleted).Update(iUsersMap); (err != nil) || (row <= 0) {
 		return err
 	} else {
@@ -2746,8 +2746,8 @@ func DeleteUsers(iId int64) (int64, error) {
 	return row, err
 }
 
-// DeleteUsersById Delete Users via Id
-func DeleteUsersById(iId int64) (err error) {
+// DeleteUsersViaId Delete Users via Id
+func DeleteUsersViaId(iId int64) (err error) {
 	var has bool
 	var _Users = &Users{Id: iId}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2760,8 +2760,8 @@ func DeleteUsersById(iId int64) (err error) {
 	return
 }
 
-// DeleteUsersByUserLogin Delete Users via UserLogin
-func DeleteUsersByUserLogin(iUserLogin string) (err error) {
+// DeleteUsersViaUserLogin Delete Users via UserLogin
+func DeleteUsersViaUserLogin(iUserLogin string) (err error) {
 	var has bool
 	var _Users = &Users{UserLogin: iUserLogin}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2774,8 +2774,8 @@ func DeleteUsersByUserLogin(iUserLogin string) (err error) {
 	return
 }
 
-// DeleteUsersByUserPass Delete Users via UserPass
-func DeleteUsersByUserPass(iUserPass string) (err error) {
+// DeleteUsersViaUserPass Delete Users via UserPass
+func DeleteUsersViaUserPass(iUserPass string) (err error) {
 	var has bool
 	var _Users = &Users{UserPass: iUserPass}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2788,8 +2788,8 @@ func DeleteUsersByUserPass(iUserPass string) (err error) {
 	return
 }
 
-// DeleteUsersByUserNicename Delete Users via UserNicename
-func DeleteUsersByUserNicename(iUserNicename string) (err error) {
+// DeleteUsersViaUserNicename Delete Users via UserNicename
+func DeleteUsersViaUserNicename(iUserNicename string) (err error) {
 	var has bool
 	var _Users = &Users{UserNicename: iUserNicename}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2802,8 +2802,8 @@ func DeleteUsersByUserNicename(iUserNicename string) (err error) {
 	return
 }
 
-// DeleteUsersByUserEmail Delete Users via UserEmail
-func DeleteUsersByUserEmail(iUserEmail string) (err error) {
+// DeleteUsersViaUserEmail Delete Users via UserEmail
+func DeleteUsersViaUserEmail(iUserEmail string) (err error) {
 	var has bool
 	var _Users = &Users{UserEmail: iUserEmail}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2816,8 +2816,8 @@ func DeleteUsersByUserEmail(iUserEmail string) (err error) {
 	return
 }
 
-// DeleteUsersByUserUrl Delete Users via UserUrl
-func DeleteUsersByUserUrl(iUserUrl string) (err error) {
+// DeleteUsersViaUserUrl Delete Users via UserUrl
+func DeleteUsersViaUserUrl(iUserUrl string) (err error) {
 	var has bool
 	var _Users = &Users{UserUrl: iUserUrl}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2830,8 +2830,8 @@ func DeleteUsersByUserUrl(iUserUrl string) (err error) {
 	return
 }
 
-// DeleteUsersByUserRegistered Delete Users via UserRegistered
-func DeleteUsersByUserRegistered(iUserRegistered time.Time) (err error) {
+// DeleteUsersViaUserRegistered Delete Users via UserRegistered
+func DeleteUsersViaUserRegistered(iUserRegistered time.Time) (err error) {
 	var has bool
 	var _Users = &Users{UserRegistered: iUserRegistered}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2844,8 +2844,8 @@ func DeleteUsersByUserRegistered(iUserRegistered time.Time) (err error) {
 	return
 }
 
-// DeleteUsersByUserActivationKey Delete Users via UserActivationKey
-func DeleteUsersByUserActivationKey(iUserActivationKey string) (err error) {
+// DeleteUsersViaUserActivationKey Delete Users via UserActivationKey
+func DeleteUsersViaUserActivationKey(iUserActivationKey string) (err error) {
 	var has bool
 	var _Users = &Users{UserActivationKey: iUserActivationKey}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2858,8 +2858,8 @@ func DeleteUsersByUserActivationKey(iUserActivationKey string) (err error) {
 	return
 }
 
-// DeleteUsersByUserStatus Delete Users via UserStatus
-func DeleteUsersByUserStatus(iUserStatus int) (err error) {
+// DeleteUsersViaUserStatus Delete Users via UserStatus
+func DeleteUsersViaUserStatus(iUserStatus int) (err error) {
 	var has bool
 	var _Users = &Users{UserStatus: iUserStatus}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2872,8 +2872,8 @@ func DeleteUsersByUserStatus(iUserStatus int) (err error) {
 	return
 }
 
-// DeleteUsersByDisplayName Delete Users via DisplayName
-func DeleteUsersByDisplayName(iDisplayName string) (err error) {
+// DeleteUsersViaDisplayName Delete Users via DisplayName
+func DeleteUsersViaDisplayName(iDisplayName string) (err error) {
 	var has bool
 	var _Users = &Users{DisplayName: iDisplayName}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2886,8 +2886,8 @@ func DeleteUsersByDisplayName(iDisplayName string) (err error) {
 	return
 }
 
-// DeleteUsersBySpam Delete Users via Spam
-func DeleteUsersBySpam(iSpam int) (err error) {
+// DeleteUsersViaSpam Delete Users via Spam
+func DeleteUsersViaSpam(iSpam int) (err error) {
 	var has bool
 	var _Users = &Users{Spam: iSpam}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
@@ -2900,8 +2900,8 @@ func DeleteUsersBySpam(iSpam int) (err error) {
 	return
 }
 
-// DeleteUsersByDeleted Delete Users via Deleted
-func DeleteUsersByDeleted(iDeleted int) (err error) {
+// DeleteUsersViaDeleted Delete Users via Deleted
+func DeleteUsersViaDeleted(iDeleted int) (err error) {
 	var has bool
 	var _Users = &Users{Deleted: iDeleted}
 	if has, err = Engine.Get(_Users); (has == true) && (err == nil) {
