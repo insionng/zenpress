@@ -9,17 +9,19 @@ import (
 	"github.com/insionng/makross/file"
 	gologger "github.com/insionng/makross/logger"
 	gopongor "github.com/insionng/makross/pongor"
+	gosession "github.com/insionng/makross/session"
 	gostatic "github.com/insionng/makross/static"
 	goswitchr "github.com/insionng/zenpress/module/switchr"
 
+	mfmt "github.com/insionng/zenpress/extension/fmt"
 	"github.com/insionng/zenpress/extension/github.com/insionng/makross"
 	"github.com/insionng/zenpress/extension/github.com/insionng/makross/logger"
 	"github.com/insionng/zenpress/extension/github.com/insionng/makross/pongor"
+	"github.com/insionng/zenpress/extension/github.com/insionng/makross/session"
 	"github.com/insionng/zenpress/extension/github.com/insionng/makross/static"
-	"github.com/insionng/zenpress/extension/github.com/insionng/zenpress/module/switchr"
-
-	mfmt "github.com/insionng/zenpress/extension/fmt"
+	"github.com/insionng/zenpress/extension/github.com/insionng/zenpress/model"
 	"github.com/insionng/zenpress/extension/github.com/insionng/zenpress/module/hook"
+	"github.com/insionng/zenpress/extension/github.com/insionng/zenpress/module/switchr"
 
 	"qlang.io/cl/qlang"
 	"qlang.io/lib/qlang.all"
@@ -44,6 +46,8 @@ func init() {
 	qlang.Import("switchr", switchr.Exports)
 	qlang.Import("pongor", pongor.Exports)
 	qlang.Import("static", static.Exports)
+	qlang.Import("session", session.Exports)
+	qlang.Import("model", model.Exports)
 
 	qlang.Import("hook", hook.Exports)
 	qlang.Import("fmt", mfmt.Exports)
@@ -221,8 +225,10 @@ func GetAppByTheme(theme string, filter bool, reload bool) (*gomakross.Makross, 
 	app := gomakross.New()
 	app.Use(gologger.LoggerWithConfig(gologger.LoggerConfig{Output: logWriter}))
 	app.Use(gostatic.Static(fmt.Sprintf("content/theme/%s/public", theme)))
-	app.SetRenderer(gopongor.Renderor(gopongor.Option{Directory: fmt.Sprintf("content/theme/%s/template", theme), Reload: reload, Filter: filter}))
+	app.Use(gosession.Sessioner(gosession.Options{"file", `{"cookieName":"makrossSessionId","gcLifetime":3600,"providerConfig":"./content/storage/session"}`}))
 	app.Use(goswitchr.SwitchrWithConfig(goswitchr.SwitchrConfig{Theme: theme, Filter: filter, Reload: reload}))
+
+	app.SetRenderer(gopongor.Renderor(gopongor.Option{Directory: fmt.Sprintf("content/theme/%s/template", theme), Reload: reload, Filter: filter}))
 
 	Q.SetVar("app", app)
 

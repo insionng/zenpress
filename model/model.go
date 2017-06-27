@@ -16,13 +16,13 @@ import (
 )
 
 var (
-	app         = "x"
+	app         = "./"
 	Database    *gorm.DB
 	HasDatabase bool
 
 	DataType = "sqlite"
 	//DatabaseConn        = "root:rootpass@/wp?charset=utf8"
-	DatabaseConn = "content/storage/data/sqlite.db"
+	DatabaseConn = "./content/storage/data/sqlite.db"
 	//DatabaseConn        = "../content/storage/data/sqlite_test.db"
 	DatabaseTablePrefix = "zen_"
 )
@@ -45,11 +45,7 @@ func ConnDatabase() (*gorm.DB, error) {
 
 	switch {
 	case DataType == "sqlite":
-		if DatabaseConn[:1] == "." {
-			fmt.Println("DatabaseConn>", DatabaseConn)
-			return gorm.Open("sqlite3", DatabaseConn)
-		}
-		return gorm.Open("sqlite3", app+"/data/sqlite.db")
+		return gorm.Open("sqlite3", app+"content/storage/data/sqlite.db")
 
 	case DataType == "mysql":
 		return gorm.Open("mysql", DatabaseConn)

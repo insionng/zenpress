@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>登录 - {{SiteName}}</title>
+{% endblock title %}
+
+{% block mainland %}
+    <div id="main" class="container">
+        <div class="row">
+            <div id="content" class="col-md-8 col-md-offset-2">
+                <div class="box">
+                    <div class="cell first breadcrumb">
+                        <a href="/"> <i class="ahead icon-home"></i>
+                        </a> <i class="fa fa-caret-right"></i>
+                        登录
+                    </div>
+                    <div class="cell last slim">
+                        <div class="row">
+                            <div class="col-md-6 auth-page">
+                                <h3 class="title">
+                                    <i class="icon icon-user"></i>
+                                    登录
+                                </h3>
+
+                                <form method="POST" action="">
+                                    <div class="form-group">
+                                        <label class="control-label" for="LoginForm-UserName">注册邮箱 / 用户名称</label>
+                                        <input id="LoginForm-UserName" name="email" type="text" value="{%if tmpemail%}{{tmpemail}}{%endif%}" class="form-control"></div>
+
+                                    <div class="form-group">
+                                        <label class="control-label" for="LoginForm-Password">密码</label>
+
+                                        <input id="LoginForm-Password" name="password" type="password" value="{%if tmppassword%}{{tmppassword}}{%endif%}" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                            <label class="control-label">记住登录</label>
+                                            <div>
+                                                <label class="switch">
+                                                    <input type="checkbox" onchange="javascript:i(this);"/><span></span><input type="hidden" id="remember" name="remember" value="false"/>
+                                                </label>
+                                            </div>
+                                            <script>function i(self) {var b = self.checked;document.getElementById("remember").value=b;}</script>
+                                    </div>
+                                {%if IsCaptcha %}
+                                    <div class="form-group">
+                                        <label class="control-label" for="RegisterForm-Captcha">验证码</label>
+                                        {{Captcha.CreateHTML|safe}}
+                                        <input id="RegisterForm-Captcha" name="captcha" type="text" value="" class="form-control" autocomplete="off" placeholder="请输入验证码">
+                                        <p class="help-block">点击图片刷新</p>
+                                        <input type="hidden" name="csrf" value="{{csrf}}">
+                                    </div>
+                                {% endif %}
+                                    <button type="submit" class="btn btn-s-md btn-dark btn-rounded">
+                                        登录&nbsp;&nbsp;
+                                        <i class="icon-chevron-sign-right"></i>
+                                    </button>
+                                    <a href="/forgot/" class="pull-right">
+                                        <i class="icon-question-sign"></i>
+                                        忘记密码
+                                    </a>
+                                </form>
+                            </div>
+
+                            <div class="col-md-6 auth-page">
+                                <div class="auth-page">
+                                    <h3 class="title">
+                                        <i class="icon icon-question"></i>
+                                        帮助
+                                    </h3>
+                                    {% include "msgerr.html" %}
+                                    <p class="well">如果您还没有注册帐户的话，请先注册。</p>
+                                    <p>
+                                        <a href="/signup/" class="btn btn-s-md btn-default btn-rounded">
+                                            立即注册&nbsp;&nbsp;
+                                            <i class="icon-chevron-sign-right"></i>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock mainland %}

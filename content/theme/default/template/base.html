@@ -1,0 +1,33 @@
+{% block doctype %}<!DOCTYPE html>{% endblock doctype %}
+<html class="no-js" lang="zh-CN">
+{% block head %}{% include "head.html" %}{% endblock head %}
+
+<body class="home blog">
+  <style type="text/css">.ias_pagination{display:none}</style>
+  <script>window._MBT = {uri: '/',ajax: '1'}</script>
+
+{% block header %}{% include "header.html" %}{% endblock header %}
+
+<div class="mobile-nav J_mobileNav">
+  <ul>
+    <li id="menu-item-1" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1"><a href="/">首页</a></li>
+    <li id="menu-item-2" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2"><a href="/category/news">新闻</a></li>
+    <li id="menu-item-3" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3"><a href="/category/companies">公司</a></li>
+    <li id="menu-item-4" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4"><a href="/category/devices">设备</a></li>
+    <li id="menu-item-5" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5"><a href="/category/voice">大声</a></li>
+    <li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="/category/apps">应用</a></li>
+    <li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="/category/people">人物</a></li>
+  </ul>
+</div>
+<link href="/css/index.css" media="all" rel="stylesheet">
+<div class="sitetips">全站公告，可开启显示或关闭！</div>
+<div class="index-wrap">
+    {% block mainland %}{% endblock mainland %}
+</div>
+
+<script src="/js/ias.min.js"></script>
+
+{% block footer %}{% include "footer.html" %}{% endblock footer %}
+
+</body>
+</html>
