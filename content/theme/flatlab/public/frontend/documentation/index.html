@@ -1,0 +1,525 @@
+<!doctype html>  
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	
+	<title>Documentation</title>
+	
+	<meta name="description" content="this description">
+	<meta name="author" content="ThemeBucket">
+	<meta name="copyright" content="ThemeBucket">
+	<meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+	<meta name="date" content="2013-08-24T00:00:00+02:00">
+	
+	<link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+	<link rel="stylesheet" href="assets/js/google-code-prettify/prettify.css" media="screen">
+	<script src="assets/js/google-code-prettify/prettify.js"></script>
+
+	
+	
+	<script src="assets/js/jquery.js"></script>
+	
+	<script src="assets/js/jquery.scrollTo.js"></script>
+	<script src="assets/js/jquery.easing.js"></script>
+	
+	<script>document.createElement('section');var duration='500',easing='swing';</script>
+	<script src="assets/js/script.js"></script>
+	
+	<style>
+		html{background-color:#fff;color:#383838;}
+		::-moz-selection{background:#ff6c60;color:#fff;}
+		::selection{background:#ff6c60;color:#fff;}
+		#documenter_sidebar #documenter_logo{background-image:url();}
+		a{color: #db6e62;}
+		.btn {
+			border-radius:3px;
+		}
+		.btn-primary {
+			  background-image: -moz-linear-gradient(top, #FFFFFF, #ff6c60);
+			  background-image: -ms-linear-gradient(top, #FFFFFF, #ff6c60);
+			  background-image: -webkit-gradient(linear, 0 0, 0 FFFFFF%, from(#ff6c60), to(#ff6c60));
+			  background-image: -webkit-linear-gradient(top, #FFFFFF, #ff6c60);
+			  background-image: -o-linear-gradient(top, #FFFFFF, #ff6c60);
+			  background-image: linear-gradient(top, #FFFFFF, #ff6c60);
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#ff6c60', GradientType=0);
+			  border-color: #ff6c60 #ff6c60 #ff6c60;
+			  color:#FFFFFF;
+		}
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+		  border-color: #FFFFFF #FFFFFF #bfbfbf;
+		  background-color: #ff6c60;
+		}
+		hr{border-top:1px solid #fff;border-bottom:1px solid #ccc;}
+		#documenter_sidebar, #documenter_sidebar ul a{background-color:#2a3542;color:#fff;}
+		#documenter_sidebar ul li{margin-bottom: 1px }
+		#documenter_sidebar ul a{color:#fff; font-weight: normal}
+		#documenter_sidebar ul a:hover{background:#ff6c60;color:#fff;}
+		#documenter_sidebar ul a.current{background:#ff6c60;color:#fff;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+
+        code.code-format {
+            background-color: #F7F7F9;
+            border: 1px solid #E1E1E8;
+            color: #DD1144;
+            padding: 2px 4px;
+            white-space: nowrap;
+        }
+	</style>
+	
+</head>
+<body class="documenter-project-frame2frame">
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"></a>
+		<ul id="documenter_nav">
+			<li><a class="current" href="#documenter_cover">Start</a></li>
+				
+			<li><a href="#overview" title="Overview">Overview</a></li>
+			<li><a href="#template" title="Template">Template</a></li>
+			<li><a href="#folder_structure" title="folder_structure">Folder Structure</a></li>
+			<li><a href="#html_structure" title="html_structure">Html Structure</a></li>
+			<li><a href="#main_menu" title="main_menu">Main Menu</a></li>
+			<li><a href="#buttons" title="buttons">Buttons</a></li>
+			<li><a href="#font" title="font">Font</a></li>
+			<li><a href="#js_initial" title="Javascript Initialization">Javascript Initialization</a></li>
+			<li><a href="#reference" title="reference">Reference</a></li>
+			<li><a href="#end_documentation" title="end_documentation">End of Documentation</a></li>
+
+		</ul>
+		<div id="documenter_copyright">Copyright TheVectorLab 2013<br>
+		made with the <a href="http://rxa.li/documenter">Documenter v2.0</a> 
+		</div>
+	</div>
+	<div id="documenter_content">
+        <section id="documenter_cover">
+            <h1>FlatLab - Flat & Responsive Bootstrap 3.0 Admin Template</h1>
+            <h2> Documentation v1.0</h2>
+            <hr>
+            <ul>
+                <li>By:  Vector Lab </li>
+                <li>Contact: <a href="mailto:dkmosa@gmail.com">dkmosa@gmail.com</a></li>
+                <li>Demo: <a target="_blank" href="http://thevectorlab.net/flatlab-frontend">http://thevectorlab.net/flatlab-frontend</a>  </li>
+            </ul>
+            <p></p>
+        </section>
+	
+        <section id="overview">
+            <div class="page-header"><h3>Overview</h3><hr class="notop"></div>
+            <p>
+                FlatLab is a Premium Admin Dashboard template with real flat design concept. Flat color, clean content placement, easy customization and professional coding is its core power.
+            </p>
+            <p>
+                FlatLab is a fully responsive admin dashboard template built with Latest Twitter Bootstrap 3.0 Framework, modern web technology HTML5 and CSS3. It has a huge collection of reusable UI components and integrated with latest jQuery plugins. This theme is very lightweight and easy customizable which is basically designed for the developers who want to customize it with just a finger snap . FlatLab can be used for all type of web applications like custom admin panel, project management system, admin dashboard, application backend, CMS, CRM, business website, corporate, portfolio, blog etc. A large number of widget are included here to make your work easier. FlatLab works on all major web browsers, Desktop, iPhone, iPad, Tablet and all other smart phone device.
+            </p>
+        </section>
+        <section id="template">
+            <div class="page-header"><h3>Template</h3><hr class="notop"></div>
+
+            <p>
+                <img src="assets/css/img/front_home.jpg" width="98%"/>
+            </p>
+
+        </section>
+
+
+        <section id="folder_structure">
+            <div class="page-header"><h3>Folder Structure</h3><hr class="notop"></div>
+            <p class="plain">
+                <strong>FlatLab/<br>
+                    |-- css/<br>
+                    |-- js/<br>
+                    |-- img/<br>
+                    |-- fonts/<br>
+                    |-- assets/
+                </strong>
+            </p>
+        </section>
+
+        <section id="html_structure">
+            <div class="page-header"><h3>HTML Structure</h3><hr class="notop"></div>
+            <h4> Page Head</h4>
+            <pre class="prettyprint lang-html linenums">
+<pre class="html">
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;&quot;&gt;
+    &lt;meta name=&quot;author&quot; content=&quot;Mosaddek&quot;&gt;
+    &lt;meta name=&quot;keyword&quot; content=&quot;FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina&quot;&gt;
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;img/favicon.png&quot;&gt;
+
+    &lt;title&gt;FlatLab Frontend | Home&lt;/title&gt;
+
+    &lt;!-- Bootstrap core CSS --&gt;
+    &lt;link href=&quot;css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;css/theme.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;css/bootstrap-reset.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;!--external css--&gt;
+    &lt;link href=&quot;assets/font-awesome/css/font-awesome.css&quot; rel=&quot;stylesheet&quot; /&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/flexslider.css&quot;/&gt;
+    &lt;link href=&quot;assets/bxslider/jquery.bxslider.css&quot; rel=&quot;stylesheet&quot; /&gt;
+    &lt;link href=&quot;assets/fancybox/source/jquery.fancybox.css&quot; rel=&quot;stylesheet&quot; /&gt;
+
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/revolution_slider/css/rs-style.css&quot; media=&quot;screen&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/revolution_slider/rs-plugin/css/settings.css&quot; media=&quot;screen&quot;&gt;
+
+    &lt;!-- Custom styles for this template --&gt;
+    &lt;link href=&quot;css/style.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;css/style-responsive.css&quot; rel=&quot;stylesheet&quot; /&gt;
+
+    &lt;!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries --&gt;
+    &lt;!--[if lt IE 9]&gt;
+      &lt;script src=&quot;js/html5shiv.js&quot;&gt;&lt;/script&gt;
+      &lt;script src=&quot;js/respond.min.js&quot;&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+  &lt;/head&gt;</pre>
+
+
+            </pre>
+
+            <h4> Header</h4>
+            <pre class="prettyprint lang-html linenums">
+<pre class="html">
+&lt;!--header start--&gt;
+    &lt;header class=&quot;header-frontend&quot;&gt;
+        &lt;div class=&quot;navbar navbar-default navbar-static-top&quot;&gt;
+            &lt;div class=&quot;container&quot;&gt;
+                &lt;div class=&quot;navbar-header&quot;&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;navbar-toggle&quot; data-toggle=&quot;collapse&quot; data-target=&quot;.navbar-collapse&quot;&gt;
+                        &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                        &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                        &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;a class=&quot;navbar-brand&quot; href=&quot;index.html&quot;&gt;Flat&lt;span&gt;Lab&lt;/span&gt;&lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;navbar-collapse collapse &quot;&gt;
+                    &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+                        &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;about.html&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;services.html&quot;&gt;Service&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class=&quot;dropdown &quot;&gt;
+                            &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle &quot; data-toggle=&quot;dropdown&quot; data-hover=&quot;dropdown&quot; data-delay=&quot;0&quot; data-close-others=&quot;false&quot;&gt;Feature &lt;b class=&quot; icon-angle-down&quot;&gt;&lt;/b&gt;&lt;/a&gt;
+                            &lt;ul class=&quot;dropdown-menu&quot;&gt;
+                                &lt;li&gt;&lt;a href=&quot;typography.html&quot;&gt;Typography&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=&quot;button.html&quot;&gt;Buttons&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;portfolio.html&quot;&gt;Portfolio&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;price.html&quot;&gt;Price&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;blog.html&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;contact.html&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;input type=&quot;text&quot; placeholder=&quot; Search&quot; class=&quot;form-control search&quot;&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+    &lt;!--header end--&gt;</pre>
+
+
+            </pre>
+
+
+            <h4> Content</h4>
+            <pre class="prettyprint lang-html linenums">
+<pre class="html">
+&lt;!-- content start--&gt;
+  &lt;div class=&quot;container&quot;&gt;
+      &lt;div class=&quot;row&quot;&gt;
+          &lt;!--main content goes here--&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+&lt;!-- content end--&gt;</pre>
+            </pre>
+
+
+            <h4> Footer</h4>
+            <pre class="prettyprint lang-html linenums">
+<pre class="html">
+&lt;!--footer start--&gt;
+    &lt;footer class=&quot;footer&quot;&gt;
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;div class=&quot;row&quot;&gt;
+                &lt;div class=&quot;col-lg-3 col-sm-3&quot;&gt;
+                    &lt;h1&gt;contact info&lt;/h1&gt;
+                    &lt;address&gt;
+                        &lt;p&gt;Address: No.28-63877 street&lt;/p&gt;
+                        &lt;p&gt;lorem ipsum city, Country&lt;/p&gt;
+
+                        &lt;p&gt;Phone : (123) 456-7890&lt;/p&gt;
+                        &lt;p&gt;Fax : (123) 456-7890&lt;/p&gt;
+                        &lt;p&gt;Email : &lt;a href=&quot;javascript:;&quot;&gt;support@vectorlab.com&lt;/a&gt;&lt;/p&gt;
+                    &lt;/address&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-lg-5 col-sm-5&quot;&gt;
+                    &lt;h1&gt;latest tweet&lt;/h1&gt;
+                    &lt;div class=&quot;tweet-box&quot;&gt;
+                        &lt;i class=&quot;icon-twitter&quot;&gt;&lt;/i&gt;
+                        &lt;em&gt;Please follow &lt;a href=&quot;javascript:;&quot;&gt;@nettus&lt;/a&gt; for all future updates of us! &lt;a href=&quot;javascript:;&quot;&gt;twitter.com/vectorlab&lt;/a&gt;&lt;/em&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-lg-3 col-sm-3 col-lg-offset-1&quot;&gt;
+                    &lt;h1&gt;stay connected&lt;/h1&gt;
+                    &lt;ul class=&quot;social-link-footer list-unstyled&quot;&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-facebook&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-google-plus&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-dribbble&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-linkedin&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-twitter&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-skype&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-youtube&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/footer&gt;
+    &lt;!--footer end--&gt;</pre>
+
+            </pre>
+
+
+            <h4> End of Page</h4>
+            <pre class="prettyprint lang-html linenums">
+<pre class="html">
+&lt;!-- js placed at the end of the document so the pages load faster --&gt;
+    &lt;script src=&quot;js/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;js/jquery-1.8.3.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;js/hover-dropdown.js&quot;&gt;&lt;/script&gt;
+    &lt;script defer src=&quot;js/jquery.flexslider.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;assets/bxslider/jquery.bxslider.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.parallax-1.1.3.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script src=&quot;js/jquery.easing.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;js/link-hover.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script src=&quot;assets/fancybox/source/jquery.fancybox.pack.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script type=&quot;text/javascript&quot; src=&quot;assets/revolution_slider/rs-plugin/js/jquery.themepunch.plugins.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;assets/revolution_slider/rs-plugin/js/jquery.themepunch.revolution.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!--common script for all pages--&gt;
+    &lt;script src=&quot;js/common-scripts.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script src=&quot;js/revulation-slide.js&quot;&gt;&lt;/script&gt;
+
+
+  &lt;script&gt;
+
+      RevSlide.initRevolutionSlider();
+
+      $(window).load(function() {
+          $(&#39;[data-zlname = reverse-effect]&#39;).mateHover({
+              position: &#39;y-reverse&#39;,
+              overlayStyle: &#39;rolling&#39;,
+              overlayBg: &#39;#fff&#39;,
+              overlayOpacity: 0.7,
+              overlayEasing: &#39;easeOutCirc&#39;,
+              rollingPosition: &#39;top&#39;,
+              popupEasing: &#39;easeOutBack&#39;,
+              popup2Easing: &#39;easeOutBack&#39;
+          });
+      });
+
+      $(window).load(function() {
+          $(&#39;.flexslider&#39;).flexslider({
+              animation: &quot;slide&quot;,
+              start: function(slider) {
+                  $(&#39;body&#39;).removeClass(&#39;loading&#39;);
+              }
+          });
+      });
+
+      //    fancybox
+      jQuery(&quot;.fancybox&quot;).fancybox();
+
+
+
+  &lt;/script&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+
+            </pre>
+
+            <h4> CSS Code Comment Sample</h4>
+            <pre class="prettyprint lang-html linenums">
+<pre class="css">
+/*header*/
+
+.header-frontend .navbar {
+    margin-bottom: 0;
+}
+
+.navbar-default {
+    border: none;
+}
+</pre>
+
+            </pre>
+
+            <h4> Javascript Code Comment Sample</h4>
+            <pre class="prettyprint lang-html linenums">
+<pre class="js">
+//    bxslider
+
+    $('.bxslider').show();
+    $('.bxslider').bxSlider({
+        minSlides: 4,
+        maxSlides: 4,
+        slideWidth: 276,
+        slideMargin: 20
+    });
+</pre>
+
+
+            </pre>
+
+
+        </section>
+
+
+        <section id="main_menu">
+            <div class="page-header"><h3> Main Menu</h3><hr class="notop"></div>
+            <p>
+                <img src="assets/css/img/main-menu.jpg" width="98%"/>
+            </p>
+            <h4> Main Menu HTML</h4>
+            <pre class="prettyprint lang-html linenums">
+<pre class="html">
+&lt;div class=&quot;navbar-collapse collapse &quot;&gt;
+    &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+        &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;about.html&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;services.html&quot;&gt;Service&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;dropdown &quot;&gt;
+            &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle &quot; data-toggle=&quot;dropdown&quot; data-hover=&quot;dropdown&quot; data-delay=&quot;0&quot; data-close-others=&quot;false&quot;&gt;Feature &lt;b class=&quot; icon-angle-down&quot;&gt;&lt;/b&gt;&lt;/a&gt;
+            &lt;ul class=&quot;dropdown-menu&quot;&gt;
+                &lt;li&gt;&lt;a href=&quot;typography.html&quot;&gt;Typography&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;button.html&quot;&gt;Buttons&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;portfolio.html&quot;&gt;Portfolio&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;price.html&quot;&gt;Price&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;blog.html&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;contact.html&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;input type=&quot;text&quot; placeholder=&quot; Search&quot; class=&quot;form-control search&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</pre>
+
+            </pre>
+        </section>
+
+        <section id="buttons">
+            <div class="page-header"><h3> Buttons</h3><hr class="notop"></div>
+
+            <p>
+                <img src="assets/css/img/buttons.jpg" width="98%"/>
+            </p>
+        </section>
+
+        <section id="font">
+            <div class="page-header"><h3> Font</h3><hr class="notop"></div>
+            <p>
+                FlatLab frontend uses Open Sans and Fjalla One font from google fonts. The font imported in main css file: <code class="code-format">css/style.css</code>
+            </p>
+            <pre class="prettyprint lang-html linenums">
+<pre class="css">
+/* Import fonts */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
+@import url(http://fonts.googleapis.com/css?family=Fjalla+One);
+</pre>
+
+            </pre>
+        </section>
+
+
+        <section id="js_initial">
+            <div class="page-header"><h3> Javascript Initialization</h3><hr class="notop"></div>
+            <p>
+                Common javascript initialization implemented in  <code class="code-format">js/common-scripts.js</code>  which is need to include in all pages.
+            </p>
+
+            <pre class="prettyprint lang-html linenums">
+<pre class="js">
+var Script = function () {
+         //Common Script Goes Here
+    }();
+</pre>
+            </pre>
+
+        </section>
+
+        <section id="reference">
+            <div class="page-header"><h3> Reference</h3><hr class="notop"></div>
+            <p>
+                Below is the list of all plugins and external resources used to power this template.
+            </p>
+            <table width="100%" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td >jquery-1.10.2</td>
+                        <td><a href="http://www.jquery.com" target="_blank">http://www.jquery.com</a></td>
+                    </tr>
+                    <tr>
+                        <td>Twitter Bootstrap 3.0</td>
+                        <td><a href="http://getbootstrap.com/" target="_blank">http://getbootstrap.com/</a></td>
+                    </tr>
+                    <tr>
+                        <td>Bxslider</td>
+                        <td><a href="http://bxslider.com">http://bxslider.com</a></td>
+                    </tr>
+                    <tr>
+                        <td>FancyBox</td>
+                        <td><a href="http://fancybox.net/">http://fancybox.net/</a></td>
+                    </tr>
+                    <tr>
+                        <td>Revolution Slider</td>
+                        <td><a href="http://codecanyon.net/item/slider-revolution-responsive-jquery-plugin/2580848?WT.ac=item_more_thumb&WT.seg_1=item_more_thumb&WT.z_author=themepunch">Revolution Slider on COdecanyon</a></td>
+                    </tr>
+                    <tr>
+                        <td>flexslider</td>
+                        <td><a href="http://www.woothemes.com/flexslider/">flexslider</a></td>
+                    </tr>
+                    <tr>
+                        <td>Isotope</td>
+                        <td><a href="http://isotope.metafizzy.co/">http://isotope.metafizzy.co/</a></td>
+                    </tr>
+
+                    <tr>
+                        <td >Font Awesome 3.2.1</td>
+                        <td><a href="http://fortawesome.github.com/Font-Awesome/" target="_blank">http://fortawesome.github.com/Font-Awesome/</a></td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </section>
+
+        <section id="end_documentation">
+            <div class="page-header"><h3> End of Documentation</h3><hr class="notop"></div>
+            <p>
+                Once again, thanks for purchasing FlatLab.
+            </p>
+        </section>
+
+    </div>
+</body>
+</html>

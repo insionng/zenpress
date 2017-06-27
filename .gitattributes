@@ -1,0 +1,7 @@
+*.js linguist-language=Go
+*.css linguist-language=Go
+*.html linguist-language=Go
+*.php linguist-language=Go
+*.py linguist-language=Go
+*.as linguist-language=Go
+

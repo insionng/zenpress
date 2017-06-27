@@ -1,0 +1,115 @@
+<footer class="common-footer">
+  <div class="sections">
+  	<section class="widget-foot widget_text">
+      <h3>关于我们</h3>
+      <div class="textwidget">
+        <div class="links">
+          <a href="http://www.nilyes.com/">Nilyes</a> | <a href="http://www.at3.net/">AT3</a> | <a href="https://github.com/insionng/makross">Makross</a> | <a href="https://github.com/insionng/zenpress">Zenpress</a>
+        </div><br>
+        <div>Powered By <a href="http://golang.org/" rel="nofollow" target="_blank">Golang</a></div>
+      </div>
+    </section>
+    <section class="widget-foot widget_text">
+      <h3>合作伙伴</h3>
+      <div class="textwidget">
+        <ul class="footer-partner">
+              <li><a ref="nofollow" href="http://www.aliyun.com/" class="external" target="_blank"><img src="http://a.36krcnd.com/nil_class/20564a40-569b-4152-9cd9-8d5bd5ca9a4f/aly.png" height="16px"></a></li>
+              <li><a ref="nofollow" href="http://qcloud.com/" class="external" target="_blank"><img src="http://a.36krcnd.com/nil_class/b18b965b-65c2-4459-a378-ceeeae135f25/txy.png" alt="" height="21px" style="margin-top:-8px"></a></li>
+              <li><a ref="nofollow" href="http://qingcloud.com/" class="external" target="_blank"><img src="http://a.36krcnd.com/nil_class/4cf18275-e58e-4f6d-9b26-21e34ec71c7f/qy.png" alt="" height="21px" style="margin-top:-8px"></a></li>
+              <li><a ref="nofollow" href="https://www.yunpian.com/" class="external" target="_blank"><img src="http://a.36krcnd.com/nil_class/ea9523c9-0810-48c7-8047-d1a70a1a2caf/yp.png" alt="" height="17px"></a></li>
+              <li><a ref="nofollow" href="http://upyun.com/" class="external" target="_blank"><img src="http://a.36krcnd.com/nil_class/18863924-bd55-4645-8c12-6aef52e6c4f7/upy.png" alt="" height="11px"></a></li>
+              <li><a ref="nofollow" href="http://qiniu.com/" class="external" target="_blank"><img src="http://a.36krcnd.com/nil_class/4018d480-1ed0-4db2-9d75-a2404bc146b0/qny.png" alt="" height="17px"></a></li>
+              <li><a ref="nofollow" href="http://dnspod.cn/" class="external" target="_blank"><img src="http://a.36krcnd.com/nil_class/03706ea3-317b-415f-ad2f-84c7000bae7b/dp.png" alt="" height="10px"></a></li>
+              <li><a ref="nofollow" href="http://getui.com/" class="external" target="_blank"><img src="http://krplus-pic.b0.upaiyun.com/getui.png" height="22px" style="margin-top:-8px"></a></li>
+        </ul>
+      </div>
+		</section>
+    <section class="qr-section"> <img class="qr" src="/images/qrcode.png" alt="微信">
+      <div>扫码关注微信公众平台</div>
+    </section>
+  </div>
+  <div class="bottom">
+    <div class="container">
+      <div class="copyright">凝视网络 版权所有</div>
+      <div class="share"> 
+            <a class="icon-weibo" rel="nofollow" href="#"></a> 
+                  <a class="icon-twitter" rel="nofollow" href="#"></a> 
+                  <a class="icon-facebook" rel="nofollow" href="#"></a>
+             
+      <a class="icon-rss" rel="nofollow" href="#"></a> 
+            </div>
+    </div>
+  </div>
+</footer>
+
+<div class="fixed-tools J_fixedTools show">
+	<a class="icon-qr" href="javascript:void(0)"><span class="qr"><img alt="微信" src="/images/qrcode.png" /></span></a>	<a class="icon-arrow-up J_up" href="javascript:void(0)"></a>
+</div>
+
+<div id="sign" class="sign">
+    <div class="part loginPart">
+    <form id="login" action="/signin" method="post" novalidate="novalidate">
+        <div id="register-active" class="switch">还没账号？马上注册&gt;&gt;</div>
+        <h3>登录<p class="status"></p></h3>
+        <p>
+            <label class="icon" for="username"><i class="fa fa-user"></i></label>
+            <input class="input-control" id="username" type="text" placeholder="请输入用户名" name="username" required="" aria-required="true">
+        </p>
+        <p>
+            <label class="icon" for="password"><i class="fa fa-lock"></i></label>
+            <input class="input-control" id="password" type="password" placeholder="请输入密码" name="password" required="" aria-required="true">
+        </p>
+        <p class="safe">
+            <label class="remembermetext" for="rememberme"><input name="rememberme" type="checkbox" checked="checked" id="rememberme" class="rememberme" value="forever">记住我的登录</label>
+            <a class="lost" href="wp-login.html">忘记密码 ?</a>
+        </p>
+        <p>
+            <input class="submit login-loader" type="button" value="登录" name="submit">
+            <input type="hidden" name="action" value="atpress_login">
+        </p>
+        <a class="close"><i class="headericon-close"></i></a>
+        <input type="hidden" id="security" name="security" value="d80da6779c">
+		<input type="hidden" name="_wp_http_referer" value="/atpress/">
+	</form>
+    <div id="weixin_login"></div>
+    {% comment %}
+        <div class="other-sign">
+            <p>使用第三方帐号快捷登录</p>
+            <div class="2-col"><a class="qqlogin" href="/oauth/qq/?rurl=http://www.at3.net" rel="nofollow"><i class="icon-qq"></i> <span>QQ登录</span></a></div>      	  <div class="2-col"><a class="weibologin" href="oauth/weibo/?rurl=http://www.at3.net" rel="nofollow"><i class="icon-weibo"></i> <span>微博登录</span></a></div>
+        </div>
+      {% endcomment %}
+        <div class="sign-tips"></div>
+    </div>
+    <div class="part registerPart">
+    <form id="register" action="/signup" method="post" novalidate="novalidate">
+        <div id="login-active" class="switch">已有账号？快去登录&gt;&gt;</div>
+        <h3>注册<p class="status"></p></h3>    
+        <p>
+            <label class="icon" for="user_name"><i class="fa fa-user"></i></label>
+            <input class="input-control" id="user_name" type="text" name="user_name" placeholder="输入英文用户名" required="" aria-required="true">
+        </p>
+        <p>
+            <label class="icon" for="user_email"><i class="fa fa-envelope"></i></label>
+            <input class="input-control" id="user_email" type="email" name="user_email" placeholder="输入常用邮箱" required="" aria-required="true">
+        </p>
+        <p>
+            <label class="icon" for="user_pass"><i class="fa fa-lock"></i></label>
+            <input class="input-control" id="user_pass" type="password" name="user_pass" placeholder="密码最小长度为6" required="" aria-required="true">
+        </p>
+        <p>
+            <label class="icon" for="user_pass2"><i class="fa fa-retweet"></i></label>
+            <input class="input-control" id="user_pass2" type="password" name="user_pass2" placeholder="再次输入密码" required="" aria-required="true">
+        </p>
+        <p id="captcha_inline">
+            <input class="input-control inline" type="text" id="captcha" name="captcha" placeholder="输入验证码" required>
+            <span class="captcha-clk inline">获取验证码</span>
+            <input type="hidden" name="action" value="atpress_register">
+            <input class="submit inline register-loader" type="button" value="注册" name="submit" style="height: 38px;">
+        </p>
+        <a class="close"><i class="headericon-close"></i></a>  
+        <input type="hidden" id="user_security" name="user_security" value="0069c112b8"><input type="hidden" name="_wp_http_referer" value="/atpress/"> 
+    </form>
+    <div class="sign-tips"></div>
+    </div>
+    <div class="clear"></div>
+</div>

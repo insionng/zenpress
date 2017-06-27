@@ -1,0 +1,512 @@
+@charset "UTF-8";
+	html,body {
+	background:#e9eaec;
+	-webkit-font-smoothing:antialiased;
+	font-size:13px
+}
+* {
+	box-sizing:border-box;
+	font-family:"Lantinghei SC","Open Sans",Arial,"Hiragino Sans GB","Microsoft YaHei","微软雅黑","STHeiti","WenQuanYi Micro Hei",SimSun,sans-serif;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	-webkit-tap-highlight-color:transparent
+}
+[placeholder]::-webkit-input-placeholder,[placeholder]::-moz-placeholder,[placeholder]:-ms-input-placeholder {
+	font-family:"Lantinghei SC","Open Sans",Arial,"Hiragino Sans GB","Microsoft YaHei","微软雅黑","STHeiti","WenQuanYi Micro Hei",SimSun,sans-serif
+}
+a {
+	color:#333333;
+	-webkit-transition:all 0.2s ease;
+	transition:all 0.2s ease;
+	text-decoration:none
+}
+a:hover {
+	color:#E67E22
+}
+.container {
+	margin:0 auto
+}
+@media (min-width:1200px) {
+	.container {
+	width:1170px
+}
+}@media (min-width:800px) and (max-width:1200px) {
+	.container {
+	width:1000px
+}
+}@media (max-width:800px) {
+	.container {
+	width:auto
+}
+}.clearfix {
+	*zoom:1
+}
+.clearfix:after {
+	content:'';
+	display:block;
+	clear:both;
+	height:0
+}
+.rows {
+	*zoom:1
+}
+.rows:after {
+	content:'';
+	display:block;
+	clear:both;
+	height:0
+}
+@media (min-width:1200px) {
+	.rows {
+	margin-top:30px
+}
+}@media (min-width:800px) and (max-width:1200px) {
+	.rows {
+	margin-top:20px
+}
+}.col-sub {
+	float:left
+}
+@media (min-width:1200px) {
+	.col-sub {
+	width:330px;
+	margin-right:30px
+}
+}@media (min-width:800px) and (max-width:1200px) {
+	.col-sub {
+	width:280px;
+	margin-right:20px
+}
+}@media (max-width:800px) {
+	.col-sub {
+	float:none
+}
+}.col-main {
+	float:right
+}
+@media (min-width:1200px) {
+	.col-main {
+	width:810px
+}
+}@media (min-width:800px) and (max-width:1200px) {
+	.col-main {
+	width:700px
+}
+}@media (max-width:800px) {
+	.col-main {
+	float:none
+}
+}.brand-link {
+	color:#E67E22
+}
+.brand-link:hover {
+	color:#2c79b0
+}
+.badge-base {
+	position:relative
+}
+.badge-base:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-base:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-tv {
+	position:relative;
+	overflow:hidden
+}
+.badge-tv:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-tv:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-tv:after {
+	content:"氪TV";
+	background:#f45170;
+	z-index:15
+}
+.badge-tv:before {
+	content:" ";
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	-webkit-transition:all 0.4s ease;
+	transition:all 0.4s ease;
+	background:rgba(0,0,0,0.3) url(http://kryptoners.b0.upaiyun.com/assets/icon-bofang-ee3db58a3ba9592e0484162dd88ad491.png) no-repeat center center;
+	background-size:40px;
+	z-index:10;
+	opacity:0.8
+}
+@media (max-width:800px) {
+	.badge-tv:before {
+	background-size:28px
+}
+}.badge-tv:hover:before {
+	opacity:1;
+	background-color:rgba(0,0,0,0.3)
+}
+.badge-o2o {
+	position:relative
+}
+.badge-o2o:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-o2o:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-o2o:after {
+	content:"O2O";
+	background:#f0cc23
+}
+.badge-hardware {
+	position:relative
+}
+.badge-hardware:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-hardware:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-hardware:after {
+	content:"新硬件";
+	background:#a289df
+}
+.badge-fun {
+	position:relative
+}
+.badge-fun:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-fun:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-fun:after {
+	content:"Fun!!";
+	background:#ff6161
+}
+.badge-enterprise {
+	position:relative
+}
+.badge-enterprise:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-enterprise:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-enterprise:after {
+	content:"企业服务";
+	background:#678ce0
+}
+.badge-sports {
+	position:relative
+}
+.badge-sports:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-sports:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-sports:after {
+	content:"Fit&Health";
+	background:#42d1db
+}
+.badge-edu {
+	position:relative
+}
+.badge-edu:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-edu:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-edu:after {
+	content:"在线教育";
+	background:#51cc96
+}
+.badge-finance {
+	position:relative
+}
+.badge-finance:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-finance:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-finance:after {
+	content:"互联网金融";
+	background:#f28d19
+}
+.badge-company {
+	position:relative
+}
+.badge-company:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-company:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-company:after {
+	content:"大公司";
+	background:#1f90f2
+}
+.badge-activity {
+	position:relative
+}
+.badge-activity:after {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#ffffff;
+	padding:2px 10px;
+	font-size:12px;
+	display:block
+}
+@media (max-width:800px) {
+	.badge-activity:after {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.badge-activity:after {
+	content:"近期活动";
+	background:#8ab724
+}
+.ad-wrapper {
+	position:relative
+}
+.ad-wrapper:before {
+	content:"推广";
+	display:block;
+	position:absolute;
+	top:0;
+	right:0;
+	font-size:12px;
+	color:#fff;
+	background:#7c91c2;
+	padding:0px 10px
+}
+@media (max-width:800px) {
+	.ad-wrapper:before {
+	padding:0px 6px;
+	font-size:10px;
+	line-height:1.6
+}
+}.radius-box {
+	border-radius:2px;
+	box-shadow:0 1px 2px rgba(0,0,0,0.05)
+}
+@media (max-width:800px) {
+	.mobile-hide {
+	display:none !important
+}
+}.mobile-show {
+	display:none
+}
+@media (max-width:800px) {
+	.mobile-show {
+	display:block
+}
+}@media (max-width:800px) {
+	.search-result-wrap {
+	padding:10px
+}
+}.search-result-wrap .main-section {
+	margin:0 auto;
+	*zoom:1
+}
+@media (min-width:1200px) {
+	.search-result-wrap .main-section {
+	width:1170px
+}
+}@media (min-width:800px) and (max-width:1200px) {
+	.search-result-wrap .main-section {
+	width:1000px
+}
+}@media (max-width:800px) {
+	.search-result-wrap .main-section {
+	width:auto
+}
+}.search-result-wrap .main-section:after {
+	content:'';
+	display:block;
+	clear:both;
+	height:0
+}
+@media (min-width:1200px) {
+	.search-result-wrap .main-section {
+	margin-top:30px
+}
+}@media (min-width:800px) and (max-width:1200px) {
+	.search-result-wrap .main-section {
+	margin-top:20px
+}
+}.search-result-wrap .main-section .fast-section {
+	float:left
+}
+.search-result-wrap .main-section .index-side{float:left}
+@media (min-width:1200px) {
+	.search-result-wrap .main-section .fast-section {
+	width:330px;
+	margin-right:30px
+}
+.search-result-wrap .main-section .index-side {
+  width: 330px;
+  margin-right: 30px;
+}
+}@media (min-width:800px) and (max-width:1200px) {
+	.search-result-wrap .main-section .fast-section {
+	width:280px;
+	margin-right:20px
+}
+}@media (max-width:800px) {
+	.search-result-wrap .main-section .fast-section {
+	float:none
+}
+}.search-result-wrap .main-section .result-list {
+	float:right
+}
+.search-result-wrap .main-section .result-list em.highlight {
+	font-style:normal;
+	color:#ff6600;
+	font-weight:600
+}
+@media (min-width:1200px) {
+	.search-result-wrap .main-section .result-list {
+	width:810px
+}
+}@media (min-width:800px) and (max-width:1200px) {
+	.search-result-wrap .main-section .result-list {
+	width:700px
+}
+}@media (max-width:800px) {
+	.search-result-wrap .main-section .result-list {
+	float:none
+}
+}.search-result-wrap .main-section .result-list .result-info {
+	*zoom:1;
+	border-radius:2px;
+	box-shadow:0 1px 2px rgba(0,0,0,0.05);
+	background:#ffffff;
+	height:40px;
+	line-height:40px;
+	padding:0 20px;
+	font-size:15px;
+	color:#666666
+}
+.search-result-wrap .main-section .result-list .result-info:after {
+	content:'';
+	display:block;
+	clear:both;
+	height:0
+}
+@media (max-width:800px) {
+	.search-result-wrap .main-section .result-list .result-info {
+	padding:0 10px;
+	font-size:15px
+}
+}.search-result-wrap .main-section .result-list .result-info .keyword {
+	float:left
+}
+.search-result-wrap .main-section .result-list .result-info .count {
+	float:right
+}
+
+@media (max-width: 1200px) and (min-width: 800px){
+.search-result-wrap .main-section .index-side {
+  width: 280px;
+  margin-right: 20px;
+}
+}

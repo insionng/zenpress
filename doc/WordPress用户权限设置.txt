@@ -1,0 +1,14 @@
+WordPress用户权限设置
+WordPress用户权限分为6级：自上到下依次是SupperAdministrator,Administrator,Editor,Author,Contributor以及Subscriber。
+Wordpress用户等级
+以下是每个级别帐号的权限描述，新建帐号时可以参考，控制每个用户的权限以增强网站的安全。
+
+Administrator-管理员帐号。拥有所有权限。
+Editor-编辑帐号。对所有的博客（Post）和自建页面（Page），以及每篇文章后面的留言（Comment）有详细的权限，可以对他们进行发表，删除，编辑。对除此以外的功能，比如插件（Plugin），用户（User），工具（Tool），主题（Theme）以及其他任何设置都没有权限。
+Author-作者账号: 只对博客（Post）有发表，删除，编辑权限，而且删除和编辑权限只对自己帐号发表的博客有效
+Contributor-贡献者帐号: 权限和Author相似，只是发表的博客要经过管理员的审核才会发布出来
+Subscriber-普通用户帐号: 只能浏览文章和修改自己的用户信息，有些文章需要用户登录才能看到，这个级别的用户作用就在于此
+WordPress对用户权限的默认分级是固定的，这已满足了绝大部分的需要。在我做过的大部分小构架的项目里，只需要Administrator，Editor，以及Subscriber这3级就可以了。而且现在的Wordpress都自带文章版本管理功能，改坏了能备份回来，大大降低了多用户的风险。
+如果要进行更丰富的用户权限设定，就需要安装插件了。
+
+详细的Wordpress默认用户分级表，注意每个级别下面的数字
