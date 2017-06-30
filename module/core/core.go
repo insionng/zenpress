@@ -6,6 +6,8 @@ import (
 	"os"
 
 	gomakross "github.com/insionng/makross"
+	"github.com/insionng/makross/cache"
+	"github.com/insionng/makross/captcha"
 	"github.com/insionng/makross/file"
 	gologger "github.com/insionng/makross/logger"
 	gopongor "github.com/insionng/makross/pongor"
@@ -13,18 +15,8 @@ import (
 	gostatic "github.com/insionng/makross/static"
 	goswitchr "github.com/insionng/zenpress/module/switchr"
 
-	mfmt "github.com/insionng/zenpress/extension/fmt"
-	"github.com/insionng/zenpress/extension/github.com/insionng/makross"
-	"github.com/insionng/zenpress/extension/github.com/insionng/makross/logger"
-	"github.com/insionng/zenpress/extension/github.com/insionng/makross/pongor"
-	"github.com/insionng/zenpress/extension/github.com/insionng/makross/session"
-	"github.com/insionng/zenpress/extension/github.com/insionng/makross/static"
-	"github.com/insionng/zenpress/extension/github.com/insionng/zenpress/model"
-	"github.com/insionng/zenpress/extension/github.com/insionng/zenpress/module/hook"
-	"github.com/insionng/zenpress/extension/github.com/insionng/zenpress/module/switchr"
-
+	"github.com/insionng/zenpress/module/qimport"
 	"qlang.io/cl/qlang"
-	"qlang.io/lib/qlang.all"
 )
 
 var (
@@ -40,17 +32,7 @@ func VmString(code string) error {
 }
 
 func init() {
-	qall.InitSafe(true)
-	qlang.Import("makross", makross.Exports)
-	qlang.Import("logger", logger.Exports)
-	qlang.Import("switchr", switchr.Exports)
-	qlang.Import("pongor", pongor.Exports)
-	qlang.Import("static", static.Exports)
-	qlang.Import("session", session.Exports)
-	qlang.Import("model", model.Exports)
-
-	qlang.Import("hook", hook.Exports)
-	qlang.Import("fmt", mfmt.Exports)
+	qimport.InitSafe(true)
 }
 
 func AddFunc(name string, function interface{}, pack ...string) {
@@ -227,6 +209,20 @@ func GetAppByTheme(theme string, filter bool, reload bool) (*gomakross.Makross, 
 	app.Use(gostatic.Static(fmt.Sprintf("content/theme/%s/public", theme)))
 	app.Use(gosession.Sessioner(gosession.Options{"file", `{"cookieName":"makrossSessionId","gcLifetime":3600,"providerConfig":"./content/storage/session"}`}))
 	app.Use(goswitchr.SwitchrWithConfig(goswitchr.SwitchrConfig{Theme: theme, Filter: filter, Reload: reload}))
+	/*------------------------------------*/
+	m.Use(cache.Cacher())
+	/*------------------------------------*/
+	app.Use(captcha.Captchaer(captcha.Options{
+		URLPrefix:        "/captcha/", // URL prefix of getting captcha pictures.
+		FieldIDName:      "captchaid", // Hidden input element ID.
+		FieldCaptchaName: "captcha",   // User input value element name in request form.
+		ChallengeNums:    6,           // Challenge number.
+		Width:            276,         // Captcha image width.
+		Height:           80,          // Captcha image height.
+		Expiration:       60,          // Captcha expiration time in seconds.
+		CachePrefix:      "captcha_",  // Cache key prefix captcha characters.
+	}))
+	/*------------------------------------*/
 
 	app.SetRenderer(gopongor.Renderor(gopongor.Option{Directory: fmt.Sprintf("content/theme/%s/template", theme), Reload: reload, Filter: filter}))
 
