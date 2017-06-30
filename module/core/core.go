@@ -210,7 +210,7 @@ func GetAppByTheme(theme string, filter bool, reload bool) (*gomakross.Makross, 
 	app.Use(gosession.Sessioner(gosession.Options{"file", `{"cookieName":"makrossSessionId","gcLifetime":3600,"providerConfig":"./content/storage/session"}`}))
 	app.Use(goswitchr.SwitchrWithConfig(goswitchr.SwitchrConfig{Theme: theme, Filter: filter, Reload: reload}))
 	/*------------------------------------*/
-	m.Use(cache.Cacher())
+	app.Use(cache.Cacher())
 	/*------------------------------------*/
 	app.Use(captcha.Captchaer(captcha.Options{
 		URLPrefix:        "/captcha/", // URL prefix of getting captcha pictures.
