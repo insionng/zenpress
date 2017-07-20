@@ -8,7 +8,7 @@ import (
 
 // Link 链接信息表
 type Link struct {
-	LinkID          uint64 `gorm:"primary_key"`
+	ID              uint64 `gorm:"primary_key"`
 	LinkURL         string
 	LinkName        string
 	LinkImage       string

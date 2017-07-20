@@ -1,4 +1,4 @@
-DashboardRootHandler = fn(self) {
+RootDashboardHandler = fn(self) {
 	self.AddActionHook("DashboardHandler", DashboardHandle)
 	self.SetStore(map[string]var{
 			"title": "#后端首页# in default",

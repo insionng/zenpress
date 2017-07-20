@@ -15,16 +15,20 @@ import (
 	"time"
 )
 
+const (
+	app = "./"
+
+	DataType            = "sqlite"
+	DatabaseTablePrefix = "zen_"
+)
+
 var (
-	app         = "./"
 	Database    *gorm.DB
 	HasDatabase bool
 
-	DataType = "sqlite"
 	//DatabaseConn        = "root:rootpass@/wp?charset=utf8"
-	DatabaseConn = "./content/storage/data/sqlite.db"
-	//DatabaseConn        = "../content/storage/data/sqlite_test.db"
-	DatabaseTablePrefix = "zen_"
+	DatabaseConn = "content/storage/data/sqlite.db"
+	//DatabaseConn = "../content/storage/data/sqlite_test.db"
 )
 
 // Model base model definition, including fields `ID`, `CreatedAt`, `UpdatedAt`, `DeletedAt`, which could be embedded in your models
@@ -38,28 +42,28 @@ type Model struct {
 	DeletedAt *time.Time `sql:"index"`
 }
 
-func ConnDatabase() (*gorm.DB, error) {
+func ConnDatabase(databaseConn string) (*gorm.DB, error) {
 	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
 		return DatabaseTablePrefix + defaultTableName
 	}
 
 	switch {
 	case DataType == "sqlite":
-		return gorm.Open("sqlite3", app+"content/storage/data/sqlite.db")
+		return gorm.Open("sqlite3", databaseConn)
 
 	case DataType == "mysql":
-		return gorm.Open("mysql", DatabaseConn)
+		return gorm.Open("mysql", databaseConn)
 
 	case DataType == "postgres":
-		return gorm.Open("postgres", DatabaseConn)
+		return gorm.Open("postgres", databaseConn)
 	}
 
 	return nil, errors.New("Unknown Database Type")
 }
 
-func SetDatabase(maxIdleConns, maxOpenConns int) (*gorm.DB, error) {
+func SetDatabase(databaseConn string, maxIdleConns, maxOpenConns int) (*gorm.DB, error) {
 	var _error error
-	if Database, _error = ConnDatabase(); _error != nil {
+	if Database, _error = ConnDatabase(databaseConn); _error != nil {
 		return nil, fmt.Errorf("Failed to connect database: %s,%s", _error.Error(), DatabaseConn)
 	}
 
@@ -68,6 +72,7 @@ func SetDatabase(maxIdleConns, maxOpenConns int) (*gorm.DB, error) {
 	Database.DB().SetMaxOpenConns(maxOpenConns)
 
 	Database.Debug().LogMode(true)
+
 	logWriter, err := os.OpenFile("content/storage/logs/gorm.log", os.O_CREATE, os.ModePerm)
 	if err != nil {
 		panic(fmt.Errorf("Create gorm log file error:%v", err))
@@ -76,22 +81,20 @@ func SetDatabase(maxIdleConns, maxOpenConns int) (*gorm.DB, error) {
 	return Database, nil
 }
 
-func NewDatabase(maxIdleConns, maxOpenConns int) error {
+func NewDatabase(databaseConn string, maxIdleConns, maxOpenConns int) error {
 	var _error error
-	Database, _error = SetDatabase(maxIdleConns, maxOpenConns)
+	Database, _error = SetDatabase(databaseConn, maxIdleConns, maxOpenConns)
 	return _error
 }
 
 func init() {
-
 	var _error error
-	if Database, _error = SetDatabase(10, 100); _error != nil {
+	if Database, _error = SetDatabase(DatabaseConn, 10, 100); _error != nil {
 		log.Fatal("app.models.init() errors:", _error.Error())
 	}
 
 	CreateTables(Database)
 	message()
-
 }
 
 func CreateTables(Database *gorm.DB) {

@@ -1,47 +1,49 @@
-app.Get("/", IndexHandler)
-app.Get("/post", SingleHandler)
-app.Get("/page", PageHandler)
-app.Get("/category", CategoryHandler)
-app.Get("/tag", TagHandler)
-app.Get("/taxonomy", TaxonomyHandler)
-app.Get("/author", AuthorHandler)
-app.Get("/attachment", AttachmentHandler)
-app.Get("/date", DateHandler)
-app.Get("/archive", ArchiveHandler)
-app.Get("/search", SearchHandler)
+app.Any("/", IndexHandler)
+app.Any("/single", SingleHandler)
+app.Any("/page", PageHandler)
+app.Any("/category/<slug>", CategoryHandler)
+app.Any("/tag", TagHandler)
+app.Any("/taxonomy", TaxonomyHandler)
+app.Any("/author", AuthorHandler)
+app.Any("/attachment", AttachmentHandler)
+app.Any("/date", DateHandler)
+app.Any("/archive", ArchiveHandler)
+app.Any("/search", SearchHandler)
+app.Any("/signin", SigninHandler)
 
 //root routers
-rg = app.Group("/root")
+root = app.Group("/root")
+root.Use(switchr.SwitchrWithConfig(&switchr.SwitchrConfig{Theme: theme, Filter: filter, Reload: reload}))
 
 //Dashboard：控制面板
-rg.Get("/", RootDashboardHandler)
+root.Any("/", RootDashboardHandler)
 
 //article：文章
-rg.Get("/article", RootArticleHandler)
+root.Any("/article", RootArticleHandler)
 
 //media：媒体
-rg.Get("/media", RootMediaHandler)
+root.Any("/media", RootMediaHandler)
 
 //media：链接
-rg.Get("/link", RootLinkHandler)
+root.Any("/link", RootLinkHandler)
 
 //page：页面
-rg.Get("/page", RootPageHandler)
+root.Any("/page", RootPageHandler)
 
 //comments：评论
-rg.Get("/comment", RootCommentHandler)
+root.Any("/comment", RootCommentHandler)
 
 //theme：主题
-rg.Get("/theme", RootThemeHandler)
+root.Any("/theme", RootThemeHandler)
 
 //plugin：插件
-rg.Get("/plugin", RootPluginHandler)
+root.Any("/plugin", RootPluginHandler)
 
 //users：用户
-rg.Get("/user", RootUserHandler)
+root.Any("/user", RootUserHandler)
 
 //tools：工具
-rg.Get("/tool", RootToolHandler)
+root.Any("/tool", RootToolHandler)
 
 //options：设置
-rg.Get("/option", RootOptionHandler)
+root.Any("/option", RootOptionHandler)

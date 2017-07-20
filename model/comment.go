@@ -2,11 +2,13 @@ package model
 
 import (
 	"time"
+
+	"github.com/jinzhu/gorm"
 )
 
-// Comment 文章评论信息表
+// Comment 评论评论信息表
 type Comment struct {
-	CommentID          uint64    `gorm:"primary_key"`
+	ID                 uint64    `gorm:"primary_key"`
 	CommentPostID      int64     `gorm:"not null default 0 index BIGINT(20)"`
 	CommentAuthor      string    `gorm:"not null TINYTEXT"`
 	CommentAuthorEmail string    `gorm:"not null default '' index VARCHAR(100)"`
@@ -21,4 +23,35 @@ type Comment struct {
 	CommentType        string    `gorm:"not null default '' VARCHAR(20)"`
 	CommentParent      int64     `gorm:"not null default 0 index BIGINT(20)"`
 	UserID             int64     `gorm:"not null default 0 BIGINT(20)"`
+}
+
+// NewComment 创建评论
+func NewComment(comment *Comment) (db *gorm.DB) {
+	db = Database.Create(comment)
+	return
+}
+
+// AddComment 新增评论
+func AddComment(commentAuthor, commentAuthorURL, commentContent string) (db *gorm.DB) {
+	db = Database.Create(&Comment{CommentAuthor: commentAuthor, CommentContent: commentContent, CommentAuthorURL: commentAuthorURL})
+	return
+}
+
+// GetComment 获得评论
+func GetComment(id uint64) (db *gorm.DB, Comment Comment) {
+	db = Database.First(&Comment, "id = ?", id)
+	return
+}
+
+// UpdateComment 更新评论
+func UpdateComment(id uint64, commentContent string) (db *gorm.DB, comment Comment) {
+	comment = Comment{CommentContent: commentContent}
+	db = Database.Model(&comment).Update("id", id)
+	return
+}
+
+// DeleteComment 删除评论
+func DeleteComment(id uint64) (db *gorm.DB) {
+	db = Database.Delete(Comment{}, "id = ?", id)
+	return
 }

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strings"
 	"sync"
 
 	"github.com/insionng/zenpress/helper"
@@ -31,31 +30,16 @@ func init() {
 
 	core.VmString(`
 		hook.AddActionHook("init", fn {
-			println("::Application init::")
+			println("<Application init>")
 		})
 	`)
 }
 
-func hello() {
-	fmt.Println("[hello main action]")
-}
-
-func coreHello() {
-	fmt.Println("[core hello action]")
-}
-
-func bootstrap() {
-	fmt.Println("[bootstrap action]")
-}
-
-func theloop() {
-	fmt.Println("[theloop action]")
-}
-
 func quit() {
-	fmt.Println("[quit action]")
+	fmt.Println("<Application quit>")
 }
 
+/*
 func TheTitle() []byte {
 	quote := "The bird is the word."
 	return []byte(quote)
@@ -72,6 +56,7 @@ func bigTitle(quote []byte) []byte {
 	fmt.Println(string(quote))
 	return quote
 }
+*/
 
 func main() {
 	defer func() {
@@ -88,9 +73,11 @@ func main() {
 	}()
 
 	core.VmString(`
-	hook.AddActionHook("bootstrap", bootstrap)
-	hook.DoActionHook("bootstrap")
-`)
+		hook.AddActionHook("bootstrap", fn {
+			println("<Application bootstrap>")
+		})
+	   	hook.DoActionHook("bootstrap")
+	   `)
 
 	//------------------------------------------------------//
 
@@ -98,11 +85,7 @@ func main() {
 	hook.DoActionHook("plugin")
 
 	//------------------------------------------------------//
-	core.VmString(`
-		hook.AddActionHook("bootstrap", fn {
-			println("::Application bootstrap::")
-		})
-	`)
+
 	//------------------------------------------------------//
 
 	watcher, err := fsnotify.NewWatcher()

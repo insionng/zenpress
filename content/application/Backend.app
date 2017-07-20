@@ -3,7 +3,7 @@ root = app.Group("/root")
 root.Use(switchr.SwitchrWithConfig(&switchr.SwitchrConfig{Theme: theme, Filter: filter, Reload: reload}))
 
 //Dashboard：控制面板
-root.Any("/", DashboardRootHandler)
+root.Any("/", RootDashboardHandler)
 
 //article：文章
 root.Any("/article", RootArticleHandler)

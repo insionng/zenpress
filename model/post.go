@@ -2,6 +2,8 @@ package model
 
 import (
 	"time"
+
+	"github.com/jinzhu/gorm"
 )
 
 // Post 文章信息表，包括了日志、附件、页面等等信息。是WordPress最重要的一个数据表。
@@ -29,4 +31,35 @@ type Post struct {
 	PostType            string `gorm:"not null default 'post' index(TYPE_STATUS_DATE) VARCHAR(20)"`
 	PostMimeType        string
 	CommentCount        uint64
+}
+
+// NewPost 创建文章
+func NewPost(post *Post) (db *gorm.DB) {
+	db = Database.Create(post)
+	return
+}
+
+// AddPost 新增文章
+func AddPost(postName, postTitle, postContent string) (db *gorm.DB) {
+	db = Database.Create(&Post{PostName: postName, PostContent: postContent, PostTitle: postTitle})
+	return
+}
+
+// GetPost 获得文章
+func GetPost(id uint64) (db *gorm.DB, Post Post) {
+	db = Database.First(&Post, "id = ?", id)
+	return
+}
+
+// UpdatePost 更新文章
+func UpdatePost(id uint64, postContent string) (db *gorm.DB, post Post) {
+	post = Post{PostContent: postContent}
+	db = Database.Model(&post).Update("id", id)
+	return
+}
+
+// DeletePost 删除文章
+func DeletePost(id uint64) (db *gorm.DB) {
+	db = Database.Delete(Post{}, "id = ?", id)
+	return
 }
